@@ -19,3 +19,10 @@ Do not infer or install dependencies from the imports. A future standalone build
 Pages use a typed `schemaVersion: 1` JSON contract. Content, renderer-owned blocks, and theme tokens remain separate so a new page can be added without copying widget code or creating page-specific CSS.
 
 The repository version intentionally omits links to private planning documents, personal decision logs, and internal process notes.
+
+## Documentation
+
+- [Architecture](docs/architecture.md)
+- [High-level blueprint](docs/blueprint.md)
+- [Roadmap](docs/roadmap.md)
+- [Agent contribution guide](AGENTS.md)
