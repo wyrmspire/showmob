@@ -86,7 +86,9 @@ test('empty, duplicate, malformed and unknown blocks cannot reach the renderer',
   rejects({ ...example, blocks: [] }, '$.blocks');
   for (const value of [null, [], 'text']) rejects(artifactWith(value), '$.blocks[0]');
   for (const type of ['widget', 'constructor', '__proto__', 'toString']) rejects(artifactWith({ id: 'x', type }), '$.blocks[0].type');
-  rejects(artifactWith({ ...example.blocks[0], id: ' ' }), '$.blocks[0].id');
+  for (const id of ['', ' ', ' step', 'step ', 'step 1', 'step\t1', 'step\n1', 'step\r1', 'step\f1']) {
+    rejects(artifactWith({ ...example.blocks[0], id }), '$.blocks[0].id');
+  }
   rejects({ ...example, blocks: [example.blocks[0], { ...example.blocks[0] }] }, '$.blocks[1].id');
 });
 

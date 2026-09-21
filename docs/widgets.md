@@ -30,7 +30,7 @@ The complete minimal artifact is:
 | `title`, `summary`, `contributor` | Required strings. Use useful, nonempty copy before review or publication. |
 | `status` | Required: `draft`, `preview`, `published`, `archived`. Never promote another author's work without publication authority. |
 | `theme` | Required: `paper`, `signal`, `workshop`, `night`, `field`. No raw styling fields. |
-| `blocks` | Required nonempty array of supported blocks. Block IDs are nonempty strings, unique within the artifact and stable across edits. |
+| `blocks` | Required nonempty array of supported blocks. Block IDs are nonempty strings without ASCII whitespace, unique within the artifact and stable across edits. |
 | `tags` | Optional array of strings. |
 | `updated` | Optional string; editorial convention is `YYYY-MM-DD`. The validator does not enforce a date format. |
 | `series` | Optional object with string `id`, string `title`, finite numeric `order`. Use positive, distinct integer orders within a series as an editorial convention. |
