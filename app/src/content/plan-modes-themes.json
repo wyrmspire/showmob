@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "slug": "plan-modes-themes",
+  "title": "Two modes, five skins",
+  "summary": "One content tree. The mode picks the shell; the theme picks the tokens.",
+  "contributor": "Showmob product brief",
+  "status": "published",
+  "theme": "night",
+  "series": {
+    "id": "showmob-plan",
+    "title": "The Showmob plan",
+    "order": 3
+  },
+  "tags": [
+    "showmob-plan",
+    "modes",
+    "themes"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "The Showmob plan - part 3",
+      "title": "Two modes, five skins",
+      "body": "The same content file feeds both modes. Only the shell changes."
+    },
+    {
+      "id": "modes",
+      "type": "comparison",
+      "heading": "The two modes",
+      "columns": [
+        {
+          "name": "Present - for driving the room",
+          "detail": "One section per screen, big type, arrow keys and swipe, a small position counter. Auto-advance stays off."
+        },
+        {
+          "name": "Read - for opening a link",
+          "detail": "A normal scrolling page with section anchors. Natural on a phone, so shared links open here by default."
+        }
+      ]
+    },
+    {
+      "id": "numbers",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "2",
+          "label": "mode shells, never two content trees"
+        },
+        {
+          "value": "5",
+          "label": "theme token sets"
+        },
+        {
+          "value": "1",
+          "label": "content file per page"
+        }
+      ]
+    },
+    {
+      "id": "styles",
+      "type": "steps",
+      "heading": "Five style presets, not five apps",
+      "items": [
+        "Shop floor - dark charcoal and safety orange; sparse and practical.",
+        "Glass brief - frosted panels and cool neutrals; a consulting leave-behind.",
+        "Poster - huge type, two or three colors, full-bleed sections.",
+        "Editorial - long-read rhythm and quiet motion; a memo becomes a site.",
+        "Neon lab - high-contrast gradients and playful motion; demo-day energy."
+      ]
+    },
+    {
+      "id": "delta",
+      "type": "note-callout",
+      "tone": "warning",
+      "title": "Where the prototype differs today",
+      "body": "The brief names the modes Present and Read; this prototype ships them as Present and Browse. The brief makes theme choice an authoring concern; the prototype currently lets viewers audition all five themes. Both remain visible product questions."
+    },
+    {
+      "id": "source",
+      "type": "note-callout",
+      "tone": "note",
+      "title": "Mode and theme rationale",
+      "body": "One content tree feeds both reading and presentation shells. Theme tokens change appearance without changing content structure."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Same file, two shells",
+      "body": "Switching modes keeps the same section. That continuity is the product."
+    }
+  ]
+}
