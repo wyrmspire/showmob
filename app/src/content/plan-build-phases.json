@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "slug": "plan-build-phases",
+  "title": "Build in phases",
+  "summary": "Small phases, honest gates, rollback always available.",
+  "contributor": "Showmob product brief",
+  "status": "published",
+  "theme": "signal",
+  "series": {
+    "id": "showmob-plan",
+    "title": "The Showmob plan",
+    "order": 5
+  },
+  "tags": [
+    "showmob-plan",
+    "roadmap"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "The Showmob plan - part 5",
+      "title": "Build in phases",
+      "body": "A side project in active development. Start whenever, prove each phase, keep the last good version reachable."
+    },
+    {
+      "id": "phases",
+      "type": "timeline",
+      "heading": "The phased plan",
+      "items": [
+        {
+          "time": "Phase 1",
+          "title": "Content schema, one sample, hub",
+          "detail": "The contract first; everything else hangs off it."
+        },
+        {
+          "time": "Phase 2",
+          "title": "Two mode shells on the same content",
+          "detail": "Present and Read over one tree."
+        },
+        {
+          "time": "Phase 3",
+          "title": "Five presets as token sets",
+          "detail": "Tokens first; polish later."
+        },
+        {
+          "time": "Phase 4",
+          "title": "Document deployment and security boundaries",
+          "detail": "Write down how the product ships and what it intentionally does not do."
+        },
+        {
+          "time": "Phase 5",
+          "title": "Add extras only when defined",
+          "detail": "Kiosk or display modes wait for a concrete use case."
+        },
+        {
+          "time": "Prototype",
+          "title": "Renderer, studio, and presenter controls",
+          "detail": "The current source demonstrates the contract, page patterns, and presentation shell."
+        }
+      ]
+    },
+    {
+      "id": "proof",
+      "type": "checklist",
+      "heading": "What working must prove",
+      "items": [
+        {
+          "label": "Adding a page never overwrites an older one"
+        },
+        {
+          "label": "Invalid content fails validation with a precise error"
+        },
+        {
+          "label": "Cold direct links, refresh and back keep working"
+        },
+        {
+          "label": "Touch, keyboard, zoom and reduced motion stay usable"
+        },
+        {
+          "label": "A draft never appears in production output"
+        },
+        {
+          "label": "A failed build and a rollback are handled honestly"
+        }
+      ]
+    },
+    {
+      "id": "nongoals",
+      "type": "note-callout",
+      "tone": "note",
+      "title": "Non-goals for now",
+      "body": "No CMS sync into pages. No accounts or multiplayer editing. No pixel-perfect slide-app clone."
+    },
+    {
+      "id": "source",
+      "type": "note-callout",
+      "tone": "note",
+      "title": "Phasing rule",
+      "body": "Each phase should prove one boundary while keeping the last known-good version reachable."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "One useful page, then a second that proves reuse",
+      "body": "That is the whole acceptance loop."
+    }
+  ]
+}
