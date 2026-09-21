@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "slug": "plan-widget-bin",
+  "title": "The widget bin",
+  "summary": "A small kit of known-good pieces, so a new page is assembly, not debugging.",
+  "contributor": "Showmob product brief",
+  "status": "published",
+  "theme": "field",
+  "series": {
+    "id": "showmob-plan",
+    "title": "The Showmob plan",
+    "order": 4
+  },
+  "tags": [
+    "showmob-plan",
+    "widgets"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "The Showmob plan - part 4",
+      "title": "The widget bin",
+      "body": "Ship a small kit of known-good pieces so a new page is assembly, not debugging."
+    },
+    {
+      "id": "numbers",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "8",
+          "label": "widgets locked for v0"
+        },
+        {
+          "value": "14",
+          "label": "block types live in this prototype"
+        },
+        {
+          "value": "0",
+          "label": "custom forks allowed"
+        }
+      ]
+    },
+    {
+      "id": "bin",
+      "type": "checklist",
+      "heading": "The locked v0 bin",
+      "items": [
+        {
+          "label": "Hero",
+          "detail": "The one big opening statement."
+        },
+        {
+          "label": "Text / note",
+          "detail": "One canonical prose block with a documented variant."
+        },
+        {
+          "label": "Steps",
+          "detail": "An ordered sequence."
+        },
+        {
+          "label": "Two-up compare",
+          "detail": "Two columns, one honest contrast."
+        },
+        {
+          "label": "Stat strip",
+          "detail": "A few numbers that carry weight."
+        },
+        {
+          "label": "Media frame",
+          "detail": "Image or video placeholder."
+        },
+        {
+          "label": "Link card",
+          "detail": "A source or destination worth opening."
+        },
+        {
+          "label": "CTA band",
+          "detail": "The closing action."
+        },
+        {
+          "label": "Interactive toggle",
+          "detail": "Already sketched; small session-local state."
+        }
+      ]
+    },
+    {
+      "id": "earned",
+      "type": "comparison",
+      "heading": "Parked vs earned",
+      "columns": [
+        {
+          "name": "Parked for later",
+          "detail": "Timeline, FAQ, logo row and quiz wait until a real page demands them."
+        },
+        {
+          "name": "Earned by use",
+          "detail": "This prototype grew to 14 blocks - checklist, timeline, code, source card, exercise, divider - because real pages asked for them. This series asked."
+        }
+      ]
+    },
+    {
+      "id": "promise",
+      "type": "note-callout",
+      "tone": "note",
+      "title": "What every widget promises",
+      "body": "Stable id, typed props, no fetch or write side effects in v0, and it works under every theme and both modes - or it documents the rare exception."
+    },
+    {
+      "id": "source",
+      "type": "note-callout",
+      "tone": "note",
+      "title": "Widget selection rule",
+      "body": "A widget enters the shared renderer only when more than one real artifact benefits from it."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Don't prebuild twenty widgets",
+      "body": "Start with the few that two real artifacts need. Earn the rest by use."
+    }
+  ]
+}
