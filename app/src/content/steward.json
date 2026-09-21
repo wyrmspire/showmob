@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "slug": "signal-path",
+  "title": "Follow the signal",
+  "summary": "A compact field guide to finding a fault without guessing.",
+  "contributor": "Steward example",
+  "status": "published",
+  "theme": "signal",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Troubleshooting pattern",
+      "title": "Follow the signal",
+      "body": "Start where the system is still known-good. Move one boundary at a time."
+    },
+    {
+      "id": "numbers",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "1",
+          "label": "known-good starting point"
+        },
+        {
+          "value": "1",
+          "label": "boundary per test"
+        },
+        {
+          "value": "0",
+          "label": "parts changed on a hunch"
+        }
+      ]
+    },
+    {
+      "id": "method",
+      "type": "steps",
+      "heading": "The loop",
+      "items": [
+        "Name the expected input and output.",
+        "Measure at the next boundary.",
+        "Keep moving until expected becomes unexpected.",
+        "Change one thing, then prove the signal returned."
+      ]
+    },
+    {
+      "id": "why",
+      "type": "note-callout",
+      "title": "Why this works",
+      "body": "The method makes your evidence trail as useful as the repair itself."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Make the next check obvious",
+      "body": "A good troubleshooting note lets another person resume without starting over."
+    }
+  ],
+  "tags": [
+    "diagnostics",
+    "fieldwork"
+  ]
+}
