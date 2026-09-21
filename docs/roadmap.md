@@ -24,6 +24,12 @@ Take one useful subject from idea to durable artifact:
 
 Success is not a larger schema. Success is a real artifact that is useful, portable, readable, presentable, and honest about its sources and limits.
 
+### First implementation pass
+
+The [widget catalog](./widgets.md) now documents the version 1 grammar and all 14 current blocks. A shared runtime validator protects imports, saved-draft restoration and bundled content, with a dependency-free Node validation suite.
+
+The ten-section `solid-state-foundations` preview lesson is the first focused course pass. [Its evidence map and vocabulary review](./solid-state-course-review.md) record the diagram, citation and result-capture needs exposed by authoring it. Hosted Browse/Present, theme, mobile and keyboard review remain open; the full real-artifact milestone is not complete until that review happens.
+
 ## Near term
 
 ### Tighten the existing contract through use

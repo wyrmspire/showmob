@@ -31,6 +31,8 @@ The renderer should not need to know where the content came from.
 
 JSON is Showmob's authoring language. An artifact describes an experience without containing application code.
 
+For version 1, the canonical block grammar is `{ id, type, ...widgetFields }` in a flat `blocks` array. The older `{ widgetId, props }` brainstorming form is not supported. [The widget catalog](./widgets.md) documents exact shapes and current behavior for all 14 types. `app/src/validation.ts` validates bundled content, Studio imports and saved drafts against the runtime contract.
+
 ```text
 Artifact
 |- identity and metadata

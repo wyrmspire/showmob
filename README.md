@@ -26,3 +26,15 @@ The repository version intentionally omits links to private planning documents, 
 - [High-level blueprint](docs/blueprint.md)
 - [Roadmap](docs/roadmap.md)
 - [Agent contribution guide](AGENTS.md)
+- [Authoring contract and all 14 widgets](docs/widgets.md)
+- [First solid-state lesson and vocabulary findings](docs/solid-state-course-review.md)
+
+## Validate content without the hosted toolchain
+
+With Node 22.18+ or Node 24, run:
+
+```sh
+node --experimental-strip-types --test tests/validation.test.mjs
+```
+
+No dependency installation is needed. This checks JSON content, the legacy fixture, catalog examples and runtime validation failure cases. It does not build or visually preview the hosted application. Pasted/file imports, saved drafts and the bundled content library use the same validator in `app/src/validation.ts`.

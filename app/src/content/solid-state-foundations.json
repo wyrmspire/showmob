@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "slug": "solid-state-foundations",
+  "title": "From machine signals to solid-state switches",
+  "summary": "A ten-section introduction to voltage, junctions, transistors and inductive loads, with a knowledge check and a paper worksheet.",
+  "contributor": "Showmob learning example",
+  "status": "preview",
+  "theme": "workshop",
+  "series": {
+    "id": "solid-state-circuitry",
+    "title": "Solid-state circuitry",
+    "order": 1
+  },
+  "tags": [
+    "electronics",
+    "learning",
+    "solid-state"
+  ],
+  "updated": "2026-09-21",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Solid-state circuitry · foundations",
+      "title": "Signals to switches",
+      "body": "You already understand a command, a mechanism and a load. Learn what changes when silicon controls the current. By the end, distinguish voltage from current, explain a diode, and tell a MOSFET control signal from a load supply. This is a conceptual lesson and paper exercise; it does not specify a circuit to wire or a machine modification."
+    },
+    {
+      "id": "electrical-quantities",
+      "type": "text",
+      "heading": "1. Name the quantity before the number",
+      "body": "Voltage is a difference in electric potential between two points. Current is the rate of charge flow through a path. Resistance relates them for a resistor: I = V / R. In an ideal paper example, 12 V across 1,000 ohms gives 0.012 A, or 12 mA. Power is V × I, so that resistor dissipates 0.144 W. These equations describe that resistor; a diode or transistor does not behave like a fixed resistor in every operating region. When someone says “the signal is 3.3 V,” ask: relative to which reference, and driving what input?"
+    },
+    {
+      "id": "junction-and-diode",
+      "type": "text",
+      "heading": "2. A junction makes direction matter",
+      "body": "Doping changes the available charge carriers in silicon. Where p-type and n-type regions meet, a depletion region forms. Forward bias reduces the barrier and permits substantial current; reverse bias normally permits only small leakage until breakdown. A diode uses this asymmetric behavior. “About 0.7 V” is a rough silicon-junction model, not a universal turn-on specification: the drop depends on current, temperature and device construction. Think of a check valve only as a direction analogy; a real diode still has losses and limits. See Toshiba, Chapters I and II, in the source card below."
+    },
+    {
+      "id": "two-transistor-families",
+      "type": "comparison",
+      "heading": "3. Two ways to control a current path",
+      "columns": [
+        {
+          "name": "Bipolar transistor: base, collector, emitter",
+          "detail": "A BJT uses base drive to control collector current. In its active region, collector current is approximately current gain times base current. Switching also involves cut-off and saturation, so that gain rule is not a complete switch-design method. The load supply provides the load energy. See Toshiba, Chapter III."
+        },
+        {
+          "name": "MOSFET: gate, drain, source",
+          "detail": "For an enhancement-mode N-channel MOSFET, gate-to-source voltage controls conduction. The gate is insulated, but switching requires charging and discharging it. Threshold voltage marks the start of conduction at a specified test current; it does not promise low on-resistance at your load current. Check the specified gate voltage for RDS(on). See the TI gate-drive report."
+        }
+      ]
+    },
+    {
+      "id": "industrial-switching",
+      "type": "steps",
+      "heading": "4. Follow the energy through a valve command",
+      "items": [
+        "Conceptual example: a controller requests a valve to move. Its logic signal reaches a suitable driver, while a separate supply provides the coil current. A logic output is not a substitute for the load supply.",
+        "With the switch on, coil current builds and energy is stored in the magnetic field. Component losses turn some supplied power into heat.",
+        "At turn-off, inductive current cannot disappear instantly. The circuit needs a designed path or clamp for the stored energy; otherwise voltage can rise enough to damage the switch.",
+        "A freewheeling diode is one possible approach. A low clamp voltage generally releases the coil more slowly than a higher-voltage clamp. Protection and release time must be designed together. See the TI inductive-load source.",
+        "Before choosing actual hardware, identify load current, supply and transient limits, driver capability, thermal conditions and the equipment’s required stop behavior. This lesson supplies no component ratings or wiring design."
+      ]
+    },
+    {
+      "id": "threshold-check",
+      "type": "exercise",
+      "heading": "5. Does a 2 V threshold settle it?",
+      "prompt": "A hypothetical MOSFET lists a 2 V threshold, but its low RDS(on) is specified only at 10 V gate-to-source. Is a 3.3 V control signal enough to guarantee that low resistance?",
+      "options": [
+        "Yes, because 3.3 V is above the threshold.",
+        "No. Check guaranteed on-resistance at the intended gate drive and the load conditions.",
+        "Yes, if the load uses a separate supply."
+      ],
+      "answer": 1,
+      "explanation": "Threshold is measured near the start of conduction. It does not establish low resistance at the intended current. A separate load supply is necessary in many designs, but it does not fix insufficient gate drive. Revisit section 3 and the TI gate-drive report."
+    },
+    {
+      "id": "final-worksheet",
+      "type": "checklist",
+      "heading": "6. Make a paper handoff",
+      "items": [
+        {
+          "label": "Separate control and power",
+          "detail": "On paper, name the command signal, driver, switch, load, supply and reference. Describe each role; this is not a wiring schematic."
+        },
+        {
+          "label": "Explain the diode",
+          "detail": "Say what forward and reverse bias mean, then name one reason a fixed 0.7 V assumption can fail."
+        },
+        {
+          "label": "Explain the gate specification",
+          "detail": "State why threshold and the gate voltage used to specify RDS(on) answer different questions."
+        },
+        {
+          "label": "Account for turn-off energy",
+          "detail": "Describe where an inductive load’s stored energy goes and why release time matters."
+        },
+        {
+          "label": "Save your explanation elsewhere",
+          "detail": "Write one uncertain point and your answer to the quiz in your own notes. This prototype does not save learning results; navigating away from a block in Present can reset its answers and checks."
+        }
+      ]
+    },
+    {
+      "id": "source-semiconductors",
+      "type": "embed",
+      "heading": "Source: junctions, diodes and BJTs",
+      "source": "Toshiba — Basic Knowledge of Discrete Semiconductor Devices",
+      "caption": "Chapters I–III support sections 2–3. Open the pn-junction and bipolar-transistor lessons for manufacturer diagrams and operating-region explanations. Accessed 2026-09-21.",
+      "url": "https://toshiba.semicon-storage.com/us/semiconductor/knowledge/e-learning/discrete.html"
+    },
+    {
+      "id": "source-gate-drive",
+      "type": "embed",
+      "heading": "Source: MOSFET gate drive",
+      "source": "Texas Instruments — SLUA618A, Fundamentals of MOSFET and IGBT Gate Driver Circuits",
+      "caption": "Section 2 and the turn-on discussion support section 3 and the threshold check. The report covers gate charge, switching intervals and on-resistance. Accessed 2026-09-21.",
+      "url": "https://www.ti.com/lit/slua618"
+    },
+    {
+      "id": "source-inductive-loads",
+      "type": "embed",
+      "heading": "Source: inductive-load turn-off",
+      "source": "Texas Instruments — SNVAA45, inductive discharge application brief",
+      "caption": "The introduction supports section 4: stored magnetic energy, clamp options and the release-time tradeoff. Its later circuit is an advanced design example, not a build instruction for this lesson. Accessed 2026-09-21.",
+      "url": "https://www.ti.com/document-viewer/lit/html/SNVAA45"
+    }
+  ]
+}
