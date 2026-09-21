@@ -1,0 +1,87 @@
+# Agent contribution guide
+
+This repository treats Showmob as a content language with a renderer, not as a collection of one-off websites.
+
+## Start here
+
+Read these before making a structural change:
+
+- [`docs/architecture.md`](docs/architecture.md)
+- [`docs/blueprint.md`](docs/blueprint.md)
+- [`docs/roadmap.md`](docs/roadmap.md)
+- [`README.md`](README.md)
+
+Inspect `app/src/schema.ts`, `app/src/App.tsx`, and representative files in `app/src/content/` before editing. The source snapshot uses a pinned hosted-app toolchain and does not yet include a standalone package manifest or build configuration. Do not infer or install dependencies as part of an unrelated change.
+
+## Contribution boundary
+
+Agents compose artifacts from the existing JSON contract. Agents do not normally invent widget code.
+
+- Put artifact content in `app/src/content/` as plain, reviewable JSON.
+- Use `schemaVersion: 1` and the types defined in `app/src/schema.ts`.
+- Reuse renderer-owned blocks before proposing a new block type.
+- Keep content independent from React components and raw CSS values.
+- Choose one of the semantic theme identifiers defined by the schema.
+- Keep Browse and Present as views over the same content tree.
+- Preserve explicit lifecycle state: `draft`, `preview`, `published`, or `archived`.
+- Keep IDs and slugs stable when updating an existing artifact.
+
+A new page should not require copied widget code, page-specific React, or page-specific CSS.
+
+## Permission layers
+
+Treat these as different levels of authority:
+
+1. **Content author** - create or modify artifact JSON.
+2. **Publisher** - change an artifact from preview to published.
+3. **Curator** - change collections, tags, ordering, or relationships.
+4. **Tool developer** - add or modify executable widgets and integrations.
+5. **Application developer** - change the renderer, schema, persistence boundary, or application behavior.
+
+Permission for a content task is not permission to change widget code, the schema, or the application. Permission to edit an artifact is not permission to publish it unless the task says so.
+
+## Artifact checklist
+
+Before committing artifact content:
+
+- Confirm the JSON matches `app/src/schema.ts`.
+- Use only block types the renderer supports.
+- Keep claims accurate and label uncertainty, sources, and limits where relevant.
+- Check titles, summaries, tags, lifecycle state, theme, block IDs, and series order.
+- Verify the artifact in both Browse and Present views when a runnable preview is available.
+- Check narrow-screen behavior and keyboard navigation for interactive content.
+- Keep content useful without relying on private context that is absent from the artifact.
+- Do not add secrets, private URLs, private planning references, or personal data.
+
+## Proposing a widget
+
+Add a widget only when a real artifact cannot be expressed cleanly with the current vocabulary.
+
+A widget proposal should state:
+
+- the real content need
+- why existing blocks are insufficient
+- the JSON shape
+- renderer behavior
+- empty, error, and loading states
+- accessibility and keyboard behavior
+- theme-token behavior
+- security implications
+- migration or compatibility impact
+
+Executable widgets, code runners, external connectors, and API-backed tools belong to the capability layer and require deliberate review.
+
+## Repository rules
+
+- Preserve existing files and history unless a task explicitly requires removal.
+- Keep documentation in `docs/`, not in `app/src/`.
+- Keep product documentation free of private process notes and internal-only links.
+- Make focused commits with plain descriptions.
+- Avoid drive-by dependency, formatting, schema, or toolchain changes.
+- Do not add a package manifest or deployment setup by guessing from imports.
+- Do not rewrite the current kernel when a smaller compatible change will do.
+- Keep the schema explicit, versioned, and boring.
+
+## Current development priority
+
+Prove the language with one real artifact through the full existing pipeline. Let that artifact expose the next smallest improvement. Do not replace the architecture with a speculative redesign.
