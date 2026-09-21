@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "slug": "plan-vision",
+  "title": "Show, don't deck",
+  "summary": "Why Showmob exists: ideas as living pages instead of hand-built slide decks.",
+  "contributor": "Showmob product brief",
+  "status": "published",
+  "theme": "paper",
+  "series": {
+    "id": "showmob-plan",
+    "title": "The Showmob plan",
+    "order": 1
+  },
+  "tags": [
+    "showmob-plan",
+    "vision"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "The Showmob plan - part 1",
+      "title": "Show, don't deck",
+      "body": "Present ideas as living pages instead of slide decks: links, motion, light interactivity, one URL to share."
+    },
+    {
+      "id": "job",
+      "type": "quote",
+      "quote": "A helpful communication tool: publish a link, let anyone open it, and require no account to view.",
+      "attribution": "Showmob product goal"
+    },
+    {
+      "id": "why",
+      "type": "text",
+      "heading": "Why this exists",
+      "body": "Every hand-built deck is a one-off. The useful parts - structure, style, and widgets - should be reusable, so a new idea gets assembled rather than rebuilt. Showmob is an active side project that aims to make one-off decks unnecessary."
+    },
+    {
+      "id": "numbers",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "1",
+          "label": "URL to share an idea"
+        },
+        {
+          "value": "0",
+          "label": "accounts needed to view"
+        },
+        {
+          "value": "5",
+          "label": "visual styles from day one"
+        }
+      ]
+    },
+    {
+      "id": "status",
+      "type": "note-callout",
+      "tone": "note",
+      "title": "Where this stands",
+      "body": "Active-development side project. The prototype moves quickly, keeps its content portable, and uses version history to make changes reversible."
+    },
+    {
+      "id": "source",
+      "type": "note-callout",
+      "tone": "note",
+      "title": "Public product brief",
+      "body": "This page states the product rationale and the content-contract boundary without linking to private planning material."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "The one early invariant",
+      "body": "Everything else can change. The content contract - one schema, JSON blocks referencing widgets by id - cannot. That is part 2."
+    }
+  ]
+}
