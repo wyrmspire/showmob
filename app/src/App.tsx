@@ -1,5 +1,5 @@
 import React,{useEffect,useMemo,useRef,useState}from'react';
-import{Callout,Closing,FileCard,Group,Header,Paragraph,Row,Rows}from'@instinct/files';
+import{Callout,Closing,FileCard,Group,Header,Paragraph,Row,Rows}from'./components/file-kit';
 import stewardJson from'./content/steward.json';import contributorJson from'./content/contributor.json';import fieldJson from'./content/field-notes.json';
 import planVisionJson from'./content/plan-vision.json';import planContractJson from'./content/plan-contract.json';import planModesJson from'./content/plan-modes-themes.json';import planWidgetsJson from'./content/plan-widget-bin.json';import planPhasesJson from'./content/plan-build-phases.json';import planDecisionsJson from'./content/plan-decisions.json';import planOpenJson from'./content/plan-open-questions.json';import slotTroubleJson from'./content/slot-troubleshooting.json';import slotPlcJson from'./content/slot-plc-concept.json';import slotBuildJson from'./content/slot-build-lesson.json';
 import solidStateJson from'./content/solid-state-foundations.json';
