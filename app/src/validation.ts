@@ -81,8 +81,8 @@ export function validateArtifact(value: unknown): ValidationResult {
     value.blocks.forEach((block: unknown, index: number) => {
       const path = `$.blocks[${index}]`;
       if (!isRecord(block)) { issue(path, 'Expected a block object.'); return; }
-      if (typeof block.id !== 'string' || !block.id.trim()) {
-        issue(`${path}.id`, 'Expected a nonempty, stable block ID.');
+      if (typeof block.id !== 'string' || !block.id.trim() || /[\t\n\f\r ]/.test(block.id)) {
+        issue(`${path}.id`, 'Expected a nonempty, stable block ID without ASCII whitespace.');
       } else if (ids.has(block.id)) issue(`${path}.id`, 'Block IDs must be unique within an artifact.');
       else ids.add(block.id);
       if (typeof block.type !== 'string' || !Object.prototype.hasOwnProperty.call(blockRules, block.type)) {
