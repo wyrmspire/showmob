@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "slug": "plan-decisions",
+  "title": "Decisions so far",
+  "summary": "What the brief proposes and what this prototype currently does, kept separate on purpose.",
+  "contributor": "Showmob product brief",
+  "status": "published",
+  "theme": "paper",
+  "series": {
+    "id": "showmob-plan",
+    "title": "The Showmob plan",
+    "order": 6
+  },
+  "tags": [
+    "showmob-plan",
+    "decisions"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "The Showmob plan - part 6",
+      "title": "Decisions so far",
+      "body": "Proposal, product direction, and shipped state are different things. This page keeps them labeled."
+    },
+    {
+      "id": "day",
+      "type": "timeline",
+      "heading": "Product state milestones",
+      "items": [
+        {
+          "time": "Direction",
+          "title": "Portable pages instead of one-off decks",
+          "detail": "Share a link that opens without an account and presents one structured idea."
+        },
+        {
+          "time": "Contract",
+          "title": "Content, widgets, and themes stay separate",
+          "detail": "Pages are data; renderer capabilities are shared code; visual themes are token sets."
+        },
+        {
+          "time": "Scope",
+          "title": "Static first release",
+          "detail": "No database, accounts, or live collaboration in the initial product boundary."
+        },
+        {
+          "time": "Prototype",
+          "title": "Browse and Present shells",
+          "detail": "The same content now runs as a scrolling page or a section-by-section presentation."
+        },
+        {
+          "time": "Studio",
+          "title": "Local authoring loop",
+          "detail": "Templates, block ordering, preview, import, and JSON export pressure-test the contract."
+        },
+        {
+          "time": "Current",
+          "title": "The product brief is sample content",
+          "detail": "Seven generic pages let Showmob demonstrate its own structure without exposing private planning material."
+        }
+      ]
+    },
+    {
+      "id": "delta",
+      "type": "comparison",
+      "heading": "Plan vs prototype today",
+      "columns": [
+        {
+          "name": "The plan locks",
+          "detail": "Modes named Present and Read. Author-chosen theme, viewer switching only in preview. Lifecycle: draft, preview, published."
+        },
+        {
+          "name": "The prototype ships",
+          "detail": "Modes named Browse and Present. Viewer theme auditioning on every page. Four statuses including archived. No deploy pipeline yet - it is a hosted file."
+        }
+      ]
+    },
+    {
+      "id": "attribution",
+      "type": "note-callout",
+      "tone": "positive",
+      "title": "Scope, kept honest",
+      "body": "The repository separates the public product brief from implementation state. Git history records what changed; this page describes the current public boundary."
+    },
+    {
+      "id": "source",
+      "type": "note-callout",
+      "tone": "note",
+      "title": "Public state record",
+      "body": "This page contains product-level choices only. Private planning threads, personal attribution, and decision timestamps are intentionally omitted."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Decisions belong in the open",
+      "body": "Putting them inside the product is how they get stress-tested."
+    }
+  ]
+}
