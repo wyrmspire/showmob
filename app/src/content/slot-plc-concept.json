@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "slug": "slot-plc-concept",
+  "title": "One PLC concept goes here",
+  "summary": "Starter slot for one automation concept, taught thin and proven with a real exercise.",
+  "contributor": "From the floor - starter slot",
+  "status": "draft",
+  "theme": "signal",
+  "series": {
+    "id": "field-work",
+    "title": "From the floor",
+    "order": 2
+  },
+  "tags": [
+    "from-the-floor",
+    "plc"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Starter slot - not a lesson yet",
+      "title": "One PLC concept goes here",
+      "body": "This page is a labeled placeholder. It becomes real when one automation or PLC concept is taught here for real."
+    },
+    {
+      "id": "honesty",
+      "type": "note-callout",
+      "tone": "warning",
+      "title": "Nothing here is a claim",
+      "body": "This slot exists to test collections and page patterns. The lesson that lands here must separate demonstrated work, understood concepts, and material still being learned."
+    },
+    {
+      "id": "needs",
+      "type": "steps",
+      "heading": "What the real page will need",
+      "items": [
+        "One concept only - the narrowest useful slice.",
+        "A thin exercise with an observable result.",
+        "An explanation in the contributor's own words.",
+        "An honest label: done, understood, or still learning."
+      ]
+    },
+    {
+      "id": "shape",
+      "type": "exercise",
+      "heading": "What belongs in this slot",
+      "prompt": "Which page would honor the teaching standard here?",
+      "options": [
+        "A whole PLC course compressed into one long page",
+        "One narrow concept with a small working check and an honest explanation",
+        "A polished summary of a manual, with nothing actually tried"
+      ],
+      "answer": 1,
+      "explanation": "One concept, a thin exercise, an observable result, and an explanation in the contributor's own words. Anything bigger belongs in several pages."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Teach one thing, prove it works",
+      "body": "The exercise and the explanation are the page. The rest is decoration."
+    }
+  ]
+}
