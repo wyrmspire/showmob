@@ -10,6 +10,7 @@ Read these before making a structural change:
 - [`docs/blueprint.md`](docs/blueprint.md)
 - [`docs/roadmap.md`](docs/roadmap.md)
 - [`README.md`](README.md)
+- [`docs/widgets.md`](docs/widgets.md)
 
 Inspect `app/src/schema.ts`, `app/src/App.tsx`, and representative files in `app/src/content/` before editing. The source snapshot uses a pinned hosted-app toolchain and does not yet include a standalone package manifest or build configuration. Do not infer or install dependencies as part of an unrelated change.
 
@@ -19,6 +20,7 @@ Agents compose artifacts from the existing JSON contract. Agents do not normally
 
 - Put artifact content in `app/src/content/` as plain, reviewable JSON.
 - Use `schemaVersion: 1` and the types defined in `app/src/schema.ts`.
+- The canonical block shape is `{ id, type, ...widgetFields }`; use `docs/widgets.md` for exact examples and current behavior.
 - Reuse renderer-owned blocks before proposing a new block type.
 - Keep content independent from React components and raw CSS values.
 - Choose one of the semantic theme identifiers defined by the schema.
@@ -45,6 +47,7 @@ Permission for a content task is not permission to change widget code, the schem
 Before committing artifact content:
 
 - Confirm the JSON matches `app/src/schema.ts`.
+- Run `node --experimental-strip-types --test tests/validation.test.mjs` with Node 22.18+ or Node 24; no package install is required.
 - Use only block types the renderer supports.
 - Keep claims accurate and label uncertainty, sources, and limits where relevant.
 - Check titles, summaries, tags, lifecycle state, theme, block IDs, and series order.
