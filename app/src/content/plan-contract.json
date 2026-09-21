@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "slug": "plan-contract",
+  "title": "One content contract",
+  "summary": "Three layers that never merge, one typed schema, and blocks that reference widgets by id.",
+  "contributor": "Showmob product brief",
+  "status": "published",
+  "theme": "workshop",
+  "series": {
+    "id": "showmob-plan",
+    "title": "The Showmob plan",
+    "order": 2
+  },
+  "tags": [
+    "showmob-plan",
+    "contract"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "The Showmob plan - part 2",
+      "title": "One content contract",
+      "body": "Content changes words. Widgets change bones. Themes change skin. One change at a time."
+    },
+    {
+      "id": "layers",
+      "type": "comparison",
+      "heading": "Three layers, three jobs",
+      "columns": [
+        {
+          "name": "Content",
+          "detail": "What the idea says: sections, copy, links, data. No colors, no motion."
+        },
+        {
+          "name": "Widgets",
+          "detail": "Pre-debugged building blocks: structure plus behavior. They own their layout and reduced-motion fallbacks."
+        },
+        {
+          "name": "Themes",
+          "detail": "Tokens only: color, type, radius, spacing, motion intensity. They never redefine widget structure."
+        }
+      ]
+    },
+    {
+      "id": "shape",
+      "type": "code",
+      "heading": "A block references a widget by id",
+      "language": "json",
+      "code": "{\n  \"id\": \"method\",\n  \"type\": \"steps\",\n  \"heading\": \"The loop\",\n  \"items\": [\n    \"Name the expected result.\",\n    \"Move one boundary.\"\n  ]\n}"
+    },
+    {
+      "id": "rule",
+      "type": "note-callout",
+      "tone": "warning",
+      "title": "The rule that keeps it cheap",
+      "body": "Copy-paste JSON content blocks that reference widgets by id - never widget code. Pasted widget code forks the widget. Bad CSS is cheap; fifty entries in five incompatible formats is expensive."
+    },
+    {
+      "id": "storage",
+      "type": "steps",
+      "heading": "The storage path",
+      "items": [
+        "v0: content lives as plain JSON files next to the renderer.",
+        "The renderer only knows the content contract, never where content came from.",
+        "Later: another storage layer can back the same objects without changing the renderer contract."
+      ]
+    },
+    {
+      "id": "check",
+      "type": "exercise",
+      "heading": "Spot the contract violation",
+      "prompt": "A contributor wants one deck with a special animated banner. Which move respects the contract?",
+      "options": [
+        "Paste a modified copy of the hero widget's code into the deck JSON",
+        "Request the capability in the renderer once, then reference it by id",
+        "Hide custom CSS inside the content file to force the look"
+      ],
+      "answer": 1,
+      "explanation": "Forked code and one-off CSS bypass the shared contract. A new capability is a renderer change, reviewed once, then available to every entry."
+    },
+    {
+      "id": "source",
+      "type": "note-callout",
+      "tone": "note",
+      "title": "Architecture boundary",
+      "body": "The renderer depends on the content contract, not a particular editor or storage system."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Assembly, not debugging",
+      "body": "Adding a page means adding a content file. No new routes, no per-page CSS, no forked widgets."
+    }
+  ]
+}
