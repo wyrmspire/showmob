@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "slug": "slot-build-lesson",
+  "title": "A build or safety lesson goes here",
+  "summary": "Starter slot for an actual build log or a safety lesson from the floor.",
+  "contributor": "From the floor - starter slot",
+  "status": "draft",
+  "theme": "field",
+  "series": {
+    "id": "field-work",
+    "title": "From the floor",
+    "order": 3
+  },
+  "tags": [
+    "from-the-floor",
+    "safety"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Starter slot - not a build log yet",
+      "title": "A build or safety lesson goes here",
+      "body": "This page is a labeled placeholder. It becomes real when an actual build or an actual near-miss fills it."
+    },
+    {
+      "id": "honesty",
+      "type": "note-callout",
+      "tone": "warning",
+      "title": "Nothing here is a claim",
+      "body": "This slot exists to test collections and page patterns. If it did not happen, it does not go on this page."
+    },
+    {
+      "id": "shapes",
+      "type": "comparison",
+      "heading": "Two shapes this could take",
+      "columns": [
+        {
+          "name": "A build log",
+          "detail": "What was made, what it must do, what broke along the way, and what changed because of it."
+        },
+        {
+          "name": "A safety lesson",
+          "detail": "What almost went wrong, the boundary that mattered, and the habit that stuck."
+        }
+      ]
+    },
+    {
+      "id": "capture",
+      "type": "checklist",
+      "heading": "Evidence to capture",
+      "items": [
+        {
+          "label": "The goal in one sentence"
+        },
+        {
+          "label": "Photos or diagrams",
+          "detail": "Media blocks are a future widget; capture the material now."
+        },
+        {
+          "label": "The moment it failed or nearly failed"
+        },
+        {
+          "label": "The fix, or the rule that came out of it"
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Real work only",
+      "body": "A rough true page is worth more here than a smooth invented one."
+    }
+  ]
+}
