@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Showmob learning example",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "electronics",
+    "learning",
+    "solid-state"
+  ],
+  "updated": "2026-09-21",
+  "slug": "solid-state-semiconductor-basics",
+  "title": "Semiconductor basics: carriers, doping and junctions",
+  "summary": "Build a working model of conductors, insulators, doped silicon and the depletion region before selecting any device.",
+  "series": {
+    "id": "solid-state-circuitry",
+    "title": "Solid-state circuitry",
+    "order": 2
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Solid-state circuitry · 2 of 8",
+      "title": "Why silicon can act like a switch",
+      "body": "A machinist controls motion by changing geometry and force. Semiconductor devices control current by changing which charge carriers can move and where. This lesson builds that model without pretending a band diagram is a wiring instruction."
+    },
+    {
+      "id": "material-model",
+      "type": "comparison",
+      "heading": "1. Start with available energy paths",
+      "columns": [
+        {
+          "name": "Conductor",
+          "detail": "Many mobile carriers make current relatively easy to establish. Resistance still depends on material, dimensions and temperature."
+        },
+        {
+          "name": "Insulator",
+          "detail": "Very few carriers are available under normal conditions, so current is strongly limited until an electrical or physical limit is exceeded."
+        },
+        {
+          "name": "Semiconductor",
+          "detail": "Its carrier population and conductivity can be engineered with doping, fields, light and temperature. “Semiconductor” does not mean a fixed resistance halfway between copper and glass."
+        }
+      ]
+    },
+    {
+      "id": "doping",
+      "type": "text",
+      "heading": "2. Doping sets majority carriers",
+      "body": "Pure silicon has four valence electrons per atom. Adding controlled donor impurities contributes electrons, producing n-type material whose majority carriers are electrons. Acceptor impurities create holes, producing p-type material whose majority carriers are holes. Both types remain electrically neutral overall; n-type does not mean a negatively charged block, and p-type does not mean a positively charged block."
+    },
+    {
+      "id": "junction",
+      "type": "steps",
+      "heading": "3. Form a p-n junction",
+      "items": [
+        "When p-type and n-type material meet, carriers diffuse across the boundary and recombine.",
+        "Fixed ionized dopants remain near the boundary. This space-charge region has few mobile carriers and is called the depletion region.",
+        "Its internal electric field opposes further diffusion, establishing a built-in barrier at equilibrium.",
+        "External bias changes that barrier. Forward bias lowers it and reverse bias raises it, which is the basis for diode behavior."
+      ]
+    },
+    {
+      "id": "neutrality-check",
+      "type": "exercise",
+      "heading": "4. Check the model",
+      "prompt": "What does n-type silicon mean?",
+      "options": [
+        "The whole piece carries a permanent negative charge.",
+        "Electrons are the majority carriers because donor dopants were added.",
+        "It conducts exactly like copper."
+      ],
+      "answer": 1,
+      "explanation": "Doping changes the balance of mobile carriers, not the overall electrical neutrality of the material."
+    },
+    {
+      "id": "worksheet",
+      "type": "checklist",
+      "heading": "5. Paper worksheet",
+      "items": [
+        {
+          "label": "Label the carriers",
+          "detail": "Write the majority carrier for n-type and p-type material."
+        },
+        {
+          "label": "Describe the junction",
+          "detail": "In one sentence each, explain diffusion, recombination and the depletion region."
+        },
+        {
+          "label": "Predict the bias effect",
+          "detail": "State whether forward bias makes the junction barrier easier or harder for carriers to cross."
+        },
+        {
+          "label": "Name a limit",
+          "detail": "Write why this model alone cannot select a real diode, transistor or rating."
+        }
+      ]
+    },
+    {
+      "id": "source-toshiba",
+      "type": "embed",
+      "heading": "Manufacturer source: semiconductor foundations",
+      "source": "Toshiba — Basic Knowledge of Discrete Semiconductor Devices, Chapter I",
+      "caption": "The semiconductor, doping and p-n-junction lessons support sections 1–3. Accessed 2026-09-21.",
+      "url": "https://toshiba.semicon-storage.com/us/semiconductor/knowledge/e-learning/discrete.html"
+    }
+  ]
+}

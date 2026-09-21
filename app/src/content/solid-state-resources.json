@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Showmob learning example",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "electronics",
+    "learning",
+    "solid-state"
+  ],
+  "updated": "2026-09-21",
+  "slug": "solid-state-resources",
+  "title": "Solid-state electronics resources and shop checklist",
+  "summary": "A manufacturer-led reference shelf, datasheet reading sequence and final worksheet for taking the course into careful component review.",
+  "series": {
+    "id": "solid-state-circuitry",
+    "title": "Solid-state circuitry",
+    "order": 8
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Solid-state circuitry · 8 of 8",
+      "title": "Use the course as a map, then read the selected part",
+      "body": "Application notes explain families and methods. Only the exact device datasheet, errata and manufacturer updates define the selected part. Record document revisions and test conditions with every design decision."
+    },
+    {
+      "id": "datasheet-sequence",
+      "type": "steps",
+      "heading": "1. A repeatable datasheet reading sequence",
+      "items": [
+        "Confirm the exact orderable part, package, marking and datasheet revision.",
+        "Read the recommended operating context and feature summary without treating marketing bullets as limits.",
+        "Mark absolute maximum ratings as boundaries. Then find the separate electrical-characteristic rows that guarantee performance.",
+        "Carry every rating’s test conditions, temperature and pulse duration into your notes.",
+        "Read graphs as typical guidance unless the document explicitly guarantees them.",
+        "Check package drawing, pinout, thermal information, safe operating area and application notes.",
+        "Write what remains unverified and define the measurement that will close it."
+      ]
+    },
+    {
+      "id": "source-hierarchy",
+      "type": "comparison",
+      "heading": "2. Know what each source can support",
+      "columns": [
+        {
+          "name": "Exact manufacturer datasheet",
+          "detail": "Ratings, guaranteed electrical characteristics, package and ordering identity for one device. Check revision and conditions."
+        },
+        {
+          "name": "Manufacturer application note",
+          "detail": "Models, selection methods and example circuits. Useful context, but examples do not override the chosen device datasheet."
+        },
+        {
+          "name": "Distributor page",
+          "detail": "Helpful for availability and document discovery. Confirm technical facts against the manufacturer source."
+        },
+        {
+          "name": "Forum, video or blog",
+          "detail": "Can expose useful questions and failure modes. Treat claims as leads until primary evidence or controlled measurement supports them."
+        }
+      ]
+    },
+    {
+      "id": "final-worksheet",
+      "type": "checklist",
+      "heading": "3. Final component-review worksheet",
+      "items": [
+        {
+          "label": "Define the function",
+          "detail": "State what the device controls and why this topology fits."
+        },
+        {
+          "label": "List normal stresses",
+          "detail": "Voltage, current, frequency, temperature, duty cycle and timing."
+        },
+        {
+          "label": "List abnormal stresses",
+          "detail": "Startup, shutdown, open load, short, surge, reversed polarity and loss of control."
+        },
+        {
+          "label": "Verify the driver",
+          "detail": "Reference, amplitude, source and sink current, timing, default state and isolation."
+        },
+        {
+          "label": "Verify protection",
+          "detail": "Clamp path, fuse or current limit, transient margin and energy rating."
+        },
+        {
+          "label": "Verify thermal path",
+          "detail": "Loss assumptions, package, board or sink, interface, ambient and junction estimate."
+        },
+        {
+          "label": "Plan evidence",
+          "detail": "Waveforms, temperatures, timing, load cases and review authority needed before release."
+        }
+      ]
+    },
+    {
+      "id": "prototype-boundary",
+      "type": "note-callout",
+      "title": "A worksheet is not approval",
+      "body": "Completing these prompts does not certify a circuit, machine modification or safety function. Competent review, applicable standards and controlled verification remain necessary.",
+      "tone": "warning"
+    },
+    {
+      "id": "source-toshiba",
+      "type": "embed",
+      "heading": "Course source: semiconductor, diode and BJT basics",
+      "source": "Toshiba — Basic Knowledge of Discrete Semiconductor Devices",
+      "caption": "Chapters I–III provide the manufacturer tutorials used for carrier, junction, diode and transistor foundations. Accessed 2026-09-21.",
+      "url": "https://toshiba.semicon-storage.com/us/semiconductor/knowledge/e-learning/discrete.html"
+    },
+    {
+      "id": "source-vishay",
+      "type": "embed",
+      "heading": "Course source: rectifier fundamentals",
+      "source": "Vishay — Fundamentals of Rectifiers",
+      "caption": "Background on forward and reverse behavior, recovery and loss. Accessed 2026-09-21.",
+      "url": "https://www.vishay.com/docs/88867/anfundamental.pdf"
+    },
+    {
+      "id": "source-ti-driver",
+      "type": "embed",
+      "heading": "Course source: gate-drive fundamentals",
+      "source": "Texas Instruments — SLUA618A, Fundamentals of MOSFET and IGBT Gate Driver Circuits",
+      "caption": "Detailed MOSFET switching intervals, gate charge and driver relationships. Accessed 2026-09-21.",
+      "url": "https://www.ti.com/lit/slua618"
+    },
+    {
+      "id": "source-ti-selection",
+      "type": "embed",
+      "heading": "Course source: power MOSFET selection",
+      "source": "Texas Instruments — Avoid Common Mistakes When Selecting and Designing With Power MOSFETs",
+      "caption": "Practical warnings about specifications, gate drive, thermal design and safe operating area. Accessed 2026-09-21.",
+      "url": "https://www.ti.com/lit/an/slpa021/slpa021.pdf"
+    },
+    {
+      "id": "source-ti-inductive",
+      "type": "embed",
+      "heading": "Course source: inductive discharge",
+      "source": "Texas Instruments — SNVAA45, inductive discharge application brief",
+      "caption": "Background on coil energy, freewheel and clamp tradeoffs. Accessed 2026-09-21.",
+      "url": "https://www.ti.com/document-viewer/lit/html/SNVAA45"
+    },
+    {
+      "id": "finish",
+      "type": "cta-band",
+      "heading": "Finish with an evidence-backed handoff",
+      "body": "Name the part, conditions, remaining uncertainty, review boundary and next controlled test. If another person cannot reconstruct why a rating applies, the handoff is not finished."
+    }
+  ]
+}

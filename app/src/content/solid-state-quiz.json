@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Showmob learning example",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "electronics",
+    "learning",
+    "solid-state"
+  ],
+  "updated": "2026-09-21",
+  "slug": "solid-state-quiz",
+  "title": "Solid-state electronics knowledge check",
+  "summary": "Check the distinctions that keep component selection honest: references, bias, drive, ratings, heat and stored energy.",
+  "series": {
+    "id": "solid-state-circuitry",
+    "title": "Solid-state circuitry",
+    "order": 7
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Solid-state circuitry · 7 of 8",
+      "title": "Explain the boundary, not just the answer",
+      "body": "Work each question without a datasheet first. Then use the explanation to identify which lesson or specification you need to revisit. Answers reset when the page closes."
+    },
+    {
+      "id": "q-carriers",
+      "type": "exercise",
+      "heading": "1. Doping",
+      "prompt": "Which statement about n-type silicon is correct?",
+      "options": [
+        "It is permanently negatively charged.",
+        "Electrons are majority carriers, while the material remains electrically neutral overall.",
+        "It is an insulator until reverse breakdown."
+      ],
+      "answer": 1,
+      "explanation": "Donor doping increases the population of mobile electrons without turning the entire material into a charged object."
+    },
+    {
+      "id": "q-diode",
+      "type": "exercise",
+      "heading": "2. Diode forward voltage",
+      "prompt": "Why is “a silicon diode drops 0.7 V” incomplete?",
+      "options": [
+        "Forward voltage depends on current, temperature and device construction.",
+        "Every diode actually drops exactly 1 V.",
+        "Forward voltage applies only in reverse bias."
+      ],
+      "answer": 0,
+      "explanation": "A datasheet states or plots forward voltage under specific conditions; 0.7 V is only a rough model for some junction diodes."
+    },
+    {
+      "id": "q-bjt",
+      "type": "exercise",
+      "heading": "3. BJT switching",
+      "prompt": "What best establishes base drive for a saturated BJT switch?",
+      "options": [
+        "Maximum listed current gain.",
+        "A conservative forced gain plus verification of drive current and VCE(sat) conditions.",
+        "The collector-emitter voltage rating alone."
+      ],
+      "answer": 1,
+      "explanation": "Switching design should not depend on a typical or maximum active-region gain."
+    },
+    {
+      "id": "q-mosfet",
+      "type": "exercise",
+      "heading": "4. MOSFET enhancement",
+      "prompt": "What does VGS(th) tell you?",
+      "options": [
+        "The gate voltage that guarantees minimum RDS(on).",
+        "The test-defined point where channel conduction begins at a small stated current.",
+        "The maximum safe drain voltage."
+      ],
+      "answer": 1,
+      "explanation": "Use RDS(on) specified at the actual gate drive, not threshold, to judge low-resistance enhancement."
+    },
+    {
+      "id": "q-loss",
+      "type": "exercise",
+      "heading": "5. Conduction loss",
+      "prompt": "If MOSFET current doubles while on-resistance stays constant, what happens to I²R conduction loss?",
+      "options": [
+        "It stays the same.",
+        "It doubles.",
+        "It becomes four times larger."
+      ],
+      "answer": 2,
+      "explanation": "Squaring twice the current gives four times the loss. Real RDS(on) can also rise with temperature."
+    },
+    {
+      "id": "q-inductor",
+      "type": "exercise",
+      "heading": "6. Inductive turn-off",
+      "prompt": "What must a switching design do with energy stored in a coil?",
+      "options": [
+        "Provide a rated path or clamp that removes the energy safely.",
+        "Assume it disappears when the control signal falls.",
+        "Send it through the controller logic pin."
+      ],
+      "answer": 0,
+      "explanation": "Inductor current cannot change instantly. The turn-off path determines voltage stress and current decay."
+    },
+    {
+      "id": "q-rating",
+      "type": "exercise",
+      "heading": "7. Absolute maximum",
+      "prompt": "How should an absolute-maximum rating be used?",
+      "options": [
+        "As a recommended continuous operating point.",
+        "As a boundary not to exceed, with normal operation designed inside it.",
+        "As a typical value that may be ignored."
+      ],
+      "answer": 1,
+      "explanation": "Absolute maximum ratings are damage boundaries, not promised performance points."
+    },
+    {
+      "id": "review-plan",
+      "type": "checklist",
+      "heading": "8. Turn results into a review plan",
+      "items": [
+        {
+          "label": "Name each miss",
+          "detail": "Write the topic, not only the question number."
+        },
+        {
+          "label": "Locate the source",
+          "detail": "Find the lesson block or manufacturer document that answers it."
+        },
+        {
+          "label": "Explain it aloud",
+          "detail": "Use control path, load path, reference and energy-flow language."
+        },
+        {
+          "label": "Recheck tomorrow",
+          "detail": "This page does not save answers, so keep your notes elsewhere."
+        }
+      ]
+    }
+  ]
+}

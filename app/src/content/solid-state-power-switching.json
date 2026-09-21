@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Showmob learning example",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "electronics",
+    "learning",
+    "solid-state"
+  ],
+  "updated": "2026-09-21",
+  "slug": "solid-state-power-switching",
+  "title": "Power switching: loads, losses and turn-off energy",
+  "summary": "Put the device into a complete switching path, account for heat and transients, and plan measurements without treating a bench example as machine approval.",
+  "series": {
+    "id": "solid-state-circuitry",
+    "title": "Solid-state circuitry",
+    "order": 6
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Solid-state circuitry · 6 of 8",
+      "title": "The switch is one part of an energy path",
+      "body": "A reliable output starts with the source, load, interconnect, switch, protection, driver and thermal path. Choosing a MOSFET by current rating alone skips most of the circuit."
+    },
+    {
+      "id": "loads",
+      "type": "comparison",
+      "heading": "1. Classify the load before the switch",
+      "columns": [
+        {
+          "name": "Resistive",
+          "detail": "Current largely follows applied voltage. Inrush can still matter when resistance changes with temperature, as with lamps and heaters."
+        },
+        {
+          "name": "Inductive",
+          "detail": "Coils and motors store magnetic energy. Current resists rapid change, so turn-off requires a defined commutation or clamp path."
+        },
+        {
+          "name": "Capacitive",
+          "detail": "Charging current can be high at turn-on. Source impedance, precharge and switch safe operating area may control the design."
+        },
+        {
+          "name": "Electromechanical",
+          "detail": "Solenoids, relays and valves add motion, release-time and fault consequences to their electrical coil behavior."
+        }
+      ]
+    },
+    {
+      "id": "losses",
+      "type": "steps",
+      "heading": "2. Build a loss budget",
+      "items": [
+        "Estimate conduction loss using the appropriate hot on-state parameter: MOSFET I²R or BJT VCE(sat) × I.",
+        "Estimate switching loss from voltage-current overlap during transitions. Frequency multiplies energy lost per cycle.",
+        "Include gate- or base-drive loss, clamp loss, diode loss, wiring loss and any current-sense element.",
+        "Use the manufacturer thermal model and real mounting conditions to estimate junction temperature. Then leave margin and validate with controlled measurements."
+      ]
+    },
+    {
+      "id": "inductive-turnoff",
+      "type": "text",
+      "heading": "3. Give inductive current a deliberate path",
+      "body": "When an inductive switch opens, current continues in the same direction until stored energy is removed. A freewheel diode can limit voltage but may slow current decay and actuator release. A TVS, Zener-assisted path or active clamp can allow a higher voltage and faster decay, but the switch and clamp must safely absorb the energy. The right answer depends on current, inductance, repetition, timing and equipment behavior."
+    },
+    {
+      "id": "machine-boundary",
+      "type": "note-callout",
+      "title": "Do not prototype by modifying a production safety circuit",
+      "body": "This course explains components. It does not approve bypassing guards, changing emergency-stop circuits or attaching unreviewed hardware to a controller output. Use isolated supplies where required, follow lockout procedures and have machine changes reviewed under the applicable electrical and safety standards.",
+      "tone": "warning"
+    },
+    {
+      "id": "bringup",
+      "type": "steps",
+      "heading": "4. Plan a controlled bring-up",
+      "items": [
+        "Review schematic, polarity, grounding and component ratings with power removed.",
+        "Set a current-limited supply conservatively and start with a representative safe load or fixture, not the machine actuator.",
+        "Measure gate or base drive relative to the local device reference. Measure switch voltage and load current with probes and instruments rated for the circuit.",
+        "Capture turn-on, steady state and turn-off. Check overshoot, ringing, release time and temperature under worst intended conditions.",
+        "Record the setup and limits. A successful short test is evidence for that setup, not automatic production qualification."
+      ]
+    },
+    {
+      "id": "clamp-check",
+      "type": "exercise",
+      "heading": "5. Check the model",
+      "prompt": "A plain flyback diode keeps a solenoid switch voltage low. What tradeoff may appear?",
+      "options": [
+        "The coil current can decay more slowly, delaying release.",
+        "The coil becomes capacitive.",
+        "The controller supplies no gate current."
+      ],
+      "answer": 0,
+      "explanation": "A low clamp voltage removes magnetic energy slowly. A higher clamp can speed release, but it raises switch and clamp stress and must be designed accordingly."
+    },
+    {
+      "id": "worksheet",
+      "type": "checklist",
+      "heading": "6. Switching design review",
+      "items": [
+        {
+          "label": "Define normal and fault cases",
+          "detail": "Include open load, short circuit, reversed supply, stalled motion and repeated switching where relevant."
+        },
+        {
+          "label": "Trace stored energy",
+          "detail": "For each inductive or capacitive element, state where its energy goes at switching events."
+        },
+        {
+          "label": "Close the thermal loop",
+          "detail": "Connect losses to package, interface, heat sink or board, ambient and maximum junction temperature."
+        },
+        {
+          "label": "Define acceptance evidence",
+          "detail": "Name the waveforms, temperatures, timing and fault responses that must be measured before release."
+        }
+      ]
+    },
+    {
+      "id": "source-ti-inductive",
+      "type": "embed",
+      "heading": "Manufacturer source: inductive-load turn-off",
+      "source": "Texas Instruments — SNVAA45, inductive discharge application brief",
+      "caption": "The introduction supports stored magnetic energy, clamp choices and the release-time tradeoff. Accessed 2026-09-21.",
+      "url": "https://www.ti.com/document-viewer/lit/html/SNVAA45"
+    },
+    {
+      "id": "source-ti-driver",
+      "type": "embed",
+      "heading": "Manufacturer source: switching intervals",
+      "source": "Texas Instruments — SLUA618A, Fundamentals of MOSFET and IGBT Gate Driver Circuits",
+      "caption": "The MOSFET turn-on and turn-off intervals support the switching-loss and gate-drive discussion. Accessed 2026-09-21.",
+      "url": "https://www.ti.com/lit/slua618"
+    }
+  ]
+}

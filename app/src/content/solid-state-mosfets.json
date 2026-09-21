@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Showmob learning example",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "electronics",
+    "learning",
+    "solid-state"
+  ],
+  "updated": "2026-09-21",
+  "slug": "solid-state-mosfets",
+  "title": "MOSFETs: gate drive, resistance and safe operation",
+  "summary": "Read an N-channel power MOSFET as a voltage-driven switch whose gate still demands current while changing state.",
+  "series": {
+    "id": "solid-state-circuitry",
+    "title": "Solid-state circuitry",
+    "order": 5
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Solid-state circuitry · 5 of 8",
+      "title": "The gate is insulated, but it is not free",
+      "body": "A MOSFET gate draws little steady DC current in normal operation. Every transition still moves charge, and the driver, layout and switching speed decide how cleanly the device crosses its high-loss region."
+    },
+    {
+      "id": "terminals",
+      "type": "comparison",
+      "heading": "1. Keep three voltages distinct",
+      "columns": [
+        {
+          "name": "Gate-to-source voltage, VGS",
+          "detail": "Controls channel formation. It must be measured at the device source, not assumed from a controller’s nominal output."
+        },
+        {
+          "name": "Drain-to-source voltage, VDS",
+          "detail": "Appears across the load path. It is limited by device rating and transient conditions."
+        },
+        {
+          "name": "Gate threshold, VGS(th)",
+          "detail": "A test point near the beginning of conduction at a small specified drain current. It is not the gate voltage that guarantees low RDS(on)."
+        }
+      ]
+    },
+    {
+      "id": "on-resistance",
+      "type": "text",
+      "heading": "2. Use the guaranteed on-resistance row",
+      "body": "RDS(on) is specified at stated gate drive, drain current and junction temperature. Conduction loss is approximately I² × RDS(on) for the resistive interval, so current hurts twice and hot resistance is often higher than the headline room-temperature value. Use the appropriate maximum value and temperature information, then evaluate the complete thermal path."
+    },
+    {
+      "id": "gate-charge",
+      "type": "steps",
+      "heading": "3. Follow a switching edge",
+      "items": [
+        "The driver sources current to charge the gate. Gate voltage rises toward the threshold while drain current begins to change.",
+        "During the Miller interval, drain voltage changes while gate voltage can pause. Driver current, gate charge and circuit conditions set the transition time.",
+        "Once fully enhanced, conduction loss dominates if switching is slow relative to on-time.",
+        "At turn-off the driver must remove gate charge. Parasitic inductance and capacitance can produce ringing or unintended gate movement, so layout and drive impedance matter."
+      ]
+    },
+    {
+      "id": "absolute-maximum",
+      "type": "note-callout",
+      "title": "Absolute maximum is a boundary, not a design target",
+      "body": "Keep normal operation away from maximum VGS, VDS, current, power and junction-temperature limits. Check transient energy, avalanche conditions and safe operating area when the application can expose them.",
+      "tone": "warning"
+    },
+    {
+      "id": "threshold-check",
+      "type": "exercise",
+      "heading": "4. Check the model",
+      "prompt": "A MOSFET has VGS(th) between 1 V and 2.5 V, while RDS(on) is specified at 4.5 V and 10 V. Which value decides whether a 3.3 V driver guarantees the stated low resistance?",
+      "options": [
+        "The typical threshold alone.",
+        "A guaranteed RDS(on) specification at 3.3 V, if the datasheet provides one.",
+        "The drain-voltage rating."
+      ],
+      "answer": 1,
+      "explanation": "Threshold only marks the beginning of conduction. Without a guaranteed on-resistance at the available gate drive, the low resistance is not guaranteed."
+    },
+    {
+      "id": "worksheet",
+      "type": "checklist",
+      "heading": "5. MOSFET datasheet worksheet",
+      "items": [
+        {
+          "label": "Copy the exact part number",
+          "detail": "Package and suffix can change ratings and thermal behavior."
+        },
+        {
+          "label": "Mark the guaranteed gate drives",
+          "detail": "List every VGS value used in the RDS(on) specifications and curves."
+        },
+        {
+          "label": "Estimate losses",
+          "detail": "Record current, hot RDS(on), switching frequency, gate charge and the assumptions behind the estimate."
+        },
+        {
+          "label": "Check the boundaries",
+          "detail": "Record VGS, VDS, junction temperature, safe-operating-area and transient limits that apply."
+        }
+      ]
+    },
+    {
+      "id": "source-ti-driver",
+      "type": "embed",
+      "heading": "Manufacturer source: gate-drive fundamentals",
+      "source": "Texas Instruments — SLUA618A, Fundamentals of MOSFET and IGBT Gate Driver Circuits",
+      "caption": "Section 2 supports the gate-charge sequence, threshold warning and Miller-interval discussion. Accessed 2026-09-21.",
+      "url": "https://www.ti.com/lit/slua618"
+    },
+    {
+      "id": "source-ti-mosfet",
+      "type": "embed",
+      "heading": "Manufacturer source: MOSFET selection",
+      "source": "Texas Instruments — Avoid Common Mistakes When Selecting and Designing With Power MOSFETs",
+      "caption": "The report supports checking gate drive, maximum rather than typical parameters, thermal conditions and safe operating area. Accessed 2026-09-21.",
+      "url": "https://www.ti.com/lit/an/slpa021/slpa021.pdf"
+    }
+  ]
+}
