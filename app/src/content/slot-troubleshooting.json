@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "slug": "slot-troubleshooting",
+  "title": "A troubleshooting story goes here",
+  "summary": "Starter slot for a real fault, a real evidence trail and a proven fix from an actual job.",
+  "contributor": "From the floor - starter slot",
+  "status": "draft",
+  "theme": "workshop",
+  "series": {
+    "id": "field-work",
+    "title": "From the floor",
+    "order": 1
+  },
+  "tags": [
+    "from-the-floor",
+    "troubleshooting"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Starter slot - not a real story yet",
+      "title": "A troubleshooting story goes here",
+      "body": "This page is a labeled placeholder. It becomes real when an actual machine, an actual fault and an actual evidence trail fill it."
+    },
+    {
+      "id": "honesty",
+      "type": "note-callout",
+      "tone": "warning",
+      "title": "Nothing here is a claim",
+      "body": "This slot exists to test collections and page patterns. Whatever lands here later must come from work the contributor can stand behind - no invented machines, faults, or fixes."
+    },
+    {
+      "id": "needs",
+      "type": "steps",
+      "heading": "What the real page will need",
+      "items": [
+        "The machine and its normal behavior, stated plainly.",
+        "The symptom: last normal cycle, first bad cycle.",
+        "The evidence trail, one boundary at a time.",
+        "The fix, and how it was proven.",
+        "What it taught that transfers to the next fault."
+      ]
+    },
+    {
+      "id": "capture",
+      "type": "checklist",
+      "heading": "Evidence to capture on the job",
+      "items": [
+        {
+          "label": "The machine and its normal behavior",
+          "detail": "Nameplate, cycle, what good looks like."
+        },
+        {
+          "label": "The symptom and when it started",
+          "detail": "Last normal cycle, first bad cycle."
+        },
+        {
+          "label": "Readings at each boundary",
+          "detail": "Expected vs observed, in numbers where possible."
+        },
+        {
+          "label": "The fix and its proof",
+          "detail": "What changed, and how the signal returned."
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Bring one real fault",
+      "body": "One honest story beats five polished inventions."
+    }
+  ]
+}
