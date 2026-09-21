@@ -204,6 +204,6 @@ The Astra addendum sections on contributor workflow, account/plan checks, backgr
 
 ## Open questions
 
-1. Reuse the existing local scaffold or restart clean from this plan after inspecting it
+1. Inspect the existing local scaffold before implementation; whether to reuse it or restart clean is explicitly out of scope for this locked v0 plan
 2. Which first real lesson or explanation should serve as the acceptance case
 3. Repository/Vercel ownership, contributor model, and budget once implementation begins
