@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "slug": "tiny-proof",
+  "title": "Build one tiny proof",
+  "summary": "A second-contributor example made only from the shared JSON block contract.",
+  "contributor": "Contributor example",
+  "status": "published",
+  "theme": "field",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Project habit",
+      "title": "Build one tiny proof",
+      "body": "Before adding a system, prove the smallest useful behavior in the real environment."
+    },
+    {
+      "id": "scope",
+      "type": "comparison",
+      "heading": "Big plan vs. tiny proof",
+      "columns": [
+        {
+          "name": "Big plan",
+          "detail": "Many assumptions move together. Failures are hard to read."
+        },
+        {
+          "name": "Tiny proof",
+          "detail": "One claim is tested. The next decision becomes clearer."
+        }
+      ]
+    },
+    {
+      "id": "quote",
+      "type": "quote",
+      "quote": "A small working thing changes the conversation.",
+      "attribution": "Contributor note"
+    },
+    {
+      "id": "method",
+      "type": "steps",
+      "heading": "A useful proof",
+      "items": [
+        "Names one uncertain claim.",
+        "Uses the real input and output.",
+        "Leaves evidence someone else can inspect."
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Keep it disposable",
+      "body": "If the proof teaches you enough, rebuilding it is cheaper than protecting it."
+    }
+  ],
+  "tags": [
+    "prototype",
+    "practice"
+  ]
+}
