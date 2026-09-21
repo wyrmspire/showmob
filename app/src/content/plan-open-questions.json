@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "slug": "plan-open-questions",
+  "title": "Open questions, deferred systems",
+  "summary": "What is still undecided, and what is deliberately waiting for a real need.",
+  "contributor": "Showmob product brief",
+  "status": "published",
+  "theme": "night",
+  "series": {
+    "id": "showmob-plan",
+    "title": "The Showmob plan",
+    "order": 7
+  },
+  "tags": [
+    "showmob-plan",
+    "questions"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "The Showmob plan - part 7",
+      "title": "Open questions, deferred systems",
+      "body": "Some things are undecided. Some things are decided to wait. Both are written down."
+    },
+    {
+      "id": "open",
+      "type": "steps",
+      "heading": "Still open",
+      "items": [
+        "Final mode names and behaviors - Present and Read, or Browse and Present.",
+        "Theme control - author-chosen only, or viewer auditioning stays.",
+        "Code home - keep the hosted prototype source as the baseline, then add a standalone toolchain only when its dependencies are defined.",
+        "Ownership and budget - repository policy, contributor model, hosting, and release rules.",
+        "The first real lesson to use as the acceptance case."
+      ]
+    },
+    {
+      "id": "deferred",
+      "type": "comparison",
+      "heading": "Deferred, not forgotten",
+      "columns": [
+        {
+          "name": "Contributor workflow",
+          "detail": "Branches, previews, reviews and release checks - when a second contributor appears."
+        },
+        {
+          "name": "Accounts and plans",
+          "detail": "Hosting permissions, previews and budgets - when deployment is real."
+        },
+        {
+          "name": "Background execution",
+          "detail": "Runners and scheduled jobs - when a defined job needs them."
+        },
+        {
+          "name": "Failure hardening",
+          "detail": "Allowlists, fixtures and drift checks - deepening as the stakes grow."
+        }
+      ]
+    },
+    {
+      "id": "guard",
+      "type": "quote",
+      "quote": "Prefer one useful lesson and a second contribution that proves reuse. Visual polish should help comprehension, not consume the build.",
+      "attribution": "Showmob scope principle"
+    },
+    {
+      "id": "note",
+      "type": "note-callout",
+      "tone": "note",
+      "title": "Deferred means deferred",
+      "body": "These sections are reference, not gates. The trigger to revisit is a real second contributor or a real runner, not anxiety."
+    },
+    {
+      "id": "source",
+      "type": "note-callout",
+      "tone": "note",
+      "title": "Deferral rule",
+      "body": "Revisit deferred systems when a real contributor, deployment, or background job creates a concrete need."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Keep the plan where it can break",
+      "body": "The plan lives inside the product now. Using it is how the weak parts get found."
+    }
+  ]
+}
