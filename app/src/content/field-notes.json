@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "slug": "field-notes",
+  "title": "Read the machine before touching it",
+  "summary": "A practical first-look sequence for unfamiliar equipment.",
+  "contributor": "Field guide example",
+  "status": "published",
+  "theme": "workshop",
+  "tags": [
+    "safety",
+    "diagnostics",
+    "fieldwork"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Field sequence",
+      "title": "Read the machine before touching it",
+      "body": "An unfamiliar system is already telling you what matters. Slow down long enough to hear it."
+    },
+    {
+      "id": "scan",
+      "type": "timeline",
+      "heading": "The first five minutes",
+      "items": [
+        {
+          "time": "0:00",
+          "title": "Stop at the boundary",
+          "detail": "Read labels, guards, energy sources and the work area before entering."
+        },
+        {
+          "time": "1:00",
+          "title": "Ask what changed",
+          "detail": "The last normal cycle and the first bad cycle narrow the search."
+        },
+        {
+          "time": "3:00",
+          "title": "Observe one full cycle",
+          "detail": "Watch inputs, motion, sound and operator response without intervening."
+        },
+        {
+          "time": "5:00",
+          "title": "Name the first safe check",
+          "detail": "Choose a reversible observation, not a speculative repair."
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "type": "checklist",
+      "heading": "Carry this into the check",
+      "items": [
+        {
+          "label": "Expected state",
+          "detail": "What should be true here?"
+        },
+        {
+          "label": "Observed state",
+          "detail": "What is actually true?"
+        },
+        {
+          "label": "Safe boundary",
+          "detail": "What must stay untouched or de-energized?"
+        }
+      ]
+    },
+    {
+      "id": "exercise",
+      "type": "exercise",
+      "heading": "Pick the better first move",
+      "prompt": "A conveyor stopped after maintenance. The operator says the motor sounds normal.",
+      "options": [
+        "Replace the motor starter",
+        "Observe the safety chain and first missing permissive",
+        "Increase the overload setting"
+      ],
+      "answer": 1,
+      "explanation": "Start at the first missing condition. The symptom does not yet justify changing hardware."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Leave a trail",
+      "body": "Write the expected state, observed state and next safe check so someone else can resume."
+    }
+  ]
+}
