@@ -26,7 +26,7 @@ The complete minimal artifact is:
 | Field | Contract |
 | --- | --- |
 | `schemaVersion` | Required literal number `1`. |
-| `slug` | Required string: lowercase words/numbers separated by single hyphens. Stable identity in links; unique in the registered library. |
+| `slug` | Required string: lowercase words/numbers separated by single hyphens. Stable identity in links; unique in the discovered library. |
 | `title`, `summary`, `contributor` | Required strings. Use useful, nonempty copy before review or publication. |
 | `status` | Required: `draft`, `preview`, `published`, `archived`. Never promote another author's work without publication authority. |
 | `theme` | Required: `paper`, `signal`, `workshop`, `night`, `field`. No raw styling fields. |
@@ -49,13 +49,15 @@ Draft and preview artifacts are **visible on the current home screen** with labe
 
 1. Compose JSON using the shapes below and select `preview` for work awaiting review.
 2. Keep source attribution, uncertainty and content boundaries explicit. Use `embed` source cards until citations have a dedicated contract.
-3. Add the JSON under `app/src/content/`. The current library uses explicit imports: register the file in `App.tsx` and its `entries` array. File creation alone does not add a page.
+3. Add the JSON under `app/src/content/`. Vite discovers every `.json` file in that directory, validates it at startup/build time, and adds it to Browse automatically. There is no per-file React import or registry.
 4. Run `node --experimental-strip-types --test tests/validation.test.mjs` with Node 22.18+ (or Node 24). This needs no package install. It checks the actual content files, the legacy fixture and every valid JSON example in this catalog.
 5. In the running app, inspect Browse, slideshow controls, all five themes, narrow screens and keyboard interaction. A passing validator does not replace visual review.
 
 The validator is used for bundled content, pasted/file imports and saved-draft restoration. Invalid imports leave the current draft untouched and report paths such as `$.blocks[2].options[0]`. An unreadable saved draft displays the starter and an alert, retaining the saved value until the author edits, imports or resets. Required fields of the wrong type reject the artifact; no partial import or silent repair occurs.
 
-Studio can add `text`, `slideshow`, `compact-table`, `diagram`, `note-callout`, `steps`, `quote`, `divider` and `cta-band`. It can also edit an existing `hero`. Other blocks render in preview but require JSON for field edits. Templates may contain richer blocks. This catalog documents all 17 renderer types, not only Studio's Add menu.
+To enrich an existing subject, first search `app/src/content/` for its slug, tags and `series.id`. Edit the existing artifact when the idea belongs on the same page; otherwise add another artifact with the same `series.id`, the same `series.title`, and a new `series.order`. The home shelf and previous/next navigation update automatically. Keep new work in `preview` until the contributor and publisher have reviewed it.
+
+Studio can add `text`, `slideshow`, `compact-table`, `diagram`, `note-callout`, `steps`, `quote`, `divider` and `cta-band`. It can also edit an existing `hero`. Other blocks render in preview but require JSON for field edits. Templates may contain richer blocks. This catalog documents all 19 renderer types, not only Studio's Add menu.
 
 ## Widget reference
 
@@ -181,6 +183,26 @@ Use as a source/reference card. Required strings: `heading`, `source`, `caption`
 
 Bad: `{"id":"source","type":"embed","heading":"Source","source":"Untrusted","caption":"Open","url":"javascript:alert(1)"}` is rejected. Both views show a reference card, not an iframe, video player or fetched page. With no URL there is no link. With a URL, “Open source” opens a new tab with `rel="noreferrer"`. Name the source and what it supports in adjacent text; the generic repeated link label is a current accessibility limitation. No loading or remote-error state exists because the app does not fetch the source.
 
+### `image`
+
+Use for an authored visual that materially improves the explanation. Required strings: `src`, `alt`, `caption`. Optional strings: `heading`, `sourceUrl`. `src` accepts a root-relative asset path such as `/images/network.svg` or an absolute HTTP(S) URL. `sourceUrl`, when present, must be absolute HTTP(S).
+
+```json
+{ "id": "topology", "type": "image", "heading": "A separated lab", "src": "/images/defensive-home-lab.svg", "alt": "A router separates trusted devices, a passive sensor, and an isolated decoy.", "caption": "A defensive lab topology." }
+```
+
+Bad: `{"id":"image","type":"image","src":"javascript:alert(1)","alt":"","caption":"Unsafe"}` uses a disallowed source. The renderer uses a responsive `img`, lazy loading, authored alternative text and a visible caption. If the image fails, it replaces the empty frame with an “Image unavailable” warning that retains the caption. Decorative images should use an empty `alt`; informative images need equivalent meaning in `alt` and surrounding content. Prefer repository assets for stable, privacy-preserving media. An approved first-party object-storage URL can use the same `src` field later; external hosts learn the reader's IP and referrer policy may vary, so review them deliberately. This block never accepts uploads or executable markup by itself.
+
+### `resource-list`
+
+Use for a curated set of sources or next-step links. Required string `heading`; `items` contains objects with string `label`, `detail` and absolute HTTP(S) `url`.
+
+```json
+{ "id": "references", "type": "resource-list", "heading": "Official references", "items": [{ "label": "NIST publications", "detail": "Primary cybersecurity guidance.", "url": "https://csrc.nist.gov/publications" }] }
+```
+
+Bad: `{"id":"references","type":"resource-list","heading":"Links","items":[{"label":"Run this","detail":"Unsafe scheme","url":"data:text/html,test"}]}` is rejected. Each item is one keyboard-focusable link with a descriptive label and detail; a visual arrow is hidden from assistive technology. Links open in a new tab with `rel="noreferrer"`. Empty items leave only the heading. Prefer primary sources, distinct labels and enough detail to explain why each link belongs.
+
 ### `exercise`
 
 Use for a single-choice knowledge check. Required strings: `heading`, `prompt`, `explanation`; `options` is an array of strings. Required `answer` is a zero-based integer indexing an existing option. Prefer at least two distinct choices.
@@ -234,9 +256,8 @@ Bad: `{"id":"pause","type":"divider","label":42}` has a numeric label. Browse sh
 
 ## Links and compatibility
 
-The current hosted app reads `?artifact=<slug>` to open a registered page. Every artifact opens in its authored theme; the theme dots are a viewer-only preview that resets to the authored theme on navigation or reload, and no theme is read from the URL. An unknown artifact currently returns home. Keep slugs and block IDs stable; query values should be URL-encoded. There is no declared standalone `/p/<slug>` route or new production domain in this repository.
+The current hosted app reads `?artifact=<slug>` to open a discovered page. Every artifact opens in its authored theme; the theme dots are a viewer-only preview that resets to the authored theme on navigation or reload, and no theme is read from the URL. An unknown artifact currently returns home. Keep slugs and block IDs stable; query values should be URL-encoded. There is no declared standalone `/p/<slug>` route or new production domain in this repository.
 
 This documents the existing routing shape for current links; it does not promise a future route migration policy. A local Studio import is not registered as a shareable artifact. There is no automatic repository-to-hosted-preview deployment configured here.
 
 `legacy-fixture.ts` and the checked-in artifacts remain version 1. Changing required fields or block names later needs an explicit compatibility or migration decision. New renderer capabilities need their own implementation and review; adding a type name to content does not create them.
-
