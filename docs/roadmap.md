@@ -82,6 +82,8 @@ When repository-backed content becomes a runtime constraint, add an API and data
 
 Add first-party object storage only when media upload is a real workflow. Preserve the current image URL field while adding upload authorization, provenance, file-type and size limits, moderation where needed, lifecycle deletion and stable delivery URLs at the persistence boundary.
 
+Use Supabase as the first persistence implementation in staged, reversible steps: model artifacts and immutable revisions; prove a validated JSON round trip; add Auth plus ownership/membership RLS; add private draft media in Storage; then place publication and agent writes behind a versioned Showmob API. Do not switch the renderer away from repository content until parity, rollback and audit evidence are in place.
+
 ### Layered agent permissions
 
 Separate content authoring, publication, curation, widget development, and application development. Start with repository rules and reviews; later enforce the same boundaries in the API and data model.
