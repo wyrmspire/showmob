@@ -2,6 +2,19 @@
 
 Showmob turns structured ideas into portable web pages that can be read as a normal document or presented one section at a time.
 
+
+## How it works
+
+Showmob is a **content language + renderer**, not a CMS you configure per page.
+
+1. **Write** a `schemaVersion: 1` JSON artifact under `app/src/content/` (or export one from Studio).
+2. **Build** discovers every `.json` file, validates it, and ships a static Vite app to Vercel.
+3. **Read** opens as a normal scrolling page (Browse). A **slideshow** is just a block inside that page when you want paced presentation.
+4. **Theme** is authored on the artifact (`paper`, `signal`, `workshop`, `night`, `field`). Public links keep that theme; local author tools can audition others.
+5. **Publish** is a status field (`draft` → `preview` → `published`). Production catalogs show **published** only; files are never deleted to hide them.
+
+**Why this repo exists in the 60-day sprint:** a thin, shareable way to show ideas as living pages. It should stay small. Heavy product systems (collaboration, search, multi-tenant auth, analytics) belong elsewhere or later — see `docs/shipped-vs-plan.md` and the thin data-management notes in chat/history.
+
 ## Repository layout
 
 - `app/src/` - the current Showmob v3 hosted-app source
