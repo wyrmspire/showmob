@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 1,
+  "slug": "plan-data-sufficiency",
+  "title": "From here to data-sufficient",
+  "summary": "The numbered plan from repo JSON and browser-local drafts to a Showmob that remembers: durable revisions, real requests, simulated users, and honest section sizes.",
+  "contributor": "Showmob product brief",
+  "status": "published",
+  "theme": "signal",
+  "series": {
+    "id": "showmob-plan",
+    "title": "The Showmob plan",
+    "order": 8
+  },
+  "tags": [
+    "showmob-plan",
+    "roadmap",
+    "persistence"
+  ],
+  "updated": "2026-09-22",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "The Showmob plan - part 8",
+      "title": "From here to data-sufficient",
+      "body": "Today every page is a JSON file in the repo, Studio drafts live in one browser, and a GitHub pull request is the whole review loop. This is the numbered plan from here to a site that remembers: durable revisions, real requests, and identity that knows who is asking. The JSON contract stays portable the whole way."
+    },
+    {
+      "id": "honesty",
+      "type": "note-callout",
+      "title": "This page is the plan, not a progress report",
+      "body": "Everything past the current state below is unbuilt. Nothing here claims a working feature, a database, or a login screen. When a phase earns its definition of done, its status line on this page gets updated to say so.",
+      "tone": "warning"
+    },
+    {
+      "id": "where-today",
+      "type": "stat-strip",
+      "items": [
+        { "value": "Content", "label": "Repo JSON artifacts plus browser-local Studio drafts" },
+        { "value": "Review", "label": "GitHub pull requests, merged after a skim" },
+        { "value": "Shipping", "label": "Vercel deploys from main" }
+      ]
+    },
+    {
+      "id": "what-it-means",
+      "type": "text",
+      "heading": "What data-sufficient means",
+      "body": "A site is data-sufficient when what people do with a page outlives the browser tab. Revisions are kept instead of overwritten. Requests and comments have a home instead of a chat thread. Identity decides who may do what. The artifact stays a portable JSON document the whole time; the database becomes its memory, not its master. GitHub keeps the code, the schema, the widgets, and the canonical exports."
+    },
+    {
+      "id": "the-loop",
+      "type": "diagram",
+      "heading": "The loop this plan serves",
+      "nodes": [
+        { "title": "Conversation", "detail": "An idea starts as ordinary talk." },
+        { "title": "Artifact", "detail": "The idea gets composed as portable JSON." },
+        { "title": "Presentation", "detail": "Someone opens the artifact as a room and walks it." },
+        { "title": "Interaction", "detail": "Questions, polls, notes and decisions land against the page." },
+        { "title": "Preserved learning", "detail": "What the room captured is kept, not lost when the tab closes." },
+        { "title": "Enriched artifact", "detail": "Approved follow-ups fold back into the series the page belongs to." }
+      ]
+    },
+    {
+      "id": "at-a-glance",
+      "type": "timeline",
+      "heading": "The phases at a glance",
+      "items": [
+        { "time": "Phase 1", "title": "Prove the round trip", "detail": "Save one artifact with immutable revisions and prove JSON export/import parity." },
+        { "time": "Phase 2", "title": "Size sections on purpose", "detail": "A thinking structure for how big a section or artifact should be." },
+        { "time": "Phase 3", "title": "Users without a login wall", "detail": "Dev-mode auto-admin for builders, plus a way to simulate commenters and requesters." },
+        { "time": "Phase 4", "title": "Expansion requests", "detail": "A viewer asks for more on a subject; an agent answers with a graded verdict." },
+        { "time": "Phase 5", "title": "Widget and style decision rules", "detail": "Written rules for which widgets, graphics and styles a subject needs, and where choices get reviewed." },
+        { "time": "Phase 6", "title": "Finish the persistence rollout", "detail": "Media, the Showmob API, then hosted reads once parity and rollback are proven." },
+        { "time": "Phase 7", "title": "Sessions, parked", "detail": "Artifacts as rooms. The reward for a proven core, not a shortcut around it." }
+      ]
+    },
+    {
+      "id": "phase-1",
+      "type": "compact-table",
+      "heading": "Phase 1 - Prove the round trip",
+      "columns": ["Status", "Complete", "Still needed", "Definition of done"],
+      "rows": [
+        [
+          "Next up. The only thing cleared to build right now; everything else on this page builds on it.",
+          "The JSON contract, the runtime validator, the repo pipeline, the PR review loop, and the written plan in the roadmap and mechanics part 8.",
+          "A Supabase dev project, the smallest secure schema, one artifact written as an immutable revision, and the export/import parity proof.",
+          "One stored artifact reads back identical to its exported JSON, revisions cannot change after they are written, and the existing renderer and contract tests pass against the stored copy."
+        ]
+      ],
+      "caption": "Milestone one from the roadmap's map, unchanged."
+    },
+    {
+      "id": "phase-2",
+      "type": "compact-table",
+      "heading": "Phase 2 - Size sections on purpose",
+      "columns": ["Status", "Complete", "Still needed", "Definition of done"],
+      "rows": [
+        [
+          "Can run alongside Phase 1. This is content-language thinking; it needs no database.",
+          "Real courses already exposed the problem: sections land at whatever size the author happened to write, and the awkward spots are documented in the course reviews.",
+          "A written sizing rule: what makes a teaching section, what makes a presentation beat, and the tests a chunk has to pass before it ships.",
+          "The rule is written down, one existing course is re-chunked with it as the proof, and the result reads better in both Browse and Present."
+        ]
+      ],
+      "caption": "The thinking structure lives in the sections below."
+    },
+    {
+      "id": "phase-3",
+      "type": "compact-table",
+      "heading": "Phase 3 - Users without a login wall",
+      "columns": ["Status", "Complete", "Still needed", "Definition of done"],
+      "rows": [
+        [
+          "After Phase 1. Identity only means something once there is stored state to guard.",
+          "Permission layers already exist on paper in AGENTS.md, from content author to application developer.",
+          "Supabase Auth, ownership and membership rows, dev-mode auto-admin so nobody logs in while building, and a view-as switch to walk the site as a commenter or requester.",
+          "A builder opens the dev app and is already admin, no login screen. Flipping to a simulated viewer shows exactly what a commenter or requester would see."
+        ]
+      ],
+      "caption": "Building should never require pretending to be an audience."
+    },
+    {
+      "id": "phase-4",
+      "type": "compact-table",
+      "heading": "Phase 4 - Expansion requests",
+      "columns": ["Status", "Complete", "Still needed", "Definition of done"],
+      "rows": [
+        [
+          "After Phase 3. A request needs a someone to file it and a somewhere to land.",
+          "The grading rubric is already parked in the authoring notes: correct at the leaf, right level, teaches, right widget. Verdicts: expand, shrink, re-widget, done.",
+          "A request box attached to a section, a stored queue an agent checks, a rubric review with sources, and the verdict recorded against the artifact.",
+          "A viewer files a request on a real section, an agent answers it with a rubric verdict, and the outcome is stored where the next agent can find it."
+        ]
+      ],
+      "caption": "The full flow and the rubric get their own sections below."
+    },
+    {
+      "id": "phase-5",
+      "type": "compact-table",
+      "heading": "Phase 5 - Widget and style decision rules",
+      "columns": ["Status", "Complete", "Still needed", "Definition of done"],
+      "rows": [
+        [
+          "Started informally. This phase writes the habit down.",
+          "Nineteen documented blocks, widget-proposal rules in AGENTS.md, and a standing habit: find vocabulary gaps from real artifacts, never from a speculative catalog.",
+          "Written rules that map a subject's needs to widgets, graphics and styles, and a named review home: the PR diff today, the agent review queue later.",
+          "The rules are documented, and one real subject has been walked through them with the review recorded."
+        ]
+      ],
+      "caption": "The working rules so far are below."
+    },
+    {
+      "id": "phase-6",
+      "type": "compact-table",
+      "heading": "Phase 6 - Finish the persistence rollout",
+      "columns": ["Status", "Complete", "Still needed", "Definition of done"],
+      "rows": [
+        [
+          "Later. Earned by Phases 1 through 4, in the order mechanics part 8 already lays out.",
+          "The rollout is sequenced: media after identity, the API after media, hosted reads last.",
+          "Private media storage, the versioned Showmob API for publication and agent writes, and hosted reads only after parity, rollback and observability are proven.",
+          "Artifacts, revisions, requests and media are served from storage with rollback. GitHub stays canonical for code, schema and widgets. The renderer contract never changed."
+        ]
+      ],
+      "caption": "Move reads deliberately; a green build is not proof."
+    },
+    {
+      "id": "phase-7",
+      "type": "compact-table",
+      "heading": "Phase 7 - Sessions, parked",
+      "columns": ["Status", "Complete", "Still needed", "Definition of done"],
+      "rows": [
+        [
+          "Parked until milestone one earns it, exactly as the roadmap says.",
+          "The direction is mapped: open an artifact as a room, join with roles, record questions and decisions, propose a recap artifact when the session ends.",
+          "Everything. Live sessions are the reward for a proven persistence core, not a workaround for its absence.",
+          "A real session ends with an agent-proposed recap artifact that enriches the series it came from."
+        ]
+      ],
+      "caption": "The loop from the diagram above, closed."
+    },
+    {
+      "id": "details",
+      "type": "divider",
+      "label": "The parts worth slowing down for"
+    },
+    {
+      "id": "sizing",
+      "type": "comparison",
+      "heading": "Two kinds of section, two kinds of size",
+      "columns": [
+        { "name": "A teaching section", "detail": "Teaches one idea a learner can repeat back in a sentence. If a draft section needs the words 'and also' to describe itself, it is two sections. A course part stays one sitting's worth of these." },
+        { "name": "A presentation beat", "detail": "One thing a presenter says out loud before advancing. If a beat takes two breaths, it is two beats. A deck stays one room's attention span, and slideshow blocks carry the pacing." }
+      ]
+    },
+    {
+      "id": "sizing-tests",
+      "type": "checklist",
+      "heading": "Tests a chunk has to pass",
+      "items": [
+        { "label": "The one-sentence test", "detail": "You can say what the section teaches or shows in one sentence without the word 'and'." },
+        { "label": "The read-aloud test", "detail": "Read it at presentation pace. If you would naturally pause and advance, that is the seam." },
+        { "label": "The standalone test", "detail": "A reader who lands on the section from a link can use it without hunting for missing context." },
+        { "label": "The sitting test", "detail": "An artifact is one sitting for its audience. A course part is an evening; a deck is a room's patience." }
+      ]
+    },
+    {
+      "id": "request-flow",
+      "type": "steps",
+      "heading": "How an expansion request travels",
+      "items": [
+        "A viewer reading a section hits 'request expansion' and says what is missing in their own words.",
+        "The request is stored against the artifact and the section id, with the requester's identity from Phase 3. Today a request has nowhere to land; this phase gives it an address.",
+        "An agent checks the queue, reads the section, and grades the request against the rubric below, with correctness checked against sources rather than the grader's memory.",
+        "The verdict comes back as expand, shrink, re-widget, or done, and is recorded against the artifact so the next agent inherits it.",
+        "The requester can see what was decided and why. A granted expansion becomes ordinary authored JSON through the same PR review loop as everything else."
+      ]
+    },
+    {
+      "id": "rubric",
+      "type": "compact-table",
+      "heading": "The grading rubric",
+      "columns": ["Check", "What it asks"],
+      "rows": [
+        ["Correct at the leaf", "Is the specific claim true, verified against a source rather than remembered?"],
+        ["Right level", "Does the answer fit where this section sits in the series, not too basic, not a leap?"],
+        ["Teaches", "Does the learner leave able to do or decide something they could not before?"],
+        ["Right widget", "Is this the block that fits the content, or just the block that was nearest?"]
+      ],
+      "caption": "Verdicts: expand (write the missing piece), shrink (split or trim), re-widget (same content, better block), done (already covered; point to where)."
+    },
+    {
+      "id": "widget-rules",
+      "type": "checklist",
+      "heading": "Choosing widgets, graphics and styles",
+      "items": [
+        { "label": "Start from the subject, not the catalog", "detail": "Ask what the learner needs to see. A flow becomes a diagram, a comparison a table, a sequence steps, evidence a source list, practice an exercise." },
+        { "label": "A graphic earns its place", "detail": "Add an image when a picture explains better than a sentence, with alt text and a named source. Decoration is not a reason." },
+        { "label": "Style stays semantic", "detail": "The theme belongs to the page and speaks in tokens, not colors. Raw presentation values never leak into artifact JSON." },
+        { "label": "A gap is evidence, not an emergency", "detail": "When no block fits, that is a widget proposal with a real content need, not a reason to hack around the vocabulary." },
+        { "label": "Every choice has a review home", "detail": "Today the PR diff is the review: JSON changes read plainly. Later the agent review queue takes over. Either way the decision is recorded, not vibes." }
+      ]
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Where this plan comes from",
+      "items": [
+        { "label": "The roadmap's map", "detail": "A session becomes an artifact. Milestone one is the only next buildable thing; the rest stays parked until it earns out.", "url": "https://github.com/wyrmspire/showmob/blob/main/docs/roadmap.md" },
+        { "label": "Mechanics part 8: persistence", "detail": "The Supabase rollout this plan sequences against: round trip, identity, media, API, then reads.", "url": "https://showmob.vercel.app/?artifact=showmob-mechanics-persistence" },
+        { "label": "The architecture decision record", "detail": "The same plan recorded as architecture, with the boundaries the renderer must not cross.", "url": "https://github.com/wyrmspire/showmob/blob/main/docs/architecture.md" },
+        { "label": "AGENTS.md", "detail": "Permission layers, the widget-proposal bar, and the artifact checklist every page ships under.", "url": "https://github.com/wyrmspire/showmob/blob/main/AGENTS.md" }
+      ]
+    },
+    {
+      "id": "next",
+      "type": "cta-band",
+      "heading": "Next brick: milestone one",
+      "body": "Create the Supabase dev project, write the smallest secure schema, validate one artifact into an immutable revision, read it back, and run the existing renderer and contract tests against the result. When that round trip is proven, this page's Phase 1 status line flips to done."
+    }
+  ]
+}
