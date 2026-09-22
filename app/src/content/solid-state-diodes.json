@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Showmob learning example",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "electronics",
+    "learning",
+    "solid-state"
+  ],
+  "updated": "2026-09-21",
+  "slug": "solid-state-diodes",
+  "title": "Diodes: direction, drop and stored energy",
+  "summary": "Read diode polarity and datasheet limits, then place rectification, flyback and light-emitting diodes in their proper roles.",
+  "series": {
+    "id": "solid-state-circuitry",
+    "title": "Solid-state circuitry",
+    "order": 3
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Solid-state circuitry · 3 of 8",
+      "title": "A one-way tendency, not an ideal check valve",
+      "body": "A diode strongly favors one current direction, but it has forward loss, reverse leakage, finite switching time and hard limits. Use the check-valve analogy to remember direction, then return to the datasheet."
+    },
+    {
+      "id": "bias",
+      "type": "comparison",
+      "heading": "1. Read bias from anode to cathode",
+      "columns": [
+        {
+          "name": "Forward bias",
+          "detail": "The anode is more positive than the cathode by enough to support the operating current. Forward voltage is a result at a stated current and temperature, not a universal 0.7 V switch point."
+        },
+        {
+          "name": "Reverse bias",
+          "detail": "The cathode is more positive than the anode. Only leakage should flow in normal operation, until breakdown or another rating is exceeded."
+        }
+      ]
+    },
+    {
+      "id": "datasheet",
+      "type": "text",
+      "heading": "2. Ratings and curves belong together",
+      "body": "Start with repetitive reverse-voltage rating, average or continuous forward current, surge current, forward voltage at stated current, leakage, junction-temperature limit and thermal resistance. For switching work, also check reverse-recovery behavior or the relevant charge specification. A headline current rating is valid only under its stated lead, case, board and temperature conditions."
+    },
+    {
+      "id": "roles",
+      "type": "steps",
+      "heading": "3. Match the diode to the job",
+      "items": [
+        "Rectification steers current when converting or protecting supply paths. Verify reverse voltage, current, loss and surge conditions.",
+        "A flyback or freewheel path gives an inductive load current somewhere to go at switch turn-off. Clamp choice also affects release time.",
+        "An LED converts current to light. It normally needs current limiting; its forward voltage is not a current regulator.",
+        "A Zener or avalanche device can clamp near a designed voltage in a specified current range. It must dissipate the resulting energy without exceeding pulse or thermal limits."
+      ]
+    },
+    {
+      "id": "polarity-warning",
+      "type": "note-callout",
+      "title": "Never infer polarity from package shape alone",
+      "body": "Bands, flats and lead lengths can help only when the package drawing confirms them. Use the part marking and manufacturer drawing; verify circuit polarity before power is applied.",
+      "tone": "warning"
+    },
+    {
+      "id": "led-check",
+      "type": "exercise",
+      "heading": "4. Check the model",
+      "prompt": "A 24 V output will drive an indicator LED directly because the LED datasheet lists a 2 V forward voltage. What is missing?",
+      "options": [
+        "A current-limiting design and its power check.",
+        "A reverse-recovery test only.",
+        "Nothing; the LED fixes the current."
+      ],
+      "answer": 0,
+      "explanation": "Forward voltage does not regulate LED current. The remaining voltage must be handled by a suitable current-limiting circuit, and component power must be checked."
+    },
+    {
+      "id": "worksheet",
+      "type": "checklist",
+      "heading": "5. Datasheet worksheet",
+      "items": [
+        {
+          "label": "Name the job",
+          "detail": "Write whether the diode is rectifying, clamping, freewheeling, emitting light or serving another role."
+        },
+        {
+          "label": "Record the stresses",
+          "detail": "List expected forward current, reverse voltage, switching rate, pulse energy and ambient or case temperature."
+        },
+        {
+          "label": "Find the conditions",
+          "detail": "For every copied rating, also copy the test or thermal condition."
+        },
+        {
+          "label": "Check orientation",
+          "detail": "Mark anode and cathode from the manufacturer package drawing, not memory."
+        }
+      ]
+    },
+    {
+      "id": "source-toshiba",
+      "type": "embed",
+      "heading": "Manufacturer source: diode fundamentals",
+      "source": "Toshiba — Basic Knowledge of Discrete Semiconductor Devices, Chapter II",
+      "caption": "The diode chapter supports p-n-junction bias, rectifier operation, Zener behavior and diode types. Accessed 2026-09-21.",
+      "url": "https://toshiba.semicon-storage.com/us/semiconductor/knowledge/e-learning/discrete.html"
+    },
+    {
+      "id": "source-vishay",
+      "type": "embed",
+      "heading": "Manufacturer source: rectifier behavior",
+      "source": "Vishay — Fundamentals of Rectifiers",
+      "caption": "This application note covers forward and reverse characteristics, recovery and power loss. It is background, not a substitute for the selected part datasheet. Accessed 2026-09-21.",
+      "url": "https://www.vishay.com/docs/88867/anfundamental.pdf"
+    }
+  ]
+}

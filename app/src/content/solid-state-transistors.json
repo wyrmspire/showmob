@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Showmob learning example",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "electronics",
+    "learning",
+    "solid-state"
+  ],
+  "updated": "2026-09-21",
+  "slug": "solid-state-transistors",
+  "title": "Transistors: using a small drive to control a load",
+  "summary": "Understand BJT terminals, operating regions, base drive and switching loss through practical low-side control examples.",
+  "series": {
+    "id": "solid-state-circuitry",
+    "title": "Solid-state circuitry",
+    "order": 4
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Solid-state circuitry · 4 of 8",
+      "title": "A BJT is controlled, not magical gain",
+      "body": "A bipolar junction transistor can let a modest base drive control a larger collector current. A switching design still has to supply enough base current, stay inside ratings and remove heat."
+    },
+    {
+      "id": "types",
+      "type": "comparison",
+      "heading": "1. NPN and PNP set different reference directions",
+      "columns": [
+        {
+          "name": "NPN low-side use",
+          "detail": "Emitter is commonly near the return reference and the load connects toward the positive supply. Positive base-emitter drive turns the device on. This arrangement can make the control and load references easy to inspect."
+        },
+        {
+          "name": "PNP high-side use",
+          "detail": "Emitter is commonly toward the positive supply. The base must be pulled below the emitter to turn on. Voltage references and control-interface limits require care."
+        }
+      ]
+    },
+    {
+      "id": "regions",
+      "type": "steps",
+      "heading": "2. Know the operating regions",
+      "items": [
+        "Cutoff: base drive is insufficient and collector current is limited mainly to leakage. This is the intended off region for a switch.",
+        "Active region: collector current is approximately related to base current by gain under stated conditions. This is useful for amplification, but gain varies widely.",
+        "Saturation: both junctions are forward biased and collector-emitter voltage is low but not zero. A switch may be driven here, using forced gain rather than relying on a typical gain value.",
+        "Turn-off is not instantaneous. Stored charge and the driver’s ability to remove base current affect switching time and loss."
+      ]
+    },
+    {
+      "id": "base-drive",
+      "type": "text",
+      "heading": "3. Base current is part of the load on the controller",
+      "body": "For a paper estimate, choose a conservative forced gain from the switching design, calculate required base current, then calculate the base resistor from the actual control voltage minus base-emitter voltage. Next verify that the controller can source or sink that current and that resistor and transistor dissipation remain acceptable. Do not use the maximum DC current gain as a guaranteed saturation design value."
+    },
+    {
+      "id": "isolation",
+      "type": "note-callout",
+      "title": "A transistor does not create isolation",
+      "body": "A three-terminal BJT normally shares an electrical reference with its drive circuit. If galvanic isolation is required, it must be designed and rated explicitly with a suitable isolator and spacing.",
+      "tone": "warning"
+    },
+    {
+      "id": "base-check",
+      "type": "exercise",
+      "heading": "4. Check the model",
+      "prompt": "A datasheet gives a typical DC current gain of 200. Is dividing load current by 200 enough to guarantee a saturated switch?",
+      "options": [
+        "Yes, typical gain is a guaranteed switching limit.",
+        "No. Use switching specifications and a conservative forced gain, then verify drive and dissipation.",
+        "Yes, if collector current is below the absolute maximum."
+      ],
+      "answer": 1,
+      "explanation": "Gain varies with device, current and temperature, and active-region gain does not guarantee a particular saturation voltage."
+    },
+    {
+      "id": "worksheet",
+      "type": "checklist",
+      "heading": "5. BJT switch worksheet",
+      "items": [
+        {
+          "label": "Draw the references",
+          "detail": "Label base, collector, emitter, load supply, control supply and return."
+        },
+        {
+          "label": "Choose an operating region",
+          "detail": "State whether the design needs cutoff, active operation or saturation."
+        },
+        {
+          "label": "Budget the drive",
+          "detail": "Record required base current and the controller output limit."
+        },
+        {
+          "label": "Check heat and speed",
+          "detail": "Estimate conduction loss and note whether switching frequency or stored charge matters."
+        }
+      ]
+    },
+    {
+      "id": "source-toshiba",
+      "type": "embed",
+      "heading": "Manufacturer source: BJT operation",
+      "source": "Toshiba — BJT operation: active and saturation regions",
+      "caption": "The manufacturer explanation supports terminal roles, current gain and the distinction between active and saturated operation. Accessed 2026-09-21.",
+      "url": "https://toshiba.semicon-storage.com/us/semiconductor/knowledge/faq/mosfet_bipoler-transistors/how-do-npn-and-pnp-transistors-operate.html"
+    }
+  ]
+}
