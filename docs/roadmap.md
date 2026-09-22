@@ -26,7 +26,9 @@ Success is not a larger schema. Success is a real artifact that is useful, porta
 
 ### First implementation pass
 
-The [widget catalog](./widgets.md) now documents the version 1 grammar and all 17 current blocks. A shared runtime validator protects imports, saved-draft restoration and bundled content, with a dependency-free Node validation suite.
+The [widget catalog](./widgets.md) now documents the version 1 grammar and all 19 current blocks. A shared runtime validator protects imports, saved-draft restoration and bundled content, with a dependency-free Node validation suite.
+
+The defensive local-security lab is the second focused artifact pass. It exposed two concrete vocabulary needs: a responsive, failure-aware image block and a grouped primary-source list. Repository artifacts are now automatically discovered, and matching `series.id` values form the working subject-enrichment loop without per-page application wiring.
 
 The ten-section `solid-state-foundations` preview lesson is the first focused course pass. [Its evidence map and vocabulary review](./solid-state-course-review.md) record the diagram, citation and result-capture needs exposed by authoring it. Hosted Browse/Present, theme, mobile and keyboard review remain open; the full real-artifact milestone is not complete until that review happens.
 
@@ -55,7 +57,7 @@ The ten-section `solid-state-foundations` preview lesson is the first focused co
 
 ### Make repository authoring dependable
 
-- Add a repeatable validation and preview path when the standalone toolchain is introduced.
+- Keep automatic content discovery, dependency-free validation and preview deployment as one repeatable path.
 - Keep content changes reviewable as plain JSON diffs.
 - Document preview, publication, rollback, and archiving behavior.
 - Keep the hosted-app boundary explicit until a package manifest and build configuration are added deliberately.
@@ -77,6 +79,8 @@ Introduce identity, comments, annotations, suggestions, and revision workflows a
 ### Persistence beyond GitHub
 
 When repository-backed content becomes a runtime constraint, add an API and database for artifacts, collections, blocks, interactions, responses, feedback, comments, sessions, and revisions. Preserve import and export through the same explicit JSON contract. Keep GitHub as the source for code, schemas, canonical widgets, themes, and portable exports.
+
+Add first-party object storage only when media upload is a real workflow. Preserve the current image URL field while adding upload authorization, provenance, file-type and size limits, moderation where needed, lifecycle deletion and stable delivery URLs at the persistence boundary.
 
 ### Layered agent permissions
 

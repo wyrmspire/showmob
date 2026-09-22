@@ -26,6 +26,8 @@ const blockRules = {
   timeline: { strings: ['heading'], list: { key: 'items', strings: ['time', 'title', 'detail'] } },
   code: { strings: ['heading', 'code'], optional: ['language'] },
   embed: { strings: ['heading', 'source', 'caption'], optional: ['url'] },
+  image: { strings: ['src', 'alt', 'caption'], optional: ['heading', 'sourceUrl'] },
+  'resource-list': { strings: ['heading'], list: { key: 'items', strings: ['label', 'detail', 'url'] } },
   exercise: { strings: ['heading', 'prompt', 'explanation'], list: { key: 'options' } },
   'compact-table': { strings: ['heading'], optional: ['caption'], list: { key: 'rows' } },
   diagram: { strings: ['heading'], list: { key: 'nodes', strings: ['title', 'detail'] } },
@@ -50,6 +52,22 @@ export function validateArtifact(value: unknown): ValidationResult {
     if (typeof field !== 'string' || !options.includes(field)) {
       issue(path, `Expected one of: ${options.join(', ')}.`);
     }
+  };
+  const httpUrl = (field: string, path: string) => {
+    try {
+      const url = new URL(field);
+      if (url.protocol !== 'https:' && url.protocol !== 'http:') throw new Error();
+    } catch { issue(path, 'Expected an absolute http:// or https:// URL.'); }
+  };
+  const imageUrl = (field: string, path: string) => {
+    const segments = field.split('/').map(segment => {
+      try { return decodeURIComponent(segment); } catch { return segment; }
+    });
+    if (field.startsWith('/') && !field.startsWith('//') && !/[\\\s]/.test(field) &&
+        !/%2f|%5c/i.test(field) && !segments.includes('..')) return;
+    const before = issues.length;
+    httpUrl(field, path);
+    if (issues.length > before) issues[issues.length - 1].message = 'Expected a root-relative asset path or absolute HTTP(S) URL.';
   };
 
   if (!isRecord(value)) return { ok: false, issues: [{ path: '$', message: 'Expected an artifact object.' }] };
@@ -132,10 +150,16 @@ export function validateArtifact(value: unknown): ValidationResult {
         }
       }
       if (block.type === 'embed' && typeof block.url === 'string') {
-        try {
-          const url = new URL(block.url);
-          if (url.protocol !== 'https:' && url.protocol !== 'http:') throw new Error();
-        } catch { issue(`${path}.url`, 'Expected an absolute http:// or https:// source URL.'); }
+        httpUrl(block.url, `${path}.url`);
+      }
+      if (block.type === 'image') {
+        if (typeof block.src === 'string') imageUrl(block.src, `${path}.src`);
+        if (typeof block.sourceUrl === 'string') httpUrl(block.sourceUrl, `${path}.sourceUrl`);
+      }
+      if (block.type === 'resource-list' && Array.isArray(block.items)) {
+        block.items.forEach((item, i) => {
+          if (isRecord(item) && typeof item.url === 'string') httpUrl(item.url, `${path}.items[${i}].url`);
+        });
       }
     });
   }

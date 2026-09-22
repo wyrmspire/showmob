@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "slug": "defensive-local-security-lab",
+  "title": "Build a defensive local-security lab",
+  "summary": "A consent-based home lab for isolating owned devices, inventorying listeners, observing network metadata, and running a contained decoy.",
+  "contributor": "Showmob defensive lab",
+  "status": "preview",
+  "theme": "night",
+  "series": { "id": "local-security-lab", "title": "Defensive local security", "order": 1 },
+  "tags": ["security", "networking", "defensive-lab", "raspberry-pi"],
+  "updated": "2026-09-22",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Defensive home lab · part 1",
+      "title": "See your own network clearly",
+      "body": "Build a small lab that makes exposed services, network zones, and decoy activity visible without testing anyone else's devices or traffic."
+    },
+    {
+      "id": "boundary",
+      "type": "note-callout",
+      "title": "Consent is the first control",
+      "body": "Use only equipment and traffic you own or are explicitly authorized to monitor. On a shared network, put the lab behind a router you control. Do not inspect a roommate's, guest's, employer's, or neighbor's traffic.",
+      "tone": "warning"
+    },
+    {
+      "id": "topology",
+      "type": "image",
+      "heading": "A small, separated topology",
+      "src": "/images/defensive-home-lab.svg",
+      "alt": "An upstream network connects to a lab router that separates trusted devices, a passive sensor, and an isolated honeypot with blocked outbound access.",
+      "caption": "Repository-hosted diagram. The image widget can also use an approved HTTPS URL now, and a first-party object-storage URL later without changing the artifact shape."
+    },
+    {
+      "id": "roles",
+      "type": "compact-table",
+      "heading": "Give each part one job",
+      "columns": ["Part", "Job", "Safe default"],
+      "rows": [
+        ["Lab router or travel router", "Creates a boundary you control", "No inbound port forwards; current firmware; unique admin password"],
+        ["Managed switch or mirror port", "Copies authorized traffic to a sensor", "Mirror only the lab segment"],
+        ["Passive sensor", "Turns packets into connection and alert logs", "Collect metadata first; limit retention"],
+        ["Honeypot", "Acts as a decoy service", "Separate zone; no real credentials or data; outbound denied"]
+      ],
+      "caption": "A repeater that only extends Wi-Fi may not create isolation. Use routing and firewall rules you can verify."
+    },
+    {
+      "id": "sequence",
+      "type": "steps",
+      "heading": "Build in four reversible stages",
+      "items": [
+        "Write the boundary: list the devices and traffic you are allowed to observe.",
+        "Place those devices behind a lab router or isolated guest network and verify that the lab cannot reach protected local networks.",
+        "Record listening services on each owned host, then close or document anything you do not need.",
+        "Add passive monitoring, and only then add one contained honeypot with outbound traffic blocked."
+      ]
+    },
+    {
+      "id": "listeners",
+      "type": "code",
+      "heading": "Inventory listeners on machines you own",
+      "language": "shell",
+      "code": "# Linux\nsudo ss -lntup\n\n# macOS\nsudo lsof -nP -iTCP -sTCP:LISTEN\n\n# Windows PowerShell\nGet-NetTCPConnection -State Listen | Sort-Object LocalPort"
+    },
+    {
+      "id": "listener-read",
+      "type": "text",
+      "heading": "Treat the list as a baseline",
+      "body": "For each listener, record the owning process, local address, port, why it exists, and whether another device can reach it. A service bound only to loopback is different from one exposed to every interface. Investigate unknowns before disabling them, and repeat the inventory after intentional changes."
+    },
+    {
+      "id": "sensors",
+      "type": "comparison",
+      "heading": "Choose the smallest useful sensor",
+      "columns": [
+        { "name": "Zeek", "detail": "Produces rich connection and protocol logs for understanding normal behavior and investigating events." },
+        { "name": "Suricata", "detail": "Produces alerts and structured EVE JSON records when rule-based detection is the main goal." },
+        { "name": "OpenCanary", "detail": "Runs lightweight decoy services and alerts when something touches them." },
+        { "name": "Cowrie", "detail": "Emulates SSH and Telnet for a focused decoy, with careful containment and log review." }
+      ]
+    },
+    {
+      "id": "honeypot-gates",
+      "type": "checklist",
+      "heading": "Honeypot safety gates",
+      "items": [
+        { "label": "Isolated from trusted devices", "detail": "Use a separate VLAN, interface, or downstream lab router." },
+        { "label": "Outbound access denied by default", "detail": "A compromised decoy must not become a launch point." },
+        { "label": "No real secrets or personal data", "detail": "Use synthetic banners, accounts, and files." },
+        { "label": "LAN-only first", "detail": "Learn the logs and failure modes before considering any internet exposure." },
+        { "label": "Retention and review defined", "detail": "Know what is logged, where it lives, and when it is deleted." }
+      ]
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Official starting points",
+      "items": [
+        { "label": "NIST consumer router cybersecurity profile", "detail": "Security outcomes for consumer-grade routers and their manufacturers.", "url": "https://csrc.nist.gov/pubs/ir/8425/a/final" },
+        { "label": "NIST home and small-business IoT security", "detail": "Guidance and example architectures for safer network segmentation.", "url": "https://csrc.nist.gov/pubs/sp/1800/15/final" },
+        { "label": "OpenWrt guest Wi-Fi", "detail": "A practical pattern for a separate wireless network and firewall zone.", "url": "https://openwrt.org/docs/guide-user/network/wifi/guestwifi/start" },
+        { "label": "Zeek monitoring guide", "detail": "Official deployment guidance for passive network monitoring.", "url": "https://docs.zeek.org/en/lts/monitoring.html" },
+        { "label": "Suricata EVE JSON", "detail": "Official reference for structured alerts and network event records.", "url": "https://docs.suricata.io/en/latest/output/eve/eve-json-output.html" },
+        { "label": "OpenCanary", "detail": "Official project for a modular, lightweight network decoy.", "url": "https://github.com/thinkst/opencanary" },
+        { "label": "Cowrie documentation", "detail": "Official SSH and Telnet honeypot documentation and containment considerations.", "url": "https://docs.cowrie.org/en/latest/README.html" }
+      ]
+    },
+    {
+      "id": "stages",
+      "type": "slideshow",
+      "heading": "The lab grows by evidence",
+      "slides": [
+        { "title": "Stage 1 · Know", "body": "Inventory owned devices and listening services. Keep the first result as a dated baseline." },
+        { "title": "Stage 2 · Separate", "body": "Move experiments behind a boundary you control and verify firewall behavior from both sides." },
+        { "title": "Stage 3 · Observe", "body": "Add one sensor or decoy, confirm the logs you need, and keep retention deliberately small." }
+      ]
+    },
+    {
+      "id": "next",
+      "type": "cta-band",
+      "heading": "Start with the boundary, not the honeypot",
+      "body": "Draw your actual network, mark what you own, and inventory listeners on one machine. That evidence determines the next safe page in this series."
+    }
+  ]
+}

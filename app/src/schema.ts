@@ -13,6 +13,8 @@ export type Block =
   | { id:string; type:'timeline'; heading:string; items:{time:string;title:string;detail:string}[] }
   | { id:string; type:'code'; heading:string; language?:string; code:string }
   | { id:string; type:'embed'; heading:string; source:string; caption:string; url?:string }
+  | { id:string; type:'image'; heading?:string; src:string; alt:string; caption:string; sourceUrl?:string }
+  | { id:string; type:'resource-list'; heading:string; items:{label:string;detail:string;url:string}[] }
   | { id:string; type:'exercise'; heading:string; prompt:string; options:string[]; answer:number; explanation:string }
   | { id:string; type:'compact-table'; heading:string; columns:string[]; rows:string[][]; caption?:string }
   | { id:string; type:'diagram'; heading:string; nodes:{title:string;detail:string}[] }

@@ -27,20 +27,16 @@ test('every catalog example validates and the catalog covers the entire schema v
   for (const value of catalog) assert.equal(validateArtifact(value.type ? artifactWith(value) : value).ok, true, value.type);
 });
 
-test('all repository artifacts validate, have unique slugs and are registered in the app', () => {
+test('all repository artifacts validate, have unique slugs and are automatically discovered by the app', () => {
   const dir = new URL('../app/src/content/', import.meta.url);
   const app = read('../app/src/App.tsx');
   const slugs = new Set();
-  const entries = app.match(/const entries:Artifact\[\]=\[([^\]]+)\]/)?.[1].split(',');
-  assert.ok(entries, 'Find the explicit entry registry');
+  assert.match(app, /import\.meta\.glob\('\.\/content\/\*\.json',\{eager:true,import:'default'\}\)/);
   for (const file of readdirSync(dir).filter(file => file.endsWith('.json'))) {
     const value = JSON.parse(readFileSync(new URL(file, dir), 'utf8'));
     assert.equal(validateArtifact(value).ok, true, file);
     assert.equal(slugs.has(value.slug), false, `Duplicate slug: ${value.slug}`);
     slugs.add(value.slug);
-    const imported = [...app.matchAll(/import\s+(\w+)\s+from\s*'\.\/content\/([^']+)'/g)].find(match => match[2] === file);
-    assert.ok(imported, `Missing import: ${file}`);
-    assert.ok(entries.includes(imported[1]), `Missing registry entry: ${file}`);
   }
 });
 
@@ -96,7 +92,7 @@ test('each block rejects missing fields the renderer reads', () => {
   const fields = {
     hero: 'body', text: 'heading', 'stat-strip': 'items', steps: 'items', comparison: 'columns',
     quote: 'attribution', 'note-callout': 'title', 'cta-band': 'body', checklist: 'items',
-    timeline: 'items', code: 'code', embed: 'caption', exercise: 'explanation', 'compact-table': 'columns', diagram: 'nodes', slideshow: 'slides', divider: 'id',
+    timeline: 'items', code: 'code', embed: 'caption', image: 'src', 'resource-list': 'items', exercise: 'explanation', 'compact-table': 'columns', diagram: 'nodes', slideshow: 'slides', divider: 'id',
   };
   for (const block of blocks) {
     const value = structuredClone(block); delete value[fields[block.type]];
@@ -113,13 +109,14 @@ test('nested list values have precise failure paths', () => {
     [{ id: 'x', type: 'timeline', heading: 'Time', items: [{ time: 'Now', title: 'Event' }] }, 'items[0].detail'],
     [{ id: 'x', type: 'diagram', heading: 'Flow', nodes: [{ title: 'Start' }] }, 'nodes[0].detail'],
     [{ id: 'x', type: 'slideshow', heading: 'Tour', slides: [{ title: 'Start' }] }, 'slides[0].body'],
+    [{ id: 'x', type: 'resource-list', heading: 'Links', items: [{ label: 'Source', detail: 'Read it' }] }, 'items[0].url'],
     [{ id: 'x', type: 'compact-table', heading: 'Grid', columns: ['A'], rows: [[false]] }, 'rows[0][0]'],
   ];
   for (const [block, path] of invalid) rejects(artifactWith(block), `$.blocks[0].${path}`);
 });
 
 test('optional fields may be omitted but cannot use unsupported types or values', () => {
-  for (const [type, key, bad] of [['hero', 'eyebrow', 3], ['code', 'language', null], ['divider', 'label', {}], ['note-callout', 'tone', 'danger'], ['compact-table', 'caption', null]]) {
+  for (const [type, key, bad] of [['hero', 'eyebrow', 3], ['code', 'language', null], ['divider', 'label', {}], ['note-callout', 'tone', 'danger'], ['compact-table', 'caption', null], ['image', 'heading', 2], ['image', 'sourceUrl', []]]) {
     const value = structuredClone(blocks.find(block => block.type === type));
     delete value[key]; assert.equal(validateArtifact(artifactWith(value)).ok, true);
     value[key] = bad; rejects(artifactWith(value), `$.blocks[0].${key}`);
@@ -145,12 +142,28 @@ test('compact tables require string columns and aligned string rows', () => {
   rejects(artifactWith({ ...table, rows: ['not a row'] }), '$.blocks[0].rows[0]');
 });
 
-test('source links accept HTTP(S) and reject executable, local and malformed URLs', () => {
+test('source and resource links accept HTTP(S) and reject executable, local and malformed URLs', () => {
   const embed = blocks.find(block => block.type === 'embed');
-  for (const url of ['https://example.com/reference#part', 'http://example.com']) assert.equal(validateArtifact(artifactWith({ ...embed, url })).ok, true);
+  const resources = blocks.find(block => block.type === 'resource-list');
+  for (const url of ['https://example.com/reference#part', 'http://example.com']) {
+    assert.equal(validateArtifact(artifactWith({ ...embed, url })).ok, true);
+    assert.equal(validateArtifact(artifactWith({ ...resources, items: [{ ...resources.items[0], url }] })).ok, true);
+  }
   for (const url of ['javascript:alert(1)', 'data:text/html,test', 'file:///etc/passwd', '//example.com', '/relative', '', 'https://', 'java\nscript:alert(1)']) {
     rejects(artifactWith({ ...embed, url }), '$.blocks[0].url');
+    rejects(artifactWith({ ...resources, items: [{ ...resources.items[0], url }] }), '$.blocks[0].items[0].url');
   }
+});
+
+test('image sources accept repository assets or HTTP(S), with safe attribution links', () => {
+  const image = blocks.find(block => block.type === 'image');
+  for (const src of ['/images/network.svg', '/media/a%20b.png', 'https://cdn.example.com/image.png', 'http://example.com/a.jpg']) {
+    assert.equal(validateArtifact(artifactWith({ ...image, src })).ok, true, src);
+  }
+  for (const src of ['images/relative.png', '//example.com/a.png', '/../secret', '/images/../secret', 'javascript:alert(1)', 'data:image/svg+xml,test', '']) {
+    rejects(artifactWith({ ...image, src }), '$.blocks[0].src');
+  }
+  rejects(artifactWith({ ...image, sourceUrl: 'file:///tmp/source' }), '$.blocks[0].sourceUrl');
 });
 
 test('invalid input is not mutated and bundled-content assertions give usable diagnostics', () => {
