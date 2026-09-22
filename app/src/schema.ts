@@ -13,6 +13,8 @@ export type Block =
   | { id:string; type:'timeline'; heading:string; items:{time:string;title:string;detail:string}[] }
   | { id:string; type:'code'; heading:string; language?:string; code:string }
   | { id:string; type:'embed'; heading:string; source:string; caption:string; url?:string }
+  | { id:string; type:'image'; heading?:string; src:string; alt:string; caption:string; sourceUrl?:string }
+  | { id:string; type:'resource-list'; heading:string; items:{label:string;detail:string;url:string}[] }
   | { id:string; type:'exercise'; heading:string; prompt:string; options:string[]; answer:number; explanation:string }
   | { id:string; type:'compact-table'; heading:string; columns:string[]; rows:string[][]; caption?:string }
   | { id:string; type:'diagram'; heading:string; nodes:{title:string;detail:string}[] }
@@ -20,4 +22,3 @@ export type Block =
   | { id:string; type:'divider'; label?:string };
 export type Artifact={schemaVersion:1;slug:string;title:string;summary:string;contributor:string;status:Status;theme:ThemeId;series?:{id:string;title:string;order:number};tags?:string[];updated?:string;blocks:Block[]};
 export function defineArtifact(value:Artifact):Artifact{return value}
-
