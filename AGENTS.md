@@ -25,8 +25,10 @@ Agents compose artifacts from the existing JSON contract. Agents do not normally
 - Reuse renderer-owned blocks before proposing a new block type.
 - Keep content independent from React components and raw CSS values.
 - Choose one of the semantic theme identifiers defined by the schema.
-- Keep Browse as the artifact-wide reading view; use slideshow blocks for paced presentation.
-- Preserve explicit lifecycle state: `draft`, `preview`, `published`, or `archived`.
+- Keep Browse as the artifact-wide reading view; use slideshow blocks for paced presentation. Global Present mode is superseded — see [docs/shipped-vs-plan.md](docs/shipped-vs-plan.md); do not rebuild it from leftover CSS without an explicit decision.
+- Preserve explicit lifecycle state: `draft`, `preview`, `published`, or `archived`. Never delete content files to hide them from production; filter the production catalog to **published** only.
+- On public/production artifact pages, the authored theme wins. Theme audition belongs behind author/preview tooling, not on every share link.
+- Prefer section deep links (`#block-id`) and copy-link when adding navigation chrome; do not strip `?artifact=` routing.
 - Keep IDs and slugs stable when updating an existing artifact.
 - Search existing slugs, tags and `series.id` values before creating a page. Edit the existing artifact when the idea belongs there; otherwise reuse its series identity with a distinct next order so the subject grows as one collection.
 

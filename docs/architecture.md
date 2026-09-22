@@ -153,6 +153,8 @@ The artifact is authored once. The renderer changes the view. Future Study, Prin
 
 The current application calls the document-like view `browse`; the product concept often refers to it as Read.
 
+Earlier Present/Read global-mode language (Drive idea-site lock) is **superseded** for the shipped v3 UX by Browse + `slideshow` blocks. Keep that history in [shipped-vs-plan.md](./shipped-vs-plan.md); do not delete the intent or rebuild Present from leftover CSS without an explicit decision.
+
 ## Persistence boundary
 
 GitHub is the first content database. It gives the project plain JSON files, readable history, reviewable changes, rollback, and a clear repository boundary while the language is still taking shape.

@@ -32,7 +32,7 @@ Take one useful subject from idea to durable artifact:
 2. Compose it as `schemaVersion: 1` JSON using existing blocks.
 3. Validate it against `app/src/schema.ts`.
 4. Render it through the current `App.tsx` pipeline.
-5. Test Browse and Present views.
+5. Test Browse and any slideshow blocks (global Present is superseded — see shipped-vs-plan.md).
 6. Check the result on a narrow screen and with keyboard navigation.
 7. Record where the vocabulary was expressive and where it forced awkward content.
 8. Improve the smallest contract or renderer boundary that blocked the artifact.
@@ -46,9 +46,13 @@ The [widget catalog](./widgets.md) now documents the version 1 grammar and all 1
 
 The defensive local-security lab is the second focused artifact pass. It exposed two concrete vocabulary needs: a responsive, failure-aware image block and a grouped primary-source list. Repository artifacts are now automatically discovered, and matching `series.id` values form the working subject-enrichment loop without per-page application wiring.
 
-The ten-section `solid-state-foundations` preview lesson is the first focused course pass. [Its evidence map and vocabulary review](./solid-state-course-review.md) record the diagram, citation and result-capture needs exposed by authoring it. Hosted Browse/Present, theme, mobile and keyboard review remain open; the full real-artifact milestone is not complete until that review happens.
+The ten-section `solid-state-foundations` preview lesson is the first focused course pass. [Its evidence map and vocabulary review](./solid-state-course-review.md) record the diagram, citation and result-capture needs exposed by authoring it. Hosted Browse + slideshow, theme ownership, mobile and keyboard review remain open; the full real-artifact milestone is not complete until that review happens.
 
 ## Near term
+
+### Hygiene: match the shipped product (do not lose content)
+
+See [shipped-vs-plan.md](./shipped-vs-plan.md). Priority order: production published-only catalog; gate theme switcher; remove or quarantine dead Present CSS; section deep links + copy-link; per-artifact link previews; slideshow keyboard/swipe and flexible stat-strip columns. Keep draft/preview JSON in the repository while fixing filters.
 
 ### Tighten the existing contract through use
 

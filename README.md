@@ -35,6 +35,7 @@ The repository version intentionally omits links to private planning documents, 
 
 ## Documentation
 
+- [Shipped vs plan + issue list](docs/shipped-vs-plan.md)
 - [Architecture](docs/architecture.md)
 - [High-level blueprint](docs/blueprint.md)
 - [Roadmap](docs/roadmap.md)
