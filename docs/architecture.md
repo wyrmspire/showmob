@@ -193,3 +193,4 @@ The intelligence belongs in the agent that creates the artifact and the renderer
 5. Render multiple views from one content tree.
 6. Prefer explicit, versioned JSON over clever implicit behavior.
 7. Extend the current kernel through real use before considering a rewrite.
+
