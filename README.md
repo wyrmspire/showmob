@@ -5,15 +5,16 @@ Showmob turns structured ideas into portable web pages that can be read as a nor
 
 ## How it works
 
-Showmob is a **content language + renderer**, not a CMS you configure per page.
+Showmob is a **small idea-page site**, not a platform rebuild.
 
 1. **Write** a `schemaVersion: 1` JSON artifact under `app/src/content/` (or export one from Studio).
-2. **Build** discovers every `.json` file, validates it, and ships a static Vite app to Vercel.
-3. **Read** opens as a normal scrolling page (Browse). A **slideshow** is just a block inside that page when you want paced presentation.
-4. **Theme** is authored on the artifact (`paper`, `signal`, `workshop`, `night`, `field`). Public links keep that theme; local author tools can audition others.
-5. **Publish** is a status field (`draft` → `preview` → `published`). Production catalogs show **published** only; files are never deleted to hide them.
+2. **Render** — each block `type` maps to a trusted widget. The whole page is Browse (scroll). A slideshow is just a block when you need paced slides.
+3. **Theme** — the artifact picks `paper`, `signal`, `workshop`, `night`, or `field`. Public share links keep that theme.
+4. **Publish** — status is `draft` → `preview` → `published`. Production lists **published** only; files are never deleted to hide them.
+5. **Ship** — merge to `main`; Vercel deploys static assets.
 
-**Why this repo exists in the 60-day sprint:** a thin, shareable way to show ideas as living pages. It should stay small. Heavy product systems (collaboration, search, multi-tenant auth, analytics) belong elsewhere or later — see `docs/shipped-vs-plan.md` and the thin data-management notes in chat/history.
+**Why it exists in the sprint:** one shareable URL for an idea, instead of another one-off deck. Keep it thin versus Mira/Edgerite. Details and open issues: [`docs/shipped-vs-plan.md`](docs/shipped-vs-plan.md). Human-facing orientation lives on the published guide page (`showmob-guide`).
+
 
 ## Repository layout
 

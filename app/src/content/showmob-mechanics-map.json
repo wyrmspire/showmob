@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "slug": "showmob-mechanics-map",
   "title": "Showmob mechanics: from JSON to a live page",
-  "summary": "Learn the whole path from an artifact file through rendering, review, merge and production deployment.",
+  "summary": "The short map of how a Showmob page goes from a JSON file to the live site.",
   "contributor": "Showmob mechanics course",
   "status": "preview",
   "theme": "signal",
@@ -22,8 +22,8 @@
       "id": "start",
       "type": "hero",
       "eyebrow": "Showmob mechanics \u00b7 1 of 7",
-      "title": "Follow the workpiece from JSON to the live site",
-      "body": "Treat Showmob like a small automated cell. A JSON artifact is the workpiece, the schema is the print, widgets are proven operations, themes set presentation variables, Vite prepares the shipment, GitHub records and reviews the change, and Vercel puts an accepted build online."
+      "title": "From a JSON file to the live site",
+      "body": "A Showmob page starts as a JSON artifact. The renderer turns its blocks into UI, the build packages the app, GitHub holds review, and Vercel serves the accepted commit. Later lessons walk each step; this page is the map."
     },
     {
       "id": "map",
@@ -55,7 +55,7 @@
     {
       "id": "roles",
       "type": "compact-table",
-      "heading": "2. Translate the shop language",
+      "heading": "2. Words used on this line",
       "columns": [
         "Web term",
         "Shop analogy",
@@ -93,7 +93,7 @@
           "Makes one tested commit available at a URL."
         ]
       ],
-      "caption": "The analogy helps orientation; the later lessons show the exact repository mechanics."
+      "caption": "Shop analogies are optional memory aids. Prefer the web terms when editing the repo."
     },
     {
       "id": "tour",

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "slug": "showmob-guide",
-  "title": "What Showmob is",
-  "summary": "A working guide to reading, presenting, and building portable Showmob pages.",
+  "title": "How Showmob works",
+  "summary": "What this site is, why it exists, and the short path from an idea to a shared link.",
   "contributor": "Showmob product guide",
   "status": "published",
   "theme": "signal",
@@ -15,101 +15,105 @@
     {
       "id": "start",
       "type": "hero",
-      "eyebrow": "Showmob explains Showmob",
-      "title": "Ideas become useful web pages",
-      "body": "Showmob turns structured JSON into portable pages that are easy to browse, present in place, theme, review, and share."
+      "eyebrow": "Orientation",
+      "title": "One link for an idea worth showing",
+      "body": "Showmob turns a structured page into a normal website URL. You write the idea as JSON (or in Studio), the app renders it, and anyone with the link can read it. No slide deck. No separate presentation app."
     },
     {
-      "id": "what-we-are-in",
+      "id": "what-why",
       "type": "text",
-      "heading": "What we are working in (and why)",
-      "body": "Showmob is the live product: a small Vite + React app that turns JSON idea pages into one shareable URL (showmob.vercel.app). Code lives at github.com/wyrmspire/showmob. It is intentionally thin \u2014 not Mira or Edgerite \u2014 so an idea can be shown without building a whole platform.\n\nWhy care: Chris needs a link that opens a readable page (and optional slideshow blocks), not another slide deck. Agents work here when the task is content JSON, renderer polish, publish filters, or thin data later \u2014 not when inventing a second architecture elsewhere.\n\nRight now production only lists published pages; draft and preview JSON stay in the repo for authors. Theme audition is an author tool, not something every visitor sees on a share link."
+      "heading": "What this is (and what it is not)",
+      "body": "This is a small Vite + React app. Live site: showmob.vercel.app. Source: github.com/wyrmspire/showmob.\n\nIt exists so Chris can share an idea as a readable page instead of rebuilding a deck every time. Pages are content files. The renderer is shared. Themes are token sets, not one-off CSS.\n\nIt is intentionally thin. It is not Mira, not Edgerite, and not a full CMS. Collaboration, search, analytics, and multi-tenant accounts are out of scope for now. A later thin data layer may store artifacts and publish status without growing into those products."
+    },
+    {
+      "id": "how-line",
+      "type": "diagram",
+      "heading": "How a page gets online",
+      "nodes": [
+        {
+          "title": "Write",
+          "detail": "A schemaVersion 1 JSON file under app/src/content, or a Studio export that matches the same contract."
+        },
+        {
+          "title": "Render",
+          "detail": "Each block has a type. Trusted widgets draw it. Browse is the whole page; a slideshow is only a block when you need paced slides."
+        },
+        {
+          "title": "Publish",
+          "detail": "Set status to published, commit, merge to main. Vercel deploys. Production lists published pages only; draft and preview files stay in the repo."
+        }
+      ]
     },
     {
       "id": "reader",
       "type": "compact-table",
-      "heading": "Start here",
-      "caption": "The shortest path for each kind of visitor.",
+      "heading": "Three ways to use it",
+      "caption": "Same site. Different jobs.",
       "columns": [
-        "You are",
-        "First move",
-        "What happens"
+        "Job",
+        "Do this",
+        "What you get"
       ],
       "rows": [
         [
-          "A reader",
-          "Open a page and scroll",
-          "Browse is the default, so links read naturally on desktop and mobile."
+          "Read",
+          "Open any published page and scroll",
+          "A normal document with the author\u2019s theme."
         ],
         [
-          "A presenter",
-          "Open a slideshow block",
-          "Use its previous, next, and numbered controls without changing the whole page."
+          "Present",
+          "Find a slideshow block and step through it",
+          "Paced slides inside the same page \u2014 not a global Present mode."
         ],
         [
-          "A contributor",
-          "Open Studio",
-          "Choose a pattern, arrange blocks, preview, validate, and export JSON."
+          "Author",
+          "Open Studio (local / author tools)",
+          "Arrange blocks, validate, export JSON. Drafts stay in this browser until you export."
         ]
-      ]
-    },
-    {
-      "id": "flow",
-      "type": "diagram",
-      "heading": "From an idea to a shared page",
-      "nodes": [
-        {
-          "title": "Shape",
-          "detail": "Pick a page pattern and a small set of trusted blocks."
-        },
-        {
-          "title": "Check",
-          "detail": "Preview the content, theme, narrow layout, and interaction."
-        },
-        {
-          "title": "Publish",
-          "detail": "Commit reviewable JSON and share one link."
-        }
       ]
     },
     {
       "id": "present",
       "type": "slideshow",
-      "heading": "A two-minute tour",
+      "heading": "Two-minute tour",
       "slides": [
         {
-          "title": "Browse first",
-          "body": "Every artifact opens as a readable page. Search and series shelves help readers find the next useful idea."
+          "title": "Content is the page",
+          "body": "Most new pages are JSON artifacts, not custom React. Add a valid file and the build picks it up."
         },
         {
-          "title": "Present where it helps",
-          "body": "A slideshow is a block. Authors can pace a section without turning the entire artifact into a separate mode."
+          "title": "Browse is the default",
+          "body": "Shared links open as readable scrolling pages. Theme on the artifact is what visitors see."
         },
         {
-          "title": "Build from the same contract",
-          "body": "Studio keeps drafts local, validates imports, previews blocks, and exports portable schema-versioned JSON."
+          "title": "Publish is a status, not a delete",
+          "body": "draft \u2192 preview \u2192 published. Production hides unpublished pages. The files remain in git for authors."
+        },
+        {
+          "title": "Stay thin on purpose",
+          "body": "Polish the renderer and the content contract first. Add only the data and authoring pieces that prove they earn their complexity."
         }
       ]
     },
     {
       "id": "roadmap",
       "type": "timeline",
-      "heading": "Where it is going",
+      "heading": "Where the work sits",
       "items": [
         {
-          "time": "Now",
-          "title": "A trustworthy portable renderer",
-          "detail": "Keep content, themes, and rendering separate while tightening accessibility and authoring feedback."
+          "time": "Shipped",
+          "title": "Portable pages + honest production catalog",
+          "detail": "JSON artifacts, Browse + slideshow blocks, five themes, published-only public list, author theme on share links."
         },
         {
           "time": "Next",
-          "title": "Richer evidence and learning blocks",
-          "detail": "Add citation anchors, scored quizzes, free-text capture, and better diagrams only with explicit contracts."
+          "title": "Share and navigate better",
+          "detail": "Section deep links, clearer copy-link, and per-page link previews so a shared URL looks like that page."
         },
         {
           "time": "Later",
-          "title": "Collections and collaboration",
-          "detail": "Grow from repository-backed pages toward revisions, responses, sessions, and group presentation without losing portable JSON."
+          "title": "Thin data, still portable",
+          "detail": "Optional store for artifacts and status with a small API surface. Keep the JSON contract so the renderer stays store-agnostic. Avoid Mira-scale features."
         }
       ]
     },
@@ -117,14 +121,14 @@
       "id": "boundary",
       "type": "note-callout",
       "tone": "note",
-      "title": "What Studio saves",
-      "body": "A Studio draft stays in this browser until exported. Exercise answers and checklist selections are session-local and are not publication records."
+      "title": "Local vs production",
+      "body": "On your machine, npm run dev can show draft and preview pages and theme audition. Production (and a normal production build) shows published pages only. Studio drafts and exercise answers stay in the browser until you export or refresh clears them."
     },
     {
       "id": "close",
       "type": "cta-band",
-      "heading": "Use the product to explain the product",
-      "body": "Open a page, try the slideshow above, then use Studio to assemble one useful artifact from trusted blocks."
+      "heading": "Start with one published page",
+      "body": "Pick a page from the hub, try any slideshow on it, then open Studio only when you are ready to shape a new artifact. If something here is still confusing, fix this guide first \u2014 it is the shared map."
     }
   ]
 }

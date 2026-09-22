@@ -40,9 +40,9 @@ export const themes: { id: ThemeId; label: string }[] = [
 
 export const seriesMeta: Record<string, { kicker: string; blurb: string }> = {
   "showmob-plan": {
-    kicker: "Evolving product brief",
+    kicker: "Product brief inside the product",
     blurb:
-      "Seven connected pages that make the public product brief usable as sample content inside the product it describes.",
+      "Why Showmob exists, how Browse and slideshows fit together, the widget bin, and what is deliberately deferred.",
   },
   "field-work": {
     kicker: "Real work, honestly labeled",
@@ -55,9 +55,9 @@ export const seriesMeta: Record<string, { kicker: string; blurb: string }> = {
       "Eight preview lessons for reading semiconductor behavior, datasheets and switching paths without turning examples into unreviewed machine designs.",
   },
   "showmob-mechanics": {
-    kicker: "Learn the actual software line",
+    kicker: "How the software line works",
     blurb:
-      "Eight preview lessons that trace a Showmob artifact from JSON through rendering, build, review, deployment and the planned persistence boundary.",
+      "Preview lessons that follow one page from JSON through render, build, GitHub review, Vercel, and a thin persistence option later.",
   },
   "local-security-lab": {
     kicker: "Defensive home lab",

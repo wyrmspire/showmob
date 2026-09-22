@@ -29,23 +29,23 @@ export function Home({
     <FileCard>
       <Header
         title="Showmob"
-        fact="Living v3 prototype"
-        intro="Build portable, structured pages for ideas worth showing. Add a valid JSON artifact and it joins this library automatically; reuse a series ID to keep enriching the same subject."
+        fact="Idea pages as links"
+        intro="Showmob turns a structured idea into one shareable web page. Browse the published library below, open a page to read it, and use a slideshow block only when you want paced slides. New pages are JSON files the build discovers automatically."
       />
       <section className="home-lead">
         <div>
-          <span className="eyebrow">Three ways in</span>
-          <h2>Browse. Explore. Build.</h2>
+          <span className="eyebrow">How this site works</span>
+          <h2>Read a page. Present a block. Author as JSON.</h2>
         </div>
         <div className="mini-features">
           <span>
-            <b>01</b> Find a page
+            <b>01</b> Open a published page and scroll
           </span>
           <span>
-            <b>02</b> Play a slideshow block
+            <b>02</b> Step through a slideshow when the page has one
           </span>
           <span>
-            <b>03</b> Take the JSON
+            <b>03</b> Add or export JSON to create the next page
           </span>
         </div>
       </section>
