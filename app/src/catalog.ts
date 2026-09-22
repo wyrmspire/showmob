@@ -5,9 +5,31 @@ const contentModules = import.meta.glob("./content/*.json", {
   eager: true,
   import: "default",
 }) as Record<string, unknown>;
-export const entries: Artifact[] = Object.entries(contentModules)
+
+/** Every validated artifact on disk — never delete content to hide it. */
+export const allEntries: Artifact[] = Object.entries(contentModules)
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([, value]) => assertArtifact(value));
+
+/**
+ * Local `vite` / `vite preview` with VITE_SHOW_UNPUBLISHED=true can show
+ * draft/preview. Production builds default to published-only.
+ */
+export const showUnpublished =
+  import.meta.env.DEV || import.meta.env.VITE_SHOW_UNPUBLISHED === "true";
+
+/** Theme audition and similar author chrome — same gate as unpublished listing. */
+export const authorToolsEnabled = showUnpublished;
+
+function isListed(entry: Artifact): boolean {
+  if (entry.status === "archived") return false;
+  if (showUnpublished) return true;
+  return entry.status === "published";
+}
+
+/** Catalog used by hub, series, and public routing. */
+export const entries: Artifact[] = allEntries.filter(isListed);
+
 export const themes: { id: ThemeId; label: string }[] = [
   { id: "paper", label: "Paper" },
   { id: "signal", label: "Signal" },
@@ -15,6 +37,7 @@ export const themes: { id: ThemeId; label: string }[] = [
   { id: "night", label: "Night" },
   { id: "field", label: "Field" },
 ];
+
 export const seriesMeta: Record<string, { kicker: string; blurb: string }> = {
   "showmob-plan": {
     kicker: "Evolving product brief",
@@ -42,6 +65,7 @@ export const seriesMeta: Record<string, { kicker: string; blurb: string }> = {
       "Safe, consent-based pages for isolating owned devices, observing local services and learning from decoys without exposing anyone else.",
   },
 };
+
 export const seriesList = (() => {
   const map = new Map<
     string,

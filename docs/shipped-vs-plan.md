@@ -36,7 +36,10 @@ Those ideas are **not discarded**. They are marked **superseded for v3 shipped U
 
 Do these without deleting content or collapsing lifecycle states.
 
-### P0 — stops wrong public behavior
+### P0
+
+**P0 status: shipped** (published-only catalog, gated theme swatches, dead Present CSS removed). Draft/preview JSON stays in the repo.
+ — stops wrong public behavior
 
 1. **Production catalog = published only.** Home / discovery / series shelves filter `status === "published"` in production builds. Keep draft and preview JSON in the repo. Preview/dev builds may still show preview/draft with badges. Deep links to non-published slugs should 404 or show a clear “not published” state in production — do not strip files.
 2. **Author-owned theme on public pages.** Theme swatches only when author tools are enabled (trusted build/env flag). Public share URLs use the authored `theme`. Do not remove the five theme token sets.

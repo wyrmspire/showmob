@@ -20,7 +20,6 @@ export function Home({
   const tags = [...new Set(entries.flatMap((e) => e.tags ?? []))];
   const visible = entries.filter(
     (e) =>
-      e.status !== "archived" &&
       (tag === "all" || e.tags?.includes(tag)) &&
       `${e.title} ${e.summary} ${e.contributor} ${(e.tags ?? []).join(" ")}`
         .toLowerCase()
@@ -52,7 +51,7 @@ export function Home({
       </section>
       {seriesList.map((g) => {
         const meta = seriesMeta[g.id];
-        const parts = g.parts.filter((p) => p.status !== "archived");
+        const parts = g.parts;
         if (!parts.length) return null;
         return (
           <section className="series-shelf" key={g.id}>
@@ -117,7 +116,7 @@ export function Home({
         </div>
         <p className="result-count" aria-live="polite">
           {visible.length} of{" "}
-          {entries.filter((e) => e.status !== "archived").length} pages
+          {entries.length} pages
         </p>
       </div>
       <div className="entry-grid">

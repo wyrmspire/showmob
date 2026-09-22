@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Callout, FileCard, Header, Row, Rows } from "./components/file-kit";
-import { entries, seriesList, themes } from "./catalog";
+import { authorToolsEnabled, seriesList, themes } from "./catalog";
 import { BlockView } from "./components/BlockView";
 import { type Artifact, type ThemeId } from "./schema";
 
@@ -14,6 +14,7 @@ export function ArtifactView({
   open: (s: string) => void;
 }) {
   const [theme, setTheme] = useState<ThemeId>(entry.theme);
+  const activeTheme = authorToolsEnabled ? theme : entry.theme;
   const [zen, setZen] = useState(false);
   const series = entry.series
     ? seriesList.find((g) => g.id === entry.series?.id)
@@ -31,7 +32,7 @@ export function ArtifactView({
     document.querySelector(".artifact")?.scrollIntoView({ block: "start" });
   }, [entry.slug]);
   return (
-    <main className={`artifact theme-${theme} ${zen ? "is-zen" : ""}`}>
+    <main className={`artifact theme-${activeTheme} ${zen ? "is-zen" : ""}`}>
       <a className="skip" href="#artifact-content">
         Skip to content
       </a>
@@ -51,19 +52,21 @@ export function ArtifactView({
         <button className="zen" aria-pressed={zen} onClick={() => setZen(!zen)}>
           {zen ? "Show controls" : "Focus"}
         </button>
-        <div className="choices themes">
-          {themes.map((t) => (
-            <button
-              key={t.id}
-              title={t.label}
-              aria-label={`Preview ${t.label} theme`}
-              aria-pressed={theme === t.id}
-              onClick={() => setTheme(t.id)}
-            >
-              <span className={`swatch swatch-${t.id}`} />
-            </button>
-          ))}
-        </div>
+        {authorToolsEnabled && (
+          <div className="choices themes">
+            {themes.map((t) => (
+              <button
+                key={t.id}
+                title={t.label}
+                aria-label={`Preview ${t.label} theme`}
+                aria-pressed={theme === t.id}
+                onClick={() => setTheme(t.id)}
+              >
+                <span className={`swatch swatch-${t.id}`} />
+              </button>
+            ))}
+          </div>
+        )}
       </header>
       <div id="artifact-content" className="shell" tabIndex={-1}>
         {entry.blocks.map((b) => (

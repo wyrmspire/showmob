@@ -52,3 +52,16 @@ node --experimental-strip-types --test tests/validation.test.mjs
 ```
 
 This checks JSON content, the legacy fixture, catalog examples and runtime validation failure cases. Run `npm run build` as the separate type-check and production-build gate. Pasted/file imports, saved drafts and the bundled content library use the same validator in `app/src/validation.ts`.
+
+## Local unpublished catalog
+
+Production builds list **published** artifacts only (draft/preview JSON stays in the repo).
+
+To see draft/preview locally:
+
+```sh
+VITE_SHOW_UNPUBLISHED=true npm run dev
+```
+
+That flag also enables the public theme audition swatches (author tools).
+

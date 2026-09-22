@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { entries } from "./catalog";
+import { allEntries, entries } from "./catalog";
 import { ArtifactView } from "./ArtifactView";
 import { Home } from "./Home";
 import { Studio } from "./Studio";
@@ -14,17 +14,47 @@ export function App() {
     return () => globalThis.window?.removeEventListener("popstate", onPopState);
   }, []);
   const entry = useMemo(() => entries.find((e) => e.slug === screen), [screen]);
+  const withheld = useMemo(() => {
+    if (entry || screen === "home" || screen === "author") return undefined;
+    return allEntries.find((e) => e.slug === screen);
+  }, [entry, screen]);
   const go = (next: string) => {
     setScreen(next);
     writeScreen(next);
   };
   const open = (s: string) => go(s);
   const home = () => go("home");
-  return entry ? (
-    <ArtifactView key={entry.slug} entry={entry} home={home} open={open} />
-  ) : screen === "author" ? (
-    <Studio back={home} />
-  ) : (
-    <Home open={open} author={() => go("author")} />
-  );
+  if (entry) {
+    return (
+      <ArtifactView key={entry.slug} entry={entry} home={home} open={open} />
+    );
+  }
+  if (screen === "author") {
+    return <Studio back={home} />;
+  }
+  if (withheld) {
+    return (
+      <main className="artifact theme-paper">
+        <header className="toolbar">
+          <button onClick={home} className="plain">
+            ← Ideas
+          </button>
+        </header>
+        <div className="shell">
+          <section className="block">
+            <h1>Not published</h1>
+            <p>
+              “{withheld.title}” is <strong>{withheld.status}</strong> in the
+              repository and is hidden from this production catalog. The JSON
+              file was not deleted.
+            </p>
+            <button className="file-button" onClick={home}>
+              Back to ideas
+            </button>
+          </section>
+        </div>
+      </main>
+    );
+  }
+  return <Home open={open} author={() => go("author")} />;
 }
