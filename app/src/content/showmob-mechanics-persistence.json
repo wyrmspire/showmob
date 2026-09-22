@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "slug": "showmob-mechanics-persistence",
+  "title": "Persistence: Supabase and the Showmob API",
+  "summary": "How Showmob can move from repository JSON and browser-local drafts to secure revisions, media storage and an API without losing portability.",
+  "contributor": "Showmob mechanics course",
+  "status": "preview",
+  "theme": "signal",
+  "series": { "id": "showmob-mechanics", "title": "Showmob mechanics", "order": 8 },
+  "tags": ["showmob", "architecture", "supabase", "persistence", "api"],
+  "updated": "2026-09-22",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Showmob mechanics · part 8",
+      "title": "Add memory without trapping the artifact",
+      "body": "Supabase can give Showmob durable revisions, identities, permissions and media. The JSON artifact remains the portable language; the database records who may change it, how it evolved and which revision is live."
+    },
+    {
+      "id": "not-live-yet",
+      "type": "note-callout",
+      "title": "This is the implementation plan, not a live-data claim",
+      "body": "Today, canonical pages still come from repository JSON and Studio drafts stay in browser storage. No Supabase project, schema, authentication flow or API endpoint is introduced by this page.",
+      "tone": "warning"
+    },
+    {
+      "id": "today-next-later",
+      "type": "stat-strip",
+      "items": [
+        { "value": "Today", "label": "GitHub JSON plus browser-local Studio drafts" },
+        { "value": "Next", "label": "Supabase Postgres revisions and private media" },
+        { "value": "Later", "label": "A stable Showmob API for people and agents" }
+      ]
+    },
+    {
+      "id": "flow",
+      "type": "diagram",
+      "heading": "The durable write path",
+      "nodes": [
+        { "title": "Request", "detail": "A person or authorized agent submits an artifact change." },
+        { "title": "Authorize", "detail": "The API verifies identity, membership and allowed action." },
+        { "title": "Validate", "detail": "The same Showmob runtime contract rejects malformed content." },
+        { "title": "Revise", "detail": "One transaction stores an immutable revision and advances the current pointer." },
+        { "title": "Render", "detail": "The app reads the selected revision and uses the existing renderer." }
+      ]
+    },
+    {
+      "id": "service-map",
+      "type": "compact-table",
+      "heading": "Give each Supabase service a narrow job",
+      "columns": ["Service", "Showmob responsibility", "Boundary"],
+      "rows": [
+        ["Postgres", "Artifacts, immutable revisions, series membership, permissions and audit facts", "Artifact JSON stays versioned and exportable"],
+        ["Auth", "Stable user identity and sessions", "Authorization comes from ownership and membership rows, not user-editable metadata"],
+        ["Storage", "Draft and published media objects", "Private by default; type, size, ownership and lifecycle are enforced"],
+        ["Data API", "Narrow browser reads or draft operations", "Explicit grants plus RLS; not the public Showmob contract"],
+        ["Edge or Vercel Functions", "Publication, agent writes, validation and multi-record workflows", "Secrets stay server-side; service-role access never reaches the browser"],
+        ["Realtime", "Optional collaboration signals after core persistence works", "Presence is not a substitute for durable revision history"]
+      ],
+      "caption": "Adopt only the services a proven workflow needs. Persistence comes before collaboration effects."
+    },
+    {
+      "id": "record-shape",
+      "type": "code",
+      "heading": "Conceptual records, not a migration",
+      "language": "text",
+      "code": "artifacts\n  id, slug, status, theme, owner_id, current_revision_id\n\nartifact_revisions\n  id, artifact_id, schema_version, document_jsonb, created_by, created_at\n\nseries + series_items\n  series_id, artifact_id, position\n\nmemberships\n  artifact_id, user_id, role\n\nmedia_assets\n  id, owner_id, bucket, object_path, mime_type, byte_size, status, provenance\n\nagent_submissions\n  id, actor_id, artifact_id, proposed_document, status, review_evidence"
+    },
+    {
+      "id": "document-and-envelope",
+      "type": "comparison",
+      "heading": "Separate the artifact from its operating envelope",
+      "columns": [
+        { "name": "Portable document", "detail": "The complete schema-versioned Showmob JSON: metadata, theme, series and blocks. It can be exported, reviewed in Git and rendered without Supabase." },
+        { "name": "Persistence envelope", "detail": "Database IDs, owners, memberships, revisions, audit timestamps, media records and publication state. It makes collaboration safe without leaking into the content language." }
+      ]
+    },
+    {
+      "id": "data-api-change",
+      "type": "note-callout",
+      "title": "Exposure is now an explicit decision",
+      "body": "Current Supabase projects may not expose new public-schema tables to the Data API automatically. Showmob must choose the exposed schema, grant only required operations and enable RLS on every exposed table instead of assuming a table is reachable.",
+      "tone": "note"
+    },
+    {
+      "id": "security-gates",
+      "type": "checklist",
+      "heading": "Security gates before the first hosted write",
+      "items": [
+        { "label": "RLS on every exposed table", "detail": "Policies restrict rows by owner or membership, with both USING and WITH CHECK where updates are allowed." },
+        { "label": "Least-privilege grants", "detail": "A role cannot select, insert, update or delete an object unless the product needs that operation." },
+        { "label": "Publishable key only in the browser", "detail": "Secret and service-role keys remain in protected server environments because they bypass RLS." },
+        { "label": "Private draft media", "detail": "Storage policies bind uploads and reads to the correct owner, project and bucket; public media is a deliberate publication step." },
+        { "label": "Immutable revision evidence", "detail": "Every accepted change records who submitted it, when, and which validated document became current." },
+        { "label": "Agent writes reviewed like user writes", "detail": "An agent receives scoped authority, never a blanket bypass, and proposed publication remains reviewable." }
+      ]
+    },
+    {
+      "id": "phases",
+      "type": "timeline",
+      "heading": "A reversible rollout",
+      "items": [
+        { "time": "Phase 0", "title": "Keep GitHub canonical", "detail": "Finish the artifact language and keep the current renderer dependable." },
+        { "time": "Phase 1", "title": "Prove the round trip", "detail": "Write one validated artifact revision to Supabase, read it back and compare it byte-for-meaning with the exported JSON." },
+        { "time": "Phase 2", "title": "Add identity and drafts", "detail": "Introduce Auth, ownership and membership policies, then persist private drafts without changing publication." },
+        { "time": "Phase 3", "title": "Add media", "detail": "Upload constrained files to private Storage and attach reviewed asset records to artifact revisions." },
+        { "time": "Phase 4", "title": "Open the Showmob API", "detail": "Move publication and authorized agent workflows behind versioned endpoints with validation, audit evidence and idempotency." },
+        { "time": "Phase 5", "title": "Move reads deliberately", "detail": "Serve hosted artifacts from persistence only after parity, rollback and production observability are proven." }
+      ]
+    },
+    {
+      "id": "api-choice",
+      "type": "slideshow",
+      "heading": "The API grows around product rules",
+      "slides": [
+        { "title": "Direct where it is truly simple", "body": "An owner-scoped draft read can use Supabase's Data API when grants and RLS fully express the rule." },
+        { "title": "Server-side where actions have meaning", "body": "Publish, archive, accept an agent proposal and advance a revision pointer are product operations. Put them behind Showmob endpoints." },
+        { "title": "Version the public promise", "body": "Clients should depend on artifact and workflow semantics, not table names. The database can evolve behind the API." },
+        { "title": "Make retries safe", "body": "Agent and network retries need idempotency keys so one request cannot create duplicate revisions or duplicate uploads." }
+      ]
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Supabase implementation references",
+      "items": [
+        { "label": "Securing the Data API", "detail": "Official guide to grants, RLS, exposed schemas and pre-request controls.", "url": "https://supabase.com/docs/guides/api/securing-your-api" },
+        { "label": "Postgres Row Level Security", "detail": "Official policy patterns and the relationship between grants and row authorization.", "url": "https://supabase.com/docs/guides/database/postgres/row-level-security" },
+        { "label": "Securing your data", "detail": "Official comparison of Data API, Edge Functions and trusted direct database connections.", "url": "https://supabase.com/docs/guides/database/secure-data" },
+        { "label": "Storage access control", "detail": "Official RLS requirements for uploads, reads and upserts.", "url": "https://supabase.com/docs/guides/storage/security/access-control" },
+        { "label": "Storage bucket fundamentals", "detail": "Official private/public bucket behavior and signed URL guidance.", "url": "https://supabase.com/docs/guides/storage/buckets/fundamentals" },
+        { "label": "Data API exposure breaking change", "detail": "Current rollout details for opt-in exposure of newly created tables.", "url": "https://supabase.com/changelog/45329-breaking-change-tables-not-exposed-to-data-and-graphql-api-automatically" }
+      ]
+    },
+    {
+      "id": "next",
+      "type": "cta-band",
+      "heading": "Prove one revision before moving the product",
+      "body": "The next implementation should create a Supabase development project, write the smallest secure schema, validate one artifact into an immutable revision, read it back and run the existing renderer and contract tests against the result."
+    }
+  ]
+}
