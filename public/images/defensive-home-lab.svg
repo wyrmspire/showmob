@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Defensive home lab network zones</title>
+  <desc id="desc">An upstream network connects to a user-controlled router. The router separates trusted devices, a passive sensor, and an isolated honeypot with blocked outbound access.</desc>
+  <defs>
+    <style>
+      .bg{fill:#111817}.zone{fill:#1d2926;stroke:#80cdb8;stroke-width:3}.decoy{fill:#302820;stroke:#e9a96c;stroke-width:3}.line{fill:none;stroke:#80cdb8;stroke-width:4}.blocked{fill:none;stroke:#e97768;stroke-width:4;stroke-dasharray:12 10}.label{fill:#f6f4ed;font:700 25px system-ui,sans-serif}.detail{fill:#b9c7c2;font:18px system-ui,sans-serif}.small{fill:#e9a96c;font:700 17px system-ui,sans-serif;letter-spacing:.08em}.shield{fill:#80cdb8}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#80cdb8"/></marker>
+    <marker id="stop" markerWidth="12" markerHeight="12" refX="6" refY="6"><circle cx="6" cy="6" r="5" fill="#111817" stroke="#e97768" stroke-width="2"/><path d="M3 3l6 6M9 3L3 9" stroke="#e97768" stroke-width="2"/></marker>
+  </defs>
+  <rect class="bg" width="1200" height="700" rx="26"/>
+  <text class="small" x="60" y="62">OWNED / AUTHORIZED TRAFFIC ONLY</text>
+  <rect class="zone" x="70" y="108" width="250" height="124" rx="18"/>
+  <text class="label" x="102" y="158">Upstream network</text><text class="detail" x="102" y="194">Internet or shared gateway</text>
+  <path class="line" d="M320 170H452" marker-end="url(#arrow)"/>
+  <rect class="zone" x="470" y="98" width="310" height="144" rx="18"/>
+  <path class="shield" d="M516 130l25 9v20c0 17-10 31-25 38-15-7-25-21-25-38v-20z"/>
+  <text class="label" x="558" y="151">Your lab router</text><text class="detail" x="558" y="185">Firewall + separate zones</text><text class="detail" x="558" y="214">No inbound port forwards</text>
+  <path class="line" d="M625 242v75H282v78" marker-end="url(#arrow)"/>
+  <path class="line" d="M625 242v153" marker-end="url(#arrow)"/>
+  <path class="line" d="M625 317h329v78" marker-end="url(#arrow)"/>
+  <rect class="zone" x="105" y="414" width="355" height="150" rx="18"/>
+  <text class="small" x="137" y="451">TRUSTED ZONE</text><text class="label" x="137" y="490">Your devices</text><text class="detail" x="137" y="524">Normal clients and admin access</text>
+  <rect class="zone" x="505" y="414" width="240" height="150" rx="18"/>
+  <text class="small" x="537" y="451">OBSERVE</text><text class="label" x="537" y="490">Passive sensor</text><text class="detail" x="537" y="524">Zeek or Suricata logs</text>
+  <rect class="decoy" x="790" y="414" width="330" height="150" rx="18"/>
+  <text class="small" x="822" y="451">ISOLATED DECOY</text><text class="label" x="822" y="490">Honeypot</text><text class="detail" x="822" y="524">No secrets · outbound denied</text>
+  <path class="blocked" d="M955 564v72" marker-end="url(#stop)"/>
+  <text class="detail" x="990" y="617">Block egress</text>
+  <text class="detail" x="70" y="660">Start small: inventory listeners → isolate zones → observe metadata → add one decoy.</text>
+</svg>
