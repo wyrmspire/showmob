@@ -39,11 +39,11 @@ Optional fields may be omitted; `null` is not a substitute. No metadata is infer
 
 ## Views, lifecycle and interaction
 
-Browse lays out every block vertically. Present uses the same renderer to show one block at a time. One block is one presentation section, including a divider or source card; there is no automatic pagination or fit-to-slide guarantee. Keep each unit short and inspect long content at narrow widths.
+Browse lays out every block vertically and is the only artifact-wide view. A `slideshow` block provides paced presentation inside that page. Keep each unit short and inspect long content at narrow widths.
 
-The artifact theme is the initial choice. The reader can currently override it using the theme controls or `style` query parameter. Browse is the current UI and URL name for the document-like Read concept. These are current behaviors, not a decision to rename or remove controls.
+The artifact theme is the initial choice. The reader can override it using the theme controls or `style` query parameter. Browse is the default reading experience; presentation is authored as a block, not selected from an artifact-wide toolbar.
 
-Draft and preview artifacts are **visible on the current home screen** with labels. Only archived entries are removed from discovery. Status is not access control; anything committed to this public repository is public. Importing locally does not publish to GitHub. A local draft persists in this browser; exercise answers and checklist selections do not. They can reset whenever their block unmounts, including moving between sections in Present.
+Draft and preview artifacts are **visible on the current home screen** with labels. Only archived entries are removed from discovery. Status is not access control; anything committed to this public repository is public. Importing locally does not publish to GitHub. A local draft persists in this browser; exercise answers and checklist selections do not. They reset when their block unmounts or the page closes.
 
 ## Authoring and verification
 
@@ -51,11 +51,11 @@ Draft and preview artifacts are **visible on the current home screen** with labe
 2. Keep source attribution, uncertainty and content boundaries explicit. Use `embed` source cards until citations have a dedicated contract.
 3. Add the JSON under `app/src/content/`. The current library uses explicit imports: register the file in `App.tsx` and its `entries` array. File creation alone does not add a page.
 4. Run `node --experimental-strip-types --test tests/validation.test.mjs` with Node 22.18+ (or Node 24). This needs no package install. It checks the actual content files, the legacy fixture and every valid JSON example in this catalog.
-5. In the pinned hosted app, inspect Browse, Present, all five themes, narrow screens and keyboard interaction. A passing validator does not replace visual review.
+5. In the running app, inspect Browse, slideshow controls, all five themes, narrow screens and keyboard interaction. A passing validator does not replace visual review.
 
 The validator is used for bundled content, pasted/file imports and saved-draft restoration. Invalid imports leave the current draft untouched and report paths such as `$.blocks[2].options[0]`. An unreadable saved draft displays the starter and an alert, retaining the saved value until the author edits, imports or resets. Required fields of the wrong type reject the artifact; no partial import or silent repair occurs.
 
-Studio can add `text`, `note-callout`, `steps`, `quote`, `divider` and `cta-band`. It can also edit an existing `hero`. Other blocks render in preview but require JSON for field edits. Templates may contain richer blocks. This catalog documents all 14 renderer types, not only Studio's Add menu.
+Studio can add `text`, `note-callout`, `steps`, `quote`, `divider` and `cta-band`. It can also edit an existing `hero`. Other blocks render in preview but require JSON for field edits. Templates may contain richer blocks. This catalog documents all 17 renderer types, not only Studio's Add menu.
 
 ## Widget reference
 
@@ -191,6 +191,37 @@ Use for a single-choice knowledge check. Required strings: `heading`, `prompt`, 
 
 Bad: `{"id":"check","type":"exercise","heading":"Check","prompt":"Choose","options":["A","B"],"answer":2,"explanation":"Why"}` points past the options array. Both views show numbered buttons with `aria-pressed` and a feedback callout after selection. The same explanation is shown for every choice. Options are buttons, not a radio group; selections reset on unmount and no score is exported. Feedback is not explicitly a live region in this renderer. Do not claim assessment persistence or proven screen-reader announcements.
 
+
+### `compact-table`
+
+Use for small comparison or reference grids. Required string `heading`; required `columns` array of strings; required `rows` array of string arrays with exactly one cell per column. Optional string `caption`.
+
+```json
+{ "id": "matrix", "type": "compact-table", "heading": "Choose a path", "columns": ["Need", "Start"], "rows": [["Read", "Open the page"], ["Build", "Open Studio"]], "caption": "A compact starting map." }
+```
+
+Bad: `{"id":"matrix","type":"compact-table","heading":"Map","columns":["A","B"],"rows":[["only one"]]}` has the wrong number of cells. The renderer uses a semantic table inside a horizontally scrollable container. Keep it compact; use prose for long explanations.
+
+### `diagram`
+
+Use for a short ordered flow. Required string `heading`; required `nodes` array with string `title` and `detail`.
+
+```json
+{ "id": "flow", "type": "diagram", "heading": "From signal to action", "nodes": [{ "title": "Observe", "detail": "Name the input." }, { "title": "Decide", "detail": "Choose the next check." }] }
+```
+
+Bad: `{"id":"flow","type":"diagram","heading":"Flow","nodes":["Start"]}` uses a string instead of a node object. The visual arrows reinforce array order; the semantic ordered list carries the same sequence without relying on the arrows.
+
+### `slideshow`
+
+Use when a page needs a paced presentation sequence. Required string `heading`; required `slides` array with string `title` and `body`.
+
+```json
+{ "id": "tour", "type": "slideshow", "heading": "A short tour", "slides": [{ "title": "Browse first", "body": "Open as a readable page." }, { "title": "Present in place", "body": "Use the block controls." }] }
+```
+
+Bad: `{"id":"tour","type":"slideshow","heading":"Tour","slides":[{"title":"Missing body"}]}` is incomplete. The block has previous, next, and numbered controls with a position indicator. It does not auto-advance, alter the artifact URL, or turn the whole artifact into a mode.
+
 ### `divider`
 
 Use sparingly as a conceptual break. Optional string `label`; no other widget fields are required.
@@ -203,7 +234,7 @@ Bad: `{"id":"pause","type":"divider","label":42}` has a numeric label. Browse sh
 
 ## Links and compatibility
 
-The current hosted app reads `?artifact=<slug>&mode=browse|present&style=<theme>&section=<block-id>`. Only `artifact` is needed to open a registered page; omitted mode uses Browse and omitted style uses the artifact theme. A missing or unknown section selects the first block. An unknown artifact currently returns home. Keep slugs and block IDs stable; query values should be URL-encoded. There is no declared standalone `/p/<slug>` route or new production domain in this repository.
+The current hosted app reads `?artifact=<slug>&style=<theme>`. Only `artifact` is needed to open a registered page; an omitted style uses the artifact theme. An unknown artifact currently returns home. Keep slugs and block IDs stable; query values should be URL-encoded. There is no declared standalone `/p/<slug>` route or new production domain in this repository.
 
 This documents the existing routing shape for current links; it does not promise a future route migration policy. A local Studio import is not registered as a shareable artifact. There is no automatic repository-to-hosted-preview deployment configured here.
 

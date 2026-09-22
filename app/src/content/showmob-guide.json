@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "slug": "showmob-guide",
+  "title": "What Showmob is",
+  "summary": "A working guide to reading, presenting, and building portable Showmob pages.",
+  "contributor": "Showmob product guide",
+  "status": "published",
+  "theme": "signal",
+  "tags": ["showmob", "getting-started", "roadmap"],
+  "blocks": [
+    {"id":"start","type":"hero","eyebrow":"Showmob explains Showmob","title":"Ideas become useful web pages","body":"Showmob turns structured JSON into portable pages that are easy to browse, present in place, theme, review, and share."},
+    {"id":"reader","type":"compact-table","heading":"Start here","caption":"The shortest path for each kind of visitor.","columns":["You are","First move","What happens"],"rows":[["A reader","Open a page and scroll","Browse is the default, so links read naturally on desktop and mobile."],["A presenter","Open a slideshow block","Use its previous, next, and numbered controls without changing the whole page."],["A contributor","Open Studio","Choose a pattern, arrange blocks, preview, validate, and export JSON."]]},
+    {"id":"flow","type":"diagram","heading":"From an idea to a shared page","nodes":[{"title":"Shape","detail":"Pick a page pattern and a small set of trusted blocks."},{"title":"Check","detail":"Preview the content, theme, narrow layout, and interaction."},{"title":"Publish","detail":"Commit reviewable JSON and share one link."}]},
+    {"id":"present","type":"slideshow","heading":"A two-minute tour","slides":[{"title":"Browse first","body":"Every artifact opens as a readable page. Search and series shelves help readers find the next useful idea."},{"title":"Present where it helps","body":"A slideshow is a block. Authors can pace a section without turning the entire artifact into a separate mode."},{"title":"Build from the same contract","body":"Studio keeps drafts local, validates imports, previews blocks, and exports portable schema-versioned JSON."}]},
+    {"id":"roadmap","type":"timeline","heading":"Where it is going","items":[{"time":"Now","title":"A trustworthy portable renderer","detail":"Keep content, themes, and rendering separate while tightening accessibility and authoring feedback."},{"time":"Next","title":"Richer evidence and learning blocks","detail":"Add citation anchors, scored quizzes, free-text capture, and better diagrams only with explicit contracts."},{"time":"Later","title":"Collections and collaboration","detail":"Grow from repository-backed pages toward revisions, responses, sessions, and group presentation without losing portable JSON."}]},
+    {"id":"boundary","type":"note-callout","tone":"note","title":"What Studio saves","body":"A Studio draft stays in this browser until exported. Exercise answers and checklist selections are session-local and are not publication records."},
+    {"id":"close","type":"cta-band","heading":"Use the product to explain the product","body":"Open a page, try the slideshow above, then use Studio to assemble one useful artifact from trusted blocks."}
+  ]
+}

@@ -27,6 +27,9 @@ const blockRules = {
   code: { strings: ['heading', 'code'], optional: ['language'] },
   embed: { strings: ['heading', 'source', 'caption'], optional: ['url'] },
   exercise: { strings: ['heading', 'prompt', 'explanation'], list: { key: 'options' } },
+  'compact-table': { strings: ['heading'], optional: ['caption'], list: { key: 'rows' } },
+  diagram: { strings: ['heading'], list: { key: 'nodes', strings: ['title', 'detail'] } },
+  slideshow: { strings: ['heading'], list: { key: 'slides', strings: ['title', 'body'] } },
   divider: { strings: [], optional: ['label'] },
 } satisfies Record<Block['type'], BlockRule>;
 
@@ -99,11 +102,22 @@ export function validateArtifact(value: unknown): ValidationResult {
         else items.forEach((item: unknown, i: number) => {
           const itemPath = `${path}.${key}[${i}]`;
           if (!fields) {
-            if (typeof item !== 'string') issue(itemPath, 'Expected a string.');
+            if (block.type !== 'compact-table' && typeof item !== 'string') issue(itemPath, 'Expected a string.');
           } else if (!isRecord(item)) issue(itemPath, 'Expected an object.');
           else {
             strings(item, fields, itemPath);
             if (optional) strings(item, optional, itemPath, true);
+          }
+        });
+      }
+      if (block.type === 'compact-table') {
+        if (!Array.isArray(block.columns)) issue(`${path}.columns`, 'Expected an array.');
+        else block.columns.forEach((column, i) => { if (typeof column !== 'string') issue(`${path}.columns[${i}]`, 'Expected a string.'); });
+        if (Array.isArray(block.rows)) block.rows.forEach((row, i) => {
+          if (!Array.isArray(row)) issue(`${path}.rows[${i}]`, 'Expected an array.');
+          else {
+            row.forEach((cell, j) => { if (typeof cell !== 'string') issue(`${path}.rows[${i}][${j}]`, 'Expected a string.'); });
+            if (Array.isArray(block.columns) && row.length !== block.columns.length) issue(`${path}.rows[${i}]`, 'Expected one cell per column.');
           }
         });
       }

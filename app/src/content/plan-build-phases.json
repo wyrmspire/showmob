@@ -35,8 +35,8 @@
         },
         {
           "time": "Phase 2",
-          "title": "Two mode shells on the same content",
-          "detail": "Present and Read over one tree."
+          "title": "Browse shell and slideshow block",
+          "detail": "A readable page by default, with paced presentation authored as a block."
         },
         {
           "time": "Phase 3",
@@ -55,8 +55,8 @@
         },
         {
           "time": "Prototype",
-          "title": "Renderer, studio, and presenter controls",
-          "detail": "The current source demonstrates the contract, page patterns, and presentation shell."
+          "title": "Renderer, studio, and portable blocks",
+          "detail": "The current source demonstrates the contract, page patterns, and in-page slideshow controls."
         }
       ]
     },
