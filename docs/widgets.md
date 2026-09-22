@@ -234,7 +234,7 @@ Bad: `{"id":"pause","type":"divider","label":42}` has a numeric label. Browse sh
 
 ## Links and compatibility
 
-The current hosted app reads `?artifact=<slug>&style=<theme>`. Only `artifact` is needed to open a registered page; an omitted style uses the artifact theme. An unknown artifact currently returns home. Keep slugs and block IDs stable; query values should be URL-encoded. There is no declared standalone `/p/<slug>` route or new production domain in this repository.
+The current hosted app reads `?artifact=<slug>` to open a registered page. Every artifact opens in its authored theme; the theme dots are a viewer-only preview that resets to the authored theme on navigation or reload, and no theme is read from the URL. An unknown artifact currently returns home. Keep slugs and block IDs stable; query values should be URL-encoded. There is no declared standalone `/p/<slug>` route or new production domain in this repository.
 
 This documents the existing routing shape for current links; it does not promise a future route migration policy. A local Studio import is not registered as a shareable artifact. There is no automatic repository-to-hosted-preview deployment configured here.
 

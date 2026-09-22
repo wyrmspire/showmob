@@ -74,7 +74,7 @@
       "type": "note-callout",
       "tone": "positive",
       "title": "The product call is now explicit",
-      "body": "Browse is the artifact-wide reading view. Presentation is available as a slideshow block, not as a global mode. Readers can still audition the five shipped themes."
+      "body": "Browse is the artifact-wide reading view. Presentation is available as a slideshow block, not as a global mode. Each page opens in its authored theme; the five theme dots audition another look for the moment and reset on navigation or reload."
     },
     {
       "id": "source",
