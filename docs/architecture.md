@@ -161,6 +161,16 @@ When the content system is understood well enough, runtime persistence can move 
 
 GitHub can continue to hold application code, schemas, canonical widgets, themes, and exportable artifacts even after it is no longer the runtime database.
 
+### Planned Supabase boundary
+
+Supabase is the planned first runtime persistence layer, not a replacement for the portable artifact contract. Postgres will hold artifact identity, lifecycle, collection membership, permissions and immutable revision records. Each revision keeps the complete `schemaVersion: 1` artifact document in JSONB so import, export and rendering stay independent from the database layout. Supabase Storage will hold reviewed media objects while Postgres records ownership, provenance, content type, size and publication state.
+
+The browser may eventually use a publishable key for narrowly scoped owner actions protected by explicit grants and Row Level Security. It must never receive a secret or service-role key. Publication, agent submissions, schema validation, revision creation and other multi-record changes belong behind a Showmob-owned API implemented by a server runtime such as a Vercel Function or Supabase Edge Function. That API is the durable product boundary; Supabase's Data API is an implementation surface, not the public Showmob contract.
+
+Every exposed table must have RLS and least-privilege grants. Policies should authorize against ownership or membership rows, not merely the `authenticated` role and never user-editable metadata. New tables must be deliberately exposed because current Supabase projects may not grant Data API access automatically. Storage starts private for drafts; publishing creates or promotes reviewed, addressable media without exposing another user's files.
+
+The first persistence milestone should run beside repository artifacts: read the same JSON through the runtime validator, write an immutable revision, read it back, compare it with the input, and leave GitHub rendering unchanged until the round trip is dependable. Only then should hosted reads or writes move behind the API.
+
 ## Schema principles
 
 The schema should remain boring, explicit, and inspectable.
