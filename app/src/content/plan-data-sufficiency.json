@@ -70,8 +70,9 @@
         { "time": "Phase 3", "title": "Users without a login wall", "detail": "Dev-mode auto-admin for builders, plus a way to simulate commenters and requesters." },
         { "time": "Phase 4", "title": "Expansion requests", "detail": "A viewer asks for more on a subject; an agent answers with a graded verdict." },
         { "time": "Phase 5", "title": "Widget and style decision rules", "detail": "Written rules for which widgets, graphics and styles a subject needs, and where choices get reviewed." },
-        { "time": "Phase 6", "title": "Finish the persistence rollout", "detail": "Media, the Showmob API, then hosted reads once parity and rollback are proven." },
-        { "time": "Phase 7", "title": "Sessions, parked", "detail": "Artifacts as rooms. The reward for a proven core, not a shortcut around it." }
+        { "time": "Phase 6", "title": "Visual toolbox", "detail": "Authored motion and emphasis, expressed through theme tokens and quiet by default." },
+        { "time": "Phase 7", "title": "Finish the persistence rollout", "detail": "Media, the Showmob API, then hosted reads once parity and rollback are proven." },
+        { "time": "Phase 8", "title": "Sessions, parked", "detail": "Artifacts as rooms. The reward for a proven core, not a shortcut around it." }
       ]
     },
     {
@@ -150,9 +151,24 @@
       "caption": "The working rules so far are below."
     },
     {
+      "id": "phase-visual-toolbox",
+      "type": "compact-table",
+      "heading": "Phase 6 - Visual toolbox",
+      "columns": ["Status", "Complete", "Still needed", "Definition of done"],
+      "rows": [
+        [
+          "In flight. This can run before the persistence rollout; it is renderer and theme work, not database work.",
+          "The first slice is already moving: entrance motion through theme tokens for Paper and Workshop, with reduced-motion respected.",
+          "Exit motion, transitions and emphasis treatments; theme-level tokens for each; and written rules for when a page earns motion at all. Motion is an authored choice, not decoration switched on by default.",
+          "A page can deliberately opt into entrance, exit, transition or emphasis behavior without raw timing or easing values in artifact JSON; each supported theme interprets the tokens; reduced-motion removes nonessential movement; and pages that do not make the authored choice stay still."
+        ]
+      ],
+      "caption": "Motion has to explain pacing, change or attention. Otherwise the page stays still."
+    },
+    {
       "id": "phase-6",
       "type": "compact-table",
-      "heading": "Phase 6 - Finish the persistence rollout",
+      "heading": "Phase 7 - Finish the persistence rollout",
       "columns": ["Status", "Complete", "Still needed", "Definition of done"],
       "rows": [
         [
@@ -167,7 +183,7 @@
     {
       "id": "phase-7",
       "type": "compact-table",
-      "heading": "Phase 7 - Sessions, parked",
+      "heading": "Phase 8 - Sessions, parked",
       "columns": ["Status", "Complete", "Still needed", "Definition of done"],
       "rows": [
         [
