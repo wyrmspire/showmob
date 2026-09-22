@@ -173,3 +173,4 @@ test('saved drafts restore only after validation, with an intact fallback and re
   }
   assert.deepEqual(example.blocks, [{ id: 'start', type: 'text', heading: 'Hello', body: 'A useful idea.' }]);
 });
+
