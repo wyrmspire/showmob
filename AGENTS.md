@@ -12,7 +12,7 @@ Read these before making a structural change:
 - [`README.md`](README.md)
 - [`docs/widgets.md`](docs/widgets.md)
 
-Inspect `app/src/schema.ts`, `app/src/App.tsx`, and representative files in `app/src/content/` before editing. The source snapshot uses a pinned hosted-app toolchain and does not yet include a standalone package manifest or build configuration. Do not infer or install dependencies as part of an unrelated change.
+Inspect `app/src/schema.ts`, `app/src/App.tsx`, and representative files in `app/src/content/` before editing. The repository includes a standalone Vite package, lockfile, and build configuration. Install from the lockfile and keep dependency changes explicit.
 
 ## Contribution boundary
 
@@ -24,7 +24,7 @@ Agents compose artifacts from the existing JSON contract. Agents do not normally
 - Reuse renderer-owned blocks before proposing a new block type.
 - Keep content independent from React components and raw CSS values.
 - Choose one of the semantic theme identifiers defined by the schema.
-- Keep Browse and Present as views over the same content tree.
+- Keep Browse as the artifact-wide reading view; use slideshow blocks for paced presentation.
 - Preserve explicit lifecycle state: `draft`, `preview`, `published`, or `archived`.
 - Keep IDs and slugs stable when updating an existing artifact.
 
@@ -51,7 +51,7 @@ Before committing artifact content:
 - Use only block types the renderer supports.
 - Keep claims accurate and label uncertainty, sources, and limits where relevant.
 - Check titles, summaries, tags, lifecycle state, theme, block IDs, and series order.
-- Verify the artifact in both Browse and Present views when a runnable preview is available.
+- Verify Browse and any slideshow blocks when a runnable preview is available.
 - Check narrow-screen behavior and keyboard navigation for interactive content.
 - Keep content useful without relying on private context that is absent from the artifact.
 - Do not add secrets, private URLs, private planning references, or personal data.
@@ -81,7 +81,7 @@ Executable widgets, code runners, external connectors, and API-backed tools belo
 - Keep product documentation free of private process notes and internal-only links.
 - Make focused commits with plain descriptions.
 - Avoid drive-by dependency, formatting, schema, or toolchain changes.
-- Do not add a package manifest or deployment setup by guessing from imports.
+- Keep package and deployment changes explicit and reviewable.
 - Do not rewrite the current kernel when a smaller compatible change will do.
 - Keep the schema explicit, versioned, and boring.
 

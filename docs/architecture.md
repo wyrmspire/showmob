@@ -31,7 +31,7 @@ The renderer should not need to know where the content came from.
 
 JSON is Showmob's authoring language. An artifact describes an experience without containing application code.
 
-For version 1, the canonical block grammar is `{ id, type, ...widgetFields }` in a flat `blocks` array. The older `{ widgetId, props }` brainstorming form is not supported. [The widget catalog](./widgets.md) documents exact shapes and current behavior for all 14 types. `app/src/validation.ts` validates bundled content, Studio imports and saved drafts against the runtime contract.
+For version 1, the canonical block grammar is `{ id, type, ...widgetFields }` in a flat `blocks` array. The older `{ widgetId, props }` brainstorming form is not supported. [The widget catalog](./widgets.md) documents exact shapes and current behavior for all 17 types. `app/src/validation.ts` validates bundled content, Studio imports and saved drafts against the runtime contract.
 
 ```text
 Artifact
@@ -58,12 +58,12 @@ That boundary lets many experiences share one renderer instead of becoming many 
 
 The current source already establishes a useful kernel:
 
-- `app/src/schema.ts` defines `schemaVersion: 1`, lifecycle states, five themes, and 14 renderer-owned block types.
+- `app/src/schema.ts` defines `schemaVersion: 1`, lifecycle states, five themes, and 17 renderer-owned block types.
 - `app/src/content/` contains JSON artifacts that conform to the contract.
-- `app/src/App.tsx` loads the content library, renders the block vocabulary, provides Browse and Present views, supports search and tags, and includes a browser-local studio with JSON import and export.
+- `app/src/App.tsx` loads the content library, renders the block vocabulary, provides Browse pages and slideshow blocks, supports search and tags, and includes a browser-local studio with JSON import and export.
 - `app/src/legacy-fixture.ts` keeps an earlier artifact compiling against the current renderer.
 
-The source snapshot is tied to the pinned `@instinct/files` hosted-app toolchain. It does not yet include a standalone package manifest or build configuration.
+The repository includes a standalone Vite package, lockfile, TypeScript configuration, and production build.
 
 ## Widgets are the vocabulary
 
@@ -140,12 +140,12 @@ An artifact can be a single page. A collection is an ordered experience made fro
 
 The current schema already has an optional `series` field, and `App.tsx` groups ordered artifacts into series. That is the first form of the collection model. The contract can grow from there without forcing one subject into one very long page.
 
-## Browse and Present
+## Browse and slideshow blocks
 
-Browse and Present are views over the same content tree.
+Browse is the artifact-wide reading view. Slideshow blocks add paced presentation inside the same content tree.
 
 - **Browse** is document-like scrolling for opening a link, studying, searching, revisiting, and mobile use.
-- **Present** shows one conceptual unit at a time with large type, navigation controls, an overview, and a position indicator.
+- **Slideshow blocks** show one authored slide at a time with local navigation and a position indicator.
 
 The artifact is authored once. The renderer changes the view. Future Study, Print, Instructor, Workshop, or Kiosk views should follow the same rule.
 

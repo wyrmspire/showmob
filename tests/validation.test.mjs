@@ -96,7 +96,7 @@ test('each block rejects missing fields the renderer reads', () => {
   const fields = {
     hero: 'body', text: 'heading', 'stat-strip': 'items', steps: 'items', comparison: 'columns',
     quote: 'attribution', 'note-callout': 'title', 'cta-band': 'body', checklist: 'items',
-    timeline: 'items', code: 'code', embed: 'caption', exercise: 'explanation', divider: 'id',
+    timeline: 'items', code: 'code', embed: 'caption', exercise: 'explanation', 'compact-table': 'columns', diagram: 'nodes', slideshow: 'slides', divider: 'id',
   };
   for (const block of blocks) {
     const value = structuredClone(block); delete value[fields[block.type]];
@@ -111,12 +111,15 @@ test('nested list values have precise failure paths', () => {
     [{ id: 'x', type: 'comparison', heading: 'Compare', columns: [null] }, 'columns[0]'],
     [{ id: 'x', type: 'checklist', heading: 'Check', items: [{ label: 'Step', detail: [] }] }, 'items[0].detail'],
     [{ id: 'x', type: 'timeline', heading: 'Time', items: [{ time: 'Now', title: 'Event' }] }, 'items[0].detail'],
+    [{ id: 'x', type: 'diagram', heading: 'Flow', nodes: [{ title: 'Start' }] }, 'nodes[0].detail'],
+    [{ id: 'x', type: 'slideshow', heading: 'Tour', slides: [{ title: 'Start' }] }, 'slides[0].body'],
+    [{ id: 'x', type: 'compact-table', heading: 'Grid', columns: ['A'], rows: [[false]] }, 'rows[0][0]'],
   ];
   for (const [block, path] of invalid) rejects(artifactWith(block), `$.blocks[0].${path}`);
 });
 
 test('optional fields may be omitted but cannot use unsupported types or values', () => {
-  for (const [type, key, bad] of [['hero', 'eyebrow', 3], ['code', 'language', null], ['divider', 'label', {}], ['note-callout', 'tone', 'danger']]) {
+  for (const [type, key, bad] of [['hero', 'eyebrow', 3], ['code', 'language', null], ['divider', 'label', {}], ['note-callout', 'tone', 'danger'], ['compact-table', 'caption', null]]) {
     const value = structuredClone(blocks.find(block => block.type === type));
     delete value[key]; assert.equal(validateArtifact(artifactWith(value)).ok, true);
     value[key] = bad; rejects(artifactWith(value), `$.blocks[0].${key}`);
@@ -128,6 +131,18 @@ test('exercises require an integer answer pointing to an existing string option'
   for (const answer of [-1, 0.5, 2, '0', NaN]) rejects(artifactWith({ ...exercise, answer }), '$.blocks[0].answer');
   rejects(artifactWith({ ...exercise, options: [], answer: 0 }), '$.blocks[0].answer');
   rejects(artifactWith({ ...exercise, options: [false], answer: 0 }), '$.blocks[0].options[0]');
+});
+
+test('slideshows require at least one slide', () => {
+  const slideshow = blocks.find(block => block.type === 'slideshow');
+  rejects(artifactWith({ ...slideshow, slides: [] }), '$.blocks[0].slides');
+});
+
+test('compact tables require string columns and aligned string rows', () => {
+  const table = blocks.find(block => block.type === 'compact-table');
+  rejects(artifactWith({ ...table, columns: ['A', 2] }), '$.blocks[0].columns[1]');
+  rejects(artifactWith({ ...table, rows: [['one cell']] }), '$.blocks[0].rows[0]');
+  rejects(artifactWith({ ...table, rows: ['not a row'] }), '$.blocks[0].rows[0]');
 });
 
 test('source links accept HTTP(S) and reject executable, local and malformed URLs', () => {

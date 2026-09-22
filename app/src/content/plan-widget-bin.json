@@ -28,11 +28,11 @@
       "type": "stat-strip",
       "items": [
         {
-          "value": "8",
+          "value": "9",
           "label": "widgets locked for v0"
         },
         {
-          "value": "14",
+          "value": "17",
           "label": "block types live in this prototype"
         },
         {
@@ -95,7 +95,7 @@
         },
         {
           "name": "Earned by use",
-          "detail": "This prototype grew to 14 blocks - checklist, timeline, code, source card, exercise, divider - because real pages asked for them. This series asked."
+          "detail": "This prototype grew to 17 blocks - checklist, timeline, code, source card, exercise, divider - because real pages asked for them. This series asked."
         }
       ]
     },
@@ -104,7 +104,7 @@
       "type": "note-callout",
       "tone": "note",
       "title": "What every widget promises",
-      "body": "Stable id, typed props, no fetch or write side effects in v0, and it works under every theme and both modes - or it documents the rare exception."
+      "body": "Stable id, typed props, no fetch or write side effects in v0, and it works under every theme and the reading view - or it documents the rare exception."
     },
     {
       "id": "source",
