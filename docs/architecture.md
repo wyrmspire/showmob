@@ -31,7 +31,7 @@ The renderer should not need to know where the content came from.
 
 JSON is Showmob's authoring language. An artifact describes an experience without containing application code.
 
-For version 1, the canonical block grammar is `{ id, type, ...widgetFields }` in a flat `blocks` array. The older `{ widgetId, props }` brainstorming form is not supported. [The widget catalog](./widgets.md) documents exact shapes and current behavior for all 17 types. `app/src/validation.ts` validates bundled content, Studio imports and saved drafts against the runtime contract.
+For version 1, the canonical block grammar is `{ id, type, ...widgetFields }` in a flat `blocks` array. The older `{ widgetId, props }` brainstorming form is not supported. [The widget catalog](./widgets.md) documents exact shapes and current behavior for all 19 types. `app/src/validation.ts` validates bundled content, Studio imports and saved drafts against the runtime contract.
 
 ```text
 Artifact
@@ -58,8 +58,8 @@ That boundary lets many experiences share one renderer instead of becoming many 
 
 The current source already establishes a useful kernel:
 
-- `app/src/schema.ts` defines `schemaVersion: 1`, lifecycle states, five themes, and 17 renderer-owned block types.
-- `app/src/content/` contains JSON artifacts that conform to the contract.
+- `app/src/schema.ts` defines `schemaVersion: 1`, lifecycle states, five themes, and 19 renderer-owned block types.
+- `app/src/content/` contains JSON artifacts that conform to the contract. `import.meta.glob` discovers every JSON file in this directory, so adding a valid artifact does not require a React registry edit.
 - `app/src/App.tsx` loads the content library, renders the block vocabulary, provides Browse pages and slideshow blocks, supports search and tags, and includes a browser-local studio with JSON import and export.
 - `app/src/legacy-fixture.ts` keeps an earlier artifact compiling against the current renderer.
 
@@ -138,7 +138,9 @@ Patterns are starting points, not new application types.
 
 An artifact can be a single page. A collection is an ordered experience made from multiple artifacts, such as a course with lessons and resources.
 
-The current schema already has an optional `series` field, and `App.tsx` groups ordered artifacts into series. That is the first form of the collection model. The contract can grow from there without forcing one subject into one very long page.
+The current schema already has an optional `series` field, and `App.tsx` groups ordered artifacts into series. That is the first form of the collection model and the current subject-enrichment loop: an agent finds the existing subject, edits the artifact when the idea belongs on that page, or adds a new discovered artifact with the same series identity and a new order. The contract can grow from there without forcing one subject into one very long page.
+
+Repository-hosted images live under `app/public/` and are referenced by root-relative paths. The image contract also accepts reviewed HTTP(S) URLs, which keeps it compatible with a future first-party object-storage bucket. Upload, provenance, moderation, signed URLs and deletion remain persistence-layer responsibilities; the renderer does not pretend they exist yet.
 
 ## Browse and slideshow blocks
 
@@ -193,4 +195,3 @@ The intelligence belongs in the agent that creates the artifact and the renderer
 5. Render multiple views from one content tree.
 6. Prefer explicit, versioned JSON over clever implicit behavior.
 7. Extend the current kernel through real use before considering a rewrite.
-
