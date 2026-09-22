@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "slug": "showmob-mechanics-json",
+  "title": "JSON artifacts: the workpiece",
+  "summary": "Read a Showmob artifact as a machinist reads a print: envelope, blocks, identity and lifecycle.",
+  "contributor": "Showmob mechanics course",
+  "status": "preview",
+  "theme": "paper",
+  "series": {
+    "id": "showmob-mechanics",
+    "title": "Showmob mechanics",
+    "order": 2
+  },
+  "tags": [
+    "showmob",
+    "learning",
+    "web-mechanics"
+  ],
+  "updated": "2026-09-21",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Showmob mechanics \u00b7 2 of 7",
+      "title": "A JSON artifact is a labeled, inspectable workpiece",
+      "body": "JSON is a plain text format for named values, lists and nested objects. In Showmob, one artifact object carries page identity and an ordered blocks array. It contains content and configuration, not executable page code."
+    },
+    {
+      "id": "anatomy",
+      "type": "compact-table",
+      "heading": "1. Read the envelope",
+      "columns": [
+        "Field",
+        "Example",
+        "Meaning"
+      ],
+      "rows": [
+        [
+          "slug",
+          "showmob-mechanics-json",
+          "Stable link identity."
+        ],
+        [
+          "title / summary",
+          "Human-readable text",
+          "Discovery and orientation."
+        ],
+        [
+          "status",
+          "preview",
+          "Lifecycle label, not access control."
+        ],
+        [
+          "theme",
+          "paper",
+          "Initial token set."
+        ],
+        [
+          "series",
+          "order: 2",
+          "Places this artifact inside a course."
+        ],
+        [
+          "blocks",
+          "array",
+          "The ordered content units rendered on the page."
+        ]
+      ]
+    },
+    {
+      "id": "block",
+      "type": "code",
+      "heading": "2. One block stays boring",
+      "language": "json",
+      "code": "{\n  \"id\": \"meaning\",\n  \"type\": \"text\",\n  \"heading\": \"Name the part\",\n  \"body\": \"Explain one idea.\"\n}"
+    },
+    {
+      "id": "rules",
+      "type": "steps",
+      "heading": "3. What the validator checks",
+      "items": [
+        "The envelope has schemaVersion 1, a valid slug, supported status and one of five themes.",
+        "The blocks array is nonempty and every block ID is stable, nonempty and unique inside the artifact.",
+        "Each block type is known and supplies the fields its renderer reads.",
+        "Registered repository artifacts also need unique slugs and explicit imports in App.tsx."
+      ]
+    },
+    {
+      "id": "check",
+      "type": "exercise",
+      "heading": "4. Check the contract",
+      "prompt": "What happens if JSON names a block type the schema does not support?",
+      "options": [
+        "The browser guesses the closest widget",
+        "Validation rejects the artifact",
+        "Vercel silently removes the block"
+      ],
+      "answer": 1,
+      "explanation": "Unknown block types are rejected before they can reach the renderer."
+    },
+    {
+      "id": "worksheet",
+      "type": "checklist",
+      "heading": "5. Paper worksheet",
+      "items": [
+        {
+          "label": "Copy the envelope fields",
+          "detail": "Write slug, title, summary, contributor, status, theme and blocks."
+        },
+        {
+          "label": "Trace one block",
+          "detail": "Pick a block in this course and mark its id, type and widget fields."
+        },
+        {
+          "label": "Predict a failure",
+          "detail": "Write one invalid value and the validator path that should report it."
+        }
+      ]
+    },
+    {
+      "id": "source",
+      "type": "embed",
+      "heading": "Repository source: schema and widget contract",
+      "source": "schema.ts and docs/widgets.md",
+      "caption": "These files define the accepted envelope and all renderer-owned block shapes.",
+      "url": "https://github.com/wyrmspire/showmob/blob/main/docs/widgets.md"
+    }
+  ]
+}

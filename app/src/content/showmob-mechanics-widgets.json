@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "slug": "showmob-mechanics-widgets",
+  "title": "Widgets, themes and the renderer",
+  "summary": "See how a block type becomes visible UI and why themes change tokens instead of content.",
+  "contributor": "Showmob mechanics course",
+  "status": "preview",
+  "theme": "workshop",
+  "series": {
+    "id": "showmob-mechanics",
+    "title": "Showmob mechanics",
+    "order": 3
+  },
+  "tags": [
+    "showmob",
+    "learning",
+    "web-mechanics"
+  ],
+  "updated": "2026-09-21",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Showmob mechanics \u00b7 3 of 7",
+      "title": "Widgets are proven operations; themes are setup values",
+      "body": "The artifact says what block it contains. The renderer in App.tsx chooses the corresponding React markup and interaction. CSS applies the selected theme's color tokens. This keeps content portable and behavior owned by one reviewed implementation."
+    },
+    {
+      "id": "separation",
+      "type": "comparison",
+      "heading": "1. Keep three jobs separate",
+      "columns": [
+        {
+          "name": "Artifact",
+          "detail": "Says: this is a slideshow with these slides, or a table with these rows."
+        },
+        {
+          "name": "Renderer",
+          "detail": "Says: a slideshow has local navigation and a polite live region; a table uses semantic rows and headings."
+        },
+        {
+          "name": "Theme",
+          "detail": "Says: the accent, surface, text and canvas colors for Paper, Signal, Workshop, Night or Field."
+        }
+      ]
+    },
+    {
+      "id": "flow",
+      "type": "diagram",
+      "heading": "2. How one block renders",
+      "nodes": [
+        {
+          "title": "Read type",
+          "detail": "BlockView receives one validated Block union member."
+        },
+        {
+          "title": "Choose branch",
+          "detail": "A type check selects the matching renderer path."
+        },
+        {
+          "title": "Create UI",
+          "detail": "React returns semantic elements, controls and text."
+        },
+        {
+          "title": "Apply CSS",
+          "detail": "Classes use shared layout rules and active theme tokens."
+        }
+      ]
+    },
+    {
+      "id": "themes",
+      "type": "compact-table",
+      "heading": "3. The five shipped themes",
+      "columns": [
+        "Theme",
+        "Initial character",
+        "Content effect"
+      ],
+      "rows": [
+        [
+          "Paper",
+          "Warm and quiet",
+          "None"
+        ],
+        [
+          "Signal",
+          "Crisp green emphasis",
+          "None"
+        ],
+        [
+          "Workshop",
+          "Practical orange warmth",
+          "None"
+        ],
+        [
+          "Night",
+          "Dark, cool contrast",
+          "None"
+        ],
+        [
+          "Field",
+          "Muted grounded green",
+          "None"
+        ]
+      ],
+      "caption": "A theme changes presentation tokens, not facts or block order."
+    },
+    {
+      "id": "check",
+      "type": "exercise",
+      "heading": "4. Check ownership",
+      "prompt": "Where should keyboard behavior for every slideshow be fixed?",
+      "options": [
+        "Inside every JSON artifact",
+        "In the shared slideshow renderer",
+        "In the theme name"
+      ],
+      "answer": 1,
+      "explanation": "Behavior belongs to the renderer so every artifact receives the same reviewed fix."
+    },
+    {
+      "id": "worksheet",
+      "type": "checklist",
+      "heading": "5. Paper worksheet",
+      "items": [
+        {
+          "label": "Separate what from how",
+          "detail": "Write one artifact field and the renderer behavior it triggers."
+        },
+        {
+          "label": "Change only setup",
+          "detail": "Explain what should and should not change when switching Paper to Night."
+        },
+        {
+          "label": "Choose a widget",
+          "detail": "Pick text, table, diagram or slideshow for four different teaching jobs."
+        }
+      ]
+    },
+    {
+      "id": "source",
+      "type": "embed",
+      "heading": "Repository source: renderer",
+      "source": "Showmob App.tsx",
+      "caption": "BlockView, Slideshow, theme selection and the artifact registry are implemented here.",
+      "url": "https://github.com/wyrmspire/showmob/blob/main/app/src/App.tsx"
+    }
+  ]
+}

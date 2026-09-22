@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "slug": "showmob-mechanics-practice",
+  "title": "Run the whole Showmob release loop",
+  "summary": "Use a final knowledge check and release worksheet to rehearse one safe artifact change.",
+  "contributor": "Showmob mechanics course",
+  "status": "preview",
+  "theme": "signal",
+  "series": {
+    "id": "showmob-mechanics",
+    "title": "Showmob mechanics",
+    "order": 7
+  },
+  "tags": [
+    "showmob",
+    "learning",
+    "web-mechanics"
+  ],
+  "updated": "2026-09-21",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Showmob mechanics \u00b7 7 of 7",
+      "title": "Prove you can follow one page from edit to production",
+      "body": "The goal is not memorizing web vocabulary. It is reading the actual line: change structured content, validate the contract, build the app, review the exact commit, merge it, verify its production deployment, and inspect the live result."
+    },
+    {
+      "id": "scenario",
+      "type": "note-callout",
+      "tone": "note",
+      "title": "Practice scenario",
+      "body": "A new preview lesson needs one compact table and one knowledge check. It uses existing widgets, so the change should be content-first. Plan the files, gates, review evidence and production readback without adding new application behavior."
+    },
+    {
+      "id": "quiz1",
+      "type": "exercise",
+      "heading": "1. Where does the lesson belong?",
+      "prompt": "Which change is the normal starting point?",
+      "options": [
+        "Add and register a schema-valid JSON artifact",
+        "Rewrite vite.config.ts",
+        "Create a new Vercel project"
+      ],
+      "answer": 0,
+      "explanation": "Existing widgets make this a content change. Add the JSON and register it in the library."
+    },
+    {
+      "id": "quiz2",
+      "type": "exercise",
+      "heading": "2. What are the local gates?",
+      "prompt": "Which pair must pass before opening or merging the PR?",
+      "options": [
+        "Validation tests and npm run build",
+        "A theme switch and localStorage reset",
+        "Only a screenshot"
+      ],
+      "answer": 0,
+      "explanation": "Validation checks the content contract; the build checks types and production bundling. Visual review is additional evidence."
+    },
+    {
+      "id": "quiz3",
+      "type": "exercise",
+      "heading": "3. When is production done?",
+      "prompt": "Which evidence closes the loop?",
+      "options": [
+        "The branch push succeeded",
+        "The PR is open",
+        "The merge commit is on main, its production deployment succeeded, and the canonical live page was inspected"
+      ],
+      "answer": 2,
+      "explanation": "Done is a source-to-live readback, not a single intermediate status."
+    },
+    {
+      "id": "worksheet",
+      "type": "checklist",
+      "heading": "4. Release worksheet",
+      "items": [
+        {
+          "label": "Scope the change",
+          "detail": "Name the artifact file, registry import and any docs that must change."
+        },
+        {
+          "label": "Run contract validation",
+          "detail": "Record the test command and pass count."
+        },
+        {
+          "label": "Run production build",
+          "detail": "Record npm run build and the output summary."
+        },
+        {
+          "label": "Open the PR",
+          "detail": "Write the title, summary, validation evidence and explicit follow-ups."
+        },
+        {
+          "label": "Inspect preview",
+          "detail": "Check the exact branch at desktop and 390px; use the changed interaction."
+        },
+        {
+          "label": "Merge the reviewed head",
+          "detail": "Record the PR URL and merge commit SHA."
+        },
+        {
+          "label": "Verify production",
+          "detail": "Bind Vercel success to the merge SHA, inspect the live page and record its canonical URL."
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "The finished part is the live, verified artifact",
+      "body": "Source, tests, build, PR, merge and deployment are stations. The accepted result is the canonical page that opens, reads and behaves as intended."
+    },
+    {
+      "id": "source-architecture",
+      "type": "embed",
+      "heading": "Repository source: the complete contract",
+      "source": "Showmob documentation index",
+      "caption": "Use the architecture, widget catalog, README and contribution guide together when the work crosses content, renderer, build and deployment boundaries.",
+      "url": "https://github.com/wyrmspire/showmob/tree/main/docs"
+    }
+  ]
+}

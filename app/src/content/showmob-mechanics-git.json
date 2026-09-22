@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "slug": "showmob-mechanics-git",
+  "title": "Branches, commits, pull requests and merges",
+  "summary": "Learn why Showmob changes stay reviewable and what a merge actually changes.",
+  "contributor": "Showmob mechanics course",
+  "status": "preview",
+  "theme": "workshop",
+  "series": {
+    "id": "showmob-mechanics",
+    "title": "Showmob mechanics",
+    "order": 5
+  },
+  "tags": [
+    "showmob",
+    "learning",
+    "web-mechanics"
+  ],
+  "updated": "2026-09-21",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Showmob mechanics \u00b7 5 of 7",
+      "title": "Git keeps the work reversible; GitHub makes the review visible",
+      "body": "A branch is an isolated line of changes. A commit is a named snapshot. A pull request compares the branch with main so tests, previews and review comments can happen before main changes. A merge records the accepted branch history on main."
+    },
+    {
+      "id": "flow",
+      "type": "diagram",
+      "heading": "1. The review line",
+      "nodes": [
+        {
+          "title": "Branch",
+          "detail": "Start from current main without changing production."
+        },
+        {
+          "title": "Commits",
+          "detail": "Record coherent, inspectable snapshots."
+        },
+        {
+          "title": "Pull request",
+          "detail": "Compare the branch against main and attach review evidence."
+        },
+        {
+          "title": "Merge",
+          "detail": "Put the accepted change onto main with a merge commit."
+        },
+        {
+          "title": "Delete branch",
+          "detail": "Remove the temporary branch after history is safely on main."
+        }
+      ]
+    },
+    {
+      "id": "states",
+      "type": "compact-table",
+      "heading": "2. What changes where",
+      "columns": [
+        "Action",
+        "main changes?",
+        "Production should change?"
+      ],
+      "rows": [
+        [
+          "Commit on feature branch",
+          "No",
+          "No; a preview may update"
+        ],
+        [
+          "Open or update PR",
+          "No",
+          "No; review evidence updates"
+        ],
+        [
+          "Merge PR to main",
+          "Yes",
+          "Yes, after the connected production deploy succeeds"
+        ],
+        [
+          "Revert merge on main",
+          "Yes",
+          "Yes, back toward the earlier behavior"
+        ]
+      ]
+    },
+    {
+      "id": "quality",
+      "type": "steps",
+      "heading": "3. A clean Showmob PR",
+      "items": [
+        "State the user-visible intent and follow-ups in the PR body.",
+        "Run content validation, npm run build and git diff --check.",
+        "Use the Vercel preview to inspect the exact branch output.",
+        "Address useful review findings in the same branch.",
+        "Merge only when the head commit and passing checks are the ones reviewed."
+      ]
+    },
+    {
+      "id": "check",
+      "type": "exercise",
+      "heading": "4. Check the history",
+      "prompt": "Why avoid pushing a normal feature directly to main?",
+      "options": [
+        "Main cannot store JSON",
+        "A branch and PR preserve comparison, preview and review before production changes",
+        "Vite only runs on branches"
+      ],
+      "answer": 1,
+      "explanation": "PR-shaped work creates the evidence and review boundary before the production branch changes."
+    },
+    {
+      "id": "worksheet",
+      "type": "checklist",
+      "heading": "5. Paper worksheet",
+      "items": [
+        {
+          "label": "Sketch two lines",
+          "detail": "Draw main and one feature branch, then show the merge point."
+        },
+        {
+          "label": "Name the reviewed object",
+          "detail": "Write the head commit SHA that checks and preview refer to."
+        },
+        {
+          "label": "Plan a rollback",
+          "detail": "Explain the difference between reverting source history and reassigning a prior deployment."
+        }
+      ]
+    },
+    {
+      "id": "source",
+      "type": "embed",
+      "heading": "Repository source: contribution rules",
+      "source": "Showmob AGENTS.md",
+      "caption": "The repository's review, validation and link-handoff expectations for changes.",
+      "url": "https://github.com/wyrmspire/showmob/blob/main/AGENTS.md"
+    }
+  ]
+}

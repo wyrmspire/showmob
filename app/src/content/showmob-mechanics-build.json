@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "slug": "showmob-mechanics-build",
+  "title": "What build means, and what Vite does",
+  "summary": "Separate source code, development serving, type checking, production bundling and local preview.",
+  "contributor": "Showmob mechanics course",
+  "status": "preview",
+  "theme": "signal",
+  "series": {
+    "id": "showmob-mechanics",
+    "title": "Showmob mechanics",
+    "order": 4
+  },
+  "tags": [
+    "showmob",
+    "learning",
+    "web-mechanics"
+  ],
+  "updated": "2026-09-21",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Showmob mechanics \u00b7 4 of 7",
+      "title": "A build is inspection plus packaging, not publishing",
+      "body": "Source files are written for people and tools. The build gate first asks TypeScript whether the code agrees with its types, then asks Vite to turn the app into optimized static files under dist. Deployment is the separate act of serving an accepted build at a URL."
+    },
+    {
+      "id": "scripts",
+      "type": "compact-table",
+      "heading": "1. The repository scripts",
+      "columns": [
+        "Command",
+        "Job",
+        "Output"
+      ],
+      "rows": [
+        [
+          "npm run dev",
+          "Start Vite's development server",
+          "A fast local editing loop"
+        ],
+        [
+          "npm run build",
+          "Run tsc --noEmit, then vite build",
+          "Checked production assets in dist"
+        ],
+        [
+          "npm run preview",
+          "Serve the current dist locally",
+          "A local production-build check"
+        ]
+      ]
+    },
+    {
+      "id": "vite",
+      "type": "diagram",
+      "heading": "2. What Vite does here",
+      "nodes": [
+        {
+          "title": "index.html",
+          "detail": "Acts as the application entry point."
+        },
+        {
+          "title": "Resolve modules",
+          "detail": "Follow imports for React, TypeScript, CSS and JSON."
+        },
+        {
+          "title": "Transform",
+          "detail": "Prepare source modules for the browser."
+        },
+        {
+          "title": "Bundle",
+          "detail": "Emit optimized HTML, CSS and JavaScript assets in dist."
+        }
+      ]
+    },
+    {
+      "id": "config",
+      "type": "code",
+      "heading": "3. The whole Vite config is small",
+      "language": "ts",
+      "code": "export default defineConfig({\n  plugins: [react()],\n});"
+    },
+    {
+      "id": "boundary",
+      "type": "note-callout",
+      "tone": "warning",
+      "title": "Build is not proof of the whole experience",
+      "body": "A passing build proves the source can type-check and bundle. It does not prove every page is readable, every interaction works, or the production domain serves the intended commit. Those need tests and visual verification."
+    },
+    {
+      "id": "check",
+      "type": "exercise",
+      "heading": "4. Check the gate",
+      "prompt": "Which statement is true after npm run build passes?",
+      "options": [
+        "Production is automatically verified",
+        "Type checks and Vite bundling completed",
+        "Every artifact was visually inspected"
+      ],
+      "answer": 1,
+      "explanation": "The build gate is necessary but narrower than live acceptance."
+    },
+    {
+      "id": "worksheet",
+      "type": "checklist",
+      "heading": "5. Paper worksheet",
+      "items": [
+        {
+          "label": "Separate four states",
+          "detail": "Write source, dev server, built dist and deployed production."
+        },
+        {
+          "label": "Read package.json",
+          "detail": "Copy the exact dev, build and preview scripts."
+        },
+        {
+          "label": "Name the extra gate",
+          "detail": "Write what visual verification catches that a build cannot."
+        }
+      ]
+    },
+    {
+      "id": "source-vite",
+      "type": "embed",
+      "heading": "Official source: Vite production build",
+      "source": "Vite \u2014 Building for Production",
+      "caption": "Vite documents vite build, index.html as the default entry and static-hosting-ready output.",
+      "url": "https://vite.dev/guide/build"
+    },
+    {
+      "id": "source-repo",
+      "type": "embed",
+      "heading": "Repository source: package scripts",
+      "source": "Showmob package.json",
+      "caption": "The exact local scripts and dependencies used by this repository.",
+      "url": "https://github.com/wyrmspire/showmob/blob/main/package.json"
+    }
+  ]
+}

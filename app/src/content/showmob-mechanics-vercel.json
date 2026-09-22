@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "slug": "showmob-mechanics-vercel",
+  "title": "From GitHub to Vercel production",
+  "summary": "Trace branch previews, the main-branch production build, domain assignment and live verification.",
+  "contributor": "Showmob mechanics course",
+  "status": "preview",
+  "theme": "paper",
+  "series": {
+    "id": "showmob-mechanics",
+    "title": "Showmob mechanics",
+    "order": 6
+  },
+  "tags": [
+    "showmob",
+    "learning",
+    "web-mechanics"
+  ],
+  "updated": "2026-09-21",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Showmob mechanics \u00b7 6 of 7",
+      "title": "Vercel watches Git history and turns accepted commits into deployments",
+      "body": "This repository is connected to Vercel. A branch push creates a unique preview deployment. A merge to the production branch, main, creates a production deployment. The live domain changes only after the production build succeeds and is assigned to that domain."
+    },
+    {
+      "id": "pipeline",
+      "type": "diagram",
+      "heading": "1. What happens after a push",
+      "nodes": [
+        {
+          "title": "GitHub event",
+          "detail": "A branch commit or main commit appears in the connected repository."
+        },
+        {
+          "title": "Vercel build",
+          "detail": "Vercel installs dependencies and runs the project build for that commit."
+        },
+        {
+          "title": "Deployment",
+          "detail": "The output receives an immutable deployment URL and status."
+        },
+        {
+          "title": "Environment",
+          "detail": "A branch goes to Preview; main goes to Production."
+        },
+        {
+          "title": "Domain",
+          "detail": "A successful production deployment becomes the version served at showmob.vercel.app."
+        }
+      ]
+    },
+    {
+      "id": "preview-prod",
+      "type": "comparison",
+      "heading": "2. Preview and production have different jobs",
+      "columns": [
+        {
+          "name": "Preview deployment",
+          "detail": "Built from a feature branch. It proves the proposed commit can run at a separate URL before main changes."
+        },
+        {
+          "name": "Production deployment",
+          "detail": "Built from main after merge. It is the candidate attached to the public production domain."
+        }
+      ]
+    },
+    {
+      "id": "verify",
+      "type": "steps",
+      "heading": "3. Production acceptance is a readback",
+      "items": [
+        "Confirm the merge commit exists on main.",
+        "Confirm the Vercel status for that exact commit is successful.",
+        "Open the canonical production domain rather than trusting only the deployment dashboard.",
+        "Visually inspect the homepage and the changed pages at desktop and 390px.",
+        "Exercise the changed interaction, then return the verified live URL."
+      ]
+    },
+    {
+      "id": "check",
+      "type": "exercise",
+      "heading": "4. Check the trigger",
+      "prompt": "What normally causes this project's production deployment?",
+      "options": [
+        "Opening a pull request",
+        "Merging or pushing the accepted commit to main",
+        "Running npm run preview locally"
+      ],
+      "answer": 1,
+      "explanation": "Vercel tracks the production branch. Branch pushes get previews; main changes get production deployments."
+    },
+    {
+      "id": "worksheet",
+      "type": "checklist",
+      "heading": "5. Paper worksheet",
+      "items": [
+        {
+          "label": "Write both URLs",
+          "detail": "Record one preview URL and the canonical production domain."
+        },
+        {
+          "label": "Bind commit to deploy",
+          "detail": "Copy a merge SHA and the Vercel status that names its completed deployment."
+        },
+        {
+          "label": "Define done",
+          "detail": "List the pages, viewport and interaction you would visually check."
+        }
+      ]
+    },
+    {
+      "id": "source",
+      "type": "embed",
+      "heading": "Official source: Git deployments",
+      "source": "Vercel \u2014 Deploying Git Repositories",
+      "caption": "Vercel documents preview deployments for branch pushes and production deployments after changes land on the production branch.",
+      "url": "https://vercel.com/docs/git"
+    }
+  ]
+}
