@@ -239,3 +239,4 @@ The current hosted app reads `?artifact=<slug>` to open a registered page. Every
 This documents the existing routing shape for current links; it does not promise a future route migration policy. A local Studio import is not registered as a shareable artifact. There is no automatic repository-to-hosted-preview deployment configured here.
 
 `legacy-fixture.ts` and the checked-in artifacts remain version 1. Changing required fields or block names later needs an explicit compatibility or migration decision. New renderer capabilities need their own implementation and review; adding a type name to content does not create them.
+
