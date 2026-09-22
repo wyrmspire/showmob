@@ -168,3 +168,4 @@ export function restoreDraft(text: string | null, fallback: Artifact): { draft: 
     ? { draft: result.artifact, issue: '' }
     : { draft: fallback, issue: `Saved draft could not be loaded. ${formatIssues(result.issues)} The starter is shown; the saved value is kept until you edit, import or reset.` };
 }
+
