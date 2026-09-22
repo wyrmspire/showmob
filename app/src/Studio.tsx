@@ -220,6 +220,9 @@ function loadDraft() {
   }
 }
 export function Studio({ back }: { back: () => void }) {
+  useEffect(() => {
+    globalThis.window?.scrollTo({ top: 0 });
+  }, []);
   const [initial] = useState(loadDraft);
   const [draft, setDraft] = useState<Artifact>(initial.draft);
   const [validationError, setValidationError] = useState(initial.issue);
