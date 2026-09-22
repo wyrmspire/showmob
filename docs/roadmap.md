@@ -8,6 +8,22 @@ Sections 1-5 of the [blueprint](./blueprint.md) define the shape to protect: the
 
 The later blueprint ideas are direction, not promises or immediate scope.
 
+## The map: a session becomes an artifact
+
+The product direction is one loop:
+
+```text
+conversation -> artifact -> presentation -> interaction -> preserved learning -> enriched artifact
+```
+
+A presenter opens an artifact as a room. Participants join with roles, and the room follows the presenter's active section. Questions, polls, notes and decisions are recorded against the artifact while it is presented. When the session ends, an agent proposes a recap artifact from what the room captured, and approved follow-ups enrich the series the artifact belongs to.
+
+The map is direction, not committed work. Milestone one is the only next buildable thing:
+
+1. **Save one artifact with immutable revisions and prove JSON export/import parity.** One artifact, stored with revisions that never change after they are written, and a proof that exporting the stored JSON and importing it again yields the same artifact. (Next buildable.)
+
+Everything else on the map stays parked until milestone one earns it: people and roles, media uploads, live sessions, the agent review queue, the public API, and intelligence.
+
 ## Next phase: one real artifact
 
 Take one useful subject from idea to durable artifact:
@@ -98,7 +114,7 @@ Publish Showmob's own schema, widgets, themes, examples, architecture, contribut
 
 ### Shared presentation and sessions
 
-Explore agent-controlled group presentation only after single-user Browse and Present flows are solid. A later session model can record participants, active artifact and section, presenter, notes, questions, and generated artifacts for lessons, reviews, onboarding, and workshops.
+The map above carries this direction: artifacts opened as rooms, participants with roles, recorded questions, polls, notes and decisions, and a recap artifact proposed when the session ends. Sessions stay parked until milestone one is proven and single-user Browse and Present flows are solid.
 
 ## Guardrails
 

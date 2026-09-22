@@ -169,7 +169,7 @@ The browser may eventually use a publishable key for narrowly scoped owner actio
 
 Every exposed table must have RLS and least-privilege grants. Policies should authorize against ownership or membership rows, not merely the `authenticated` role and never user-editable metadata. New tables must be deliberately exposed because current Supabase projects may not grant Data API access automatically. Storage starts private for drafts; publishing creates or promotes reviewed, addressable media without exposing another user's files.
 
-The first persistence milestone should run beside repository artifacts: read the same JSON through the runtime validator, write an immutable revision, read it back, compare it with the input, and leave GitHub rendering unchanged until the round trip is dependable. Only then should hosted reads or writes move behind the API.
+The first persistence milestone should run beside repository artifacts: read the same JSON through the runtime validator, write an immutable revision, read it back, compare it with the input, and leave GitHub rendering unchanged until the round trip is dependable. Only then should hosted reads or writes move behind the API. The mechanics course walks learners through this plan in plainer language (`showmob-mechanics-persistence`); this section remains the decision record.
 
 ## Schema principles
 
