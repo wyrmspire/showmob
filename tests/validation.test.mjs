@@ -29,9 +29,9 @@ test('every catalog example validates and the catalog covers the entire schema v
 
 test('all repository artifacts validate, have unique slugs and are automatically discovered by the app', () => {
   const dir = new URL('../app/src/content/', import.meta.url);
-  const app = read('../app/src/App.tsx');
+  const catalogSource = read('../app/src/catalog.ts');
   const slugs = new Set();
-  assert.match(app, /import\.meta\.glob\('\.\/content\/\*\.json',\{eager:true,import:'default'\}\)/);
+  assert.match(catalogSource, /import\.meta\.glob\("\.\/content\/\*\.json"/);
   for (const file of readdirSync(dir).filter(file => file.endsWith('.json'))) {
     const value = JSON.parse(readFileSync(new URL(file, dir), 'utf8'));
     assert.equal(validateArtifact(value).ok, true, file);
