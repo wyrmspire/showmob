@@ -29,7 +29,7 @@ node --experimental-strip-types --test tests/validation.test.mjs
 
 Pages use a typed `schemaVersion: 1` JSON contract. Content, renderer-owned blocks, and theme tokens remain separate so a new page can be added without copying widget code or creating page-specific CSS.
 
-Add a valid `.json` file to `app/src/content/` and the Vite build discovers it automatically. Reuse an existing `series.id` and choose the next `series.order` to enrich that subject with an ordered page. Images may use reviewed files under `app/public/` or absolute HTTP(S) URLs; the same field can point to first-party object storage later.
+Add a valid `.json` file to `app/src/content/` and the Vite build discovers it automatically. Reuse an existing `series.id` and choose the next `series.order` to enrich that subject with an ordered page. Images may use reviewed files under `public/` or absolute HTTP(S) URLs; the same field can point to first-party object storage later.
 
 The repository version intentionally omits links to private planning documents, personal decision logs, and internal process notes.
 
