@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "slug": "great-portfolio-machine-automation",
+  "title": "How to make a great portfolio",
+  "summary": "A practical way to show machining, automation and electronics work without pretending to know more than you do.",
+  "contributor": "Showmob",
+  "status": "published",
+  "theme": "workshop",
+  "tags": ["portfolio", "machining", "automation", "electronics", "career"],
+  "updated": "2026-09-22",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Field guide",
+      "title": "Make the work easy to see",
+      "body": "A good portfolio is not a trophy case. It is a clean handoff: what you worked on, how you thought, what changed, and what you would check next. One honest, well-explained job beats a pile of vague claims."
+    },
+    {
+      "id": "goal",
+      "type": "text",
+      "heading": "The goal",
+      "body": "Give a hiring manager, lead, customer or collaborator enough evidence to understand how you work. They should be able to tell what you can already do, what you understand well enough to explain, and what you are still learning. Keep those three things separate. That is not underselling yourself. It is good labeling."
+    },
+    {
+      "id": "claim-labels",
+      "type": "compact-table",
+      "heading": "Label every claim",
+      "columns": ["Label", "Use it for", "What to show"],
+      "rows": [
+        ["DONE", "Work you personally completed or helped complete", "Your role, the evidence, the result and any limits"],
+        ["UNDERSTANDS", "Ideas you can explain and apply, even if you did not own the full job", "A clear explanation, a small example and the boundary of your experience"],
+        ["LEARNING", "Skills you are actively building", "A lab, course, test, question log or next experiment" ]
+      ],
+      "caption": "If a sentence cannot be labeled cleanly, rewrite it until it can."
+    },
+    {
+      "id": "what-you-need",
+      "type": "checklist",
+      "heading": "What you need",
+      "items": [
+        {"label": "One real piece of work", "detail": "A setup improvement, troubleshooting path, PLC exercise, circuit test, fixture, safety lesson or build. Start small and real."},
+        {"label": "Evidence you are allowed to share", "detail": "Photos, sketches, redrawn diagrams, measurements, code excerpts or a simple recreation. Remove company names, customer data, credentials, serial numbers and anything covered by policy."},
+        {"label": "A short work log", "detail": "Write down the starting condition, your part, the checks you made, the result and the open questions while you still remember them."},
+        {"label": "A plain place to publish", "detail": "A simple site or PDF is enough. Clear pages matter more than fancy effects."}
+      ]
+    },
+    {
+      "id": "process",
+      "type": "diagram",
+      "heading": "The whole process",
+      "nodes": [
+        {"title": "Pick", "detail": "Choose one small piece of work with evidence."},
+        {"title": "Sort", "detail": "Separate DONE, UNDERSTANDS and LEARNING."},
+        {"title": "Build", "detail": "Turn the work into a short case page."},
+        {"title": "Check", "detail": "Verify facts, permissions, links and readability."},
+        {"title": "Publish", "detail": "Share it, then improve it when the work earns an update."}
+      ]
+    },
+    {
+      "id": "steps",
+      "type": "steps",
+      "heading": "Build the first page",
+      "items": [
+        "Name the situation in one sentence. What machine, process, signal or problem was in front of you?",
+        "State your part. Say what you owned, what you helped with and what belonged to someone else.",
+        "Show the evidence. Use a photo, diagram, reading, code excerpt or test result, then explain what the reader is looking at.",
+        "Walk through the reasoning. Record the useful checks in order, including the checks that ruled something out.",
+        "State the result without stretching it. Say what changed, what did not change and how you verified it.",
+        "End with what you understand now and what you are learning next."
+      ]
+    },
+    {
+      "id": "case-shape",
+      "type": "slideshow",
+      "heading": "A case page that stays readable",
+      "slides": [
+        {"title": "1. Situation", "body": "Two or three sentences: the equipment or project, the symptom or goal, and the boundary you were working inside."},
+        {"title": "2. Your part", "body": "Use direct verbs. I measured. I machined. I wired. I changed. I observed. I helped test. Do not borrow the whole team's work."},
+        {"title": "3. Evidence", "body": "Put the useful image, sketch, trend, reading or code close to the sentence that explains it. Caption what matters."},
+        {"title": "4. Reasoning", "body": "Show the path from signal to check to conclusion. The reader does not need every detour, just enough to trust the path."},
+        {"title": "5. Result", "body": "Say how you checked the outcome. If the result was partial, call it partial."},
+        {"title": "6. Next", "body": "Name the remaining risk, next test or skill you are learning. An honest edge makes the finished work stronger, not weaker."}
+      ]
+    },
+    {
+      "id": "before-after",
+      "type": "comparison",
+      "heading": "Turn a weak claim into useful evidence",
+      "columns": [
+        {"name": "Before", "detail": "Experienced with PLC troubleshooting and industrial automation."},
+        {"name": "After", "detail": "DONE: traced an intermittent photoeye input to a loose field connection, replaced the terminal and verified ten clean cycles. UNDERSTANDS: how the input state moved through the PLC logic. LEARNING: better ways to capture intermittent faults over longer runs."}
+      ]
+    },
+    {
+      "id": "worked-check",
+      "type": "checklist",
+      "heading": "Check that it worked",
+      "items": [
+        {"label": "A stranger can explain your part", "detail": "Ask them what you did after a two-minute skim. If they give you the team's result instead, tighten the ownership language."},
+        {"label": "Every strong claim has nearby evidence", "detail": "The photo, reading, drawing, code or result should support the sentence, not just decorate the page."},
+        {"label": "DONE, UNDERSTANDS and LEARNING do not blur together", "detail": "The reader should never have to guess whether you performed the work, understand the idea or are exploring it."},
+        {"label": "The page works on a phone", "detail": "Check type size, image captions, tables, links and the first screen. A busy reader should not need to pinch and hunt."},
+        {"label": "Nothing private slipped through", "detail": "Recheck backgrounds, screens, filenames, badges, serial plates, drawings and metadata before publishing."}
+      ]
+    },
+    {
+      "id": "mistakes",
+      "type": "compact-table",
+      "heading": "Mistakes to avoid",
+      "columns": ["Mistake", "Why it is weak", "Better move"],
+      "rows": [
+        ["Listing tools with no work attached", "The reader cannot see how you used them", "Connect each important tool to one case or exercise"],
+        ["Writing like a brochure", "Big words hide the work", "Use shop-floor language and specific verbs"],
+        ["Taking credit for the whole job", "It makes every other claim harder to trust", "Name your part and the team boundary"],
+        ["Only showing the polished result", "The reasoning stays invisible", "Show the useful evidence trail"],
+        ["Hiding unfinished learning", "It forces you to bluff or stay silent", "Label LEARNING and show the next real step"],
+        ["Publishing sensitive details", "A portfolio is never worth breaking trust or policy", "Redraw, crop, anonymize or leave it out"],
+        ["Waiting for a perfect website", "The work never gets shown", "Publish one clear page, then add the next" ]
+      ]
+    },
+    {
+      "id": "first-week",
+      "type": "note-callout",
+      "tone": "positive",
+      "title": "A good first week",
+      "body": "Pick one real example. Gather only the evidence you may share. Write the six-part case page. Ask one person to skim it. Fix what they misunderstood. Publish. That is a portfolio now; the next page makes it better."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Start with one honest page",
+      "body": "Use a job you can explain without guessing. Label what is DONE, what you UNDERSTAND and what you are LEARNING. Make the evidence easy to inspect. Then stop polishing and ship the page."
+    }
+  ]
+}
