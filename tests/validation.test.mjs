@@ -133,6 +133,11 @@ test('exercises require an integer answer pointing to an existing string option'
   rejects(artifactWith({ ...exercise, options: [false], answer: 0 }), '$.blocks[0].options[0]');
 });
 
+test('slideshows require at least one slide', () => {
+  const slideshow = blocks.find(block => block.type === 'slideshow');
+  rejects(artifactWith({ ...slideshow, slides: [] }), '$.blocks[0].slides');
+});
+
 test('compact tables require string columns and aligned string rows', () => {
   const table = blocks.find(block => block.type === 'compact-table');
   rejects(artifactWith({ ...table, columns: ['A', 2] }), '$.blocks[0].columns[1]');

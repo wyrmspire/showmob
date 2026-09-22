@@ -110,6 +110,7 @@ export function validateArtifact(value: unknown): ValidationResult {
           }
         });
       }
+      if (block.type === 'slideshow' && Array.isArray(block.slides) && block.slides.length === 0) issue(`${path}.slides`, 'Expected at least one slide.');
       if (block.type === 'compact-table') {
         if (!Array.isArray(block.columns)) issue(`${path}.columns`, 'Expected an array.');
         else block.columns.forEach((column, i) => { if (typeof column !== 'string') issue(`${path}.columns[${i}]`, 'Expected a string.'); });

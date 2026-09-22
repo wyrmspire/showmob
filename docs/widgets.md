@@ -55,7 +55,7 @@ Draft and preview artifacts are **visible on the current home screen** with labe
 
 The validator is used for bundled content, pasted/file imports and saved-draft restoration. Invalid imports leave the current draft untouched and report paths such as `$.blocks[2].options[0]`. An unreadable saved draft displays the starter and an alert, retaining the saved value until the author edits, imports or resets. Required fields of the wrong type reject the artifact; no partial import or silent repair occurs.
 
-Studio can add `text`, `note-callout`, `steps`, `quote`, `divider` and `cta-band`. It can also edit an existing `hero`. Other blocks render in preview but require JSON for field edits. Templates may contain richer blocks. This catalog documents all 17 renderer types, not only Studio's Add menu.
+Studio can add `text`, `slideshow`, `compact-table`, `diagram`, `note-callout`, `steps`, `quote`, `divider` and `cta-band`. It can also edit an existing `hero`. Other blocks render in preview but require JSON for field edits. Templates may contain richer blocks. This catalog documents all 17 renderer types, not only Studio's Add menu.
 
 ## Widget reference
 
@@ -69,7 +69,7 @@ Use for a page's main orientation. Required strings: `title`, `body`. Optional s
 { "id": "start", "type": "hero", "eyebrow": "Short lesson", "title": "Follow the signal", "body": "Learn to separate a command from the load it controls." }
 ```
 
-Bad: `{"id":"start","type":"hero","props":{"title":"Hello","body":"World"}}` is missing the required top-level fields. Browse renders an `h1` and introduction; Present uses the same large heading. Prefer one hero per artifact and short titles. Omitting `eyebrow` leaves its container empty; there is no inferred subtitle.
+Bad: `{"id":"start","type":"hero","props":{"title":"Hello","body":"World"}}` is missing the required top-level fields. Browse renders an `h1` and introduction. Prefer one hero per artifact and short titles. Omitting `eyebrow` leaves its container empty; there is no inferred subtitle.
 
 ### `text`
 
@@ -230,7 +230,7 @@ Use sparingly as a conceptual break. Optional string `label`; no other widget fi
 { "id": "pause", "type": "divider", "label": "Apply the idea" }
 ```
 
-Bad: `{"id":"pause","type":"divider","label":42}` has a numeric label. Browse shows a visual break; Present gives it a whole section. Omitting the label leaves an unlabeled visual divider. The renderer uses a `div`, not a heading or semantic separator; do not use it as the only structure for essential instructions.
+Bad: `{"id":"pause","type":"divider","label":42}` has a numeric label. Browse shows a visual break within the page. Omitting the label leaves an unlabeled visual divider. The renderer uses a `div`, not a heading or semantic separator; do not use it as the only structure for essential instructions.
 
 ## Links and compatibility
 

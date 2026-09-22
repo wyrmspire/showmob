@@ -31,7 +31,7 @@ The renderer should not need to know where the content came from.
 
 JSON is Showmob's authoring language. An artifact describes an experience without containing application code.
 
-For version 1, the canonical block grammar is `{ id, type, ...widgetFields }` in a flat `blocks` array. The older `{ widgetId, props }` brainstorming form is not supported. [The widget catalog](./widgets.md) documents exact shapes and current behavior for all 14 types. `app/src/validation.ts` validates bundled content, Studio imports and saved drafts against the runtime contract.
+For version 1, the canonical block grammar is `{ id, type, ...widgetFields }` in a flat `blocks` array. The older `{ widgetId, props }` brainstorming form is not supported. [The widget catalog](./widgets.md) documents exact shapes and current behavior for all 17 types. `app/src/validation.ts` validates bundled content, Studio imports and saved drafts against the runtime contract.
 
 ```text
 Artifact
@@ -58,7 +58,7 @@ That boundary lets many experiences share one renderer instead of becoming many 
 
 The current source already establishes a useful kernel:
 
-- `app/src/schema.ts` defines `schemaVersion: 1`, lifecycle states, five themes, and 14 renderer-owned block types.
+- `app/src/schema.ts` defines `schemaVersion: 1`, lifecycle states, five themes, and 17 renderer-owned block types.
 - `app/src/content/` contains JSON artifacts that conform to the contract.
 - `app/src/App.tsx` loads the content library, renders the block vocabulary, provides Browse pages and slideshow blocks, supports search and tags, and includes a browser-local studio with JSON import and export.
 - `app/src/legacy-fixture.ts` keeps an earlier artifact compiling against the current renderer.
