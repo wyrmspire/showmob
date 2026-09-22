@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "slug": "showmob-mechanics-map",
+  "title": "Showmob mechanics: from JSON to a live page",
+  "summary": "Learn the whole path from an artifact file through rendering, review, merge and production deployment.",
+  "contributor": "Showmob mechanics course",
+  "status": "preview",
+  "theme": "signal",
+  "series": {
+    "id": "showmob-mechanics",
+    "title": "Showmob mechanics",
+    "order": 1
+  },
+  "tags": [
+    "showmob",
+    "learning",
+    "web-mechanics"
+  ],
+  "updated": "2026-09-21",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Showmob mechanics \u00b7 1 of 7",
+      "title": "Follow the workpiece from JSON to the live site",
+      "body": "Treat Showmob like a small automated cell. A JSON artifact is the workpiece, the schema is the print, widgets are proven operations, themes set presentation variables, Vite prepares the shipment, GitHub records and reviews the change, and Vercel puts an accepted build online."
+    },
+    {
+      "id": "map",
+      "type": "diagram",
+      "heading": "1. The whole line",
+      "nodes": [
+        {
+          "title": "Artifact",
+          "detail": "A JSON file describes the page and its ordered blocks."
+        },
+        {
+          "title": "Renderer",
+          "detail": "React reads each block type and selects a trusted widget."
+        },
+        {
+          "title": "Build",
+          "detail": "TypeScript checks the code and Vite bundles browser-ready assets."
+        },
+        {
+          "title": "Review",
+          "detail": "A branch and pull request keep the change inspectable before main changes."
+        },
+        {
+          "title": "Deploy",
+          "detail": "Vercel builds branch previews, then production after a merge to main."
+        }
+      ]
+    },
+    {
+      "id": "roles",
+      "type": "compact-table",
+      "heading": "2. Translate the shop language",
+      "columns": [
+        "Web term",
+        "Shop analogy",
+        "What it does here"
+      ],
+      "rows": [
+        [
+          "JSON artifact",
+          "Workpiece/traveler",
+          "Holds title, status, theme and blocks."
+        ],
+        [
+          "Schema",
+          "Print and tolerances",
+          "Defines the shapes the renderer accepts."
+        ],
+        [
+          "Widget",
+          "Proven operation/tooling",
+          "Turns a known block shape into visible UI."
+        ],
+        [
+          "Theme",
+          "Setup sheet",
+          "Changes approved visual tokens without changing content."
+        ],
+        [
+          "Build",
+          "Inspection plus packaging",
+          "Checks code, then emits production files."
+        ],
+        [
+          "Deploy",
+          "Put the accepted job in service",
+          "Makes one tested commit available at a URL."
+        ]
+      ],
+      "caption": "The analogy helps orientation; the later lessons show the exact repository mechanics."
+    },
+    {
+      "id": "tour",
+      "type": "slideshow",
+      "heading": "3. A fast tour before the details",
+      "slides": [
+        {
+          "title": "Content is data",
+          "body": "Most new Showmob pages are JSON, not custom React components."
+        },
+        {
+          "title": "The renderer owns behavior",
+          "body": "A block says what it is. App.tsx decides how that type looks and behaves."
+        },
+        {
+          "title": "A merge is a release event",
+          "body": "In this connected repository, merging a reviewed PR to main triggers a production deployment."
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "type": "exercise",
+      "heading": "4. Check the line",
+      "prompt": "Which item should usually change when adding a normal lesson page?",
+      "options": [
+        "A JSON artifact registered in the content library",
+        "A new deployment platform",
+        "The Vite source code"
+      ],
+      "answer": 0,
+      "explanation": "Showmob separates content from renderer code. A normal lesson is structured data using existing blocks."
+    },
+    {
+      "id": "worksheet",
+      "type": "checklist",
+      "heading": "5. Paper worksheet",
+      "items": [
+        {
+          "label": "Draw the five-stage line",
+          "detail": "Artifact \u2192 renderer \u2192 build \u2192 review \u2192 deploy."
+        },
+        {
+          "label": "Mark the inspection gates",
+          "detail": "Circle validation tests, production build, PR review and live visual verification."
+        },
+        {
+          "label": "Name the rollback point",
+          "detail": "Write why a Git commit and prior Vercel deployment make reversal possible."
+        }
+      ]
+    },
+    {
+      "id": "source",
+      "type": "embed",
+      "heading": "Repository source: architecture",
+      "source": "Showmob architecture",
+      "caption": "The repository's architecture document defines the artifact, schema, renderer and GitHub persistence boundaries.",
+      "url": "https://github.com/wyrmspire/showmob/blob/main/docs/architecture.md"
+    }
+  ]
+}
