@@ -20,3 +20,4 @@ export type Block =
   | { id:string; type:'divider'; label?:string };
 export type Artifact={schemaVersion:1;slug:string;title:string;summary:string;contributor:string;status:Status;theme:ThemeId;series?:{id:string;title:string;order:number};tags?:string[];updated?:string;blocks:Block[]};
 export function defineArtifact(value:Artifact):Artifact{return value}
+
