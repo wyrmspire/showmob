@@ -1,3 +1,5 @@
+> **Archived:** This is the pre-Showmob working-title plan. Do not build against it. Current architecture and product direction live in `docs/architecture.md`, `docs/blueprint.md`, and `docs/roadmap.md`.
+
 # Idea Site Template — locked v0 brainstorming plan
 
 **Status:** brainstorm / proposal only  

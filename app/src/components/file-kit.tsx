@@ -1,10 +1,10 @@
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode } from "react";
 
 type Children = { children: ReactNode };
 
 type CalloutProps = Children & {
   title: string;
-  tone?: 'note' | 'positive' | 'warning' | string;
+  tone?: "note" | "positive" | "warning" | string;
 };
 
 export function FileRouter({ children }: Children) {
@@ -15,7 +15,15 @@ export function FileCard({ children }: Children) {
   return <main className="file-card">{children}</main>;
 }
 
-export function Header({ title, fact, intro }: { title: string; fact?: string; intro?: string }) {
+export function Header({
+  title,
+  fact,
+  intro,
+}: {
+  title: string;
+  fact?: string;
+  intro?: string;
+}) {
   return (
     <header className="file-header">
       {fact && <span className="file-fact">{fact}</span>}
@@ -38,7 +46,7 @@ export function Paragraph({ children }: Children) {
   return <p className="file-paragraph">{children}</p>;
 }
 
-export function Callout({ title, tone = 'note', children }: CalloutProps) {
+export function Callout({ title, tone = "note", children }: CalloutProps) {
   return (
     <aside className={`file-callout file-callout-${tone}`}>
       <strong>{title}</strong>

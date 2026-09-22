@@ -6,7 +6,7 @@ Showmob turns structured ideas into portable web pages that can be read as a nor
 
 - `app/src/` - the current Showmob v3 hosted-app source
 - `app/src/content/` - schema-versioned JSON artifacts, including the seven-part public product brief
-- `Brainstorming/idea-site-template-plan.md` - the earlier planning artifact preserved from the repository history
+- `docs/archive/idea-site-template-plan.md` - the archived pre-Showmob planning artifact; do not build against it
 
 ## Development
 

@@ -1,6 +1,6 @@
 # Showmob authoring contract and widget catalog
 
-This is the authoring reference for `schemaVersion: 1`, checked against `app/src/schema.ts`, `app/src/validation.ts` and `BlockView` in `app/src/App.tsx`. It describes current behavior, including limitations. Future widget ideas are not supported types.
+This is the authoring reference for `schemaVersion: 1`, checked against `app/src/schema.ts`, `app/src/validation.ts` and `BlockView` in `app/src/components/BlockView.tsx`. It describes current behavior, including limitations. Future widget ideas are not supported types.
 
 ## Canonical grammar
 
@@ -57,7 +57,7 @@ The validator is used for bundled content, pasted/file imports and saved-draft r
 
 To enrich an existing subject, first search `app/src/content/` for its slug, tags and `series.id`. Edit the existing artifact when the idea belongs on the same page; otherwise add another artifact with the same `series.id`, the same `series.title`, and a new `series.order`. The home shelf and previous/next navigation update automatically. Keep new work in `preview` until the contributor and publisher have reviewed it.
 
-Studio can add `text`, `slideshow`, `compact-table`, `diagram`, `note-callout`, `steps`, `quote`, `divider` and `cta-band`. It can also edit an existing `hero`. Other blocks render in preview but require JSON for field edits. Templates may contain richer blocks. This catalog documents all 19 renderer types, not only Studio's Add menu.
+Studio can add `text`, `slideshow`, `compact-table`, `diagram`, `note-callout`, `steps`, `quote`, `divider` and `cta-band`. It can also edit an existing `hero`. **Rich blocks = JSON tab:** other blocks render in preview, but edit their fields in Import / JSON and import the updated artifact. Templates may contain richer blocks. This catalog documents all 19 renderer types, not only Studio's Add menu.
 
 ## Widget reference
 
