@@ -88,3 +88,11 @@ Executable widgets, code runners, external connectors, and API-backed tools belo
 ## Current development priority
 
 Prove the language with one real artifact through the full existing pipeline. Let that artifact expose the next smallest improvement. Do not replace the architecture with a speculative redesign.
+
+
+## Live deployment and chat handoff
+
+- Production: https://showmob.vercel.app/
+- Vercel project: `maddyup/showmob`; pushes to `main` publish the production site after the Vercel build passes.
+- When work starts from a chat and ships or changes a page or artifact, post the live page link back into that originating chat after deployment is verified. Chris should never need to type the URL or dig up a bookmark.
+- Do not treat a green build as delivery. Open the production URL and verify the changed page or artifact renders before posting its link.
