@@ -140,7 +140,7 @@ An artifact can be a single page. A collection is an ordered experience made fro
 
 The current schema already has an optional `series` field, and `App.tsx` groups ordered artifacts into series. That is the first form of the collection model and the current subject-enrichment loop: an agent finds the existing subject, edits the artifact when the idea belongs on that page, or adds a new discovered artifact with the same series identity and a new order. The contract can grow from there without forcing one subject into one very long page.
 
-Repository-hosted images live under `app/public/` and are referenced by root-relative paths. The image contract also accepts reviewed HTTP(S) URLs, which keeps it compatible with a future first-party object-storage bucket. Upload, provenance, moderation, signed URLs and deletion remain persistence-layer responsibilities; the renderer does not pretend they exist yet.
+Repository-hosted images live under `public/` and are referenced by root-relative paths. The image contract also accepts reviewed HTTP(S) URLs, which keeps it compatible with a future first-party object-storage bucket. Upload, provenance, moderation, signed URLs and deletion remain persistence-layer responsibilities; the renderer does not pretend they exist yet.
 
 ## Browse and slideshow blocks
 
