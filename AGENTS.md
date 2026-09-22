@@ -19,6 +19,7 @@ Inspect `app/src/schema.ts`, `app/src/App.tsx`, and representative files in `app
 Agents compose artifacts from the existing JSON contract. Agents do not normally invent widget code.
 
 - Put artifact content in `app/src/content/` as plain, reviewable JSON.
+- Do not add a per-page import or registry entry. The Vite content glob discovers every `.json` artifact in that directory and validates it during startup/build.
 - Use `schemaVersion: 1` and the types defined in `app/src/schema.ts`.
 - The canonical block shape is `{ id, type, ...widgetFields }`; use `docs/widgets.md` for exact examples and current behavior.
 - Reuse renderer-owned blocks before proposing a new block type.
@@ -27,6 +28,7 @@ Agents compose artifacts from the existing JSON contract. Agents do not normally
 - Keep Browse as the artifact-wide reading view; use slideshow blocks for paced presentation.
 - Preserve explicit lifecycle state: `draft`, `preview`, `published`, or `archived`.
 - Keep IDs and slugs stable when updating an existing artifact.
+- Search existing slugs, tags and `series.id` values before creating a page. Edit the existing artifact when the idea belongs there; otherwise reuse its series identity with a distinct next order so the subject grows as one collection.
 
 A new page should not require copied widget code, page-specific React, or page-specific CSS.
 
@@ -96,4 +98,3 @@ Prove the language with one real artifact through the full existing pipeline. Le
 - Vercel project: `maddyup/showmob`; pushes to `main` publish the production site after the Vercel build passes.
 - When work starts from a chat and ships or changes a page or artifact, post the live page link back into that originating chat after deployment is verified. Chris should never need to type the URL or dig up a bookmark.
 - Do not treat a green build as delivery. Open the production URL and verify the changed page or artifact renders before posting its link.
-
