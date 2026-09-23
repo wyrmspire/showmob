@@ -125,6 +125,25 @@
       "body": "On your machine, npm run dev can show draft and preview pages and theme audition. Production (and a normal production build) shows published pages only. Studio drafts and exercise answers stay in the browser until you export or refresh clears them."
     },
     {
+      "id": "novel-path",
+      "type": "note-callout",
+      "tone": "note",
+      "title": "Future growth: story worlds as data entries",
+      "body": "A separate sketch covers character arcs, personalities, open-world hubs, and participatory data entries on linked Showmob pages\u2014using today\u2019s blocks, with honest local-only participation that resets. It is a growth page, not a claim that story worlds ship end-to-end today."
+    },
+    {
+      "id": "novel-path-link",
+      "type": "resource-list",
+      "heading": "Related growth sketch",
+      "items": [
+        {
+          "label": "Story worlds as data entries",
+          "detail": "Future-growth sketch: arcs, personalities, open world, and participatory entries\u2014local-only limits today, thin data later.",
+          "url": "https://showmob.vercel.app/a/showmob-novel-path"
+        }
+      ]
+    },
+    {
       "id": "close",
       "type": "cta-band",
       "heading": "Start with one published page",
