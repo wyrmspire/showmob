@@ -7,6 +7,7 @@ import {
   Paragraph,
 } from "./components/file-kit";
 import { entries, seriesList, seriesMeta } from "./catalog";
+import { ArtifactLink } from "./components/ArtifactLink";
 
 export function Home({
   open,
@@ -65,8 +66,10 @@ export function Home({
             </div>
             <div className="series-parts">
               {parts.map((p) => (
-                <article
+                <ArtifactLink
                   key={p.slug}
+                  slug={p.slug}
+                  open={open}
                   className={`series-part accent-${p.theme}`}
                 >
                   <b>{String(p.series?.order ?? 0).padStart(2, "0")}</b>
@@ -81,14 +84,10 @@ export function Home({
                     </h3>
                     <p>{p.summary}</p>
                   </div>
-                  <button
-                    className="file-button"
-                    data-variant="secondary"
-                    onClick={() => open(p.slug)}
-                  >
+                  <span className="card-action">
                     Open <span aria-hidden>→</span>
-                  </button>
-                </article>
+                  </span>
+                </ArtifactLink>
               ))}
             </div>
           </section>
@@ -121,7 +120,12 @@ export function Home({
       </div>
       <div className="entry-grid">
         {visible.map((e) => (
-          <article key={e.slug} className={`entry-card accent-${e.theme}`}>
+          <ArtifactLink
+            key={e.slug}
+            slug={e.slug}
+            open={open}
+            className={`entry-card accent-${e.theme}`}
+          >
             <div>
               <span className="eyebrow">{e.contributor}</span>
               {e.status !== "published" && (
@@ -137,10 +141,10 @@ export function Home({
                 <span key={t}>{t}</span>
               ))}
             </div>
-            <button className="file-button" onClick={() => open(e.slug)}>
+            <span className="card-action">
               Open page <span aria-hidden>→</span>
-            </button>
-          </article>
+            </span>
+          </ArtifactLink>
         ))}
       </div>
       {!visible.length && (
