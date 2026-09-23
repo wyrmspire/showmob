@@ -1,8 +1,12 @@
 # Gradient judgment
 
-Status: design lock from conversation (2026-09-23). Not a shipped feature. Steward: Chris (intent) / Grok (doc).
+Status: **committed build direction** (2026-09-23). Not fully shipped yet — we are building toward it. Steward: Chris (intent) / Grok (doc).
 
-This note captures the shift from a **fractal system** framing to a **gradient-judgment** model. It is a feature sketch on existing bones, not a rebuild. For gallery, world-vs-telling, and real-story pressure, see [`docs/product-brief.md`](docs/product-brief.md) when that brief is on `main` (PR may still be open). Architecture boundaries stay in [`docs/architecture.md`](docs/architecture.md).
+## Decision
+
+We are building the **gradient** model. One rule: follow the strongest signal in the content. Complexity moves from pre-planned paths to real-time reading. The existing fractal layer is to be verified or replaced — do not treat fractal machinery as given until that check is done.
+
+This note captures the shift from a **fractal system** framing to a **gradient-judgment** model. It is a feature on existing bones, not a rebuild. For gallery, world-vs-telling, and real-story pressure, see [`docs/product-brief.md`](docs/product-brief.md) when that brief is on `main` (PR may still be open). Architecture boundaries stay in [`docs/architecture.md`](docs/architecture.md).
 
 ## Origin
 
