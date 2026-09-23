@@ -6,6 +6,8 @@ Updated: 2026-09-23. Status: proposed execution plan; no phase is complete merel
 
 Finish a dependable idea-page publishing tool first. Then, if the saved-work milestone is approved, add runtime memory without changing the content language. Shared presentation rooms are a later extension, not a prerequisite for finishing the useful core.
 
+Product-direction lock for gallery and story (vocabulary + recipes; world vs telling): [docs/product-brief.md](docs/product-brief.md). Prefer that brief when phase notes conflict on gallery/story intent; keep this file as the phase ledger.
+
 The normal workflow remains: conversation → agent composes or enriches JSON → validation and review → publish → return a working link. The eventual feedback loop adds: interaction → saved results → reviewed improvements.
 
 This root document is the execution checklist and phase-order reference requested for the project. [Architecture](docs/architecture.md) defines boundaries, [widgets](docs/widgets.md) defines the authoring contract, [shipped vs plan](docs/shipped-vs-plan.md) preserves product decisions, and the earlier [roadmap](docs/roadmap.md) and [blueprint](docs/blueprint.md) retain rationale. Their future ideas are not automatically release requirements. Reconcile stale statements in Phase 0; do not delete historical decisions or content to make the documents agree.

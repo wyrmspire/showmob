@@ -7,6 +7,7 @@ This repository treats Showmob as a content language with a renderer, not as a c
 Read these before making a structural change:
 
 - [`docs/architecture.md`](docs/architecture.md)
+- [`docs/product-brief.md`](docs/product-brief.md) — product direction (gallery + story)
 - [`docs/blueprint.md`](docs/blueprint.md)
 - [`docs/roadmap.md`](docs/roadmap.md)
 - [`README.md`](README.md)
@@ -91,7 +92,7 @@ Executable widgets, code runners, external connectors, and API-backed tools belo
 
 ## Current development priority
 
-Prove the language with one real artifact through the full existing pipeline. Let that artifact expose the next smallest improvement. Do not replace the architecture with a speculative redesign.
+Prove the language with one real artifact through the full existing pipeline. Let that artifact expose the next smallest improvement. Do not replace the architecture with a speculative redesign. Near-term product framing lives in [`docs/product-brief.md`](docs/product-brief.md): gallery as vocabulary plus recipes, and story as world pages versus telling.
 
 
 ## Live deployment and chat handoff

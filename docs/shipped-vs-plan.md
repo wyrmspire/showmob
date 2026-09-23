@@ -4,6 +4,8 @@ Status: decision record. Steward: Grok. Date: 2026-09-22.
 
 This document locks what the **running app** does today, and preserves earlier Present/Read language as **superseded intent**, not deleted history. Do not erase draft/preview artifacts, series content, or the slideshow block while closing gaps.
 
+**Also see:** [product-brief.md](./product-brief.md) for locked near-term product direction on gallery, story (world vs telling), and real page references — prefer that brief when gallery/story intent conflicts with older plan notes here.
+
 ## What shipped (authoritative for code)
 
 - **Browse** is the only artifact-wide view (scrolling page). Product language may still say “Read.”
