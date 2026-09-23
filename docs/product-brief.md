@@ -1,9 +1,21 @@
 # Working product brief — gallery and story
 
-**Status:** working product brief (locked 2026-09-23).  
+**Status:** working product brief (locked 2026-09-23; build order reconciled same day).  
 **Steward:** Chris (intent) / Grok (doc).
 
 This is the north star for near-term product direction. It does not replace [ROADMAP.md](../ROADMAP.md) as the phase ledger or [shipped-vs-plan.md](./shipped-vs-plan.md) as the decision record. When those documents conflict with this brief on gallery or story intent, prefer this brief and note the conflict rather than silently rewriting history.
+
+---
+
+## Build order
+
+Near-term sequence (gallery → story → refs). Judgment model lives in [GRADIENT.md](../GRADIENT.md); that note **defers build sequence here**.
+
+1. **Gallery with complete block coverage** — every schema block once, live, with recipe notes beside specimens, plus an auto-check so coverage cannot quietly fall behind.
+2. **One actual small story or course from existing blocks** — separate world pages from telling; world-vs-telling updates stay **human-reviewed** (no automatic consistency yet).
+3. **Real page references** exposed by that work — validation for broken refs, then later backlinks.
+
+Recipes are **suggestions / grammar options**, never required slots to fill. Gradient judgment chooses among recipes and drops empty blocks.
 
 ---
 
@@ -16,6 +28,8 @@ The gallery is how people and agents learn the content language.
 **Firm rule.** The gallery must cover every block in the schema, checked automatically, so it cannot quietly fall behind.
 
 **Recipes (the more valuable layer).** Named combinations of blocks that do a job. Examples: “Explain a concept” = hero, text, diagram, exercise; “Compare options” = comparison, compact-table, note-callout for the caveat. Blocks are words; recipes are sentences. Once the story exists, “character page” and “scene page” become recipes too.
+
+**Not mandatory templates.** Recipes suggest grammar; they do not demand every section. Empty sections from filling recipe slots as required fields are a fractal failure mode — drop what the content does not need.
 
 **Regression fixture.** Phase 2 asks for regression fixtures covering all 19 blocks with long text, empty states, and narrow screens. Put those edge cases in the gallery and it becomes that fixture.
 
@@ -30,7 +44,7 @@ There are two kinds of data.
 
 AI is good at the telling and bad at keeping the world consistent across a long piece. So the world lives in pages as the source of truth, and the prose gets written against them.
 
-**Workflow loop.** Before writing a scene, read the character and place pages it touches; after publishing it, update those pages with what changed. Facts of the story live on the site, not in a chat. Same “search before you create” rule [AGENTS.md](../AGENTS.md) already has, applied to fiction.
+**Workflow loop.** Before writing a scene, read the character and place pages it touches; after publishing it, update those pages with what changed. Facts of the story live on the site, not in a chat. Same “search before you create” rule [AGENTS.md](../AGENTS.md) already has, applied to fiction. Those world updates stay human-reviewed for now; there is no automatic consistency layer yet.
 
 **Two ways in for readers.** Series order to read straight through; hub and tags to wander the world.
 
@@ -40,22 +54,25 @@ AI is good at the telling and bad at keeping the world consistent across a long 
 
 ## What else needs work
 
-Honest blockers. Do not pretend these are shipped:
+Honest issues. Do not pretend these are shipped. They are **not** ahead of gallery → story → refs.
 
 - **Unpublished links** — silently land on Home instead of “not published”; confuses draft shares.
 - **Section links** — section links and copy-link are not built yet; gallery and story need them.
-- **Draft privacy** — drafts are not private; every JSON is bundled and the repo is public.
-- **Studio** — forms for only 9 of 19 blocks; template/reset can wipe the one local draft.
+- **Draft privacy** — drafts are not private; every JSON is bundled and the repo is public. Only matters if a draft holds something you do not want public; an unfinished story readable in a public repo is a *choice*, not a gate on the gallery.
+- **Studio** — forms for only 9 of 19 blocks; template/reset can wipe the one local draft. Only matters if you write in Studio; does not hold up the gallery.
 - **Tests** — mostly structure, not browser render.
 - **Planning docs** — two roadmaps, blueprint, architecture, shipped-vs-plan overlap; some stale.
 
-### Pressure order (not a mini-roadmap rewrite)
+### Blocker list (separate from build order)
 
-1. Draft privacy (public repo + bundled JSON)
-2. Studio coverage / wipe risk
-3. Unpublished links → Home
-4. Section / copy-link
-5. Browser-render tests + doc consolidation
+Real issues to track, **not** a sequence that outranks gallery → story → refs:
+
+- Unpublished → Home behavior
+- Section / copy-link
+- Structure-only tests (need browser-render coverage over time)
+- Planning-doc debt
+- Draft privacy (conditional — see above)
+- Studio wipe / coverage (conditional — see above)
 
 ---
 
