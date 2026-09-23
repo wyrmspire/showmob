@@ -20,6 +20,7 @@ import {
 } from '../scripts/generate-share-pages.mjs';
 import {
   artifactPath,
+  NOT_FOUND_SCREEN,
   resolveScreen,
   slugFromPathname,
 } from '../app/src/screen.ts';
@@ -142,4 +143,27 @@ test('generator script and client share-meta helper are wired', () => {
   assert.match(routing, /artifactPath/);
   assert.match(routing, /replaceState/);
   assert.match(routing, /slugFromPathname/);
+});
+
+test('unknown URL paths resolve to the not-found screen, not Home', () => {
+  for (const path of ['/showmob-guide', '/a', '/a/', '/a/Bad_Slug', '/a/home', '/nope/deeper', '/a/x/y']) {
+    assert.equal(resolveScreen(null, [], undefined, path), NOT_FOUND_SCREEN, path);
+    assert.equal(resolveScreen('field-notes', ['field-notes'], 'author', path), NOT_FOUND_SCREEN, path);
+  }
+  // Well-formed but unknown /a/{slug} keeps the slug so App.tsx shows "Page not found".
+  assert.equal(resolveScreen(null, [], undefined, '/a/no-such-page'), 'no-such-page');
+  assert.equal(resolveScreen(null, [], undefined, '/'), 'home');
+  assert.equal(resolveScreen(null, [], undefined, '/index.html'), 'home');
+  assert.equal(resolveScreen(null, [], 'author', '/'), 'author');
+  // The sentinel can never collide with an artifact or UI route.
+  assert.doesNotMatch(NOT_FOUND_SCREEN, /^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+});
+
+test('vercel.json SPA fallback survives cleanUrls; favicon.ico ships', () => {
+  const vercel = JSON.parse(read('../vercel.json'));
+  const fallback = vercel.rewrites.find((r) => r.source === '/(.*)');
+  // With cleanUrls, a rewrite to "/index.html" 404s on Vercel; target "/".
+  assert.equal(fallback.destination, '/');
+  assert.ok(readFileSync(new URL('../public/favicon.ico', import.meta.url)).length > 0);
+  assert.match(read('../index.html'), /href="\/favicon\.ico"/);
 });

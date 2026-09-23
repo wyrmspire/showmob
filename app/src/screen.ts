@@ -35,6 +35,18 @@ export function slugFromPathname(pathname: string): string | null {
   return isArtifactSlug(slug) ? slug : null;
 }
 
+/**
+ * Screen value for a URL path the app does not own (anything other than `/`
+ * or a well-formed `/a/{slug}`). It is deliberately not a valid slug and not
+ * reserved, so App.tsx falls through to its "Page not found" screen.
+ */
+export const NOT_FOUND_SCREEN = ":not-found";
+
+/** Paths that render Home/Studio. Everything else must be `/a/{slug}`. */
+function isRootPath(pathname: string): boolean {
+  return pathname === "" || pathname === "/" || pathname === "/index.html";
+}
+
 export function artifactPath(slug: string, blockId?: string): string {
   const hash = blockId ? `#${encodeURIComponent(blockId)}` : "";
   return `/a/${encodeURIComponent(slug)}${hash}`;
@@ -53,6 +65,12 @@ export function resolveScreen(
   void knownSlugs;
   const fromPath =
     typeof pathname === "string" ? slugFromPathname(pathname) : null;
+  // Unknown paths (e.g. `/showmob-guide`, `/a/Bad_Slug`) are not-found, not
+  // Home. Vercel rewrites every non-file path to index.html, so the app is the
+  // only layer that can tell the reader the address is wrong.
+  if (typeof pathname === "string" && !fromPath && !isRootPath(pathname)) {
+    return NOT_FOUND_SCREEN;
+  }
   const candidate = fromPath ?? artifact;
   if (candidate && isArtifactSlug(candidate)) {
     return candidate;
