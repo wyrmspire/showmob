@@ -81,7 +81,7 @@ Showmob starts from a sound accessibility foundation: semantic HTML, `aria-press
 - [x] Export with a meaningful slug-based filename instead of always `local-draft.json`.
   - Shipped: `${draft.slug || "showmob-draft"}.json` (PR #28).
 - [x] Add a generic list editor that can support checklist, timeline, comparison, and resource-list blocks without four unrelated editors.
-  - Shipped: shared `StructuredListEditor` + `studio-list-editor` config for checklist, timeline, comparison, and resource-list (PR pending).
+  - Shipped: shared `StructuredListEditor` + `studio-list-editor` config for checklist, timeline, comparison, and resource-list (PR #32).
 - [x] Validate before export and show useful field-level errors while preserving the last valid draft.
   - Shipped: “Export blocked …” + import leaves current draft intact (PR #28).
 - [x] Keep unavailable storage, corrupted drafts, failed saves, and invalid imports recoverable and clearly explained.
