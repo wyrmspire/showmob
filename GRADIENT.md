@@ -6,7 +6,9 @@ Status: **committed build direction** (2026-09-23). Not fully shipped yet — we
 
 We are building the **gradient** model. One rule: follow the strongest signal in the content. Complexity moves from pre-planned paths to real-time reading.
 
-**Build sequence lives in [`docs/product-brief.md`](docs/product-brief.md)** (on `main`): gallery with full block coverage → one real story/course → real page references. This file is the judgment model; it does not own the near-term order of work.
+**Locked in conversation 2026-09-23** (Chris directed this lock on a voice call). Status line “committed build direction” reflects that lock—not a shipped feature set.
+
+**Build sequence lives in [`docs/product-brief.md`](docs/product-brief.md)** (on `main`): gallery with full block coverage → one real story/course → real page references. This file is the judgment model; it does not own the near-term order of work. Gallery is the first real feature build; #37–40 were direction docs, not features.
 
 Architecture boundaries stay in [`docs/architecture.md`](docs/architecture.md).
 

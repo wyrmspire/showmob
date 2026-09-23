@@ -56,10 +56,10 @@ AI is good at the telling and bad at keeping the world consistent across a long 
 
 Honest issues. Do not pretend these are shipped. They are **not** ahead of gallery → story → refs.
 
-- **Unpublished links** — silently land on Home instead of “not published”; confuses draft shares.
+- **Unpublished links** — **fixed** (PR #21): preview/draft deep links resolve via `allEntries` to App’s “Not published” state instead of silently landing on Home.
 - **Section links** — section links and copy-link are not built yet; gallery and story need them.
 - **Draft privacy** — drafts are not private; every JSON is bundled and the repo is public. Only matters if a draft holds something you do not want public; an unfinished story readable in a public repo is a *choice*, not a gate on the gallery.
-- **Studio** — forms for only 9 of 19 blocks; template/reset can wipe the one local draft. Only matters if you write in Studio; does not hold up the gallery.
+- **Studio** — Add menu covers **13 of 19** block types (still missing hero (add), stat-strip, code, embed, image, exercise); richer blocks still go through Import / JSON. Template/reset can wipe the one local draft. Only matters if you write in Studio; does not hold up the gallery.
 - **Tests** — mostly structure, not browser render.
 - **Planning docs** — two roadmaps, blueprint, architecture, shipped-vs-plan overlap; some stale.
 
@@ -67,12 +67,11 @@ Honest issues. Do not pretend these are shipped. They are **not** ahead of galle
 
 Real issues to track, **not** a sequence that outranks gallery → story → refs:
 
-- Unpublished → Home behavior
 - Section / copy-link
 - Structure-only tests (need browser-render coverage over time)
 - Planning-doc debt
 - Draft privacy (conditional — see above)
-- Studio wipe / coverage (conditional — see above)
+- Studio wipe / incomplete Add coverage (conditional — see above; 13/19 in Add today)
 
 ---
 
