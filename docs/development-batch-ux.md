@@ -28,16 +28,16 @@ Showmob starts from a sound accessibility foundation: semantic HTML, `aria-press
 
 ## 2. Make idea pages behave like links
 
-- [x] Render cards and series parts as real `<a href="?artifact=slug">` links. Intercept only an unmodified primary click for client-side navigation so open-in-new-tab, copy-link, and standard browser behavior remain available.
-  - Shipped: `ArtifactLink` with meta/ctrl/shift/alt passthrough (PR #28).
+- [x] Render cards and series parts as real `<a href="/a/{slug}">` links (legacy `?artifact=` still resolves). Intercept only an unmodified primary click for client-side navigation so open-in-new-tab, copy-link, and standard browser behavior remain available.
+  - Shipped: `ArtifactLink` with meta/ctrl/shift/alt passthrough (PR #28); href shape `/a/{slug}` with OG share pages.
 - [x] Preserve `#block-id` through initial load, in-app navigation, reload, and Back/Forward.
   - Shipped: `focusHashTarget` + `hashchange` handling in `ArtifactView.tsx` (PR #28).
 - [x] Add section copy-link controls and a compact jump menu derived from meaningful block IDs.
   - Shipped: per-block “Copy link” + Sections `<details>` menu (PR #28).
 - [x] Replace toolbar text such as “14 sections · published” with reader-facing information such as reading time and section navigation.
   - Shipped: `{n} min read` (+ series part index when applicable) and Sections menu (PR #28).
-- [ ] Set `document.title` per artifact. Treat crawler-visible per-artifact Open Graph metadata as a delivery task, not merely a client-side title change.
-  - Partial: `document.title = "{title} · Showmob"` ships on main. Crawler-visible OG/Twitter tags per artifact remain open (static `index.html` description only).
+- [x] Set `document.title` per artifact. Treat crawler-visible per-artifact Open Graph metadata as a delivery task, not merely a client-side title change.
+  - Done: client title + DOM meta upsert in `ArtifactView` / `share-meta.ts`; crawler OG/Twitter via build-time `dist/a/{slug}/index.html` (`scripts/generate-share-pages.mjs`). Theme-colored OG images still open (follow-up).
 
 ## 3. Deliver the slideshow promise
 

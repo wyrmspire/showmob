@@ -45,3 +45,6 @@ supabase/.branches/
 
 # printcode local dumps (regenerate with ./printcode.sh or ./printcode-supa.sh)
 dump*.md
+
+# Vite build output (generated; includes per-artifact share pages)
+/dist
