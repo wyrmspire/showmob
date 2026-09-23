@@ -49,6 +49,17 @@ SHOWMOB_DATABASE_URL='postgresql://…' \
   node --experimental-strip-types scripts/milestone-one-check.mjs showmob-guide
 ```
 
+## Agent dump (printcode)
+
+From the repo root, dump only this foundation slice for another agent:
+
+```sh
+./printcode-supa.sh
+# or: ./printcode.sh --area supabase --output-prefix dump-supa
+```
+
+That writes `dump-supa00.md` … covering `supabase/`, `app/src/persistence/`, the milestone check script, foundation tests, `.env.example`, and `ROADMAP.md`. It does **not** include `.env`, service-role keys, or the database password.
+
 ## Secrets
 
 - Commit placeholders only (`.env.example`).
