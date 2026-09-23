@@ -4,6 +4,7 @@ import { ArtifactView } from "./ArtifactView";
 import { Home } from "./Home";
 import { Studio } from "./Studio";
 import { screenFromLocation, writeScreen } from "./routing";
+import { isReservedSlug } from "./screen";
 import "./style.css";
 
 export function App() {
@@ -13,9 +14,13 @@ export function App() {
     globalThis.window?.addEventListener("popstate", onPopState);
     return () => globalThis.window?.removeEventListener("popstate", onPopState);
   }, []);
-  const entry = useMemo(() => entries.find((e) => e.slug === screen), [screen]);
+  const entry = useMemo(
+    () =>
+      isReservedSlug(screen) ? undefined : entries.find((e) => e.slug === screen),
+    [screen],
+  );
   const withheld = useMemo(() => {
-    if (entry || screen === "home" || screen === "author") return undefined;
+    if (entry || isReservedSlug(screen)) return undefined;
     return allEntries.find((e) => e.slug === screen);
   }, [entry, screen]);
   const go = (next: string) => {

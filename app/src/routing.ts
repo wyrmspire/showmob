@@ -1,5 +1,5 @@
 import { allEntries } from "./catalog";
-import { resolveScreen } from "./screen";
+import { isReservedSlug, resolveScreen } from "./screen";
 
 const query = () =>
   new URLSearchParams(globalThis.window?.location?.search ?? "");
@@ -20,7 +20,7 @@ export function writeScreen(screen: string) {
   params.delete("artifact");
   params.delete("style");
   params.delete("mode");
-  if (screen !== "home" && screen !== "author") params.set("artifact", screen);
+  if (!isReservedSlug(screen)) params.set("artifact", screen);
   const search = params.toString();
   const url = `${location.pathname}${search ? `?${search}` : ""}`;
   history.pushState({ showmobScreen: screen }, "", url);
