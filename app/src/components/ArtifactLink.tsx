@@ -1,7 +1,8 @@
 import React from "react";
+import { artifactPath } from "../screen";
 
 export function artifactHref(slug: string, blockId?: string): string {
-  return `?artifact=${encodeURIComponent(slug)}${blockId ? `#${encodeURIComponent(blockId)}` : ""}`;
+  return artifactPath(slug, blockId);
 }
 
 export function ArtifactLink({

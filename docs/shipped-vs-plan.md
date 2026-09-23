@@ -47,8 +47,8 @@ Do these without deleting content or collapsing lifecycle states.
 
 ### P1 — “ship a link” quality
 
-4. **Section deep links.** Stable `#block-id` (or `#section-id`) in the URL; restore scroll (and focus) on load; copy-link control on headings / block chrome. Keep `?artifact=` as the page selector.
-5. **Per-artifact link previews.** Title + summary (and ideally theme-colored OG image) per slug — prerender or equivalent. Do not leave every share preview as the global `index.html` blurb.
+4. **Section deep links.** Stable `#block-id` (or `#section-id`) in the URL; restore scroll (and focus) on load; copy-link control on headings / block chrome. Page selector is `/a/{slug}` (legacy `?artifact=` still resolves and replaceStates to the path form).
+5. **Per-artifact link previews.** Title + summary per slug via build-time `dist/a/{slug}/index.html` OG/Twitter meta — shipped. Theme-colored OG image still open as follow-up. Do not leave every share preview as the global `index.html` blurb.
 6. **Focus on navigation.** When changing artifact or restoring a hash, move focus into `#artifact-content` (already `tabIndex={-1}`), not only `scrollIntoView`.
 
 ### P2 — render / a11y polish

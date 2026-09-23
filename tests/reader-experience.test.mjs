@@ -37,7 +37,7 @@ test('Home keeps public lead reader-facing and caps the tag wall', () => {
 
 test('artifact view exposes title, section, copy-link and focus-mode recovery behavior', () => {
   const source = read('../app/src/ArtifactView.tsx');
-  assert.match(source, /document\.title = `\$\{entry\.title\} · Showmob`/);
+  assert.match(source, /applyArtifactShareMeta\(entry\.title, entry\.summary, entry\.slug\)/);
   assert.match(source, /aria-label="Sections on this page"/);
   assert.match(source, /Copy link/);
   assert.match(source, /event\.key === "Escape"/);

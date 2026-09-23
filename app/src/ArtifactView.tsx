@@ -3,6 +3,7 @@ import { authorToolsEnabled, seriesList, themes } from "./catalog";
 import { BlockView } from "./components/BlockView";
 import { type Artifact, type ThemeId } from "./schema";
 import { ArtifactLink, artifactHref } from "./components/ArtifactLink";
+import { applyArtifactShareMeta, clearArtifactShareMeta } from "./share-meta";
 
 function blockLabel(block: Artifact["blocks"][number]): string {
   if ("heading" in block && block.heading) return block.heading;
@@ -57,7 +58,7 @@ export function ArtifactView({
     Math.ceil(JSON.stringify(entry.blocks).split(/\s+/).length / 220),
   );
   useEffect(() => {
-    document.title = `${entry.title} · Showmob`;
+    applyArtifactShareMeta(entry.title, entry.summary, entry.slug);
     const focus = () => requestAnimationFrame(() => {
       if (!focusHashTarget()) document.querySelector(".artifact")?.scrollIntoView({ block: "start" });
     });
@@ -65,9 +66,9 @@ export function ArtifactView({
     globalThis.window?.addEventListener("hashchange", focus);
     return () => {
       globalThis.window?.removeEventListener("hashchange", focus);
-      document.title = "Showmob";
+      clearArtifactShareMeta();
     };
-  }, [entry.slug, entry.title]);
+  }, [entry.slug, entry.title, entry.summary]);
   useEffect(() => {
     if (!zen) return;
     const escape = (event: KeyboardEvent) => {

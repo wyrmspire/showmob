@@ -1,5 +1,11 @@
 import { allEntries } from "./catalog";
-import { isReservedSlug, resolveScreen } from "./screen";
+import {
+  artifactPath,
+  isArtifactSlug,
+  isReservedSlug,
+  resolveScreen,
+  slugFromPathname,
+} from "./screen";
 
 const query = () =>
   new URLSearchParams(globalThis.window?.location?.search ?? "");
@@ -7,21 +13,52 @@ const query = () =>
 // preview/draft page must reach App.tsx's "Not published" state instead of
 // silently becoming Home.
 const knownSlugs = allEntries.map((entry) => entry.slug);
-export function screenFromLocation() {
-  return resolveScreen(
-    query().get("artifact"),
-    knownSlugs,
-    globalThis.window?.history.state?.showmobScreen,
-  );
-}
-export function writeScreen(screen: string) {
-  if (!globalThis.window?.location) return;
+
+function cleanSearchParams() {
   const params = query();
   params.delete("artifact");
   params.delete("style");
   params.delete("mode");
-  if (!isReservedSlug(screen)) params.set("artifact", screen);
+  return params;
+}
+
+export function screenFromLocation() {
+  const pathname = globalThis.window?.location?.pathname ?? "/";
+  const artifactParam = query().get("artifact");
+  const screen = resolveScreen(
+    artifactParam,
+    knownSlugs,
+    globalThis.window?.history.state?.showmobScreen,
+    pathname,
+  );
+
+  // Legacy `/?artifact=slug` → `/a/slug` once so copied address bars get OG URLs.
+  if (
+    globalThis.window?.location &&
+    artifactParam &&
+    isArtifactSlug(artifactParam) &&
+    screen === artifactParam &&
+    !slugFromPathname(pathname)
+  ) {
+    const params = cleanSearchParams();
+    const search = params.toString();
+    const hash = location.hash;
+    const next = `${artifactPath(artifactParam)}${search ? `?${search}` : ""}${hash}`;
+    history.replaceState({ showmobScreen: screen }, "", next);
+  }
+
+  return screen;
+}
+
+export function writeScreen(screen: string) {
+  if (!globalThis.window?.location) return;
+  const params = cleanSearchParams();
   const search = params.toString();
-  const url = `${location.pathname}${search ? `?${search}` : ""}`;
+  // Artifacts use `/a/{slug}`; home and Studio (author) stay on `/`.
+  const path =
+    !isReservedSlug(screen) && isArtifactSlug(screen)
+      ? artifactPath(screen)
+      : "/";
+  const url = `${path}${search ? `?${search}` : ""}`;
   history.pushState({ showmobScreen: screen }, "", url);
 }
