@@ -1,0 +1,534 @@
+{
+  "schemaVersion": 1,
+  "slug": "showmob-block-gallery",
+  "title": "Block gallery",
+  "summary": "Vocabulary sheet for all 19 Showmob blocks, plus a few starter recipes as grammar suggestions\u2014not required slots.",
+  "contributor": "Showmob",
+  "status": "published",
+  "theme": "workshop",
+  "tags": [
+    "showmob",
+    "gallery",
+    "widgets"
+  ],
+  "updated": "2026-09-23",
+  "blocks": [
+    {
+      "id": "intro",
+      "type": "hero",
+      "eyebrow": "Content language",
+      "title": "Block gallery",
+      "body": "This page is the vocabulary-and-grammar sheet for Showmob. Layer one shows every block type once. Layer two shows a few starter recipes\u2014named combinations that do a job. Recipes are suggestions under gradient judgment: choose among them and drop empty blocks. They are never required slots to fill."
+    },
+    {
+      "id": "intro-note",
+      "type": "note-callout",
+      "title": "How to read this page",
+      "body": "Each specimen is live renderer output. The short note beside it is the recipe hint for that type. An auto-check in tests asserts every schema block type appears at least once here, so coverage cannot quietly fall behind.",
+      "tone": "note"
+    },
+    {
+      "id": "vocab-divider",
+      "type": "divider",
+      "label": "Vocabulary \u2014 one of each type"
+    },
+    {
+      "id": "spec-hero-note",
+      "type": "text",
+      "heading": "hero \u2014 page orientation",
+      "body": "Recipe: open with one hero. Short title, clear body, optional eyebrow. Prefer a single hero per page."
+    },
+    {
+      "id": "spec-hero",
+      "type": "hero",
+      "eyebrow": "Specimen",
+      "title": "Follow the strongest signal",
+      "body": "A hero orients the reader before any other block. Keep it short enough to scan."
+    },
+    {
+      "id": "spec-text-note",
+      "type": "note-callout",
+      "title": "text \u2014 one explanation",
+      "body": "Recipe: one heading, one body. Split long prose into multiple text blocks instead of stuffing paragraphs.",
+      "tone": "note"
+    },
+    {
+      "id": "spec-text",
+      "type": "text",
+      "heading": "Name the reference",
+      "body": "A text block holds one idea. The renderer treats the body as a single paragraph of ordinary text\u2014no Markdown parsing."
+    },
+    {
+      "id": "spec-stat-note",
+      "type": "text",
+      "heading": "stat-strip \u2014 sourced figures",
+      "body": "Recipe: a few labeled values the reader should remember. Format numbers as strings; labels carry units and scope."
+    },
+    {
+      "id": "spec-stat",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "19",
+          "label": "Block types in schema"
+        },
+        {
+          "value": "1",
+          "label": "schemaVersion"
+        },
+        {
+          "value": "5",
+          "label": "Themes"
+        }
+      ]
+    },
+    {
+      "id": "spec-steps-note",
+      "type": "text",
+      "heading": "steps \u2014 ordered sequence",
+      "body": "Recipe: numbered list when order matters. Keep each step one action."
+    },
+    {
+      "id": "spec-steps",
+      "type": "steps",
+      "heading": "Work the question",
+      "items": [
+        "State the expected result.",
+        "Compare it with the observation.",
+        "Choose one next check."
+      ]
+    },
+    {
+      "id": "spec-comparison-note",
+      "type": "text",
+      "heading": "comparison \u2014 alternatives side by side",
+      "body": "Recipe: two or more columns with name + detail. Keep details comparable."
+    },
+    {
+      "id": "spec-comparison",
+      "type": "comparison",
+      "heading": "Separate the roles",
+      "columns": [
+        {
+          "name": "Control",
+          "detail": "Requests the change."
+        },
+        {
+          "name": "Power",
+          "detail": "Supplies the load energy."
+        }
+      ]
+    },
+    {
+      "id": "spec-quote-note",
+      "type": "text",
+      "heading": "quote \u2014 attributable line",
+      "body": "Recipe: short quote plus attribution. Do not invent a source."
+    },
+    {
+      "id": "spec-quote",
+      "type": "quote",
+      "quote": "Record what you can actually support.",
+      "attribution": "Example wording for this gallery"
+    },
+    {
+      "id": "spec-note-callout-note",
+      "type": "text",
+      "heading": "note-callout \u2014 limit, tip, or warning",
+      "body": "Recipe: title + body; optional tone note | positive | warning. Say the meaning in words, not only color."
+    },
+    {
+      "id": "spec-note-callout",
+      "type": "note-callout",
+      "title": "Paper example",
+      "body": "These values explain a principle, not a hardware specification.",
+      "tone": "warning"
+    },
+    {
+      "id": "spec-cta-note",
+      "type": "text",
+      "heading": "cta-band \u2014 closing action as text",
+      "body": "Recipe: heading + body that name what to do next. Not a button or link."
+    },
+    {
+      "id": "spec-cta",
+      "type": "cta-band",
+      "heading": "Explain it once",
+      "body": "Write the distinction in your own words before opening another page."
+    },
+    {
+      "id": "spec-checklist-note",
+      "type": "text",
+      "heading": "checklist \u2014 temporary self-check",
+      "body": "Recipe: labels the reader can toggle locally. Selections are not saved evidence of completion."
+    },
+    {
+      "id": "spec-checklist",
+      "type": "checklist",
+      "heading": "Review the explanation",
+      "items": [
+        {
+          "label": "Name the reference",
+          "detail": "Say what the voltage is relative to."
+        },
+        {
+          "label": "Name one uncertainty"
+        }
+      ]
+    },
+    {
+      "id": "spec-timeline-note",
+      "type": "text",
+      "heading": "timeline \u2014 chronology",
+      "body": "Recipe: time, title, detail in authored order. The renderer does not sort dates."
+    },
+    {
+      "id": "spec-timeline",
+      "type": "timeline",
+      "heading": "Observed sequence",
+      "items": [
+        {
+          "time": "Before",
+          "title": "Normal state",
+          "detail": "The expected condition was present."
+        },
+        {
+          "time": "After",
+          "title": "Changed state",
+          "detail": "Record the actual difference."
+        }
+      ]
+    },
+    {
+      "id": "spec-code-note",
+      "type": "text",
+      "heading": "code \u2014 literal data to read",
+      "body": "Recipe: heading + code string. Optional language is retained but not highlighted. Nothing executes."
+    },
+    {
+      "id": "spec-code",
+      "type": "code",
+      "heading": "A small value",
+      "language": "json",
+      "code": "{\"schemaVersion\": 1}"
+    },
+    {
+      "id": "spec-embed-note",
+      "type": "text",
+      "heading": "embed \u2014 source / reference card",
+      "body": "Recipe: heading, source name, caption; optional absolute HTTPS URL. Renders a card, not an iframe."
+    },
+    {
+      "id": "spec-embed",
+      "type": "embed",
+      "heading": "Repository source: contribution rules",
+      "source": "Showmob AGENTS.md",
+      "caption": "Review, validation, and link-handoff expectations for changes.",
+      "url": "https://github.com/wyrmspire/showmob/blob/main/AGENTS.md"
+    },
+    {
+      "id": "spec-image-note",
+      "type": "text",
+      "heading": "image \u2014 authored visual",
+      "body": "Recipe: src (repo path or HTTPS), alt, caption; optional heading. Prefer repository assets."
+    },
+    {
+      "id": "spec-image",
+      "type": "image",
+      "heading": "A separated lab",
+      "src": "/images/defensive-home-lab.svg",
+      "alt": "An upstream network connects to a lab router that separates trusted devices, a passive sensor, and an isolated honeypot with blocked outbound access.",
+      "caption": "Existing public asset used as the image specimen."
+    },
+    {
+      "id": "spec-resource-note",
+      "type": "text",
+      "heading": "resource-list \u2014 curated next steps",
+      "body": "Recipe: label, detail, absolute HTTPS url per item."
+    },
+    {
+      "id": "spec-resource",
+      "type": "resource-list",
+      "heading": "Official references",
+      "items": [
+        {
+          "label": "Showmob widgets catalog",
+          "detail": "Authoring contract for every block type.",
+          "url": "https://github.com/wyrmspire/showmob/blob/main/docs/widgets.md"
+        },
+        {
+          "label": "Product brief",
+          "detail": "Gallery \u2192 story \u2192 refs build order.",
+          "url": "https://github.com/wyrmspire/showmob/blob/main/docs/product-brief.md"
+        }
+      ]
+    },
+    {
+      "id": "spec-exercise-note",
+      "type": "text",
+      "heading": "exercise \u2014 check understanding",
+      "body": "Recipe: prompt, options, zero-based answer index, explanation. Feedback strings are optional."
+    },
+    {
+      "id": "spec-exercise",
+      "type": "exercise",
+      "heading": "Check the model",
+      "prompt": "What does a voltage need?",
+      "options": [
+        "A reference point",
+        "A moving part"
+      ],
+      "answer": 0,
+      "explanation": "Voltage describes a difference between two points."
+    },
+    {
+      "id": "spec-table-note",
+      "type": "text",
+      "heading": "compact-table \u2014 small grid",
+      "body": "Recipe: columns + rows of strings; optional caption. Keep cells short."
+    },
+    {
+      "id": "spec-table",
+      "type": "compact-table",
+      "heading": "Choose a path",
+      "columns": [
+        "Need",
+        "Start"
+      ],
+      "rows": [
+        [
+          "Read",
+          "Open the page"
+        ],
+        [
+          "Build",
+          "Open Studio"
+        ]
+      ],
+      "caption": "A compact starting map."
+    },
+    {
+      "id": "spec-diagram-note",
+      "type": "text",
+      "heading": "diagram \u2014 process nodes",
+      "body": "Recipe: ordered nodes with title + detail. Good for flows, not free-form graphs."
+    },
+    {
+      "id": "spec-diagram",
+      "type": "diagram",
+      "heading": "From signal to action",
+      "nodes": [
+        {
+          "title": "Observe",
+          "detail": "Name the input."
+        },
+        {
+          "title": "Decide",
+          "detail": "Choose the next check."
+        },
+        {
+          "title": "Act",
+          "detail": "Take one reversible step."
+        }
+      ]
+    },
+    {
+      "id": "spec-slideshow-note",
+      "type": "text",
+      "heading": "slideshow \u2014 paced slides in-page",
+      "body": "Recipe: heading + slides with title and body. Browse remains the whole page; present inside the block."
+    },
+    {
+      "id": "spec-slideshow",
+      "type": "slideshow",
+      "heading": "A short tour",
+      "slides": [
+        {
+          "title": "Browse first",
+          "body": "Open as a readable page."
+        },
+        {
+          "title": "Present in place",
+          "body": "Use the block controls when pacing helps."
+        }
+      ]
+    },
+    {
+      "id": "spec-divider-note",
+      "type": "text",
+      "heading": "divider \u2014 section break",
+      "body": "Recipe: optional label. Use to name major sections without another heading block."
+    },
+    {
+      "id": "spec-divider",
+      "type": "divider",
+      "label": "End of vocabulary specimens"
+    },
+    {
+      "id": "recipes-intro",
+      "type": "text",
+      "heading": "Starter recipes (suggestions)",
+      "body": "Named combinations that do a job. Re-using block types here is expected. Gradient judgment picks among recipes and drops what the content does not need\u2014never treat these as mandatory section lists."
+    },
+    {
+      "id": "recipe-explain-divider",
+      "type": "divider",
+      "label": "Recipe: Explain a concept"
+    },
+    {
+      "id": "recipe-explain-hero",
+      "type": "hero",
+      "eyebrow": "Explain",
+      "title": "Separate world from telling",
+      "body": "World pages hold facts that should stay consistent. Telling is ordered prose written against those pages."
+    },
+    {
+      "id": "recipe-explain-text",
+      "type": "text",
+      "heading": "Why the split matters",
+      "body": "AI is strong at prose and weak at long-range consistency. Keep character and place facts on pages; update them after scenes ship. Updates stay human-reviewed for now."
+    },
+    {
+      "id": "recipe-explain-diagram",
+      "type": "diagram",
+      "heading": "Loop",
+      "nodes": [
+        {
+          "title": "Read world pages",
+          "detail": "Before a scene, open what it touches."
+        },
+        {
+          "title": "Write the telling",
+          "detail": "Compose prose against those facts."
+        },
+        {
+          "title": "Update the world",
+          "detail": "After publish, record what changed."
+        }
+      ]
+    },
+    {
+      "id": "recipe-explain-exercise",
+      "type": "exercise",
+      "heading": "Quick check",
+      "prompt": "Where should lasting character facts live?",
+      "options": [
+        "In a chat transcript",
+        "On world pages in the site",
+        "Only inside the scene prose"
+      ],
+      "answer": 1,
+      "explanation": "World pages are the source of truth; prose is written against them."
+    },
+    {
+      "id": "recipe-compare-divider",
+      "type": "divider",
+      "label": "Recipe: Compare options"
+    },
+    {
+      "id": "recipe-compare-comparison",
+      "type": "comparison",
+      "heading": "Gallery vs story pressure",
+      "columns": [
+        {
+          "name": "Gallery",
+          "detail": "Teaches the vocabulary and suggested grammar; auto-checked coverage."
+        },
+        {
+          "name": "Story / course",
+          "detail": "Proves the language under real content pressure; exposes reference needs."
+        }
+      ]
+    },
+    {
+      "id": "recipe-compare-table",
+      "type": "compact-table",
+      "heading": "When to reach for which",
+      "columns": [
+        "Need",
+        "Prefer"
+      ],
+      "rows": [
+        [
+          "Learn every block",
+          "Gallery vocabulary"
+        ],
+        [
+          "Ship a real page",
+          "Story or course from existing blocks"
+        ],
+        [
+          "Catch broken links later",
+          "Real page references"
+        ]
+      ],
+      "caption": "Aligned with the product-brief build order."
+    },
+    {
+      "id": "recipe-compare-caveat",
+      "type": "note-callout",
+      "title": "Caveat",
+      "body": "Do not expand the schema for importance markers until a real page demands them. The test is whether the agent picks blocks from content pressure or fills a pattern.",
+      "tone": "warning"
+    },
+    {
+      "id": "recipe-field-divider",
+      "type": "divider",
+      "label": "Recipe: Field note (course beat)"
+    },
+    {
+      "id": "recipe-field-steps",
+      "type": "steps",
+      "heading": "First five minutes on unfamiliar gear",
+      "items": [
+        "Stop at the boundary and read labels.",
+        "Ask what changed since the last normal cycle.",
+        "Watch one full cycle without intervening.",
+        "Name one reversible next check."
+      ]
+    },
+    {
+      "id": "recipe-field-timeline",
+      "type": "timeline",
+      "heading": "Beat markers",
+      "items": [
+        {
+          "time": "0:00",
+          "title": "Boundary",
+          "detail": "Energy sources and guards before entry."
+        },
+        {
+          "time": "3:00",
+          "title": "Observe",
+          "detail": "One cycle: inputs, motion, sound."
+        },
+        {
+          "time": "5:00",
+          "title": "Decide",
+          "detail": "One safe check, not a speculative repair."
+        }
+      ]
+    },
+    {
+      "id": "recipe-field-checklist",
+      "type": "checklist",
+      "heading": "Before you leave the bay",
+      "items": [
+        {
+          "label": "Wrote what you saw",
+          "detail": "Not only what you guessed."
+        },
+        {
+          "label": "Named the next check",
+          "detail": "Reversible and specific."
+        }
+      ]
+    },
+    {
+      "id": "recipe-field-cta",
+      "type": "cta-band",
+      "heading": "Carry one sentence forward",
+      "body": "If you can state the next check in one sentence, the beat is done."
+    }
+  ]
+}
