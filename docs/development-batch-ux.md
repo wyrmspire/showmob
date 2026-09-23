@@ -1,8 +1,15 @@
 # Showmob development batch: reader, Studio, and visual-system hardening
 
 Status: accepted implementation scope. Added 2026-09-23.
+Synced to `main` at `54415cd` (PR #28) plus follow-up home polish on `chore/ux-batch-doc-and-home`.
 
 This is one development batch, not a queue of tiny pull requests. Keep the work on one branch, make useful local checkpoints, and run the full review/CI/deployment cycle when the combined experience is ready.
+
+## Shipped on main
+
+PR #28 (`54415cd`) landed the core reader/Studio packet: native artifact links, section jump + copy-link, focus-mode Esc/`.zen-exit`, reading-time toolbar meta, slideshow keyboard/swipe/fullscreen, exercise feedback fields, Georgia headings, themed Studio mini-shell, Studio undo + page settings + export validation, and reader-first Home discovery (search before shelves, series dedupe, frequency-sorted tags, `authorToolsEnabled` Studio gating).
+
+Home follow-up on this branch softens the public lead copy and caps the tagbar.
 
 ## What is already solid
 
@@ -10,54 +17,84 @@ Showmob starts from a sound accessibility foundation: semantic HTML, `aria-press
 
 ## 1. Fix the concrete bugs first
 
-- [ ] **Make focus mode escapable.** `.is-zen .toolbar` currently moves the toolbar—and its “Show controls” button—off-screen. Support `Escape` at minimum; a deliberate reveal behavior may supplement it.
-- [ ] **Theme the Studio block preview.** Apply `theme-${draft.theme}` to `.live .mini-shell`, as Full preview does, so `--accent`, `--surface`, and `--text` exist. Give `.studio-truth` valid `--line` and `--ink` tokens too.
-- [ ] **Use a deterministic heading font.** The declared “Aime” face is never loaded. Self-host an approved display serif or use the existing Georgia-based stack consistently.
-- [ ] **Repair wrapped diagram arrows.** Do not absolutely position an arrow past the edge of a wrapped grid row.
+- [x] **Make focus mode escapable.** `.is-zen .toolbar` currently moves the toolbar—and its “Show controls” button—off-screen. Support `Escape` at minimum; a deliberate reveal behavior may supplement it.
+  - Shipped: `Escape` listener + fixed `.zen-exit` control in `ArtifactView.tsx` (PR #28).
+- [x] **Theme the Studio block preview.** Apply `theme-${draft.theme}` to `.live .mini-shell`, as Full preview does, so `--accent`, `--surface`, and `--text` exist. Give `.studio-truth` valid `--line` and `--ink` tokens too.
+  - Shipped: `mini-shell artifact theme-${draft.theme}`; `.studio-truth` now uses `--ds-hairline` / `--ds-ink` (PR #28).
+- [x] **Use a deterministic heading font.** The declared “Aime” face is never loaded. Self-host an approved display serif or use the existing Georgia-based stack consistently.
+  - Shipped: Georgia / Times New Roman stack across reader + Studio headings (PR #28).
+- [x] **Repair wrapped diagram arrows.** Do not absolutely position an arrow past the edge of a wrapped grid row.
+  - Shipped by removal: absolute `→`/`↓` pseudo-arrows dropped; diagrams use top accent borders instead (PR #28). Flow-aware arrows were not reintroduced.
 
 ## 2. Make idea pages behave like links
 
-- [ ] Render cards and series parts as real `<a href="?artifact=slug">` links. Intercept only an unmodified primary click for client-side navigation so open-in-new-tab, copy-link, and standard browser behavior remain available.
-- [ ] Preserve `#block-id` through initial load, in-app navigation, reload, and Back/Forward.
-- [ ] Add section copy-link controls and a compact jump menu derived from meaningful block IDs.
-- [ ] Replace toolbar text such as “14 sections · published” with reader-facing information such as reading time and section navigation.
+- [x] Render cards and series parts as real `<a href="?artifact=slug">` links. Intercept only an unmodified primary click for client-side navigation so open-in-new-tab, copy-link, and standard browser behavior remain available.
+  - Shipped: `ArtifactLink` with meta/ctrl/shift/alt passthrough (PR #28).
+- [x] Preserve `#block-id` through initial load, in-app navigation, reload, and Back/Forward.
+  - Shipped: `focusHashTarget` + `hashchange` handling in `ArtifactView.tsx` (PR #28).
+- [x] Add section copy-link controls and a compact jump menu derived from meaningful block IDs.
+  - Shipped: per-block “Copy link” + Sections `<details>` menu (PR #28).
+- [x] Replace toolbar text such as “14 sections · published” with reader-facing information such as reading time and section navigation.
+  - Shipped: `{n} min read` (+ series part index when applicable) and Sections menu (PR #28).
 - [ ] Set `document.title` per artifact. Treat crawler-visible per-artifact Open Graph metadata as a delivery task, not merely a client-side title change.
+  - Partial: `document.title = "{title} · Showmob"` ships on main. Crawler-visible OG/Twitter tags per artifact remain open (static `index.html` description only).
 
 ## 3. Deliver the slideshow promise
 
-- [ ] Add focused Left/Right keyboard navigation.
-- [ ] Add deliberate mobile swipe behavior without interfering with normal vertical scrolling or text inputs.
-- [ ] Keep usable mobile slide controls; do not hide the only navigation affordance.
-- [ ] Add fullscreen presentation and a clear exit path.
+- [x] Add focused Left/Right keyboard navigation.
+  - Shipped: `ArrowLeft` / `ArrowRight` in `BlockView` slideshow (PR #28).
+- [x] Add deliberate mobile swipe behavior without interfering with normal vertical scrolling or text inputs.
+  - Shipped: pointer swipe + `touch-action: pan-y` (PR #28).
+- [x] Keep usable mobile slide controls; do not hide the only navigation affordance.
+  - Shipped enough: Prev/Next remain under `max-width: 780px`; slide-dot pills stay hidden there while swipe/keyboard/fullscreen still work. Restoring dots on narrow viewports is optional polish.
+- [x] Add fullscreen presentation and a clear exit path.
+  - Shipped: `requestFullscreen` + “Exit fullscreen” (PR #28).
 
 ## 4. Improve reusable content behavior
 
-- [ ] Make exercise feedback authorable with optional `correctFeedback` and `wrongFeedback`; provide neutral defaults.
-- [ ] Ensure long hero titles balance and wrap without the current narrow `10ch`/large-type crushing.
+- [x] Make exercise feedback authorable with optional `correctFeedback` and `wrongFeedback`; provide neutral defaults.
+  - Shipped: schema + renderer fallbacks `"Correct"` / `"Not quite"` (PR #28).
+- [x] Ensure long hero titles balance and wrap without the current narrow `10ch`/large-type crushing.
+  - Shipped: `max-width: 14ch`, `text-wrap: balance`, `overflow-wrap: anywhere` (PR #28).
 - [ ] Make block entrance motion consistent: apply the same restrained behavior to the whole block vocabulary or remove the partial effect.
+  - Partial: entrance now targets every `.block-frame` / Studio block uniformly, but motion duration is still theme-gated (paper + workshop only; others stay still). Decide: animate all themes the same, or drop motion entirely.
 
 ## 5. Separate the reader home from builder tooling
 
-- [ ] Move renderer/widget vocabulary, Studio promotion, lifecycle implementation detail, and similar builder language into Studio or an About/How it works surface.
-- [ ] Put search before the library shelves and make one result model filter the entire visible library.
-- [ ] Prevent series artifacts from appearing twice unless the duplicate presentation is intentionally useful.
-- [ ] Make whole cards clickable while retaining valid nested-link semantics.
-- [ ] Order tags by useful frequency and keep the filter surface from becoming a wall of pills.
+- [x] Move renderer/widget vocabulary, Studio promotion, lifecycle implementation detail, and similar builder language into Studio or an About/How it works surface.
+  - Shipped on this branch: public lead is reader-facing (“Read a page. Follow a series. Present a block.”); Studio card + builder notes remain behind `authorToolsEnabled`. A dedicated About page is still optional later.
+- [x] Put search before the library shelves and make one result model filter the entire visible library.
+  - Shipped: discovery before `seriesList`; `visibleSlugs` filters shelves and standalone grid together (PR #28).
+- [x] Prevent series artifacts from appearing twice unless the duplicate presentation is intentionally useful.
+  - Shipped: `standalone = visible.filter(entry => !entry.series)` (PR #28).
+- [x] Make whole cards clickable while retaining valid nested-link semantics.
+  - Shipped: whole-card `ArtifactLink` anchors (PR #28).
+- [x] Order tags by useful frequency and keep the filter surface from becoming a wall of pills.
+  - Shipped: frequency sort (PR #28) + top-10 tagbar with “More tags” expand (this branch).
 
 ## 6. Make Studio safe enough for real work
 
-- [ ] Protect pattern replacement and block removal with confirmation or one-step undo.
-- [ ] Add a Page item/settings surface for title, summary, theme, slug, tags, contributor, and series metadata.
-- [ ] Export with a meaningful slug-based filename instead of always `local-draft.json`.
+- [x] Protect pattern replacement and block removal with confirmation or one-step undo.
+  - Shipped: one-step undo for remove / pattern change / reset / import (PR #28).
+- [x] Add a Page item/settings surface for title, summary, theme, slug, tags, contributor, and series metadata.
+  - Shipped: Page settings `<details>` in Studio outline (PR #28).
+- [x] Export with a meaningful slug-based filename instead of always `local-draft.json`.
+  - Shipped: `${draft.slug || "showmob-draft"}.json` (PR #28).
 - [ ] Add a generic list editor that can support checklist, timeline, comparison, and resource-list blocks without four unrelated editors.
-- [ ] Validate before export and show useful field-level errors while preserving the last valid draft.
-- [ ] Keep unavailable storage, corrupted drafts, failed saves, and invalid imports recoverable and clearly explained.
+  - Open: those types still fall through to the “Preview-only block” callout; edit via Import / JSON.
+- [x] Validate before export and show useful field-level errors while preserving the last valid draft.
+  - Shipped: “Export blocked …” + import leaves current draft intact (PR #28).
+- [x] Keep unavailable storage, corrupted drafts, failed saves, and invalid imports recoverable and clearly explained.
+  - Shipped: storage-unavailable notices, `restoreDraft`, invalid-import messaging (PR #28).
 
 ## 7. Unify the visual system
 
 - [ ] Reconcile Home/Studio `--ds-*` variables and hardcoded colors with the artifact theme tokens.
+  - Open: dual token families remain (`--ds-*` on hub/Studio chrome vs `--accent`/`--text` on artifacts).
 - [ ] Remove avoidable hardcoded values such as `#635d59` and `#146a5b` when a semantic token expresses the role.
+  - Open: many Home/Studio rules still hardcode those hex values.
 - [ ] Keep the unified token model compatible with a future `prefers-color-scheme` treatment without forcing dark mode into this batch.
+  - Open: blocked on the token unification above; reduced-motion is already respected.
 
 ## Acceptance walkthrough
 
@@ -77,4 +114,3 @@ The batch is complete when one reviewer can:
 - A general CMS or autonomous publishing agent.
 - New widgets that are not required to close a demonstrated acceptance gap above.
 - A full dark-mode design.
-
