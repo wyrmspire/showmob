@@ -38,3 +38,7 @@ next-env.d.ts
 # local editor files
 .idea/
 .vscode/
+
+# Supabase CLI local state (never commit)
+supabase/.temp/
+supabase/.branches/
