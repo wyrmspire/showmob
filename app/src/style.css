@@ -128,3 +128,10 @@ html,body,#root{margin:0;min-height:100%;} body{background:var(--ds-page);color:
 .page-settings label{margin-top:10px}
 .page-settings small{font-weight:400;color:var(--ds-ink-2)}
 .tagbar button small{margin-left:4px;opacity:.7}
+.list-editor{display:grid;gap:14px}
+.list-editor-row{display:grid;gap:12px;padding:14px;border:1px solid #e1dcd5;border-radius:12px;background:#faf8f5}
+.list-editor-row-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.list-editor-row-actions{display:flex;flex-wrap:wrap;gap:6px}
+.list-editor-row-actions button{min-height:44px;border:1px solid #c9c1b8;border-radius:8px;background:#fff;color:#201e1d;padding:0 12px;font:inherit}
+.list-editor-row-actions .danger{color:#a51d2a}
+.list-editor-row-actions button:disabled{opacity:.35}
