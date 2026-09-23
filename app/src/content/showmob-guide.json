@@ -58,12 +58,12 @@
         [
           "Read",
           "Open any published page and scroll",
-          "A normal document with the author\u2019s theme."
+          "A normal document with the author’s theme."
         ],
         [
           "Present",
           "Find a slideshow block and step through it",
-          "Paced slides inside the same page \u2014 not a global Present mode."
+          "Paced slides inside the same page — not a global Present mode."
         ],
         [
           "Author",
@@ -87,7 +87,7 @@
         },
         {
           "title": "Publish is a status, not a delete",
-          "body": "draft \u2192 preview \u2192 published. Production hides unpublished pages. The files remain in git for authors."
+          "body": "draft → preview → published. Production hides unpublished pages. The files remain in git for authors."
         },
         {
           "title": "Stay thin on purpose",
@@ -125,10 +125,29 @@
       "body": "On your machine, npm run dev can show draft and preview pages and theme audition. Production (and a normal production build) shows published pages only. Studio drafts and exercise answers stay in the browser until you export or refresh clears them."
     },
     {
+      "id": "novel-path",
+      "type": "note-callout",
+      "tone": "note",
+      "title": "Future growth: novels as linked pages",
+      "body": "A separate sketch covers writing a novel with Showmob—chapters as artifacts, series as the book spine, arcs and light reader participation using today’s blocks, plus an honest list of widgets not shipped yet. It is a growth page, not a claim that novels work end-to-end today."
+    },
+    {
+      "id": "novel-path-link",
+      "type": "resource-list",
+      "heading": "Related growth sketch",
+      "items": [
+        {
+          "label": "Writing a novel with Showmob",
+          "detail": "Future-growth sketch: today’s widgets for chapters and arcs, participation limits, and what would earn a later build.",
+          "url": "https://showmob.vercel.app/a/showmob-novel-path"
+        }
+      ]
+    },
+    {
       "id": "close",
       "type": "cta-band",
       "heading": "Start with one published page",
-      "body": "Pick a page from the hub, try any slideshow on it, then open Studio only when you are ready to shape a new artifact. If something here is still confusing, fix this guide first \u2014 it is the shared map."
+      "body": "Pick a page from the hub, try any slideshow on it, then open Studio only when you are ready to shape a new artifact. If something here is still confusing, fix this guide first — it is the shared map."
     }
   ]
 }

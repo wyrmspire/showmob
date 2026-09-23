@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "slug": "showmob-novel-path",
+  "title": "Writing a novel with Showmob",
+  "summary": "A future-growth sketch: how linked Showmob pages, series, and existing blocks could hold a novel draft—and what would still need to earn a build.",
+  "contributor": "Showmob product guide",
+  "status": "published",
+  "theme": "paper",
+  "tags": [
+    "showmob",
+    "roadmap",
+    "writing",
+    "novel"
+  ],
+  "updated": "2026-09-23",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Growth sketch · not shipped as a novel tool",
+      "title": "A novel as linked Showmob pages",
+      "body": "This page is a product sketch, not a claim that Showmob writes novels end-to-end today. The idea is simple: each chapter (or scene pack) is an artifact; the book spine is a series; structure, revision, and paced reveals use blocks you already have. Reader participation and durable collaboration would come later—only if a real draft proves the gap."
+    },
+    {
+      "id": "honest-label",
+      "type": "note-callout",
+      "tone": "warning",
+      "title": "Growth sketch, not a finished novel workflow",
+      "body": "Nothing on this page adds widgets, schema, or persistence. What works today is ordinary Showmob: published JSON pages, series order, and local exercise/checklist state in the browser. Branching choices that stick, shared annotations, and co-author drafts are not built. Treat every “later” item as optional backlog, not a promise."
+    },
+    {
+      "id": "shape",
+      "type": "diagram",
+      "heading": "How the pieces stack",
+      "nodes": [
+        {
+          "title": "Chapter page",
+          "detail": "One schemaVersion 1 artifact: prose in text blocks, beats in a timeline, revision passes in a checklist."
+        },
+        {
+          "title": "Book spine",
+          "detail": "A series groups chapter slugs with order numbers. The hub already lists series; readers move chapter to chapter."
+        },
+        {
+          "title": "Room read",
+          "detail": "A slideshow block paces a pitch or cold read without leaving the same page."
+        },
+        {
+          "title": "Local check-in",
+          "detail": "An exercise or checklist lets a reader mark a choice or pass in this browser only—until something durable earns a build."
+        }
+      ]
+    },
+    {
+      "id": "today",
+      "type": "compact-table",
+      "heading": "What you can do today with current widgets",
+      "caption": "Same renderer. Novel-shaped jobs, not new block types.",
+      "columns": [
+        "Novel job",
+        "Use this block",
+        "Honest limit"
+      ],
+      "rows": [
+        [
+          "Chapter draft",
+          "text (+ hero for the chapter open)",
+          "Plain scrolling prose. No chapter-length pagination widget."
+        ],
+        [
+          "Book spine",
+          "series on each chapter artifact",
+          "Order is manual in JSON. No outline that rewrites series.order for you."
+        ],
+        [
+          "Arc beats",
+          "timeline",
+          "Author-written beats. Not a live arc map tied to chapter progress."
+        ],
+        [
+          "Revision passes",
+          "checklist",
+          "Checks live in this browser. Refresh or another device starts clean."
+        ],
+        [
+          "Pitch / room read",
+          "slideshow",
+          "Paced slides inside the page. Not a shared live room."
+        ],
+        [
+          "Reader check-in",
+          "exercise",
+          "Answer resets locally. Nothing is saved to a server or shared with the author."
+        ]
+      ]
+    },
+    {
+      "id": "today-steps",
+      "type": "steps",
+      "heading": "A thin first novel draft (today)",
+      "items": [
+        "Write one chapter as a published artifact: hero + text for the scene, timeline for the beats you care about.",
+        "Add series { id, title, order } so the next chapter can sit on the same spine.",
+        "Put revision passes in a checklist and a short pitch in a slideshow if you need a room read.",
+        "Optional: one exercise as a reader check-in (“Whose POV felt strongest?”). Expect local-only answers.",
+        "Ship the pages. Do not invent widgets until a real draft hits a wall the current bin cannot cover."
+      ]
+    },
+    {
+      "id": "arcs-divider",
+      "type": "divider",
+      "label": "Arcs"
+    },
+    {
+      "id": "arcs-intro",
+      "type": "text",
+      "heading": "Arcs in Showmob vocabulary",
+      "body": "Screenwriting jargon is optional. On Showmob, structure is blocks and series: a book spine (series.order), beat lists (timeline), who-changes-what notes (checklist or compact-table), and escalating stakes as a short diagram. Keep names plain so a draft stays editable by the author who wrote it."
+    },
+    {
+      "id": "arc-kinds",
+      "type": "diagram",
+      "heading": "Three arc layers you can already sketch",
+      "nodes": [
+        {
+          "title": "Story arc",
+          "detail": "Acts or movements as timeline items on a spine page—or as ordered chapter artifacts in the series."
+        },
+        {
+          "title": "Character threads",
+          "detail": "A checklist or compact-table per major character: want, wound, turn, cost. Update it when a chapter earns a change."
+        },
+        {
+          "title": "Escalating stakes",
+          "detail": "A short diagram: pressure → choice → consequence → harder pressure. Link each node to the chapter slug that delivers it."
+        }
+      ]
+    },
+    {
+      "id": "arc-beats",
+      "type": "timeline",
+      "heading": "Example chapter spine (author-owned beats)",
+      "items": [
+        {
+          "time": "Open",
+          "title": "Establish the fault line",
+          "detail": "Chapter 1 page: hero + text. Timeline lists the first irreversible fact."
+        },
+        {
+          "time": "Mid",
+          "title": "Cost becomes visible",
+          "detail": "Middle chapters: each page’s timeline names what the protagonist loses if they stall."
+        },
+        {
+          "time": "Turn",
+          "title": "Choice that cannot be undone",
+          "detail": "One chapter owns the turn. Character-thread checklist updates after that publish."
+        },
+        {
+          "time": "Close",
+          "title": "Consequence lands",
+          "detail": "Final chapter(s): stakes diagram ends on the bill that was always coming."
+        }
+      ]
+    },
+    {
+      "id": "arc-checklist",
+      "type": "checklist",
+      "heading": "Arc hygiene while drafting",
+      "items": [
+        {
+          "label": "Series order matches the reading order",
+          "detail": "If chapter 7 must come before chapter 6 in the reader’s mind, fix series.order—do not rely on file names."
+        },
+        {
+          "label": "Every major turn has a home chapter",
+          "detail": "If a beat only lives in your head, put it on that chapter’s timeline or it will drift."
+        },
+        {
+          "label": "Character threads update after publish",
+          "detail": "Want / turn / cost change when the chapter ships, not when you plan to write it."
+        },
+        {
+          "label": "Stakes escalate on the page",
+          "detail": "If pressure does not get harder, the diagram is decoration—cut or rewrite the middle."
+        }
+      ]
+    },
+    {
+      "id": "participation-divider",
+      "type": "divider",
+      "label": "Participation"
+    },
+    {
+      "id": "participation-intro",
+      "type": "text",
+      "heading": "Reader participation, Showmob-flavored",
+      "body": "The goal is not a social CMS. It is paced reveals, occasional choices, and light contribution that still feel like reading a Showmob page. Today that means local exercise and checklist state. Later means durable choices and soft collaboration—only if a novel draft needs them more than another product would."
+    },
+    {
+      "id": "participation-compare",
+      "type": "comparison",
+      "heading": "Today vs later for readers",
+      "columns": [
+        {
+          "name": "Today (shipped)",
+          "detail": "Exercise answers and checklist ticks stay in this browser. Slideshow pacing is per reader, per visit. No shared room, no saved branch, no annotation that reaches the author."
+        },
+        {
+          "name": "Later (not shipped)",
+          "detail": "Branching choice blocks that persist, room reactions on a slideshow, shared annotations on a passage, and co-author draft handoff. Each would need schema, storage, and a clear thin boundary."
+        }
+      ]
+    },
+    {
+      "id": "reader-checkin",
+      "type": "exercise",
+      "heading": "Example reader check-in (local only)",
+      "prompt": "After a chapter, which response should Showmob support first if we stay thin?",
+      "options": [
+        "A full forum under every chapter",
+        "A single paced choice or check that resets locally until durability is proven",
+        "Live co-editing of the chapter prose in the browser"
+      ],
+      "answer": 1,
+      "explanation": "Local exercise and checklist already cover a thin check-in. Forums and live co-editing are other products. Persist a choice only when a real draft shows local state is not enough.",
+      "correctFeedback": "Right—stay on the thin check-in until a draft forces persistence.",
+      "wrongFeedback": "Heavier social or editing surfaces are out of scope for a growth sketch. Prefer one local check first."
+    },
+    {
+      "id": "later-divider",
+      "type": "divider",
+      "label": "Later builds"
+    },
+    {
+      "id": "later-widgets",
+      "type": "checklist",
+      "heading": "Widgets and functions that would earn a later build",
+      "items": [
+        {
+          "label": "Arc-map block — not shipped",
+          "detail": "A structured map of story/character stakes linked to chapter slugs. Today: diagram + timeline + series."
+        },
+        {
+          "label": "Chapter outline that syncs series.order — not shipped",
+          "detail": "Drag chapters and rewrite order in one place. Today: edit series.order in each artifact JSON."
+        },
+        {
+          "label": "Character card — not shipped",
+          "detail": "Reusable card for want, voice, and thread status across pages. Today: compact-table or checklist copied per need."
+        },
+        {
+          "label": "Durable reader choices — not shipped",
+          "detail": "Branching that survives refresh and can be summarized for the author. Today: exercise is local-only."
+        },
+        {
+          "label": "Soft collaboration — not shipped",
+          "detail": "Shared annotations, room reactions, co-author draft handoff. Today: git + PR for authors; nothing for readers."
+        }
+      ]
+    },
+    {
+      "id": "later-compare",
+      "type": "comparison",
+      "heading": "Parked until a draft proves the gap",
+      "columns": [
+        {
+          "name": "Reuse first",
+          "detail": "text, timeline, checklist, slideshow, exercise, series, diagram, and compact-table already cover draft, spine, beats, revision, pitch, and local check-ins."
+        },
+        {
+          "name": "Build only when stuck",
+          "detail": "Add a widget when a real novel draft cannot say the next true thing with the current bin—and when the new block stays renderer-thin with no side effects in v0."
+        }
+      ]
+    },
+    {
+      "id": "boundary",
+      "type": "note-callout",
+      "tone": "note",
+      "title": "Stay thin on purpose",
+      "body": "Showmob remains linked pages and a shared renderer. Do not grow a novel CMS beside it. Only add widgets when a real novel draft proves the gap, and keep each addition honest in the catalog: shipped vs later, local vs durable."
+    },
+    {
+      "id": "pitch",
+      "type": "slideshow",
+      "heading": "Two-minute pitch for a Showmob novel",
+      "slides": [
+        {
+          "title": "Pages, not a new app",
+          "body": "Chapters are artifacts. The book is a series. Readers get normal URLs."
+        },
+        {
+          "title": "Structure in the bin you have",
+          "body": "Timeline for beats, checklist for revision and character threads, diagram for stakes."
+        },
+        {
+          "title": "Participation stays light",
+          "body": "Local check-ins first. Durable choices and soft collaboration wait for evidence."
+        },
+        {
+          "title": "Earn every new widget",
+          "body": "If the draft works with today’s blocks, ship the draft. Build later only when stuck."
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Start with one chapter and a spine",
+      "body": "Publish one chapter page, attach a series order, and put your beats on a timeline. Use a checklist for revision and an exercise only if you want a local reader check-in. Come back to this sketch when a real draft forces a widget the current bin cannot cover."
+    }
+  ]
+}
