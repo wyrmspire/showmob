@@ -230,6 +230,11 @@ export function Studio({ back }: { back: () => void }) {
   const [tab, setTab] = useState<"build" | "preview" | "json">("build");
   const [io, setIo] = useState("");
   const [notice, setNotice] = useState("Draft is saved only in this browser.");
+  const [undo, setUndo] = useState<{
+    draft: Artifact;
+    selected: number;
+    label: string;
+  } | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     if (initial.issue && draft === initial.draft) return;
@@ -258,8 +263,10 @@ export function Studio({ back }: { back: () => void }) {
   };
   const remove = (i: number) => {
     if (draft.blocks.length === 1) return;
+    setUndo({ draft: structuredClone(draft), selected, label: "block removal" });
     setDraft({ ...draft, blocks: draft.blocks.filter((_, n) => n !== i) });
     setSelected(Math.max(0, i - 1));
+    setNotice("Block removed. Undo is available.");
   };
   const add = (type: string) => {
     const blocks = [...draft.blocks, starter(type)];
@@ -274,6 +281,7 @@ export function Studio({ back }: { back: () => void }) {
     setSelected(i + 1);
   };
   const applyTemplate = (n: number) => {
+    setUndo({ draft: structuredClone(draft), selected, label: "pattern change" });
     setDraft({
       ...defaultDraft,
       title: templates[n].name,
@@ -282,20 +290,28 @@ export function Studio({ back }: { back: () => void }) {
     });
     setSelected(0);
     setNotice(
-      `${templates[n].name} loaded. Your prior local draft was replaced.`,
+      `${templates[n].name} loaded. Undo is available.`,
     );
   };
   const reset = () => {
+    setUndo({ draft: structuredClone(draft), selected, label: "draft reset" });
     try {
       localStorage.removeItem("showmob-v2-draft");
     } catch {}
     setValidationError("");
     setDraft(defaultDraft);
     setSelected(0);
-    setNotice("Local draft reset to the starter.");
+    setNotice("Local draft reset to the starter. Undo is available.");
   };
   const exportJson = () => {
-    const blob = new Blob([JSON.stringify(draft, null, 2)], {
+    const result = parseArtifact(JSON.stringify(draft));
+    if (!result.ok) {
+      setValidationError(`Export blocked. ${formatIssues(result.issues)}`);
+      setNotice("Fix the validation errors before exporting.");
+      return;
+    }
+    setValidationError("");
+    const blob = new Blob([JSON.stringify(result.artifact, null, 2)], {
       type: "application/json",
     });
     const a = document.createElement("a");
@@ -314,6 +330,7 @@ export function Studio({ back }: { back: () => void }) {
       return;
     }
     setValidationError("");
+    setUndo({ draft: structuredClone(draft), selected, label: "import" });
     setDraft(result.artifact);
     setSelected(0);
     setNotice(`Imported “${result.artifact.title}” into this browser.`);
@@ -340,6 +357,19 @@ export function Studio({ back }: { back: () => void }) {
         <span className="save-state" aria-live="polite">
           {notice}
         </span>
+        {undo && (
+          <button
+            className="tool-button"
+            onClick={() => {
+              setDraft(undo.draft);
+              setSelected(undo.selected);
+              setNotice(`Undid ${undo.label}.`);
+              setUndo(null);
+            }}
+          >
+            Undo
+          </button>
+        )}
         <button className="tool-button" onClick={exportJson}>
           Export JSON
         </button>
@@ -369,6 +399,102 @@ export function Studio({ back }: { back: () => void }) {
         <div className="studio">
           <aside className="outline">
             <span className="eyebrow">Page outline</span>
+            <details className="page-settings">
+              <summary>Page settings</summary>
+              <label>
+                Title
+                <input
+                  value={draft.title}
+                  onChange={(e) => setDraft({ ...draft, title: e.target.value })}
+                />
+              </label>
+              <label>
+                Slug
+                <input
+                  value={draft.slug}
+                  onChange={(e) => setDraft({ ...draft, slug: e.target.value })}
+                />
+              </label>
+              <label>
+                Summary
+                <textarea
+                  rows={3}
+                  value={draft.summary}
+                  onChange={(e) => setDraft({ ...draft, summary: e.target.value })}
+                />
+              </label>
+              <label>
+                Contributor
+                <input
+                  value={draft.contributor}
+                  onChange={(e) => setDraft({ ...draft, contributor: e.target.value })}
+                />
+              </label>
+              <label>
+                Tags <small>Comma separated</small>
+                <input
+                  value={(draft.tags ?? []).join(", ")}
+                  onChange={(e) => setDraft({
+                    ...draft,
+                    tags: e.target.value.split(",").map((value) => value.trim()).filter(Boolean),
+                  })}
+                />
+              </label>
+              <label>
+                Theme
+                <select
+                  value={draft.theme}
+                  onChange={(e) => setDraft({ ...draft, theme: e.target.value as ThemeId })}
+                >
+                  {themes.map((theme) => (
+                    <option key={theme.id} value={theme.id}>{theme.label}</option>
+                  ))}
+                </select>
+              </label>
+              <label>
+                Series ID <small>Optional</small>
+                <input
+                  value={draft.series?.id ?? ""}
+                  onChange={(e) => {
+                    const id = e.target.value;
+                    setDraft({
+                      ...draft,
+                      series: id ? {
+                        id,
+                        title: draft.series?.title ?? "Series",
+                        order: draft.series?.order ?? 1,
+                      } : undefined,
+                    });
+                  }}
+                />
+              </label>
+              {draft.series && (
+                <>
+                  <label>
+                    Series title
+                    <input
+                      value={draft.series.title}
+                      onChange={(e) => setDraft({
+                        ...draft,
+                        series: { ...draft.series!, title: e.target.value },
+                      })}
+                    />
+                  </label>
+                  <label>
+                    Series order
+                    <input
+                      type="number"
+                      min="1"
+                      value={draft.series.order}
+                      onChange={(e) => setDraft({
+                        ...draft,
+                        series: { ...draft.series!, order: Number(e.target.value) },
+                      })}
+                    />
+                  </label>
+                </>
+              )}
+            </details>
             <label>
               Page pattern
               <select
@@ -459,7 +585,7 @@ export function Studio({ back }: { back: () => void }) {
           </section>
           <section className="live">
             <span className="eyebrow">Block preview</span>
-            <div className="mini-shell">
+            <div className={`mini-shell artifact theme-${draft.theme}`}>
               <BlockView block={b} />
             </div>
           </section>

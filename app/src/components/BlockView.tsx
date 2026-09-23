@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Callout } from "./file-kit";
 import { type Block } from "../schema";
 
@@ -180,7 +180,9 @@ export function BlockView({ block }: { block: Block }) {
         {id !== null && (
           <Callout
             title={
-              id === block.answer ? "Good read" : "Look one boundary earlier"
+              id === block.answer
+                ? block.correctFeedback || "Correct"
+                : block.wrongFeedback || "Not quite"
             }
             tone={id === block.answer ? "positive" : "warning"}
           >
@@ -291,28 +293,62 @@ function Slideshow({
   block: Extract<Block, { type: "slideshow" }>;
 }) {
   const [index, setIndex] = useState(0);
+  const [fullscreen, setFullscreen] = useState(false);
+  const root = useRef<HTMLElement>(null);
+  const pointer = useRef<{ x: number; y: number } | null>(null);
   useEffect(
     () => setIndex((i) => Math.min(i, block.slides.length - 1)),
     [block.slides.length],
   );
+  useEffect(() => {
+    const changed = () => setFullscreen(document.fullscreenElement === root.current);
+    document.addEventListener("fullscreenchange", changed);
+    return () => document.removeEventListener("fullscreenchange", changed);
+  }, []);
+  const previous = () => setIndex((i) => Math.max(0, i - 1));
+  const next = () => setIndex((i) => Math.min(block.slides.length - 1, i + 1));
+  const toggleFullscreen = async () => {
+    if (document.fullscreenElement) await document.exitFullscreen();
+    else await root.current?.requestFullscreen();
+  };
   return (
     <section
+      ref={root}
       className="block slideshow"
       id={block.id}
       aria-label={block.heading}
+      tabIndex={0}
+      onKeyDown={(event) => {
+        if (event.key === "ArrowLeft") { event.preventDefault(); previous(); }
+        if (event.key === "ArrowRight") { event.preventDefault(); next(); }
+        if (event.key === "Escape" && document.fullscreenElement) void document.exitFullscreen();
+      }}
+      onPointerDown={(event) => { pointer.current = { x: event.clientX, y: event.clientY }; }}
+      onPointerUp={(event) => {
+        if (!pointer.current) return;
+        const dx = event.clientX - pointer.current.x;
+        const dy = event.clientY - pointer.current.y;
+        pointer.current = null;
+        if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+          if (dx < 0) next(); else previous();
+        }
+      }}
     >
       <div className="slideshow-head">
         <h2>{block.heading}</h2>
-        <span>
-          {index + 1} / {block.slides.length}
-        </span>
+        <div>
+          <span>{index + 1} / {block.slides.length}</span>
+          <button onClick={() => void toggleFullscreen()}>
+            {fullscreen ? "Exit fullscreen" : "Fullscreen"}
+          </button>
+        </div>
       </div>
       <article aria-live="polite" aria-atomic="true">
         <h3>{block.slides[index].title}</h3>
         <p>{block.slides[index].body}</p>
       </article>
       <div className="slideshow-controls">
-        <button disabled={index === 0} onClick={() => setIndex((i) => i - 1)}>
+        <button disabled={index === 0} onClick={previous}>
           ← Previous
         </button>
         <div role="group" aria-label="Choose slide">
@@ -329,7 +365,7 @@ function Slideshow({
         </div>
         <button
           disabled={index === block.slides.length - 1}
-          onClick={() => setIndex((i) => i + 1)}
+          onClick={next}
         >
           Next →
         </button>

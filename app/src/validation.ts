@@ -29,7 +29,7 @@ const blockRules = {
   embed: { strings: ['heading', 'source', 'caption'], optional: ['url'] },
   image: { strings: ['src', 'alt', 'caption'], optional: ['heading', 'sourceUrl'] },
   'resource-list': { strings: ['heading'], list: { key: 'items', strings: ['label', 'detail', 'url'] } },
-  exercise: { strings: ['heading', 'prompt', 'explanation'], list: { key: 'options' } },
+  exercise: { strings: ['heading', 'prompt', 'explanation'], optional: ['correctFeedback', 'wrongFeedback'], list: { key: 'options' } },
   'compact-table': { strings: ['heading'], optional: ['caption'], list: { key: 'rows' } },
   diagram: { strings: ['heading'], list: { key: 'nodes', strings: ['title', 'detail'] } },
   slideshow: { strings: ['heading'], list: { key: 'slides', strings: ['title', 'body'] } },
