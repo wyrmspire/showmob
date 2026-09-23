@@ -56,8 +56,8 @@ Showmob starts from a sound accessibility foundation: semantic HTML, `aria-press
   - Shipped: schema + renderer fallbacks `"Correct"` / `"Not quite"` (PR #28).
 - [x] Ensure long hero titles balance and wrap without the current narrow `10ch`/large-type crushing.
   - Shipped: `max-width: 14ch`, `text-wrap: balance`, `overflow-wrap: anywhere` (PR #28).
-- [ ] Make block entrance motion consistent: apply the same restrained behavior to the whole block vocabulary or remove the partial effect.
-  - Partial: entrance now targets every `.block-frame` / Studio block uniformly, but motion duration is still theme-gated (paper + workshop only; others stay still). Decide: animate all themes the same, or drop motion entirely.
+- [x] Make block entrance motion consistent: apply the same restrained behavior to the whole block vocabulary or remove the partial effect.
+  - Shipped: all five themes share the same restrained entrance tokens (420ms / 14px fade-up); reduced-motion unchanged.
 
 ## 5. Separate the reader home from builder tooling
 

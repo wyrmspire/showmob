@@ -7,7 +7,7 @@ export function BlockView({ block }: { block: Block }) {
   const [checked, setChecked] = useState<number[]>([]);
   if (block.type === "hero")
     return (
-      <section className="hero block block-enter" id={block.id}>
+      <section className="hero block" id={block.id}>
         <div className="eyebrow">{block.eyebrow}</div>
         <h1>{block.title}</h1>
         <p>{block.body}</p>
@@ -15,7 +15,7 @@ export function BlockView({ block }: { block: Block }) {
     );
   if (block.type === "text")
     return (
-      <section className="block block-enter" id={block.id}>
+      <section className="block" id={block.id}>
         <h2>{block.heading}</h2>
         <p>{block.body}</p>
       </section>
