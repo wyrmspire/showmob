@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "slug": "github-what-just-happened",
+  "title": "GitHub, explained with what happened here this week",
+  "summary": "Branches, pull requests, review, merges, deploys, direct commits, rollback and app authorizations, each shown with a real event from the Showmob repository.",
+  "contributor": "Showmob GitHub course",
+  "status": "preview",
+  "theme": "workshop",
+  "series": {
+    "id": "github-in-practice",
+    "title": "GitHub in practice",
+    "order": 1
+  },
+  "tags": [
+    "github",
+    "learning",
+    "showmob"
+  ],
+  "updated": "2026-09-23",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "GitHub in practice · part 1",
+      "title": "What all those notifications meant",
+      "body": "Over September 22 and 23, the Showmob repository got nine pull requests (#14 to #22), a pile of automated review comments, a few commits that skipped pull requests entirely, and a new app authorization on your GitHub account. This page walks through each idea using those real events, so the next notification reads like a sentence instead of noise. Times are US Central. Nothing here needs a terminal."
+    },
+    {
+      "id": "the-pieces",
+      "type": "text",
+      "heading": "1. Repository, main, commit",
+      "body": "A repository (repo) is the project folder plus its full history. The Showmob repo is github.com/wyrmspire/showmob. Inside it, main is the official line of history, and it matters for one practical reason: Vercel builds the live site from main. A commit is one saved snapshot of changes with a short message and an author. Every commit gets an ID, a long hash usually shortened to seven characters, like 76c5874. When a notification or page mentions a string like that, it is pointing at one exact snapshot."
+    },
+    {
+      "id": "notification-decoder",
+      "type": "compact-table",
+      "heading": "2. Notification decoder",
+      "columns": [
+        "What you saw",
+        "What it means, with a real example"
+      ],
+      "rows": [
+        [
+          "opened pull request #21",
+          "Someone proposed a set of changes and asked for them to join main. Example: #21, Route unpublished deep links to the Not published state, opened Sep 23, 9:02 AM."
+        ],
+        [
+          "Vercel: deployment has completed",
+          "Vercel built the code and the build worked. On a branch that is a preview; on main it is the live site. Example: Preview for #21's branch at 9:03 AM; production for the merge at 9:05 AM."
+        ],
+        [
+          "copilot-pull-request-reviewer commented",
+          "GitHub's automated reviewer read the change and left notes. It does not approve or block by default. Example: Flagged a slug collision on #21 at 9:06 AM."
+        ],
+        [
+          "merged pull request #21",
+          "The proposal was accepted and its changes are now on main. Example: Merged at 9:04:59 AM by wyrmspire."
+        ],
+        [
+          "A commit on main with no pull request",
+          "Changes went straight onto main with no proposal step. Example: Three Grok Bot commits on Sep 22, 6:12 to 6:18 PM."
+        ]
+      ],
+      "caption": "Times from the GitHub pull request, review and deployment records for this repository."
+    },
+    {
+      "id": "one-change-end-to-end",
+      "type": "diagram",
+      "heading": "3. One change, end to end: pull request #21",
+      "nodes": [
+        {
+          "title": "Branch",
+          "detail": "fix/unpublished-deep-links started as a copy of main. Work there cannot touch the live site."
+        },
+        {
+          "title": "Commit",
+          "detail": "b8916e8 at 9:02 AM: three files changed, 43 lines added, 7 removed."
+        },
+        {
+          "title": "Pull request",
+          "detail": "#21 opened at 9:02 AM. It shows the difference between the branch and main."
+        },
+        {
+          "title": "Checks",
+          "detail": "Vercel built a preview of the branch at 9:03 AM and reported success."
+        },
+        {
+          "title": "Merge",
+          "detail": "9:04:59 AM. GitHub wrote merge commit 76c5874 onto main."
+        },
+        {
+          "title": "Live",
+          "detail": "Vercel started the production deployment for 76c5874 at 9:05 AM."
+        }
+      ]
+    },
+    {
+      "id": "branches",
+      "type": "text",
+      "heading": "4. Branches are cheap copies, and they pile up",
+      "body": "A branch is a named line of work that starts from main and changes separately. Names like fix/unpublished-deep-links or artifact/great-portfolio-how-to are just labels; the part before the slash is a habit for sorting, not a GitHub feature. After a merge, the branch has done its job, but GitHub does not delete it unless the repo is set up to or someone clicks Delete branch. Right now 17 old branches besides main are still in this repo. They are harmless and not live. Deleting a merged branch loses nothing, because its commits are already on main."
+    },
+    {
+      "id": "pull-requests",
+      "type": "text",
+      "heading": "5. A pull request is a proposal with a paper trail",
+      "body": "A pull request (PR) says: here is a branch, here is what it changes, please put it on main. The PR page has a description, a Files changed tab showing every added and removed line, the checks, and the review comments. Take #14, Add practical portfolio how-to: one commit, one new file, 136 lines. It was opened at 10:11 AM on Sep 22 and merged 73 seconds later. That speed was typical this week. Every PR from #14 to #22 went from opened to merged in under five minutes, five of them in under 15 seconds. So the paper trail was real, but there was almost no time to read it before the merge. The next two sections show what that cost."
+    },
+    {
+      "id": "merge-styles",
+      "type": "comparison",
+      "heading": "6. Two ways a pull request landed on main",
+      "columns": [
+        {
+          "name": "Merge commit (most PRs here, like #21)",
+          "detail": "GitHub keeps the branch commits and adds one extra commit that joins the two lines. That is why the history shows pairs: b8916e8 is the real work and 76c5874, titled Merge pull request #21, is the join. The join commit has two parents, main and the branch."
+        },
+        {
+          "name": "Squash and merge (#15 and #18)",
+          "detail": "GitHub squeezes all the branch commits into one new commit on main. #15 had four commits on its branch, and main got just one: 0a70a9a, Add Supabase persistence and API guide. #18 landed as 11b333e with (#18) added to the title. Cleaner history, but the individual steps only survive on the PR page."
+        }
+      ]
+    },
+    {
+      "id": "review",
+      "type": "text",
+      "heading": "7. Review: what Copilot caught on #21",
+      "body": "Review means someone reads the change before it lands and says approve, request changes, or just comments. On this repo the only reviewer was Copilot, GitHub's automated reviewer, which runs by itself on each PR. On #21 it found a real problem: an artifact given the slug home or author would open the Home screen or Studio instead of the Not published page. But its review arrived at 9:06 AM, about a minute after the merge. The bug was already on main. The fix was a second PR, #22, Reserve UI route slugs, opened at 9:28 AM and merged at 9:29 AM. Copilot reviewed #22 at 9:31 AM and found nothing. That is the normal repair pattern: you do not edit a merged PR, you open a new one."
+    },
+    {
+      "id": "review-timing",
+      "type": "note-callout",
+      "title": "Review mostly arrived after the merge",
+      "body": "Of the nine PRs from #14 to #22, Copilot's review came in after the merge on eight. Only #15 was reviewed first. On #19, Copilot left three notes after the merge; one said a Studio notice uses two style variables that are never defined, and as of Sep 23 they still are not. A comment is not a fix. Copilot comments by default and does not count as an approval, so nothing forced anyone to wait for it. For a low-stakes sandbox that trade is fine. It stops being fine once real people rely on the site.",
+      "tone": "warning"
+    },
+    {
+      "id": "checks-deploys",
+      "type": "compact-table",
+      "heading": "8. Checks and deploys: preview vs production",
+      "columns": [
+        "Event",
+        "What Vercel does",
+        "Live site changes?"
+      ],
+      "rows": [
+        [
+          "Push a commit to a branch",
+          "Builds a preview deployment at its own address and reports a check on the commit",
+          "No"
+        ],
+        [
+          "Merge a PR into main",
+          "Builds a production deployment",
+          "Yes, once the build succeeds"
+        ],
+        [
+          "Commit straight to main",
+          "Also builds a production deployment",
+          "Yes, with no preview first"
+        ]
+      ],
+      "caption": "A check is a small status light GitHub shows next to a commit: pending, success or failure. Vercel's check here means the build worked, not that the page is right."
+    },
+    {
+      "id": "direct-vs-pr",
+      "type": "comparison",
+      "heading": "9. Two roads onto main, and both were used",
+      "columns": [
+        {
+          "name": "Through a pull request",
+          "detail": "Branch, PR, checks, merge. Every Instinct Agent commit this week went this way: #16, #19, #20, #21 and #22. You get a preview, a diff and a review record before main changes, even if nobody waits for them."
+        },
+        {
+          "name": "Straight to main",
+          "detail": "On Sep 22 between 6:12 and 6:18 PM, Grok Bot pushed three commits directly onto main, including Hide unpublished pages and theme audition in production. On Sep 23 at 8:19 AM, a roadmap commit also went straight on. Each one went live on the next production build with no preview, no PR page and no review. It works, and for small doc edits it is common. The history shows the repo does not currently block it."
+        }
+      ]
+    },
+    {
+      "id": "whose-name",
+      "type": "note-callout",
+      "title": "Why your name is on merges you did not click",
+      "body": "Every merge from #14 to #22 says merged by wyrmspire. GitHub records the account that did it, not the person or program behind it. When an agent is signed in as your account, its merges look exactly like yours. The commit author is recorded separately: on #21 and #22 the work commits show Instinct Agent as author, while the merge commits show wyrmspire.",
+      "tone": "note"
+    },
+    {
+      "id": "undo",
+      "type": "text",
+      "heading": "10. Undo: revert and rollback are different tools",
+      "body": "Nothing was reverted this week, so this part is what would happen, not what did. A revert is a new commit that applies the exact opposite of an earlier one. The bad change stays in history and a new line says it was undone. On any merged PR page GitHub shows a Revert button, which creates a new PR that undoes that PR; you merge it like any other. A rollback is a Vercel action instead: Instant Rollback points the live site back at an earlier production deployment in seconds, without touching the code. It is the faster fire extinguisher, but main still contains the bad change, so the next merge would bring it back unless you also revert. Use rollback to stop the bleeding and revert to fix the record."
+    },
+    {
+      "id": "oauth",
+      "type": "text",
+      "heading": "11. The app authorization on your account",
+      "body": "On Sep 23 the GitHub command-line tool (GitHub CLI) was authorized on the wyrmspire account so an agent could open and merge PRs. It used the device flow: the tool prints a short one-time code, someone enters it at github.com/login/device while signed in, and GitHub hands the tool a token. That token acts as you. This one has repo scope, which means it can read and write every repository on the account, not only Showmob, and it keeps working until you revoke it. Signing in to other sites with a GitHub button creates a similar grant. To see them all: profile picture, Settings, then Applications in the Integrations section, then the Authorized OAuth Apps tab. Revoking there cuts the tool off; it would need a new authorization to act again."
+    },
+    {
+      "id": "check-merge-style",
+      "type": "exercise",
+      "heading": "Check 1: read the history",
+      "prompt": "Main shows two commits: b8916e8 Route unpublished deep links, and right after it 76c5874 Merge pull request #21. What is 76c5874?",
+      "options": [
+        "A second copy of the same fix, made by mistake",
+        "The join commit GitHub adds when a PR lands as a merge commit",
+        "A revert of b8916e8"
+      ],
+      "answer": 1,
+      "explanation": "With a merge commit, the branch commits stay as they were and GitHub adds one commit that joins the branch into main. It has two parents: the previous main commit and b8916e8."
+    },
+    {
+      "id": "check-late-review",
+      "type": "exercise",
+      "heading": "Check 2: the review came late",
+      "prompt": "Copilot finds a real bug on a PR one minute after it was merged. What is the normal next step?",
+      "options": [
+        "Edit the merged PR so the bug disappears from it",
+        "Nothing; the Vercel check passed, so the code is fine",
+        "Open a new PR that fixes the bug, as #22 did for #21"
+      ],
+      "answer": 2,
+      "explanation": "A merged PR is closed history. Fixes go in a new branch and PR. A passing Vercel check only means the build worked; it does not test the routing bug Copilot found."
+    },
+    {
+      "id": "check-undo",
+      "type": "exercise",
+      "heading": "Check 3: stop the bleeding",
+      "prompt": "A merge breaks the live site and you want it working again in the next minute. Which tool changes the live site without changing the code?",
+      "options": [
+        "Vercel Instant Rollback",
+        "GitHub's Revert button",
+        "Deleting the branch"
+      ],
+      "answer": 0,
+      "explanation": "Instant Rollback points production at an earlier deployment. The Revert button fixes the code history through a new PR, which then deploys. Deleting a merged branch changes neither main nor the live site."
+    },
+    {
+      "id": "try-it",
+      "type": "checklist",
+      "heading": "Ten minutes on the real repo",
+      "items": [
+        {
+          "label": "Open #21 and click Files changed",
+          "detail": "Green lines were added, red lines removed. That is exactly what landed on main."
+        },
+        {
+          "label": "Find Copilot's comment on #21",
+          "detail": "Check its timestamp against the merged message at the top."
+        },
+        {
+          "label": "Open the Commits list for main",
+          "detail": "Spot a Merge pull request pair, a squashed (#18) commit, and a Grok Bot commit with no PR."
+        },
+        {
+          "label": "Look at the Branches page",
+          "detail": "Notice how many merged branches are still there. Deleting one is safe; try it only if you want to."
+        },
+        {
+          "label": "Open Settings, Applications, Authorized OAuth Apps",
+          "detail": "Find GitHub CLI and read what access it lists. Decide whether to keep it."
+        }
+      ]
+    },
+    {
+      "id": "limits",
+      "type": "note-callout",
+      "title": "Scope of this page",
+      "body": "This covers what happened on one small public repo in two days. It skips rebasing, merge conflicts, forks, issues, and branch protection rules, which can require reviews or passing checks before a merge. Facts here come from this repository's commit history and GitHub's pull request, review and deployment records as of Sep 23, 2026, plus the official docs below.",
+      "tone": "note"
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources and further reading",
+      "items": [
+        {
+          "label": "The Showmob pull requests",
+          "detail": "Every PR in this lesson, with its diff, checks and review comments.",
+          "url": "https://github.com/wyrmspire/showmob/pulls?q=is%3Apr"
+        },
+        {
+          "label": "GitHub Docs: Pull request merges",
+          "detail": "Merge commit, squash and merge, and rebase and merge, side by side.",
+          "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges"
+        },
+        {
+          "label": "GitHub Docs: Reverting a pull request",
+          "detail": "How the Revert button creates a new PR that undoes a merged one.",
+          "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/reverting-a-pull-request"
+        },
+        {
+          "label": "GitHub Docs: Using Copilot code review",
+          "detail": "Copilot leaves Comment reviews by default, which do not count as approvals.",
+          "url": "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review"
+        },
+        {
+          "label": "Vercel Docs: Deploying Git repositories",
+          "detail": "Preview deployments for every push, production deployments from the production branch.",
+          "url": "https://vercel.com/docs/deployments/git"
+        },
+        {
+          "label": "Vercel Docs: Instant Rollback",
+          "detail": "Pointing production back at an earlier deployment.",
+          "url": "https://vercel.com/docs/instant-rollback"
+        },
+        {
+          "label": "GitHub Docs: Authorizing OAuth apps",
+          "detail": "Includes the device flow used by command-line tools.",
+          "url": "https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps"
+        },
+        {
+          "label": "GitHub Docs: Reviewing your authorized OAuth apps",
+          "detail": "Where to see and revoke app access on your account.",
+          "url": "https://docs.github.com/en/apps/oauth-apps/using-oauth-apps/reviewing-your-authorized-oauth-apps"
+        }
+      ]
+    }
+  ]
+}
