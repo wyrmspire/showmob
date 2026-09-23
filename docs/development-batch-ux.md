@@ -46,7 +46,7 @@ Showmob starts from a sound accessibility foundation: semantic HTML, `aria-press
 - [x] Add deliberate mobile swipe behavior without interfering with normal vertical scrolling or text inputs.
   - Shipped: pointer swipe + `touch-action: pan-y` (PR #28).
 - [x] Keep usable mobile slide controls; do not hide the only navigation affordance.
-  - Shipped enough: Prev/Next remain under `max-width: 780px`; slide-dot pills stay hidden there while swipe/keyboard/fullscreen still work. Restoring dots on narrow viewports is optional polish.
+  - Shipped: Prev/Next and slide-dot pills remain usable under `max-width: 780px`; dots wrap to a centered, horizontally scrollable second row while swipe/keyboard/fullscreen continue to work.
 - [x] Add fullscreen presentation and a clear exit path.
   - Shipped: `requestFullscreen` + “Exit fullscreen” (PR #28).
 

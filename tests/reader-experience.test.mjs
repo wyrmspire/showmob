@@ -90,6 +90,13 @@ test('slideshow supports keyboard, swipe and fullscreen controls', () => {
   assert.match(source, /Exit fullscreen/);
 });
 
+test('narrow slideshow controls keep dots in a wrapped scrollable row', () => {
+  const css = read('../app/src/style.css');
+  assert.match(css, /\.slideshow-controls\{align-items:stretch;flex-wrap:wrap\}/);
+  assert.match(css, /\.slideshow-controls>div\{order:3;flex:1 1 100%;justify-content:center;overflow-x:auto/);
+  assert.doesNotMatch(css, /@media\(max-width:780px\)\{[^}]*\.slideshow-controls>div\{display:none\}/);
+});
+
 test('entrance motion tokens apply on all themes, not paper/workshop only', () => {
   const css = read('../app/src/style.css');
   const view = read('../app/src/components/BlockView.tsx');
