@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "slug": "showmob-guide",
   "title": "How Showmob works",
-  "summary": "What this site is, why it exists, and the short path from an idea to a shared link.",
+  "summary": "What this site is, the short path from idea to shared link, and what the same small content language also unlocks.",
   "contributor": "Showmob product guide",
   "status": "published",
   "theme": "signal",
@@ -96,6 +96,70 @@
       ]
     },
     {
+      "id": "language-for",
+      "type": "text",
+      "heading": "What these mechanics also allow",
+      "body": "schemaVersion 1 JSON pages, a shared block vocabulary, themes, Browse plus slideshow-as-block, lifecycle status, and series plus hub/tags are a small content language. Beyond one idea \u2192 one link, the same pieces compose into courses, explainers, and story worlds\u2014without becoming Mira or Edgerite."
+    },
+    {
+      "id": "use-cases",
+      "type": "compact-table",
+      "heading": "Jobs the language already fits",
+      "caption": "Recipes are named combinations of today\u2019s blocks. A future gallery would make those recipes learnable\u2014it is not shipped yet.",
+      "columns": [
+        "Job",
+        "How you compose it",
+        "Honest edge"
+      ],
+      "rows": [
+        [
+          "Courses / lessons",
+          "Ordered series of pages teaching a subject (already true for the mechanics course).",
+          "Works today with series.order."
+        ],
+        [
+          "Explainers & comparisons",
+          "Compose blocks into jobs: hero+text+diagram+exercise, or comparison+table+callout.",
+          "Recipes are patterns on today\u2019s vocabulary; gallery is later."
+        ],
+        [
+          "Story worlds",
+          "Separate stable world pages (characters, places, refs) from telling (ordered prose against them).",
+          "World vs telling is the practice; graph tooling is not shipped."
+        ],
+        [
+          "Cross-page exploration",
+          "Typed slugs and manual links today; series for straight reading, hub/tags to wander.",
+          "Real references and \u201cappears in\u2026\u201d backlinks are later growth."
+        ],
+        [
+          "Agent-friendly authoring",
+          "Search before create; compose and validate JSON; publish a shareable URL.",
+          "Prove the language with real content, not only meta pages about Showmob."
+        ],
+        [
+          "Later thin data",
+          "Optional participatory or saved state without becoming a CMS.",
+          "Hinted on the roadmap; not a live store yet."
+        ]
+      ]
+    },
+    {
+      "id": "world-vs-telling",
+      "type": "comparison",
+      "heading": "Story worlds: world vs telling",
+      "columns": [
+        {
+          "name": "World (stable)",
+          "detail": "Character, place, and reference pages that hold facts. Agents and authors read them before a scene and update them after publish."
+        },
+        {
+          "name": "Telling (prose)",
+          "detail": "Ordered scenes written against the world. Metaphor and voice live here; facts stay on world pages. Series for straight-through reading; hub and tags to wander."
+        }
+      ]
+    },
+    {
       "id": "roadmap",
       "type": "timeline",
       "heading": "Where the work sits",
@@ -103,7 +167,7 @@
         {
           "time": "Shipped",
           "title": "Portable pages + honest production catalog",
-          "detail": "JSON artifacts, Browse + slideshow blocks, five themes, published-only public list, author theme on share links."
+          "detail": "JSON artifacts, Browse + slideshow blocks, five themes, series and hub/tags, published-only public list, author theme on share links."
         },
         {
           "time": "Next",
@@ -112,8 +176,8 @@
         },
         {
           "time": "Later",
-          "title": "Thin data, still portable",
-          "detail": "Optional store for artifacts and status with a small API surface. Keep the JSON contract so the renderer stays store-agnostic. Avoid Mira-scale features."
+          "title": "Gallery, references, thin data",
+          "detail": "A learnable block gallery and named recipes; typed page references with backlinks so broken links fail validation and pages can show \u201cappears in\u2026\u201d; optional store for artifacts and light participatory state. Keep the JSON contract; avoid Mira-scale features."
         }
       ]
     },
@@ -128,8 +192,8 @@
       "id": "novel-path",
       "type": "note-callout",
       "tone": "note",
-      "title": "Future growth: story worlds as data entries",
-      "body": "A separate sketch covers character arcs, personalities, open-world hubs, and participatory data entries on linked Showmob pages\u2014using today\u2019s blocks, with honest local-only participation that resets. It is a growth page, not a claim that story worlds ship end-to-end today."
+      "title": "Story worlds are one use of the same language",
+      "body": "World vs telling above is the practice on today\u2019s blocks. A separate growth sketch goes deeper on arcs, personalities, hubs, and participatory entries\u2014local-only limits today, thin data later. It is not a claim that story worlds ship end-to-end."
     },
     {
       "id": "novel-path-link",
@@ -138,7 +202,7 @@
       "items": [
         {
           "label": "Story worlds as data entries",
-          "detail": "Future-growth sketch: arcs, personalities, open world, and participatory entries\u2014local-only limits today, thin data later.",
+          "detail": "Growth sketch: arcs, personalities, open world, and participatory entries\u2014using the same language, with honest local-only limits today.",
           "url": "https://showmob.vercel.app/a/showmob-novel-path"
         }
       ]
