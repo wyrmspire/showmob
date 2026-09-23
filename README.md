@@ -79,6 +79,8 @@ Showmob’s production content source remains **repository JSON**. A Supabase fo
 
 Cloud Auth is not wired into the Vite app. Public signup stays disabled in local CLI config. Artifact `preview` lifecycle filtering (`VITE_SHOW_UNPUBLISHED`) is independent of Supabase. See [`supabase/README.md`](supabase/README.md) and the root [`ROADMAP.md`](ROADMAP.md) Phase 3 notes.
 
+What is actually live in the `showmob-dev` project today, and what to do before the first `supabase db push`: [`docs/supabase.md`](docs/supabase.md).
+
 ## Local unpublished catalog
 
 Production builds list **published** artifacts only (draft/preview JSON stays in the repo).
