@@ -1,14 +1,18 @@
-import { entries } from "./catalog";
+import { allEntries } from "./catalog";
+import { resolveScreen } from "./screen";
 
 const query = () =>
   new URLSearchParams(globalThis.window?.location?.search ?? "");
+// Every file on disk, not just the listed catalog: a deep link to a
+// preview/draft page must reach App.tsx's "Not published" state instead of
+// silently becoming Home.
+const knownSlugs = allEntries.map((entry) => entry.slug);
 export function screenFromLocation() {
-  const artifact = query().get("artifact");
-  if (artifact && entries.some((entry) => entry.slug === artifact))
-    return artifact;
-  return globalThis.window?.history.state?.showmobScreen === "author"
-    ? "author"
-    : "home";
+  return resolveScreen(
+    query().get("artifact"),
+    knownSlugs,
+    globalThis.window?.history.state?.showmobScreen,
+  );
 }
 export function writeScreen(screen: string) {
   if (!globalThis.window?.location) return;
