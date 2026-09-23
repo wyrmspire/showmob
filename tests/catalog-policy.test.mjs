@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import test from 'node:test';
-import { isCatalogVisible } from '../app/src/catalog-policy.ts';
+import { isCatalogVisible, isLinkViewable } from '../app/src/catalog-policy.ts';
 import { resolveScreen } from '../app/src/screen.ts';
 
 const statuses = ['draft', 'preview', 'published', 'archived'];
@@ -37,4 +37,19 @@ test('reload classification preserves published, withheld and unknown slugs', ()
   assert.equal(resolveScreen('../bad', known), 'home');
   assert.equal(resolveScreen('author', known), 'home');
   assert.equal(resolveScreen(null, known, 'author'), 'author');
+});
+
+test('direct links render published and preview, never draft or archived', () => {
+  assert.deepEqual(statuses.filter(status => isLinkViewable(status, false)), ['preview', 'published']);
+  assert.deepEqual(statuses.filter(status => isLinkViewable(status, true)), ['draft', 'preview', 'published']);
+  // Listing stays published-only in production.
+  assert.equal(isCatalogVisible('preview', false), false);
+});
+
+test('App renders viewable entries; Home, series shelves and share pages stay published-only', () => {
+  const read = path => readFileSync(new URL(path, import.meta.url), 'utf8');
+  assert.match(read('../app/src/App.tsx'), /viewableEntries\.find/);
+  assert.doesNotMatch(read('../app/src/Home.tsx'), /viewableEntries|readerSeriesList/);
+  assert.match(read('../scripts/generate-share-pages.mjs'), /status === "published"/);
+  assert.match(read('../app/src/ArtifactView.tsx'), /entry\.status === "published" \? seriesList : readerSeriesList/);
 });

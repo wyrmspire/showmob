@@ -68,3 +68,13 @@ export function clearArtifactShareMeta(): void {
   }
   document.head.querySelector('link[rel="canonical"]')?.remove();
 }
+
+/** Unlisted (preview) pages ask crawlers not to index them. */
+export function setUnlistedRobots(unlisted: boolean): void {
+  const existing = document.head.querySelector('meta[name="robots"]');
+  if (!unlisted) {
+    existing?.remove();
+    return;
+  }
+  upsertMeta("name", "robots", "noindex");
+}

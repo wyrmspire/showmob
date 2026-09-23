@@ -1,5 +1,6 @@
 import { allEntries } from "./catalog";
 import {
+  EVERYTHING_PATH,
   artifactPath,
   isArtifactSlug,
   isReservedSlug,
@@ -56,9 +57,11 @@ export function writeScreen(screen: string) {
   const search = params.toString();
   // Artifacts use `/a/{slug}`; home and Studio (author) stay on `/`.
   const path =
-    !isReservedSlug(screen) && isArtifactSlug(screen)
-      ? artifactPath(screen)
-      : "/";
+    screen === "everything"
+      ? EVERYTHING_PATH
+      : !isReservedSlug(screen) && isArtifactSlug(screen)
+        ? artifactPath(screen)
+        : "/";
   const url = `${path}${search ? `?${search}` : ""}`;
   history.pushState({ showmobScreen: screen }, "", url);
 }

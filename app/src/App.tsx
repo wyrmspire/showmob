@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { allEntries, entries } from "./catalog";
+import { allEntries, viewableEntries } from "./catalog";
 import { ArtifactView } from "./ArtifactView";
 import { Home } from "./Home";
 import { Studio } from "./Studio";
+import { Everything } from "./Everything";
 import { screenFromLocation, writeScreen } from "./routing";
 import { isReservedSlug } from "./screen";
 import "./style.css";
@@ -16,7 +17,9 @@ export function App() {
   }, []);
   const entry = useMemo(
     () =>
-      isReservedSlug(screen) ? undefined : entries.find((e) => e.slug === screen),
+      isReservedSlug(screen)
+        ? undefined
+        : viewableEntries.find((e) => e.slug === screen),
     [screen],
   );
   const withheld = useMemo(() => {
@@ -33,6 +36,9 @@ export function App() {
     return (
       <ArtifactView key={entry.slug} entry={entry} home={home} open={open} />
     );
+  }
+  if (screen === "everything") {
+    return <Everything open={open} home={home} />;
   }
   if (screen === "author") {
     return <Studio back={home} />;
