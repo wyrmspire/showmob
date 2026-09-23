@@ -67,6 +67,18 @@ node --experimental-strip-types --test tests/validation.test.mjs
 
 This checks JSON content, the legacy fixture, catalog examples and runtime validation failure cases. Run `npm run build` as the separate type-check and production-build gate. Pasted/file imports, saved drafts and the bundled content library use the same validator in `app/src/validation.ts`.
 
+
+## Persistence foundation (optional, development only)
+
+Showmob’s production content source remains **repository JSON**. A Supabase foundation lives on the `feat/supabase-foundation` line of work and in `supabase/`:
+
+- Migrations and CLI `config.toml` for artifact identity, immutable revisions, denormalized lifecycle status, and an ownership column placeholder.
+- Typed adapter in `app/src/persistence/` that production rendering does **not** import.
+- Offline tests for export/import parity and migration/layout contracts.
+- [`.env.example`](.env.example) with placeholder public URL / anon key only — no secrets, no service-role key.
+
+Cloud Auth is not wired into the Vite app. Public signup stays disabled in local CLI config. Artifact `preview` lifecycle filtering (`VITE_SHOW_UNPUBLISHED`) is independent of Supabase. See [`supabase/README.md`](supabase/README.md) and the root [`ROADMAP.md`](ROADMAP.md) Phase 3 notes.
+
 ## Local unpublished catalog
 
 Production builds list **published** artifacts only (draft/preview JSON stays in the repo).
