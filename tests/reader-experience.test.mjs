@@ -24,6 +24,17 @@ test('Home searches the full library before shelves and avoids duplicate series 
   assert.match(home, /b\[1\] - a\[1\]/);
 });
 
+test('Home keeps public lead reader-facing and caps the tag wall', () => {
+  const home = read('../app/src/Home.tsx');
+  assert.match(home, /Read a page\. Follow a series\. Present a block\./);
+  assert.doesNotMatch(home, /Author as JSON/);
+  assert.doesNotMatch(home, /Add or export JSON to create the next page/);
+  assert.match(home, /TAG_CAP = 10/);
+  assert.match(home, /More tags/);
+  assert.match(home, /Fewer tags/);
+  assert.match(home, /Search or filter by tag to find the next idea/);
+});
+
 test('artifact view exposes title, section, copy-link and focus-mode recovery behavior', () => {
   const source = read('../app/src/ArtifactView.tsx');
   assert.match(source, /document\.title = `\$\{entry\.title\} · Showmob`/);
@@ -32,6 +43,7 @@ test('artifact view exposes title, section, copy-link and focus-mode recovery be
   assert.match(source, /event\.key === "Escape"/);
   assert.match(source, /className="zen-exit"/);
   assert.match(source, /focusHashTarget/);
+  assert.match(source, /min read/);
 });
 
 test('exercise feedback accepts author voice but has neutral renderer fallbacks', () => {

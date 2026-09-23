@@ -9,6 +9,8 @@ import {
 import { authorToolsEnabled, entries, seriesList, seriesMeta } from "./catalog";
 import { ArtifactLink } from "./components/ArtifactLink";
 
+const TAG_CAP = 10;
+
 export function Home({
   open,
   author,
@@ -18,10 +20,19 @@ export function Home({
 }) {
   const [term, setTerm] = useState("");
   const [tag, setTag] = useState("all");
+  const [showAllTags, setShowAllTags] = useState(false);
   const tagCounts = entries
     .flatMap((entry) => entry.tags ?? [])
     .reduce((counts, value) => counts.set(value, (counts.get(value) ?? 0) + 1), new Map<string, number>());
   const tags = [...tagCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  const primaryTags = tags.slice(0, TAG_CAP);
+  const overflowCount = Math.max(0, tags.length - TAG_CAP);
+  const selectedOverflow = tag !== "all" ? tags.find(([name], index) => name === tag && index >= TAG_CAP) : undefined;
+  const shownTags = showAllTags
+    ? tags
+    : selectedOverflow
+      ? [...primaryTags, selectedOverflow]
+      : primaryTags;
   const visible = entries.filter(
     (e) =>
       (tag === "all" || e.tags?.includes(tag)) &&
@@ -41,7 +52,7 @@ export function Home({
       <section className="home-lead">
         <div>
           <span className="eyebrow">How this site works</span>
-          <h2>Read a page. Present a block. Author as JSON.</h2>
+          <h2>Read a page. Follow a series. Present a block.</h2>
         </div>
         <div className="mini-features">
           <span>
@@ -51,7 +62,7 @@ export function Home({
             <b>02</b> Step through a slideshow when the page has one
           </span>
           <span>
-            <b>03</b> Add or export JSON to create the next page
+            <b>03</b> Search or filter by tag to find the next idea
           </span>
         </div>
       </section>
@@ -69,11 +80,20 @@ export function Home({
           <button aria-pressed={tag === "all"} onClick={() => setTag("all")}>
             All
           </button>
-          {tags.map(([name, count]) => (
+          {shownTags.map(([name, count]) => (
             <button aria-pressed={tag === name} onClick={() => setTag(name)} key={name}>
               {name} <small>{count}</small>
             </button>
           ))}
+          {overflowCount > 0 && (
+            <button
+              type="button"
+              aria-expanded={showAllTags}
+              onClick={() => setShowAllTags((openTags) => !openTags)}
+            >
+              {showAllTags ? "Fewer tags" : `More tags · ${overflowCount}`}
+            </button>
+          )}
         </div>
         <p className="result-count" aria-live="polite">
           {visible.length} of {entries.length} pages
