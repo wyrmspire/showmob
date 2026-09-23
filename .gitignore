@@ -48,3 +48,7 @@ dump*.md
 
 # Vite build output (generated; includes per-artifact share pages)
 /dist
+
+# local dump / diff dumps for chat
+gitrdif*.md
+.last-dump-commit
