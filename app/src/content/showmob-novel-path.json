@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "slug": "showmob-novel-path",
-  "title": "Writing a novel with Showmob",
-  "summary": "A future-growth sketch: how linked Showmob pages, series, and existing blocks could hold a novel draft—and what would still need to earn a build.",
+  "title": "Story worlds as data entries",
+  "summary": "A future-growth sketch: character arcs, personalities, open-world hubs, and participatory data entries on linked Showmob pages—using today’s blocks, with honest local-only limits.",
   "contributor": "Showmob product guide",
   "status": "published",
   "theme": "paper",
@@ -10,222 +10,336 @@
     "showmob",
     "roadmap",
     "writing",
-    "novel"
+    "novel",
+    "story-world"
   ],
   "updated": "2026-09-23",
   "blocks": [
     {
       "id": "start",
       "type": "hero",
-      "eyebrow": "Growth sketch · not shipped as a novel tool",
-      "title": "A novel as linked Showmob pages",
-      "body": "This page is a product sketch, not a claim that Showmob writes novels end-to-end today. The idea is simple: each chapter (or scene pack) is an artifact; the book spine is a series; structure, revision, and paced reveals use blocks you already have. Reader participation and durable collaboration would come later—only if a real draft proves the gap."
+      "eyebrow": "Growth sketch · not shipped as a story-world tool",
+      "title": "A story world of data entries readers can join",
+      "body": "This page is a product sketch, not a claim that Showmob ships novels or RPG hubs end-to-end today. The growth idea is a world made of authored data entries—character arcs, personalities, places, factions, threads, items, and choices—linked as ordinary Showmob pages. Readers explore non-linearly and participate lightly. Today that participation is local-only and resets; durable state waits for a thin data layer that earns its keep."
     },
     {
       "id": "honest-label",
       "type": "note-callout",
       "tone": "warning",
-      "title": "Growth sketch, not a finished novel workflow",
-      "body": "Nothing on this page adds widgets, schema, or persistence. What works today is ordinary Showmob: published JSON pages, series order, and local exercise/checklist state in the browser. Branching choices that stick, shared annotations, and co-author drafts are not built. Treat every “later” item as optional backlog, not a promise."
+      "title": "Growth sketch, not a finished story-world product",
+      "body": "Nothing here adds widgets, schema, or persistence. What works today is ordinary Showmob: published JSON pages, series and tags for navigation, and exercise/checklist state that lives in this browser only. Refresh, another device, or a cleared site store starts clean. Branching that sticks, unlockable secrets that survive, and shared annotations are not built. Every “later” line is optional backlog, not a promise."
     },
     {
-      "id": "shape",
+      "id": "spine",
       "type": "diagram",
-      "heading": "How the pieces stack",
+      "heading": "Four themes as the spine",
       "nodes": [
         {
-          "title": "Chapter page",
-          "detail": "One schemaVersion 1 artifact: prose in text blocks, beats in a timeline, revision passes in a checklist."
+          "title": "Character arcs",
+          "detail": "How people change: beats, before/after, and stakes sketched with timeline, checklist, and diagram."
         },
         {
-          "title": "Book spine",
-          "detail": "A series groups chapter slugs with order numbers. The hub already lists series; readers move chapter to chapter."
+          "title": "Personalities",
+          "detail": "Structured character entries: traits, voice, relationships, and secrets that unlock later—compact-table and text today."
         },
         {
-          "title": "Room read",
-          "detail": "A slideshow block paces a pitch or cold read without leaving the same page."
+          "title": "Open world",
+          "detail": "Places, factions, and threads as linked artifacts with tags and hubs—browse non-linearly, not only chapter order."
         },
         {
-          "title": "Local check-in",
-          "detail": "An exercise or checklist lets a reader mark a choice or pass in this browser only—until something durable earns a build."
+          "title": "Participatory data entries",
+          "detail": "Authored entries readers interact with (choices, checks, reveals). Local now; thin data layer later if a draft proves it."
         }
       ]
     },
     {
-      "id": "today",
+      "id": "today-map",
       "type": "compact-table",
-      "heading": "What you can do today with current widgets",
-      "caption": "Same renderer. Novel-shaped jobs, not new block types.",
+      "heading": "Theme → today’s blocks → honest limit",
+      "caption": "Same renderer. Story-world jobs, not new block types.",
       "columns": [
-        "Novel job",
-        "Use this block",
+        "Theme",
+        "Use these blocks",
         "Honest limit"
       ],
       "rows": [
         [
-          "Chapter draft",
-          "text (+ hero for the chapter open)",
-          "Plain scrolling prose. No chapter-length pagination widget."
+          "Character arcs",
+          "timeline, checklist, diagram",
+          "Author-written beats. No live arc map tied to reader progress."
         ],
         [
-          "Book spine",
-          "series on each chapter artifact",
-          "Order is manual in JSON. No outline that rewrites series.order for you."
+          "Personalities",
+          "compact-table, text, checklist",
+          "Copied fields per page. No reusable character-card widget."
         ],
         [
-          "Arc beats",
-          "timeline",
-          "Author-written beats. Not a live arc map tied to chapter progress."
+          "Open world",
+          "resource-list, tags, series, diagram",
+          "Links and tags are manual. No graph UI or auto hub."
         ],
         [
-          "Revision passes",
-          "checklist",
-          "Checks live in this browser. Refresh or another device starts clean."
-        ],
-        [
-          "Pitch / room read",
-          "slideshow",
-          "Paced slides inside the page. Not a shared live room."
-        ],
-        [
-          "Reader check-in",
-          "exercise",
-          "Answer resets locally. Nothing is saved to a server or shared with the author."
+          "Participation",
+          "exercise, checklist, slideshow",
+          "State is local-only and resets. Nothing reaches a server or the author."
         ]
-      ]
-    },
-    {
-      "id": "today-steps",
-      "type": "steps",
-      "heading": "A thin first novel draft (today)",
-      "items": [
-        "Write one chapter as a published artifact: hero + text for the scene, timeline for the beats you care about.",
-        "Add series { id, title, order } so the next chapter can sit on the same spine.",
-        "Put revision passes in a checklist and a short pitch in a slideshow if you need a room read.",
-        "Optional: one exercise as a reader check-in (“Whose POV felt strongest?”). Expect local-only answers.",
-        "Ship the pages. Do not invent widgets until a real draft hits a wall the current bin cannot cover."
       ]
     },
     {
       "id": "arcs-divider",
       "type": "divider",
-      "label": "Arcs"
+      "label": "1 · Character arcs"
     },
     {
       "id": "arcs-intro",
       "type": "text",
-      "heading": "Arcs in Showmob vocabulary",
-      "body": "Screenwriting jargon is optional. On Showmob, structure is blocks and series: a book spine (series.order), beat lists (timeline), who-changes-what notes (checklist or compact-table), and escalating stakes as a short diagram. Keep names plain so a draft stays editable by the author who wrote it."
+      "heading": "How people change",
+      "body": "An arc is not screenwriting jargon—it is a data shape: who starts where, what pressure forces a turn, what they become, and what it costs. On Showmob you sketch that with a timeline of beats, a before/after checklist or table, and a short stakes diagram. Name the chapter or scene slug in the detail text when a beat belongs to a specific page; diagrams do not create clickable links today."
     },
     {
-      "id": "arc-kinds",
+      "id": "arc-layers",
       "type": "diagram",
-      "heading": "Three arc layers you can already sketch",
+      "heading": "Arc layers you can already sketch",
       "nodes": [
         {
-          "title": "Story arc",
-          "detail": "Acts or movements as timeline items on a spine page—or as ordered chapter artifacts in the series."
+          "title": "Beats",
+          "detail": "Timeline items: open fault line → rising cost → irreversible choice → consequence."
         },
         {
-          "title": "Character threads",
-          "detail": "A checklist or compact-table per major character: want, wound, turn, cost. Update it when a chapter earns a change."
+          "title": "Before / after",
+          "detail": "Checklist or compact-table: want, wound, turn, new stance. Update when the turn page ships."
         },
         {
-          "title": "Escalating stakes",
-          "detail": "A short diagram: pressure → choice → consequence → harder pressure. Link each node to the chapter slug that delivers it."
+          "title": "Stakes",
+          "detail": "Diagram: pressure → choice → consequence → harder pressure. Escalate on the page, not only in notes."
         }
       ]
     },
     {
       "id": "arc-beats",
       "type": "timeline",
-      "heading": "Example chapter spine (author-owned beats)",
+      "heading": "Example arc beats (author-owned)",
       "items": [
         {
-          "time": "Open",
+          "time": "Before",
           "title": "Establish the fault line",
-          "detail": "Chapter 1 page: hero + text. Timeline lists the first irreversible fact."
+          "detail": "Personality entry states the starting want and wound. Opening scene page carries the first irreversible fact."
         },
         {
-          "time": "Mid",
+          "time": "Pressure",
           "title": "Cost becomes visible",
-          "detail": "Middle chapters: each page’s timeline names what the protagonist loses if they stall."
+          "detail": "Mid-thread pages escalate stakes. Arc timeline names what stalls if they refuse to change."
         },
         {
           "time": "Turn",
           "title": "Choice that cannot be undone",
-          "detail": "One chapter owns the turn. Character-thread checklist updates after that publish."
+          "detail": "One page owns the turn. Before/after checklist updates after that publish—not when you plan to write it."
         },
         {
-          "time": "Close",
+          "time": "After",
           "title": "Consequence lands",
-          "detail": "Final chapter(s): stakes diagram ends on the bill that was always coming."
+          "detail": "Closing pages bill the cost. Personality entry’s new stance and open secrets get a pass."
         }
       ]
     },
     {
-      "id": "arc-checklist",
+      "id": "arc-hygiene",
       "type": "checklist",
       "heading": "Arc hygiene while drafting",
       "items": [
         {
-          "label": "Series order matches the reading order",
-          "detail": "If chapter 7 must come before chapter 6 in the reader’s mind, fix series.order—do not rely on file names."
+          "label": "Every major turn has a home page",
+          "detail": "If a beat only lives in your head, put it on that page’s timeline or it will drift."
         },
         {
-          "label": "Every major turn has a home chapter",
-          "detail": "If a beat only lives in your head, put it on that chapter’s timeline or it will drift."
-        },
-        {
-          "label": "Character threads update after publish",
-          "detail": "Want / turn / cost change when the chapter ships, not when you plan to write it."
+          "label": "Before/after updates after publish",
+          "detail": "Want, turn, and cost change when the page ships, not when the outline hopes they will."
         },
         {
           "label": "Stakes escalate on the page",
           "detail": "If pressure does not get harder, the diagram is decoration—cut or rewrite the middle."
+        },
+        {
+          "label": "Name the slug in plain text",
+          "detail": "Reference chapter or location slugs in detail strings. Do not pretend diagram nodes are links."
         }
+      ]
+    },
+    {
+      "id": "personalities-divider",
+      "type": "divider",
+      "label": "2 · Personalities"
+    },
+    {
+      "id": "personalities-intro",
+      "type": "text",
+      "heading": "Structured character entries",
+      "body": "A personality is a reusable data entry: traits, voice, relationships, and secrets the reader may unlock later. Today you author that as a published page (or a section on a hub) with compact-table rows and prose. There is no character-card widget yet—copy the shape when you need it on another page, or link to the personality slug from resource-lists."
+    },
+    {
+      "id": "personality-fields",
+      "type": "compact-table",
+      "heading": "Example personality fields (today’s shape)",
+      "caption": "Author data. Interaction for secrets is local check-in only until durability earns a build.",
+      "columns": [
+        "Field",
+        "Sketch with",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "Traits",
+          "compact-table or checklist",
+          "Short labels: temperament, competence, blind spot."
+        ],
+        [
+          "Voice",
+          "text + quote",
+          "How they speak; one sample line as a quote block."
+        ],
+        [
+          "Relationships",
+          "compact-table",
+          "Who they owe, fear, or protect—name the other personality slug in the cell."
+        ],
+        [
+          "Unlockable secrets",
+          "checklist + exercise",
+          "Author lists secrets; a local exercise can “reveal” one in this browser only."
+        ],
+        [
+          "Arc hook",
+          "timeline or note-callout",
+          "Pointer to the character-arc beats that change this entry."
+        ]
+      ]
+    },
+    {
+      "id": "personality-later",
+      "type": "note-callout",
+      "tone": "note",
+      "title": "Later: character card — not shipped",
+      "body": "A reusable character-card block (traits, voice, relationships, secret gates) would earn a build only if copying tables across pages becomes the blocker on a real draft. Until then, keep personalities as ordinary pages."
+    },
+    {
+      "id": "open-world-divider",
+      "type": "divider",
+      "label": "3 · Open world"
+    },
+    {
+      "id": "open-world-intro",
+      "type": "text",
+      "heading": "Places, factions, and threads—non-linear",
+      "body": "A story world is not only a chapter spine. Places, factions, and plot threads are explorables: readers hop via hub pages, tags, and resource-list links instead of reading one forced order. Series still helps when you want a guided path; tags and hubs carry the open map. Link artifacts by URL in resource-list items; put slug names in diagram/text details when you are only documenting the graph."
+    },
+    {
+      "id": "open-world-pieces",
+      "type": "diagram",
+      "heading": "Open-world pieces on Showmob",
+      "nodes": [
+        {
+          "title": "Place / faction page",
+          "detail": "One artifact: text for lore, compact-table for who holds power, resource-list out to related entries."
+        },
+        {
+          "title": "Thread page",
+          "detail": "A living plot strand: timeline of reveals, checklist of open questions, links to scenes that touch it."
+        },
+        {
+          "title": "Hub",
+          "detail": "A landing artifact with resource-lists and tags that fan out—enter from any doorway."
+        },
+        {
+          "title": "Tags + series",
+          "detail": "Tags for non-linear browse; series.order when a guided sequence still matters."
+        }
+      ]
+    },
+    {
+      "id": "open-world-steps",
+      "type": "steps",
+      "heading": "Thin first open-world sketch (today)",
+      "items": [
+        "Publish a hub page with resource-list links to a few personality, place, and thread slugs.",
+        "Tag those artifacts consistently (e.g. world, faction, thread) so the catalog stays browsable.",
+        "Use series only for paths that must stay ordered; leave the rest of the map free.",
+        "On place and thread pages, name related slugs in tables and detail text; use resource-list when you need a real URL.",
+        "Do not invent a map widget until a real world draft cannot navigate with hubs and links."
       ]
     },
     {
       "id": "participation-divider",
       "type": "divider",
-      "label": "Participation"
+      "label": "4 · Participatory data entries"
     },
     {
       "id": "participation-intro",
       "type": "text",
-      "heading": "Reader participation, Showmob-flavored",
-      "body": "The goal is not a social CMS. It is paced reveals, occasional choices, and light contribution that still feel like reading a Showmob page. Today that means local exercise and checklist state. Later means durable choices and soft collaboration—only if a novel draft needs them more than another product would."
+      "heading": "Entries readers interact with",
+      "body": "Participation means authored data entries—characters, locations, items, choices—that a reader can poke: mark a choice, tick a reveal, pace a cold read. The entries are content. The interaction is thin. Today exercise answers and checklist ticks stay in this browser and reset. Later, a thin data layer could persist those marks without turning Showmob into a social CMS."
     },
     {
       "id": "participation-compare",
       "type": "comparison",
-      "heading": "Today vs later for readers",
+      "heading": "Today vs later for participation",
       "columns": [
         {
-          "name": "Today (shipped)",
-          "detail": "Exercise answers and checklist ticks stay in this browser. Slideshow pacing is per reader, per visit. No shared room, no saved branch, no annotation that reaches the author."
+          "name": "Today (shipped, local-only)",
+          "detail": "Exercise and checklist state live in this browser. Slideshow pacing is per visit. Refresh or another device starts clean. Nothing is saved to a server or shared with the author."
         },
         {
           "name": "Later (not shipped)",
-          "detail": "Branching choice blocks that persist, room reactions on a slideshow, shared annotations on a passage, and co-author draft handoff. Each would need schema, storage, and a clear thin boundary."
+          "detail": "Durable choices, unlockable secrets that survive, room reactions, shared annotations, and co-author draft handoff—via a thin data layer and only if a real story-world draft proves local state is not enough."
         }
+      ]
+    },
+    {
+      "id": "entry-kinds",
+      "type": "compact-table",
+      "heading": "Entry kinds readers might touch",
+      "caption": "Author the entry as a page or block set. Interaction stays in the existing widget bin.",
+      "columns": [
+        "Entry kind",
+        "Author with",
+        "Reader poke (today)"
+      ],
+      "rows": [
+        [
+          "Character",
+          "Personality page + arc timeline",
+          "Exercise: whose POV; checklist: secrets “seen” (local)"
+        ],
+        [
+          "Location",
+          "Place page + resource-list exits",
+          "Checklist: rooms visited (local)"
+        ],
+        [
+          "Item",
+          "compact-table or text on a loot/thread page",
+          "Exercise: take / leave / ask (local)"
+        ],
+        [
+          "Choice",
+          "exercise on the scene page",
+          "Pick an option; answer resets on refresh"
+        ]
       ]
     },
     {
       "id": "reader-checkin",
       "type": "exercise",
-      "heading": "Example reader check-in (local only)",
-      "prompt": "After a chapter, which response should Showmob support first if we stay thin?",
+      "heading": "Example reader check-in (local only — resets)",
+      "prompt": "For a participatory story world, what should Showmob support first while staying thin?",
       "options": [
-        "A full forum under every chapter",
-        "A single paced choice or check that resets locally until durability is proven",
-        "Live co-editing of the chapter prose in the browser"
+        "A full forum and live co-edit under every entry",
+        "Authored entries plus a single local choice or check that resets until durability is proven",
+        "A new persistence layer and branching engine before any world pages ship"
       ],
       "answer": 1,
-      "explanation": "Local exercise and checklist already cover a thin check-in. Forums and live co-editing are other products. Persist a choice only when a real draft shows local state is not enough.",
-      "correctFeedback": "Right—stay on the thin check-in until a draft forces persistence.",
-      "wrongFeedback": "Heavier social or editing surfaces are out of scope for a growth sketch. Prefer one local check first."
+      "explanation": "Local exercise and checklist already cover a thin poke. Forums, live co-edit, and a persistence engine are other products. Persist a choice only when a real draft shows local reset is not enough.",
+      "correctFeedback": "Right—authored entries first, local poke second, durable layer only when evidence demands it.",
+      "wrongFeedback": "Heavier social, editing, or persistence surfaces are out of scope for this growth sketch. Prefer entries plus one local check first."
     },
     {
       "id": "later-divider",
@@ -235,23 +349,27 @@
     {
       "id": "later-widgets",
       "type": "checklist",
-      "heading": "Widgets and functions that would earn a later build",
+      "heading": "What would earn a later build (not shipped)",
       "items": [
         {
-          "label": "Arc-map block — not shipped",
-          "detail": "A structured map of story/character stakes linked to chapter slugs. Today: diagram + timeline + series."
+          "label": "Character-card block — not shipped",
+          "detail": "Reusable traits, voice, relationships, secret gates. Today: compact-table + text + checklist per page."
         },
         {
-          "label": "Chapter outline that syncs series.order — not shipped",
-          "detail": "Drag chapters and rewrite order in one place. Today: edit series.order in each artifact JSON."
+          "label": "Arc-map / world-graph — not shipped",
+          "detail": "Structured map of arcs and places linked to slugs. Today: diagram + timeline + resource-list hubs."
         },
         {
-          "label": "Character card — not shipped",
-          "detail": "Reusable card for want, voice, and thread status across pages. Today: compact-table or checklist copied per need."
+          "label": "Unlockable secrets that persist — not shipped",
+          "detail": "Gates that survive refresh and can feed later pages. Today: local checklist/exercise only."
         },
         {
           "label": "Durable reader choices — not shipped",
-          "detail": "Branching that survives refresh and can be summarized for the author. Today: exercise is local-only."
+          "detail": "Branching that sticks and can be summarized for the author. Today: exercise is local-only and resets."
+        },
+        {
+          "label": "Thin data layer for entries — not shipped",
+          "detail": "Store artifacts, publish status, and optional participation marks without growing a CMS. Today: git + JSON files."
         },
         {
           "label": "Soft collaboration — not shipped",
@@ -266,11 +384,11 @@
       "columns": [
         {
           "name": "Reuse first",
-          "detail": "text, timeline, checklist, slideshow, exercise, series, diagram, and compact-table already cover draft, spine, beats, revision, pitch, and local check-ins."
+          "detail": "text, timeline, checklist, slideshow, exercise, series, tags, diagram, compact-table, and resource-list already cover arcs, personalities, hubs, and local participation."
         },
         {
           "name": "Build only when stuck",
-          "detail": "Add a widget when a real novel draft cannot say the next true thing with the current bin—and when the new block stays renderer-thin with no side effects in v0."
+          "detail": "Add a widget or thin data piece when a real story-world draft cannot say the next true thing with the current bin—and when the addition stays renderer-thin."
         }
       ]
     },
@@ -279,36 +397,36 @@
       "type": "note-callout",
       "tone": "note",
       "title": "Stay thin on purpose",
-      "body": "Showmob remains linked pages and a shared renderer. Do not grow a novel CMS beside it. Only add widgets when a real novel draft proves the gap, and keep each addition honest in the catalog: shipped vs later, local vs durable."
+      "body": "Showmob remains linked pages and a shared renderer. Do not grow a novel CMS or MMO beside it. Sketch the world as data entries; let readers poke with local checks; only add widgets or persistence when a real draft proves the gap—and label shipped vs later, local vs durable, every time."
     },
     {
       "id": "pitch",
       "type": "slideshow",
-      "heading": "Two-minute pitch for a Showmob novel",
+      "heading": "Two-minute pitch: story world as data entries",
       "slides": [
         {
-          "title": "Pages, not a new app",
-          "body": "Chapters are artifacts. The book is a series. Readers get normal URLs."
+          "title": "Entries, not a new app",
+          "body": "Characters, places, threads, items, and choices are ordinary Showmob pages. Readers get normal URLs."
         },
         {
-          "title": "Structure in the bin you have",
-          "body": "Timeline for beats, checklist for revision and character threads, diagram for stakes."
+          "title": "Four themes as the spine",
+          "body": "Character arcs, personalities, open-world hubs, and participatory data entries—sketched with the bin you have."
         },
         {
-          "title": "Participation stays light",
-          "body": "Local check-ins first. Durable choices and soft collaboration wait for evidence."
+          "title": "Explore non-linearly",
+          "body": "Hubs, tags, and resource-lists for open browse; series when a path must stay ordered."
         },
         {
-          "title": "Earn every new widget",
-          "body": "If the draft works with today’s blocks, ship the draft. Build later only when stuck."
+          "title": "Participate lightly, honestly",
+          "body": "Local exercise and checklist today—they reset. Durable marks wait for a thin data layer with evidence."
         }
       ]
     },
     {
       "id": "close",
       "type": "cta-band",
-      "heading": "Start with one chapter and a spine",
-      "body": "Publish one chapter page, attach a series order, and put your beats on a timeline. Use a checklist for revision and an exercise only if you want a local reader check-in. Come back to this sketch when a real draft forces a widget the current bin cannot cover."
+      "heading": "Start with one entry and a hub",
+      "body": "Publish one personality or place page, hang it from a hub with a resource-list, and put arc beats on a timeline. Use a checklist or exercise only if you want a local reader poke—and expect it to reset. Come back to this sketch when a real story-world draft forces a widget or data layer the current bin cannot cover."
     }
   ]
 }
