@@ -3,6 +3,7 @@ import { allEntries, viewableEntries } from "./catalog";
 import { ArtifactView } from "./ArtifactView";
 import { Home } from "./Home";
 import { Studio } from "./Studio";
+import { Everything } from "./Everything";
 import { screenFromLocation, writeScreen } from "./routing";
 import { isReservedSlug } from "./screen";
 import "./style.css";
@@ -35,6 +36,9 @@ export function App() {
     return (
       <ArtifactView key={entry.slug} entry={entry} home={home} open={open} />
     );
+  }
+  if (screen === "everything") {
+    return <Everything open={open} home={home} />;
   }
   if (screen === "author") {
     return <Studio back={home} />;

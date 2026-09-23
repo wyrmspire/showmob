@@ -167,3 +167,14 @@ test('vercel.json SPA fallback survives cleanUrls; favicon.ico ships', () => {
   assert.ok(readFileSync(new URL('../public/favicon.ico', import.meta.url)).length > 0);
   assert.match(read('../index.html'), /href="\/favicon\.ico"/);
 });
+
+test('/everything is an unlisted index route: reserved, noindex, not linked from Home', () => {
+  assert.equal(resolveScreen(null, [], undefined, '/everything'), 'everything');
+  assert.equal(resolveScreen(null, [], undefined, '/everything/'), 'everything');
+  assert.equal(resolveScreen('everything', ['everything']), 'home');
+  const view = read('../app/src/Everything.tsx');
+  assert.match(view, /setUnlistedRobots\(true\)/);
+  assert.match(view, /entry\.status === "published" \|\| entry\.status === "preview"/);
+  assert.doesNotMatch(read('../app/src/Home.tsx'), /everything/i);
+  assert.match(read('../app/src/routing.ts'), /EVERYTHING_PATH/);
+});
