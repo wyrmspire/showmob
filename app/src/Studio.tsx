@@ -4,6 +4,16 @@ import { formatIssues, parseArtifact, restoreDraft } from "./validation";
 import { BlockView } from "./components/BlockView";
 import { Callout } from "./components/file-kit";
 import { themes } from "./catalog";
+import {
+  addListRow,
+  isListEditableBlock,
+  listEditorConfig,
+  moveListRow,
+  readListRows,
+  removeListRow,
+  updateListRow,
+  type ListEditableType,
+} from "./studio-list-editor";
 
 const uid = () => `block-${Math.random().toString(36).slice(2, 8)}`;
 const starter = (type: string): Block => {
@@ -68,6 +78,62 @@ const starter = (type: string): Block => {
       type,
       heading: "Try this next",
       body: "Name one clear, useful action.",
+    };
+  if (type === "checklist")
+    return {
+      id,
+      type,
+      heading: "Things to verify",
+      items: [
+        { label: "First check", detail: "What good looks like." },
+        { label: "Second check", detail: "What to leave behind." },
+      ],
+    };
+  if (type === "timeline")
+    return {
+      id,
+      type,
+      heading: "What happened",
+      items: [
+        {
+          time: "Start",
+          title: "First signal",
+          detail: "Record the dependable fact.",
+        },
+        {
+          time: "Next",
+          title: "Small test",
+          detail: "Name the boundary and result.",
+        },
+      ],
+    };
+  if (type === "comparison")
+    return {
+      id,
+      type,
+      heading: "Side by side",
+      columns: [
+        { name: "Option A", detail: "Describe the first choice." },
+        { name: "Option B", detail: "Describe the alternative." },
+      ],
+    };
+  if (type === "resource-list")
+    return {
+      id,
+      type,
+      heading: "Useful sources",
+      items: [
+        {
+          label: "Primary source",
+          detail: "Why it matters.",
+          url: "https://example.com",
+        },
+        {
+          label: "Follow-up",
+          detail: "Where to go next.",
+          url: "https://example.com/more",
+        },
+      ],
     };
   return {
     id,
@@ -544,6 +610,10 @@ export function Studio({ back }: { back: () => void }) {
                 <option value="diagram">Diagram / flow</option>
                 <option value="note-callout">Note callout</option>
                 <option value="steps">Steps</option>
+                <option value="checklist">Checklist</option>
+                <option value="timeline">Timeline</option>
+                <option value="comparison">Comparison</option>
+                <option value="resource-list">Resource list</option>
                 <option value="quote">Quote</option>
                 <option value="divider">Divider</option>
                 <option value="cta-band">Closing action</option>
@@ -782,10 +852,104 @@ function BlockEditor({
         </label>
       </>
     );
+  if (isListEditableBlock(block))
+    return <StructuredListEditor block={block} onChange={onChange} />;
   return (
     <Callout title="Preview-only block" tone="note">
       This richer block keeps its structured JSON. Duplicate, move or remove it
       here; use Import / JSON for precise edits.
     </Callout>
+  );
+}
+
+function StructuredListEditor({
+  block,
+  onChange,
+}: {
+  block: Extract<Block, { type: ListEditableType }>;
+  onChange: (b: Block) => void;
+}) {
+  const config = listEditorConfig[block.type];
+  const rows = readListRows(block as unknown as Record<string, unknown>, block.type);
+  const applyRows = (nextRows: ReturnType<typeof readListRows>) => {
+    onChange({ ...block, [config.listKey]: nextRows } as Block);
+  };
+  return (
+    <>
+      <label>
+        Heading
+        <input
+          value={block.heading}
+          onChange={(e) => onChange({ ...block, heading: e.target.value })}
+        />
+      </label>
+      <div className="list-editor" role="list" aria-label={`${block.type} rows`}>
+        {rows.map((row, index) => (
+          <div className="list-editor-row" role="listitem" key={index}>
+            <div className="list-editor-row-head">
+              <span className="eyebrow">
+                Row {index + 1} of {rows.length}
+              </span>
+              <div className="list-editor-row-actions">
+                <button
+                  type="button"
+                  onClick={() => applyRows(moveListRow(rows, index, -1))}
+                  disabled={index === 0}
+                >
+                  ↑ Move
+                </button>
+                <button
+                  type="button"
+                  onClick={() => applyRows(moveListRow(rows, index, 1))}
+                  disabled={index === rows.length - 1}
+                >
+                  ↓ Move
+                </button>
+                <button
+                  type="button"
+                  className="danger"
+                  onClick={() => applyRows(removeListRow(rows, index))}
+                  disabled={rows.length <= 1}
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+            {config.fields.map((field) => (
+              <label key={field.key}>
+                {field.label}
+                {field.long ? (
+                  <textarea
+                    rows={3}
+                    value={row[field.key] ?? ""}
+                    onChange={(e) =>
+                      applyRows(
+                        updateListRow(rows, index, field.key, e.target.value),
+                      )
+                    }
+                  />
+                ) : (
+                  <input
+                    value={row[field.key] ?? ""}
+                    onChange={(e) =>
+                      applyRows(
+                        updateListRow(rows, index, field.key, e.target.value),
+                      )
+                    }
+                  />
+                )}
+              </label>
+            ))}
+          </div>
+        ))}
+      </div>
+      <button
+        type="button"
+        className="tool-button"
+        onClick={() => applyRows(addListRow(rows, block.type))}
+      >
+        Add row
+      </button>
+    </>
   );
 }
