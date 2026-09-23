@@ -89,3 +89,13 @@ test('slideshow supports keyboard, swipe and fullscreen controls', () => {
   assert.match(source, /requestFullscreen/);
   assert.match(source, /Exit fullscreen/);
 });
+
+test('entrance motion tokens apply on all themes, not paper/workshop only', () => {
+  const css = read('../app/src/style.css');
+  const view = read('../app/src/components/BlockView.tsx');
+  assert.match(css, /\.artifact,\.studio-preview\{[\s\S]*?--motion-duration:420ms/);
+  assert.match(css, /--motion-distance:14px/);
+  assert.match(css, /prefers-reduced-motion:reduce/);
+  assert.doesNotMatch(css, /\.theme-paper,\.theme-workshop\{[\s\S]*?--motion-duration:420ms/);
+  assert.doesNotMatch(view, /block-enter/);
+});

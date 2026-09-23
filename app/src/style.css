@@ -55,13 +55,8 @@ html,body,#root{margin:0;min-height:100%;} body{background:var(--ds-page);color:
 .studio-truth{margin:.75rem auto 0;max-width:1100px;padding:.85rem 1rem;border:1px solid var(--ds-hairline);border-radius:12px;background:#fff;color:var(--ds-ink)}
 .studio-truth strong{margin-right:.35rem}
 
-/* Entrance motion: tokens only. Paper + Workshop get fade-up; others stay still. */
+/* Entrance motion: theme-token-driven and consistent across all themes; prefers-reduced-motion still disables it. */
 .artifact,.studio-preview{
-  --motion-duration:0ms;
-  --motion-distance:0px;
-  --motion-ease:ease;
-}
-.theme-paper,.theme-workshop{
   --motion-duration:420ms;
   --motion-distance:14px;
   --motion-ease:cubic-bezier(.22,1,.36,1);

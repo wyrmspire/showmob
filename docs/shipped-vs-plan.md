@@ -55,7 +55,7 @@ Do these without deleting content or collapsing lifecycle states.
 
 7. **Stat-strip layout** uses `auto-fit` (or count-aware columns), not hardcoded 3. Comparison already has a later `auto-fit` rule — keep that; clean conflicting older 2-column rule.
 8. **Slideshow keyboard** (arrows when focused) and touch swipe; overflow-safe controls on phone (collapse dots past N slides).
-9. **Entrance motion** already limited to Paper/Workshop hero/text — keep reduced-motion; do not expand until P0/P1 land.
+9. **Entrance motion** — all themes share the same restrained fade-up tokens; reduced-motion still disables it. (Was Paper/Workshop-only; expanded for consistency.)
 
 ### Explicit non-goals for this pass
 
