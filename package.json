@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
+    "check:persistence": "node --experimental-strip-types scripts/milestone-one-check.mjs"
   },
   "dependencies": {
     "@types/node": "26.6.2",
