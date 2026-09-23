@@ -4,6 +4,8 @@
 
 The near-term goal is to prove the language by carrying one real artifact through the existing pipeline. The project should grow from use, not from a speculative rewrite.
 
+Related product-direction lock (gallery + story): [product-brief.md](./product-brief.md).
+
 Sections 1-5 of the [blueprint](./blueprint.md) define the shape to protect: the core experience, persistence-independent architecture, explicit JSON language, trusted widget vocabulary, and semantic theme boundary.
 
 The later blueprint ideas are direction, not promises or immediate scope.
