@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - name: Build author-preview configuration
+        run: VITE_SHOW_UNPUBLISHED=true npm run build
+      - name: Smoke-test production preview server
+        run: |
+          npm run preview -- --host 127.0.0.1 > /tmp/showmob-preview.log 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid"' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent --show-error 'http://127.0.0.1:4173/?artifact=showmob-guide' > /tmp/showmob.html; then
+              break
+            fi
+            sleep 1
+          done
+          grep -q '<div id="root"></div>' /tmp/showmob.html

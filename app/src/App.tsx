@@ -61,5 +61,28 @@ export function App() {
       </main>
     );
   }
+  if (!isReservedSlug(screen)) {
+    return (
+      <main className="artifact theme-paper">
+        <header className="toolbar">
+          <button onClick={home} className="plain">
+            ← Ideas
+          </button>
+        </header>
+        <div className="shell">
+          <section className="block">
+            <h1>Page not found</h1>
+            <p>
+              No Showmob artifact uses this address. It may have been mistyped,
+              moved, or never created.
+            </p>
+            <button className="file-button" onClick={home}>
+              Back to ideas
+            </button>
+          </section>
+        </div>
+      </main>
+    );
+  }
   return <Home open={open} author={() => go("author")} />;
 }
