@@ -194,7 +194,7 @@
       "id": "oauth",
       "type": "text",
       "heading": "11. The app authorization on your account",
-      "body": "On Sep 23 the GitHub command-line tool (GitHub CLI) was authorized on the wyrmspire account so an agent could open and merge PRs. It used the device flow: the tool prints a short one-time code, someone enters it at github.com/login/device while signed in, and GitHub hands the tool a token. That token acts as you. This one has repo scope, which means it can read and write every repository on the account, not only Showmob, and it keeps working until you revoke it. Signing in to other sites with a GitHub button creates a similar grant. To see them all: profile picture, Settings, then Applications in the Integrations section, then the Authorized OAuth Apps tab. Revoking there cuts the tool off; it would need a new authorization to act again."
+      "body": "On Sep 23 the GitHub command-line tool (GitHub CLI) was authorized on the wyrmspire account so an agent could open and merge PRs. It used the device flow: the tool prints a short one-time code, someone enters it at github.com/login/device while signed in, and GitHub hands the tool a token. That token acts as you. This one has repo scope: it can read and write any repository your account can reach, public or private, not only Showmob. It keeps working until you revoke it. Signing in to other sites with a GitHub button creates a similar grant. To see them all: profile picture, Settings, then Applications in the Integrations section, then the Authorized OAuth Apps tab. Revoking there cuts the tool off; it would need a new authorization to act again."
     },
     {
       "id": "check-merge-style",
