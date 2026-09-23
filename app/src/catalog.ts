@@ -1,6 +1,6 @@
 import { type Artifact, type ThemeId } from "./schema";
 import { assertArtifact } from "./validation";
-import { isCatalogVisible } from "./catalog-policy";
+import { isCatalogVisible, isLinkViewable } from "./catalog-policy";
 
 const contentModules = import.meta.glob("./content/*.json", {
   eager: true,
@@ -25,6 +25,14 @@ export const authorToolsEnabled = showUnpublished;
 /** Catalog used by hub, series, and public routing. */
 export const entries: Artifact[] = allEntries.filter((entry) =>
   isCatalogVisible(entry.status, showUnpublished),
+);
+
+/**
+ * Pages a direct link may render: the catalog plus unlisted `preview` pages.
+ * Never used for Home, search, series shelves, or build-time share pages.
+ */
+export const viewableEntries: Artifact[] = allEntries.filter((entry) =>
+  isLinkViewable(entry.status, showUnpublished),
 );
 
 export const themes: { id: ThemeId; label: string }[] = [
@@ -63,12 +71,12 @@ export const seriesMeta: Record<string, { kicker: string; blurb: string }> = {
   },
 };
 
-export const seriesList = (() => {
+function buildSeries(list: Artifact[]) {
   const map = new Map<
     string,
     { id: string; title: string; parts: Artifact[] }
   >();
-  entries.forEach((entry) => {
+  list.forEach((entry) => {
     if (!entry.series) return;
     const group = map.get(entry.series.id) || {
       id: entry.series.id,
@@ -84,4 +92,13 @@ export const seriesList = (() => {
       (a, b) => (a.series?.order ?? 0) - (b.series?.order ?? 0),
     ),
   }));
-})();
+}
+
+/** Listed series (Home shelves, and prev/next on published pages). */
+export const seriesList = buildSeries(entries);
+
+/**
+ * Series including unlisted preview parts. Only preview pages navigate with
+ * this, so a published page never links readers into unlisted content.
+ */
+export const readerSeriesList = buildSeries(viewableEntries);

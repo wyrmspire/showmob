@@ -1,9 +1,18 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { authorToolsEnabled, seriesList, themes } from "./catalog";
+import {
+  authorToolsEnabled,
+  readerSeriesList,
+  seriesList,
+  themes,
+} from "./catalog";
 import { BlockView } from "./components/BlockView";
 import { type Artifact, type ThemeId } from "./schema";
 import { ArtifactLink, artifactHref } from "./components/ArtifactLink";
-import { applyArtifactShareMeta, clearArtifactShareMeta } from "./share-meta";
+import {
+  applyArtifactShareMeta,
+  clearArtifactShareMeta,
+  setUnlistedRobots,
+} from "./share-meta";
 
 function blockLabel(block: Artifact["blocks"][number]): string {
   if ("heading" in block && block.heading) return block.heading;
@@ -38,7 +47,9 @@ export function ArtifactView({
   const [zen, setZen] = useState(false);
   const [copied, setCopied] = useState("");
   const series = entry.series
-    ? seriesList.find((g) => g.id === entry.series?.id)
+    ? (entry.status === "published" ? seriesList : readerSeriesList).find(
+        (g) => g.id === entry.series?.id,
+      )
     : undefined;
   const seriesIndex = series
     ? series.parts.findIndex((p) => p.slug === entry.slug)
@@ -59,6 +70,7 @@ export function ArtifactView({
   );
   useEffect(() => {
     applyArtifactShareMeta(entry.title, entry.summary, entry.slug);
+    setUnlistedRobots(entry.status !== "published");
     const focus = () => requestAnimationFrame(() => {
       if (!focusHashTarget()) document.querySelector(".artifact")?.scrollIntoView({ block: "start" });
     });
@@ -67,8 +79,9 @@ export function ArtifactView({
     return () => {
       globalThis.window?.removeEventListener("hashchange", focus);
       clearArtifactShareMeta();
+      setUnlistedRobots(false);
     };
-  }, [entry.slug, entry.title, entry.summary]);
+  }, [entry.slug, entry.title, entry.summary, entry.status]);
   useEffect(() => {
     if (!zen) return;
     const escape = (event: KeyboardEvent) => {

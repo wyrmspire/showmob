@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { allEntries, entries } from "./catalog";
+import { allEntries, viewableEntries } from "./catalog";
 import { ArtifactView } from "./ArtifactView";
 import { Home } from "./Home";
 import { Studio } from "./Studio";
@@ -16,7 +16,9 @@ export function App() {
   }, []);
   const entry = useMemo(
     () =>
-      isReservedSlug(screen) ? undefined : entries.find((e) => e.slug === screen),
+      isReservedSlug(screen)
+        ? undefined
+        : viewableEntries.find((e) => e.slug === screen),
     [screen],
   );
   const withheld = useMemo(() => {
