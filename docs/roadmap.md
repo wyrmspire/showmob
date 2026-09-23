@@ -20,9 +20,9 @@ A presenter opens an artifact as a room. Participants join with roles, and the r
 
 The map is direction, not committed work. Milestone one is the only next buildable thing:
 
-1. **Save one artifact with immutable revisions and prove JSON export/import parity.** One artifact, stored with revisions that never change after they are written, and a proof that exporting the stored JSON and importing it again yields the same artifact. (Next buildable.)
+1. **Save one artifact with immutable revisions and prove JSON export/import parity.** One artifact, stored with revisions that never change after they are written, and a proof that exporting the stored JSON and importing it again yields the same artifact. **Proven as a development spike on 2026-09-23**: see [supabase/README.md](../supabase/README.md) for the schema, the offline tests and the live check. The site still reads repository JSON.
 
-Everything else on the map stays parked until milestone one earns it: people and roles, media uploads, live sessions, the agent review queue, the public API, and intelligence.
+Everything else on the map stays parked until the rest of Phase 3 in the root [ROADMAP](../ROADMAP.md) is done (recovery drills) and the next phase is chosen: people and roles, media uploads, live sessions, the agent review queue, the public API, and intelligence.
 
 ## Next phase: one real artifact
 

@@ -173,6 +173,8 @@ Every exposed table must have RLS and least-privilege grants. Policies should au
 
 The first persistence milestone should run beside repository artifacts: read the same JSON through the runtime validator, write an immutable revision, read it back, compare it with the input, and leave GitHub rendering unchanged until the round trip is dependable. Only then should hosted reads or writes move behind the API. The mechanics course walks learners through this plan in plainer language (`showmob-mechanics-persistence`); this section remains the decision record.
 
+What exists now (2026-09-23): that first milestone, as a development proof. `supabase/migrations/` defines `showmob_artifacts` and append-only `showmob_artifact_revisions` (JSONB documents, a trigger that rejects UPDATE/DELETE, RLS on, no browser grants) and three `service_role`-only functions for save, read and history. `app/src/persistence/revisions.ts` is the adapter; the renderer does not import it. See `supabase/README.md`.
+
 ## Schema principles
 
 The schema should remain boring, explicit, and inspectable.
