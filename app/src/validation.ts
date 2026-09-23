@@ -1,4 +1,5 @@
 import type { Artifact, Block } from './schema';
+import { RESERVED_SLUGS, isReservedSlug } from './screen.ts';
 
 export type ValidationIssue = { path: string; message: string };
 export type ValidationResult =
@@ -76,6 +77,8 @@ export function validateArtifact(value: unknown): ValidationResult {
   strings(value, ['updated'], '$', true);
   if (typeof value.slug === 'string' && !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value.slug)) {
     issue('$.slug', 'Use lowercase words or numbers separated by single hyphens.');
+  } else if (typeof value.slug === 'string' && isReservedSlug(value.slug)) {
+    issue('$.slug', `Reserved for an app route: ${RESERVED_SLUGS.join(', ')}. Choose another slug.`);
   }
   oneOf(value.status, ['draft', 'preview', 'published', 'archived'], '$.status');
   oneOf(value.theme, ['paper', 'signal', 'workshop', 'night', 'field'], '$.theme');

@@ -26,7 +26,7 @@ The complete minimal artifact is:
 | Field | Contract |
 | --- | --- |
 | `schemaVersion` | Required literal number `1`. |
-| `slug` | Required string: lowercase words/numbers separated by single hyphens. Stable identity in links; unique in the discovered library. |
+| `slug` | Required string: lowercase words/numbers separated by single hyphens. Stable identity in links; unique in the discovered library. `home` and `author` are reserved for app routes and rejected by validation. |
 | `title`, `summary`, `contributor` | Required strings. Use useful, nonempty copy before review or publication. |
 | `status` | Required: `draft`, `preview`, `published`, `archived`. Never promote another author's work without publication authority. |
 | `theme` | Required: `paper`, `signal`, `workshop`, `night`, `field`. No raw styling fields. |

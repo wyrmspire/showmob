@@ -3,7 +3,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { stripTypeScriptTypes } from 'node:module';
 import test from 'node:test';
 import { assertArtifact, formatIssues, parseArtifact, restoreDraft, validateArtifact } from '../app/src/validation.ts';
-import { resolveScreen } from '../app/src/screen.ts';
+import { RESERVED_SLUGS, resolveScreen } from '../app/src/screen.ts';
 
 const read = path => readFileSync(new URL(path, import.meta.url), 'utf8');
 const example = {
@@ -200,4 +200,25 @@ test('deep links keep any slug that exists on disk so unpublished pages reach th
   assert.equal(resolveScreen(null, slugs), 'home');
   assert.equal(resolveScreen(null, slugs, 'author'), 'author');
   assert.match(read('../app/src/routing.ts'), /allEntries\.map/);
+});
+
+test('reserved UI route slugs are rejected as artifact identities', () => {
+  const appSource = read('../app/src/App.tsx');
+  // Every literal route name App.tsx navigates to must be reserved.
+  for (const [, route] of appSource.matchAll(/(?:go\(|screen === )"([a-z0-9-]+)"/g)) {
+    assert.ok(RESERVED_SLUGS.includes(route), `Route "${route}" is not in RESERVED_SLUGS`);
+  }
+  for (const slug of ['home', 'author']) assert.ok(RESERVED_SLUGS.includes(slug), slug);
+  for (const slug of RESERVED_SLUGS) {
+    for (const status of ['draft', 'preview', 'published', 'archived']) {
+      const result = validateArtifact({ ...example, slug, status });
+      assert.equal(result.ok, false, `${slug} (${status}) should be rejected`);
+      assert.ok(result.issues.some(i => i.path === '$.slug' && /Reserved/.test(i.message)), slug);
+    }
+    const parsed = parseArtifact(JSON.stringify({ ...example, slug }));
+    assert.equal(parsed.ok, false, `Studio import of ${slug} should be rejected`);
+    // Routing never treats a reserved slug as an artifact, even if one slipped onto disk.
+    assert.equal(resolveScreen(slug, [slug]), 'home');
+  }
+  assert.equal(validateArtifact({ ...example, slug: 'home-page' }).ok, true);
 });
