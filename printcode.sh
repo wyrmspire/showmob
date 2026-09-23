@@ -487,6 +487,12 @@ SELECTED_COUNT=$(wc -l < "$FILE_LIST")
 {
     echo "# Showmob Project Code Dump"
     echo "Generated: $(date)"
+    if command -v git >/dev/null 2>&1 && git -C "$PROJECT_ROOT" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        _dump_head="$(git -C "$PROJECT_ROOT" rev-parse HEAD 2>/dev/null || true)"
+        if [[ -n "$_dump_head" ]]; then
+            echo "Git HEAD: $_dump_head"
+        fi
+    fi
     echo ""
     echo "## Selection Summary"
     echo ""
@@ -703,3 +709,11 @@ done
 
 echo "Done! Created:"
 ls -la "$PROJECT_ROOT"/${OUTPUT_PREFIX}*.md 2>/dev/null || echo "No files created"
+
+# Record baseline for ./gitrdif.sh (full default dumps only — prefix "dump")
+if [[ "$OUTPUT_PREFIX" == "dump" ]] && [[ "$LIST_ONLY" != true ]] && command -v git >/dev/null 2>&1; then
+    if git -C "$PROJECT_ROOT" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        git -C "$PROJECT_ROOT" rev-parse HEAD > "$PROJECT_ROOT/.last-dump-commit"
+        echo "Recorded dump baseline → .last-dump-commit ($(git -C "$PROJECT_ROOT" rev-parse --short HEAD))"
+    fi
+fi

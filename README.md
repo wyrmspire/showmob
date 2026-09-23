@@ -33,6 +33,14 @@ npm run build    # type-check and build production assets into dist/
 npm run preview  # serve the production build locally
 ```
 
+Chat dumps (local, gitignored):
+
+```sh
+./printcode.sh     # full dump → dump00.md…
+./gitrdif.sh       # since last full dump → gitrdif00.md…
+./printcode-supa.sh
+```
+
 Run the content and validation tests with:
 
 ```sh
