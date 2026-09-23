@@ -15,6 +15,15 @@ test('reader navigation keeps native links and enhanced plain-click navigation',
   assert.doesNotMatch(home, /<button[^>]+onClick=\{\(\) => open\(e\.slug\)/);
 });
 
+test('Home searches the full library before shelves and avoids duplicate series cards', () => {
+  const home = read('../app/src/Home.tsx');
+  assert.ok(home.indexOf('className="discovery"') < home.indexOf('seriesList.map'));
+  assert.match(home, /g\.parts\.filter\(\(part\) => visibleSlugs\.has\(part\.slug\)\)/);
+  assert.match(home, /standalone = visible\.filter\(\(entry\) => !entry\.series\)/);
+  assert.match(home, /authorToolsEnabled &&/);
+  assert.match(home, /b\[1\] - a\[1\]/);
+});
+
 test('artifact view exposes title, section, copy-link and focus-mode recovery behavior', () => {
   const source = read('../app/src/ArtifactView.tsx');
   assert.match(source, /document\.title = `\$\{entry\.title\} · Showmob`/);
