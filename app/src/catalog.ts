@@ -1,5 +1,6 @@
 import { type Artifact, type ThemeId } from "./schema";
 import { assertArtifact } from "./validation";
+import { isCatalogVisible } from "./catalog-policy";
 
 const contentModules = import.meta.glob("./content/*.json", {
   eager: true,
@@ -21,14 +22,10 @@ export const showUnpublished =
 /** Theme audition and similar author chrome — same gate as unpublished listing. */
 export const authorToolsEnabled = showUnpublished;
 
-function isListed(entry: Artifact): boolean {
-  if (entry.status === "archived") return false;
-  if (showUnpublished) return true;
-  return entry.status === "published";
-}
-
 /** Catalog used by hub, series, and public routing. */
-export const entries: Artifact[] = allEntries.filter(isListed);
+export const entries: Artifact[] = allEntries.filter((entry) =>
+  isCatalogVisible(entry.status, showUnpublished),
+);
 
 export const themes: { id: ThemeId; label: string }[] = [
   { id: "paper", label: "Paper" },

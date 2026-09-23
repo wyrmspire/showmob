@@ -23,7 +23,16 @@ export function resolveScreen(
   knownSlugs: readonly string[],
   historyScreen?: unknown,
 ): string {
-  if (artifact && !isReservedSlug(artifact) && knownSlugs.includes(artifact)) {
+  // Keep a well-formed requested slug even when no artifact currently owns it.
+  // App.tsx needs the original value to distinguish a withheld artifact from a
+  // genuinely unknown URL. `knownSlugs` stays in the signature for callers and
+  // tests that also need the current catalog inventory.
+  void knownSlugs;
+  if (
+    artifact &&
+    /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(artifact) &&
+    !isReservedSlug(artifact)
+  ) {
     return artifact;
   }
   return historyScreen === "author" ? "author" : "home";

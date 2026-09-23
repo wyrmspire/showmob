@@ -188,7 +188,7 @@ test('saved drafts restore only after validation, with an intact fallback and re
   assert.deepEqual(example.blocks, [{ id: 'start', type: 'text', heading: 'Hello', body: 'A useful idea.' }]);
 });
 
-test('deep links keep any slug that exists on disk so unpublished pages reach the Not published state', () => {
+test('deep links preserve valid requested slugs so the app can distinguish unpublished and unknown pages', () => {
   const dir = new URL('../app/src/content/', import.meta.url);
   const onDisk = readdirSync(dir).filter(file => file.endsWith('.json'))
     .map(file => JSON.parse(readFileSync(new URL(file, dir), 'utf8')));
@@ -196,7 +196,8 @@ test('deep links keep any slug that exists on disk so unpublished pages reach th
   const unpublished = onDisk.filter(value => value.status === 'preview' || value.status === 'draft');
   assert.ok(unpublished.length > 0, 'expected at least one preview/draft artifact to exercise');
   for (const value of unpublished) assert.equal(resolveScreen(value.slug, slugs), value.slug, value.slug);
-  assert.equal(resolveScreen('no-such-page', slugs), 'home');
+  assert.equal(resolveScreen('no-such-page', slugs), 'no-such-page');
+  assert.equal(resolveScreen('../bad', slugs), 'home');
   assert.equal(resolveScreen(null, slugs), 'home');
   assert.equal(resolveScreen(null, slugs, 'author'), 'author');
   assert.match(read('../app/src/routing.ts'), /allEntries\.map/);
