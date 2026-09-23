@@ -106,3 +106,26 @@ test('entrance motion tokens apply on all themes, not paper/workshop only', () =
   assert.doesNotMatch(css, /\.theme-paper,\.theme-workshop\{[\s\S]*?--motion-duration:420ms/);
   assert.doesNotMatch(view, /block-enter/);
 });
+
+test('root token spine bridges --ds-* and artifact semantics', () => {
+  const css = read('../app/src/style.css');
+  assert.match(css, /:root\{[\s\S]*?--text:#201e1d/);
+  assert.match(css, /--muted:#635d59/);
+  assert.match(css, /--accent:#146a5b/);
+  assert.match(css, /--ds-ink:var\(--text\)/);
+  assert.match(css, /--ds-ink-2:var\(--muted\)/);
+  assert.match(css, /--ds-page:var\(--page\)/);
+  assert.match(css, /--ds-hairline:var\(--hairline\)/);
+  assert.match(css, /\.theme-paper\{--accent:#78553c/);
+  assert.doesNotMatch(css, /@media\s*\(\s*prefers-color-scheme/);
+});
+
+test('Home/Studio chrome no longer hardcodes #635d59 or #146a5b outside the root spine', () => {
+  const css = read('../app/src/style.css');
+  const withoutRoot = css.replace(/:root\{[\s\S]*?\}\n/, '');
+  assert.doesNotMatch(withoutRoot, /#635d59/i);
+  assert.doesNotMatch(withoutRoot, /#146a5b/i);
+  assert.match(css, /\.mini-features b\{color:var\(--accent\)\}/);
+  assert.match(css, /\.entry-card p\{color:var\(--muted\)/);
+  assert.match(css, /var\(--card-accent,var\(--accent\)\)/);
+});

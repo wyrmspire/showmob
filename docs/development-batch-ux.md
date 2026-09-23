@@ -89,12 +89,12 @@ Showmob starts from a sound accessibility foundation: semantic HTML, `aria-press
 
 ## 7. Unify the visual system
 
-- [ ] Reconcile Home/Studio `--ds-*` variables and hardcoded colors with the artifact theme tokens.
-  - Open: dual token families remain (`--ds-*` on hub/Studio chrome vs `--accent`/`--text` on artifacts).
-- [ ] Remove avoidable hardcoded values such as `#635d59` and `#146a5b` when a semantic token expresses the role.
-  - Open: many Home/Studio rules still hardcode those hex values.
-- [ ] Keep the unified token model compatible with a future `prefers-color-scheme` treatment without forcing dark mode into this batch.
-  - Open: blocked on the token unification above; reduced-motion is already respected.
+- [x] Reconcile Home/Studio `--ds-*` variables and hardcoded colors with the artifact theme tokens.
+  - Shipped: `:root` semantic spine (`--text`/`--muted`/`--page`/`--canvas`/`--surface`/`--accent`/`--accent-soft`/`--hairline`) with `--ds-*` aliases; `.theme-*` still owns reading-surface overrides.
+- [x] Remove avoidable hardcoded values such as `#635d59` and `#146a5b` when a semantic token expresses the role.
+  - Shipped: Home/Studio chrome rules consume tokens; those hex values remain only on the `:root` spine (theme presets keep their own accents).
+- [x] Keep the unified token model compatible with a future `prefers-color-scheme` treatment without forcing dark mode into this batch.
+  - Shipped: remappable root semantics only; no dark-mode switch; hub stays warm/paper-like; reduced-motion already respected.
 
 ## Acceptance walkthrough
 
