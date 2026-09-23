@@ -47,7 +47,7 @@ export function Home({
       <Header
         title="Showmob"
         fact="Idea pages as links"
-        intro="Showmob turns a structured idea into one shareable web page. Browse the library, follow a connected series, or search for the subject you need."
+        intro="Showmob is a small language for idea pages, courses, and worlds—each page is a shareable link. Browse the library, follow a series, or search by tag."
       />
       <section className="home-lead">
         <div>
