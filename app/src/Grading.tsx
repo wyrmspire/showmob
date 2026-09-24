@@ -278,6 +278,151 @@ function PlanReveal({ subjectId }: { subjectId: string }) {
   );
 }
 
+const PLAN_VS_OPTIONS = [
+  { value: "plan", label: "Plan was the problem" },
+  { value: "execution", label: "Execution was the problem" },
+  { value: "both", label: "Both" },
+  { value: "neither", label: "Plan and page matched / N/A" },
+] as const;
+
+const PLAN_VS_LABELS: Record<string, string> = Object.fromEntries(
+  PLAN_VS_OPTIONS.map((o) => [o.value, o.label]),
+);
+
+/** Second step after the plan is visible: judge plan vs execution. Optional; never blocks navigation. */
+function PlanJudgment({
+  subjectId,
+  artifactSlug,
+  latest,
+  passcode,
+  onUnauthorized,
+  onSaved,
+}: {
+  subjectId: string;
+  artifactSlug: string;
+  latest: GradeRow | undefined;
+  passcode: string;
+  onUnauthorized: () => void;
+  onSaved: (grade: GradeRow) => void;
+}) {
+  const existing =
+    typeof latest?.scores?.plan_vs_execution === "string"
+      ? (latest.scores.plan_vs_execution as string)
+      : "";
+  const existingNote =
+    typeof latest?.scores?.plan_vs_execution_note === "string"
+      ? (latest.scores.plan_vs_execution_note as string)
+      : "";
+  const [choice, setChoice] = useState(existing);
+  const [note, setNote] = useState(existingNote);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+  const [savedLocal, setSavedLocal] = useState(Boolean(existing));
+
+  // Prefill when the open subject / latest grade changes (reopen graded subject).
+  useEffect(() => {
+    setChoice(existing);
+    setNote(existingNote);
+    setSavedLocal(Boolean(existing));
+    setError("");
+  }, [subjectId, existing, existingNote]);
+
+  const readOnly = Boolean(existing) || savedLocal;
+
+  const submitJudgment = async () => {
+    if (!choice || !latest) {
+      setError("Pick a plan-vs-execution judgment first.");
+      return;
+    }
+    const rating = Number(latest.scores.one_to_ten);
+    if (!Number.isInteger(rating) || rating < 1 || rating > 10) {
+      setError("Latest grade is missing a 1-10 rating; re-save the grade first.");
+      return;
+    }
+    const scores: Record<string, unknown> = {
+      one_to_ten: rating,
+      plan_vs_execution: choice,
+    };
+    if (note.trim()) scores.plan_vs_execution_note = note.trim();
+    setSaving(true);
+    setError("");
+    try {
+      const res = await fetch("/api/gn", {
+        method: "POST",
+        headers: { "content-type": "application/json", "x-grading-passcode": passcode },
+        body: JSON.stringify({
+          subject_id: subjectId,
+          artifact_slug: artifactSlug,
+          scores,
+          suggestion: "(plan judgment)",
+          behavior: {},
+        }),
+      });
+      if (res.status === 401) {
+        onUnauthorized();
+        return;
+      }
+      const data = (await res.json()) as { grade?: GradeRow; error?: string };
+      if (!res.ok || !data.grade) throw new Error(data.error || `save failed (${res.status})`);
+      onSaved(data.grade);
+      setSavedLocal(true);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (!latest) return null;
+
+  return (
+    <aside className="gn-plan-judgment" aria-label="Plan vs execution">
+      <h3>Plan vs execution</h3>
+      <p className="gn-plan-judgment-lead">
+        After reading the plan: what missed — the plan, the page, both, or neither?
+      </p>
+      {readOnly ? (
+        <div className="gn-plan-judgment-readonly">
+          <p>
+            <strong>{PLAN_VS_LABELS[choice] ?? choice}</strong>
+          </p>
+          {note.trim() ? <p>{note.trim()}</p> : null}
+        </div>
+      ) : (
+        <>
+          <ChoiceRow
+            label="Plan vs execution"
+            value={choice}
+            onChange={setChoice}
+            options={[...PLAN_VS_OPTIONS]}
+          />
+          <label className="gn-field">
+            <span>One-line note (optional)</span>
+            <textarea
+              rows={2}
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              placeholder="plan_vs_execution_note"
+              maxLength={2000}
+            />
+          </label>
+          <div className="gn-savebar">
+            {error && <p className="gn-error">{error}</p>}
+            <button
+              className="file-button"
+              type="button"
+              disabled={saving || !choice}
+              onClick={() => void submitJudgment()}
+            >
+              {saving ? "Saving…" : "Save plan judgment"}
+            </button>
+          </div>
+        </>
+      )}
+    </aside>
+  );
+}
+
 function PasscodeGate({ onSubmit, error }: { onSubmit: (code: string) => void; error: string }) {
   const [value, setValue] = useState("");
   return (
@@ -875,7 +1020,23 @@ export function Grading({
                     </div>
                   </form>
                 )}
-                {(justSaved || gradedIds.has(open.id)) && <PlanReveal subjectId={open.id} />}
+                {(justSaved || gradedIds.has(open.id)) && (
+                  <>
+                    <PlanReveal subjectId={open.id} />
+                    <PlanJudgment
+                      subjectId={open.id}
+                      artifactSlug={openArtifact.slug}
+                      latest={(gradesBySubject.get(open.id) ?? [])
+                        .slice()
+                        .sort((a, b) => b.graded_at.localeCompare(a.graded_at))[0]}
+                      passcode={passcode}
+                      onUnauthorized={() =>
+                        lock("Passcode rejected - enter it again, then save.", true)
+                      }
+                      onSaved={(grade) => setGrades((current) => [grade, ...current])}
+                    />
+                  </>
+                )}
               </section>
             </div>
           )}

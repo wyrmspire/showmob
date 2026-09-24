@@ -89,7 +89,7 @@ function pick<T extends string>(value: unknown, allowed: readonly T[]): T | unde
 }
 
 /** Only the known score keys reach the table; anything else is dropped. */
-function cleanScores(raw: unknown): Record<string, unknown> {
+export function cleanScores(raw: unknown): Record<string, unknown> {
   if (typeof raw !== "object" || raw === null || Array.isArray(raw)) {
     throw new Error("scores must be a JSON object");
   }
@@ -113,6 +113,10 @@ function cleanScores(raw: unknown): Record<string, unknown> {
     const v = text(input[key], 2000);
     if (v) out[key] = v;
   }
+  const planVs = pick(input.plan_vs_execution, ["plan", "execution", "both", "neither"] as const);
+  if (planVs) out.plan_vs_execution = planVs;
+  const planNote = text(input.plan_vs_execution_note, 2000);
+  if (planNote) out.plan_vs_execution_note = planNote;
   return out;
 }
 

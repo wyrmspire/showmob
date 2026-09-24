@@ -202,6 +202,11 @@ html,body,#root{margin:0;min-height:100%;} body{background:var(--ds-page);color:
 .gn-plan dt{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
 .gn-plan dd{margin:0;font-size:clamp(15px,2.4vw,18px);line-height:1.45;color:var(--text);overflow-wrap:anywhere}
 .gn-plan-empty{margin:0;color:var(--muted);font-size:14px}
+.gn-plan-judgment{margin-top:18px;padding:16px 0 0;border-top:1px solid color-mix(in srgb,var(--text) 14%,transparent);display:grid;gap:12px}
+.gn-plan-judgment h3{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(20px,3.6vw,26px);letter-spacing:-.02em}
+.gn-plan-judgment-lead{margin:0;color:var(--muted);font-size:14px;line-height:1.4}
+.gn-plan-judgment-readonly{display:grid;gap:6px;font-size:clamp(15px,2.4vw,18px);line-height:1.45}
+
 /* Grading panel, phone-first: tap scales, sticky save, one-row toolbar. */
 .gn-scale{border:0;margin:0;padding:0;min-width:0}
 .gn-scale legend{display:flex;gap:8px;align-items:baseline;width:100%;font-weight:700;font-size:14px;padding:0;margin-bottom:7px}
