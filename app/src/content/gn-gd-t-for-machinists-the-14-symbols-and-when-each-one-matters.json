@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-gd-t-for-machinists-the-14-symbols-and-when-each-one-matters",
+  "title": "GD&T for machinists: the 14 symbols and when each one matters",
+  "summary": "An inventory of the fourteen common GD&T geometric characteristic symbols with shop-floor cues for when each one changes how you make or inspect a part.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "gdandt",
+    "machining",
+    "metrology",
+    "inventory"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Dense inventory for the bench",
+      "title": "Fourteen symbols, and when they change your setup",
+      "body": "GD&T is not decoration on a print. Each geometric characteristic tells you what relationship must be true — and therefore what to datum, what to measure, and what not to over-constrain. This page inventories the usual fourteen and tags when each one matters on a machine."
+    },
+    {
+      "id": "scale",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "14",
+          "label": "Geometric characteristic symbols covered"
+        },
+        {
+          "value": "5",
+          "label": "Groups: form, profile, orientation, location, runout"
+        },
+        {
+          "value": "Datums",
+          "label": "Most controls are meaningless without a frame"
+        }
+      ]
+    },
+    {
+      "id": "groups",
+      "type": "diagram",
+      "heading": "How to read the inventory",
+      "nodes": [
+        {
+          "title": "Form (no datum)",
+          "detail": "Straightness, flatness, circularity, cylindricity — the feature vs itself."
+        },
+        {
+          "title": "Profile",
+          "detail": "Profile of a line / surface — often datum-referenced for real parts."
+        },
+        {
+          "title": "Orientation",
+          "detail": "Angularity, perpendicularity, parallelism — attitude to a datum."
+        },
+        {
+          "title": "Location",
+          "detail": "Position, concentricity, symmetry — where the feature sits (position rules modern shops)."
+        },
+        {
+          "title": "Runout",
+          "detail": "Circular and total runout — spinning functional control."
+        }
+      ]
+    },
+    {
+      "id": "form",
+      "type": "compact-table",
+      "heading": "Form controls",
+      "columns": [
+        "Symbol idea",
+        "Name",
+        "When it matters on the machine"
+      ],
+      "rows": [
+        [
+          "─",
+          "Straightness",
+          "Shafts, knife edges, extrusions — controls bend without saying where it sits"
+        ],
+        [
+          "▱",
+          "Flatness",
+          "Sealing faces, plate tops — how planar, not how parallel to something else"
+        ],
+        [
+          "○",
+          "Circularity (roundness)",
+          "Seal diameters, bearing seats in cross-section — every slice round"
+        ],
+        [
+          "⌒",
+          "Cylindricity",
+          "Pins and bores as a 3D cylinder — round + straight + taper together"
+        ]
+      ],
+      "caption": "Form callouts do not use datums. They still eat time if the tolerance is tighter than your process naturally holds."
+    },
+    {
+      "id": "profile",
+      "type": "compact-table",
+      "heading": "Profile controls",
+      "columns": [
+        "Symbol idea",
+        "Name",
+        "When it matters"
+      ],
+      "rows": [
+        [
+          "⌒ (line)",
+          "Profile of a line",
+          "2D curves on a section — cams, airfoils in a plane"
+        ],
+        [
+          "⌓",
+          "Profile of a surface",
+          "3D freeform / contoured faces — molds, aero, fairing surfaces"
+        ]
+      ],
+      "caption": "With datums, profile becomes a powerful all-in-one location+form control. Without, it is mostly form."
+    },
+    {
+      "id": "orientation",
+      "type": "compact-table",
+      "heading": "Orientation controls",
+      "columns": [
+        "Symbol idea",
+        "Name",
+        "When it matters"
+      ],
+      "rows": [
+        [
+          "∠",
+          "Angularity",
+          "Any non-90° relationship to a datum — wedges, dovetails"
+        ],
+        [
+          "⊥",
+          "Perpendicularity",
+          "Bores square to faces, shoulders square to axes — square setups"
+        ],
+        [
+          "∥",
+          "Parallelism",
+          "Opposite faces, slots, rails — keep mates even"
+        ]
+      ],
+      "caption": "Orientation assumes a datum reference frame. Clock your vise and indicators to those datums."
+    },
+    {
+      "id": "location",
+      "type": "compact-table",
+      "heading": "Location controls",
+      "columns": [
+        "Symbol idea",
+        "Name",
+        "When it matters"
+      ],
+      "rows": [
+        [
+          "⌖",
+          "Position",
+          "Hole patterns, pins, slots — the modern default for 'where is this feature'"
+        ],
+        [
+          "◎",
+          "Concentricity",
+          "Rare on new prints; median-point control — ask before over-inspecting"
+        ],
+        [
+          "⌯",
+          "Symmetry",
+          "Also uncommon now; center-plane equality — position often replaces it"
+        ]
+      ],
+      "caption": "If a new print says concentricity/symmetry, clarify with engineering. Position + runout usually carry function today."
+    },
+    {
+      "id": "runout",
+      "type": "compact-table",
+      "heading": "Runout controls",
+      "columns": [
+        "Symbol idea",
+        "Name",
+        "When it matters"
+      ],
+      "rows": [
+        [
+          "↗",
+          "Circular runout",
+          "Each circular element while rotating about a datum axis — shafts, seals"
+        ],
+        [
+          "⌰",
+          "Total runout",
+          "Entire surface as it spins — stricter functional spin control"
+        ]
+      ],
+      "caption": "Runout is how the part behaves when it turns. Indicate it the way it runs in service when you can."
+    },
+    {
+      "id": "shop-cues",
+      "type": "checklist",
+      "heading": "Shop-floor cues",
+      "items": [
+        {
+          "label": "No datum on the feature control frame → form (or undatumed profile)",
+          "detail": "You are fighting process capability, not fixture alignment."
+        },
+        {
+          "label": "Perpendicularity / parallelism / angularity → lock datums before cutting",
+          "detail": "Indicate the datum surfaces the print names, not the ones that are convenient."
+        },
+        {
+          "label": "Position on a pattern → true position math / functional gage thinking",
+          "detail": "Do not invent a ± coordinate story that the print did not ask for."
+        },
+        {
+          "label": "Runout → spin about the datum axis the print shows",
+          "detail": "Centers, V-blocks, or a functional spindle — match the callout."
+        }
+      ]
+    },
+    {
+      "id": "mmc",
+      "type": "note-callout",
+      "title": "Modifiers you will also see",
+      "body": "Ⓟ (projected), Ⓜ (MMC), Ⓛ (LMC), and datum references A|B|C change bonus tolerance and inspection. This inventory is the fourteen characteristics — modifiers deserve their own page when you are ready.",
+      "tone": "note"
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Which control?",
+      "prompt": "A bearing bore must stay round and straight along its length as one cylinder, with no datum. Which characteristic fits best?",
+      "options": [
+        "Parallelism",
+        "Position",
+        "Cylindricity",
+        "Circular runout"
+      ],
+      "answer": 2,
+      "explanation": "Cylindricity is the no-datum form control for a cylindrical surface as a whole. Runout needs a datum axis; position locates a feature."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Use it on the next print",
+      "body": "Circle every feature control frame. Name the group (form / profile / orientation / location / runout). Then decide datums and inspection before you touch the machine."
+    }
+  ]
+}
