@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-predict-next-year-s-copper-price-to-the-dollar",
+  "title": "Predict next year's copper price to the dollar",
+  "summary": "An intentionally overconfident thin page that 'nails' copper to the dollar — failure bait for graders who should ding fake certainty.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "commodities",
+    "forecast",
+    "failure-bait",
+    "uncertainty"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Certain. Precise. Suspicious.",
+      "title": "Next year's copper settles at $4.37 / lb",
+      "body": "We ran the model. We checked the vibes. We rounded to the dollar-adjacent cent our dashboard prefers. You can stop reading — unless you like watching confidence outrun evidence."
+    },
+    {
+      "id": "answer",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "$4.37",
+          "label": "Official prediction (USD / lb)"
+        },
+        {
+          "value": "100%",
+          "label": "Confidence (decorative)"
+        },
+        {
+          "value": "±$0.00",
+          "label": "Error bar we declined to draw"
+        }
+      ]
+    },
+    {
+      "id": "method",
+      "type": "text",
+      "heading": "Method (abridged to increase authority)",
+      "body": "Take last year's average, add a supply-scare premium, subtract a demand-scare discount, then pick the number that looks decisive in a hero block. No ranges. No scenarios. No humility section — those reduce shareability."
+    },
+    {
+      "id": "why-ding",
+      "type": "note-callout",
+      "title": "Grader hint baked into the bait",
+      "body": "A real page would show a range, drivers, and what would falsify the call. This one does not — on purpose. Fake precision is the defect under test.",
+      "tone": "warning"
+    }
+  ]
+}

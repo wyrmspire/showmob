@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-tarot-deck-of-machining-sins-chatter-crashed-tool-forgotten-work-offset",
+  "title": "A tarot deck of machining sins: chatter, crashed tool, forgotten work offset",
+  "summary": "A wry inventory of machining failure modes as tarot cards — what each sin looks like, how it starts, and the one habit that breaks the spell.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "machining",
+    "tarot",
+    "failures",
+    "wry"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Wry inventory",
+      "title": "Draw a card. Admit the sin. Fix the habit.",
+      "body": "Every shop has a deck of repeating disasters. These cards are not mysticism — they are failure modes with better costumes. Pull one, recognize yourself, and change the setup before the next blank is ruined."
+    },
+    {
+      "id": "deck-size",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "12",
+          "label": "Cards in this working deck"
+        },
+        {
+          "value": "3",
+          "label": "Major calamities everyone knows"
+        },
+        {
+          "value": "1",
+          "label": "Habit reverse per card"
+        }
+      ]
+    },
+    {
+      "id": "majors",
+      "type": "comparison",
+      "heading": "The three major arcana of regret",
+      "columns": [
+        {
+          "name": "Chatter",
+          "detail": "The machine sings a song you did not request. Surface waves, broken edges, ego damage."
+        },
+        {
+          "name": "Crashed tool",
+          "detail": "Geometry meets unexpected coordinate. Spindle stops caring about your schedule."
+        },
+        {
+          "name": "Forgotten work offset",
+          "detail": "The program is innocent. Your G54 is living in last Tuesday."
+        }
+      ]
+    },
+    {
+      "id": "cards",
+      "type": "compact-table",
+      "heading": "The deck",
+      "columns": [
+        "Card",
+        "How it shows up",
+        "Usual root",
+        "Counter-habit"
+      ],
+      "rows": [
+        [
+          "I. The Chatterer",
+          "Washboard finish, screaming",
+          "Stickout / speed / weak hold",
+          "Shorten stickout; change SFPM; clamp like you mean it"
+        ],
+        [
+          "II. The Crashed Tool",
+          "Bang, silence, paperwork",
+          "Wrong offset / rapid into stock",
+          "Graph/single-block critical moves; verify offsets"
+        ],
+        [
+          "III. The Lost Offset",
+          "Air cut or crater",
+          "G54 not updated after re-indicate",
+          "Offset checklist before Cycle Start"
+        ],
+        [
+          "IV. The Dry-Run Skipper",
+          "Confidence without proof",
+          "Schedule pressure",
+          "Mandatory dry run on new setups"
+        ],
+        [
+          "V. The Worn Insert Prophet",
+          "Sudden finish collapse",
+          "Flying past tool life",
+          "Count parts; listen; swap early"
+        ],
+        [
+          "VI. The Coolant Denialist",
+          "Blue chips, welded edges",
+          "Empty tank / wrong mix",
+          "Glance at nozzle before spindle"
+        ],
+        [
+          "VII. The Soft Jaw Romantic",
+          "Part walks mid-cut",
+          "Inadequate grip / oil film",
+          "Clean jaws; adequate pressure; stop blocks"
+        ],
+        [
+          "VIII. The Unit Confused",
+          "Inch program, metric tool",
+          "Mixed controllers / habits",
+          "Announce units out loud at setup"
+        ],
+        [
+          "IX. The Probe-Skipper",
+          "Assumed Z is still true",
+          "Trust issues with reality",
+          "Probe or indicator after any crash/bump"
+        ],
+        [
+          "X. The Handwheel Hero",
+          "Manual jog into glory",
+          "Bypassing program care",
+          "Jog in proper increment; know where tool tip is"
+        ],
+        [
+          "XI. The Chip Nest",
+          "Recut chips, scarred walls",
+          "Bad evacuation",
+          "Air blast / coolant / pause to clear"
+        ],
+        [
+          "XII. The Unsigned Setup",
+          "Tribal knowledge only",
+          "No sheet / no photo",
+          "One photo + offset list on the job cart"
+        ]
+      ],
+      "caption": "Fictional deck for teaching. Your shop may deal extra local cards."
+    },
+    {
+      "id": "spread",
+      "type": "slideshow",
+      "heading": "A three-card spread (example reading)",
+      "slides": [
+        {
+          "title": "Past — The Dry-Run Skipper",
+          "body": "You shipped a revision on Friday nerves. The card remembers."
+        },
+        {
+          "title": "Present — The Lost Offset",
+          "body": "The vise moved. G54 did not get the memo."
+        },
+        {
+          "title": "Future — The Crashed Tool (reversed)",
+          "body": "If you single-block the first toolpath and re-indicate, this card stays in the deck unused."
+        }
+      ]
+    },
+    {
+      "id": "rite",
+      "type": "checklist",
+      "heading": "Pre-Cycle Start rite (breaks most curses)",
+      "items": [
+        {
+          "label": "Work offset matches the indicated surface",
+          "detail": "Say the G54 numbers out loud once."
+        },
+        {
+          "label": "Tool lengths match the carousel reality",
+          "detail": "Especially after a crash or tool change scramble."
+        },
+        {
+          "label": "First moves single-block / graph as required",
+          "detail": "Rapids into stock are not a personality trait."
+        },
+        {
+          "label": "Clamp, units, coolant glanced",
+          "detail": "Boring. Effective."
+        }
+      ]
+    },
+    {
+      "id": "quote",
+      "type": "quote",
+      "quote": "The machine is not cursed. Your checklist is incomplete.",
+      "attribution": "Shop proverb, embroidered on a rag"
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Name that card",
+      "prompt": "The program ran fine yesterday. Overnight the vise was removed and remounted. First cut today plunges into stock. Which card?",
+      "options": [
+        "The Worn Insert Prophet",
+        "The Lost Offset",
+        "The Coolant Denialist",
+        "The Chip Nest"
+      ],
+      "answer": 1,
+      "explanation": "Remount without refreshing work offset is classic Forgotten Work Offset energy."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Draw responsibly",
+      "body": "Print the deck table. Circle the card you drew last month. Put the counter-habit on the setup sheet."
+    }
+  ]
+}

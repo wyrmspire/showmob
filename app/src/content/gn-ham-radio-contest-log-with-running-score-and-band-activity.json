@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-ham-radio-contest-log-with-running-score-and-band-activity",
+  "title": "Ham radio contest log with running score and band-activity",
+  "summary": "An energetic living contest log: example QSOs, running score, and which bands are hot right now.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "signal",
+  "tags": [
+    "grading-night",
+    "ham-radio",
+    "contest",
+    "log",
+    "living"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Living / energetic — example contest snapshot",
+      "title": "Log hot, score live, ride the band openings",
+      "body": "Fictional mid-contest snapshot for a single-op station in a weekend HF contest. Rates change. Bands open and close. Keep the log honest and the rate board visible."
+    },
+    {
+      "id": "score",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "312",
+          "label": "QSOs so far"
+        },
+        {
+          "value": "78",
+          "label": "Multipliers"
+        },
+        {
+          "value": "24,336",
+          "label": "Running score (QSO pts × mults, example)"
+        },
+        {
+          "value": "61/hr",
+          "label": "Last-hour rate"
+        }
+      ]
+    },
+    {
+      "id": "bands",
+      "type": "compact-table",
+      "heading": "Band activity board (now)",
+      "columns": [
+        "Band",
+        "QSOs",
+        "Mults",
+        "Rate feel",
+        "Note"
+      ],
+      "rows": [
+        [
+          "20 m",
+          "140",
+          "28",
+          "Hot",
+          "Run frequency holding"
+        ],
+        [
+          "40 m",
+          "95",
+          "22",
+          "Warming",
+          "EU starting to pop"
+        ],
+        [
+          "15 m",
+          "48",
+          "16",
+          "Cooling",
+          "Short path fading"
+        ],
+        [
+          "10 m",
+          "12",
+          "6",
+          "Dead-ish",
+          "Check every :15"
+        ],
+        [
+          "80 m",
+          "17",
+          "6",
+          "Night plan",
+          "Save for later"
+        ]
+      ],
+      "caption": "Move the run when rate dies — do not marry a dead band."
+    },
+    {
+      "id": "log",
+      "type": "compact-table",
+      "heading": "Recent log lines (example)",
+      "columns": [
+        "UTC",
+        "Call",
+        "Band",
+        "Mode",
+        "Exch rcvd",
+        "Pts"
+      ],
+      "rows": [
+        [
+          "1841",
+          "W1ABC",
+          "20",
+          "CW",
+          "03 CT",
+          "2"
+        ],
+        [
+          "1841",
+          "K4XYZ",
+          "20",
+          "CW",
+          "12 GA",
+          "2"
+        ],
+        [
+          "1842",
+          "VE3QQ",
+          "20",
+          "CW",
+          "07 ON",
+          "2"
+        ],
+        [
+          "1843",
+          "F6ZZZ",
+          "20",
+          "CW",
+          "14",
+          "3"
+        ],
+        [
+          "1845",
+          "N7SST",
+          "40",
+          "CW",
+          "05 OR",
+          "2"
+        ],
+        [
+          "1846",
+          "DL1AA",
+          "40",
+          "CW",
+          "22",
+          "3"
+        ],
+        [
+          "1848",
+          "JA1EX",
+          "15",
+          "CW",
+          "09",
+          "3"
+        ]
+      ],
+      "caption": "Generic calls/exchanges for shape only — not a real contest submission."
+    },
+    {
+      "id": "ops",
+      "type": "checklist",
+      "heading": "Operate checklist (keep the living page alive)",
+      "items": [
+        {
+          "label": "Update rate every 15 minutes",
+          "detail": "If under goal, change band or mode strategy."
+        },
+        {
+          "label": "Protect unique multipliers",
+          "detail": "A slow mult is still a mult — park a second VFO if you have one."
+        },
+        {
+          "label": "Log immediately; never trust memory in a pileup",
+          "detail": "Busted calls cost more than a slow QSO."
+        },
+        {
+          "label": "Hydrate / stretch on schedule",
+          "detail": "Fatigue invents calls."
+        }
+      ]
+    },
+    {
+      "id": "strategy",
+      "type": "timeline",
+      "heading": "Rest-of-contest plan",
+      "items": [
+        {
+          "time": "Next 2h",
+          "title": "Ride 20 while it pays",
+          "detail": "Spot-check 15 at :00 and :30."
+        },
+        {
+          "time": "Sunset+",
+          "title": "Shift energy to 40",
+          "detail": "Keep a run + S&P second radio if allowed."
+        },
+        {
+          "time": "Late night",
+          "title": "80 for mults",
+          "detail": "Slow rate, high value — do not skip."
+        },
+        {
+          "time": "Last hour",
+          "title": "Clean dupes / chase holes",
+          "detail": "Fill thin multipliers on the board."
+        }
+      ]
+    },
+    {
+      "id": "note",
+      "type": "note-callout",
+      "title": "Living artifact",
+      "body": "In a real contest this page would refresh from the logger. Here the tables stand still as a grading-night snapshot of the same energy.",
+      "tone": "note"
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "CQ TEST",
+      "body": "Set the next 15-minute rate goal on a sticky note. When it fails, change something audible — band, speed, or listening discipline."
+    }
+  ]
+}

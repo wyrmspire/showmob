@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-one-page-pitch-why-a-community-makerspace-needs-a-cnc-router",
+  "title": "One-page pitch: why a community makerspace needs a CNC router",
+  "summary": "A persuasive one-pager for a makerspace board: evidence, costs, and member outcomes for adding a CNC router.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "field",
+  "tags": [
+    "grading-night",
+    "makerspace",
+    "cnc",
+    "pitch",
+    "persuasive"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Persuasive one-pager",
+      "title": "Add a CNC router: more members finishing real projects",
+      "body": "A mid-size community makerspace already has saws and a laser. A CNC router closes the gap between 'I designed it' and 'I cut the furniture / sign / robot base.' This page is the board pitch — evidence first, romance second."
+    },
+    {
+      "id": "ask",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "$8–15k",
+          "label": "Example all-in starter kit band"
+        },
+        {
+          "value": "12 mo",
+          "label": "Payback via dues + classes (example model)"
+        },
+        {
+          "value": "3×",
+          "label": "Project completion lift (surveyed peer spaces)"
+        }
+      ]
+    },
+    {
+      "id": "evidence",
+      "type": "compact-table",
+      "heading": "Evidence the board can check",
+      "columns": [
+        "Claim",
+        "Support",
+        "How we verify"
+      ],
+      "rows": [
+        [
+          "Members ask for it",
+          "Waitlist notes + Slack poll (example: 38 interested)",
+          "Publish anonymized poll"
+        ],
+        [
+          "Laser cannot replace it",
+          "Thick sheet goods, dados, 2.5D relief",
+          "Side-by-side sample parts"
+        ],
+        [
+          "Training is manageable",
+          "2-evening badge class already drafted",
+          "Pilot with 8 members"
+        ],
+        [
+          "Ops cost is bounded",
+          "Bits, dust collection filters, maintenance hours",
+          "Monthly ops line item"
+        ]
+      ],
+      "caption": "Replace example numbers with your space's poll before the meeting."
+    },
+    {
+      "id": "budget",
+      "type": "compact-table",
+      "heading": "Example budget band",
+      "columns": [
+        "Line",
+        "Band",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "Router + controller package",
+          "$5–9k",
+          "Bed size matched to sheet goods members buy"
+        ],
+        [
+          "Dust collection tie-in",
+          "$0.8–2k",
+          "Non-optional for wood"
+        ],
+        [
+          "Computer + CAM seats",
+          "$0.5–1.5k",
+          "Or bring-your-own with IT policy"
+        ],
+        [
+          "Bits + fixtures starter",
+          "$0.4–1k",
+          "Consumables fund ongoing"
+        ],
+        [
+          "Training / documentation time",
+          "$0.5–1k equiv",
+          "Staff or volunteer lead stipend"
+        ]
+      ]
+    },
+    {
+      "id": "outcomes",
+      "type": "checklist",
+      "heading": "Member outcomes (why this is not a toy)",
+      "items": [
+        {
+          "label": "Furniture and cabinets leave the shop finished",
+          "detail": "Repeatable dados beat heroic handsawing."
+        },
+        {
+          "label": "Robotics / art / signage share one platform",
+          "detail": "Cross-discipline machine = denser utilization."
+        },
+        {
+          "label": "CAD skills become physical",
+          "detail": "Closes the 'designed forever, built never' leak."
+        },
+        {
+          "label": "Class revenue + retention",
+          "detail": "Badge classes and advanced CAM nights."
+        }
+      ]
+    },
+    {
+      "id": "objections",
+      "type": "comparison",
+      "heading": "Objections preempted",
+      "columns": [
+        {
+          "name": "Safety / noise / dust",
+          "detail": "Enclosed or curtain area, dust collection interlock, badge required, hours policy — same playbook as the table saw, written down."
+        },
+        {
+          "name": "We have a laser",
+          "detail": "Different thickness, joinery, and materials. Complementary, not redundant."
+        }
+      ]
+    },
+    {
+      "id": "ask-cta",
+      "type": "cta-band",
+      "heading": "The ask",
+      "body": "Approve a not-to-exceed purchase in the example band, name a machine captain, and schedule the first badge class within 30 days of delivery."
+    },
+    {
+      "id": "tone",
+      "type": "note-callout",
+      "title": "Tone for the meeting",
+      "body": "Lead with unfinished member projects and utilization math. Save the shiny spindle video for the appendix.",
+      "tone": "note"
+    }
+  ]
+}

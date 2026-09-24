@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-grant-proposal-summary-for-a-high-school-ham-radio-club",
+  "title": "Grant proposal summary for a high school ham radio club",
+  "summary": "An earnest one-page grant summary: club purpose, student outcomes, budget ask, and how success will be measured.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "ham-radio",
+    "grant",
+    "education",
+    "earnest"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Earnest grant summary — fictional club",
+      "title": "Northridge HS Amateur Radio Club — equipment & licensing grant",
+      "body": "We teach students to earn Technician licenses, make real on-air contacts, and staff public-service communications for school events. This summary asks for starter station gear and exam fees so interest becomes skill."
+    },
+    {
+      "id": "ask",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "$4,850",
+          "label": "Total ask (example)"
+        },
+        {
+          "value": "24",
+          "label": "Active student members (example)"
+        },
+        {
+          "value": "1 yr",
+          "label": "Grant period"
+        }
+      ]
+    },
+    {
+      "id": "need",
+      "type": "text",
+      "heading": "Need",
+      "body": "The club currently borrows a single VHF handheld and meets in a classroom without a permanent antenna. Students pass practice exams but stall before on-air confidence. A modest station — dual-band radio, power supply, antenna, and licensing support — turns homework into contacts and public service."
+    },
+    {
+      "id": "outcomes",
+      "type": "checklist",
+      "heading": "Outcomes we will report",
+      "items": [
+        {
+          "label": "At least 12 new Technician licenses in the grant year",
+          "detail": "Exam fees covered for students with need."
+        },
+        {
+          "label": "Weekly on-air practice net during the school year",
+          "detail": "Logged; mentors from a local club invited."
+        },
+        {
+          "label": "Two public-service deployments",
+          "detail": "e.g. fun run / field day-style demo for families."
+        },
+        {
+          "label": "Open station hours with adult control operator present",
+          "detail": "Safety and Part 97 compliance first."
+        }
+      ]
+    },
+    {
+      "id": "budget",
+      "type": "compact-table",
+      "heading": "Budget summary (example)",
+      "columns": [
+        "Item",
+        "Amount",
+        "Purpose"
+      ],
+      "rows": [
+        [
+          "Dual-band base radio + PS",
+          "$1,900",
+          "Club station"
+        ],
+        [
+          "Antenna + mast / feedline",
+          "$1,100",
+          "Reliable VHF/UHF access"
+        ],
+        [
+          "3× handhelds + speaker mics",
+          "$900",
+          "Event / training use"
+        ],
+        [
+          "License exam fees fund",
+          "$450",
+          "Need-based vouchers"
+        ],
+        [
+          "Curriculum / kit parts",
+          "$500",
+          "Foxhunt / basic electronics labs"
+        ]
+      ],
+      "caption": "No personal luxuries. Gear stays with the school inventory list."
+    },
+    {
+      "id": "equity",
+      "type": "note-callout",
+      "title": "Access",
+      "body": "Exam vouchers and loaner handhelds prioritize students who cannot buy gear. Gender and grade diversity goals are tracked so the club does not become a closed friend group with radios.",
+      "tone": "positive"
+    },
+    {
+      "id": "timeline",
+      "type": "timeline",
+      "heading": "Year plan",
+      "items": [
+        {
+          "time": "Month 1–2",
+          "title": "Procure & install",
+          "detail": "Antenna coordination with facilities; inventory tags."
+        },
+        {
+          "time": "Month 2–4",
+          "title": "License sprint",
+          "detail": "Study sessions; first exam session on campus if possible."
+        },
+        {
+          "time": "Month 5–9",
+          "title": "On-air culture",
+          "detail": "Weekly net; mentor nights; one public event."
+        },
+        {
+          "time": "Month 10–12",
+          "title": "Report & sustain",
+          "detail": "Outcomes report to funder; next-year dues/booster plan."
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Closing",
+      "body": "Fund a station that outlasts one school year of enthusiasm. Students will leave with licenses, logs, and the habit of communicating when it matters."
+    }
+  ]
+}
