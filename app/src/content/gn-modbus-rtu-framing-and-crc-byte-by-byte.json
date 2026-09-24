@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-modbus-rtu-framing-and-crc-byte-by-byte",
+  "title": "Modbus RTU framing and CRC, byte by byte",
+  "summary": "One real request frame taken apart byte by byte - address, function, data, and the CRC-16 that guards it - plus the response it earns.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "signal",
+  "tags": ["grading-night", "modbus", "industrial", "protocols"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Industrial protocols, up close",
+      "title": "Eight bytes that ask a question",
+      "body": "Modbus RTU has run factory floors since 1979 because it is small enough to hold in your head. A master sends a frame, a slave answers. This page takes one real request apart byte by byte, including the two CRC bytes that let the receiver prove the message arrived intact."
+    },
+    {
+      "id": "line-facts",
+      "type": "stat-strip",
+      "items": [
+        { "value": "9600 8E1", "label": "The classic line setting - baud, data bits, even parity, one stop bit" },
+        { "value": "1-247", "label": "Usable slave addresses on one bus; 0 broadcasts to all" },
+        { "value": "3.5 chars", "label": "The silence that frames a message - about 4 ms at 9600 baud" }
+      ]
+    },
+    {
+      "id": "anatomy",
+      "type": "diagram",
+      "heading": "The frame, in order",
+      "nodes": [
+        { "title": "Address - 1 byte", "detail": "Which slave is being spoken to. Everyone else stays quiet." },
+        { "title": "Function - 1 byte", "detail": "What to do: read coils, read registers, write, and so on." },
+        { "title": "Data - 0 to 252 bytes", "detail": "The arguments: starting address and quantity for a read, values for a write." },
+        { "title": "CRC - 2 bytes", "detail": "CRC-16 over everything before it, low byte sent first." }
+      ]
+    },
+    {
+      "id": "address",
+      "type": "text",
+      "heading": "The address byte",
+      "body": "Every slave on the bus listens to every frame, but only the addressed one answers. Address 0 is the broadcast address: all slaves act on it and none reply, which makes it useful for writes that must land everywhere at once and useless for anything that needs confirmation. Valid slave addresses are 1 through 247; 248 to 255 are reserved."
+    },
+    {
+      "id": "functions",
+      "type": "compact-table",
+      "heading": "The function codes you actually meet",
+      "columns": ["Code", "Name", "What it does"],
+      "rows": [
+        ["01", "Read Coils", "Reads on/off outputs - single bits"],
+        ["02", "Read Discrete Inputs", "Reads on/off inputs - single bits"],
+        ["03", "Read Holding Registers", "Reads read/write 16-bit registers - the workhorse"],
+        ["04", "Read Input Registers", "Reads read-only 16-bit registers, often sensor values"],
+        ["06", "Write Single Register", "Writes one 16-bit holding register"],
+        ["16", "Write Multiple Registers", "Writes a block of holding registers at once"]
+      ],
+      "caption": "Coils and discrete inputs are bits; holding and input registers are 16-bit words."
+    },
+    {
+      "id": "the-request",
+      "type": "compact-table",
+      "heading": "One real request, byte by byte",
+      "columns": ["Byte", "Value (hex)", "Meaning"],
+      "rows": [
+        ["1", "01", "Slave address - talking to device 1"],
+        ["2", "03", "Function - Read Holding Registers"],
+        ["3", "00", "Starting address, high byte"],
+        ["4", "00", "Starting address, low byte - start at register 0"],
+        ["5", "00", "Quantity of registers, high byte"],
+        ["6", "02", "Quantity, low byte - read 2 registers"],
+        ["7", "C4", "CRC low byte (sent first)"],
+        ["8", "0B", "CRC high byte (sent second)"]
+      ],
+      "caption": "01 03 00 00 00 02 C4 0B: device 1, give me holding registers 0 and 1."
+    },
+    {
+      "id": "the-response",
+      "type": "compact-table",
+      "heading": "The answer that comes back",
+      "columns": ["Byte", "Value (hex)", "Meaning"],
+      "rows": [
+        ["1", "01", "Slave address - device 1 is replying"],
+        ["2", "03", "Function - echo of the request's function"],
+        ["3", "04", "Byte count - 4 data bytes follow (2 registers)"],
+        ["4", "00", "Register 0, high byte"],
+        ["5", "2A", "Register 0, low byte - value 42"],
+        ["6", "01", "Register 1, high byte"],
+        ["7", "8F", "Register 1, low byte - value 399"],
+        ["8", "9B", "CRC low byte"],
+        ["9", "CF", "CRC high byte"]
+      ],
+      "caption": "01 03 04 00 2A 01 8F 9B CF: two registers, values 42 and 399."
+    },
+    {
+      "id": "endianness",
+      "type": "note-callout",
+      "title": "Two byte orders, both on purpose",
+      "body": "Register data inside the frame is big-endian: high byte first, so 00 2A reads naturally as 42. The CRC is the exception - it is sent low byte first, so the value 0x0BC4 appears on the wire as C4 then 0B. Mixing these up is the classic first-week bug in a Modbus implementation.",
+      "tone": "warning"
+    },
+    {
+      "id": "crc-why",
+      "type": "text",
+      "heading": "What the CRC is for",
+      "body": "The line is electrically hostile: long runs, motor noise, loose terminals. Parity catches some single-bit flips but nothing fancier. The CRC-16 is a 16-bit remainder computed over the whole frame - address, function, and data - so any burst of noise that changes the message almost certainly changes the remainder. The receiver recomputes it and compares; a mismatch means the frame is discarded, not acted on."
+    },
+    {
+      "id": "crc-how",
+      "type": "steps",
+      "heading": "Computing the CRC-16, the algorithm",
+      "items": [
+        "Start with a 16-bit register set to all ones: 0xFFFF.",
+        "XOR the first byte of the frame into the low byte of the register.",
+        "Shift the register right one bit. If the bit that fell off the end was a 1, XOR the register with 0xA001.",
+        "Repeat the shift step eight times - once per bit of the byte.",
+        "XOR in the next byte and repeat, for every byte of address, function, and data - but not the CRC itself.",
+        "The final register is the CRC. Send the low byte first, then the high byte."
+      ]
+    },
+    {
+      "id": "crc-code",
+      "type": "code",
+      "heading": "The same algorithm as pseudocode",
+      "language": "text",
+      "code": "crc = 0xFFFF\nfor each byte in frame:\n    crc = crc XOR byte\n    repeat 8 times:\n        if (crc AND 1) = 1:\n            crc = (crc >> 1) XOR 0xA001\n        else:\n            crc = crc >> 1\nreturn crc   # 01 03 00 00 00 02 gives 0x0BC4"
+    },
+    {
+      "id": "poly-note",
+      "type": "text",
+      "heading": "Why 0xA001",
+      "body": "That constant is the Modbus polynomial - x^16 + x^15 + x^2 + 1 - written in the reversed bit order the right-shifting algorithm needs. It is the same polynomial as CRC-16-IBM. You do not need to derive it to use it, but recognizing 0xA001 in someone's code is how you know you are looking at a Modbus CRC and not one of the many other 16-bit CRCs."
+    },
+    {
+      "id": "timing",
+      "type": "text",
+      "heading": "Silence is the frame marker",
+      "body": "RTU frames have no start flag or length header. A message begins after at least 3.5 character-times of silence on the bus and ends the same way, and the bytes inside must arrive with gaps under 1.5 character-times or the receiver treats the frame as broken. At 9600 baud, one character takes about 1.1 ms, so the framing silence is about 4 ms. This is why a Modbus master must pace its transmissions and why jittery software timers can corrupt a bus."
+    },
+    {
+      "id": "errors",
+      "type": "note-callout",
+      "title": "When the slave says no",
+      "body": "An exception response sets the function code's top bit - a reply to function 03 comes back as 83 - followed by one exception byte: 01 illegal function, 02 illegal data address, 03 illegal data value, 04 slave device failure. A request for register 9000 on a device with ten registers earns 01 83 02 plus its CRC.",
+      "tone": "note"
+    },
+    {
+      "id": "check-function",
+      "type": "exercise",
+      "heading": "Check the frame",
+      "prompt": "In the request 01 03 00 00 00 02 C4 0B, which byte carries the function code?",
+      "options": [
+        "Byte 2 - the 03",
+        "Byte 1 - the 01",
+        "Byte 7 - the C4"
+      ],
+      "answer": 0,
+      "explanation": "Address comes first, function second. Byte 1 is the slave address 01, byte 2 is function 03 (Read Holding Registers), and the last two bytes are the CRC."
+    },
+    {
+      "id": "check-crc",
+      "type": "exercise",
+      "heading": "Check the guard",
+      "prompt": "Which bytes does the CRC-16 cover?",
+      "options": [
+        "Address, function, and data - everything before the CRC",
+        "Only the data bytes",
+        "The whole frame including the CRC bytes themselves"
+      ],
+      "answer": 0,
+      "explanation": "The CRC is computed over the entire message up to the CRC field. That is what lets the receiver recompute it over what it received and compare against the two bytes that followed."
+    },
+    {
+      "id": "references",
+      "type": "resource-list",
+      "heading": "The primary sources",
+      "items": [
+        { "label": "Modbus Organization specifications", "detail": "The application protocol and serial-line specs, free and short.", "url": "https://modbus.org/specs.php" },
+        { "label": "Modbus - Wikipedia", "detail": "Variants (RTU, ASCII, TCP) and history.", "url": "https://en.wikipedia.org/wiki/Modbus" }
+      ]
+    }
+  ]
+}

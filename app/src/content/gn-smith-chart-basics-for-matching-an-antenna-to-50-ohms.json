@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-smith-chart-basics-for-matching-an-antenna-to-50-ohms",
+  "title": "Smith chart basics for matching an antenna to 50 ohms",
+  "summary": "The whole chart in one pass: what it plots, how to put your antenna on it, and how to walk a mismatched load back to the center with two components.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "signal",
+  "tags": ["grading-night", "rf", "smith-chart", "antennas"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "RF matching, the picture version",
+      "title": "One circle that holds every impedance",
+      "body": "Your transmitter wants to see 50 ohms. Your antenna, at the frequency you care about, is almost certainly not 50 ohms. The Smith chart is the map that shows where your load actually sits and which two components will walk it home."
+    },
+    {
+      "id": "assumptions",
+      "type": "note-callout",
+      "title": "What this page assumes",
+      "body": "A 50 ohm system throughout, and comfort with the idea that impedance has two parts: resistance (the real part) and reactance (the imaginary part, inductive up, capacitive down). Everything here is at one frequency at a time.",
+      "tone": "note"
+    },
+    {
+      "id": "what-it-is",
+      "type": "text",
+      "heading": "What the chart actually is",
+      "body": "The Smith chart is every possible impedance drawn inside one circle, warped so that the infinite right half of the impedance plane fits on the page. Pure resistance lives on the horizontal line through the middle. Reactance curls off it: inductive loads above the line, capacitive below. The outer rim is pure reactance - no resistance at all - and the exact center is 50 ohms, the perfect match."
+    },
+    {
+      "id": "key-numbers",
+      "type": "stat-strip",
+      "items": [
+        { "value": "50 ohm", "label": "System impedance - the center of the chart" },
+        { "value": "z = Z / 50", "label": "Normalization - every value plotted as a fraction of 50" },
+        { "value": "0.5 wavelength", "label": "One full trip around the chart along a lossless line" },
+        { "value": "1.0", "label": "VSWR at the center - a perfect match" }
+      ]
+    },
+    {
+      "id": "anatomy",
+      "type": "diagram",
+      "heading": "The five landmarks",
+      "nodes": [
+        { "title": "Center", "detail": "z = 1. The match. Everything you do aims here." },
+        { "title": "Horizontal axis", "detail": "Pure resistance, from a short at the left end to an open at the right." },
+        { "title": "Top half", "detail": "Inductive territory - positive reactance." },
+        { "title": "Bottom half", "detail": "Capacitive territory - negative reactance." },
+        { "title": "Outer rim", "detail": "Pure reactance. Full reflection - no power accepted." }
+      ]
+    },
+    {
+      "id": "normalization",
+      "type": "text",
+      "heading": "Normalize first, always",
+      "body": "Divide your measured impedance by 50 before plotting: 100 ohms becomes z = 2, 25 ohms becomes z = 0.5, and 50 + j50 becomes z = 1 + j1. Normalizing is what lets one printed chart serve any system - on a 75 ohm chart you would divide by 75 instead. When you finish matching, multiply back by 50 to get real component values."
+    },
+    {
+      "id": "circle-families",
+      "type": "text",
+      "heading": "The two families of circles",
+      "body": "Curves of constant resistance loop through the right-hand side: once you know the real part of your load, your point sits somewhere on that circle. Curves of constant reactance arc from the rim: they pin the imaginary part. Your load is where its resistance circle crosses its reactance arc. Matching is travel - you move along these curves, one component at a time, until you arrive at the center."
+    },
+    {
+      "id": "normalize-examples",
+      "type": "compact-table",
+      "heading": "Normalization, four ways",
+      "columns": ["Measured impedance", "Normalized z", "Where it lands"],
+      "rows": [
+        ["100 ohm", "2", "Horizontal axis, right of center"],
+        ["25 ohm", "0.5", "Horizontal axis, left of center"],
+        ["50 + j50 ohm", "1 + j1", "Up on the r = 1 circle, inductive side"],
+        ["75 - j25 ohm", "1.5 - j0.5", "Down and right, capacitive side"]
+      ],
+      "caption": "Divide by 50, place the point. That is the whole plotting skill."
+    },
+    {
+      "id": "plot-load",
+      "type": "steps",
+      "heading": "Plot a real load",
+      "items": [
+        "Measure the antenna at your operating frequency. Say the meter reads 100 + j50 ohms.",
+        "Normalize: 100 + j50 over 50 gives z = 2 + j1.",
+        "Find the r = 2 circle, then ride it up to the +j1 reactance arc. Mark the point.",
+        "That dot is your mismatch. The distance from center is how bad it is; the angle tells you its character."
+      ]
+    },
+    {
+      "id": "gamma",
+      "type": "text",
+      "heading": "The reflection hiding in the same picture",
+      "body": "Every impedance also means a reflection coefficient, written Gamma: how much of the wave bounces back. Gamma equals (z - 1) over (z + 1). At the center Gamma is zero and nothing reflects. On the rim its size is one and everything reflects. Circles of constant Gamma are plain circles around the center - so the farther your point sits from the middle, the bigger the reflection, whatever its direction."
+    },
+    {
+      "id": "vswr-reading",
+      "type": "text",
+      "heading": "Reading VSWR without a calculator",
+      "body": "Draw the circle centered on the chart's middle that passes through your load point. Where that circle crosses the right-hand horizontal axis, read the resistance value there - that number is your VSWR. A load of 100 ohms normalized is z = 2, and its circle says VSWR = 2.0. Twenty-five ohms gives the same circle and the same 2.0: a half-size resistance reflects exactly as much as a double-size one."
+    },
+    {
+      "id": "vswr-table",
+      "type": "compact-table",
+      "heading": "Reflection size to VSWR to return loss",
+      "columns": ["Gamma size", "VSWR", "Return loss"],
+      "rows": [
+        ["0.00", "1.0 : 1", "Infinite - nothing comes back"],
+        ["0.10", "1.22 : 1", "20 dB"],
+        ["0.20", "1.5 : 1", "14 dB"],
+        ["0.33", "2.0 : 1", "9.5 dB"],
+        ["0.50", "3.0 : 1", "6 dB"]
+      ],
+      "caption": "Most antenna work calls anything under 2:1 good enough to run."
+    },
+    {
+      "id": "moving",
+      "type": "text",
+      "heading": "Cable moves you in circles",
+      "body": "Add transmission line between the antenna and where you measure, and the measured point rotates around the center - clockwise as you move toward the transmitter. A half wavelength of line is one full turn and returns you to the same impedance; a quarter wave is a half turn and swaps highs for lows. This is why a measured mismatch depends on where you measured it, and why the chart prints a wavelength scale around its edge."
+    },
+    {
+      "id": "note-quarter",
+      "type": "note-callout",
+      "title": "The quarter-wave trick in one line",
+      "body": "A quarter wavelength of line transforms an impedance to the other side of the chart: a 100 ohm load reads as 25 ohms at the far end of a quarter-wave section of the right characteristic impedance. Antenna folks use this as a transformer; everyone else meets it as a surprise.",
+      "tone": "note"
+    },
+    {
+      "id": "components",
+      "type": "text",
+      "heading": "How components move your point",
+      "body": "A series inductor slides the point up along its constant-resistance circle; a series capacitor slides it down the same circle. Shunt parts do the same dance on the admittance version of the chart, where you work in conductance and susceptance instead. A match is just a route: series move, shunt move, arrive at the center."
+    },
+    {
+      "id": "worked-example",
+      "type": "slideshow",
+      "heading": "A worked match in four frames",
+      "slides": [
+        { "title": "The load", "body": "The antenna measures 25 - j25 ohms at the operating frequency. Normalized: z = 0.5 - j0.5 - below the axis, left of center." },
+        { "title": "Series inductor", "body": "Add series inductance of +j1.0 normalized. The point rides the r = 0.5 circle straight up to z = 0.5 + j0.5." },
+        { "title": "Flip to admittance", "body": "That point as admittance is y = 1 - j1. Now work on the conductance circles: g = 1 is the circle that passes through the center." },
+        { "title": "Shunt capacitor", "body": "Add shunt capacitance of +j1.0 normalized susceptance. The point walks the g = 1 circle to y = 1 - the center. Two components, match complete." }
+      ]
+    },
+    {
+      "id": "component-values",
+      "type": "steps",
+      "heading": "Turning the moves into parts",
+      "items": [
+        "Denormalize reactances by multiplying by 50: +j1.0 becomes +j50 ohms of reactance.",
+        "From reactance to inductance: L equals X over (2 pi f). At 14 MHz, j50 is about 0.57 microhenries.",
+        "From susceptance to capacitance: C equals B over (2 pi f). At 14 MHz, +j0.02 siemens is about 227 picofarads.",
+        "Build it, measure again, and expect one trim pass - real components and real antennas both have opinions."
+      ]
+    },
+    {
+      "id": "check-chart",
+      "type": "exercise",
+      "heading": "Check the map",
+      "prompt": "Your load plots in the top half of the chart, on the outer rim. What kind of load is it?",
+      "options": [
+        "Purely inductive - reactance with no resistance",
+        "Purely capacitive - reactance with no resistance",
+        "A perfect 50 ohm match"
+      ],
+      "answer": 0,
+      "explanation": "Top half is inductive, bottom half is capacitive, and the outer rim is pure reactance with zero resistance. Top rim is a pure inductor as far as the transmitter is concerned - and it reflects everything."
+    },
+    {
+      "id": "check-move",
+      "type": "exercise",
+      "heading": "Check the move",
+      "prompt": "Your load sits at z = 1 + j1. You add a series capacitor. Which way does the point travel?",
+      "options": [
+        "Down along the r = 1 circle, toward the center",
+        "Up along the r = 1 circle, away from the center",
+        "Around the center, along a constant-VSWR circle"
+      ],
+      "answer": 0,
+      "explanation": "A series capacitor adds negative reactance, which moves the point down its constant-resistance circle. From 1 + j1, enough capacitance passes straight through the center - that is the match."
+    },
+    {
+      "id": "limits",
+      "type": "text",
+      "heading": "What the chart does not tell you",
+      "body": "Every point on a Smith chart is one frequency. A match that lands dead center at 14.200 MHz may sit at VSWR 3 by 14.350 - bandwidth is a trail of points across the chart, not a single dot. The chart also says nothing about loss: a long, lossy feedline makes any load look better than it is, because the reflected power gets eaten twice before you measure it."
+    },
+    {
+      "id": "instrument",
+      "type": "note-callout",
+      "title": "Same picture, newer paper",
+      "body": "A nanoVNA or antenna analyzer draws this exact plot on its screen. Learning the paper version is not nostalgia - it is what lets you look at the instrument's circle and know which knob to reach for, and roughly how far to turn it.",
+      "tone": "positive"
+    },
+    {
+      "id": "references",
+      "type": "resource-list",
+      "heading": "Go deeper",
+      "items": [
+        { "label": "Smith chart - Wikipedia", "detail": "The math behind the warping, with interactive examples.", "url": "https://en.wikipedia.org/wiki/Smith_chart" },
+        { "label": "The ARRL", "detail": "Antenna matching chapters in the Handbook and Antenna Book.", "url": "https://www.arrl.org" }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Do one by hand",
+      "body": "Take any measured impedance that is not 50 ohms, normalize it, place the dot, and find a two-component route to the center. Ten minutes with a printed chart teaches more than an hour of reading about one."
+    }
+  ]
+}

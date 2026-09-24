@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-monthly-household-budget-worksheet-with-example-numbers",
+  "title": "Monthly household budget worksheet with example numbers",
+  "summary": "A plain monthly budget laid out as a worksheet, with a generic example household filling in every line so the shape is obvious.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "paper",
+  "tags": ["grading-night", "budget", "worksheet"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "A month, on one page",
+      "body": "A budget that fits in your head is the only kind that survives contact with a real month. This worksheet has three parts - what comes in, what must go out, what is left to steer - with an example household filled in so you can see the shape before writing your own numbers."
+    },
+    {
+      "id": "example-note",
+      "type": "note-callout",
+      "title": "The example is made up",
+      "body": "Every number below belongs to a generic two-person household invented for this worksheet. They are there to show what a filled line looks like, not to say what your lines should be.",
+      "tone": "note"
+    },
+    {
+      "id": "income",
+      "type": "compact-table",
+      "heading": "Part 1 - what comes in",
+      "columns": ["Line", "Example", "Yours"],
+      "rows": [
+        ["Paychecks, after tax", "$5,200", ""],
+        ["Side work, average month", "$300", ""],
+        ["Anything else", "$0", ""],
+        ["Total in", "$5,500", ""]
+      ]
+    },
+    {
+      "id": "fixed",
+      "type": "compact-table",
+      "heading": "Part 2 - what must go out",
+      "columns": ["Line", "Example", "Yours"],
+      "rows": [
+        ["Rent or mortgage", "$1,450", ""],
+        ["Utilities, average", "$260", ""],
+        ["Insurance", "$180", ""],
+        ["Phone and internet", "$110", ""],
+        ["Car payment and fuel", "$340", ""],
+        ["Minimum debt payments", "$150", ""],
+        ["Total must-pay", "$2,490", ""]
+      ]
+    },
+    {
+      "id": "steered",
+      "type": "compact-table",
+      "heading": "Part 3 - what is left to steer",
+      "columns": ["Line", "Example", "Yours"],
+      "rows": [
+        ["Groceries", "$600", ""],
+        ["Eating out and fun", "$250", ""],
+        ["Household and clothes", "$150", ""],
+        ["Savings, pay yourself first", "$800", ""],
+        ["Everything else, the buffer", "$1,210", ""],
+        ["Total steered", "$3,010", ""]
+      ]
+    },
+    {
+      "id": "check-math",
+      "type": "stat-strip",
+      "items": [
+        { "value": "$5,500", "label": "Example total in" },
+        { "value": "$5,500", "label": "Example total assigned - in minus out must equal zero" },
+        { "value": "$800", "label": "To savings before the month gets a vote" }
+      ]
+    },
+    {
+      "id": "how-to-use",
+      "type": "steps",
+      "heading": "Using it with your own numbers",
+      "items": [
+        "Fill Part 1 with what actually landed last month, not what should have.",
+        "Fill Part 2 from statements, not memory - the must-pays are where guesses hide.",
+        "Whatever remains is Part 3, and it gets assigned on purpose: savings first, then the flexible lines.",
+        "If the total assigned overshoots the total in, cut from Part 3 only. Part 2 cuts are a bigger project than a monthly pass.",
+        "Next month, adjust one line. A budget you rewrite from scratch every month is a budget you will quit by March."
+      ]
+    },
+    {
+      "id": "review",
+      "type": "checklist",
+      "heading": "The five-minute monthly review",
+      "items": [
+        { "label": "Did any must-pay line move?", "detail": "Rent, insurance, and utilities drift; catch the drift once a month." },
+        { "label": "Did savings leave first?", "detail": "If savings is whatever is left over, the answer is usually nothing." },
+        { "label": "Which flexible line surprised you?", "detail": "Name one. That is the line to watch next month." }
+      ]
+    }
+  ]
+}
