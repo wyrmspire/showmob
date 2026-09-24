@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-the-history-of-the-transistor-from-1947-to-the-first-microprocessor-b",
+  "title": "The history of the transistor, from 1947 to the first microprocessor",
+  "summary": "Follow the people, institutions and manufacturing ideas that converged in a CPU on a chip.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "gn-054"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "map",
+      "type": "image",
+      "heading": "Three branches converge",
+      "src": "/images/gn-transistor-map.svg",
+      "alt": "A relationship map links Bell Labs transistor work and its MOS branch, Texas Instruments integrated-circuit work, and Fairchild planar-process and integration work to Intel’s 4004 collaboration with Busicom. Arrows denote technological contributions rather than every employment move.",
+      "caption": "Selective dependency map, 1947–1971. Dates inside the nodes anchor the history; arrows express the contributions discussed below."
+    },
+    {
+      "id": "read",
+      "type": "text",
+      "heading": "Start with a question, then follow a branch",
+      "body": "How did one experimental amplifier become an entire processor? Device physics made switching possible, manufacturing made repeated structures dependable, and architecture made those structures useful as a programmable machine. The map separates those contributions so “smaller transistors” does not stand in for the whole explanation."
+    },
+    {
+      "id": "bell",
+      "type": "compact-table",
+      "heading": "Bell Labs: making a solid-state device work",
+      "columns": [
+        "People / moment",
+        "Contribution",
+        "What to carry forward"
+      ],
+      "rows": [
+        [
+          "John Bardeen and Walter Brattain · 1947",
+          "Point-contact transistor action in germanium",
+          "A semiconductor device could amplify"
+        ],
+        [
+          "William Shockley and the Bell Labs program",
+          "Junction-transistor development after the point-contact breakthrough",
+          "The laboratory result opened multiple device paths"
+        ],
+        [
+          "Mohamed Atalla and Dawon Kahng · 1959 work, 1960 demonstration",
+          "MOS field-effect device using a silicon/oxide interface",
+          "An insulated gate offered another way to control a channel"
+        ]
+      ],
+      "caption": "The branches are related but not identical: the 1947 point-contact device was not a miniature MOSFET."
+    },
+    {
+      "id": "surface",
+      "type": "text",
+      "heading": "The surface appears twice for a reason",
+      "body": "Atalla and Kahng’s branch depends on controlling the silicon/oxide interface so a field can influence the channel. Hoerni’s planar branch uses oxide to protect junctions and support fabrication from the wafer surface. The shared material matters, but the two contributions solve different immediate problems."
+    },
+    {
+      "id": "integration",
+      "type": "compact-table",
+      "heading": "Two routes into integration",
+      "columns": [
+        "Institution / person",
+        "Idea",
+        "Connection to the map"
+      ],
+      "rows": [
+        [
+          "Texas Instruments · Jack Kilby · 1958",
+          "Demonstrated an integrated circuit in semiconductor material",
+          "A circuit could be built together rather than assembled solely from separate components"
+        ],
+        [
+          "Fairchild · Jean Hoerni · 1959",
+          "Planar manufacturing process",
+          "Protected junctions and a practical surface for repeated processing"
+        ],
+        [
+          "Fairchild · Robert Noyce · 1959",
+          "Planar monolithic circuit concept with interconnection",
+          "A manufacturable route for connecting components on one chip"
+        ],
+        [
+          "Fairchild · Jay Last and team · 1960",
+          "Fabricated a planar integrated circuit",
+          "The manufacturing idea became working circuit hardware"
+        ]
+      ]
+    },
+    {
+      "id": "kilby",
+      "type": "text",
+      "heading": "Do not flatten independent work into a single handoff",
+      "body": "Kilby’s demonstration and Noyce’s planar approach were distinct contributions. Drawing one arrow from TI to Fairchild would incorrectly suggest a simple transfer in which the second merely received the first. The map instead shows two branches contributing to the integrated-circuit story."
+    },
+    {
+      "id": "intel",
+      "type": "compact-table",
+      "heading": "Intel and Busicom: the processor becomes a project",
+      "columns": [
+        "Contribution",
+        "People",
+        "Why it matters"
+      ],
+      "rows": [
+        [
+          "Architecture and system concept",
+          "Ted Hoff and Stan Mazor",
+          "A programmable approach addressed the calculator project"
+        ],
+        [
+          "Silicon design and implementation",
+          "Federico Faggin, working with Masatoshi Shima",
+          "A concept needed detailed circuitry, layout and a working implementation"
+        ],
+        [
+          "Calculator requirements and collaboration",
+          "Busicom and Shima",
+          "The customer problem helped shape the chip set"
+        ],
+        [
+          "Commercial milestone · 1971",
+          "Intel 4004",
+          "A CPU on one chip, within a supporting multi-chip system"
+        ]
+      ],
+      "caption": "The 4004 is commonly identified as the first commercially available general-purpose single-chip microprocessor. Earlier and contemporary processor efforts make an unqualified “first processor” claim too broad."
+    },
+    {
+      "id": "system",
+      "type": "text",
+      "heading": "A CPU on one chip was not the whole computer",
+      "body": "The 4004 did not eliminate the need for program storage, data storage, interfaces and the rest of the system. Integration changes a boundary: more of the processor function sits inside one package. It does not make every surrounding function disappear."
+    },
+    {
+      "id": "paths",
+      "type": "slideshow",
+      "heading": "Explore a contribution",
+      "slides": [
+        {
+          "title": "If your question is device physics",
+          "body": "Follow Bell Labs → transistor → MOS. Ask what controls current and what the gate is insulated from. The visible device shape is less important than the mechanism."
+        },
+        {
+          "title": "If your question is manufacturing",
+          "body": "Follow Fairchild → planar process → monolithic IC. Ask what can be repeated, protected and connected across a wafer. A working specimen and a repeatable process are different achievements."
+        },
+        {
+          "title": "If your question is computing",
+          "body": "Follow integrated circuits + MOS + architecture → 4004. Ask which function moved onto the chip and which remained outside it. The answer is a system boundary, not just a transistor count."
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "type": "exercise",
+      "heading": "Read the arrows",
+      "prompt": "Why are the planar process and CPU architecture separate branches?",
+      "options": [
+        "They are competing names for the same invention",
+        "One concerns making structures and connections; the other concerns organizing computation"
+      ],
+      "answer": 1,
+      "explanation": "Manufacturing capability does not by itself specify an instruction set or processor organization. Architecture without an implementable process does not produce a chip."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources and further reading",
+      "items": [
+        {
+          "label": "Computer History Museum: point-contact transistor",
+          "url": "https://www.computerhistory.org/siliconengine/invention-of-the-point-contact-transistor/",
+          "detail": "Bell Labs, Bardeen and Brattain, with primary papers and laboratory-history references."
+        },
+        {
+          "label": "Computer History Museum: planar process",
+          "url": "https://www.computerhistory.org/siliconengine/invention-of-the-planar-manufacturing-process/",
+          "detail": "Hoerni’s process and its connection to later integration; links include the patent and contemporary technical paper."
+        },
+        {
+          "label": "Computer History Museum: MOS demonstration",
+          "url": "https://www.computerhistory.org/siliconengine/metal-oxide-semiconductor-mos-transistor-demonstrated/",
+          "detail": "Atalla and Kahng; distinguishes 1959 development from the 1960 milestone."
+        },
+        {
+          "label": "Jack Kilby: Nobel autobiography",
+          "url": "https://www.nobelprize.org/prizes/physics/2000/kilby/biographical/",
+          "detail": "Kilby’s own account of his work and career."
+        },
+        {
+          "label": "Computer History Museum: planar IC",
+          "url": "https://www.computerhistory.org/siliconengine/first-planar-integrated-circuit-is-fabricated/",
+          "detail": "Jay Last’s team and the first planar circuit."
+        },
+        {
+          "label": "Intel: the 4004 project",
+          "url": "https://newsroom.intel.com/opinion/the-chip-that-changed-the-world",
+          "detail": "Intel’s account of the architecture, chip set and 1971 introduction."
+        },
+        {
+          "label": "Federico Faggin: Shima’s contribution",
+          "url": "https://www.intel4004.com/shima.htm",
+          "detail": "A project participant’s account of the collaboration."
+        }
+      ]
+    }
+  ]
+}

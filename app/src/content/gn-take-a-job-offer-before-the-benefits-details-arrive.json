@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-take-a-job-offer-before-the-benefits-details-arrive",
+  "title": "Take a job offer before the benefits details arrive?",
+  "summary": "Ask for written terms and time to compare them before an unconditional yes.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "gn-062"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "decision",
+      "type": "text",
+      "heading": "Ask for the missing benefits sheet and an extension",
+      "body": "Benefits can change the value of an offer. Request employee premiums, deductible and out-of-pocket limits, coverage start date, paid leave and retirement terms before making a final decision. Whether acceptance is legally binding depends on the offer and jurisdiction."
+    },
+    {
+      "id": "known",
+      "type": "compact-table",
+      "heading": "Example offer: separate known from unknown",
+      "columns": [
+        "Known",
+        "Still unknown",
+        "Why it matters"
+      ],
+      "rows": [
+        [
+          "Salary: $58,000",
+          "Employee health premium",
+          "$100 vs $450 per month changes annual take-home cost by $4,200"
+        ],
+        [
+          "Schedule: stated in writing",
+          "Coverage waiting period",
+          "A gap may require another coverage arrangement"
+        ],
+        [
+          "Reply deadline: Friday",
+          "Paid leave and retirement vesting",
+          "Do not count benefits that are not confirmed"
+        ]
+      ],
+      "caption": "Fictional offer and comparison numbers; not a personal recommendation or a legal interpretation."
+    },
+    {
+      "id": "message",
+      "type": "text",
+      "heading": "A concrete reply",
+      "body": "Thank you for the offer. I’m interested. Could you send the benefits summary, employee premium schedule and coverage start date, and extend the reply deadline until I’ve had two business days to review them?"
+    },
+    {
+      "id": "fork",
+      "type": "text",
+      "heading": "If the deadline will not move",
+      "body": "Decide whether the confirmed compensation alone meets your needs while treating unknown benefits as unknown. Do not assume a verbal promise fills the gap. If contract language or restrictions could materially affect you, get qualified advice before agreeing."
+    }
+  ]
+}

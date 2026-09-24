@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-how-to-reset-a-tripped-gfci-outlet",
+  "title": "How to reset a tripped GFCI outlet",
+  "summary": "Reset once after unplugging loads; stop if the outlet will not hold.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "gn-010"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "reset",
+      "type": "steps",
+      "heading": "Dry hands, dry outlet, then reset",
+      "items": [
+        "If the outlet is wet, hot, damaged, or smells burned, stop using it and have it checked.",
+        "With dry hands, unplug connected appliances and press RESET firmly.",
+        "If it resets, use TEST and RESET as the device instructions describe. If it trips again or won’t reset, leave it off and contact an electrician; do not keep forcing it."
+      ]
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources and further reading",
+      "items": [
+        {
+          "label": "Leviton: GFCI reset and lockout",
+          "url": "https://leviton.com/support/literature/blogs/how-to-reset-a-gfci-outlet-after-lockout--a-step-by-step-guide",
+          "detail": "No incoming power, a continuing fault, or a failed device can prevent reset. This page does not cover wiring repairs."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-grant-proposal-summary-for-a-high-school-ham-radio-club",
+  "title": "Grant proposal summary for a high school ham radio club",
+  "summary": "A fictional $2,500 school-club request with a teaching plan and measurable outcomes.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "field",
+  "tags": [
+    "grading-night",
+    "gn-090"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "ask",
+      "type": "text",
+      "heading": "A radio station students can explain",
+      "body": "Request: $2,500 for a one-year high-school amateur radio pilot. Students will investigate signals, build receive-only experiments, practise station logging and learn the responsibilities of licensed operation. This is a sample proposal, not an existing school’s record."
+    },
+    {
+      "id": "why",
+      "type": "text",
+      "heading": "From a signal on a screen to a person on the other end",
+      "body": "A radio club connects circuit theory, geography and careful communication. The project begins with listening and measurement so students can participate before licensing. Any transmitting activity must follow the applicable rules and school approvals with an appropriately licensed control operator."
+    },
+    {
+      "id": "budget",
+      "type": "compact-table",
+      "heading": "Requested support",
+      "columns": [
+        "Item",
+        "Amount"
+      ],
+      "rows": [
+        [
+          "Shared station equipment allowance",
+          "$1,100"
+        ],
+        [
+          "Approved antenna, feed line and mounting",
+          "$550"
+        ],
+        [
+          "Bench learning kits and test accessories",
+          "$350"
+        ],
+        [
+          "Teaching materials and licensing support",
+          "$200"
+        ],
+        [
+          "Contingency",
+          "$300"
+        ],
+        [
+          "Total",
+          "$2,500"
+        ]
+      ],
+      "caption": "Illustrative amounts. Secure quotes and a reviewed antenna/site plan; no improvised roof access or installation near power lines."
+    },
+    {
+      "id": "term",
+      "type": "steps",
+      "heading": "One year, three demonstrations",
+      "items": [
+        "Term 1: identify a signal path and keep a reception log with frequency, mode and time.",
+        "Term 2: build and measure a low-voltage learning circuit; explain the difference between measured and predicted results.",
+        "Term 3: run a supervised demonstration and publish a short project report containing methods, observations and limits."
+      ]
+    },
+    {
+      "id": "measure",
+      "type": "text",
+      "heading": "Evidence of learning",
+      "body": "Proposed targets: 12 regular participants, 10 completed signal-path explanations and 6 students ready to attempt an appropriate licence exam. Exam results are not guaranteed. The faculty sponsor records attendance and retains equipment inventory; a volunteer mentor supports technical sessions."
+    },
+    {
+      "id": "sustain",
+      "type": "text",
+      "heading": "What happens after the grant",
+      "body": "The school owns the equipment. A named sponsor maintains the inventory, checks recurring costs and trains the next student officers. Renewal depends on participation and completed work, not the purchase alone."
+    }
+  ]
+}

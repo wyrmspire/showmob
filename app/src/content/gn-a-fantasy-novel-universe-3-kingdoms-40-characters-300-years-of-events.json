@@ -2,11 +2,16 @@
   "schemaVersion": 1,
   "slug": "gn-a-fantasy-novel-universe-3-kingdoms-40-characters-300-years-of-events",
   "title": "A fantasy novel universe: 3 kingdoms, 40 characters, 300 years of events",
-  "summary": "The invented world of the Tidewars saga, organized so a new reader can hold it: three powers, seven eras, and the dozen characters who steer them.",
+  "summary": "Three invented powers, seven eras and a complete forty-person cast register with roles and era labels.",
   "contributor": "Instinct",
   "status": "preview",
   "theme": "field",
-  "tags": ["grading-night", "fantasy", "worldbuilding", "reference"],
+  "tags": [
+    "grading-night",
+    "fantasy",
+    "worldbuilding",
+    "reference"
+  ],
   "updated": "2026-09-24",
   "blocks": [
     {
@@ -20,9 +25,18 @@
       "id": "scale",
       "type": "stat-strip",
       "items": [
-        { "value": "3", "label": "Powers: a mountain crown, a river compact, a salt theocracy" },
-        { "value": "40", "label": "Named characters; a dozen actually steer events" },
-        { "value": "300", "label": "Years since the Breaking of the old empire" }
+        {
+          "value": "3",
+          "label": "Powers: a mountain crown, a river compact, a salt theocracy"
+        },
+        {
+          "value": "40",
+          "label": "Named characters; a dozen actually steer events"
+        },
+        {
+          "value": "300",
+          "label": "Years since the Breaking of the old empire"
+        }
       ]
     },
     {
@@ -37,9 +51,18 @@
       "type": "comparison",
       "heading": "The three powers",
       "columns": [
-        { "name": "Vaelmoor, the Highland Crown", "detail": "Mountain kingdom of the Vael line. Controls the passes, the mines, and every toll between the rivers and the sea. Proud, old, and permanently convinced it is owed." },
-        { "name": "The Three Rivers Compact", "detail": "Merchant republic of the river cities Sarre, Lun, and Ild. Rules by ledger rather than crown; its armies are hired, its laws are contracts, and its memory is double-entry." },
-        { "name": "Ashkara, the Salt Coast", "detail": "Theocracy of the Tide-Speakers, who read divine will in the sea's behavior. Poor in iron, rich in faith, salt, and ships - and the only power whose soldiers believe." }
+        {
+          "name": "Vaelmoor, the Highland Crown",
+          "detail": "Mountain kingdom of the Vael line. Controls the passes, the mines, and every toll between the rivers and the sea. Proud, old, and permanently convinced it is owed."
+        },
+        {
+          "name": "The Three Rivers Compact",
+          "detail": "Merchant republic of the river cities Sarre, Lun, and Ild. Rules by ledger rather than crown; its armies are hired, its laws are contracts, and its memory is double-entry."
+        },
+        {
+          "name": "Ashkara, the Salt Coast",
+          "detail": "Theocracy of the Tide-Speakers, who read divine will in the sea's behavior. Poor in iron, rich in faith, salt, and ships - and the only power whose soldiers believe."
+        }
       ]
     },
     {
@@ -65,13 +88,41 @@
       "type": "timeline",
       "heading": "Three hundred years in seven eras",
       "items": [
-        { "time": "Years 0-40", "title": "The Splintering", "detail": "The old empire breaks; forty petty kings hold forty valleys. Nothing on the map matches twice in a row." },
-        { "time": "Years 41-95", "title": "The Crown Wars", "detail": "Queen Mabren Vael unifies the highlands by marriage, siege, and one famous avalanche. The Vael line begins." },
-        { "time": "Years 96-130", "title": "The Compact Forms", "detail": "The river cities federate against the crown's tolls. Shipmaster-Consul Yara fen Lunn writes the Articles of the Ledger." },
-        { "time": "Years 131-170", "title": "The Salt Ascension", "detail": "The Tide-Speakers turn a temple into a state. Mera Sol's heresy - that the sea answers everyone, not just priests - is drowned with its author." },
-        { "time": "Years 171-220", "title": "The Ledger Peace", "detail": "Fifty years of trade. The Compact gets rich, the crown gets debt, and Ashkara gets quiet in the way that worries people." },
-        { "time": "Years 221-265", "title": "The War of the Tides", "detail": "Three-power war over the straits. Ends not with a victor but with a storm season that sinks three fleets and everyone's appetite." },
-        { "time": "Years 266-300", "title": "The Concord", "detail": "The present. Queen Idra's fragile union of toll, ledger, and tide - held together, so far, by her refusal to call it permanent." }
+        {
+          "time": "Years 0-40",
+          "title": "The Splintering",
+          "detail": "The old empire breaks; forty petty kings hold forty valleys. Nothing on the map matches twice in a row."
+        },
+        {
+          "time": "Years 41-95",
+          "title": "The Crown Wars",
+          "detail": "Queen Mabren Vael unifies the highlands by marriage, siege, and one famous avalanche. The Vael line begins."
+        },
+        {
+          "time": "Years 96-130",
+          "title": "The Compact Forms",
+          "detail": "The river cities federate against the crown's tolls. Shipmaster-Consul Yara fen Lunn writes the Articles of the Ledger."
+        },
+        {
+          "time": "Years 131-170",
+          "title": "The Salt Ascension",
+          "detail": "The Tide-Speakers turn a temple into a state. Mera Sol's heresy - that the sea answers everyone, not just priests - is drowned with its author."
+        },
+        {
+          "time": "Years 171-220",
+          "title": "The Ledger Peace",
+          "detail": "Fifty years of trade. The Compact gets rich, the crown gets debt, and Ashkara gets quiet in the way that worries people."
+        },
+        {
+          "time": "Years 221-265",
+          "title": "The War of the Tides",
+          "detail": "Three-power war over the straits. Ends not with a victor but with a storm season that sinks three fleets and everyone's appetite."
+        },
+        {
+          "time": "Years 266-300",
+          "title": "The Concord",
+          "detail": "The present. Queen Idra's fragile union of toll, ledger, and tide - held together, so far, by her refusal to call it permanent."
+        }
       ]
     },
     {
@@ -83,21 +134,294 @@
     {
       "id": "notables",
       "type": "compact-table",
-      "heading": "The dozen who steer (of the forty named)",
-      "columns": ["Character", "Power", "Why they matter"],
+      "heading": "The forty-person register: rulers and predecessors",
+      "columns": [
+        "Person",
+        "Power",
+        "Era",
+        "Role"
+      ],
       "rows": [
-        ["Queen Mabren Vael", "Vaelmoor", "Unifier of the highlands; everything after her is her shadow"],
-        ["King Odrick the Toll-Taker", "Vaelmoor", "Her grandson; weaponized the passes and provoked the Compact"],
-        ["Yara fen Lunn", "Compact", "Wrote the Articles of the Ledger; the republic's founding mind"],
-        ["The First Tide-Speaker, Callow", "Ashkara", "Lighthouse keeper who heard the sea answer; the faith's origin"],
-        ["Mera Sol", "Ashkara", "Heretic who taught the sea answers everyone; drowned for it, remembered anyway"],
-        ["The Three Accountants", "Compact", "An office, not a person; holds half the world's debt"],
-        ["Admiral Brego Dal", "Compact", "Won the straits twice and lost them once, which is why there was a war"],
-        ["King Aelan II, the Winter King", "Vaelmoor", "Spent the crown's gold on the war and the passes' goodwill on pride"],
-        ["Saint-Viceroy Oshun", "Ashkara", "Ruled during the Silent Years without ever claiming the tide's voice"],
-        ["Spymaster Leth", "Unaffiliated", "Sells to all three powers; the saga's recurring question mark"],
-        ["Queen Idra Vael", "Vaelmoor", "Architect of the Concord; the present tense of the saga"],
-        ["Tide-Speaker Nao", "Ashkara", "Youngest ever raised to the voice; hears something the priests hoped the sea had forgotten"]
+        [
+          "Queen Mabren Vael",
+          "Vaelmoor",
+          "Crown Wars",
+          "Unifier; ancestral shadow over the crown"
+        ],
+        [
+          "King Odrick",
+          "Vaelmoor",
+          "Compact Forms",
+          "Mabren’s grandson; expanded tolls"
+        ],
+        [
+          "King Aelan II",
+          "Vaelmoor",
+          "War of the Tides",
+          "Spent treasury and goodwill"
+        ],
+        [
+          "Queen Idra Vael",
+          "Vaelmoor",
+          "Concord",
+          "Architect of the settlement"
+        ],
+        [
+          "Yara fen Lunn",
+          "Compact",
+          "Compact Forms",
+          "Author of the Articles"
+        ],
+        [
+          "Admiral Brego Dal",
+          "Compact",
+          "War of the Tides",
+          "Commander in the straits"
+        ],
+        [
+          "Callow",
+          "Ashkara",
+          "Salt Ascension",
+          "First Tide-Speaker"
+        ],
+        [
+          "Mera Sol",
+          "Ashkara",
+          "Salt Ascension",
+          "Suppressed dissident voice"
+        ],
+        [
+          "Saint-Viceroy Oshun",
+          "Ashkara",
+          "War of the Tides",
+          "Held authority during the Silent Years"
+        ],
+        [
+          "Tide-Speaker Nao",
+          "Ashkara",
+          "Concord",
+          "Young voice hearing an unwelcome message"
+        ],
+        [
+          "Leth",
+          "Unaffiliated",
+          "Concord",
+          "Broker who sells to every power"
+        ]
+      ],
+      "caption": "Historical figures and present leaders are distinguished by era. The Three Accountants are an office occupied by three named people below."
+    },
+    {
+      "id": "cast-crown",
+      "type": "compact-table",
+      "heading": "Present cast: Vaelmoor",
+      "columns": [
+        "Person",
+        "Power",
+        "Era",
+        "Role"
+      ],
+      "rows": [
+        [
+          "Teren Vael",
+          "Vaelmoor",
+          "Concord",
+          "Heir who doubts Idra’s concessions"
+        ],
+        [
+          "Marshal Senn",
+          "Vaelmoor",
+          "Concord",
+          "Protects the northern pass"
+        ],
+        [
+          "Orra Flint",
+          "Vaelmoor",
+          "Concord",
+          "Mine steward tracking salt shortages"
+        ],
+        [
+          "Nell Arven",
+          "Vaelmoor",
+          "Concord",
+          "Courier with a missing treaty copy"
+        ],
+        [
+          "Bram Voss",
+          "Vaelmoor",
+          "Concord",
+          "Toll captain tempted by bribes"
+        ],
+        [
+          "Sister Fen",
+          "Vaelmoor",
+          "Concord",
+          "Archivist of Mabren’s campaigns"
+        ],
+        [
+          "Dain Rusk",
+          "Vaelmoor",
+          "Concord",
+          "Veteran opposing renewed conscription"
+        ],
+        [
+          "Eris Vale",
+          "Vaelmoor",
+          "Concord",
+          "Surveyor finding an untaxed route"
+        ],
+        [
+          "Holl Mere",
+          "Vaelmoor",
+          "Concord",
+          "Grain factor negotiating winter stocks"
+        ],
+        [
+          "Pell Ash",
+          "Vaelmoor",
+          "Concord",
+          "Prison clerk who remembers names"
+        ]
+      ]
+    },
+    {
+      "id": "cast-compact",
+      "type": "compact-table",
+      "heading": "Present cast: the Compact",
+      "columns": [
+        "Person",
+        "Power",
+        "Era",
+        "Role"
+      ],
+      "rows": [
+        [
+          "Iven Rell",
+          "Compact",
+          "Concord",
+          "First Accountant: sovereign debt"
+        ],
+        [
+          "Sova Penn",
+          "Compact",
+          "Concord",
+          "Second Accountant: shipping credit"
+        ],
+        [
+          "Daro Winn",
+          "Compact",
+          "Concord",
+          "Third Accountant: disputed claims"
+        ],
+        [
+          "Consul Breya",
+          "Compact",
+          "Concord",
+          "Sarre delegate protecting open trade"
+        ],
+        [
+          "Milo Renn",
+          "Compact",
+          "Concord",
+          "Lun delegate facing dock strikes"
+        ],
+        [
+          "Tessa Ild",
+          "Compact",
+          "Concord",
+          "Ild delegate demanding flood repairs"
+        ],
+        [
+          "Jorin Keel",
+          "Compact",
+          "Concord",
+          "Shipwright resisting naval requisitions"
+        ],
+        [
+          "Vela Nor",
+          "Compact",
+          "Concord",
+          "Grain merchant insuring dangerous cargo"
+        ],
+        [
+          "Aven Pike",
+          "Compact",
+          "Concord",
+          "River pilot who knows the shoals"
+        ],
+        [
+          "Rilla Dane",
+          "Compact",
+          "Concord",
+          "Ledger clerk finding duplicate debts"
+        ],
+        [
+          "Orren Bell",
+          "Compact",
+          "Concord",
+          "Dock organizer courting all three consuls"
+        ]
+      ]
+    },
+    {
+      "id": "cast-coast",
+      "type": "compact-table",
+      "heading": "Present cast: coast and independent voices",
+      "columns": [
+        "Person",
+        "Power",
+        "Era",
+        "Role"
+      ],
+      "rows": [
+        [
+          "Keeper Ys",
+          "Ashkara",
+          "Concord",
+          "Maintains the oldest lighthouse"
+        ],
+        [
+          "Captain Varo",
+          "Ashkara",
+          "Concord",
+          "Escorts the temple’s grain convoys"
+        ],
+        [
+          "Suri Salt",
+          "Ashkara",
+          "Concord",
+          "Fishery speaker seeking a fair levy"
+        ],
+        [
+          "Novice Enna",
+          "Ashkara",
+          "Concord",
+          "Secret reader of Mera’s teachings"
+        ],
+        [
+          "Priest Calen",
+          "Ashkara",
+          "Concord",
+          "Custodian of disputed tide records"
+        ],
+        [
+          "Marek Shoal",
+          "Ashkara",
+          "Concord",
+          "Navigator questioning a holy forecast"
+        ],
+        [
+          "Dr. Kes Mar",
+          "Unaffiliated",
+          "Concord",
+          "Physician treating crews from all flags"
+        ],
+        [
+          "Ansel Reed",
+          "Unaffiliated",
+          "Concord",
+          "Translator who hears treaty ambiguities"
+        ]
       ]
     },
     {
@@ -105,10 +429,22 @@
       "type": "diagram",
       "heading": "How the powers lean on each other",
       "nodes": [
-        { "title": "Vaelmoor needs", "detail": "Compact grain and loans; Ashkaran salt for the mines." },
-        { "title": "The Compact needs", "detail": "The crown's passes kept open and the temple's ships kept home." },
-        { "title": "Ashkara needs", "detail": "Iron from the highlands and grain from the rivers - and to be believed." },
-        { "title": "Everyone needs", "detail": "The straits calm. The war happened when all three forgot it at once." }
+        {
+          "title": "Vaelmoor needs",
+          "detail": "Compact grain and loans; Ashkaran salt for the mines."
+        },
+        {
+          "title": "The Compact needs",
+          "detail": "The crown's passes kept open and the temple's ships kept home."
+        },
+        {
+          "title": "Ashkara needs",
+          "detail": "Iron from the highlands and grain from the rivers - and to be believed."
+        },
+        {
+          "title": "Everyone needs",
+          "detail": "The straits calm. The war happened when all three forgot it at once."
+        }
       ]
     },
     {
@@ -116,10 +452,22 @@
       "type": "slideshow",
       "heading": "The War of the Tides in four frames",
       "slides": [
-        { "title": "The spark (year 221)", "body": "The Winter King doubles the strait tolls. The Compact's answer is a convoy that simply does not pay, escorted by Brego Dal's fleet." },
-        { "title": "The temple chooses (year 224)", "body": "Ashkara declares the sea offended by the tolls - theologically convenient, strategically perfect - and closes the straits to everyone." },
-        { "title": "The storm season (year 263)", "body": "Three fleets sink in one autumn, more to weather than to each other. Every power reads the same omen in its own book." },
-        { "title": "The exhausted peace (year 265)", "body": "No victor signs the treaty because there is none. The treaty names the sea the straits' only sovereign. Idra Vael, then a princess, watches her father sign and starts planning the Concord." }
+        {
+          "title": "The spark (year 221)",
+          "body": "The Winter King doubles the strait tolls. The Compact's answer is a convoy that simply does not pay, escorted by Brego Dal's fleet."
+        },
+        {
+          "title": "The temple chooses (year 224)",
+          "body": "Ashkara declares the sea offended by the tolls - theologically convenient, strategically perfect - and closes the straits to everyone."
+        },
+        {
+          "title": "The storm season (year 263)",
+          "body": "Three fleets sink in one autumn, more to weather than to each other. Every power reads the same omen in its own book."
+        },
+        {
+          "title": "The exhausted peace (year 265)",
+          "body": "No victor signs the treaty because there is none. The treaty names the sea the straits' only sovereign. Idra Vael, then a princess, watches her father sign and starts planning the Concord."
+        }
       ]
     },
     {
@@ -127,10 +475,22 @@
       "type": "checklist",
       "heading": "Keeping the cast straight while you read",
       "items": [
-        { "label": "Track power first, person second", "detail": "Every character acts as their power's interest until the moment they famously do not." },
-        { "label": "Vaels come in pairs", "detail": "Each strong Vael ruler is answered by a weak heir; the dynasty breathes in and out." },
-        { "label": "When Ashkara goes silent, something is wrong", "detail": "Silence between Tide-Speakers is the saga's omen of choice." },
-        { "label": "Leth is never on a side", "detail": "If the spymaster appears loyal, reread the chapter." }
+        {
+          "label": "Track power first, person second",
+          "detail": "Every character acts as their power's interest until the moment they famously do not."
+        },
+        {
+          "label": "Vaels come in pairs",
+          "detail": "Each strong Vael ruler is answered by a weak heir; the dynasty breathes in and out."
+        },
+        {
+          "label": "When Ashkara goes silent, something is wrong",
+          "detail": "Silence between Tide-Speakers is the saga's omen of choice."
+        },
+        {
+          "label": "Leth is never on a side",
+          "detail": "If the spymaster appears loyal, reread the chapter."
+        }
       ]
     },
     {
@@ -144,7 +504,7 @@
         "The old empire's tax collectors"
       ],
       "answer": 0,
-      "explanation": "The Articles of the Ledger (year 96) federated the river cities against the Highland Crown's tolls. The empire was fifty years gone by then, and the heresy came later."
+      "explanation": "The Articles of the Ledger in year 96 federated the river cities against the Highland Crown’s tolls. The Breaking began at year 0; Mera’s heresy belongs to the later Salt Ascension."
     },
     {
       "id": "close",

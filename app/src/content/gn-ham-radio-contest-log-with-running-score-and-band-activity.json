@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-ham-radio-contest-log-with-running-score-and-band-activity",
+  "title": "Ham radio contest log with running score and band activity",
+  "summary": "A fictional five-contact contest log with explicit scoring and duplicate handling.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "signal",
+  "tags": [
+    "grading-night",
+    "gn-094"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "rules",
+      "type": "text",
+      "heading": "Practice contest · 09:00–09:35 UTC",
+      "body": "Invented scoring: each unique station-band contact earns one point; each unique region earns one multiplier across the whole contest. Score = valid contact points × distinct regions. These are teaching rules, not the rules of any real contest. Station IDs and regions below are fictional."
+    },
+    {
+      "id": "log",
+      "type": "compact-table",
+      "heading": "Running score",
+      "columns": [
+        "UTC / band",
+        "Station / region",
+        "Decision",
+        "Points × regions = score"
+      ],
+      "rows": [
+        [
+          "09:00 / 20 m",
+          "SIM-A / North",
+          "First contact",
+          "1 × 1 = 1"
+        ],
+        [
+          "09:07 / 20 m",
+          "SIM-B / East",
+          "New station and region",
+          "2 × 2 = 4"
+        ],
+        [
+          "09:15 / 40 m",
+          "SIM-A / North",
+          "Same station, new band: allowed",
+          "3 × 2 = 6"
+        ],
+        [
+          "09:22 / 20 m",
+          "SIM-A / North",
+          "Duplicate station-band: 0",
+          "3 × 2 = 6"
+        ],
+        [
+          "09:35 / 40 m",
+          "SIM-C / West",
+          "New station and region",
+          "4 × 3 = 12"
+        ]
+      ],
+      "caption": "Static worked log. It does not accept entries, hear radio traffic or recalculate when you click."
+    },
+    {
+      "id": "bands",
+      "type": "compact-table",
+      "heading": "Band activity in this sample",
+      "columns": [
+        "Band",
+        "Logged attempts",
+        "Valid contacts",
+        "Distinct stations"
+      ],
+      "rows": [
+        [
+          "20 m",
+          "3",
+          "2",
+          "2"
+        ],
+        [
+          "40 m",
+          "2",
+          "2",
+          "2"
+        ]
+      ],
+      "caption": "This tiny log cannot establish which band has better propagation; operating time and search effort are not controlled."
+    },
+    {
+      "id": "score",
+      "type": "exercise",
+      "heading": "Add a hypothetical contact",
+      "prompt": "At 09:40, SIM-D in East is worked on 20 m. What is the new score?",
+      "options": [
+        "5 × 4 = 20",
+        "5 × 3 = 15",
+        "4 × 3 = 12"
+      ],
+      "answer": 1,
+      "explanation": "It is a new station-band contact, so points increase to five. East is already in the region set, so multipliers stay at three."
+    },
+    {
+      "id": "blank",
+      "type": "code",
+      "heading": "Fields for your practice log",
+      "language": "csv",
+      "code": "utc,band,station,region,valid,reason,points_total,regions_total,score\n,,,,,,,,"
+    }
+  ]
+}

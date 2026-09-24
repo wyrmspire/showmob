@@ -1,0 +1,802 @@
+[
+  {
+    "subject_id": "GN-001",
+    "title": "What to pack for a one-night work trip",
+    "generator": "Grok",
+    "artifact_slug": "gn-what-to-pack-for-a-one-night-work-trip",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-002",
+    "title": "Should I bring an umbrella today with a 40% chance of rain",
+    "generator": "GPT",
+    "artifact_slug": "gn-should-i-bring-an-umbrella-today-with-a-40-chance-of-rain",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-003",
+    "title": "How long to boil an egg for soft, medium, and hard",
+    "generator": "Claude",
+    "artifact_slug": "gn-how-long-to-boil-an-egg-for-soft-medium-and-hard-a",
+    "ab_pair": 1,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-004",
+    "title": "How long to boil an egg for soft, medium, and hard",
+    "generator": "Instinct",
+    "artifact_slug": "gn-how-long-to-boil-an-egg-for-soft-medium-and-hard",
+    "ab_pair": 1,
+    "requested_interaction": "operate"
+  },
+  {
+    "subject_id": "GN-005",
+    "title": "Grocery list for tacos for four",
+    "generator": "Grok",
+    "artifact_slug": "gn-grocery-list-for-tacos-for-four",
+    "ab_pair": null,
+    "requested_interaction": "contribute"
+  },
+  {
+    "subject_id": "GN-006",
+    "title": "Which of two phone plans is cheaper over a year",
+    "generator": "GPT",
+    "artifact_slug": "gn-which-of-two-phone-plans-is-cheaper-over-a-year",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-007",
+    "title": "Steps to jump-start a car with cables",
+    "generator": "Claude",
+    "artifact_slug": "gn-steps-to-jump-start-a-car-with-cables",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-008",
+    "title": "Splitting a $143 dinner bill four ways with a 20% tip",
+    "generator": "Instinct",
+    "artifact_slug": "gn-splitting-a-143-dinner-bill-four-ways-with-a-20-tip",
+    "ab_pair": null,
+    "requested_interaction": "configure"
+  },
+  {
+    "subject_id": "GN-009",
+    "title": "Weekly chore rotation for three roommates",
+    "generator": "Grok",
+    "artifact_slug": "gn-weekly-chore-rotation-for-three-roommates",
+    "ab_pair": null,
+    "requested_interaction": "configure"
+  },
+  {
+    "subject_id": "GN-010",
+    "title": "How to reset a tripped GFCI outlet",
+    "generator": "GPT",
+    "artifact_slug": "gn-how-to-reset-a-tripped-gfci-outlet",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-011",
+    "title": "What time to leave for a 2 PM appointment 25 minutes away",
+    "generator": "Claude",
+    "artifact_slug": "gn-what-time-to-leave-for-a-2-pm-appointment-25-minutes-away",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-012",
+    "title": "Changing a furnace filter: finding the size and which way the arrow points",
+    "generator": "Instinct",
+    "artifact_slug": "gn-changing-a-furnace-filter-finding-the-size-and-which-way-the-arrow-points",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-013",
+    "title": "Converting a one-car garage into a small machine shop: power, layout, budget",
+    "generator": "Grok",
+    "artifact_slug": "gn-converting-a-one-car-garage-into-a-small-machine-shop-power-layout-budget-a",
+    "ab_pair": 2,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-014",
+    "title": "Converting a one-car garage into a small machine shop: power, layout, budget",
+    "generator": "GPT",
+    "artifact_slug": "gn-converting-a-one-car-garage-into-a-small-machine-shop-power-layout-budget-b",
+    "ab_pair": 2,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-015",
+    "title": "Retrofitting a manual Bridgeport mill with a 3-axis DRO: parts, sequence, budget",
+    "generator": "Claude",
+    "artifact_slug": "gn-retrofitting-a-manual-bridgeport-mill-with-a-3-axis-dro-parts-sequence-budget",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-016",
+    "title": "Migrating a plant line from relay logic to a PLC over three weekend shutdowns",
+    "generator": "Instinct",
+    "artifact_slug": "gn-migrating-a-plant-line-from-relay-logic-to-a-plc-over-three-weekend-shutdowns",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-017",
+    "title": "Building a 2-meter J-pole antenna this weekend",
+    "generator": "Grok",
+    "artifact_slug": "gn-building-a-2-meter-j-pole-antenna-this-weekend",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-018",
+    "title": "Six-week plan to learn ladder logic well enough for a controls tech interview",
+    "generator": "GPT",
+    "artifact_slug": "gn-six-week-plan-to-learn-ladder-logic-well-enough-for-a-controls-tech-interview",
+    "ab_pair": null,
+    "requested_interaction": "configure"
+  },
+  {
+    "subject_id": "GN-019",
+    "title": "Moving apartments in 10 days: what happens each day",
+    "generator": "Claude",
+    "artifact_slug": "gn-moving-apartments-in-10-days-what-happens-each-day",
+    "ab_pair": null,
+    "requested_interaction": "contribute"
+  },
+  {
+    "subject_id": "GN-020",
+    "title": "Showmob roadmap: the next three phases from conversation to preserved learning",
+    "generator": "Instinct",
+    "artifact_slug": "gn-showmob-roadmap-the-next-three-phases-from-conversation-to-preserved-learning",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-021",
+    "title": "Planting a 4x8 raised vegetable bed for spring",
+    "generator": "Grok",
+    "artifact_slug": "gn-planting-a-4x8-raised-vegetable-bed-for-spring",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-022",
+    "title": "A 30-person backyard birthday party on a $400 budget",
+    "generator": "GPT",
+    "artifact_slug": "gn-a-30-person-backyard-birthday-party-on-a-400-budget",
+    "ab_pair": null,
+    "requested_interaction": "configure"
+  },
+  {
+    "subject_id": "GN-023",
+    "title": "Redesigning a kitting cart to cut changeover time on a CNC cell",
+    "generator": "Claude",
+    "artifact_slug": "gn-redesigning-a-kitting-cart-to-cut-changeover-time-on-a-cnc-cell",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-024",
+    "title": "Refurbishing a used benchtop oscilloscope: test, repair, calibrate",
+    "generator": "Instinct",
+    "artifact_slug": "gn-refurbishing-a-used-benchtop-oscilloscope-test-repair-calibrate",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-025",
+    "title": "How a MOSFET switches: gate charge, Rds(on), and thermal limits",
+    "generator": "Grok",
+    "artifact_slug": "gn-how-a-mosfet-switches-gate-charge-rds-on-and-thermal-limits-a",
+    "ab_pair": 3,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-026",
+    "title": "How a MOSFET switches: gate charge, Rds(on), and thermal limits",
+    "generator": "GPT",
+    "artifact_slug": "gn-how-a-mosfet-switches-gate-charge-rds-on-and-thermal-limits-b",
+    "ab_pair": 3,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-027",
+    "title": "PID loop tuning for a temperature controller, from P-only to full PID",
+    "generator": "Claude",
+    "artifact_slug": "gn-pid-loop-tuning-for-a-temperature-controller-from-p-only-to-full-pid",
+    "ab_pair": null,
+    "requested_interaction": "configure"
+  },
+  {
+    "subject_id": "GN-028",
+    "title": "Smith chart basics for matching an antenna to 50 ohms",
+    "generator": "Instinct",
+    "artifact_slug": "gn-smith-chart-basics-for-matching-an-antenna-to-50-ohms",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-029",
+    "title": "G-code fundamentals: reading a 20-line facing program line by line",
+    "generator": "Grok",
+    "artifact_slug": "gn-g-code-fundamentals-reading-a-20-line-facing-program-line-by-line",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-030",
+    "title": "Speeds and feeds for 6061 aluminum vs 4140 steel on a manual lathe",
+    "generator": "GPT",
+    "artifact_slug": "gn-speeds-and-feeds-for-6061-aluminum-vs-4140-steel-on-a-manual-lathe",
+    "ab_pair": null,
+    "requested_interaction": "configure"
+  },
+  {
+    "subject_id": "GN-031",
+    "title": "The PLC scan cycle and why timers and one-shots misbehave",
+    "generator": "Claude",
+    "artifact_slug": "gn-the-plc-scan-cycle-and-why-timers-and-one-shots-misbehave",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-032",
+    "title": "A superheterodyne receiver signal path, stage by stage",
+    "generator": "Instinct",
+    "artifact_slug": "gn-a-superheterodyne-receiver-signal-path-stage-by-stage",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-033",
+    "title": "A troubleshooting decision tree for a VFD that trips on overvoltage during decel",
+    "generator": "Grok",
+    "artifact_slug": "gn-a-troubleshooting-decision-tree-for-a-vfd-that-trips-on-overvoltage-during-decel",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-034",
+    "title": "GD&T for machinists: the 14 symbols and when each one matters",
+    "generator": "GPT",
+    "artifact_slug": "gn-gd-t-for-machinists-the-14-symbols-and-when-each-one-matters",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-035",
+    "title": "Lockout/tagout: the full procedure and why each step exists",
+    "generator": "Claude",
+    "artifact_slug": "gn-lockout-tagout-the-full-procedure-and-why-each-step-exists",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-036",
+    "title": "Modbus RTU framing and CRC, byte by byte",
+    "generator": "Instinct",
+    "artifact_slug": "gn-modbus-rtu-framing-and-crc-byte-by-byte",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-037",
+    "title": "Daily pre-shift inspection checklist for a CNC lathe",
+    "generator": "Grok",
+    "artifact_slug": "gn-daily-pre-shift-inspection-checklist-for-a-cnc-lathe",
+    "ab_pair": null,
+    "requested_interaction": "contribute"
+  },
+  {
+    "subject_id": "GN-038",
+    "title": "Resistor color code practice worksheet with 10 blanks",
+    "generator": "GPT",
+    "artifact_slug": "gn-resistor-color-code-practice-worksheet-with-10-blanks",
+    "ab_pair": null,
+    "requested_interaction": "contribute"
+  },
+  {
+    "subject_id": "GN-039",
+    "title": "Near-miss incident report form for a small shop",
+    "generator": "Claude",
+    "artifact_slug": "gn-near-miss-incident-report-form-for-a-small-shop",
+    "ab_pair": null,
+    "requested_interaction": "contribute"
+  },
+  {
+    "subject_id": "GN-040",
+    "title": "Monthly household budget worksheet with example numbers",
+    "generator": "Instinct",
+    "artifact_slug": "gn-monthly-household-budget-worksheet-with-example-numbers",
+    "ab_pair": null,
+    "requested_interaction": "contribute"
+  },
+  {
+    "subject_id": "GN-041",
+    "title": "Interview prep sheet: STAR stories for a maintenance tech role (example candidate)",
+    "generator": "Grok",
+    "artifact_slug": "gn-interview-prep-sheet-star-stories-for-a-maintenance-tech-role-example-candidate",
+    "ab_pair": null,
+    "requested_interaction": "contribute"
+  },
+  {
+    "subject_id": "GN-042",
+    "title": "Tool crib checkout log",
+    "generator": "GPT",
+    "artifact_slug": "gn-tool-crib-checkout-log",
+    "ab_pair": null,
+    "requested_interaction": "contribute"
+  },
+  {
+    "subject_id": "GN-043",
+    "title": "Ohm's law practice problems with worked answers revealed on request",
+    "generator": "Claude",
+    "artifact_slug": "gn-ohm-s-law-practice-problems-with-worked-answers-revealed-on-request",
+    "ab_pair": null,
+    "requested_interaction": "contribute"
+  },
+  {
+    "subject_id": "GN-044",
+    "title": "Portfolio project write-up template for an automation build, with a sample entry",
+    "generator": "Instinct",
+    "artifact_slug": "gn-portfolio-project-write-up-template-for-an-automation-build-with-a-sample-entry",
+    "ab_pair": null,
+    "requested_interaction": "contribute"
+  },
+  {
+    "subject_id": "GN-045",
+    "title": "Tomorrow: three meetings, a dentist appointment, and a 4-hour focus block",
+    "generator": "Grok",
+    "artifact_slug": "gn-tomorrow-three-meetings-a-dentist-appointment-and-a-4-hour-focus-block-a",
+    "ab_pair": 4,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-046",
+    "title": "Tomorrow: three meetings, a dentist appointment, and a 4-hour focus block",
+    "generator": "GPT",
+    "artifact_slug": "gn-tomorrow-three-meetings-a-dentist-appointment-and-a-4-hour-focus-block-b",
+    "ab_pair": 4,
+    "requested_interaction": "configure"
+  },
+  {
+    "subject_id": "GN-047",
+    "title": "Saturday errand route: hardware store, pharmacy, post office, gym",
+    "generator": "Claude",
+    "artifact_slug": "gn-saturday-errand-route-hardware-store-pharmacy-post-office-gym",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-048",
+    "title": "A morning routine with a 6:15 AM hard stop",
+    "generator": "Instinct",
+    "artifact_slug": "gn-a-morning-routine-with-a-6-15-am-hard-stop",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-049",
+    "title": "Weekly meal prep: shopping list plus cook order",
+    "generator": "Grok",
+    "artifact_slug": "gn-weekly-meal-prep-shopping-list-plus-cook-order",
+    "ab_pair": null,
+    "requested_interaction": "configure"
+  },
+  {
+    "subject_id": "GN-050",
+    "title": "Maintenance shift handoff note: what's running, what's down, what's pending",
+    "generator": "GPT",
+    "artifact_slug": "gn-maintenance-shift-handoff-note-what-s-running-what-s-down-what-s-pending",
+    "ab_pair": null,
+    "requested_interaction": "contribute"
+  },
+  {
+    "subject_id": "GN-051",
+    "title": "Travel day: flight, rental car, hotel check-in, dinner reservation",
+    "generator": "Claude",
+    "artifact_slug": "gn-travel-day-flight-rental-car-hotel-check-in-dinner-reservation",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-052",
+    "title": "Inbox triage: 14 example emails sorted into do, delegate, defer, drop",
+    "generator": "Instinct",
+    "artifact_slug": "gn-inbox-triage-14-example-emails-sorted-into-do-delegate-defer-drop",
+    "ab_pair": null,
+    "requested_interaction": "operate"
+  },
+  {
+    "subject_id": "GN-053",
+    "title": "The history of the transistor, from 1947 to the first microprocessor",
+    "generator": "Grok",
+    "artifact_slug": "gn-the-history-of-the-transistor-from-1947-to-the-first-microprocessor-a",
+    "ab_pair": 5,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-054",
+    "title": "The history of the transistor, from 1947 to the first microprocessor",
+    "generator": "GPT",
+    "artifact_slug": "gn-the-history-of-the-transistor-from-1947-to-the-first-microprocessor-b",
+    "ab_pair": 5,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-055",
+    "title": "How CNC evolved from punched-tape NC machines",
+    "generator": "Claude",
+    "artifact_slug": "gn-how-cnc-evolved-from-punched-tape-nc-machines",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-056",
+    "title": "48 hours of one machine breakdown, from first alarm to root cause",
+    "generator": "Instinct",
+    "artifact_slug": "gn-48-hours-of-one-machine-breakdown-from-first-alarm-to-root-cause",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-057",
+    "title": "Radio from spark gap to software-defined radio",
+    "generator": "Grok",
+    "artifact_slug": "gn-radio-from-spark-gap-to-software-defined-radio",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-058",
+    "title": "A year of a household's electric bills and what changed",
+    "generator": "GPT",
+    "artifact_slug": "gn-a-year-of-a-household-s-electric-bills-and-what-changed",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-059",
+    "title": "The 1911 Triangle Shirtwaist fire and how it shaped workplace safety law",
+    "generator": "Claude",
+    "artifact_slug": "gn-the-1911-triangle-shirtwaist-fire-and-how-it-shaped-workplace-safety-law",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-060",
+    "title": "A small repo's git history told as a story: what each commit changed and why",
+    "generator": "Instinct",
+    "artifact_slug": "gn-a-small-repos-git-history-told-as-a-story-what-each-commit-changed-and-why",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-061",
+    "title": "Intermittent fault: a conveyor stops at random 2-3 times a week, cause unknown",
+    "generator": "Grok",
+    "artifact_slug": "gn-intermittent-fault-a-conveyor-stops-at-random-2-3-times-a-week-cause-unknown",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-062",
+    "title": "Take a job offer before the benefits details arrive?",
+    "generator": "GPT",
+    "artifact_slug": "gn-take-a-job-offer-before-the-benefits-details-arrive",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-063",
+    "title": "Half-finished notes from a vendor call about a new servo drive, gaps marked",
+    "generator": "Claude",
+    "artifact_slug": "gn-half-finished-notes-from-a-vendor-call-about-a-new-servo-drive-gaps-marked",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-064",
+    "title": "Quoting a machining job when the material price is unconfirmed",
+    "generator": "Instinct",
+    "artifact_slug": "gn-quoting-a-machining-job-when-the-material-price-is-unconfirmed",
+    "ab_pair": null,
+    "requested_interaction": "configure"
+  },
+  {
+    "subject_id": "GN-065",
+    "title": "Is a used lathe worth $2,500? Photos show wear, seller not answering",
+    "generator": "Grok",
+    "artifact_slug": "gn-is-a-used-lathe-worth-2-500-photos-show-wear-seller-not-answering",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-066",
+    "title": "Early idea: a shop-floor app for logging tool wear, not validated yet",
+    "generator": "GPT",
+    "artifact_slug": "gn-early-idea-a-shop-floor-app-for-logging-tool-wear-not-validated-yet",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-067",
+    "title": "Conflicting advice on whether it's safe to discharge a capacitor with a screwdriver",
+    "generator": "Claude",
+    "artifact_slug": "gn-conflicting-advice-on-whether-it-s-safe-to-discharge-a-capacitor-with-a-screwdriver",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-068",
+    "title": "Holiday sales forecast for a small online shop with only two years of data",
+    "generator": "Instinct",
+    "artifact_slug": "gn-holiday-sales-forecast-for-a-small-online-shop-with-only-two-years-of-data",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-069",
+    "title": "An entire automotive stamping plant: lines, PLCs, networks, maintenance crews",
+    "generator": "Grok",
+    "artifact_slug": "gn-an-entire-automotive-stamping-plant-lines-plcs-networks-maintenance-crews",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-070",
+    "title": "The full radio spectrum from ELF to gamma: who uses each band and why",
+    "generator": "GPT",
+    "artifact_slug": "gn-the-full-radio-spectrum-from-elf-to-gamma-who-uses-each-band-and-why",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-071",
+    "title": "A fictional space colony's power grid, politics, and supply chain",
+    "generator": "Claude",
+    "artifact_slug": "gn-a-fictional-space-colony-s-power-grid-politics-and-supply-chain",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-072",
+    "title": "The US electrical grid from power plant to wall outlet",
+    "generator": "Instinct",
+    "artifact_slug": "gn-the-us-electrical-grid-from-power-plant-to-wall-outlet",
+    "ab_pair": 6,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-073",
+    "title": "The US electrical grid from power plant to wall outlet",
+    "generator": "Grok",
+    "artifact_slug": "gn-the-us-electrical-grid-from-power-plant-to-wall-outlet-b",
+    "ab_pair": 6,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-074",
+    "title": "A semiconductor fab: sand to packaged chip, 400+ steps grouped",
+    "generator": "GPT",
+    "artifact_slug": "gn-a-semiconductor-fab-sand-to-packaged-chip-400-steps-grouped",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-075",
+    "title": "The global supply chain of one smartphone",
+    "generator": "Claude",
+    "artifact_slug": "gn-the-global-supply-chain-of-one-smartphone",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-076",
+    "title": "A fantasy novel universe: 3 kingdoms, 40 characters, 300 years of events",
+    "generator": "Instinct",
+    "artifact_slug": "gn-a-fantasy-novel-universe-3-kingdoms-40-characters-300-years-of-events",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-077",
+    "title": "A dungeon crawl where each room is a basic electronics puzzle",
+    "generator": "Grok",
+    "artifact_slug": "gn-a-dungeon-crawl-where-each-room-is-a-basic-electronics-puzzle",
+    "ab_pair": null,
+    "requested_interaction": "operate"
+  },
+  {
+    "subject_id": "GN-078",
+    "title": "A day in the life of a torque wrench, told by the torque wrench",
+    "generator": "GPT",
+    "artifact_slug": "gn-a-day-in-the-life-of-a-torque-wrench-told-by-the-torque-wrench",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-079",
+    "title": "Every screwdriver type ranked by how easy it is to strip",
+    "generator": "Claude",
+    "artifact_slug": "gn-every-screwdriver-type-ranked-by-how-easy-it-is-to-strip",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-080",
+    "title": "Choose your own adventure: you're the PLC and someone just hit the e-stop",
+    "generator": "Instinct",
+    "artifact_slug": "gn-choose-your-own-adventure-youre-the-plc-and-someone-just-hit-the-e-stop",
+    "ab_pair": null,
+    "requested_interaction": "operate"
+  },
+  {
+    "subject_id": "GN-081",
+    "title": "A love letter to the 555 timer IC",
+    "generator": "Grok",
+    "artifact_slug": "gn-a-love-letter-to-the-555-timer-ic",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-082",
+    "title": "A tarot deck of machining sins: chatter, crashed tool, forgotten work offset",
+    "generator": "GPT",
+    "artifact_slug": "gn-a-tarot-deck-of-machining-sins-chatter-crashed-tool-forgotten-work-offset",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-083",
+    "title": "The weather report, but for a factory floor's mood",
+    "generator": "Claude",
+    "artifact_slug": "gn-the-weather-report-but-for-a-factory-floor-s-mood",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-084",
+    "title": "Learning Morse code as a mixtape: letters by rhythm",
+    "generator": "Instinct",
+    "artifact_slug": "gn-learning-morse-code-as-a-mixtape-letters-by-rhythm",
+    "ab_pair": null,
+    "requested_interaction": "operate"
+  },
+  {
+    "subject_id": "GN-085",
+    "title": "Pitch to a plant manager: replace three aging relay panels with one PLC",
+    "generator": "Grok",
+    "artifact_slug": "gn-pitch-to-a-plant-manager-replace-three-aging-relay-panels-with-one-plc",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-086",
+    "title": "One-page pitch: why a community makerspace needs a CNC router",
+    "generator": "GPT",
+    "artifact_slug": "gn-one-page-pitch-why-a-community-makerspace-needs-a-cnc-router",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-087",
+    "title": "Pitch Showmob to a skeptical developer in 90 seconds",
+    "generator": "Claude",
+    "artifact_slug": "gn-pitch-showmob-to-a-skeptical-developer-in-90-seconds",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-088",
+    "title": "Hire an apprentice machinist or buy a second CNC: the case",
+    "generator": "Instinct",
+    "artifact_slug": "gn-hire-an-apprentice-machinist-or-buy-a-second-cnc-the-case",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-089",
+    "title": "Portfolio pitch: three automation projects that prove a tech can troubleshoot",
+    "generator": "Grok",
+    "artifact_slug": "gn-portfolio-pitch-three-automation-projects-that-prove-a-tech-can-troubleshoot",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-090",
+    "title": "Grant proposal summary for a high school ham radio club",
+    "generator": "GPT",
+    "artifact_slug": "gn-grant-proposal-summary-for-a-high-school-ham-radio-club",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-091",
+    "title": "Live OEE dashboard for a 3-machine CNC cell (example data)",
+    "generator": "Claude",
+    "artifact_slug": "gn-live-oee-dashboard-for-a-3-machine-cnc-cell-example-data",
+    "ab_pair": null,
+    "requested_interaction": "operate"
+  },
+  {
+    "subject_id": "GN-092",
+    "title": "Preventive maintenance schedule that updates as tasks close",
+    "generator": "Instinct",
+    "artifact_slug": "gn-preventive-maintenance-schedule-that-updates-as-tasks-close",
+    "ab_pair": null,
+    "requested_interaction": "operate"
+  },
+  {
+    "subject_id": "GN-093",
+    "title": "Spare parts inventory with reorder points for a packaging line",
+    "generator": "Grok",
+    "artifact_slug": "gn-spare-parts-inventory-with-reorder-points-for-a-packaging-line",
+    "ab_pair": null,
+    "requested_interaction": "operate"
+  },
+  {
+    "subject_id": "GN-094",
+    "title": "Ham radio contest log with running score and band activity",
+    "generator": "GPT",
+    "artifact_slug": "gn-ham-radio-contest-log-with-running-score-and-band-activity",
+    "ab_pair": null,
+    "requested_interaction": "operate"
+  },
+  {
+    "subject_id": "GN-095",
+    "title": "Showmob artifact status board: draft, in PR, published",
+    "generator": "Claude",
+    "artifact_slug": "gn-showmob-artifact-status-board-draft-in-pr-published",
+    "ab_pair": null,
+    "requested_interaction": "operate"
+  },
+  {
+    "subject_id": "GN-096",
+    "title": "Andon board for a small assembly line: stations, alerts, response times",
+    "generator": "Instinct",
+    "artifact_slug": "gn-andon-board-for-a-small-assembly-line-stations-alerts-response-times",
+    "ab_pair": null,
+    "requested_interaction": "operate"
+  },
+  {
+    "subject_id": "GN-097",
+    "title": "Should I drink more water?",
+    "generator": "Grok",
+    "artifact_slug": "gn-should-i-drink-more-water",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-098",
+    "title": "Predict next year's copper price to the dollar",
+    "generator": "GPT",
+    "artifact_slug": "gn-predict-next-year-s-copper-price-to-the-dollar",
+    "ab_pair": null,
+    "requested_interaction": "explore"
+  },
+  {
+    "subject_id": "GN-099",
+    "title": "An infographic of my favorite color",
+    "generator": "Claude",
+    "artifact_slug": "gn-an-infographic-of-my-favorite-color",
+    "ab_pair": null,
+    "requested_interaction": "observe"
+  },
+  {
+    "subject_id": "GN-100",
+    "title": "A dashboard for a single houseplant",
+    "generator": "Instinct",
+    "artifact_slug": "gn-a-dashboard-for-a-single-houseplant",
+    "ab_pair": null,
+    "requested_interaction": "operate"
+  }
+]

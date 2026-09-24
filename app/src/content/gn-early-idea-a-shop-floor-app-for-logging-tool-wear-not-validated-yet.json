@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-early-idea-a-shop-floor-app-for-logging-tool-wear-not-validated-yet",
+  "title": "Early idea: a shop-floor app for logging tool wear, not validated yet",
+  "summary": "Test whether anyone will record tool wear before designing an app.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "gn-066"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "hypothesis",
+      "type": "text",
+      "heading": "Would a wear note change the next tool decision?",
+      "body": "Try a paper sheet on one machine for five shifts: tool ID, material, parts since change, observed wear and action taken. Ask the next operator whether any entry changed what they did. If no one records it or uses it, find out why before building the app."
+    }
+  ]
+}

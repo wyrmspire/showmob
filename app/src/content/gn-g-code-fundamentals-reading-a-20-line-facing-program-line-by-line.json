@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "slug": "gn-g-code-fundamentals-reading-a-20-line-facing-program-line-by-line",
   "title": "G-code fundamentals: reading a 20-line facing program line by line",
-  "summary": "A real ~20-line facing program on a mill, walked line by line so each word earns its place.",
+  "summary": "Exactly twenty lines of a simulated facing program, with every line explained and the geometry stated.",
   "contributor": "Grok",
   "status": "preview",
   "theme": "workshop",
@@ -19,7 +19,7 @@
       "type": "hero",
       "eyebrow": "Read the tape before you press Cycle Start",
       "title": "Twenty lines that face a part",
-      "body": "Facing is the simplest useful milling program: flatten the top of a billet. Below is a complete example program, then a line-by-line reading. Units are inches; the dialect is a common Fanuc-ish subset."
+      "body": "Read-only simulator exercise, not a machine-ready program. Assume a 3 × 2 in blank centred on X0 Y0, finished face at Z0, rough top at Z+0.020, a 0.500 in flat end mill and verified clearance to fixtures. Units are inches. Speeds and feeds are invented teaching inputs."
     },
     {
       "id": "setup",
@@ -31,10 +31,10 @@
         },
         {
           "value": "G54",
-          "label": "Work offset \u2014 top center of stock as Z0 example below uses top as Z0"
+          "label": "G54: XY stock centre, Z0 finished face; rough stock is above it"
         },
         {
-          "value": "\u00d80.5\"",
+          "value": "Ø0.5\"",
           "label": "Flat end mill in T1 / H1"
         }
       ]
@@ -42,60 +42,140 @@
     {
       "id": "program",
       "type": "code",
-      "heading": "The facing program (~20 lines)",
+      "heading": "The program: exactly 20 lines",
       "language": "gcode",
-      "code": "O1001 (FACE TOP OF 3x2 BILLET)\nG20 G40 G49 G80 G90\nG54\nT1 M06 (0.5 FLAT EM)\nG43 H1 Z1.0\nS3500 M03\nM08\nG00 X-1.75 Y-0.75\nG00 Z0.1\nG01 Z0.0 F10.0\nG01 X1.75 F20.0\nG00 Y-0.25\nG01 X-1.75\nG00 Y0.25\nG01 X1.75\nG00 Y0.75\nG01 X-1.75\nG00 Z1.0\nM09\nM05\nG91 G28 Z0\nG90\nM30"
+      "code": "O1001 (SIMULATION ONLY)\nG20 G17 G40 G49 G80 G90 G54\nT1 M06\nG00 G43 H1 Z1.0\nS3500 M03\nG00 X-2.0 Y-0.8\nG00 Z0.1\nG01 Z0.0 F10.0\nX2.0 F20.0\nY-0.4\nX-2.0\nY0.0\nX2.0\nY0.4\nX-2.0\nY0.8\nX2.0\nG00 Z1.0\nM05\nM30"
     },
     {
       "id": "walk-header",
       "type": "text",
-      "heading": "Lines 1\u20137: identity, safe modes, tool, spindle",
-      "body": "O1001 names the program. The modal safety line cancels cutter comp, tool length cancel leftovers, canned cycles, and sets absolute mode in inches. G54 selects the work offset. T1 M06 puts the half-inch end mill in the spindle. G43 H1 applies tool length offset and parks Z at 1.0 above the offset. S3500 M03 spins clockwise; M08 turns coolant on."
+      "heading": "Lines 1–5: establish the model",
+      "body": "The program number identifies the exercise. Line 2 sets inches, XY plane, absolute mode and G54 while cancelling listed compensation/cycle modes. T1 M06 requests the tool change. G00 G43 H1 Z1.0 explicitly requests rapid positioning with the assumed tool length applied; its path and machine-specific prerequisites must be verified. S3500 M03 commands the example spindle speed and direction."
     },
     {
       "id": "walk-approach",
       "type": "text",
-      "heading": "Lines 8\u201310: approach and first touch",
-      "body": "Rapid to X-1.75 Y-0.75 \u2014 off the left edge of a 3-inch-wide billet centered on X0, below the near edge. Rapid Z to 0.1 clear. Feed to Z0.0 at 10 ipm to touch the face height. That first feed down is deliberate: never rapid into the material."
+      "heading": "Lines 6–8: approach outside the blank",
+      "body": "X−2.0 puts the cutter centre 0.500 in beyond the left stock edge. With a 0.250 in cutter radius, its edge has 0.250 in nominal clearance from the stock. Move to Z0.1, then feed to the finished-face height at Z0 while still outside the blank. This geometry says nothing about fixtures; those must also be clear."
     },
     {
       "id": "walk-passes",
       "type": "compact-table",
-      "heading": "Lines 11\u201317: the raster face",
+      "heading": "Every line, with its state",
       "columns": [
-        "Line idea",
-        "Motion",
-        "Why"
+        "Line",
+        "Code",
+        "Meaning"
       ],
       "rows": [
         [
-          "G01 X1.75 F20",
-          "Cut across +X",
-          "First pass across the face at Z0"
+          "1",
+          "O1001",
+          "Identify the simulator program"
         ],
         [
-          "G00 Y-0.25",
-          "Step over in Y",
-          "0.5\" step for a 0.5\" cutter \u2248 full width; tighten if finish demands"
+          "2",
+          "G20 G17 G40 G49 G80 G90 G54",
+          "Establish the listed modal assumptions"
         ],
         [
-          "G01 X-1.75",
-          "Cut back \u2212X",
-          "Bidirectional facing to save air time"
+          "3",
+          "T1 M06",
+          "Request tool 1 and its tool change"
         ],
         [
-          "Repeat Y steps",
-          "Y0.25 then Y0.75",
-          "Cover the 2\" depth of the billet with overlap"
+          "4",
+          "G00 G43 H1 Z1.0",
+          "Explicit rapid and length compensation to assumed clearance"
+        ],
+        [
+          "5",
+          "S3500 M03",
+          "Example spindle command"
+        ],
+        [
+          "6",
+          "G00 X-2.0 Y-0.8",
+          "Position outside the stock at clearance height"
+        ],
+        [
+          "7",
+          "G00 Z0.1",
+          "Approach above the finished face"
+        ],
+        [
+          "8",
+          "G01 Z0.0 F10.0",
+          "Feed down outside the blank"
+        ],
+        [
+          "9",
+          "X2.0 F20.0",
+          "First facing stroke; G01 remains active"
+        ],
+        [
+          "10",
+          "Y-0.4",
+          "Feed step-over outside the right stock edge"
+        ],
+        [
+          "11",
+          "X-2.0",
+          "Return facing stroke"
+        ],
+        [
+          "12",
+          "Y0.0",
+          "Feed step-over outside the left stock edge"
+        ],
+        [
+          "13",
+          "X2.0",
+          "Centre facing stroke"
+        ],
+        [
+          "14",
+          "Y0.4",
+          "Next feed step-over"
+        ],
+        [
+          "15",
+          "X-2.0",
+          "Fourth facing stroke"
+        ],
+        [
+          "16",
+          "Y0.8",
+          "Final feed step-over"
+        ],
+        [
+          "17",
+          "X2.0",
+          "Final facing stroke"
+        ],
+        [
+          "18",
+          "G00 Z1.0",
+          "Retract under the assumed clearance model"
+        ],
+        [
+          "19",
+          "M05",
+          "Stop spindle"
+        ],
+        [
+          "20",
+          "M30",
+          "End/reset as defined by the controller"
         ]
       ],
-      "caption": "Alternating X directions with Y step-overs is a classic face pattern. Finish passes often use a smaller step and climb milling only \u2014 this example favors clarity over polish."
+      "caption": "Simulator-only geometry. No coolant, machine-return routine or production setup approval is implied."
     },
     {
       "id": "walk-end",
       "type": "text",
-      "heading": "Lines 18\u201323: clear, stop, go home",
-      "body": "Rapid Z to 1.0 clear. Coolant off (M09), spindle stop (M05). G91 G28 Z0 returns Z through machine home in incremental mode; G90 restores absolute. M30 ends and rewinds. If your control prefers G53 or a different home sequence, swap only the parking block \u2014 leave the cutting logic alone until you understand it."
+      "heading": "Lines 18–20: retract, stop, end",
+      "body": "Retract to the assumed Z clearance, then stop the spindle and end the program. No G28 or G53 return is included: the appropriate parking path depends on the machine and fixture. A safe return cannot be chosen from the part size alone."
     },
     {
       "id": "words",
@@ -104,7 +184,7 @@
       "nodes": [
         {
           "title": "G00 / G01",
-          "detail": "Rapid versus linear feed \u2014 never confuse them near stock."
+          "detail": "Rapid versus linear feed — never confuse them near stock."
         },
         {
           "title": "G90 / G91",
@@ -112,34 +192,34 @@
         },
         {
           "title": "G43 Hn",
-          "detail": "Tool length compensation \u2014 wrong H offset faces air or the vise."
+          "detail": "Tool length compensation — wrong H offset faces air or the vise."
         },
         {
-          "title": "M06 / M03 / M08 / M30",
-          "detail": "Tool change, spindle CW, coolant on, program end."
+          "title": "M06 / M03 / M05 / M30",
+          "detail": "Tool change, spindle clockwise, spindle stop and program end; exact behavior follows the controller manual."
         }
       ]
     },
     {
       "id": "checklist",
       "type": "checklist",
-      "heading": "Before Cycle Start on a real machine",
+      "heading": "Questions before adapting any example",
       "items": [
         {
-          "label": "Work offset Z0 matches the program's assumption",
-          "detail": "This example treats top of stock as Z0. If your shop zeros the table, rewrite Z."
+          "label": "Work coordinates match the stated geometry",
+          "detail": "Here Z0 is the finished face, with rough material above it."
         },
         {
-          "label": "Tool length H1 measured for the tool in the spindle",
-          "detail": "A borrowed length offset faces the wrong plane."
+          "label": "Tool, fixture and all travel clearances are verified",
+          "detail": "The program does not describe clamps or machine travel limits."
         },
         {
-          "label": "Single-block the first approach with the door shut",
-          "detail": "Prove rapids and the first feed down before full auto."
+          "label": "Controller semantics and startup state are confirmed",
+          "detail": "A generic G-code exercise is not a complete safe-start sequence for every control."
         },
         {
-          "label": "Confirm stock actually measures ~3\u00d72 in the vise",
-          "detail": "The X/Y extents are written for that blank."
+          "label": "A qualified operator performs the approved prove-out",
+          "detail": "Use the actual machine procedure and verified cutting data before production."
         }
       ]
     },
@@ -147,24 +227,23 @@
       "id": "note",
       "type": "note-callout",
       "title": "Dialects differ; the reading skill transfers",
-      "body": "Haas, Fanuc, Siemens, and conversational controls spell some parking and coolant codes differently. The point of this page is to read each word as a promise to the machine \u2014 not to memorize one builder's macro set.",
+      "body": "Haas, Fanuc, Siemens, and conversational controls spell some parking and coolant codes differently. The point of this page is to read each word as a promise to the machine — not to memorize one builder's macro set.",
       "tone": "note"
     },
     {
       "id": "quiz",
       "type": "exercise",
       "heading": "Line reading check",
-      "prompt": "In the program above, what does G00 Y-0.25 do after a cutting pass?",
+      "prompt": "Line 10 says only Y-0.4. Which motion mode applies?",
       "options": [
-        "Cuts a finishing pass at feed rate",
-        "Rapids in Y to the next step-over without cutting",
-        "Changes the tool length offset",
-        "Turns the spindle off"
+        "G01 feed, inherited from line 8",
+        "G00 rapid because it is a step-over",
+        "No motion because G is omitted"
       ],
-      "answer": 1,
-      "explanation": "G00 is rapid motion. Moving Y between X cutting passes positions the cutter for the next face stroke without feeding through material.",
-      "correctFeedback": "Correct \u2014 rapid step-over, then G01 cuts again.",
-      "wrongFeedback": "Look at the modal group: G00 versus G01. Only G01 is cutting feed here."
+      "answer": 0,
+      "explanation": "G01 remains active until replaced by another motion mode. Line 10 feeds at the active F20.0; an omitted G word does not imply rapid.",
+      "correctFeedback": "Correct: track the active modal state.",
+      "wrongFeedback": "Trace the last explicit motion command before line 10."
     },
     {
       "id": "compare",
@@ -173,11 +252,11 @@
       "columns": [
         {
           "name": "Included",
-          "detail": "Safety modals, tool change, length offset, spindle/coolant, approach, raster face, park, end."
+          "detail": "Explicit motion modes, tool length, spindle command, feed approach, five overlapping face passes and retract."
         },
         {
           "name": "Skipped on purpose",
-          "detail": "Cutter radius comp, canned cycles, subprograms, probing, adaptive clearing \u2014 learn those after you can read a face."
+          "detail": "Cutter radius comp, canned cycles, subprograms, probing, adaptive clearing — learn those after you can read a face."
         }
       ]
     },
@@ -185,7 +264,7 @@
       "id": "modal",
       "type": "note-callout",
       "title": "Modals remember until cancelled",
-      "body": "G01 stays in effect until another motion modal replaces it. That is why a forgotten G00 after a cut can feed rapidly into the next move \u2014 or why a leftover G91 can turn a small number into a surprise. Read the modal state, not only the line in isolation.",
+      "body": "G01 remains active until another motion command replaces it. Omitting G00 after a cut leaves a feed move; leaving G00 active when a cutting move was intended commands a rapid. Neither the line’s visual position nor its purpose changes the active mode.",
       "tone": "warning"
     },
     {
@@ -193,10 +272,10 @@
       "type": "steps",
       "heading": "How the X/Y numbers were chosen",
       "items": [
-        "Stock is 3.0\" in X and 2.0\" in Y, centered near X0 Y0 for the example.",
-        "A 0.5\" end mill needs to start off the left edge \u2014 hence X-1.75 for a cut that fully clears X\u00b11.5.",
-        "Y step-overs of 0.5\" with passes at -0.75, -0.25, 0.25, 0.75 cover \u00b11.0\" with overlap.",
-        "If your blank is larger, extend the X strokes and add Y passes before you change feeds."
+        "Stock spans X±1.5 and Y±1.0 in. The cutter radius is 0.250 in.",
+        "X endpoints at ±2.0 leave 0.250 in between the cutter edge and nominal stock edge.",
+        "Y passes at −0.8, −0.4, 0, 0.4 and 0.8 are 0.400 in apart: a 0.500 in cutter overlaps adjacent sweeps by 0.100 in.",
+        "The combined sweep covers Y−1.05 to Y+1.05. This proves nominal coverage only, not fixture clearance or cutting suitability."
       ]
     },
     {
@@ -210,15 +289,15 @@
         },
         {
           "title": "Feed to Z0",
-          "body": "Only the Z approach uses feed. This is the moment single-block earns its keep."
+          "body": "Feed to the finished face outside the left edge, with the assumed rough stock at Z+0.020."
         },
         {
           "title": "Cut +X",
           "body": "G01 across the face at the facing feed. Chips should look even; a squeal means something else is wrong."
         },
         {
-          "title": "Step Y, cut \u2212X",
-          "body": "Rapid Y, feed back. Repeat until the far edge is covered, then retract Z and shut down cleanly."
+          "title": "Step Y, cut −X",
+          "body": "Feed Y at the endpoint, then reverse X under the still-active G01. Repeat five strokes and retract."
         }
       ]
     },
@@ -227,6 +306,18 @@
       "type": "cta-band",
       "heading": "Next practice",
       "body": "Change the Y step-over and the X extents on paper, then predict the toolpath before you simulate. Reading beats copying."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources and further reading",
+      "items": [
+        {
+          "label": "Haas: G01 linear interpolation",
+          "url": "https://www.haascnc.com/service/codes-settings.type%3Dgcode.machine%3Dmill.value%3DG01.html",
+          "detail": "Modal feed behavior; use the actual controller manual before adapting code."
+        }
+      ]
     }
   ]
 }

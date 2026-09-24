@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-tomorrow-three-meetings-a-dentist-appointment-and-a-4-hour-focus-block-b",
+  "title": "Tomorrow: three meetings, a dentist appointment, and a 4-hour focus block",
+  "summary": "A constraint-first schedule that exposes the missing uninterrupted four-hour window.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "gn-046"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "constraint",
+      "type": "text",
+      "heading": "Four hours fit. One four-hour block does not.",
+      "body": "Fictional day, matching the paired agenda: meetings at 08:30–09:00, 11:15–12:00 and 14:15–14:45; dentist 13:00–13:45; work ends 17:10. The existing plan offers 09:05–11:05 and 14:50–16:50. That is four hours total in two pieces."
+    },
+    {
+      "id": "anchors",
+      "type": "compact-table",
+      "heading": "Keep these anchors unless the other person agrees",
+      "columns": [
+        "Time",
+        "Anchor",
+        "Buffer to retain"
+      ],
+      "rows": [
+        [
+          "08:30–09:00",
+          "Standup",
+          "5 min transition afterward"
+        ],
+        [
+          "11:15–12:00",
+          "Project sync",
+          "Lunch and 20 min outbound travel before dentist"
+        ],
+        [
+          "13:00–13:45",
+          "Dentist",
+          "30 min return before 14:15"
+        ],
+        [
+          "14:15–14:45",
+          "1:1",
+          "5 min transition afterward"
+        ]
+      ],
+      "caption": "Same fictional appointments as the paired agenda. Travel, lunch and transitions are real claims on the day."
+    },
+    {
+      "id": "options",
+      "type": "slideshow",
+      "heading": "Choose the tradeoff",
+      "slides": [
+        {
+          "title": "Keep all appointments",
+          "body": "Reserve 09:05–11:05 and 14:50–16:50 for the same focus task. You get four hours of work, with a midday interruption. Leave a restart note before lunch."
+        },
+        {
+          "title": "Require one uninterrupted block",
+          "body": "Ask to move both the 13:00 dentist appointment and the 14:15 1:1 to another day. If both moves are confirmed, take lunch 12:00–12:30 and focus 12:30–16:30. Until then, this option is not available."
+        },
+        {
+          "title": "Keep the appointments and shorten the day",
+          "body": "Protect one two-hour focus session and reschedule the remaining work. Reduce the deliverable explicitly; do not pretend the original four-hour task still fits."
+        }
+      ]
+    },
+    {
+      "id": "choice",
+      "type": "exercise",
+      "heading": "Check the constraint",
+      "prompt": "Moving only the 14:15 meeting leaves the dentist fixed. Does that create a four-hour afternoon block before 17:10?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "answer": 1,
+      "explanation": "After the appointment and return travel, the afternoon starts around 14:15, leaving under three hours. The dentist remains an anchor."
+    },
+    {
+      "id": "mode",
+      "type": "note-callout",
+      "title": "Schedule options, not a calendar editor",
+      "body": "Use the arrows to compare plans. This page cannot drag blocks, change appointments or save a schedule. Confirm any move with the people involved before relying on it.",
+      "tone": "note"
+    }
+  ]
+}

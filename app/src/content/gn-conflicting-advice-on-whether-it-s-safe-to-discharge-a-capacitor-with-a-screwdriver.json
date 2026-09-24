@@ -2,68 +2,111 @@
   "schemaVersion": 1,
   "slug": "gn-conflicting-advice-on-whether-it-s-safe-to-discharge-a-capacitor-with-a-screwdriver",
   "title": "Conflicting advice on whether it's safe to discharge a capacitor with a screwdriver",
-  "summary": "Forum wisdom says short it with a screwdriver; textbook caution says never. Both are talking about different capacitors. Here is how to sort it out.",
+  "summary": "Do not short a capacitor with a screwdriver. Identify the equipment and use its rated discharge and verification procedure.",
   "contributor": "Claude",
   "status": "preview",
   "theme": "workshop",
-  "tags": ["grading-night", "electronics", "safety", "capacitors"],
+  "tags": [
+    "grading-night",
+    "electronics",
+    "safety",
+    "capacitors"
+  ],
   "updated": "2026-09-24",
   "blocks": [
     {
       "id": "start",
       "type": "hero",
       "title": "Two confident answers, one missing question",
-      "body": "Ask whether you can discharge a capacitor with a screwdriver and the internet splits in half: 'everyone does it' versus 'never do it.' The fight exists because both sides are answering about different capacitors without saying so. The missing question is always: which capacitor, charged to what, holding how much energy?"
+      "body": "A spark is not proof of safe discharge. Shorting with a screwdriver can cause an arc, tool damage, component failure and injury. Voltage, stored energy and the surrounding circuit matter; a story about one small capacitor does not establish a method for another."
     },
     {
       "id": "positions",
       "type": "comparison",
       "heading": "The two camps, stated fairly",
       "columns": [
-        { "name": "Camp: just short it", "detail": "Comes from tube-radio and CRT repair culture, where caps hold hundreds of volts at modest energy and the screwdriver is always in your hand. Their method 'works': bang, spark, discharged - with pitting on the screwdriver and stress on the capacitor as uncounted costs." },
-        { "name": "Camp: never short it", "detail": "Comes from electronics teaching and from people who have seen a low-ESR bank dump hundreds of amps through a dead short - welded screwdrivers, exploded cans, damaged dielectrics. Their rule survives every case, but treats a 10 uF signal cap and a photoflash bank as the same animal." },
-        { "name": "The synthesis", "detail": "Discharge through a resistor, sized to the capacitor. The resistor turns a violent event into a boring one. Boring is the goal." }
+        {
+          "name": "Anecdote",
+          "detail": "“It worked last time” describes an outcome, not a controlled current path or verified safe state."
+        },
+        {
+          "name": "Engineering evidence",
+          "detail": "The equipment procedure specifies isolation, rated discharge provisions, wait time and verification for that circuit."
+        },
+        {
+          "name": "Decision",
+          "detail": "Do not substitute a screwdriver or a generic resistor suggestion for that procedure."
+        }
       ]
     },
     {
       "id": "energy",
       "type": "compact-table",
       "heading": "What you are actually dealing with",
-      "columns": ["Capacitor", "Typical charge", "Energy", "Screwdriver verdict"],
-      "rows": [
-        ["Signal / coupling cap, 10 uF at 25 V", "Millijoules", "Trivial", "Harmless but pointless - a resistor or even a meter lead does it without drama"],
-        ["SMPS bulk cap, 470 uF at 400 V", "~38 joules", "Painful, can injure", "Shorting pits tools and can crack the cap's internals. Resistor, always"],
-        ["Microwave oven cap, 1 uF at 2,100 V", "~2.2 joules at high voltage", "Lethal voltage", "Never a screwdriver - the voltage outlives bad technique. Resistor with insulated leads, then verify"],
-        ["Photoflash / pulse bank", "Hundreds of joules", "Welding-level event", "A dead short here is an arc-flash experiment. Bleeder resistor and a procedure"],
-        ["Supercapacitor, farads at 2.7 V", "Low voltage, huge current capacity", "Not a shock hazard", "Shorting makes a heater and a welder, not a shock. Resistor to protect the cell"]
+      "columns": [
+        "Hypothetical capacitor",
+        "Stored energy at stated voltage",
+        "What the number does not prove"
       ],
-      "caption": "Energy is 1/2 x C x V^2. The voltage term is squared, which is why high-voltage small caps deserve more respect than big-voltage numbers suggest and low-voltage big caps get disrespected wrongly."
+      "rows": [
+        [
+          "10 µF at 25 V",
+          "0.003125 J",
+          "Low stored energy does not establish the condition of the surrounding circuit"
+        ],
+        [
+          "470 µF at 400 V",
+          "37.6 J",
+          "Both high voltage and substantial stored energy require rated methods"
+        ],
+        [
+          "1 µF at 2,100 V",
+          "2.205 J",
+          "Small capacitance is not permission to approach high voltage"
+        ],
+        [
+          "1 F at 2.7 V",
+          "3.645 J",
+          "Low voltage can still produce destructive short-circuit current"
+        ]
+      ],
+      "caption": "Original calculations: E = ½CV². These are examples at specified actual voltages; a voltage rating is not a measurement of charge."
     },
     {
       "id": "method",
       "type": "steps",
-      "heading": "The boring, correct method",
+      "heading": "What must be established first",
       "items": [
-        "Identify the capacitor and estimate its voltage rating - assume it is charged to that.",
-        "Pick a resistor that limits current to something tame: for hundreds of volts, a few kilohms at a suitable wattage is the classic choice.",
-        "Connect the resistor across the terminals with insulated leads or clips. Never your fingers.",
-        "Wait: five time constants (5 x R x C) brings it under 1% of the starting voltage.",
-        "Verify with a meter before touching anything. The meter reading near zero is the discharge, not the elapsed time.",
-        "Treat anything that cannot be verified as still charged."
+        "Identify the equipment and its service procedure. If it is unknown, stop.",
+        "Use authorized isolation and rated discharge provisions; microwave ovens, CRT equipment and power converters are not beginner discharge projects.",
+        "A competent person verifies the required safe condition with suitable equipment and accounts for possible recharge or voltage recovery.",
+        "Do not use a meter lead as a shorting tool or assume a waiting period alone proves safety."
       ]
     },
     {
       "id": "why-conflict",
       "type": "text",
       "heading": "Why the advice stays conflicting",
-      "body": "Each camp generalizes from its own bench. The radio restorer's 450 V electrolytic tolerates decades of screwdriver shorts, so the habit feels proven. The power engineer's motor-drive bank turns the same habit into an explosion, so the prohibition feels absolute. Advice conflicts most where experience is narrowest - and capacitor energy spans six orders of magnitude, so 'a capacitor' is nearly a contentless word. When advice conflicts, find the variable the advisors disagree on silently. Here it is energy and ESR. Ask 'charged to what, holding how much' and the conflict dissolves."
+      "body": "For an ideal isolated RC circuit, voltage after five time constants is about 0.67% of its initial value. Starting at 2,100 V, that is still about 14 V; “under 1%” is not a universal safe condition. Real equipment adds stored energy, other sources, component ratings and recovery effects. Resistor pulse-energy and voltage ratings matter as well as resistance."
     },
     {
       "id": "caution",
       "type": "note-callout",
       "title": "The cautious reader's takeaway",
-      "body": "If you cannot identify the capacitor, its voltage, or its energy, you do not yet know whether it is safe to touch at all - discharged is a measurement, not an assumption. A resistor, insulated leads, and a verifying meter cover every case on this page. The screwdriver covers none of them well.",
+      "body": "If you cannot establish isolation, ratings and a valid verification method, leave the equipment closed and seek qualified service. A resistor and insulated clips do not make every high-voltage job appropriate for a novice.",
       "tone": "warning"
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources and further reading",
+      "items": [
+        {
+          "label": "OSHA: control of hazardous energy",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "detail": "Stored energy must be controlled and isolation verified; equipment-specific procedures govern."
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-should-i-bring-an-umbrella-today-with-a-40-chance-of-rain",
+  "title": "Should I bring an umbrella today with a 40% chance of rain",
+  "summary": "Bring a small umbrella if getting wet would be inconvenient.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "gn-002"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "answer",
+      "type": "text",
+      "heading": "Take a compact umbrella",
+      "body": "Bring one if you’ll be outside and getting wet would be a hassle; a 40% chance is enough to make a small umbrella worth carrying."
+    }
+  ]
+}

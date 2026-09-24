@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-tarot-deck-of-machining-sins-chatter-crashed-tool-forgotten-work-offset",
+  "title": "A tarot deck of machining sins: chatter, crashed tool, forgotten work offset",
+  "summary": "An original machining tarot: seven fictional cards, seven practical recoveries.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "night",
+  "tags": [
+    "grading-night",
+    "gn-082"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "intro",
+      "type": "text",
+      "heading": "The deck knows what you forgot to check",
+      "body": "An invented shop-floor tarot. Advance one card at a time. The predictions are jokes; the checks are ordinary machining discipline."
+    },
+    {
+      "id": "deck",
+      "type": "slideshow",
+      "heading": "Draw the next card",
+      "slides": [
+        {
+          "title": "I · The Forgotten Offset",
+          "body": "A beautiful toolpath enters the wrong coordinate system. Omen: your confidence is higher than your clearance. Recovery: verify the active work coordinate, tool offsets and stock location using the machine’s approved prove-out procedure."
+        },
+        {
+          "title": "II · The Chattering Tower",
+          "body": "The walls vibrate, and the finish records your ambition. Omen: a long stickout pretending to be a short one. Recovery: stop and inspect rigidity, tool condition, workholding and cutting conditions before making another cut."
+        },
+        {
+          "title": "III · The Reversed Jaw",
+          "body": "The part departs on a journey nobody funded. Omen: an awkward grip called “probably fine.” Recovery: review clamping engagement, clearance and workholding limits before rotation."
+        },
+        {
+          "title": "IV · The Dull Magician",
+          "body": "He turns horsepower into heat and calls it productivity. Omen: a size trend wandering while the tool still looks mostly present. Recovery: inspect wear, confirm dimensions and change or index the tool under the approved procedure."
+        },
+        {
+          "title": "V · The Unmeasured First Piece",
+          "body": "A hundred parts await the good news that the first one was wrong. Omen: production before proof. Recovery: identify required first-article checks, verify the result and release the batch deliberately."
+        },
+        {
+          "title": "VI · The Borrowed Program",
+          "body": "It ran perfectly somewhere else. Omen: an old setup wearing a new filename. Recovery: verify revision, units, tooling, stock and machine compatibility before prove-out."
+        },
+        {
+          "title": "VII · The Patient Machinist",
+          "body": "A rare card. The spindle is stopped and a question is being asked. Omen: preventable trouble is about to remain hypothetical. Recovery: keep doing exactly that."
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "text",
+      "heading": "Read the spread",
+      "body": "Most disasters in this deck begin when an assumption is allowed to dress up as a checked fact."
+    }
+  ]
+}

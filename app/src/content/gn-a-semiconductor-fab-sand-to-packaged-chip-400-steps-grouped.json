@@ -1,0 +1,368 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-semiconductor-fab-sand-to-packaged-chip-400-steps-grouped",
+  "title": "A semiconductor fab: sand to packaged chip, 400+ steps grouped",
+  "summary": "Understand a wafer fab through repeated process loops, measurement gates and yield.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "gn-074"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "orientation",
+      "type": "text",
+      "heading": "Hundreds of operations; a handful of recurring jobs",
+      "body": "A chip is built by repeatedly adding material, defining a pattern, removing selected material, changing electrical properties and measuring the result. “400+ steps” is an order-of-complexity description for this situation, not a universal recipe: the count depends on technology and on what is counted as a step."
+    },
+    {
+      "id": "map",
+      "type": "image",
+      "heading": "The wafer revisits the same families of tools",
+      "src": "/images/gn-fab-loop.svg",
+      "alt": "A route begins at wafer supply, enters a repeated loop of film deposition, lithography, etch or material modification, cleaning and measurement, then proceeds through contacts and interconnect, wafer test, packaging and final test. A hold path leaves measurement for investigation.",
+      "caption": "Conceptual route. Exact order varies by process; measurement and cleaning occur at many points, not once per wafer."
+    },
+    {
+      "id": "navigation",
+      "type": "compact-table",
+      "heading": "Find the part of the factory you mean",
+      "columns": [
+        "Question",
+        "Read next",
+        "Output"
+      ],
+      "rows": [
+        [
+          "Where does the silicon come from?",
+          "Before the fab",
+          "Prepared wafer"
+        ],
+        [
+          "How does a flat wafer become devices?",
+          "Device formation",
+          "Transistor structures"
+        ],
+        [
+          "How do billions of devices connect?",
+          "Contacts and interconnect",
+          "Layered wiring"
+        ],
+        [
+          "How do we know what worked?",
+          "Measurement and yield",
+          "Evidence to release or hold"
+        ],
+        [
+          "How does it become a usable component?",
+          "Test and packaging",
+          "Tested packaged device"
+        ]
+      ]
+    },
+    {
+      "id": "upstream",
+      "type": "text",
+      "heading": "Before the fab: sand is a distant starting point",
+      "body": "Silicon-bearing raw material goes through refining and purification, crystal growth, slicing and polishing before a manufacturing-ready wafer reaches the fab. Wafer suppliers and chip fabs are often separate operations. A fab does not shovel beach sand into a lithography tool."
+    },
+    {
+      "id": "design",
+      "type": "text",
+      "heading": "Design is another upstream branch",
+      "body": "Circuit design, verification, layout and manufacturing checks produce data used to create masks or reticles and process instructions. The wafer is only one input; an incorrect pattern can be manufactured precisely. Design correctness and process control solve different problems."
+    },
+    {
+      "id": "families",
+      "type": "compact-table",
+      "heading": "The recurring process vocabulary",
+      "columns": [
+        "Family",
+        "What it changes",
+        "Question at release"
+      ],
+      "rows": [
+        [
+          "Deposition / growth",
+          "Adds a controlled film",
+          "Is the material, thickness and uniformity acceptable?"
+        ],
+        [
+          "Coat / expose / develop",
+          "Creates a temporary resist pattern",
+          "Are features sized and aligned as required?"
+        ],
+        [
+          "Etch",
+          "Removes selected material",
+          "Did it reach the intended depth and shape without unacceptable damage?"
+        ],
+        [
+          "Implant / thermal processing",
+          "Changes dopants or material state",
+          "Does the resulting structure meet the electrical and physical requirement?"
+        ],
+        [
+          "Clean / strip",
+          "Removes residues or temporary material",
+          "Was contamination removed without harming useful structures?"
+        ],
+        [
+          "Planarization",
+          "Levels a surface by controlled removal",
+          "Is it sufficiently flat with the required remaining film?"
+        ],
+        [
+          "Inspection / metrology",
+          "Produces evidence rather than a new device layer",
+          "Is the wafer inside the process window?"
+        ]
+      ]
+    },
+    {
+      "id": "lithography",
+      "type": "text",
+      "heading": "Lithography writes a temporary instruction",
+      "body": "The pattern in resist guides a later operation; exposure does not magically create a finished transistor. Focus, alignment, resist processing and feature dimensions affect whether the instruction reaches the next tool correctly. Multiple patterning steps may be needed for one intended structure."
+    },
+    {
+      "id": "etch",
+      "type": "text",
+      "heading": "Etch must remove the right thing in the right shape",
+      "body": "A process may need to remove one material faster than another, keep sidewalls controlled and stop at a particular layer. Too little removal can leave an unwanted connection; too much can damage a structure below. Etch is not simply “cut the dark areas out.”"
+    },
+    {
+      "id": "deposition",
+      "type": "text",
+      "heading": "A deposited film has more properties than thickness",
+      "body": "Composition, uniformity, conformality and interaction with underlying surfaces can matter. Covering the bottom and walls of a narrow feature is a different challenge from coating a broad flat surface. The deposition choice belongs to the structure being built."
+    },
+    {
+      "id": "devices",
+      "type": "text",
+      "heading": "Front end: establish the switching structures",
+      "body": "Device formation builds isolation, active regions, gates and source/drain structures through technology-specific sequences. Planar, fin and gate-all-around devices do not share one interchangeable recipe. This overview groups purposes; it does not prescribe chemistry, temperatures or equipment settings."
+    },
+    {
+      "id": "contacts",
+      "type": "text",
+      "heading": "Connect to the devices before connecting the whole chip",
+      "body": "Contact structures bring electrical access to the device terminals. Above them, interconnect layers route signals and power through conductors separated by dielectrics. Vias connect levels. Repeated deposit, pattern, remove, fill and planarize operations make the route much longer than the block diagram."
+    },
+    {
+      "id": "cmp",
+      "type": "text",
+      "heading": "Flatness becomes a manufacturing input",
+      "body": "Chemical mechanical planarization combines mechanical action with chemistry to remove material and prepare a suitable surface. Thickness control and uniformity affect later processing. A wafer can look smooth while still having unacceptable scratches, residues or dimensional variation."
+    },
+    {
+      "id": "troubleshoot",
+      "type": "compact-table",
+      "heading": "A fictional lot investigation",
+      "columns": [
+        "Observation",
+        "Possible explanation",
+        "Evidence that would discriminate"
+      ],
+      "rows": [
+        [
+          "One region has a repeated alignment shift",
+          "Alignment or process variation",
+          "Overlay data and tool history; compare with other lots"
+        ],
+        [
+          "Random new particles appear after a step",
+          "Contamination introduced or not removed",
+          "Before/after inspection and chamber/clean records"
+        ],
+        [
+          "An electrical parameter shifts across many wafers",
+          "A shared process condition changed",
+          "Correlate metrology, recipe revision and equipment events"
+        ],
+        [
+          "Only one pattern type fails",
+          "Geometry-dependent process or design issue",
+          "Review the failed structure and comparison structures"
+        ]
+      ],
+      "caption": "Teaching cases, not diagnoses. Several causes can produce similar symptoms."
+    },
+    {
+      "id": "control",
+      "type": "text",
+      "heading": "A hold is a decision to preserve evidence",
+      "body": "Suppose inspection finds a new defect pattern after etch. Continuing every wafer could multiply the loss; stopping all work indefinitely is also costly. The useful next step is a controlled hold with lot identity, affected operations, evidence and an accountable disposition. A colorful yield chart cannot make that decision by itself."
+    },
+    {
+      "id": "traveler",
+      "type": "compact-table",
+      "heading": "What keeps the wafer’s history attached",
+      "columns": [
+        "Record",
+        "Why it exists"
+      ],
+      "rows": [
+        [
+          "Lot and wafer identity",
+          "Know which physical material the data describes"
+        ],
+        [
+          "Route and completed operation",
+          "Know which stage the wafer has actually reached"
+        ],
+        [
+          "Tool, chamber and recipe revision",
+          "Reconstruct what processed it"
+        ],
+        [
+          "Time and relevant handling history",
+          "Relate queue time and events to the outcome"
+        ],
+        [
+          "Measurement and disposition",
+          "Know why the material was released, held or rejected"
+        ]
+      ],
+      "caption": "This is a conceptual traveller, not a real fab’s manufacturing execution schema."
+    },
+    {
+      "id": "reentrant",
+      "type": "text",
+      "heading": "The route is not a one-way assembly line",
+      "body": "A wafer can return to the same tool family many times for different layers. A bottleneck at one operation may delay both new work and wafers already far along. Tool availability, batching, qualification and allowable waiting time can all affect dispatching. Scheduling is part of making the process repeatable."
+    },
+    {
+      "id": "yield",
+      "type": "text",
+      "heading": "Yield is not just the number of dies drawn on the wafer",
+      "body": "Some die sites are incomplete at the wafer edge. Others fail electrical tests. Packaging introduces additional opportunities for loss. Define the population and stage before comparing yields: wafer sort yield and final packaged yield have different denominators."
+    },
+    {
+      "id": "arithmetic",
+      "type": "compact-table",
+      "heading": "An original yield example",
+      "columns": [
+        "Stage",
+        "Count",
+        "Meaning"
+      ],
+      "rows": [
+        [
+          "Candidate dies after edge exclusions",
+          "1,000",
+          "Defined starting population"
+        ],
+        [
+          "Pass wafer electrical test",
+          "850",
+          "85% of candidates"
+        ],
+        [
+          "Pass assembly and final test",
+          "816",
+          "96% of the 850 entering this stage"
+        ],
+        [
+          "Combined result",
+          "81.6%",
+          "816 / 1,000, not 85% + 96%"
+        ]
+      ],
+      "caption": "Invented counts. Real yield models must define sampling, retest and disposition rules."
+    },
+    {
+      "id": "packaging",
+      "type": "text",
+      "heading": "Packaging is an electrical, thermal and mechanical task",
+      "body": "After wafer-level testing, selected die are separated and connected into a package. The package supports electrical connections, mechanical protection and heat flow. Advanced packages may combine multiple dies; a single packaged product need not contain one monolithic die."
+    },
+    {
+      "id": "final-test",
+      "type": "text",
+      "heading": "The last test answers a narrower question than perfection",
+      "body": "Final testing evaluates specified behavior under defined conditions. Passing means the device satisfied those tests and acceptance rules, not that every possible failure was ruled out. Binning can separate devices by measured characteristics. Reliability qualification is another body of evidence."
+    },
+    {
+      "id": "mental-model",
+      "type": "exercise",
+      "heading": "Why repeat the loop?",
+      "prompt": "Why can a short list of process families turn into hundreds of operations?",
+      "options": [
+        "Each family is used exactly once",
+        "Many structures and layers require repeated patterning, processing, cleaning and checks"
+      ],
+      "answer": 1,
+      "explanation": "A vocabulary of operations can describe a long route. Grouping the route preserves its logic without inventing a universal 400-line recipe."
+    },
+    {
+      "id": "yield-check",
+      "type": "exercise",
+      "heading": "Keep the denominators straight",
+      "prompt": "If 80% pass stage one and 90% of those pass stage two, what fraction of the original population passes both?",
+      "options": [
+        "85%",
+        "72%",
+        "170%"
+      ],
+      "answer": 1,
+      "explanation": "0.80 × 0.90 = 0.72. Multiplying stage yields works here because stage two’s denominator is the stage-one survivors."
+    },
+    {
+      "id": "next",
+      "type": "text",
+      "heading": "A better question to ask on a fab tour",
+      "body": "Instead of asking how many steps the chip takes, ask which physical property this operation changes, what evidence releases the lot and where a bad result would first become visible. Those questions connect the tool to the product."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources and further reading",
+      "items": [
+        {
+          "label": "Intel: from sand to silicon",
+          "url": "https://download.intel.com/newsroom/kits/chipmaking/pdfs/Sand-to-Silicon_45nm-Version.pdf",
+          "detail": "Historical 45 nm process illustration: useful for the supply-to-package overview, not a current-node recipe."
+        },
+        {
+          "label": "ASML: six process families",
+          "url": "https://www.asml.com/en/company/stories/2021/semiconductor-manufacturing-process-steps",
+          "detail": "Patterning, resist, deposition, material modification and packaging overview."
+        },
+        {
+          "label": "Lam Research: deposition",
+          "url": "https://newsroom.lamresearch.com/Deposition-Essentials-Semi-101",
+          "detail": "Film deposition methods and their manufacturing roles."
+        },
+        {
+          "label": "Lam Research: etch",
+          "url": "https://newsroom.lamresearch.com/etch-essentials-semiconductor-manufacturing",
+          "detail": "Selective material removal and pattern transfer."
+        },
+        {
+          "label": "Lam Research: process portfolio",
+          "url": "https://www.lamresearch.com/products/our-processes/",
+          "detail": "Repeated use of deposition, etch, strip and cleaning."
+        },
+        {
+          "label": "Applied Materials: CMP",
+          "url": "https://www.appliedmaterials.com/us/en/semiconductor/products/shape/cmp.html",
+          "detail": "Planarization and film-thickness control."
+        },
+        {
+          "label": "Applied Materials: inspection and metrology",
+          "url": "https://www.appliedmaterials.com/us/en/semiconductor/products/analyze.html",
+          "detail": "Measurement and imaging support process decisions."
+        },
+        {
+          "label": "Tassel et al.: fab scheduling research",
+          "url": "https://arxiv.org/abs/2302.07162",
+          "detail": "Research framing for costly, multi-operation manufacturing and constrained equipment scheduling."
+        }
+      ]
+    }
+  ]
+}

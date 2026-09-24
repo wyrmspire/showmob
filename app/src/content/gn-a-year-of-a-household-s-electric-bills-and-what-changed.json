@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-year-of-a-household-s-electric-bills-and-what-changed",
+  "title": "A year of a household's electric bills and what changed",
+  "summary": "A fictional year separates electricity use from a midyear rate increase.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "gn-058"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "finding",
+      "type": "text",
+      "heading": "The bill rose 10.5%; usage did not",
+      "body": "This invented household used 10,500 kWh. A July increase in the energy rate from $0.12 to $0.15/kWh added $153 compared with keeping the old rate all year. This example excludes taxes and other charges; each month has a $16 fixed charge."
+    },
+    {
+      "id": "year",
+      "type": "compact-table",
+      "heading": "All twelve bills",
+      "columns": [
+        "Month",
+        "kWh",
+        "Rate / kWh",
+        "Bill"
+      ],
+      "rows": [
+        [
+          "Jan",
+          "1,100",
+          "$0.12",
+          "$148.00"
+        ],
+        [
+          "Feb",
+          "950",
+          "$0.12",
+          "$130.00"
+        ],
+        [
+          "Mar",
+          "800",
+          "$0.12",
+          "$112.00"
+        ],
+        [
+          "Apr",
+          "650",
+          "$0.12",
+          "$94.00"
+        ],
+        [
+          "May",
+          "700",
+          "$0.12",
+          "$100.00"
+        ],
+        [
+          "Jun",
+          "1,200",
+          "$0.12",
+          "$160.00"
+        ],
+        [
+          "Jul",
+          "1,300",
+          "$0.15",
+          "$211.00"
+        ],
+        [
+          "Aug",
+          "1,250",
+          "$0.15",
+          "$203.50"
+        ],
+        [
+          "Sep",
+          "800",
+          "$0.15",
+          "$136.00"
+        ],
+        [
+          "Oct",
+          "600",
+          "$0.15",
+          "$106.00"
+        ],
+        [
+          "Nov",
+          "500",
+          "$0.15",
+          "$91.00"
+        ],
+        [
+          "Dec",
+          "650",
+          "$0.15",
+          "$113.50"
+        ]
+      ],
+      "caption": "Bill = $16 + kWh × rate. First-half use: 5,400 kWh. Second-half use: 5,100 kWh."
+    },
+    {
+      "id": "separate",
+      "type": "text",
+      "heading": "Compare against the right baseline",
+      "body": "Actual annual cost is $1,605. Keeping $0.12/kWh all year would cost $1,452 for exactly the same usage. The $153 difference is price, not additional consumption. Summer peaks are visible, but these numbers alone do not prove air conditioning caused them."
+    },
+    {
+      "id": "next",
+      "type": "text",
+      "heading": "The next useful evidence",
+      "body": "Compare kWh per day with the same months of the prior year and weather. Note billing-period length, estimated readings and new appliances. A dollars-only chart would mix together rate changes and household behavior."
+    }
+  ]
+}

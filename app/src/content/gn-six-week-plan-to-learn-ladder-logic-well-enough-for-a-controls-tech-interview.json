@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-six-week-plan-to-learn-ladder-logic-well-enough-for-a-controls-tech-interview",
+  "title": "Six-week plan to learn ladder logic well enough for a controls tech interview",
+  "summary": "Six weeks of small ladder-logic builds, fault injections and explanations.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "signal",
+  "tags": [
+    "grading-night",
+    "gn-018"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "goal",
+      "type": "text",
+      "heading": "Leave with one program you can defend",
+      "body": "Plan assumption: four 45-minute sessions each week, using one simulator or training environment. The outcome is a small simulated conveyor sequence, a test record and a clear explanation of failure behavior. Six weeks does not qualify someone to alter a live machine or its safety system."
+    },
+    {
+      "id": "weeks",
+      "type": "compact-table",
+      "heading": "Build something observable every week",
+      "columns": [
+        "Week",
+        "Build",
+        "Pass condition"
+      ],
+      "rows": [
+        [
+          "1 · Bits and scan",
+          "Start/stop command with a simulated permissive",
+          "Explain why each contact evaluates true or false; restart behavior is deliberate"
+        ],
+        [
+          "2 · Time",
+          "Delay a simulated conveyor start, cancel on lost permissive",
+          "Trace elapsed time and done state across enable, disable and re-enable"
+        ],
+        [
+          "3 · Edges and counts",
+          "Count one simulated part per sensor event",
+          "A held input does not count every scan; explain missed short pulses"
+        ],
+        [
+          "4 · Sequence",
+          "Idle → starting → running → fault",
+          "One active state; defined transitions; no accidental restart after a fault"
+        ],
+        [
+          "5 · Diagnostics",
+          "Inject a stuck sensor, missing permissive and timeout",
+          "State expected vs observed behavior and identify a useful next check"
+        ],
+        [
+          "6 · Interview evidence",
+          "Demonstrate, test and explain the complete project",
+          "Another person can reproduce the scenario from your instructions"
+        ]
+      ]
+    },
+    {
+      "id": "session",
+      "type": "steps",
+      "heading": "A 45-minute session",
+      "items": [
+        "5 min: predict the program’s next state before running it.",
+        "20 min: build one small change and observe its variables.",
+        "10 min: deliberately break one assumption in simulation.",
+        "10 min: write the result, the explanation and the next question."
+      ]
+    },
+    {
+      "id": "vocabulary",
+      "type": "text",
+      "heading": "Contacts examine bits; field devices create signals",
+      "body": "A normally closed field switch and an instruction that tests a bit for zero are different ideas. First establish the electrical signal at the input, then the stored bit, then the instruction’s truth result. This is why a drawing symbol alone does not tell you what the program will do."
+    },
+    {
+      "id": "scan",
+      "type": "text",
+      "heading": "Make execution order visible",
+      "body": "For a simple cyclic teaching model, copy inputs, execute rungs in order and update outputs. Real controllers may use periodic/event tasks and asynchronous I/O; check the platform’s documentation. Ask what a later rung sees after an earlier rung writes a tag, and avoid multiple writers until you can explain their effect."
+    },
+    {
+      "id": "tests",
+      "type": "compact-table",
+      "heading": "Keep this fault matrix with the project",
+      "columns": [
+        "Test",
+        "Expected result",
+        "Evidence to capture"
+      ],
+      "rows": [
+        [
+          "Power-up with Start held",
+          "No unexpected motion command under your specified startup policy",
+          "Initial values and first two scans"
+        ],
+        [
+          "Permissive drops while running",
+          "Run command removed; fault response follows the specification",
+          "State transition and output tag"
+        ],
+        [
+          "Sensor stays high",
+          "Single event count, not one count per scan",
+          "Counter and edge-storage values"
+        ],
+        [
+          "Sequence exceeds deadline",
+          "Timeout state with a specific diagnostic",
+          "Timer and transition condition"
+        ],
+        [
+          "Fault reset while Start held",
+          "Reset alone does not start the process",
+          "Separate reset and new-start events"
+        ]
+      ],
+      "caption": "This is a simulated functional control exercise. Safety-rated stopping and restart prevention require a separate engineered safety design."
+    },
+    {
+      "id": "adjust",
+      "type": "checklist",
+      "heading": "If time is tight",
+      "items": [
+        {
+          "label": "Keep the test record",
+          "detail": "Reduce the number of features before removing evidence."
+        },
+        {
+          "label": "Repeat a weak week",
+          "detail": "Do not add counters if the scan model is still a guess."
+        },
+        {
+          "label": "Use one platform through the project",
+          "detail": "Learn its exact timer, edge and initialization behavior before translating to another."
+        }
+      ]
+    },
+    {
+      "id": "interview",
+      "type": "text",
+      "heading": "A useful two-minute demonstration",
+      "body": "State the requirement, run the normal sequence, inject one fault, and explain what proves the program responded correctly. Finish with one limitation you have not solved. Bring the program, a short I/O list and the test matrix; “it worked once” is not the evidence."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources and further reading",
+      "items": [
+        {
+          "label": "Rockwell Automation: bit instructions",
+          "url": "https://www.rockwellautomation.com/en-us/docs/studio-5000-logix-designer/38-01/contents-ditamap/instruction-set/bit-instructions1.html",
+          "detail": "One vendor’s instruction semantics. Use your chosen simulator/controller manual for exact behavior."
+        }
+      ]
+    }
+  ]
+}

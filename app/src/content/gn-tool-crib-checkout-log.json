@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-tool-crib-checkout-log",
+  "title": "Tool crib checkout log",
+  "summary": "A copyable checkout log with an overdue item, a return, and a quarantine.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "gn-042"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "scope",
+      "type": "text",
+      "heading": "Know who has it, and whether it can go back on the shelf",
+      "body": "Fictional entries show one row per loan. Copy the blank format into your shared log. This page is a template: cells are not editable and checks are not saved."
+    },
+    {
+      "id": "log",
+      "type": "compact-table",
+      "heading": "At the 14:00 handoff",
+      "columns": [
+        "Tool / ID",
+        "Borrower / job",
+        "Out → due",
+        "State"
+      ],
+      "rows": [
+        [
+          "0–1 in micrometer / M-014",
+          "Alex / J-204",
+          "07:10 → 15:30",
+          "OUT; calibration valid"
+        ],
+        [
+          "Torque wrench / T-009",
+          "Sam / J-198",
+          "Yesterday 10:00 → today 12:00",
+          "OVERDUE; contact borrower"
+        ],
+        [
+          "Dial indicator / D-022",
+          "Lee / J-201",
+          "08:20 → 11:00",
+          "RETURNED 10:45; checked"
+        ],
+        [
+          "Micrometer / M-006",
+          "Pat / J-190",
+          "Yesterday → today",
+          "QUARANTINE; dropped, do not reissue"
+        ]
+      ],
+      "caption": "Names, jobs and events are invented. Calibration status comes from the controlled equipment record, not this example."
+    },
+    {
+      "id": "blank",
+      "type": "code",
+      "heading": "Copy one line per loan",
+      "language": "csv",
+      "code": "loan_id,tool_id,borrower,job,out_at,due_at,returned_at,condition_out,condition_in,received_by,status\n,,,,,,,,,,OUT"
+    },
+    {
+      "id": "close",
+      "type": "steps",
+      "heading": "Close the loop",
+      "items": [
+        "At issue, confirm identity, condition, accessories, calibration status and a real due time.",
+        "At return, compare against the issue record and record the receiving person and time.",
+        "Damage or suspected accuracy loss goes to quarantine. A return timestamp alone does not make a tool available again."
+      ]
+    }
+  ]
+}

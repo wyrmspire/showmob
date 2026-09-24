@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-the-full-radio-spectrum-from-elf-to-gamma-who-uses-each-band-and-why",
+  "title": "The full radio spectrum from ELF to gamma: who uses each band and why",
+  "summary": "A layered atlas of radio bands and the wider electromagnetic spectrum.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "signal",
+  "tags": [
+    "grading-night",
+    "gn-070"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "orientation",
+      "type": "text",
+      "heading": "Gamma rays are not radio waves",
+      "body": "The title spans the electromagnetic spectrum. Radio occupies its low-frequency end; infrared, visible light, ultraviolet, X-rays and gamma rays extend beyond it. Begin with the overview, then inspect the radio band you need. Boundaries are conventional and applications overlap them."
+    },
+    {
+      "id": "overview",
+      "type": "image",
+      "heading": "Frequency rises; wavelength falls",
+      "src": "/images/gn-spectrum.svg",
+      "alt": "A logarithmic conceptual spectrum shows radio and microwaves, infrared, visible light, ultraviolet, X-rays and gamma rays in order of increasing frequency. Wavelength decreases in that direction.",
+      "caption": "Schematic boundaries, not an allocation chart or a wavelength-calibrated ruler. X-ray and gamma classifications also depend on origin and overlap in energy."
+    },
+    {
+      "id": "rule",
+      "type": "text",
+      "heading": "One relationship lets you navigate",
+      "body": "For a wave in vacuum, speed = frequency × wavelength. Using about 300 million metres per second, 1 MHz corresponds to roughly 300 m, 100 MHz to 3 m, and 10 GHz to 3 cm. Wavelength is a useful clue for antennas and structures; it is not by itself a complete propagation forecast."
+    },
+    {
+      "id": "low",
+      "type": "compact-table",
+      "heading": "Below ordinary broadcast radio",
+      "columns": [
+        "Band / range",
+        "Scale and use",
+        "Tradeoff"
+      ],
+      "rows": [
+        [
+          "ELF · 3–30 Hz",
+          "Earth and ionosphere studies; extremely long wavelengths",
+          "Efficient radiating structures are enormous relative to human equipment"
+        ],
+        [
+          "SLF · 30–300 Hz",
+          "Specialized low-frequency communication and geophysical work",
+          "Low bandwidth and demanding infrastructure"
+        ],
+        [
+          "ULF · 300 Hz–3 kHz",
+          "Geophysical signals and specialized links",
+          "Do not confuse electromagnetic frequency with an audible sound wave"
+        ],
+        [
+          "VLF · 3–30 kHz",
+          "Specialized maritime communication and navigation",
+          "Long wavelengths; specialized antennas and limited data rates"
+        ],
+        [
+          "LF · 30–300 kHz",
+          "Navigation and time signals; broadcasting in some regions",
+          "Ground-wave and ionospheric effects depend on path and frequency"
+        ]
+      ],
+      "caption": "A band name describes frequency, not blanket permission to transmit. Uses are examples; allocation and licensing are jurisdiction-specific."
+    },
+    {
+      "id": "middle",
+      "type": "compact-table",
+      "heading": "The bands most listeners encounter",
+      "columns": [
+        "Band / range",
+        "Familiar examples",
+        "Why the band matters"
+      ],
+      "rows": [
+        [
+          "MF · 300 kHz–3 MHz",
+          "AM broadcasting, maritime services",
+          "Ground-wave coverage and changing nighttime sky-wave behavior"
+        ],
+        [
+          "HF · 3–30 MHz",
+          "Shortwave, amateur and long-distance links",
+          "Ionospheric propagation can connect distant places and varies strongly"
+        ],
+        [
+          "VHF · 30–300 MHz",
+          "FM broadcasting, aviation voice, amateur radio",
+          "Many terrestrial links depend heavily on antenna height and path"
+        ],
+        [
+          "UHF · 300 MHz–3 GHz",
+          "Mobile systems, television, GNSS, some Wi-Fi",
+          "Compact antennas; obstructions and link design matter"
+        ]
+      ],
+      "caption": "Examples occupy selected sub-bands. A device using “Wi-Fi” does not identify one universal frequency."
+    },
+    {
+      "id": "high",
+      "type": "compact-table",
+      "heading": "Microwaves and millimetre waves",
+      "columns": [
+        "Band / range",
+        "Familiar examples",
+        "Engineering question"
+      ],
+      "rows": [
+        [
+          "SHF · 3–30 GHz",
+          "Radar, satellite links and several Wi-Fi bands",
+          "What antenna gain and path margin are available?"
+        ],
+        [
+          "EHF · 30–300 GHz",
+          "Millimetre-wave links, radar and radio astronomy",
+          "How do obstruction and frequency-dependent atmospheric loss affect this path?"
+        ],
+        [
+          "300 GHz–3 THz · submillimetre / terahertz region",
+          "Spectroscopy, imaging and research systems",
+          "What source, detector and atmospheric window can serve the task?"
+        ]
+      ],
+      "caption": "Microwave is a broader customary term, not a separate exclusive row in the official VLF–EHF naming ladder."
+    },
+    {
+      "id": "beyond",
+      "type": "compact-table",
+      "heading": "Beyond radio: change the source and detector",
+      "columns": [
+        "Region",
+        "Examples",
+        "Important distinction"
+      ],
+      "rows": [
+        [
+          "Infrared",
+          "Thermal imaging, remote controls and optical communications",
+          "Heat sensing depends on emission and detector band; not all infrared means hot"
+        ],
+        [
+          "Visible",
+          "Human vision, cameras, lighting and optical instruments",
+          "A narrow part of the spectrum is visible to people"
+        ],
+        [
+          "Ultraviolet",
+          "Lithography, fluorescence and solar observation",
+          "Material interactions and exposure concerns differ from visible light"
+        ],
+        [
+          "X-rays",
+          "Medical and industrial imaging, crystallography",
+          "High-energy photons can penetrate materials and are ionizing"
+        ],
+        [
+          "Gamma rays",
+          "Nuclear processes, astronomy and controlled industrial uses",
+          "Often distinguished from X-rays by origin; energy ranges can overlap"
+        ]
+      ],
+      "caption": "This is an orientation to applications, not instructions for radiation equipment."
+    },
+    {
+      "id": "photon",
+      "type": "text",
+      "heading": "Higher frequency also means more energy per photon",
+      "body": "Photon energy is proportional to frequency. Power is a different quantity: many lower-energy photons can deliver substantial power. Calling radio non-ionizing does not mean every radio-frequency exposure or transmitter is harmless. Frequency, field strength, exposure geometry and applicable limits all matter."
+    },
+    {
+      "id": "routes",
+      "type": "slideshow",
+      "heading": "Choose a question",
+      "slides": [
+        {
+          "title": "I want a signal to travel beyond the horizon",
+          "body": "HF can use the ionosphere, but time of day, solar conditions, frequency and the path all affect the link. A higher transmitter power is not a substitute for a workable propagation path."
+        },
+        {
+          "title": "I want a compact directional antenna",
+          "body": "A shorter wavelength can make a physically small aperture electrically large. Compare antenna dimensions in wavelengths, then account for efficiency, bandwidth and pointing requirements."
+        },
+        {
+          "title": "I want to see a warm surface",
+          "body": "Start in an appropriate infrared detector band. Account for emissivity, reflections, distance and the instrument’s limits; apparent temperature is not automatically the object’s internal temperature."
+        },
+        {
+          "title": "I want to identify a material",
+          "body": "Choose a measurement mechanism: radio-frequency resonance, infrared absorption, visible/UV spectroscopy or X-ray diffraction answer different questions. “More frequency” is not a universal upgrade."
+        }
+      ]
+    },
+    {
+      "id": "scale",
+      "type": "exercise",
+      "heading": "Read the scale",
+      "prompt": "Approximately what is the free-space wavelength at 100 MHz?",
+      "options": [
+        "3 mm",
+        "3 m",
+        "300 m"
+      ],
+      "answer": 1,
+      "explanation": "300,000,000 m/s divided by 100,000,000 cycles/s is 3 m."
+    },
+    {
+      "id": "category",
+      "type": "exercise",
+      "heading": "Separate wave types",
+      "prompt": "A 1 kHz electromagnetic signal and a 1 kHz sound wave share what?",
+      "options": [
+        "The same propagation speed",
+        "The same cycles per second, but different physical mechanisms"
+      ],
+      "answer": 1,
+      "explanation": "Frequency counts repetitions. Sound is a mechanical disturbance; electromagnetic waves are electric and magnetic fields. Their speeds and interactions are different."
+    },
+    {
+      "id": "map-limit",
+      "type": "text",
+      "heading": "A spectrum chart is not a service licence",
+      "body": "Band boundaries and national allocations answer different questions. To choose a transmitter frequency, consult the applicable current allocation, licence conditions and equipment rules. This atlas gives orientation; it does not establish an authorized channel."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources and further reading",
+      "items": [
+        {
+          "label": "NASA: introduction to the electromagnetic spectrum",
+          "url": "https://science.nasa.gov/ems/01_intro/",
+          "detail": "The relationship between electromagnetic regions, wavelength and frequency."
+        },
+        {
+          "label": "NASA: wavelength, frequency and energy",
+          "url": "https://imagine.gsfc.nasa.gov/science/toolbox/spectrum_chart.html",
+          "detail": "The wider spectrum and the relationship to photon energy."
+        },
+        {
+          "label": "47 CFR 2.101: frequency-band nomenclature",
+          "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-2/subpart-B/section-2.101",
+          "detail": "VLF through EHF and higher band boundaries; not a permission-to-transmit table."
+        },
+        {
+          "label": "ITU: terrestrial broadcasting bands",
+          "url": "https://www.itu.int/en/ITU-R/terrestrial/broadcast/Pages/bands.aspx",
+          "detail": "Examples of broadcasting allocations and regional differences."
+        },
+        {
+          "label": "ITU: radio spectrum applications overview",
+          "url": "https://www.itu.int/en/ITU-R/seminars/rrs/2017-Africa/Documents/Plenary/20_Harmful%20interference.pdf",
+          "detail": "Illustrates common services across radio-frequency bands."
+        }
+      ]
+    }
+  ]
+}

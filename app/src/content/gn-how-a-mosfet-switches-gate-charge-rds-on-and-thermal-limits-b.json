@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-how-a-mosfet-switches-gate-charge-rds-on-and-thermal-limits-b",
+  "title": "How a MOSFET switches: gate charge, Rds(on), and thermal limits",
+  "summary": "Explore gate drive, load and heat through computed cases with explicit assumptions.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "signal",
+  "tags": [
+    "grading-night",
+    "gn-026"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "entry",
+      "type": "text",
+      "heading": "Pick the variable that is making the device hot",
+      "body": "This explorer uses calculated scenarios and answer checks. Start with gate voltage if the switch never gets cool, load current if heat grows sharply with load, or switching frequency if heat grows with PWM rate. These are hypothetical values, not a model of a purchasable MOSFET."
+    },
+    {
+      "id": "interaction",
+      "type": "note-callout",
+      "title": "How to use this version",
+      "body": "Choose a case in the carousel, predict the result, then use the checks below. There are no sliders or live circuit simulation in this page; the numbers are precomputed.",
+      "tone": "note"
+    },
+    {
+      "id": "assumptions",
+      "type": "compact-table",
+      "heading": "The teaching model",
+      "columns": [
+        "Quantity",
+        "Assumption"
+      ],
+      "rows": [
+        [
+          "Bus / load",
+          "24 V; flat 10 A during each on interval"
+        ],
+        [
+          "Duty cycle / frequency",
+          "50% / 20 kHz"
+        ],
+        [
+          "Hot on-resistance",
+          "20 mΩ at an adequately specified gate drive"
+        ],
+        [
+          "Transition time",
+          "Rise + fall = 100 ns"
+        ],
+        [
+          "Total gate charge / drive swing",
+          "30 nC / 5 V"
+        ],
+        [
+          "Ambient / effective thermal resistance",
+          "40 °C / 40 °C per W"
+        ]
+      ],
+      "caption": "Resistive/switching approximation. It omits diode loss, reverse recovery, output-capacitance energy, parasitic ringing and changing load current."
+    },
+    {
+      "id": "cases",
+      "type": "slideshow",
+      "heading": "Choose a case to inspect",
+      "slides": [
+        {
+          "title": "Baseline · 10 A, 20 kHz",
+          "body": "Conduction loss = 10² × 0.020 × 0.5 = 1.0 W. Switching overlap ≈ 0.5 × 24 × 10 × 100 ns × 20 kHz = 0.24 W. Device subtotal = 1.24 W. At the assumed thermal resistance, the one-pass junction estimate is 40 + 1.24 × 40 = 89.6 °C."
+        },
+        {
+          "title": "Double current · 20 A",
+          "body": "With all other assumptions held fixed, conduction becomes 4.0 W and overlap becomes 0.48 W. Subtotal = 4.48 W; estimated junction = 219.2 °C. That is a model warning to redesign, not an operating point to try."
+        },
+        {
+          "title": "Five times the frequency · 100 kHz",
+          "body": "At 10 A, conduction stays 1.0 W in this simplified model; switching overlap becomes 1.20 W. Subtotal = 2.20 W and the one-pass estimate is 128 °C. Other frequency-dependent losses may raise it further."
+        },
+        {
+          "title": "Slower transitions · 500 ns total",
+          "body": "At 20 kHz and 10 A, overlap becomes 1.20 W. The same 2.20 W subtotal appears for a different reason: each transition is longer rather than more frequent."
+        },
+        {
+          "title": "Improved cooling · 20 °C/W",
+          "body": "With baseline electrical loss of 1.24 W, the estimate falls to 64.8 °C. Cooling changes the path out, not the watts generated in this one-pass calculation."
+        },
+        {
+          "title": "Lower gate voltage · unspecified Rds(on)",
+          "body": "If the datasheet gives no on-resistance guarantee at your available drive, this table cannot predict the result. Do not interpolate from threshold voltage or pretend the baseline resistance still applies."
+        }
+      ]
+    },
+    {
+      "id": "gate",
+      "type": "text",
+      "heading": "Threshold is the start of conduction, not the drive target",
+      "body": "VGS(th) is measured at a specified small drain current. The on-resistance row states a different test condition. For a 3.3 V controller, look for guaranteed performance at an appropriate gate drive or use a suitable driver. Raising drive above the device’s limits damages the gate; “more” is not an unlimited remedy."
+    },
+    {
+      "id": "losses",
+      "type": "compact-table",
+      "heading": "Three quantities that should not be mixed",
+      "columns": [
+        "Expression",
+        "Baseline result",
+        "Meaning"
+      ],
+      "rows": [
+        [
+          "I² × R × duty",
+          "1.0 W",
+          "MOSFET conduction while on"
+        ],
+        [
+          "½ × V × I × (tr + tf) × f",
+          "0.24 W",
+          "Approximate hard-switching overlap"
+        ],
+        [
+          "Qg × Vdrive × f",
+          "0.003 W",
+          "Gate-drive energy per second; shared by driver and gate-resistance paths"
+        ]
+      ],
+      "caption": "For the current waveform, use RMS appropriately: I² × duty assumes the stated flat on-current. Do not multiply an already full-cycle RMS current by duty a second time."
+    },
+    {
+      "id": "charge",
+      "type": "text",
+      "heading": "Average drive power can be tiny while peak current matters",
+      "body": "Moving 30 nC in 100 ns suggests an average current of 0.3 A during that interval. Moving charge every 50 microseconds can require only milliwatts on average. The real waveform depends on the driver, resistance, device capacitances and Miller charge. Qg divided by current is a rough timing estimate, not a complete switching model."
+    },
+    {
+      "id": "predict-load",
+      "type": "exercise",
+      "heading": "Predict before checking",
+      "prompt": "With resistance and duty held constant, what does doubling current do to conduction loss?",
+      "options": [
+        "Doubles it",
+        "Quadruples it",
+        "Leaves it unchanged"
+      ],
+      "answer": 1,
+      "explanation": "Current is squared: (2I)²R = 4I²R. The model’s 1 W becomes 4 W."
+    },
+    {
+      "id": "predict-gate",
+      "type": "exercise",
+      "heading": "Read the right datasheet row",
+      "prompt": "VGS(th) is 2 V, but Rds(on) is guaranteed only at 10 V. Does a 3.3 V pin establish a low-loss switch?",
+      "options": [
+        "Yes, because 3.3 V is above threshold",
+        "No; the required on-resistance at 3.3 V has not been established"
+      ],
+      "answer": 1,
+      "explanation": "Threshold only describes the test current used for that threshold measurement. It does not guarantee the on-resistance needed by the load."
+    },
+    {
+      "id": "thermal",
+      "type": "text",
+      "heading": "A thermal number belongs to a physical construction",
+      "body": "Thermal resistance changes with board copper, package, airflow, heatsink and mounting. Datasheet RθJA describes its test conditions. Short pulses need transient thermal impedance, and linear operation needs safe-operating-area review. A steady-state I²R calculation does not certify either."
+    },
+    {
+      "id": "feedback",
+      "type": "text",
+      "heading": "Close the temperature loop",
+      "body": "This model deliberately fixes hot Rds(on). In a real estimate, resistance and loss change with junction temperature. Recalculate until the assumptions agree, then verify with an appropriate measurement method and margin. If the result exceeds ratings or has no stable thermal solution, change the design."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources and further reading",
+      "items": [
+        {
+          "label": "Infineon: MOSFET datasheet explanation",
+          "url": "https://www.infineon.com/assets/row/public/documents/24/42/infineon-mosfet-optimos-datasheet-explanation-an-en.pdf?fileId=db3a30433b47825b013b6b8c6a3424c4&folderId=db3a3043156fd5730115939eb6b506db",
+          "detail": "Threshold, on-resistance and their test conditions; the numerical scenarios here are original hypothetical calculations."
+        },
+        {
+          "label": "Texas Instruments: gate-driver fundamentals",
+          "url": "https://www.ti.com/lit/an/slua618a/slua618a.pdf",
+          "detail": "Gate charge, switching transitions and driver behavior."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-30-person-backyard-birthday-party-on-a-400-budget",
+  "title": "A 30-person backyard birthday party on a $400 budget",
+  "summary": "A fictional party plan that spends $360 and leaves $40 for surprises.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "field",
+  "tags": [
+    "grading-night",
+    "gn-022"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "text",
+      "heading": "Feed 30 people. Keep $40 unspent.",
+      "body": "Use a two-hour afternoon taco party with water and lemonade, borrowed seating, and a sheet cake. These are planning allowances, not current store prices. Confirm local costs before inviting or buying."
+    },
+    {
+      "id": "budget",
+      "type": "compact-table",
+      "heading": "The $400 envelope",
+      "columns": [
+        "Category",
+        "Allowance",
+        "Scope"
+      ],
+      "rows": [
+        [
+          "Taco ingredients and toppings",
+          "$120",
+          "60 modest taco portions; include beans as a filling"
+        ],
+        [
+          "Rice, beans and fruit",
+          "$65",
+          "Sides sized for 30"
+        ],
+        [
+          "Cake",
+          "$35",
+          "30 portions"
+        ],
+        [
+          "Drinks and ice",
+          "$40",
+          "Water and lemonade; no alcohol"
+        ],
+        [
+          "Plates, napkins and serving supplies",
+          "$25",
+          "Check reusable supplies first"
+        ],
+        [
+          "Decorations and activities",
+          "$15",
+          "One banner and a simple yard game"
+        ],
+        [
+          "Weather / equipment allowance",
+          "$60",
+          "Confirm shelter and borrowed seating"
+        ],
+        [
+          "Held reserve",
+          "$40",
+          "Do not spend until headcount and prices are known"
+        ]
+      ],
+      "caption": "Total $400. Borrowed tables, chairs and indoor backup space are assumptions."
+    },
+    {
+      "id": "choices",
+      "type": "checklist",
+      "heading": "Decisions before shopping",
+      "items": [
+        {
+          "label": "Confirm 30 attendees",
+          "detail": "Ask about food allergies and dietary needs; label ingredients and keep separate utensils."
+        },
+        {
+          "label": "Confirm the rain plan",
+          "detail": "If no indoor space or shelter is available within budget, change the venue or date before buying food."
+        },
+        {
+          "label": "Choose food quantity over decorations",
+          "detail": "For a longer event or heartier appetites, add food using the reserve and reduce decorative spending."
+        }
+      ]
+    },
+    {
+      "id": "order",
+      "type": "steps",
+      "heading": "Work backwards from the first guest",
+      "items": [
+        "Two days before: confirm headcount, borrowed equipment and weather alternative.",
+        "The day before: shop, label serving dishes, arrange seating and chill drinks.",
+        "Before guests arrive: prepare food with clean utensils and safe hot/cold holding; set out small batches and replenish.",
+        "After the party: chill perishable leftovers promptly; discard food held unsafely."
+      ]
+    },
+    {
+      "id": "tradeoff",
+      "type": "text",
+      "heading": "If the estimate rises by $50",
+      "body": "Remove $15 of decorations and use $35 of the reserve. If the increase is for equipment instead, simplify the venue before reducing the meal. A $400 plan needs an explicit place for cuts."
+    }
+  ]
+}

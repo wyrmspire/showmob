@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-resistor-color-code-practice-worksheet-with-10-blanks",
+  "title": "Resistor color code practice worksheet with 10 blanks",
+  "summary": "Ten four-band resistor exercises, with answers shown only after a choice.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "gn-038"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "read",
+      "type": "text",
+      "heading": "Read from the end opposite the tolerance band",
+      "body": "These are four-band resistors: digit, digit, multiplier, tolerance. Write each resistance and tolerance on paper before choosing an answer. Each question reveals its worked answer when you select an option; selections last only while this page stays open."
+    },
+    {
+      "id": "key",
+      "type": "compact-table",
+      "heading": "Band key",
+      "columns": [
+        "Color",
+        "Digit",
+        "Multiplier"
+      ],
+      "rows": [
+        [
+          "Black",
+          "0",
+          "×1"
+        ],
+        [
+          "Brown",
+          "1",
+          "×10"
+        ],
+        [
+          "Red",
+          "2",
+          "×100"
+        ],
+        [
+          "Orange",
+          "3",
+          "×1,000"
+        ],
+        [
+          "Yellow",
+          "4",
+          "×10,000"
+        ],
+        [
+          "Green",
+          "5",
+          "×100,000"
+        ],
+        [
+          "Blue",
+          "6",
+          "×1,000,000"
+        ],
+        [
+          "Violet",
+          "7",
+          "×10,000,000"
+        ],
+        [
+          "Gray",
+          "8",
+          "×100,000,000"
+        ],
+        [
+          "White",
+          "9",
+          "×1,000,000,000"
+        ],
+        [
+          "Gold",
+          "—",
+          "×0.1"
+        ],
+        [
+          "Silver",
+          "—",
+          "×0.01"
+        ]
+      ],
+      "caption": "Fourth band: gold ±5%, silver ±10%, brown ±1%. Color names are supplied so the exercise does not depend on color vision."
+    },
+    {
+      "id": "q1",
+      "type": "exercise",
+      "heading": "Blank 1",
+      "prompt": "Brown · black · red · gold → ______ Ω, ______ tolerance",
+      "options": [
+        "100 Ω ±5%",
+        "1 kΩ ±5%",
+        "10 kΩ ±5%"
+      ],
+      "answer": 1,
+      "explanation": "10 × 100 = 1,000 Ω. Gold in the fourth position means ±5%, or 950–1,050 Ω."
+    },
+    {
+      "id": "q2",
+      "type": "exercise",
+      "heading": "Blank 2",
+      "prompt": "Red · red · brown · gold → ______ Ω, ______ tolerance",
+      "options": [
+        "220 Ω ±5%",
+        "22 Ω ±5%",
+        "2.2 kΩ ±5%"
+      ],
+      "answer": 0,
+      "explanation": "22 × 10 = 220 Ω; gold gives ±5%."
+    },
+    {
+      "id": "q3",
+      "type": "exercise",
+      "heading": "Blank 3",
+      "prompt": "Yellow · violet · orange · gold → ______ Ω, ______ tolerance",
+      "options": [
+        "4.7 kΩ ±5%",
+        "470 kΩ ±5%",
+        "47 kΩ ±5%"
+      ],
+      "answer": 2,
+      "explanation": "47 × 1,000 = 47,000 Ω, or 47 kΩ; ±5%."
+    },
+    {
+      "id": "q4",
+      "type": "exercise",
+      "heading": "Blank 4",
+      "prompt": "Orange · orange · black · silver → ______ Ω, ______ tolerance",
+      "options": [
+        "330 Ω ±10%",
+        "33 Ω ±10%",
+        "3.3 Ω ±10%"
+      ],
+      "answer": 1,
+      "explanation": "33 × 1 = 33 Ω; silver in the tolerance position means ±10%."
+    },
+    {
+      "id": "q5",
+      "type": "exercise",
+      "heading": "Blank 5",
+      "prompt": "Green · blue · red · gold → ______ Ω, ______ tolerance",
+      "options": [
+        "5.6 kΩ ±5%",
+        "56 kΩ ±5%",
+        "560 Ω ±5%"
+      ],
+      "answer": 0,
+      "explanation": "56 × 100 = 5,600 Ω; ±5%."
+    },
+    {
+      "id": "q6",
+      "type": "exercise",
+      "heading": "Blank 6",
+      "prompt": "Blue · gray · gold · gold → ______ Ω, ______ tolerance",
+      "options": [
+        "68 Ω ±5%",
+        "680 Ω ±5%",
+        "6.8 Ω ±5%"
+      ],
+      "answer": 2,
+      "explanation": "68 × 0.1 = 6.8 Ω. The third gold is a multiplier; the fourth gold is tolerance."
+    },
+    {
+      "id": "q7",
+      "type": "exercise",
+      "heading": "Blank 7",
+      "prompt": "Brown · black · green · gold → ______ Ω, ______ tolerance",
+      "options": [
+        "100 kΩ ±5%",
+        "1 MΩ ±5%",
+        "10 MΩ ±5%"
+      ],
+      "answer": 1,
+      "explanation": "10 × 100,000 = 1,000,000 Ω, or 1 MΩ; ±5%."
+    },
+    {
+      "id": "q8",
+      "type": "exercise",
+      "heading": "Blank 8",
+      "prompt": "White · brown · brown · brown → ______ Ω, ______ tolerance",
+      "options": [
+        "910 Ω ±1%",
+        "91 Ω ±1%",
+        "9.1 kΩ ±1%"
+      ],
+      "answer": 0,
+      "explanation": "91 × 10 = 910 Ω. The final brown means ±1%."
+    },
+    {
+      "id": "q9",
+      "type": "exercise",
+      "heading": "Blank 9",
+      "prompt": "Red · violet · silver · gold → ______ Ω, ______ tolerance",
+      "options": [
+        "2.7 Ω ±5%",
+        "27 Ω ±5%",
+        "0.27 Ω ±5%"
+      ],
+      "answer": 2,
+      "explanation": "27 × 0.01 = 0.27 Ω; ±5%. Meter lead resistance matters when checking such a low value."
+    },
+    {
+      "id": "q10",
+      "type": "exercise",
+      "heading": "Blank 10",
+      "prompt": "Gray · red · yellow · silver → ______ Ω, ______ tolerance",
+      "options": [
+        "82 kΩ ±10%",
+        "820 kΩ ±10%",
+        "8.2 MΩ ±10%"
+      ],
+      "answer": 1,
+      "explanation": "82 × 10,000 = 820,000 Ω, or 820 kΩ; ±10%."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources and further reading",
+      "items": [
+        {
+          "label": "Vishay: resistor color chart",
+          "url": "https://www.vishay.com/docs/20143/colorcod.pdf",
+          "detail": "Digit, multiplier and tolerance definitions for the worked exercises."
+        }
+      ]
+    }
+  ]
+}

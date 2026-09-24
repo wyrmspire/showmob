@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-day-in-the-life-of-a-torque-wrench-told-by-the-torque-wrench",
+  "title": "A day in the life of a torque wrench, told by the torque wrench",
+  "summary": "A click-type torque wrench narrates a day of being used correctly.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "field",
+  "tags": [
+    "grading-night",
+    "gn-078"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "morning",
+      "type": "text",
+      "heading": "06:58 · Taken seriously",
+      "body": "He opened my case and checked the label before he checked his phone. A promising start. I am a torque wrench. My most important personality trait is being within calibration."
+    },
+    {
+      "id": "job",
+      "type": "text",
+      "heading": "09:14 · The click",
+      "body": "The fastener was started by hand. He set the specified torque, gripped my handle where he should, and pulled smoothly. I clicked. He stopped. We both enjoyed this rare moment of being understood."
+    },
+    {
+      "id": "temptation",
+      "type": "text",
+      "heading": "11:32 · A difficult conversation",
+      "body": "A stubborn bolt appeared. Someone looked at me. I looked, metaphorically, at the breaker bar. We all have gifts. Mine is measuring the end of tightening, not auditioning for demolition."
+    },
+    {
+      "id": "afternoon",
+      "type": "text",
+      "heading": "14:06 · Context matters",
+      "body": "A different joint came with different instructions: lubricant, tightening sequence, the correct setting. I cannot tell whether a thread is damaged or whether the drawing assumed oil. I measure a turning moment. The person holding me still has to think."
+    },
+    {
+      "id": "home",
+      "type": "text",
+      "heading": "16:10 · Back in the case",
+      "body": "He followed my manufacturer’s storage instructions and put me away clean and dry. Tomorrow I hope for more of the same: one clear specification, one smooth pull, and nobody deciding that two extra clicks mean extra quality."
+    }
+  ]
+}

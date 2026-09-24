@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-gd-t-for-machinists-the-14-symbols-and-when-each-one-matters",
+  "title": "GD&T for machinists: the 14 symbols and when each one matters",
+  "summary": "A legacy 14-symbol reference with edition awareness and practical inspection questions.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "gn-034"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "edition",
+      "type": "note-callout",
+      "title": "Start with the drawing’s governing edition",
+      "body": "The familiar 14-symbol set includes concentricity and symmetry from ASME Y14.5-2009 and earlier practice. ASME Y14.5-2018 removed those two controls. Older drawings still need interpretation under their specified standard; do not silently replace a legacy callout.",
+      "tone": "note"
+    },
+    {
+      "id": "symbols",
+      "type": "image",
+      "heading": "The 14-symbol reading key",
+      "src": "/images/gn-gdt-symbols.svg",
+      "alt": "Fourteen labeled geometric characteristic symbols in five groups: form, profile, orientation, location and runout. Concentricity and symmetry are marked legacy.",
+      "caption": "Schematic symbol key, not a feature-control-frame specification. Read the named control, its tolerance, modifiers and datums together."
+    },
+    {
+      "id": "form",
+      "type": "compact-table",
+      "heading": "Form: the feature itself",
+      "columns": [
+        "Control",
+        "What it constrains",
+        "Shop example"
+      ],
+      "rows": [
+        [
+          "Straightness",
+          "Line element or derived median line, depending on callout",
+          "A shaft feature must stay within its stated straightness zone"
+        ],
+        [
+          "Flatness",
+          "Surface, or a derived median plane where specified",
+          "A mounting face must not rock beyond its permitted form error"
+        ],
+        [
+          "Circularity",
+          "Each circular cross-section",
+          "A turned ring can be round yet taper along its length"
+        ],
+        [
+          "Cylindricity",
+          "The cylindrical surface as a whole",
+          "A bearing seat needs a consistent cylindrical form"
+        ]
+      ],
+      "caption": "Form controls do not reference a datum. Size and applicable envelope requirements still matter."
+    },
+    {
+      "id": "profile",
+      "type": "compact-table",
+      "heading": "Profile: an outline or a complete surface",
+      "columns": [
+        "Control",
+        "What it constrains",
+        "Shop example"
+      ],
+      "rows": [
+        [
+          "Profile of a line",
+          "Specified line elements of a surface",
+          "Inspect a controlled section through a contoured part"
+        ],
+        [
+          "Profile of a surface",
+          "The specified three-dimensional surface",
+          "Inspect a contoured sealing surface"
+        ]
+      ],
+      "caption": "Datum references and other callout details determine how orientation and location are controlled. “Profile” does not by itself explain the complete requirement."
+    },
+    {
+      "id": "orientation",
+      "type": "compact-table",
+      "heading": "Orientation: direction relative to datums",
+      "columns": [
+        "Control",
+        "Relationship",
+        "Shop example"
+      ],
+      "rows": [
+        [
+          "Parallelism",
+          "Parallel to the referenced datum",
+          "Opposed guide face maintains the stated orientation"
+        ],
+        [
+          "Perpendicularity",
+          "90° to the referenced datum",
+          "Bore axis is square to the locating face"
+        ],
+        [
+          "Angularity",
+          "Specified basic angle to the datum",
+          "An angled fixture face follows the drawing’s basic angle"
+        ]
+      ],
+      "caption": "Orientation is not a substitute for a location tolerance. Establish the datum reference frame before judging the relation."
+    },
+    {
+      "id": "location",
+      "type": "compact-table",
+      "heading": "Location and the two legacy controls",
+      "columns": [
+        "Control",
+        "Meaning to keep distinct",
+        "Shop example"
+      ],
+      "rows": [
+        [
+          "Position",
+          "Location of a feature, commonly an axis or centre plane",
+          "Bolt-pattern holes must assemble relative to the datum system"
+        ],
+        [
+          "Concentricity · legacy",
+          "Median points relative to a datum axis under the specified legacy rules",
+          "A legacy coaxial feature needs the prescribed median-point evaluation"
+        ],
+        [
+          "Symmetry · legacy",
+          "Median points relative to a datum centre plane under the specified legacy rules",
+          "A legacy opposed-feature requirement needs its actual symmetry evaluation"
+        ]
+      ],
+      "caption": "A dial-indicator sweep is not automatically a valid concentricity measurement. Do not read either legacy control as “looks centred.”"
+    },
+    {
+      "id": "runout",
+      "type": "compact-table",
+      "heading": "Runout: surface behavior during rotation about a datum axis",
+      "columns": [
+        "Control",
+        "Evaluation",
+        "Shop example"
+      ],
+      "rows": [
+        [
+          "Circular runout",
+          "At each specified circular element",
+          "Assess variation at a particular ring while rotating"
+        ],
+        [
+          "Total runout",
+          "Across the controlled surface",
+          "Assess the whole journal or face as required"
+        ]
+      ],
+      "caption": "Runout depends on the datum axis and combines effects; it does not isolate one form error or diagnose its cause."
+    },
+    {
+      "id": "frame",
+      "type": "text",
+      "heading": "Read the whole sentence",
+      "body": "A feature-control frame names a characteristic, a tolerance with applicable modifiers, and any datum references in order. Basic dimensions identify theoretically exact geometry. The tolerance zone then says how the real feature may depart. “Position 0.010” without units, zone shape, modifiers or references is not enough to program inspection."
+    },
+    {
+      "id": "datum",
+      "type": "text",
+      "heading": "A datum is the reference; a datum feature is the real part",
+      "body": "The labeled face on the workpiece has manufacturing variation. The inspection setup establishes the specified reference from that real feature. Clamping the part on an arbitrary convenient face can change what you measure, even with an accurate indicator or CMM."
+    },
+    {
+      "id": "choose",
+      "type": "exercise",
+      "heading": "Choose the inspection question",
+      "prompt": "A shaft drawing specifies circular runout to datum axis A. What should you ask first?",
+      "options": [
+        "How is datum axis A established in this setup?",
+        "Is the shaft visually centred?",
+        "Can I use the outside diameter as the datum without checking?"
+      ],
+      "answer": 0,
+      "explanation": "The measured variation has meaning only relative to the specified datum axis and controlled elements."
+    },
+    {
+      "id": "handoff",
+      "type": "text",
+      "heading": "A useful clarification request",
+      "body": "Identify the drawing revision, governing standard, feature and exact callout. Describe the intended inspection setup and what is unclear. Let the responsible designer or quality authority resolve ambiguity; a convenient measurement method does not rewrite the requirement."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources and further reading",
+      "items": [
+        {
+          "label": "ASME Y14.5: dimensioning and tolerancing",
+          "url": "https://www.asme.org/codes-standards/find-codes-standards/dimensioning-and-tolerancing",
+          "detail": "Governing standard and edition information; use the edition named on the drawing."
+        },
+        {
+          "label": "ASME: legacy concentricity and symmetry chapter",
+          "url": "https://asmedigitalcollection.asme.org/ebooks/book/122/chapter/23336/Concentricity-and-Symmetry",
+          "detail": "Legacy concepts need their actual definitions, not substitution with runout."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-which-of-two-phone-plans-is-cheaper-over-a-year",
+  "title": "Which of two phone plans is cheaper over a year",
+  "summary": "Plan B wins below 1.875 GB of monthly overage; compare the full year.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "gn-006"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "decision",
+      "type": "text",
+      "heading": "How often do you go over?",
+      "body": "For these fictional plans, A costs $540 a year. B starts at $360, then adds $8 for every GB above its included allowance. B wins if your total overage for the year stays below 22.5 GB."
+    },
+    {
+      "id": "compare",
+      "type": "compact-table",
+      "heading": "Try your usage pattern",
+      "columns": [
+        "Average monthly overage",
+        "Plan A / year",
+        "Plan B / year",
+        "Cheaper"
+      ],
+      "rows": [
+        [
+          "0 GB",
+          "$540",
+          "$360",
+          "B by $180"
+        ],
+        [
+          "1 GB",
+          "$540",
+          "$456",
+          "B by $84"
+        ],
+        [
+          "1.875 GB",
+          "$540",
+          "$540",
+          "Tie"
+        ],
+        [
+          "2 GB",
+          "$540",
+          "$552",
+          "A by $12"
+        ],
+        [
+          "4 GB",
+          "$540",
+          "$744",
+          "A by $204"
+        ]
+      ],
+      "caption": "Example prices. Overage means usage beyond B’s allowance, not total data use. Fractional GB are billed proportionally in this example; taxes and fees are excluded."
+    },
+    {
+      "id": "seasonal",
+      "type": "text",
+      "heading": "An average can hide an expensive month",
+      "body": "One month with 12 GB of overage and eleven months with none costs B $456 for the year. The comparison uses the sum of monthly overages; unused allowance does not cancel another month’s overage."
+    },
+    {
+      "id": "choice",
+      "type": "exercise",
+      "heading": "Try a year",
+      "prompt": "Your last 12 bills total 24 GB of overage. Which plan is cheaper?",
+      "options": [
+        "A: $540",
+        "B: $552"
+      ],
+      "answer": 0,
+      "explanation": "B = 12 × $30 + 24 × $8 = $552. A saves $12. Check coverage, included allowance and billing increments before treating the fictional price comparison as a buying decision."
+    }
+  ]
+}

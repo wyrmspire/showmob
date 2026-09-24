@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-converting-a-one-car-garage-into-a-small-machine-shop-power-layout-budget-b",
+  "title": "Converting a one-car garage into a small machine shop: power, layout, budget",
+  "summary": "Start with the working envelopes, then locate services and stage the spending.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "gn-014"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "plan",
+      "type": "image",
+      "heading": "A 12 × 20 ft planning sketch",
+      "src": "/images/gn-garage-layout.svg",
+      "alt": "Top-down garage sketch: delivery door at the bottom; lathe on the left, mill on the right, bench and electrical panel near the top; a central route connects the door and bench. Dashed regions mark machine operating envelopes.",
+      "caption": "Fictional room and compact machines. Scale is approximate. Dashed envelopes are assumptions to replace with manufacturer dimensions, not certified clearances."
+    },
+    {
+      "id": "start",
+      "type": "text",
+      "heading": "Draw the moving machine, not just its base",
+      "body": "A 4 ft machine can consume much more than 4 ft of room. Include the mill table at both travel limits, handwheel access, the lathe’s stock and chuck hazards, service doors and a place for the operator. Then keep a route from the entry to every normal work position."
+    },
+    {
+      "id": "coordinates",
+      "type": "compact-table",
+      "heading": "Where things go in this example",
+      "columns": [
+        "Zone",
+        "Proposed location",
+        "Check before committing"
+      ],
+      "rows": [
+        [
+          "Lathe",
+          "Left wall, long axis front-to-back",
+          "Actual stock length, guarded stock support, chip direction and service access"
+        ],
+        [
+          "Compact mill",
+          "Right wall, clear of the central route",
+          "Full table travel, handle sweep, headroom and lift path"
+        ],
+        [
+          "Bench / metrology",
+          "Rear wall",
+          "Keep inspection away from coolant spray and grinding grit"
+        ],
+        [
+          "Electrical panel",
+          "Rear-left service zone",
+          "Maintain the working space and access required for the actual installation"
+        ],
+        [
+          "Stock rack",
+          "Near the delivery door, outside the route",
+          "Anchor and restrain stored material; do not obstruct door motion"
+        ]
+      ],
+      "caption": "The sketch reserves zones. It does not establish building-code compliance or machine-specific guarding."
+    },
+    {
+      "id": "move",
+      "type": "text",
+      "heading": "Walk a part through the room",
+      "body": "Bring a length of stock from the door to the rack, then to the lathe, then to the bench. Repeat with the largest planned part and an empty cart. If the route crosses an operating envelope, change the layout or define a stopped-machine transfer procedure before anchoring anything."
+    },
+    {
+      "id": "loads",
+      "type": "compact-table",
+      "heading": "Give the electrician a load list, not a guessed feeder size",
+      "columns": [
+        "Load",
+        "Information to collect",
+        "Placement constraint"
+      ],
+      "rows": [
+        [
+          "Lathe and mill",
+          "Voltage, phase, nameplate rating, starting requirements, intended simultaneous use",
+          "Receptacle and local disconnect arrangement per equipment and installation requirements"
+        ],
+        [
+          "Lighting",
+          "Fixtures, switching and work visibility",
+          "A machine fault should not leave the room dark"
+        ],
+        [
+          "Extraction / compressor",
+          "Ratings, duty cycle and startup behavior",
+          "Noise, heat, dust and service access"
+        ],
+        [
+          "Bench tools",
+          "Tool list and likely simultaneous loads",
+          "Keep leads out of aisles and away from moving machinery"
+        ]
+      ],
+      "caption": "Feeder, overcurrent protection, grounding, required protection and permits are design decisions for a qualified installer under local requirements."
+    },
+    {
+      "id": "capacity",
+      "type": "text",
+      "heading": "The nameplate is the start of the conversation",
+      "body": "A motor’s operating current is not the whole installation calculation. Starting behavior, existing service capacity, multiple loads and equipment instructions matter. A 60 A panel label does not prove a 60 A feeder is needed or available. Leave capacity unresolved until the actual machines and site are known."
+    },
+    {
+      "id": "budget",
+      "type": "compact-table",
+      "heading": "An illustrative $6,000 conversion envelope",
+      "columns": [
+        "Category",
+        "Allowance",
+        "Release condition"
+      ],
+      "rows": [
+        [
+          "Electrical assessment and installation",
+          "$2,400",
+          "Written scope after site and load review"
+        ],
+        [
+          "Lighting and task visibility",
+          "$500",
+          "Check shadows at real work positions"
+        ],
+        [
+          "Rigging, bases and anchoring",
+          "$800",
+          "Confirm machine weights, delivery path and floor suitability"
+        ],
+        [
+          "Bench and organized storage",
+          "$700",
+          "Machines fit with operating envelopes"
+        ],
+        [
+          "Chip / fluid control and initial safety provisions",
+          "$600",
+          "Match the actual processes"
+        ],
+        [
+          "Contingency",
+          "$1,000",
+          "Hold for site discoveries"
+        ]
+      ],
+      "caption": "Planning assumptions, not quotes. Existing lathe and mill are assumed owned. Machine purchases, structural repairs, major service upgrades and ongoing tooling are excluded."
+    },
+    {
+      "id": "sequence",
+      "type": "steps",
+      "heading": "Commit in the order that preserves options",
+      "items": [
+        "Measure the room, doors, panel area and machine envelopes; mark them with tape.",
+        "Review the floor, moving plan, electrical scope, noise and ventilation before accepting delivery.",
+        "Revise the drawing against real quotes. Defer a machine if its operating envelope or services do not fit.",
+        "Install the approved services, place and secure equipment, then verify access with the room fully stocked.",
+        "Make and inspect one modest part. Record the lighting, handling and storage problems it exposes."
+      ]
+    },
+    {
+      "id": "release",
+      "type": "checklist",
+      "heading": "The layout earns a go",
+      "items": [
+        {
+          "label": "Entry and exit stay clear",
+          "detail": "Test with the door open and closed and a cart parked where it will actually live."
+        },
+        {
+          "label": "Operating envelopes do not silently become storage",
+          "detail": "Keep the dashed zones free while machines are in use."
+        },
+        {
+          "label": "Panel and service access remain available",
+          "detail": "Confirm the real clearances with the installer and equipment documents."
+        },
+        {
+          "label": "Workholding and stock handling have space",
+          "detail": "A tidy empty room is not the same as a usable working room."
+        },
+        {
+          "label": "The budget includes a hold point",
+          "detail": "An unpriced power upgrade stops the purchase decision rather than disappearing into contingency."
+        }
+      ]
+    },
+    {
+      "id": "limit",
+      "type": "text",
+      "heading": "Keep incompatible processes apart",
+      "body": "This plan is for a small metalworking room. Do not add welding, wood dust or flammable finishing just because a corner looks empty; each changes ventilation, fire and separation needs. A new process deserves another layout review."
+    }
+  ]
+}

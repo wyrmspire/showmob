@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-speeds-and-feeds-for-6061-aluminum-vs-4140-steel-on-a-manual-lathe",
+  "title": "Speeds and feeds for 6061 aluminum vs 4140 steel on a manual lathe",
+  "summary": "Translate supplied cutting speeds into RPM, then distinguish feed from travel rate.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "gn-030"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "text",
+      "heading": "Material name alone does not select a cutting speed",
+      "body": "6061 aluminum and 4140 steel are not complete setup descriptions. Establish temper or hardness, tool material and geometry, diameter, workholding, machine limits and the operation. The numbers below are supplied arithmetic examples, not recommended cutting settings."
+    },
+    {
+      "id": "inputs",
+      "type": "compact-table",
+      "heading": "Two fictional 2 in diameter examples",
+      "columns": [
+        "Input",
+        "6061 example",
+        "4140 example"
+      ],
+      "rows": [
+        [
+          "Tool and condition",
+          "Assume approved by a tooling reference",
+          "Assume approved by a tooling reference"
+        ],
+        [
+          "Supplied cutting speed",
+          "300 surface ft/min",
+          "100 surface ft/min"
+        ],
+        [
+          "Supplied feed",
+          "0.004 in/rev",
+          "0.003 in/rev"
+        ],
+        [
+          "Calculated spindle speed",
+          "573 RPM",
+          "191 RPM"
+        ],
+        [
+          "Resulting axial feed rate",
+          "2.29 in/min",
+          "0.573 in/min"
+        ]
+      ],
+      "caption": "RPM = 12 × SFM / (π × diameter in inches). These assumed speeds do not substitute for a tooling supplier’s data for your exact tool and material condition."
+    },
+    {
+      "id": "rpm",
+      "type": "text",
+      "heading": "Convert surface speed at the actual diameter",
+      "body": "At 300 SFM and 2 in: RPM = 3.82 × 300 / 2 ≈ 573. At 100 SFM: RPM ≈ 191. A manual machine offers discrete speeds; choose a suitable available setting within the machine, chuck and workholding limits, then calculate the actual surface speed. Do not automatically round upward."
+    },
+    {
+      "id": "diameter",
+      "type": "compact-table",
+      "heading": "Same supplied SFM, different diameters",
+      "columns": [
+        "Diameter",
+        "300 SFM example",
+        "100 SFM example"
+      ],
+      "rows": [
+        [
+          "1 in",
+          "1,146 RPM",
+          "382 RPM"
+        ],
+        [
+          "2 in",
+          "573 RPM",
+          "191 RPM"
+        ],
+        [
+          "4 in",
+          "286 RPM",
+          "95 RPM"
+        ]
+      ],
+      "caption": "Doubling diameter halves the RPM for the same surface speed. A machine limit can make the target surface speed unavailable."
+    },
+    {
+      "id": "feed",
+      "type": "text",
+      "heading": "The gearbox setting and the traverse rate are different",
+      "body": "Feed in inches per revolution describes how far the tool advances for each spindle revolution. Multiply by RPM for inches per minute. At 573 RPM and 0.004 in/rev, travel is about 2.29 in/min. Reducing RPM reduces that travel rate even when the gearbox feed setting is unchanged."
+    },
+    {
+      "id": "depth",
+      "type": "text",
+      "heading": "Radial depth is half the diameter change",
+      "body": "Turning a diameter from 2.000 to 1.900 in removes 0.050 in radially. Treat depth, feed and speed as separate inputs. A speed calculation does not tell you whether a slender workpiece, a small machine or a particular insert can carry the planned cut."
+    },
+    {
+      "id": "differences",
+      "type": "compact-table",
+      "heading": "What the material comparison should make you check",
+      "columns": [
+        "6061",
+        "4140"
+      ],
+      "rows": [
+        [
+          "Confirm alloy/temper and tool guidance for adhesion and chip control",
+          "Confirm annealed, prehardened or other condition; hardness changes the job"
+        ],
+        [
+          "Inspect built-up edge and surface condition",
+          "Inspect edge wear, cutting forces and tool suitability"
+        ],
+        [
+          "Avoid assuming shiny chips mean a sound setup",
+          "Avoid assuming all 4140 behaves like soft bar stock"
+        ]
+      ],
+      "caption": "These are inspection prompts, not a speed chart."
+    },
+    {
+      "id": "calc",
+      "type": "exercise",
+      "heading": "Choose the correct RPM",
+      "prompt": "A supplied cutting speed is 100 SFM and the diameter is 1 in. Approximately what RPM follows?",
+      "options": [
+        "191 RPM",
+        "382 RPM",
+        "764 RPM"
+      ],
+      "answer": 1,
+      "explanation": "3.82 × 100 / 1 = 382 RPM, before machine and setup limits."
+    },
+    {
+      "id": "depth-check",
+      "type": "exercise",
+      "heading": "Read a diameter change",
+      "prompt": "You turn 1.500 in stock to 1.400 in. What radial depth was removed?",
+      "options": [
+        "0.100 in",
+        "0.050 in",
+        "0.200 in"
+      ],
+      "answer": 1,
+      "explanation": "The diameter fell by 0.100 in, so radial depth is half: 0.050 in."
+    },
+    {
+      "id": "setup",
+      "type": "steps",
+      "heading": "A usable setup note records all of this",
+      "items": [
+        "Exact material and condition; tool designation and supplier’s recommended range.",
+        "Starting diameter, planned final diameter and workholding arrangement.",
+        "Chosen machine RPM, feed per revolution and radial depth.",
+        "A stopped-spindle inspection plan for size, finish, chip control and tool condition.",
+        "What observation would stop the cut or prompt a documented adjustment."
+      ]
+    },
+    {
+      "id": "facing",
+      "type": "text",
+      "heading": "Why the centre behaves differently",
+      "body": "At fixed RPM during facing, surface speed falls as the tool approaches the centre. A CNC constant-surface-speed mode can compensate within limits; a manual lathe usually cannot do this automatically. Never borrow a CNC mode assumption for a manual-machine setup."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources and further reading",
+      "items": [
+        {
+          "label": "Sandvik Coromant: general turning formulas",
+          "url": "https://www.sandvik.coromant.com/en-us/knowledge/machining-formulas-definitions/general-turning-formulas-definitions",
+          "detail": "Definitions of cutting speed, spindle speed, feed and depth. All numerical setups on this page are fictional arithmetic exercises."
+        }
+      ]
+    }
+  ]
+}

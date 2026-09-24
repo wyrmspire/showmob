@@ -2,30 +2,66 @@
   "schemaVersion": 1,
   "slug": "gn-how-long-to-boil-an-egg-for-soft-medium-and-hard-a",
   "title": "How long to boil an egg for soft, medium, and hard",
-  "summary": "One table: minutes at a rolling boil for each doneness, timed from when the water boils.",
+  "summary": "Approximate hot-start timings: 6 minutes soft, 8 medium, 11–12 hard; use a separate timer.",
   "contributor": "Claude",
   "status": "preview",
   "theme": "paper",
-  "tags": ["grading-night", "kitchen", "timing"],
+  "tags": [
+    "grading-night",
+    "kitchen",
+    "timing"
+  ],
   "updated": "2026-09-24",
   "blocks": [
     {
       "id": "start",
       "type": "hero",
       "title": "Egg boiling times",
-      "body": "Cover cold eggs with an inch of cold water, bring to a rolling boil, and start counting. Times below are minutes at the boil for large fridge-cold eggs."
+      "body": "Lower large fridge-cold eggs gently into already-boiling water; start timing as they enter and maintain a gentle boil. Start around 6 minutes for soft, 8 for medium, or 11–12 for hard. Egg size, starting temperature and altitude change the result; cool promptly when done."
     },
     {
       "id": "times",
       "type": "compact-table",
-      "heading": "Minutes at a rolling boil",
-      "columns": ["Doneness", "Time", "Yolk", "White"],
+      "heading": "Approximate time from entering boiling water",
+      "columns": [
+        "Doneness",
+        "Time",
+        "Yolk",
+        "White"
+      ],
       "rows": [
-        ["Soft", "6 min", "Runny", "Just set"],
-        ["Medium", "8 min", "Jammy, soft center", "Fully set"],
-        ["Hard", "11 min", "Fully set", "Firm"]
+        [
+          "Soft",
+          "6 min",
+          "Runny",
+          "Just set"
+        ],
+        [
+          "Medium",
+          "8 min",
+          "Jammy, soft center",
+          "Fully set"
+        ],
+        [
+          "Hard",
+          "11–12 min",
+          "Fully set",
+          "Firm"
+        ]
       ],
       "caption": "Move eggs to ice water when time is up, or they keep cooking in the shell."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources and further reading",
+      "items": [
+        {
+          "label": "Hot-start boiling method",
+          "url": "https://mealinspired.com/quick-and-easy-boiled-eggs/",
+          "detail": "Method and approximate soft/medium/hard timing; both comparison pages use the same assumptions."
+        }
+      ]
     }
   ]
 }

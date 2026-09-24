@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-one-page-pitch-why-a-community-makerspace-needs-a-cnc-router",
+  "title": "One-page pitch: why a community makerspace needs a CNC router",
+  "summary": "A makerspace pitch built around access, supervised use and an explicit operating budget.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "gn-086"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "ask",
+      "type": "text",
+      "heading": "Fund access to making larger, repeatable parts",
+      "body": "Approve a six-month CNC router pilot if the makerspace can confirm a suitable room, dust collection, trained supervision and an operating budget. Members could make fixtures, signs and flat-pack furniture while learning the path from drawing to finished part."
+    },
+    {
+      "id": "cost",
+      "type": "compact-table",
+      "heading": "Illustrative first-year envelope",
+      "columns": [
+        "Use",
+        "Allowance"
+      ],
+      "rows": [
+        [
+          "Router and workholding",
+          "$9,000"
+        ],
+        [
+          "Dust collection and approved installation",
+          "$3,000"
+        ],
+        [
+          "Tooling, spoilboards and initial material",
+          "$1,000"
+        ],
+        [
+          "Training and commissioning",
+          "$1,000"
+        ],
+        [
+          "Maintenance / contingency reserve",
+          "$1,000"
+        ],
+        [
+          "Total",
+          "$15,000"
+        ]
+      ],
+      "caption": "Fictional planning allowances, not vendor quotes. Confirm electrical, ventilation, noise, insurance and access requirements before purchase."
+    },
+    {
+      "id": "case",
+      "type": "text",
+      "heading": "What shared ownership buys",
+      "body": "A member with a one-off project does not need a machine in their garage. The space provides a supervised route through file review, toolpath preparation, workholding and inspection. A completed cut is only one part of the service; instruction and safe setup are the value."
+    },
+    {
+      "id": "proof",
+      "type": "compact-table",
+      "heading": "Make the pilot earn expansion",
+      "columns": [
+        "At six months",
+        "Evidence"
+      ],
+      "rows": [
+        [
+          "12 members complete supervised qualification",
+          "Observed setup and shutdown checklist"
+        ],
+        [
+          "30 projects finish",
+          "Project records with material, time and outcome"
+        ],
+        [
+          "The hourly charge covers measured running costs",
+          "Consumables, supervision and maintenance tracked separately"
+        ],
+        [
+          "Access is fair",
+          "Booking wait time and scholarship use reviewed"
+        ]
+      ],
+      "caption": "These are proposed targets, not reported results."
+    },
+    {
+      "id": "risk",
+      "type": "text",
+      "heading": "The machine cannot be its own operator",
+      "body": "Name a program owner and trained supervisors before ordering. If staffing or extraction cannot be sustained, use a partner shop for the pilot and revisit ownership after demand is demonstrated."
+    }
+  ]
+}

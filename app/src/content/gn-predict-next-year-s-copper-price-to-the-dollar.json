@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-predict-next-year-s-copper-price-to-the-dollar",
+  "title": "Predict next year's copper price to the dollar",
+  "summary": "An exact copper-price forecast would invent precision; use a conditional cost range.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "gn-098"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "answer",
+      "type": "text",
+      "heading": "Next year’s copper price is unknown",
+      "body": "A forecast to the dollar would imply more knowledge than the evidence provides. Define the market, currency, unit and date first: a yearly average in USD per metric tonne is a different question from a spot quote on December 31."
+    },
+    {
+      "id": "scenarios",
+      "type": "compact-table",
+      "heading": "A purchasing stress test, not a price prediction",
+      "columns": [
+        "Hypothetical change",
+        "Price at a $10,000/t baseline",
+        "Cost for 2 tonnes"
+      ],
+      "rows": [
+        [
+          "−20%",
+          "$8,000/t",
+          "$16,000"
+        ],
+        [
+          "No change",
+          "$10,000/t",
+          "$20,000"
+        ],
+        [
+          "+20%",
+          "$12,000/t",
+          "$24,000"
+        ]
+      ],
+      "caption": "The $10,000 baseline and ±20% moves are invented arithmetic inputs. They are not today’s price, a forecast interval or assigned probabilities."
+    },
+    {
+      "id": "decision",
+      "type": "text",
+      "heading": "Ask the question a buyer can act on",
+      "body": "Can the job absorb a $4,000 change in this material line? If not, compare a time-limited supplier quote, an escalation clause and a smaller staged order. Their actual costs and terms need quotes; this example does not recommend a financial trade."
+    },
+    {
+      "id": "update",
+      "type": "text",
+      "heading": "What would narrow the uncertainty?",
+      "body": "A dated supplier quote establishes a purchasable price for specified terms. Inventory, demand, supply disruptions and exchange rates can help explain market changes, but they do not turn a next-year estimate into a guaranteed number."
+    }
+  ]
+}

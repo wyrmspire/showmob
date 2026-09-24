@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-maintenance-shift-handoff-note-what-s-running-what-s-down-what-s-pending",
+  "title": "Maintenance shift handoff note: what's running, what's down, what's pending",
+  "summary": "A fictional handoff organized by operating state, owner and next decision.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "gn-050"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "stamp",
+      "type": "text",
+      "heading": "14:00 handoff · example only",
+      "body": "Incoming lead: Morgan. Outgoing lead: Casey. The first decision is whether Cell 2 can restart; it cannot until the unresolved fault is evaluated and the site’s release procedure is complete."
+    },
+    {
+      "id": "board",
+      "type": "compact-table",
+      "heading": "What the next shift needs first",
+      "columns": [
+        "Asset / state",
+        "Evidence",
+        "Owner / next action"
+      ],
+      "rows": [
+        [
+          "Cell 1 · RUNNING",
+          "Last checked 13:50; 40 consecutive parts within the process check",
+          "Morgan: normal checks at 14:30"
+        ],
+        [
+          "Cell 2 · DOWN",
+          "Intermittent axis fault at 12:42 and 13:15; alarm history saved",
+          "Maintenance lead: compare events and authorize next diagnostic step"
+        ],
+        [
+          "Conveyor 3 · PENDING",
+          "Replacement sensor received; installation not started",
+          "Casey handed kit to Morgan; schedule during approved downtime"
+        ]
+      ],
+      "caption": "Fictional operations note. It does not replace permits, isolation records or a restart authorization."
+    },
+    {
+      "id": "risk",
+      "type": "note-callout",
+      "title": "Cell 2: do not convert “reset” into “repaired”",
+      "body": "No root cause is confirmed. Alarm reset briefly restored operation before the second event. Guarding, safety systems and isolation remain governed by the machine-specific procedure. Record their actual state in the handoff, not an assumption.",
+      "tone": "warning"
+    },
+    {
+      "id": "template",
+      "type": "code",
+      "heading": "Copy for the next shift",
+      "language": "text",
+      "code": "Time / outgoing / incoming:\nAsset / operating state:\nSymptom and exact event time:\nVerified isolation or permit reference:\nEvidence location:\nTemporary restrictions:\nNext action / owner / due time:\nRestart authority / acceptance criterion:\nIncoming acknowledgement:"
+    },
+    {
+      "id": "receive",
+      "type": "checklist",
+      "heading": "Before accepting the shift",
+      "items": [
+        {
+          "label": "Read back the blocked restart",
+          "detail": "Incoming lead names the condition that must be satisfied."
+        },
+        {
+          "label": "Open the evidence",
+          "detail": "Confirm the alarm history and work order can actually be found."
+        },
+        {
+          "label": "Assign the first follow-up",
+          "detail": "Owner and time are explicit; “maintenance knows” is not an assignment."
+        }
+      ]
+    }
+  ]
+}
