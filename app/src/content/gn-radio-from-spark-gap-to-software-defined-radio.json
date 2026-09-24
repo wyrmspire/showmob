@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-radio-from-spark-gap-to-software-defined-radio",
+  "title": "Radio from spark gap to software-defined radio",
+  "summary": "A reflective tour of radio architectures: spark, tubes, superhets, solid-state, and software-defined receivers that move selectivity into code.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "signal",
+  "tags": [
+    "grading-night",
+    "radio",
+    "history",
+    "sdr"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Architectures across a century",
+      "title": "From lightning in a jar to samples in a buffer",
+      "body": "Radio is the same job \u2014 move information through the air \u2014 solved with different machines. This page compares those machines in time order so you can see what each era was optimizing."
+    },
+    {
+      "id": "era-stats",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "Spark",
+          "label": "Broadband crashes of RF \u2014 early wireless telegraphy"
+        },
+        {
+          "value": "Superhet",
+          "label": "Fixed IF makes selectivity practical"
+        },
+        {
+          "value": "SDR",
+          "label": "Digitize early; filter and demodulate in software"
+        }
+      ]
+    },
+    {
+      "id": "timeline",
+      "type": "timeline",
+      "heading": "Era markers",
+      "items": [
+        {
+          "time": "1890s\u20131910s",
+          "title": "Spark and early continuous wave",
+          "detail": "Spark gaps blast wide spectra; damped waves give way to CW as machines improve."
+        },
+        {
+          "time": "1920s\u20131930s",
+          "title": "Tubes and the superheterodyne",
+          "detail": "Armstrong's superhet idea (and the industry that adopts it) puts most stations behind a stable intermediate frequency filter."
+        },
+        {
+          "time": "1950s\u20131970s",
+          "title": "Solid-state radios",
+          "detail": "Transistors shrink receivers; FM broadcast and VHF/UHF become everyday hardware."
+        },
+        {
+          "time": "1990s\u20132000s",
+          "title": "Digital signal processing enters the box",
+          "detail": "DSPs and specialized chips take on demodulation and filtering once analog IF has done the heavy lifting."
+        },
+        {
+          "time": "2000s\u2013now",
+          "title": "Software-defined radio",
+          "detail": "Wideband ADCs and general CPUs/GPUs let amateurs and labs redefine bandwidth and modes in software."
+        }
+      ]
+    },
+    {
+      "id": "spark",
+      "type": "text",
+      "heading": "Spark: power first, spectrum later",
+      "body": "A spark transmitter is essentially a controlled electromagnetic mess \u2014 useful when the alternative is no wireless at all, hostile to neighbors once the dial fills. The historical lesson is brutal and useful: early radio optimized for \"can anyone hear a pulse\" before it optimized for \"can many people share the air.\""
+    },
+    {
+      "id": "superhet",
+      "type": "diagram",
+      "heading": "Why the superhet won the middle century",
+      "nodes": [
+        {
+          "title": "Antenna & RF front end",
+          "detail": "Admit a band of spectrum."
+        },
+        {
+          "title": "Mixer + local oscillator",
+          "detail": "Translate the desired station to a fixed intermediate frequency."
+        },
+        {
+          "title": "IF filter & amplifiers",
+          "detail": "Sharp, repeatable selectivity is easier at one IF than retuning narrow filters across the band."
+        },
+        {
+          "title": "Detector & audio",
+          "detail": "Recover baseband \u2014 AM, product detector, later FM discriminators, etc."
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "type": "comparison",
+      "heading": "What each architecture optimizes",
+      "columns": [
+        {
+          "name": "Spark / early CW",
+          "detail": "Range and simplicity of transmitter hardware; terrible spectral manners by modern standards."
+        },
+        {
+          "name": "Superhet analog",
+          "detail": "Selectivity, stability, manufacturable consumer radios."
+        },
+        {
+          "name": "SDR",
+          "detail": "Flexibility of modes and filters after digitization; depends on ADC dynamic range and computing."
+        }
+      ]
+    },
+    {
+      "id": "solid",
+      "type": "text",
+      "heading": "Solid-state did not end architecture debates",
+      "body": "Transistors replaced tubes in stages, but many radios remained superhets in topology. What changed was power, size, and reliability. The reflective through-line: devices change faster than the good ideas about frequency translation and filtering."
+    },
+    {
+      "id": "sdr",
+      "type": "text",
+      "heading": "SDR: move the IF into math",
+      "body": "A software-defined radio digitizes a wide slice of spectrum (after some analog filtering and gain) and performs mixing, filtering, and demodulation numerically. Change a mode by loading different code \u2014 not by restuffing IF cans. The trade is honesty about front-end overload, aliasing, and the fact that software cannot invent dynamic range the ADC did not capture."
+    },
+    {
+      "id": "table",
+      "type": "compact-table",
+      "heading": "Reader's pocket chart",
+      "columns": [
+        "Era",
+        "Signature block",
+        "Failure mode to remember"
+      ],
+      "rows": [
+        [
+          "Spark",
+          "Gap + tank",
+          "Occupies everyone else's spectrum"
+        ],
+        [
+          "Tube superhet",
+          "Mixer + IF chain",
+          "Drift, alignment, aging tubes"
+        ],
+        [
+          "Solid-state superhet",
+          "Same topology, smaller",
+          "Front-end overload in dense RF"
+        ],
+        [
+          "SDR",
+          "ADC + DSP/CPU",
+          "Aliasing, limited bits, USB/CPU bottlenecks"
+        ]
+      ]
+    },
+    {
+      "id": "quote",
+      "type": "quote",
+      "quote": "Every generation of radio invents a new place to put the hard filter.",
+      "attribution": "Spark gap \u2192 IF can \u2192 FPGA coefficient"
+    },
+    {
+      "id": "slideshow",
+      "type": "slideshow",
+      "heading": "One station, four mental models",
+      "slides": [
+        {
+          "title": "Spark listener",
+          "body": "You hear a crash and hope it is your correspondent's crash."
+        },
+        {
+          "title": "Superhet listener",
+          "body": "You tune an LO so the station lands in a crystal filter's lap."
+        },
+        {
+          "title": "Scanner-era listener",
+          "body": "A PLL and chips do the same translation with fewer alignment screws."
+        },
+        {
+          "title": "SDR listener",
+          "body": "You drag a filter box across a waterfall and the demodulator follows."
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Architecture check",
+      "prompt": "What problem did the superheterodyne primarily make easier compared with tuning a razor-sharp filter across the whole shortwave band?",
+      "options": [
+        "Generating spark gaps",
+        "Building selectivity at a fixed intermediate frequency",
+        "Eliminating the need for antennas",
+        "Removing the need for any analog filtering ever"
+      ],
+      "answer": 1,
+      "explanation": "Translating stations to one IF lets you perfect filters and amplifiers at that frequency.",
+      "correctFeedback": "Yes \u2014 fixed IF is the superhet's core trick.",
+      "wrongFeedback": "Re-read the superhet diagram: mixer to IF filter is the point."
+    },
+    {
+      "id": "note",
+      "type": "note-callout",
+      "title": "Continuity, not replacement theater",
+      "body": "SDR did not delete RF engineering. It moved some of it. Mixers, filters, and honesty about overload still decide whether the software sees truth or junk.",
+      "tone": "note"
+    },
+    {
+      "id": "resources",
+      "type": "resource-list",
+      "heading": "Continue exploring",
+      "items": [
+        {
+          "label": "ARRL handbook & technical articles",
+          "detail": "Amateur radio's long memory of architectures still in use.",
+          "url": "https://www.arrl.org/"
+        },
+        {
+          "label": "GNU Radio",
+          "detail": "Open toolchain for learning SDR signal chains hands-on.",
+          "url": "https://www.gnuradio.org/"
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Pick one era and go deeper",
+      "body": "If you build, build a crystal radio or an SDR waterfall first \u2014 both teach listening before transmitting."
+    }
+  ]
+}

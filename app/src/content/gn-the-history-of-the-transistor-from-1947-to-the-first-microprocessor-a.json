@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-the-history-of-the-transistor-from-1947-to-the-first-microprocessor-a",
+  "title": "The history of the transistor, from 1947 to the first microprocessor",
+  "summary": "A timeline-first walk from the 1947 point-contact transistor to the early microprocessors that put a CPU on one chip.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "night",
+  "tags": [
+    "grading-night",
+    "history",
+    "electronics",
+    "transistor"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Timeline first",
+      "title": "From a bench demo to a computer on a chip",
+      "body": "The transistor did not leap from crystal radios to smartphones in one step. This page uses a timeline as the spine: 1947 at Bell Labs through the early 1970s microprocessors. The essays hang off the dates."
+    },
+    {
+      "id": "spine",
+      "type": "timeline",
+      "heading": "The spine: 1947 \u2192 early microprocessors",
+      "items": [
+        {
+          "time": "1947",
+          "title": "Point-contact transistor",
+          "detail": "Bardeen and Brattain at Bell Labs demonstrate amplification in a germanium point-contact device; Shockley's role in the junction idea follows immediately in the lab's story."
+        },
+        {
+          "time": "1948\u20131951",
+          "title": "Junction transistor theory \u2192 practice",
+          "detail": "Shockley's junction transistor concepts move toward manufacturable bipolar devices that are more stable than point-contact oddities."
+        },
+        {
+          "time": "1954",
+          "title": "Silicon junction traction",
+          "detail": "Silicon devices begin displacing germanium in many roles \u2014 higher temperature capability matters for real products."
+        },
+        {
+          "time": "1958\u20131959",
+          "title": "Integrated circuit ideas",
+          "detail": "Kilby (hybrid IC demonstration) and Noyce (planar IC approach at Fairchild) open the path from discrete transistors to many devices on one chip."
+        },
+        {
+          "time": "1960s",
+          "title": "Planar process + Moore's observation",
+          "detail": "Planar manufacturing scales complexity. Moore notes the economic pattern of rising component counts \u2014 denser chips become the industry's metronome."
+        },
+        {
+          "time": "1971",
+          "title": "Intel 4004",
+          "detail": "A 4-bit CPU on a chip for calculators \u2014 often cited as the first commercial microprocessor."
+        },
+        {
+          "time": "1972\u20131974",
+          "title": "8-bit follow-ons",
+          "detail": "8008 and then 8080 (and contemporaries elsewhere) turn microprocessors into general-purpose building blocks, not only calculator brains."
+        }
+      ]
+    },
+    {
+      "id": "why-1947",
+      "type": "text",
+      "heading": "Why 1947 is the opening bell",
+      "body": "Vacuum tubes already amplified. What the transistor offered was solid-state amplification without a glowing filament: smaller, cooler, eventually cheaper and more reliable at scale. The first devices were finicky. The historical break is still real \u2014 a solid crystal structure doing what hot glass envelopes had done."
+    },
+    {
+      "id": "people",
+      "type": "compact-table",
+      "heading": "Names that keep appearing on the timeline",
+      "columns": [
+        "Person / team",
+        "Why they show up"
+      ],
+      "rows": [
+        [
+          "Bardeen & Brattain",
+          "Point-contact demonstration at Bell Labs, 1947"
+        ],
+        [
+          "Shockley",
+          "Junction transistor theory and the lab's next chapter"
+        ],
+        [
+          "Kilby",
+          "Early IC demonstration at Texas Instruments"
+        ],
+        [
+          "Noyce",
+          "Planar IC approach that manufacturing could scale"
+        ],
+        [
+          "Hoff / Intel team et al.",
+          "4004 microprocessor era \u2014 CPU functions on one chip"
+        ]
+      ],
+      "caption": "History has more contributors than any short table. This is a reader's map, not a patent docket."
+    },
+    {
+      "id": "germanium-silicon",
+      "type": "comparison",
+      "heading": "Germanium to silicon",
+      "columns": [
+        {
+          "name": "Germanium early devices",
+          "detail": "Worked, taught the industry, and struggled with temperature and leakage compared with what silicon would allow."
+        },
+        {
+          "name": "Silicon ascent",
+          "detail": "Better high-temperature behavior and a manufacturing ecosystem that learned oxide, diffusion, and planar tricks."
+        },
+        {
+          "name": "Why it matters on this timeline",
+          "detail": "Without manufacturable silicon processes, the IC and microprocessor chapters stay laboratory curiosities."
+        }
+      ]
+    },
+    {
+      "id": "ic-bridge",
+      "type": "diagram",
+      "heading": "Discrete \u2192 IC \u2192 microprocessor",
+      "nodes": [
+        {
+          "title": "Discrete transistors",
+          "detail": "One device per package; computers are rooms of them."
+        },
+        {
+          "title": "Integrated circuits",
+          "detail": "Many devices share a die \u2014 logic building blocks shrink."
+        },
+        {
+          "title": "Microprocessor",
+          "detail": "CPU datapath and control land on one chip \u2014 computers become boards, then boxes."
+        }
+      ]
+    },
+    {
+      "id": "divider-4004",
+      "type": "divider",
+      "label": "The microprocessor hinge"
+    },
+    {
+      "id": "4004",
+      "type": "text",
+      "heading": "What \"first microprocessor\" usually means here",
+      "body": "The Intel 4004 (1971) is the conventional classroom landmark: a CPU designed as a general programmable chip for a calculator family, sold as a component. Contemporaneous and near-term chips complicate any absolute \"first,\" which is why this timeline says \"first microprocessor era\" as much as a single trophy. The break with discrete TTL CPUs is what matters for the story."
+    },
+    {
+      "id": "stats",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "~24 yrs",
+          "label": "1947 demo \u2192 1971 4004 landmark"
+        },
+        {
+          "value": "4-bit",
+          "label": "4004 datapath width"
+        },
+        {
+          "value": "Planar",
+          "label": "Process idea that made density practical"
+        }
+      ]
+    },
+    {
+      "id": "quote",
+      "type": "quote",
+      "quote": "The timeline is the argument: amplification in a crystal, then many crystals on one die, then a computer's brain on one die.",
+      "attribution": "How to read this page"
+    },
+    {
+      "id": "reflect",
+      "type": "text",
+      "heading": "What changed for everyone else",
+      "body": "Each jump on the timeline moved reliability and cost. Radios shrank. Computers left glass rooms. Controllers migrated into appliances. The reflective point is not nostalgia \u2014 it is that \"smaller and cooler\" compounded until software became the scarce resource instead of vacuum tubes."
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Timeline check",
+      "prompt": "On this page's spine, what sits between discrete transistors and the microprocessor?",
+      "options": [
+        "The smartphone",
+        "The integrated circuit / planar manufacturing era",
+        "The spark-gap transmitter",
+        "Cloud computing"
+      ],
+      "answer": 1,
+      "explanation": "ICs and planar processes made dense logic practical before a CPU could fit on one chip.",
+      "correctFeedback": "Right \u2014 IC era is the bridge on the spine.",
+      "wrongFeedback": "Look at the diagram Discrete \u2192 IC \u2192 microprocessor."
+    },
+    {
+      "id": "resources",
+      "type": "resource-list",
+      "heading": "Further reading",
+      "items": [
+        {
+          "label": "IEEE history resources",
+          "detail": "Professional society timelines and articles on the transistor and IC.",
+          "url": "https://www.ieee.org/"
+        },
+        {
+          "label": "Computer History Museum",
+          "detail": "Exhibits and documents on semiconductors and early microprocessors.",
+          "url": "https://www.computerhistory.org/"
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Keep the spine visible",
+      "body": "If you only remember the dates \u2014 1947, planar ICs, 1971 \u2014 you can hang any deeper biography on the right peg."
+    }
+  ]
+}
