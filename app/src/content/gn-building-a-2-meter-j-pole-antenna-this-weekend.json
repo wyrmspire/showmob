@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-building-a-2-meter-j-pole-antenna-this-weekend",
+  "title": "Building a 2-meter J-pole antenna this weekend",
+  "summary": "Copper pipe, a few fittings, and a Saturday: a classic 2-meter J-pole you can hang and check with an SWR meter.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "signal",
+  "tags": [
+    "grading-night",
+    "radio",
+    "antenna",
+    "project"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "VHF weekend project",
+      "title": "A J-pole from copper pipe",
+      "body": "The J-pole is a half-wave radiator with a quarter-wave matching stub. On 2 meters it is short enough to build from plumbing parts, hang from a mast, and tune with an SWR meter before you call it done."
+    },
+    {
+      "id": "parts",
+      "type": "checklist",
+      "heading": "Parts for one antenna",
+      "items": [
+        {
+          "label": "About 5 ft of 3/4-inch copper pipe and matching tee and end caps",
+          "detail": "Exact cut lengths depend on your velocity factor and target frequency \u2014 measure twice."
+        },
+        {
+          "label": "SO-239 chassis connector and short leads or hose clamps for the feed",
+          "detail": "The feed attaches on the stub, not at the bottom of the long element."
+        },
+        {
+          "label": "Mast clamp or UV-stable hang point",
+          "detail": "Keep metal mounting hardware clear of the matching region until you know your SWR."
+        },
+        {
+          "label": "SWR meter or antenna analyzer covering 144\u2013148 MHz",
+          "detail": "Building without a way to measure match is guessing."
+        }
+      ]
+    },
+    {
+      "id": "build",
+      "type": "steps",
+      "heading": "Saturday build order",
+      "items": [
+        "Cut the long element near 1/2 wave and the stub near 1/4 wave for your target frequency in the 2-meter band (example starting lengths often land near 60 in and 19 in for copper \u2014 verify against a current dimension chart).",
+        "Sweat or clamp the tee so the stub parallels the long element with a small air gap.",
+        "Attach the feed on the stub side: shield toward the shorted bottom, center toward the open stub \u2014 slide for lowest SWR.",
+        "Mount it clear of metal gutters, check SWR across the band, and note the dip frequency before you weatherproof."
+      ]
+    },
+    {
+      "id": "safety",
+      "type": "note-callout",
+      "title": "RF and height basics",
+      "body": "Stay off power lines, do not transmit into an untuned antenna at high power while adjusting, and treat rooftop work like any other ladder job. A J-pole is simple; gravity and mains voltage are not.",
+      "tone": "warning"
+    },
+    {
+      "id": "expect",
+      "type": "text",
+      "heading": "What good enough looks like",
+      "body": "Aim for SWR under about 1.5:1 at your usual simplex or repeater frequency. If the dip is low in the band, shorten the radiator slightly; if it is high, lengthen or adjust the feed point. Once it is stable, tape or seal the feed connections so rain does not undo Saturday's work."
+    }
+  ]
+}

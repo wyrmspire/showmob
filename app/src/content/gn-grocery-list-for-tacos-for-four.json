@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-grocery-list-for-tacos-for-four",
+  "title": "Grocery list for tacos for four",
+  "summary": "A checked list for four people: tortillas, protein, toppings, and the two things you always forget.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "field",
+  "tags": [
+    "grading-night",
+    "kitchen",
+    "inventory"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Dinner for four, one store run",
+      "title": "Tacos, not a project plan",
+      "body": "This is the shopping list. Quantities assume four adults eating about three tacos each. Swap the protein if you want \u2014 the rest of the list barely moves."
+    },
+    {
+      "id": "shop",
+      "type": "checklist",
+      "heading": "At the store",
+      "items": [
+        {
+          "label": "12 soft corn or flour tortillas",
+          "detail": "A 10-pack plus two extras beats running short mid-assembly."
+        },
+        {
+          "label": "1.5 lb ground beef, chicken thighs, or a block of firm tofu",
+          "detail": "Season with chili powder, cumin, salt, and a squeeze of lime."
+        },
+        {
+          "label": "1 yellow onion and 2 limes",
+          "detail": "Half the onion for the filling, half diced raw on top."
+        },
+        {
+          "label": "1 head cilantro, 1 avocado, 8 oz shredded cheese",
+          "detail": "Skip the avocado if it is rock-hard and overpriced today."
+        },
+        {
+          "label": "Salsa and sour cream",
+          "detail": "One jar and one small tub cover four people without leftovers rotting."
+        },
+        {
+          "label": "Hot sauce you already like",
+          "detail": "Only if the cabinet is empty \u2014 this is the classic forget-and-regret item."
+        }
+      ]
+    },
+    {
+      "id": "pantry",
+      "type": "note-callout",
+      "title": "Check the pantry before you leave",
+      "body": "Oil, salt, cumin, and chili powder are usually already there. Buying duplicates of spice jars is how a taco night becomes a $60 errand.",
+      "tone": "note"
+    },
+    {
+      "id": "order",
+      "type": "steps",
+      "heading": "Cook order once you are home",
+      "items": [
+        "Brown and season the protein while the onion softens in the same pan.",
+        "Warm tortillas in a dry skillet or wrapped in a damp towel in a low oven.",
+        "Dice the raw onion, chop cilantro, slice avocado, set out cheese and salsa.",
+        "Build at the table \u2014 people eat more calmly when assembly is not a bottleneck."
+      ]
+    }
+  ]
+}

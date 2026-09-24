@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-what-to-pack-for-a-one-night-work-trip",
+  "title": "What to pack for a one-night work trip",
+  "summary": "Tomorrow's clothes, a charger, and whatever the meeting actually needs \u2014 leave the rest at home.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "travel",
+    "inventory"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "answer",
+      "type": "hero",
+      "title": "Clothes for tomorrow, charger, badge",
+      "body": "One night away means you wear today's clothes home. Pack what tomorrow requires and the two things that strand you without them: a phone charger and whatever gets you into the building."
+    },
+    {
+      "id": "the-list",
+      "type": "checklist",
+      "heading": "The short list",
+      "items": [
+        {
+          "label": "Tomorrow's outfit, folded once",
+          "detail": "Shirt, pants, underwear, socks. One of each. Ironing at the hotel is optional; packing a second shirt is usually not."
+        },
+        {
+          "label": "Phone charger and cable",
+          "detail": "The hotel clock radio is not a plan."
+        },
+        {
+          "label": "Badge, laptop, and the one notebook you use",
+          "detail": "If the meeting needs a printed handout, that goes in too. Everything else stays."
+        },
+        {
+          "label": "Toothbrush and a travel toothpaste",
+          "detail": "Hotels often stock soap. They rarely stock a brush you like."
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "type": "note-callout",
+      "title": "What does not come",
+      "body": "Backup shoes, a full toiletry bag, gym clothes you will not use, and the novel you will not open. One night is not a camping trip.",
+      "tone": "note"
+    }
+  ]
+}

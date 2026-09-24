@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-weekly-chore-rotation-for-three-roommates",
+  "title": "Weekly chore rotation for three roommates",
+  "summary": "Three jobs, three people, one Sunday reset \u2014 so nobody owns the trash forever.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "household",
+    "planning"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Rotate three jobs, not personalities",
+      "body": "Alex, Jordan, and Sam share a three-bedroom. The rotation below keeps kitchen, bathroom, and trash/floors moving each week so the same person is never stuck with the worst job twice in a row."
+    },
+    {
+      "id": "roster",
+      "type": "compact-table",
+      "heading": "This month's rotation",
+      "columns": [
+        "Week",
+        "Kitchen",
+        "Bathrooms",
+        "Trash & floors"
+      ],
+      "rows": [
+        [
+          "Week 1",
+          "Alex",
+          "Jordan",
+          "Sam"
+        ],
+        [
+          "Week 2",
+          "Sam",
+          "Alex",
+          "Jordan"
+        ],
+        [
+          "Week 3",
+          "Jordan",
+          "Sam",
+          "Alex"
+        ],
+        [
+          "Week 4",
+          "Alex",
+          "Jordan",
+          "Sam"
+        ]
+      ],
+      "caption": "Example names. Swap in your own; keep the cycle shape."
+    },
+    {
+      "id": "scope",
+      "type": "comparison",
+      "heading": "What each job means",
+      "columns": [
+        {
+          "name": "Kitchen",
+          "detail": "Counters wiped, sink empty, dishes done or in the machine, fridge spot-check for science experiments."
+        },
+        {
+          "name": "Bathrooms",
+          "detail": "Toilet, sink, mirror, and floor. Shared bathroom only \u2014 private baths stay with the person who uses them."
+        },
+        {
+          "name": "Trash & floors",
+          "detail": "Take out kitchen and bathroom trash, replace bags, sweep or vacuum common areas once."
+        }
+      ]
+    },
+    {
+      "id": "rules",
+      "type": "checklist",
+      "heading": "House rules that keep it fair",
+      "items": [
+        {
+          "label": "Reset Sunday night",
+          "detail": "New week starts Monday morning. If you travel, trade before you leave \u2014 do not leave a silent gap."
+        },
+        {
+          "label": "Trade openly, not secretly",
+          "detail": "A text in the group chat counts. A sticky note left on a closed door does not."
+        },
+        {
+          "label": "Personal mess is personal",
+          "detail": "Your bedroom and your dishes in the sink after midnight are not on the rotation."
+        }
+      ]
+    },
+    {
+      "id": "skip",
+      "type": "note-callout",
+      "title": "When someone skips a week",
+      "body": "They owe a make-up on their next free evening, not a lecture. Two skips in a row without a trade conversation means the group reopens the roster \u2014 silent freeloading is how rotations die.",
+      "tone": "warning"
+    }
+  ]
+}
