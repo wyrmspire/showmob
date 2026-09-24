@@ -1,15 +1,16 @@
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
-const plansPath = join(root, 'app/src/data/gn-plans.json');
+const plansPath = join(root, 'app/src/content-plans/gn-plans.json');
 const contentDir = join(root, 'app/src/content');
 const HANDOFF_RE = /^(GN-\d+)\s+-\s+(gn-[a-z0-9-]+)\s+-/;
-const ALLOWED_CONTRIBUTORS = new Set(['Grok', 'GPT']);
+const FIELDS = ['id', 'slug', 'contributor', 'provenance', 'goal', 'why_widgets', 'rejected'];
 const CHAR_BUDGET = 400;
+const GENERATOR_NAMES = /\b(grok|gpt|claude|instinct|generator)\b/i;
 
 function parseHandoff(file) {
   const text = readFileSync(join(root, file), 'utf8');
@@ -22,69 +23,49 @@ function parseHandoff(file) {
   return pairs;
 }
 
-test('gn-plans.json is a schemaVersion-1 inferred sidecar for exactly 50 Grok+GPT subjects', () => {
-  assert.ok(existsSync(plansPath), 'missing app/src/data/gn-plans.json');
+test('content-plans/gn-plans.json holds 50 inferred plans for Grok+GPT handoff subjects (Instinct schema)', () => {
+  assert.ok(existsSync(plansPath), 'missing app/src/content-plans/gn-plans.json');
+  assert.ok(!existsSync(join(root, 'app/src/data/gn-plans.json')), 'legacy app/src/data/gn-plans.json must be removed');
+
   const doc = JSON.parse(readFileSync(plansPath, 'utf8'));
-
-  assert.equal(doc.schemaVersion, 1);
-  assert.equal(doc.kind, 'gn-plans');
-  assert.equal(doc.updated, '2026-09-24');
   assert.equal(typeof doc.note, 'string');
-  assert.ok(doc.note.length > 20, 'note should explain the retroactive inferred sidecar');
-  assert.equal(typeof doc.plans, 'object');
-  assert.ok(doc.plans && !Array.isArray(doc.plans));
+  assert.ok(Array.isArray(doc.fields));
+  assert.deepEqual(doc.fields, FIELDS);
+  assert.ok(Array.isArray(doc.plans));
 
-  const grok = parseHandoff('handoff-grok.md');
-  const gpt = parseHandoff('handoff-gpt.md');
-  assert.equal(grok.length, 25, 'expected 25 Grok handoff subjects');
-  assert.equal(gpt.length, 25, 'expected 25 GPT handoff subjects');
-  const expected = new Map([
-    ...grok.map((p) => [p.id, { slug: p.slug, contributor: 'Grok' }]),
-    ...gpt.map((p) => [p.id, { slug: p.slug, contributor: 'GPT' }]),
-  ]);
-  assert.equal(expected.size, 50);
+  const byId = new Map();
+  for (const plan of doc.plans) {
+    assert.deepEqual(Object.keys(plan), FIELDS, `unexpected fields on ${plan.id}`);
+    assert.ok(!byId.has(plan.id), `duplicate plan id ${plan.id}`);
+    byId.set(plan.id, plan);
+  }
 
-  const planIds = Object.keys(doc.plans).sort();
-  assert.equal(planIds.length, 50, `expected 50 plans, got ${planIds.length}`);
-  assert.deepEqual(planIds, [...expected.keys()].sort(), 'plan keys must match Grok+GPT subject ids');
+  const expected = [...parseHandoff('handoff-grok.md'), ...parseHandoff('handoff-gpt.md')];
+  assert.equal(expected.length, 50);
 
-  const seenSlugs = new Set();
-  for (const id of planIds) {
-    const plan = doc.plans[id];
-    const want = expected.get(id);
-    assert.equal(plan.subject_id, id);
-    assert.equal(plan.artifact_slug, want.slug);
-    assert.equal(plan.contributor, want.contributor);
-    assert.ok(ALLOWED_CONTRIBUTORS.has(plan.contributor), `contributor must be Grok or GPT, got ${plan.contributor}`);
-    assert.equal(plan.source, 'inferred');
-    assert.equal(plan.timing, 'retroactive');
-    assert.equal(typeof plan.goal, 'string');
-    assert.equal(typeof plan.widgets_why, 'string');
-    assert.equal(typeof plan.rejected, 'string');
-    assert.ok(plan.goal.length > 0 && plan.widgets_why.length > 0 && plan.rejected.length > 0);
+  const inferred = expected.map(({ id, slug }) => {
+    const plan = byId.get(id);
+    assert.ok(plan, `missing plan for ${id}`);
+    assert.equal(plan.slug, slug);
+    assert.equal(plan.provenance, 'inferred');
+    assert.equal(plan.contributor, 'Grok', `${id}: inferred plan author should be Grok`);
+    assert.ok(plan.goal && plan.why_widgets && plan.rejected);
 
-    const total = plan.goal.length + plan.widgets_why.length + plan.rejected.length;
-    assert.ok(
-      total <= CHAR_BUDGET,
-      `${id}: goal+widgets_why+rejected is ${total} chars (budget ${CHAR_BUDGET})`,
-    );
+    const total = plan.goal.length + plan.why_widgets.length + plan.rejected.length;
+    assert.ok(total <= CHAR_BUDGET, `${id}: text fields are ${total} chars (budget ${CHAR_BUDGET})`);
 
-    assert.ok(!seenSlugs.has(plan.artifact_slug), `duplicate artifact_slug ${plan.artifact_slug}`);
-    seenSlugs.add(plan.artifact_slug);
+    const blob = `${plan.goal}\n${plan.why_widgets}\n${plan.rejected}`;
+    assert.ok(!GENERATOR_NAMES.test(blob), `${id}: plan text must not name generators (blind)`);
 
-    const pagePath = join(contentDir, `${plan.artifact_slug}.json`);
-    assert.ok(existsSync(pagePath), `${id}: missing content ${plan.artifact_slug}.json`);
+    const pagePath = join(contentDir, `${plan.slug}.json`);
+    assert.ok(existsSync(pagePath), `${id}: missing content ${plan.slug}.json`);
     const page = JSON.parse(readFileSync(pagePath, 'utf8'));
-    assert.equal(page.slug, plan.artifact_slug);
-    assert.equal(page.contributor, plan.contributor, `${id}: page contributor mismatch`);
-  }
+    assert.equal(page.slug, plan.slug);
+    return plan;
+  });
 
-  // Sidecar must not invent Instinct/Claude plans in this file.
-  for (const plan of Object.values(doc.plans)) {
-    assert.ok(plan.contributor !== 'Instinct' && plan.contributor !== 'Claude');
-  }
+  assert.equal(inferred.length, 50);
 
-  // Content pages themselves must remain untouched by this sidecar (spot-check: no plans field on pages).
-  const gnFiles = readdirSync(contentDir).filter((n) => n.startsWith('gn-') && n.endsWith('.json'));
-  assert.ok(gnFiles.length >= 50);
+  const inferredIds = new Set(inferred.map((p) => p.slug));
+  assert.equal(inferredIds.size, 50, 'inferred artifact slugs must be unique');
 });

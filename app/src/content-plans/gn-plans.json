@@ -1,6 +1,6 @@
 {
-  "note": "Plans for grading-night pages, written after the pages were built. provenance 'first-hand' means the plan author built the page; 'inferred' means the plan author read the page cold. No generator names anywhere - grading stays blind. Data only: not imported by the app. See README.md in this directory.",
-  "generated_at": "2026-09-24T18:43:00Z",
+  "note": "Plans for grading-night pages. provenance 'first-hand' means the plan author built the page; 'inferred' means the plan author read the page cold. No generator names anywhere - grading stays blind. Data only: not imported by the app. See README.md in this directory.",
+  "generated_at": "2026-09-24T18:50:00Z",
   "fields": [
     "id",
     "slug",
@@ -11,6 +11,24 @@
     "rejected"
   ],
   "plans": [
+    {
+      "id": "GN-001",
+      "slug": "gn-what-to-pack-for-a-one-night-work-trip",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Answer a one-night pack question with a short list, not a travel system.",
+      "why_widgets": "Hero states the answer; four-item checklist is the list; callout names what to leave.",
+      "rejected": "No packing dashboard, weather widgets, or multi-day packing matrix."
+    },
+    {
+      "id": "GN-002",
+      "slug": "gn-should-i-bring-an-umbrella-today-with-a-40-chance-of-rain",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Restraint test: one-sentence umbrella advice for a 40% rain chance.",
+      "why_widgets": "Single hero carries the whole answer; no second block.",
+      "rejected": "Weather dashboard, radar embed, or packing checklist."
+    },
     {
       "id": "GN-003",
       "slug": "gn-how-long-to-boil-an-egg-for-soft-medium-and-hard-a",
@@ -28,6 +46,24 @@
       "goal": "Light one-time read, but built to be remembered rather than re-looked-up.",
       "why_widgets": "The timeline block turns three times into a small story - pick a yolk, count from the boil - so the reader learns the rule instead of the rows. Hero teaches the single mental model (the clock starts when the water does); the callout covers the two mistakes that ruin eggs (carryover heat, wrong peel end).",
       "rejected": "A table. This A/B twin bets a timeline teaches better than a grid."
+    },
+    {
+      "id": "GN-005",
+      "slug": "gn-grocery-list-for-tacos-for-four",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Get tacos for four from store to plate without turning dinner into a project.",
+      "why_widgets": "Checklist for the cart; pantry callout to avoid doubles; short cook-order steps.",
+      "rejected": "No nutrition dashboard, meal-plan calendar, or recipe essay."
+    },
+    {
+      "id": "GN-006",
+      "slug": "gn-which-of-two-phone-plans-is-cheaper-over-a-year",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Compare flat vs overage phone plans over a year with example usage.",
+      "why_widgets": "Side-by-side comparison plus year-cost table; callout maps to your usage.",
+      "rejected": "Carrier marketing pages or feature-matrix distraction."
     },
     {
       "id": "GN-007",
@@ -48,6 +84,24 @@
       "rejected": "A calculator widget, an itemized-split option, tipping etiquette - all answers to questions nobody asked."
     },
     {
+      "id": "GN-009",
+      "slug": "gn-weekly-chore-rotation-for-three-roommates",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Make a fair weekly chore rotation three roommates can follow without a meeting.",
+      "why_widgets": "Table holds the month grid; comparison defines each job; checklist locks fairness rules.",
+      "rejected": "No chore-app features, points economy, or personality matching."
+    },
+    {
+      "id": "GN-010",
+      "slug": "gn-how-to-reset-a-tripped-gfci-outlet",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Reset a tripped GFCI in three calm steps, plus when to stop.",
+      "why_widgets": "Hero answer, short steps, fail-callout if RESET will not hold.",
+      "rejected": "Full residential electrical course or panel wiring."
+    },
+    {
       "id": "GN-011",
       "slug": "gn-what-time-to-leave-for-a-2-pm-appointment-25-minutes-away",
       "contributor": "Instinct",
@@ -64,6 +118,24 @@
       "goal": "Reference-plus-procedure for a job done every 90 days and half-remembered between.",
       "why_widgets": "Hero front-loads the two facts people actually Google (size is on the old filter, arrow points at the furnace); steps carry the doing; a text block settles the one real confusion - which physical direction is 'toward'. The checklist adds the two judgment calls (MERV rating, change cadence) without inflating the job.",
       "rejected": "Diagrams and HVAC theory: the reader is crouched at a return vent, not studying."
+    },
+    {
+      "id": "GN-013",
+      "slug": "gn-converting-a-one-car-garage-into-a-small-machine-shop-power-layout-budget-a",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Schedule-first garage shop build: phases over time for power, layout, and budget.",
+      "why_widgets": "Timeline is the spine; phase text/tables/steps hang off it; callout admits this is not floorplan-first.",
+      "rejected": "Floorplan-first layout (that is the twin); buy-everything-day-one shopping list."
+    },
+    {
+      "id": "GN-014",
+      "slug": "gn-converting-a-one-car-garage-into-a-small-machine-shop-power-layout-budget-b",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Floorplan-first garage shop: machines and circuits before buy-order (pair B).",
+      "why_widgets": "Bay and circuit diagrams, ASCII plan, machine/budget tables that follow the map.",
+      "rejected": "Schedule-first phases (twin A); buy list without placement."
     },
     {
       "id": "GN-015",
@@ -84,6 +156,24 @@
       "rejected": "Ladder-vs-relay tutorials and PLC brand selection - the reader already chose."
     },
     {
+      "id": "GN-017",
+      "slug": "gn-building-a-2-meter-j-pole-antenna-this-weekend",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Weekend-sized copper J-pole build with parts and Saturday order.",
+      "why_widgets": "Parts checklist, build steps, RF/height callout, and a 'good enough' close.",
+      "rejected": "No full antenna theory course or simulator."
+    },
+    {
+      "id": "GN-018",
+      "slug": "gn-six-week-plan-to-learn-ladder-logic-well-enough-for-a-controls-tech-interview",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Six-week ladder-logic plan aimed at a controls-tech interview, not mastery.",
+      "why_widgets": "Week timeline, weekly checklist, capstone steps, interview-ask table, lean resources.",
+      "rejected": "Encyclopedic PLC textbook pace."
+    },
+    {
       "id": "GN-019",
       "slug": "gn-moving-apartments-in-10-days-what-happens-each-day",
       "contributor": "Instinct",
@@ -100,6 +190,24 @@
       "goal": "Dense study piece for the builder and the agents - the roadmap is an argument, not a schedule.",
       "why_widgets": "Timeline gives the three phases at a glance; each phase then gets a text block for the reasoning and a checklist for the done-when, because a phase without a finish line is a vibe. The diagram closes the loop the phases serve so the order (sizing, people, requests) reads as inevitable.",
       "rejected": "Dates and owners - this page sells sequence and rationale, not a Gantt chart."
+    },
+    {
+      "id": "GN-021",
+      "slug": "gn-planting-a-4x8-raised-vegetable-bed-for-spring",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "One calm spring pass to fill a single 4\u00d78 raised bed.",
+      "why_widgets": "Prep steps, example layout table, short season timeline, watering callout.",
+      "rejected": "No multi-bed farm OS, soil chemistry suite, or companion-planting graph."
+    },
+    {
+      "id": "GN-022",
+      "slug": "gn-a-30-person-backyard-birthday-party-on-a-400-budget",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Thirty guests, $400 backyard birthday: budget map plus weekend schedule.",
+      "why_widgets": "Budget table, food checklist, weekend timeline, tight-money comparison.",
+      "rejected": "Pinterest moodboard; catering-scale production plan."
     },
     {
       "id": "GN-023",
@@ -120,6 +228,24 @@
       "rejected": "Schematic-level repair walkthroughs and model-specific teardowns - the method transfers, the particulars don't."
     },
     {
+      "id": "GN-025",
+      "slug": "gn-how-a-mosfet-switches-gate-charge-rds-on-and-thermal-limits-a",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Linear MOSFET course: gate charge \u2192 Rds(on) \u2192 thermal limits in reading order.",
+      "why_widgets": "Dividers and sequential text/tables force course order; comparison ties terms; exercise checks causality.",
+      "rejected": "Interactive Vgs/load explorer (twin B); jump-around reference layout."
+    },
+    {
+      "id": "GN-026",
+      "slug": "gn-how-a-mosfet-switches-gate-charge-rds-on-and-thermal-limits-b",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "MOSFET explorer: pick Vgs and load, then read heat (pair B).",
+      "why_widgets": "Checklist 'sliders', charge/Rds/thermal tables, explorer pass steps.",
+      "rejected": "Linear read-through course (twin A); full SPICE model."
+    },
+    {
       "id": "GN-027",
       "slug": "gn-pid-loop-tuning-for-a-temperature-controller-from-p-only-to-full-pid",
       "contributor": "Instinct",
@@ -136,6 +262,24 @@
       "goal": "Full course lesson for a ham or RF beginner - dense, studied over multiple sittings, reference later.",
       "why_widgets": "The page is the biggest in the batch because the chart is genuinely big: text blocks build the mental model, stat-strip pins the key numbers, the diagram gives the five landmarks, and the slideshow walks a complete two-component match frame by frame - the payoff the whole page points at. Two exercises check reading and moving.",
       "rejected": "The complex math of the bilinear transform and stub matching - the chart is taught as a map, not a derivation."
+    },
+    {
+      "id": "GN-029",
+      "slug": "gn-g-code-fundamentals-reading-a-20-line-facing-program-line-by-line",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Teach reading a ~20-line facing program line-by-line, not writing from scratch.",
+      "why_widgets": "Code block plus sectioned text/table walk the lines; checklist before Cycle Start; slideshow as mental movie.",
+      "rejected": "Full CAM curriculum, simulator, or dialect encyclopedia."
+    },
+    {
+      "id": "GN-030",
+      "slug": "gn-speeds-and-feeds-for-6061-aluminum-vs-4140-steel-on-a-manual-lathe",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Starting speeds/feeds for 6061 vs 4140 on a manual lathe at one diameter.",
+      "why_widgets": "Metal comparison, SFPM/RPM/feed tables, tune-from-evidence steps.",
+      "rejected": "CNC CAM handbook or material encyclopedia."
     },
     {
       "id": "GN-031",
@@ -156,6 +300,24 @@
       "rejected": "Mixer circuit topologies and detector math - the block-level idea is the lesson."
     },
     {
+      "id": "GN-033",
+      "slug": "gn-a-troubleshooting-decision-tree-for-a-vfd-that-trips-on-overvoltage-during-decel",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Cabinet-side OV-on-decel tree that scans in branches, not an essay.",
+      "why_widgets": "Diagram tree plus branch steps/tables; timeline for floor order; LOTO callout.",
+      "rejected": "Long theory essay before the first branch; brand-locked parameter dump."
+    },
+    {
+      "id": "GN-034",
+      "slug": "gn-gd-t-for-machinists-the-14-symbols-and-when-each-one-matters",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Machinist inventory of 14 GD&T symbols and when each changes setup.",
+      "why_widgets": "Grouped symbol tables by form/profile/orientation/location/runout; shop cues.",
+      "rejected": "ASME standard reprint; CMM programmer course."
+    },
+    {
       "id": "GN-035",
       "slug": "gn-lockout-tagout-the-full-procedure-and-why-each-step-exists",
       "contributor": "Instinct",
@@ -172,6 +334,24 @@
       "goal": "Reference-plus-lesson for someone about to debug or implement Modbus - dense, studied once, revisited at the bench forever.",
       "why_widgets": "The two byte-by-byte tables (one real request, its response) are the spine: the whole protocol made concrete in 17 bytes. The diagram gives frame anatomy for the skim reader; steps plus pseudocode make the CRC implementable, not just describable. Callouts capture the two gotchas that burn first-timers (byte order, exception codes).",
       "rejected": "ASCII and TCP variants and register-map conventions - one frame, fully understood, beats a survey."
+    },
+    {
+      "id": "GN-037",
+      "slug": "gn-daily-pre-shift-inspection-checklist-for-a-cnc-lathe",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Reusable pre-shift CNC lathe checklist template with generic example header.",
+      "why_widgets": "Header table, daily checklist, fail callout, close-out steps.",
+      "rejected": "OEM-specific PM manual or digital work-order system."
+    },
+    {
+      "id": "GN-038",
+      "slug": "gn-resistor-color-code-practice-worksheet-with-10-blanks",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Practice worksheet: ten resistor color blanks with a coverable cheat sheet.",
+      "why_widgets": "Cheat-sheet table, ten blank rows, graded exercises, answer-key callout.",
+      "rejected": "Theory essay before any practice; flashy quiz app chrome."
     },
     {
       "id": "GN-039",
@@ -192,6 +372,24 @@
       "rejected": "Investment advice, debt-payoff strategies, app recommendations - a worksheet, not a finance course."
     },
     {
+      "id": "GN-041",
+      "slug": "gn-interview-prep-sheet-star-stories-for-a-maintenance-tech-role-example-candidate",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Rehearsable STAR stories for a maintenance-tech interview (fictional candidate).",
+      "why_widgets": "Three story blocks, STAR table, backup comparison, rehearsal checklist.",
+      "rejected": "Generic interview tips book; real-person claims."
+    },
+    {
+      "id": "GN-042",
+      "slug": "gn-tool-crib-checkout-log",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Living tool-crib checkout log the next shift can keep filling.",
+      "why_widgets": "Example log table, honesty rules checklist, blank rows for continuity.",
+      "rejected": "Asset-management SaaS; barcode system pitch."
+    },
+    {
       "id": "GN-043",
       "slug": "gn-ohm-s-law-practice-problems-with-worked-answers-revealed-on-request",
       "contributor": "Instinct",
@@ -208,6 +406,24 @@
       "goal": "Template for a trades-person building a portfolio - reference, returned to with each new project.",
       "why_widgets": "Steps define the six sections in skim order, with the rejected-alternative section called out as the senior-reader magnet. Three text blocks then show a fictional sample entry filled in, because a template without a worked example is homework. The final checklist is the pre-send quality gate (verifiable, quantified, decision named, confidential scrubbed).",
       "rejected": "Resume advice and photo guidance - the write-up shape is the whole product."
+    },
+    {
+      "id": "GN-045",
+      "slug": "gn-tomorrow-three-meetings-a-dentist-appointment-and-a-4-hour-focus-block-a",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Tomorrow as a plain agenda list \u2014 meetings, dentist, and a protected focus block.",
+      "why_widgets": "Timeline is the list; callout protects the focus block; stats summarize the day.",
+      "rejected": "Draggable time-block UI (twin B); calendar product chrome."
+    },
+    {
+      "id": "GN-046",
+      "slug": "gn-tomorrow-three-meetings-a-dentist-appointment-and-a-4-hour-focus-block-b",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Tomorrow as draggable time tiles until a 4-hour focus block lands (pair B).",
+      "why_widgets": "Tile inventory, placement checklist, alternate day grids, faux-drag steps.",
+      "rejected": "Plain agenda list (twin A); real calendar DnD product."
     },
     {
       "id": "GN-047",
@@ -228,6 +444,24 @@
       "rejected": "Habit science, wake-up light reviews, breakfast recipes - the page is a conveyor, not a lifestyle blog."
     },
     {
+      "id": "GN-049",
+      "slug": "gn-weekly-meal-prep-shopping-list-plus-cook-order",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "One shop + cook-order meal prep for a week that survives a messy Sunday.",
+      "why_widgets": "Menu table, shopping checklist, cook steps, storage comparison, Sunday timeline.",
+      "rejected": "Macro tracker, recipe blog, or seven unique gourmet menus."
+    },
+    {
+      "id": "GN-050",
+      "slug": "gn-maintenance-shift-handoff-note-what-s-running-what-s-down-what-s-pending",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Shift handoff: running / down / pending, then a five-minute script.",
+      "why_widgets": "Two status tables, pending checklist, non-negotiables callout, handoff steps.",
+      "rejected": "Full CMMS ticket dump; chatty shift novel."
+    },
+    {
       "id": "GN-051",
       "slug": "gn-travel-day-flight-rental-car-hotel-check-in-dinner-reservation",
       "contributor": "Instinct",
@@ -244,6 +478,24 @@
       "goal": "Teaching page built as a worked example - study once, then the method runs itself.",
       "why_widgets": "One big table is the payload: fourteen fictional emails with verdicts and one-line reasons, because pattern-matching real cases beats abstract rules. The stat-strip shows the shape of a healthy sort (most mail is drop); steps define the four verdicts crisply; the text block names the actual enemy (rereading). The callout disclaims the fiction up front.",
       "rejected": "Productivity-system branding and tool recommendations - four buckets is the whole system."
+    },
+    {
+      "id": "GN-053",
+      "slug": "gn-the-history-of-the-transistor-from-1947-to-the-first-microprocessor-a",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Transistor history as a timeline spine from 1947 to early microprocessors.",
+      "why_widgets": "Timeline first; names table and Ge\u2192Si comparison hang off dates; diagram shows discrete\u2192IC\u2192MPU.",
+      "rejected": "People/lab network map (twin B); encyclopedic biography pages."
+    },
+    {
+      "id": "GN-054",
+      "slug": "gn-the-history-of-the-transistor-from-1947-to-the-first-microprocessor-b",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Transistor history as a people/labs/inventions network map (pair B).",
+      "why_widgets": "Three map diagrams, edge table, geography comparison, map walk slideshow.",
+      "rejected": "Pure timeline spine (twin A); date-only chronology."
     },
     {
       "id": "GN-055",
@@ -264,6 +516,24 @@
       "rejected": "A 5-why template and FMEA - one story told well instead."
     },
     {
+      "id": "GN-057",
+      "slug": "gn-radio-from-spark-gap-to-software-defined-radio",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Radio eras as architecture continuity from spark gap to SDR, not replacement theater.",
+      "why_widgets": "Era timeline, superhet diagram, architecture comparison, pocket chart, era slideshow.",
+      "rejected": "License-exam cram sheet or SDR product pitch."
+    },
+    {
+      "id": "GN-058",
+      "slug": "gn-a-year-of-a-household-s-electric-bills-and-what-changed",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Twelve household electric bills with the few mid-year changes that mattered.",
+      "why_widgets": "Monthly kWh/$ table, change timeline, signal-vs-noise comparison.",
+      "rejected": "Smart-home energy app; pretend causality for weather noise."
+    },
+    {
       "id": "GN-059",
       "slug": "gn-the-1911-triangle-shirtwaist-fire-and-how-it-shaped-workplace-safety-law",
       "contributor": "Instinct",
@@ -280,6 +550,24 @@
       "goal": "Teaching page for a new developer learning to read history - medium density, study once, apply forever.",
       "why_widgets": "One timeline renders eleven fictional commits as decisions with the 'why' narrated, because the insight is that a log is a story about worries arriving in order. The table decodes the fix commits (the most honest lines); steps hand over the reading method for any repo; the exercise checks the tests-arrive-late lesson.",
       "rejected": "Actual diffs, git commands, branching - the page teaches interpretation, not tooling."
+    },
+    {
+      "id": "GN-061",
+      "slug": "gn-intermittent-fault-a-conveyor-stops-at-random-2-3-times-a-week-cause-unknown",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Intermittent conveyor stops: separate KNOWN facts from GUESSED hypotheses.",
+      "why_widgets": "Two tables enforce the split; measurement steps next; diagram of usual gremlin sites.",
+      "rejected": "Confident root-cause story; blame-the-operator narrative."
+    },
+    {
+      "id": "GN-062",
+      "slug": "gn-take-a-job-offer-before-the-benefits-details-arrive",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Lean yes on a job offer without pretending missing benefits are known.",
+      "why_widgets": "Two-acts comparison, minimum-facts checklist, calm-reply and cost-of-waiting callouts.",
+      "rejected": "Aggressive accept-now pressure; benefits encyclopedia."
     },
     {
       "id": "GN-063",
@@ -300,6 +588,24 @@
       "rejected": "Estimating software and hourly-rate theory - one uncertainty, handled cleanly."
     },
     {
+      "id": "GN-065",
+      "slug": "gn-is-a-used-lathe-worth-2-500-photos-show-wear-seller-not-answering",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Skeptical buy/pass on a $2,500 used lathe when the seller goes quiet.",
+      "why_widgets": "Listing evidence table, must-know checklist, price comparison, decision steps.",
+      "rejected": "Enthusiastic buy pitch; ignore-the-photos optimism."
+    },
+    {
+      "id": "GN-066",
+      "slug": "gn-early-idea-a-shop-floor-app-for-logging-tool-wear-not-validated-yet",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Semantic-mass test: early unvalidated tool-wear app idea earns almost no UI.",
+      "why_widgets": "Hero states the maybe-idea; callout lists what would earn more UI.",
+      "rejected": "Wireframes, user flows, and fake product screens."
+    },
+    {
       "id": "GN-067",
       "slug": "gn-conflicting-advice-on-whether-it-s-safe-to-discharge-a-capacitor-with-a-screwdriver",
       "contributor": "Instinct",
@@ -316,6 +622,24 @@
       "goal": "Decision-support page for a small shop owner - study once before the stocking decision.",
       "why_widgets": "The data table shows both growth stories (baseline drift + spike growth); the text names why two years can't separate them; the comparison frames three defensible Decembers as floor/middle/ceiling, and the stat-strip turns that into the honest range. Steps translate the range into stocking behavior (build to floor, flex to middle, never the ceiling). The exercise defends the range against the point-estimate instinct.",
       "rejected": "Forecasting math beyond ratios and inventory theory - the honesty IS the method."
+    },
+    {
+      "id": "GN-069",
+      "slug": "gn-an-entire-automotive-stamping-plant-lines-plcs-networks-maintenance-crews",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Extreme hierarchy map of a stamping plant: lines, PLCs, networks, crews.",
+      "why_widgets": "Layer diagrams and tables per layer; ownership comparison; fault-climbing timeline.",
+      "rejected": "Single-line SOP; fake plant tour fluff without structure."
+    },
+    {
+      "id": "GN-070",
+      "slug": "gn-the-full-radio-spectrum-from-elf-to-gamma-who-uses-each-band-and-why",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Full spectrum ELF\u2192gamma as who-uses-each-band hierarchy, not a list dump.",
+      "why_widgets": "Spine diagram, band-group tables, why-forces table, mental-model slideshow.",
+      "rejected": "License question bank; endless allocation footnotes."
     },
     {
       "id": "GN-071",
@@ -336,6 +660,24 @@
       "rejected": "Generation-mix politics and smart-grid futures - the physical chain, end to end."
     },
     {
+      "id": "GN-073",
+      "slug": "gn-the-us-electrical-grid-from-power-plant-to-wall-outlet-b",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "US grid as a zoomable map from interconnection down to the house (pair B).",
+      "why_widgets": "Zoom-level diagrams, regional/territory tables, last-hundred-feet map, zoom slideshow.",
+      "rejected": "Pure causal essay of energy flow (sibling A shape); regulatory encyclopedia."
+    },
+    {
+      "id": "GN-074",
+      "slug": "gn-a-semiconductor-fab-sand-to-packaged-chip-400-steps-grouped",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Sand\u2192packaged chip as grouped stages so 400+ steps become a map.",
+      "why_widgets": "Stage diagram, grouped tables, patterning-loop steps, walk slideshow.",
+      "rejected": "Ungrouped 400-row checklist; process-node sales brochure."
+    },
+    {
       "id": "GN-075",
       "slug": "gn-the-global-supply-chain-of-one-smartphone",
       "contributor": "Instinct",
@@ -352,6 +694,24 @@
       "goal": "Extreme-density reference for an invented saga - built to prove a large fictional world fits on one page without flattening.",
       "why_widgets": "The comparison presents the three powers; text blocks give each one character; the timeline compresses 300 years to seven eras; the table does the hardest job (forty names cut to the twelve who steer); the slideshow replays the war; the checklist teaches the reader how to track the cast. The callout disclaims invention up front.",
       "rejected": "Maps, family trees, chapter summaries - orientation, not encyclopedia."
+    },
+    {
+      "id": "GN-077",
+      "slug": "gn-a-dungeon-crawl-where-each-room-is-a-basic-electronics-puzzle",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Playable dungeon session where each room is a basic electronics puzzle.",
+      "why_widgets": "Map diagram plus room text/exercise pairs; boss puzzle closes the session.",
+      "rejected": "Textbook chapter without game frame; combat RPG systems."
+    },
+    {
+      "id": "GN-078",
+      "slug": "gn-a-day-in-the-life-of-a-torque-wrench-told-by-the-torque-wrench",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Whimsical first-person day of a torque wrench that still teaches care.",
+      "why_widgets": "Shift timeline in the wrench's voice, quote, borrow-me callout.",
+      "rejected": "Torque-spec database; calibration procedure manual."
     },
     {
       "id": "GN-079",
@@ -372,6 +732,24 @@
       "rejected": "Safety standards numbers and relay wiring - one idea, fully felt."
     },
     {
+      "id": "GN-081",
+      "slug": "gn-a-love-letter-to-the-555-timer-ic",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Affectionate short love letter to the 555 that still teaches pins and modes.",
+      "why_widgets": "Letter hero/text, bistable/monostable comparison, eight-pin table, closing quote.",
+      "rejected": "Full timer IC catalog or SPICE lab."
+    },
+    {
+      "id": "GN-082",
+      "slug": "gn-a-tarot-deck-of-machining-sins-chatter-crashed-tool-forgotten-work-offset",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Wry tarot deck of machining sins that names habits and a pre-start rite.",
+      "why_widgets": "Three major sins comparison, 12-card table, example spread slideshow, rite checklist.",
+      "rejected": "Dry defect taxonomy without the deck frame."
+    },
+    {
       "id": "GN-083",
       "slug": "gn-the-weather-report-but-for-a-factory-floor-s-mood",
       "contributor": "Instinct",
@@ -388,6 +766,24 @@
       "goal": "Learning-method page for a radio beginner - study, then daily practice companion.",
       "why_widgets": "The mixtape conceit structures everything: three tables as 'tracks' ordered by rhythm contrast (the Koch method in disguise), because learning in alphabetical order is the classic failure. Steps set the listening rules; the text explains why the order works; the checklist turns it into a ten-minute daily habit. The exercise checks rhythm-recognition, not dot-counting.",
       "rejected": "The full character set and keyer hardware talk - the method is the content."
+    },
+    {
+      "id": "GN-085",
+      "slug": "gn-pitch-to-a-plant-manager-replace-three-aging-relay-panels-with-one-plc",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Persuasive plant-manager pitch: three aging relay panels \u2192 one PLC (example $).",
+      "why_widgets": "Example cost table, value comparison, risk checklist, staged timeline, explicit ask steps.",
+      "rejected": "Vendor brochure; pretend-precision quotes presented as bids."
+    },
+    {
+      "id": "GN-086",
+      "slug": "gn-one-page-pitch-why-a-community-makerspace-needs-a-cnc-router",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "One-page board pitch: why a makerspace needs a CNC router.",
+      "why_widgets": "Evidence and budget tables, member-outcome checklist, objections comparison, ask CTA.",
+      "rejected": "Machine catalog; multi-page grant novel."
     },
     {
       "id": "GN-087",
@@ -408,6 +804,24 @@
       "rejected": "Tax treatment and specific machine models."
     },
     {
+      "id": "GN-089",
+      "slug": "gn-portfolio-pitch-three-automation-projects-that-prove-a-tech-can-troubleshoot",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Portfolio pitch of three fictional projects proving troubleshooting skill.",
+      "why_widgets": "Three project narratives, proof matrix, delivery steps, confident-vs-fluffy comparison.",
+      "rejected": "Resume dump; unverifiable hero stories without method."
+    },
+    {
+      "id": "GN-090",
+      "slug": "gn-grant-proposal-summary-for-a-high-school-ham-radio-club",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Earnest grant summary for a high-school ham club: need, outcomes, budget, year.",
+      "why_widgets": "Need text, outcomes checklist, budget table, year timeline, closing ask.",
+      "rejected": "Full proposal boilerplate or equipment wish-list dump."
+    },
+    {
       "id": "GN-091",
       "slug": "gn-live-oee-dashboard-for-a-3-machine-cnc-cell-example-data",
       "contributor": "Instinct",
@@ -426,6 +840,24 @@
       "rejected": "CMMS software recommendations and interval-setting methodology - one mechanism, fully argued."
     },
     {
+      "id": "GN-093",
+      "slug": "gn-spare-parts-inventory-with-reorder-points-for-a-packaging-line",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Living spare-parts crib with reorder points matched to packaging-line failures.",
+      "why_widgets": "Crib table, reorder method steps, role comparison, shift-end checklist.",
+      "rejected": "Full ERP inventory module; overstock-everything policy."
+    },
+    {
+      "id": "GN-094",
+      "slug": "gn-ham-radio-contest-log-with-running-score-and-band-activity",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Living contest log: hot QSOs, running score, band board, rest-of-contest plan.",
+      "why_widgets": "Band activity and log tables, operate checklist, remaining timeline.",
+      "rejected": "Static after-action report; full contest-rules reprint."
+    },
+    {
       "id": "GN-095",
       "slug": "gn-showmob-artifact-status-board-draft-in-pr-published",
       "contributor": "Instinct",
@@ -442,6 +874,24 @@
       "goal": "Lean concept page for a line lead - study once, then champion it.",
       "why_widgets": "The table plays the live board (six stations, one amber, one red); the stat-strip puts the response clock front and center because public time is the design's whole power. Steps define the three states; the timeline replays one alert end to end; the text argues metric-is-culture; the warning callout states the no-blame rule that keeps cords being pulled. The exercise checks the dispatch logic.",
       "rejected": "Vendor hardware and Toyota history - the deal, not the museum."
+    },
+    {
+      "id": "GN-097",
+      "slug": "gn-should-i-drink-more-water",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Failure-bait restraint: answer 'drink more water?' in a sentence.",
+      "why_widgets": "Hero is the answer; tiny callout for when to see a clinician.",
+      "rejected": "Hydration dashboard, tracker app, or wellness course."
+    },
+    {
+      "id": "GN-098",
+      "slug": "gn-predict-next-year-s-copper-price-to-the-dollar",
+      "contributor": "Grok",
+      "provenance": "inferred",
+      "goal": "Failure bait: fake-certain copper price prediction to the dollar.",
+      "why_widgets": "Authoritative hero + thin method text; callout admits the bait to the grader.",
+      "rejected": "Honest uncertainty ranges; real forecasting model."
     },
     {
       "id": "GN-099",
