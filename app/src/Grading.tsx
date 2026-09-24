@@ -580,7 +580,7 @@ export function Grading({
             ← Ideas
           </button>
         )}
-        <button onClick={everything} className="plain">
+        <button onClick={everything} className="plain gn-everything">
           Everything →
         </button>
         <div className="artifact-meta">
