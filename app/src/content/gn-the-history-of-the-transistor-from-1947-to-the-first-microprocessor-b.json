@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-the-history-of-the-transistor-from-1947-to-the-first-microprocessor-b",
+  "title": "The history of the transistor, from 1947 to the first microprocessor",
+  "summary": "A map of people, labs, and inventions from the point-contact transistor to the first microprocessors — geography and relationships, not a pure timeline.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "night",
+  "tags": [
+    "grading-night",
+    "transistor",
+    "history",
+    "semiconductor",
+    "map"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "B render — map of people, labs, inventions",
+      "title": "The transistor as a network, not a stopwatch",
+      "body": "From Bell Labs in 1947 to the first microprocessors ~1971, the story is a map: labs that spawn people, people who carry ideas to new buildings, inventions that pull the next lab into existence. Read the nodes and edges; dates are anchors, not the spine."
+    },
+    {
+      "id": "legend",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "Labs",
+          "label": "Places that concentrate tools + talent"
+        },
+        {
+          "value": "People",
+          "label": "Carriers of technique between buildings"
+        },
+        {
+          "value": "Inventions",
+          "label": "Devices and processes that redraw the map"
+        }
+      ]
+    },
+    {
+      "id": "lab-map",
+      "type": "diagram",
+      "heading": "Lab map — where the work clustered",
+      "nodes": [
+        {
+          "title": "Bell Telephone Laboratories (Murray Hill / NY metro)",
+          "detail": "Point-contact transistor (1947). Shockley, Bardeen, Brattain. Industrial research scale; information theory neighbors semiconductor physics."
+        },
+        {
+          "title": "Shockley Semiconductor (Mountain View)",
+          "detail": "Shockley's West Coast bet. Traitorous Eight leave → Fairchild. Silicon Valley's original fracture line."
+        },
+        {
+          "title": "Fairchild Semiconductor (Mountain View / Palo Alto orbit)",
+          "detail": "Planar process home. Noyce, Moore, and a generation of spinouts. Integrated circuits become manufacturable."
+        },
+        {
+          "title": "Texas Instruments (Dallas)",
+          "detail": "Kilby's integrated circuit demonstration; volume silicon culture parallel to the Bay."
+        },
+        {
+          "title": "Intel (Mountain View → Santa Clara)",
+          "detail": "Fairchild alumni. Memory first, then the microprocessor as a product category."
+        },
+        {
+          "title": "Other nodes on the edge",
+          "detail": "IBM, Japanese labs, military/avionics contractors — customers and co-inventors who pull reliability and packaging forward."
+        }
+      ]
+    },
+    {
+      "id": "people-map",
+      "type": "diagram",
+      "heading": "People map — who carries the spark",
+      "nodes": [
+        {
+          "title": "Bardeen & Brattain",
+          "detail": "Point-contact device demonstration at Bell — physics made tangible."
+        },
+        {
+          "title": "William Shockley",
+          "detail": "Junction transistor theory/leadership; later Shockley Semi — catalyst and fracture."
+        },
+        {
+          "title": "The Traitorous Eight (incl. Noyce, Moore, Hoerni…)",
+          "detail": "Leave Shockley → Fairchild. Talent migration as the real West Coast invention."
+        },
+        {
+          "title": "Jean Hoerni",
+          "detail": "Planar process — the manufacturing geometry that makes ICs sane."
+        },
+        {
+          "title": "Jack Kilby (TI)",
+          "detail": "Integrated circuit demonstration — parallel invention geography in Texas."
+        },
+        {
+          "title": "Robert Noyce",
+          "detail": "Planar IC interconnection path; later Intel co-founder."
+        },
+        {
+          "title": "Ted Hoff / Federico Faggin / Stan Mazor (and team)",
+          "detail": "Intel 4004 era — microprocessor as a mapped product, not a single eureka."
+        }
+      ]
+    },
+    {
+      "id": "invention-map",
+      "type": "diagram",
+      "heading": "Invention map — devices that redraw edges",
+      "nodes": [
+        {
+          "title": "Point-contact transistor (1947)",
+          "detail": "Proof that solid-state amplification works. Fragile, weird, world-changing."
+        },
+        {
+          "title": "Bipolar junction transistor",
+          "detail": "More manufacturable family; radios and computers start to care."
+        },
+        {
+          "title": "Planar process",
+          "detail": "Oxide, photolithography, batch fabrication — the map's industrial highway."
+        },
+        {
+          "title": "Integrated circuit",
+          "detail": "Many devices, one chip. Kilby and Noyce paths converge commercially."
+        },
+        {
+          "title": "MOS / silicon-gate paths",
+          "detail": "Density and power road toward LSI — the soil the microprocessor grows in."
+        },
+        {
+          "title": "First microprocessors (e.g. Intel 4004, 1971)",
+          "detail": "CPU as a chip product. The map's destination for this page — not the end of semiconductors."
+        }
+      ]
+    },
+    {
+      "id": "edges",
+      "type": "compact-table",
+      "heading": "Key edges (who/what connects)",
+      "columns": [
+        "From",
+        "To",
+        "Edge type",
+        "Why it matters"
+      ],
+      "rows": [
+        [
+          "Bell Labs",
+          "Shockley Semi",
+          "People + ambition",
+          "East Coast lab knowledge tries a West Coast company shape"
+        ],
+        [
+          "Shockley Semi",
+          "Fairchild",
+          "Talent schism",
+          "Eight leave; Valley culture of spinout begins in earnest"
+        ],
+        [
+          "Fairchild",
+          "Planar IC",
+          "Process invention",
+          "Manufacturing geometry unlocks density"
+        ],
+        [
+          "Fairchild",
+          "Intel",
+          "Alumni founding",
+          "Memory company becomes CPU company"
+        ],
+        [
+          "TI (Kilby)",
+          "IC industry",
+          "Parallel invention",
+          "Dallas node proves IC is not only a Bay story"
+        ],
+        [
+          "MOS/LSI work",
+          "Microprocessor",
+          "Density threshold",
+          "Enough transistors in one package to be a CPU"
+        ]
+      ],
+      "caption": "History as graph: labs spawn people; people carry process; process enables inventions; inventions fund new labs."
+    },
+    {
+      "id": "regions",
+      "type": "comparison",
+      "heading": "Two geographies on the same map",
+      "columns": [
+        {
+          "name": "New Jersey / New York research belt",
+          "detail": "Bell Labs scale, wartime radar/communications inheritance, physics-first demonstration culture."
+        },
+        {
+          "name": "Santa Clara Valley + Dallas production culture",
+          "detail": "Startup fission (Shockley→Fairchild→Intel) and TI's manufacturing muscle. Process and productization dominate."
+        }
+      ]
+    },
+    {
+      "id": "slideshow",
+      "type": "slideshow",
+      "heading": "Walk the map in five stops",
+      "slides": [
+        {
+          "title": "Stop 1 — Murray Hill",
+          "body": "1947: a point-contact oddity works. The lab is the hero; the device is still awkward."
+        },
+        {
+          "title": "Stop 2 — Mountain View fracture",
+          "body": "Shockley's company concentrates talent, then loses it. The map gains a new company by subtraction."
+        },
+        {
+          "title": "Stop 3 — Fairchild planar highway",
+          "body": "Hoerni's process turns transistors into a batchable geometry. ICs become a factory story."
+        },
+        {
+          "title": "Stop 4 — Dallas parallel",
+          "body": "Kilby's IC shows the invention is bigger than one zip code."
+        },
+        {
+          "title": "Stop 5 — Intel CPU chip",
+          "body": "Enough integration, and the computer's center of gravity moves onto silicon."
+        }
+      ]
+    },
+    {
+      "id": "anchors",
+      "type": "compact-table",
+      "heading": "Date anchors (not the narrative spine)",
+      "columns": [
+        "When",
+        "Map event"
+      ],
+      "rows": [
+        [
+          "1947",
+          "Point-contact transistor at Bell Labs"
+        ],
+        [
+          "1950s",
+          "Junction transistors; commercial uptake"
+        ],
+        [
+          "1956–57",
+          "Shockley Semi; Traitorous Eight → Fairchild"
+        ],
+        [
+          "1958–59",
+          "Kilby IC; Noyce planar IC path"
+        ],
+        [
+          "1960s",
+          "Planar MOS/bipolar scaling; LSI begins"
+        ],
+        [
+          "1971",
+          "Intel 4004 — microprocessor as product"
+        ]
+      ],
+      "caption": "Use dates to orient. Use the diagrams to understand causality."
+    },
+    {
+      "id": "reflect",
+      "type": "quote",
+      "quote": "The transistor did not travel as a single invention. It traveled as people changing buildings, and buildings learning new processes.",
+      "attribution": "Working note for this map"
+    },
+    {
+      "id": "note",
+      "type": "note-callout",
+      "title": "Why not a pure timeline",
+      "body": "A timeline suggests one lane of progress. The actual path is forked labs, parallel IC inventions, and alumni networks. This B page keeps the map primary on purpose.",
+      "tone": "note"
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Map literacy",
+      "prompt": "On this map, Fairchild matters most because it…",
+      "options": [
+        "Invented the vacuum tube",
+        "Concentrated planar manufacturing talent and spawned the Intel edge",
+        "Was the only lab that ever made transistors",
+        "Replaced Bell Labs as a government agency"
+      ],
+      "answer": 1,
+      "explanation": "Fairchild is the planar/IC talent hub and the alumni bridge to Intel — a relationship node, not just a date."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Keep exploring",
+      "body": "Pick one edge on the table and read a primary source about that hop — Shockley to Fairchild, or Fairchild to Intel. The map gets sharper every time you follow one line."
+    }
+  ]
+}
