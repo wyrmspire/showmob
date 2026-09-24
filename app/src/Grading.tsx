@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { allEntries } from "./catalog";
 import { BlockView } from "./components/BlockView";
+import { heroDensityClass } from "./hero-density";
 import { setUnlistedRobots } from "./share-meta";
 import type { Artifact } from "./schema";
 
@@ -428,7 +429,7 @@ export function Grading({
   };
 
   const renderBlocks = (artifact: Artifact) => (
-    <div className="shell">
+    <div className={`shell${heroDensityClass(artifact.blocks)}`}>
       {artifact.blocks.map((block) => (
         <div className="block-frame" key={block.id}>
           <BlockView block={block} />
