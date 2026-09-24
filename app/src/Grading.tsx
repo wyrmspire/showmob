@@ -110,32 +110,42 @@ const emptyPanel = (): Panel => ({
   abChoice: "",
 });
 
-function ScoreSelect({
+// Tap-first 1-10 scale: one tap to pick, tap again to clear. Buttons butt
+// together so the whole bar is a touch target on a phone (no dead gaps).
+function ScoreScale({
   label,
   value,
   onChange,
   required,
+  primary,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   required?: boolean;
+  primary?: boolean;
 }) {
   return (
-    <label className="gn-field">
-      <span>
+    <fieldset className={primary ? "gn-scale gn-scale-primary" : "gn-scale"}>
+      <legend>
         {label}
         {required ? " *" : ""}
-      </span>
-      <select value={value} onChange={(e) => onChange(e.target.value)}>
-        <option value="">—</option>
-        {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
-          <option key={n} value={n}>
+        {value && <output>{value}/10</output>}
+      </legend>
+      <div>
+        {Array.from({ length: 10 }, (_, i) => String(i + 1)).map((n) => (
+          <button
+            key={n}
+            type="button"
+            aria-pressed={value === n}
+            aria-label={`${label} ${n}`}
+            onClick={() => onChange(value === n ? "" : n)}
+          >
             {n}
-          </option>
+          </button>
         ))}
-      </select>
-    </label>
+      </div>
+    </fieldset>
   );
 }
 
@@ -280,6 +290,19 @@ export function Grading({
   const [justSaved, setJustSaved] = useState(false);
   const behaviorRef = useRef<BehaviorDraft>({ start: 0, maxDepth: 0, events: [] });
   const openIdRef = useRef<string | null>(null);
+  // The toolbar wraps at phone width, so sticky pane labels read its real
+  // height from --gn-bar instead of assuming the desktop 57px.
+  const toolbarRef = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    const bar = toolbarRef.current;
+    const main = bar?.parentElement;
+    if (!bar || !main || typeof ResizeObserver === "undefined") return;
+    const sync = () => main.style.setProperty("--gn-bar", `${bar.offsetHeight}px`);
+    sync();
+    const observer = new ResizeObserver(sync);
+    observer.observe(bar);
+    return () => observer.disconnect();
+  }, []);
   const [passcode, setPasscode] = useState<string>(() => storedPasscode());
   const [gateError, setGateError] = useState("");
 
@@ -547,7 +570,7 @@ export function Grading({
 
   return (
     <main className="artifact theme-paper gn-center">
-      <header className="toolbar">
+      <header className="toolbar" ref={toolbarRef}>
         {open ? (
           <button onClick={closeSubject} className="plain">
             ← All subjects
@@ -722,12 +745,7 @@ export function Grading({
                       void submit();
                     }}
                   >
-                    <div className="gn-grid">
-                      <ScoreSelect label="Rating (1–10)" value={panel.rating} onChange={set("rating")} required />
-                      <ScoreSelect label="Content" value={panel.content} onChange={set("content")} />
-                      <ScoreSelect label="Representation" value={panel.representation} onChange={set("representation")} />
-                      <ScoreSelect label="Interaction" value={panel.interaction} onChange={set("interaction")} />
-                    </div>
+                    <ScoreScale label="Rating" value={panel.rating} onChange={set("rating")} required primary />
                     <ChoiceRow
                       label="More pages like this?"
                       value={panel.moreLess}
@@ -766,6 +784,11 @@ export function Grading({
                         { value: "no", label: "No" },
                       ]}
                     />
+                    <div className="gn-grid">
+                      <ScoreScale label="Content" value={panel.content} onChange={set("content")} />
+                      <ScoreScale label="Representation" value={panel.representation} onChange={set("representation")} />
+                      <ScoreScale label="Interaction" value={panel.interaction} onChange={set("interaction")} />
+                    </div>
                     {twin && (
                       <ChoiceRow
                         label={`Blind pair ${open.ab_pair}: which render wins?`}
@@ -804,15 +827,17 @@ export function Grading({
                     <label className="gn-field">
                       <span>What would’ve been better here *</span>
                       <textarea
-                        rows={4}
+                        rows={3}
                         value={panel.suggestion}
                         onChange={(e) => set("suggestion")(e.target.value)}
                       />
                     </label>
-                    {saveError && <p className="gn-error">{saveError}</p>}
-                    <button className="file-button" type="submit" disabled={saving}>
-                      {saving ? "Saving…" : "Save grade"}
-                    </button>
+                    <div className="gn-savebar">
+                      {saveError && <p className="gn-error">{saveError}</p>}
+                      <button className="file-button" type="submit" disabled={saving}>
+                        {saving ? "Saving…" : panel.rating ? `Save grade · ${panel.rating}/10` : "Save grade"}
+                      </button>
+                    </div>
                   </form>
                 )}
               </section>
