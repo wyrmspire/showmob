@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-pid-loop-tuning-for-a-temperature-controller-from-p-only-to-full-pid",
+  "title": "PID loop tuning for a temperature controller, from P-only to full PID",
+  "summary": "Tune a temperature loop in three deliberate passes: find the gain that almost works, add integral to kill the offset, add derivative only if the process earns it.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "signal",
+  "tags": ["grading-night", "controls", "pid", "temperature"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "P first, then I, then maybe D",
+      "body": "A PID controller has three knobs and each one fixes a different failure. Proportional answers how far off you are, integral answers how long you have been off, derivative answers how fast the error is changing. Tuning means introducing them in that order and stopping as soon as the loop behaves. Worked example throughout: a fictional 2 kW barrel heater with a thermocouple, target 180 C."
+    },
+    {
+      "id": "the-loop",
+      "type": "diagram",
+      "heading": "What the loop is doing",
+      "nodes": [
+        { "title": "Setpoint", "detail": "180 C. The number you asked for." },
+        { "title": "Error", "detail": "Setpoint minus measured temperature. The only thing the controller ever sees." },
+        { "title": "Controller", "detail": "Turns error into output percent: P scales it, I accumulates it, D damps its rate of change." },
+        { "title": "Heater", "detail": "Output percent becomes watts. Heat flows in fast, out slow - the loop is asymmetric." },
+        { "title": "Sensor", "detail": "Thermocouple reading, seconds behind the real metal temperature. That lag is why tuning is needed at all." }
+      ]
+    },
+    {
+      "id": "pass-1",
+      "type": "steps",
+      "heading": "Pass 1: P-only - find the edge of oscillation",
+      "items": [
+        "Set integral and derivative to zero. Start gain low (example: 2).",
+        "Raise the setpoint to 180 C and watch the approach. Sluggish and timid? Double the gain.",
+        "Keep raising gain until the temperature begins to oscillate gently around the setpoint (example: gain 9 gives a slow +-6 C wave).",
+        "Back off to half that gain (example: 4.5). This is the classic starting point.",
+        "Write down the steady-state offset: with P-only the barrel will settle below setpoint (example: 171 C), because P alone needs error to make heat."
+      ]
+    },
+    {
+      "id": "offset",
+      "type": "note-callout",
+      "title": "The offset is not a tuning failure",
+      "body": "P-only control holds the process at the point where output balances losses, and that point is never exactly the setpoint - the loop needs some standing error to produce any standing heat. Chasing the last degrees with more gain buys oscillation, not accuracy. Offset is what integral exists to remove.",
+      "tone": "note"
+    },
+    {
+      "id": "pass-2",
+      "type": "steps",
+      "heading": "Pass 2: add I - erase the offset without winding up",
+      "items": [
+        "Keep the P gain from Pass 1. Set integral time long (example: 240 seconds) and shorten it gradually.",
+        "Watch the offset close: the barrel creeps from 171 C up to 180 C and parks there.",
+        "If the temperature now overshoots the setpoint and rings before settling, the integral is too fast - lengthen the integral time by 50%.",
+        "Stop when recovery from a disturbance (example: lid opened for 30 seconds) returns to setpoint in one smooth approach with no more than one small overshoot.",
+        "Check the output percent at steady state. A sane number (example: 38%) means the heater is sized right. 95% means the loop is fine and the heater is not."
+      ]
+    },
+    {
+      "id": "pass-3",
+      "type": "steps",
+      "heading": "Pass 3: add D only if the process earns it",
+      "items": [
+        "Try the loop with P and I first through real production conditions. Many temperature loops are done here.",
+        "If disturbances still cause long slow overshoots - a heavy cold load dropping in, a door opening - add a small derivative (example: 10-20 seconds).",
+        "Derivative acts on the rate of change, so it brakes the approach before overshoot forms.",
+        "If the output starts chattering with every sensor flicker, derivative is amplifying measurement noise. Add input filtering or cut D back. On slow temperature loops, D is the first knob to sacrifice."
+      ]
+    },
+    {
+      "id": "terms",
+      "type": "compact-table",
+      "heading": "What each term fixes - and what it costs",
+      "columns": ["Term", "Fixes", "Too much looks like", "Temperature-loop habit"],
+      "rows": [
+        ["P (gain)", "Bulk of the response", "Continuous oscillation", "Set in Pass 1, rarely touched after"],
+        ["I (integral)", "Steady-state offset", "Slow ringing, overshoot after disturbances", "Almost always needed on heaters"],
+        ["D (derivative)", "Overshoot from fast changes", "Output chatter, noise amplification", "Optional; skip on noisy or slow loops"]
+      ]
+    },
+    {
+      "id": "worked-example",
+      "type": "compact-table",
+      "heading": "The worked example, end to end",
+      "columns": ["Stage", "Settings", "Observed behavior"],
+      "rows": [
+        ["P-only, hunting", "Gain 9, no I, no D", "+-6 C oscillation around 180 C - too hot to hold"],
+        ["P-only, backed off", "Gain 4.5", "Settles at 171 C, stable but 9 degrees low"],
+        ["PI", "Gain 4.5, I = 180 s", "Creeps to 180 C, parks, one 3 C overshoot after lid test"],
+        ["PI + filtering", "Gain 4.5, I = 180 s, 2 s input filter", "Same, with a cleaner output signal - done. No D added."]
+      ],
+      "caption": "Fictional numbers, typical shape. A real barrel heater tunes in 30-90 minutes of watching."
+    },
+    {
+      "id": "safety",
+      "type": "note-callout",
+      "title": "Before any tuning",
+      "body": "Confirm the over-temperature limit and the sensor-fail response before touching gains. A loop driven unstable during tuning can run a heater flat-out, and the tuning session is exactly when bad settings are on the table. Know where the output clamp is and set it.",
+      "tone": "warning"
+    },
+    {
+      "id": "check",
+      "type": "exercise",
+      "heading": "Check the judgment",
+      "prompt": "Your PI-tuned oven holds setpoint beautifully, but after the door opens it overshoots 8 C and rings twice before settling. First move?",
+      "options": ["Raise the gain", "Shorten the integral time", "Lengthen the integral time", "Add a large derivative term"],
+      "answer": 2,
+      "explanation": "Ringing after a disturbance is integral acting too fast: it accumulates during the door-open dip and spends the recovery paying the debt back as overshoot. Lengthen the integral time. More gain makes it worse, more I makes it worse faster, and a big D on a noisy oven signal trades ringing for chatter.",
+      "correctFeedback": "Right - slow the integral down and let the overshoot die.",
+      "wrongFeedback": "That treats the symptom's opposite. The overshoot is integral windup spending itself back - lengthen I, don't strengthen anything."
+    }
+  ]
+}
