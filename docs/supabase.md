@@ -1,6 +1,6 @@
 # Supabase: current state
 
-Checked against the live database on 2026-09-23. The site still reads repository JSON. Nothing in the renderer talks to Supabase.
+Checked against the live database on 2026-09-24. The site still reads repository JSON. Nothing in the renderer talks to Supabase.
 
 ## What exists now
 
@@ -8,25 +8,28 @@ Checked against the live database on 2026-09-23. The site still reads repository
 - **Migrations applied:** both files in [`supabase/migrations/`](../supabase/migrations/):
   1. `20260923140000_artifact_revisions.sql`
   2. `20260923154500_artifact_lifecycle_ownership.sql`
+  3. `20260924135500_grading_night.sql`
 - **Tables (schema `public`):**
   - `showmob_artifacts`: `id`, `slug` (unique), `current_revision`, `status`, `owner_id`, `created_at`, `updated_at`.
   - `showmob_artifact_revisions`: `artifact_id`, `revision`, `document` (full `schemaVersion: 1` artifact as JSONB), `document_sha256`, `parent_revision`, `request_id`, `note`, `created_at`. Append-only: a trigger rejects `UPDATE` / `DELETE` / `TRUNCATE`.
-- **Functions:** `showmob_save_revision`, `showmob_get_revision`, `showmob_list_revisions` (service role only), plus the `showmob_reject_revision_change` trigger function.
-- **Access:** RLS is on for both tables with zero policies, and `anon` / `authenticated` have no grants. Only the service role can read or write. Browser access is denied on purpose.
-- **Data:** one artifact (`showmob-guide`) with 4 revisions (test data from the milestone-one check).
+  - `showmob_gn_subjects`: the grading-night subjects (`GN-001`..`GN-100`): `title`, `bucket` (number 1-12), `density`, `interaction`, `shape`, `register`, `lifetime`, `generator`, `axis_note`, `ab_pair`, `status` (`pending` / `assigned` / `built` / `graded`), `artifact_slug`, `created_at`. See [`grading-night.md`](grading-night.md).
+  - `showmob_gn_grades`: one row per grade: `subject_id`, `artifact_slug`, `scores` (jsonb), `suggestion`, `behavior` (jsonb), `graded_at`. Not append-only; rows can be deleted by the owner.
+- **Functions:** `showmob_gn_list_subjects(status?, generator?)`, `showmob_gn_record_grade(subject_id, artifact_slug, scores, suggestion?, behavior?)`, `showmob_gn_list_grades(subject_id?)` (service role only), plus `showmob_save_revision`, `showmob_get_revision`, `showmob_list_revisions` (service role only), plus the `showmob_reject_revision_change` trigger function.
+- **Access:** RLS is on for all four tables with zero policies, and `anon` / `authenticated` have no grants. Only the service role can read or write. Browser access is denied on purpose.
+- **Data:** one artifact (`showmob-guide`) with 4 revisions (test data from the milestone-one check). 100 grading-night subjects, all `pending`, loaded 2026-09-24 from the approved subjects list. Zero grades.
 
 There is no separate `showmob` schema and no `events` table. If an older note mentions `showmob.artifacts` or `showmob.events`, it is out of date. The repo migrations are the source of truth.
 
 ## Caveat: migration history is not tracked
 
-The migrations were applied by hand (SQL run directly against the database), not with `supabase db push`. The `supabase_migrations.schema_migrations` table does not exist on the remote. So the Supabase CLI thinks nothing has been applied, and a first `db push` would try to run both files again. The first migration uses plain `create table` and would fail on existing tables.
+The migrations were applied by hand (SQL run directly against the database), not with `supabase db push`. The `supabase_migrations.schema_migrations` table does not exist on the remote. So the Supabase CLI thinks nothing has been applied, and a first `db push` would try to run every file again. The first migration uses plain `create table` and would fail on existing tables.
 
-Before the first `db push`, mark both as applied:
+Before the first `db push`, mark all three as applied:
 
 ```sh
 supabase link --project-ref vsasmtsifuylhfrrsrso
-supabase migration repair --status applied 20260923140000 20260923154500
-supabase migration list   # both should show on local and remote
+supabase migration repair --status applied 20260923140000 20260923154500 20260924135500
+supabase migration list   # all three should show on local and remote
 ```
 
 ## How an agent uses it
