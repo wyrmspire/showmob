@@ -42,7 +42,7 @@ export function App() {
     return <Everything open={open} home={home} />;
   }
   if (screen === "grading") {
-    return <Grading home={home} />;
+    return <Grading home={home} everything={() => go("everything")} />;
   }
   if (screen === "author") {
     return <Studio back={home} />;
