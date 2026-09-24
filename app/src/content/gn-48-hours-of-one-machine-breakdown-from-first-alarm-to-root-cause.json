@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-48-hours-of-one-machine-breakdown-from-first-alarm-to-root-cause",
+  "title": "48 hours of one machine breakdown, from first alarm to root cause",
+  "summary": "A fictional two-day failure on a fictional line: the clock and the cause both matter, and the first suspect is wrong.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "night",
+  "tags": ["grading-night", "maintenance", "troubleshooting", "timeline"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "A fictional incident, told straight",
+      "title": "Two days, one overload alarm, three wrong suspects",
+      "body": "The filler on Line 3 tripped its overload at 06:12 on a Monday. It was running again by Wednesday breakfast, but the part that matters is what happened between: when the clock was spent on suspects and when it was spent on evidence."
+    },
+    {
+      "id": "fictional",
+      "type": "note-callout",
+      "title": "This incident is invented",
+      "body": "The line, the machine, the people, and the times are fictional, built to show a real pattern: breakdowns have a timeline and a causal chain, and confusing the two is how hours get lost.",
+      "tone": "note"
+    },
+    {
+      "id": "the-clock",
+      "type": "timeline",
+      "heading": "The 48 hours, as they happened",
+      "items": [
+        { "time": "Mon 06:12", "title": "Overload trip", "detail": "Filler drive faults out mid-cycle. Operator resets; it trips again in four minutes. Line down." },
+        { "time": "Mon 07:00", "title": "Suspect one: the motor", "detail": "It is warm and it is the thing the alarm named. Megger test says the windings are fine. Two hours spent." },
+        { "time": "Mon 10:30", "title": "Suspect two: the drive", "detail": "Swapped with the spare from the crib. Same trip, same four minutes. The drive was telling the truth both times." },
+        { "time": "Mon 14:00", "title": "The question changes", "detail": "From what failed to what is it protecting against. Current trace shows the draw climbing over ninety seconds before every trip." },
+        { "time": "Mon 16:45", "title": "Suspect three: the product", "detail": "A thicker syrup ran all weekend. Flushed and ran water - still trips. Not the product. Shift ends; the night crew babysits." },
+        { "time": "Tue 08:20", "title": "Hands on the machine", "detail": "Guards off, turned by hand. A tight spot once per revolution of the main cam." },
+        { "time": "Tue 11:00", "title": "Found it", "detail": "A bearing on the cam shaft has brinelled - dented races from months of hammering during a misaligned changeover. The tight spot loads the drive until the overload saves the motor." },
+        { "time": "Tue 15:30", "title": "Repair", "detail": "Bearing pressed off and replaced, shaft checked, alignment shimmed to the print." },
+        { "time": "Tue 17:45", "title": "Proof", "detail": "Two hours at rate, current trace flat. The trace, not the silence, is the evidence." },
+        { "time": "Wed 06:00", "title": "Back in the schedule", "detail": "48 hours after the first alarm. The line runs; the write-up begins." }
+      ]
+    },
+    {
+      "id": "the-chain",
+      "type": "diagram",
+      "heading": "The causal chain, minus the clock",
+      "nodes": [
+        { "title": "Root cause", "detail": "Brinelled cam-shaft bearing, from months of misalignment shock loads." },
+        { "title": "Mechanism", "detail": "A tight spot once per revolution raises mechanical load." },
+        { "title": "Signal", "detail": "Drive current climbs over ninety seconds until the overload trips." },
+        { "title": "Symptom", "detail": "The alarm names the motor - the victim, not the cause." }
+      ]
+    },
+    {
+      "id": "two-clocks",
+      "type": "text",
+      "heading": "Two clocks were running",
+      "body": "The wall clock says 48 hours. The diagnostic clock says about five: the megger test, the drive swap, the current trace, the hand-turn, the bearing press. The other forty-three were queue time, shift changes, and waiting on the crib. When the post-mortem asks why it took two days, the answer is mostly not troubleshooting - and that answer is what makes the next one faster."
+    },
+    {
+      "id": "suspects",
+      "type": "compact-table",
+      "heading": "What each suspect cost and taught",
+      "columns": ["Suspect", "Cost", "What it taught"],
+      "rows": [
+        ["Motor", "2.5 hours", "Rule out what the alarm names first - quickly, on purpose"],
+        ["Drive", "3 hours plus a swap", "A spare swap is expensive proof; the identical failure was the clue"],
+        ["Product change", "2 hours", "Coincidence is not causation, but it had to be tested, not argued"],
+        ["Bearing", "The fix", "Found by hand, not by instrument - the tight spot was physical"]
+      ]
+    },
+    {
+      "id": "lessons",
+      "type": "steps",
+      "heading": "What the write-up changed",
+      "items": [
+        "Current traces get pulled in the first hour now, not the second day - the ninety-second climb was visible from the start.",
+        "Changeover alignment gets a torque-and-shim check on the PM sheet, because the brinelling had an author.",
+        "The crib's spare drive gets a tag: last known good, date - so a swap is evidence, not a gamble.",
+        "Hand-turning the machine moved up the checklist, above parts-swapping."
+      ]
+    },
+    {
+      "id": "check-model",
+      "type": "exercise",
+      "heading": "Check the lesson",
+      "prompt": "The overload named the motor, and the motor tested fine. What is the correct next frame?",
+      "options": [
+        "Ask what the protection is protecting against - the trip is data",
+        "Replace the motor anyway, since the alarm named it",
+        "Reset and run until it trips again to see if it is consistent"
+      ],
+      "answer": 0,
+      "explanation": "A protective trip is a measurement: something downstream asked for more than the limit. When the named component is innocent, the alarm was still telling the truth about the load."
+    }
+  ]
+}

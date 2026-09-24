@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-inbox-triage-14-example-emails-sorted-into-do-delegate-defer-drop",
+  "title": "Inbox triage: 14 example emails sorted into do, delegate, defer, drop",
+  "summary": "Four buckets, fourteen fictional emails, one pass. The rule is that every message gets a verdict, not a reread.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "paper",
+  "tags": ["grading-night", "email", "triage", "decision"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Every email gets a verdict, not a reread",
+      "body": "Triage is one pass. Open each message once, give it one of four buckets, and never use the inbox itself as a filing system for guilt. Here are fourteen fictional emails with their verdicts, and the reasoning pattern behind them."
+    },
+    {
+      "id": "fictional",
+      "type": "note-callout",
+      "title": "This inbox is invented",
+      "body": "All fourteen messages, senders, and situations below are fictional, assembled for this example. The pattern is the point.",
+      "tone": "note"
+    },
+    {
+      "id": "the-sort",
+      "type": "compact-table",
+      "heading": "The fourteen, sorted",
+      "columns": ["From", "Subject", "Verdict", "Why"],
+      "rows": [
+        ["Plant manager", "Line 2 fault code cleared?", "Do", "Two-minute answer only you have"],
+        ["Vendor", "Quote for the sensor brackets", "Defer", "Needed for Friday's decision, not today's"],
+        ["HR", "Benefits enrollment closes Friday", "Do", "Deadline with a real cost, fifteen minutes"],
+        ["Coworker", "Can you cover my Saturday?", "Do", "Yes/no answer, thirty seconds"],
+        ["Customer", "Change order on the October job", "Delegate", "Estimating owns quotes; forward with context"],
+        ["Newsletter", "This week in industrial automation", "Drop", "Pleasant, not actionable, already read the headline"],
+        ["Boss", "Draft of the Q4 maintenance plan", "Defer", "Deserves an hour of thought, scheduled for tomorrow"],
+        ["IT", "Password expires in 3 days", "Do", "Ninety seconds, prevents a locked-out morning"],
+        ["Vendor", "Your invoice is 30 days past due", "Delegate", "Accounting pays invoices; forward and confirm receipt"],
+        ["Trade group", "Register for the spring expo", "Defer", "Calendar decision, needs the travel budget conversation"],
+        ["Spam filter", "You have 4 held messages", "Drop", "Check weekly in bulk, not per notice"],
+        ["Apprentice", "Is this wiring diagram right?", "Do", "Teaching moment, five minutes, compounds"],
+        ["Insurance", "Renewal documents enclosed", "Defer", "Review with last year's policy, needs thirty quiet minutes"],
+        ["Old coworker", "Saw this and thought of you", "Drop", "Reply if you want to, but the bucket is drop: no action exists"]
+      ]
+    },
+    {
+      "id": "counts",
+      "type": "stat-strip",
+      "items": [
+        { "value": "6", "label": "Do - quick, yours, or both" },
+        { "value": "2", "label": "Delegate - someone else's lane" },
+        { "value": "4", "label": "Defer - real work, scheduled" },
+        { "value": "2", "label": "Drop - no action exists" }
+      ]
+    },
+    {
+      "id": "the-rules",
+      "type": "steps",
+      "heading": "The four verdicts, defined",
+      "items": [
+        "Do - it takes under ten minutes or only you can do it. Do it now, during triage.",
+        "Delegate - it belongs in someone else's lane. Forward with the context they need, then let it go.",
+        "Defer - it is real work. Put it on a list with a date, not back in the inbox.",
+        "Drop - no action exists. Archive without ceremony. Most mail is this."
+      ]
+    },
+    {
+      "id": "the-trap",
+      "type": "text",
+      "heading": "The trap the buckets avoid",
+      "body": "The expensive habit is rereading: opening the same message five times, deciding nothing, and paying the attention cost each time. A verdict - even a wrong-ish one you revisit Friday - is cheaper than a fifth reread. Defer means scheduled, and scheduled means the inbox stops charging you rent."
+    }
+  ]
+}

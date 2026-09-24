@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-morning-routine-with-a-6-15-am-hard-stop",
+  "title": "A morning routine with a 6:15 AM hard stop",
+  "summary": "Sixty minutes, five stations, one door. The hard stop is the whole design.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "paper",
+  "tags": ["grading-night", "routine", "time"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Out the door at 6:15, no matter what",
+      "body": "The routine is not a list of aspirations. It is a conveyor with a hard stop at the end: whatever is not done by 6:15 does not go. Everything below fits inside that rule."
+    },
+    {
+      "id": "the-hour",
+      "type": "timeline",
+      "heading": "The hour, station by station",
+      "items": [
+        { "time": "5:15", "title": "Up, lights on", "detail": "Alarm across the room. Standing up is the first task, and it is non-negotiable." },
+        { "time": "5:20", "title": "Coffee and water", "detail": "Kettle was loaded last night. No decisions before caffeine - that is the point of the prep." },
+        { "time": "5:30", "title": "Twenty minutes of movement", "detail": "Whatever is on the card. The card was written Sunday." },
+        { "time": "5:50", "title": "Shower and dress", "detail": "Clothes are out already. See 5:20: no decisions." },
+        { "time": "6:05", "title": "Bag, lunch, keys", "detail": "The launch pad by the door was stocked last night. This station is a check, not a search." },
+        { "time": "6:15", "title": "Hard stop", "detail": "Door. If something got skipped, tonight's prep fixes it - not tomorrow morning's panic." }
+      ]
+    },
+    {
+      "id": "the-rule",
+      "type": "note-callout",
+      "title": "Why the stop matters more than the routine",
+      "body": "A morning routine without a hard stop is a wish list that shrinks under pressure. The stop is what makes the hour honest: it ends the same way on good days and bad ones, and it moves every failure to the evening, where there is time to fix it.",
+      "tone": "note"
+    }
+  ]
+}
