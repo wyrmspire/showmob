@@ -1,6 +1,7 @@
 import { allEntries } from "./catalog";
 import {
   EVERYTHING_PATH,
+  GRADING_PATH,
   artifactPath,
   isArtifactSlug,
   isReservedSlug,
@@ -59,9 +60,11 @@ export function writeScreen(screen: string) {
   const path =
     screen === "everything"
       ? EVERYTHING_PATH
-      : !isReservedSlug(screen) && isArtifactSlug(screen)
-        ? artifactPath(screen)
-        : "/";
+      : screen === "grading"
+        ? GRADING_PATH
+        : !isReservedSlug(screen) && isArtifactSlug(screen)
+          ? artifactPath(screen)
+          : "/";
   const url = `${path}${search ? `?${search}` : ""}`;
   history.pushState({ showmobScreen: screen }, "", url);
 }
