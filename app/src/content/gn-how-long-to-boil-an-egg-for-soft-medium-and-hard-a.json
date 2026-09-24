@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-how-long-to-boil-an-egg-for-soft-medium-and-hard-a",
+  "title": "How long to boil an egg for soft, medium, and hard",
+  "summary": "One table: minutes at a rolling boil for each doneness, timed from when the water boils.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "paper",
+  "tags": ["grading-night", "kitchen", "timing"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Egg boiling times",
+      "body": "Cover cold eggs with an inch of cold water, bring to a rolling boil, and start counting. Times below are minutes at the boil for large fridge-cold eggs."
+    },
+    {
+      "id": "times",
+      "type": "compact-table",
+      "heading": "Minutes at a rolling boil",
+      "columns": ["Doneness", "Time", "Yolk", "White"],
+      "rows": [
+        ["Soft", "6 min", "Runny", "Just set"],
+        ["Medium", "8 min", "Jammy, soft center", "Fully set"],
+        ["Hard", "11 min", "Fully set", "Firm"]
+      ],
+      "caption": "Move eggs to ice water when time is up, or they keep cooking in the shell."
+    }
+  ]
+}

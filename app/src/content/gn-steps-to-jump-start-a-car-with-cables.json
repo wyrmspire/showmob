@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-steps-to-jump-start-a-car-with-cables",
+  "title": "Steps to jump-start a car with cables",
+  "summary": "The clamp order that keeps sparks away from the battery, written to be read in a parking lot.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "car", "procedure"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Jump-start in the right order",
+      "body": "You need a second car with a good battery and a set of jumper cables. Park the good car close, both engines off, parking brakes set. The whole job is ten minutes."
+    },
+    {
+      "id": "hook-up",
+      "type": "steps",
+      "heading": "Connect the cables in this order",
+      "items": [
+        "RED clamp to the DEAD battery's positive (+) terminal.",
+        "Other RED clamp to the GOOD battery's positive (+) terminal.",
+        "BLACK clamp to the GOOD battery's negative (-) terminal.",
+        "Last BLACK clamp to bare metal on the dead car's engine block or frame - not the dead battery's negative terminal.",
+        "Start the good car and let it run two minutes.",
+        "Try the dead car. If it cranks slow, wait two more minutes and try again."
+      ]
+    },
+    {
+      "id": "why-ground",
+      "type": "note-callout",
+      "title": "Why the last clamp goes to metal",
+      "body": "Batteries can vent hydrogen gas, and the last connection is the one that sparks. Putting that spark on the engine block keeps it away from the battery. Never let the red and black clamps touch each other while any clamp is on a battery.",
+      "tone": "warning"
+    },
+    {
+      "id": "after",
+      "type": "steps",
+      "heading": "Once it starts",
+      "items": [
+        "Remove the clamps in reverse order: black off the engine block, black off the good battery, red off the good battery, red off the dead battery.",
+        "Keep the revived car running for at least 20 minutes, or drive it, so the alternator puts charge back.",
+        "If it dies again at the next stop, the battery or the charging system needs a shop - a jump is a ride home, not a repair."
+      ]
+    },
+    {
+      "id": "no-start",
+      "type": "text",
+      "heading": "If it will not crank at all",
+      "body": "Check that the clamps are biting bare metal, not paint or corrosion, and that the cables are not dollar-store thin. Five more minutes of charging from the good car fixes most stubborn cases. Clicking but no crank usually means the battery is too far gone or the terminals are corroded - clean the posts and retry before calling a tow."
+    }
+  ]
+}
