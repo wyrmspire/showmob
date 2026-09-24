@@ -15,7 +15,7 @@ test('grading screen resolves from /grading and is a reserved slug', () => {
 
 test('App routes the grading screen and writeScreen maps it to /grading', () => {
   const app = read('../app/src/App.tsx');
-  assert.match(app, /<Grading home=\{home\} \/>/);
+  assert.match(app, /<Grading home=\{home\} everything=\{\(\) => go\("everything"\)\} \/>/);
   const routing = read('../app/src/routing.ts');
   assert.match(routing, /screen === "grading"/);
   assert.match(routing, /GRADING_PATH/);
@@ -68,4 +68,12 @@ test('the grading page sends the passcode and never ships one', () => {
   assert.match(grading, /x-grading-passcode/);
   assert.match(grading, /localStorage/);
   assert.doesNotMatch(grading, /SHOWMOB_GRADING_PASSCODE/);
+});
+
+test('grading surface links to the unlisted /everything index; Home stays clean', () => {
+  const grading = read('../app/src/Grading.tsx');
+  assert.match(grading, /everything: \(\) => void/);
+  assert.match(grading, /onClick=\{everything\}/);
+  const home = read('../app/src/Home.tsx');
+  assert.doesNotMatch(home, /everything/i);
 });

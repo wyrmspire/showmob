@@ -207,7 +207,13 @@ function PasscodeGate({ onSubmit, error }: { onSubmit: (code: string) => void; e
   );
 }
 
-export function Grading({ home }: { home: () => void }) {
+export function Grading({
+  home,
+  everything,
+}: {
+  home: () => void;
+  everything: () => void;
+}) {
   const [subjects, setSubjects] = useState<Subject[] | null>(null);
   const [grades, setGrades] = useState<GradeRow[]>([]);
   const [loadError, setLoadError] = useState("");
@@ -445,6 +451,9 @@ export function Grading({ home }: { home: () => void }) {
             ← Ideas
           </button>
         )}
+        <button onClick={everything} className="plain">
+          Everything →
+        </button>
         <div className="artifact-meta">
           <strong>Grading night</strong>
           <small>
@@ -468,7 +477,12 @@ export function Grading({ home }: { home: () => void }) {
             <p>
               Read each page like a reader, then grade it. This surface is
               unlisted and unindexed; grades go to the training table and
-              never appear on the public site.
+              never appear on the public site. Every published and preview
+              page is listed on the equally unlisted{" "}
+              <button onClick={everything} className="plain">
+                Everything index
+              </button>
+              .
             </p>
             {loadError && (
               <p className="gn-error">
