@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-which-of-two-phone-plans-is-cheaper-over-a-year",
+  "title": "Which of two phone plans is cheaper over a year",
+  "summary": "Plan A wins for heavy data users; Plan B wins under about 1.9 GB of overage per month in this example.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": ["grading-night", "comparison", "budget", "everyday"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Example usage, not a carrier quote",
+      "title": "Flat rate vs cheap base plus overage",
+      "body": "Plan A is $45/mo flat. Plan B is $30/mo plus $8 for every GB over the included allotment. The cheaper plan depends on how many overage gigabytes you actually burn."
+    },
+    {
+      "id": "plans",
+      "type": "comparison",
+      "heading": "The two plans",
+      "columns": [
+        {
+          "name": "Plan A — $45/mo flat",
+          "detail": "$540 per year. No overage meter. Predictable bill even on a travel month."
+        },
+        {
+          "name": "Plan B — $30/mo + $8/GB overage",
+          "detail": "$360 per year before overage. Each overage GB costs $8. Break-even vs A is $180/year of overage, or 22.5 GB/year (~1.9 GB/mo)."
+        }
+      ]
+    },
+    {
+      "id": "math",
+      "type": "compact-table",
+      "heading": "Year cost at example overage levels (Plan B)",
+      "columns": ["Avg overage / month", "Overage / year", "Plan B year total", "Vs Plan A ($540)"],
+      "rows": [
+        ["0 GB", "$0", "$360", "B cheaper by $180"],
+        ["1 GB", "$96", "$456", "B cheaper by $84"],
+        ["2 GB", "$192", "$552", "A cheaper by $12"],
+        ["4 GB", "$384", "$744", "A cheaper by $204"]
+      ],
+      "caption": "Break-even is roughly 1.9 GB of overage per month. Above that, Plan A wins."
+    },
+    {
+      "id": "pick",
+      "type": "note-callout",
+      "title": "How to choose from your own usage",
+      "body": "Open last month's bill, find the overage (or hotspot) gigabytes, and place yourself on the table. If you usually sit under 2 GB of overage, Plan B is cheaper in this example. If you spike often, Plan A's flat bill is the cheaper insurance.",
+      "tone": "note"
+    }
+  ]
+}
