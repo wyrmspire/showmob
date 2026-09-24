@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-andon-board-for-a-small-assembly-line-stations-alerts-response-times",
+  "title": "Andon board for a small assembly line: stations, alerts, response times",
+  "summary": "One board that turns a call for help into a visible clock: six stations, three alert states, and response times everyone can see.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "night",
+  "tags": ["grading-night", "andon", "lean", "manufacturing"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "The line's nervous system",
+      "title": "A problem at a station is a clock on the board",
+      "body": "Andon is a simple deal: anyone on the line can call for help the moment something is wrong, and the call becomes public immediately - which station, what state, and how long it has been waiting. This board is a working example of that deal for a six-station line."
+    },
+    {
+      "id": "board-now",
+      "type": "compact-table",
+      "heading": "The board, right now",
+      "columns": ["Station", "State", "Alert age", "Responder"],
+      "rows": [
+        ["1 - Kitting", "Green", "-", "-"],
+        ["2 - Subassembly", "Green", "-", "-"],
+        ["3 - Torque", "AMBER", "1:12", "Sam, en route"],
+        ["4 - Test", "RED", "2:40", "Unassigned"],
+        ["5 - Rework loop", "Green", "-", "-"],
+        ["6 - Pack-out", "Green", "-", "-"]
+      ],
+      "caption": "Amber means help requested, line still moving. Red means the station stopped - and the clock runs in the open."
+    },
+    {
+      "id": "alert-age",
+      "type": "stat-strip",
+      "items": [
+        { "value": "2:40", "label": "Age of the red alert at Test - and counting, in front of everyone" },
+        { "value": "1:55", "label": "Average response this week - target is under 2:00" },
+        { "value": "6", "label": "Stations, each with a pull cord anyone can reach" }
+      ]
+    },
+    {
+      "id": "states",
+      "type": "steps",
+      "heading": "The three states and what they demand",
+      "items": [
+        "Green - running. Nobody looks at green. That is the point of green.",
+        "Amber - help requested, station still working. A team lead responds; the line keeps moving while the problem is small.",
+        "Red - station stopped or about to stop the line. The response clock starts publicly. Red is not a reprimand; red is a flare."
+      ]
+    },
+    {
+      "id": "one-alert",
+      "type": "timeline",
+      "heading": "One amber, start to finish",
+      "items": [
+        { "time": "0:00", "title": "Torque gun faults mid-cycle", "detail": "Operator pulls the cord. Station 3 goes amber on the board; the alert appears with its own clock." },
+        { "time": "0:35", "title": "Acknowledged", "detail": "Sam sees the board from the rework loop and taps the response button: someone is coming. The clock keeps running, now measuring travel." },
+        { "time": "1:12", "title": "Responder at the station", "detail": "Diagnosis starts. The line never stopped - this is what amber is for." },
+        { "time": "4:30", "title": "Cleared", "detail": "A dying battery pack, swapped. The alert closes and its full timeline lands in the log." }
+      ]
+    },
+    {
+      "id": "response-times",
+      "type": "text",
+      "heading": "Why the clock is the whole design",
+      "body": "The board's power is not the colors - it is that response time is measured in public. A red alert aging past two minutes asks a question out loud. Teams that watch this number fall are watching help get faster; teams that hide it are watching the cord quietly stop being pulled. The metric is the culture."
+    },
+    {
+      "id": "not-blame",
+      "type": "note-callout",
+      "title": "The rule that keeps the cord being pulled",
+      "body": "Alerts are for response, never for blame. The day someone is criticized for pulling the cord is the day the board starts lying - stations go quietly slow instead of honestly red. The board only tells the truth while pulling it is safe.",
+      "tone": "warning"
+    },
+    {
+      "id": "check-model",
+      "type": "exercise",
+      "heading": "Check the logic",
+      "prompt": "Station 4 has been red for 2:40 with no responder assigned. What is the board's most useful next reader?",
+      "options": [
+        "Whoever owns response assignment - the unassigned red is now their problem in public",
+        "The operator at station 4, to check whether they pulled the cord hard enough",
+        "Nobody - the board already recorded it for the weekly report"
+      ],
+      "answer": 0,
+      "explanation": "A red alert with no responder is a dispatch failure, and the board makes it impossible to miss. The cord already did its job; the response side of the deal is what is due now."
+    }
+  ]
+}

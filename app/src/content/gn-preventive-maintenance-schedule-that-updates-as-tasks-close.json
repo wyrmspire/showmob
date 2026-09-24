@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-preventive-maintenance-schedule-that-updates-as-tasks-close",
+  "title": "Preventive maintenance schedule that updates as tasks close",
+  "summary": "A PM schedule where closing a task is what schedules the next one - the calendar derives itself from the work, not the other way around.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "maintenance", "planning", "schedule"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "The schedule is a consequence of the work",
+      "body": "Most PM calendars rot because they are maintained by hand: tasks close late, nobody retypes the dates, and within a quarter the calendar is fiction. This schedule has one rule that fixes it - closing a task is what schedules the next occurrence. The page below is a small example of that rule running."
+    },
+    {
+      "id": "board",
+      "type": "compact-table",
+      "heading": "The board, Thursday morning",
+      "columns": ["Asset", "Task", "Interval", "Last closed", "Next due", "State"],
+      "rows": [
+        ["Air compressor", "Drain tank and check belt", "7 days", "Sep 18", "Sep 25", "Due tomorrow"],
+        ["Air compressor", "Change oil", "90 days", "Jul 02", "Sep 30", "Coming up"],
+        ["Band saw", "Blade guides and tracking", "30 days", "Aug 30", "Sep 29", "Coming up"],
+        ["Forklift", "Chains, forks, brakes inspection", "30 days", "Sep 21", "Oct 21", "Closed this week - rolled forward"],
+        ["CNC mill", "Way lube and filter check", "7 days", "Sep 22", "Sep 29", "Closed this week - rolled forward"],
+        ["CNC mill", "Ball screw backlash check", "90 days", "Jun 25", "Sep 23", "OVERDUE - yesterday"],
+        ["Welder", "Liner, tip, and drive rolls", "30 days", "Sep 10", "Oct 10", "On track"]
+      ],
+      "caption": "Every Next due was written by the previous closing, not by a person with a calendar."
+    },
+    {
+      "id": "the-rule",
+      "type": "steps",
+      "heading": "The one rule that keeps it honest",
+      "items": [
+        "A task closes only with a date and a name. Closing is an event, not a checkbox someone remembers.",
+        "The next due date is computed from the closing date plus the interval - never edited by hand.",
+        "Close late and the schedule slides honestly: a 30-day task closed 10 days late is next due 30 days from the late close, and the lateness stays visible in the log.",
+        "Close early and it slides the other way - which is why intervals exist, so eager weeks do not silently compress the year."
+      ]
+    },
+    {
+      "id": "overdue",
+      "type": "note-callout",
+      "title": "The overdue line is the feature, not the failure",
+      "body": "The backlash check is a day late and the board says so in plain text. A schedule that hides lateness teaches people to ignore it; a schedule that shows one red line among seven healthy ones teaches people to trust it. Trust is what makes the green lines mean anything.",
+      "tone": "warning"
+    },
+    {
+      "id": "closing-loop",
+      "type": "diagram",
+      "heading": "The loop",
+      "nodes": [
+        { "title": "Task comes due", "detail": "Computed, not remembered - it appears because the last close plus the interval says so." },
+        { "title": "Work gets done", "detail": "Or it visibly does not - both outcomes stay on the board." },
+        { "title": "Close with date and name", "detail": "The closing event is the only write to the schedule." },
+        { "title": "Next due computes itself", "detail": "The calendar rolls forward from reality." }
+      ]
+    },
+    {
+      "id": "cadence",
+      "type": "checklist",
+      "heading": "The weekly ten minutes",
+      "items": [
+        { "label": "Read the overdue and due-this-week lines only", "detail": "The rest of the board is doing its job; do not audit what is healthy." },
+        { "label": "Assign every due task to a name, not to 'the shop'", "detail": "A task with no name is a task with a date and a hope." },
+        { "label": "Ask why about anything overdue twice in a row", "detail": "Chronic lateness means the interval is wrong, the task is wrong, or the staffing is - the schedule just told you which assets to ask about." }
+      ]
+    }
+  ]
+}

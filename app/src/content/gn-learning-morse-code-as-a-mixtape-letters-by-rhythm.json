@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-learning-morse-code-as-a-mixtape-letters-by-rhythm",
+  "title": "Learning Morse code as a mixtape: letters by rhythm",
+  "summary": "Learn Morse the way you learn songs: by rhythm and sound, in tracks, not by memorizing a chart of dots and dashes.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "paper",
+  "tags": ["grading-night", "morse", "radio", "learning"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Side A",
+      "title": "Morse is music before it is spelling",
+      "body": "People fail Morse by counting dots. People learn Morse by hearing rhythms - each letter is a little riff. This mixtape teaches the alphabet in tracks, each track a set of letters whose rhythms contrast enough to tell apart."
+    },
+    {
+      "id": "how",
+      "type": "steps",
+      "heading": "How to listen to a track",
+      "items": [
+        "Say each letter's pattern out loud as a rhythm: dit for a dot, dah for a dash.",
+        "Listen for the shape, never the count - di-DAH is A the way a hook is a chorus.",
+        "Run the track until you can hear the letter before your brain finishes the sound.",
+        "Only then move to the next track. Speed comes free; counting is what costs."
+      ]
+    },
+    {
+      "id": "track-one",
+      "type": "compact-table",
+      "heading": "Track one - the heartbeat letters",
+      "columns": ["Letter", "Pattern", "Rhythm"],
+      "rows": [
+        ["E", ".", "dit"],
+        ["T", "-", "dah"],
+        ["A", ".-", "di-DAH"],
+        ["N", "-.", "DAH-dit"],
+        ["I", "..", "di-dit"],
+        ["M", "--", "dah-dah"],
+        ["S", "...", "di-di-dit"],
+        ["O", "---", "dah-dah-dah"]
+      ],
+      "caption": "Eight letters cover half of ordinary English. This track alone can already spell TEA, TIME, NAME."
+    },
+    {
+      "id": "track-two",
+      "type": "compact-table",
+      "heading": "Track two - the swing letters",
+      "columns": ["Letter", "Pattern", "Rhythm"],
+      "rows": [
+        ["R", ".-.", "di-DAH-dit"],
+        ["K", "-.-", "DAH-di-dah"],
+        ["D", "-..", "DAH-di-dit"],
+        ["W", ".--", "di-DAH-dah"],
+        ["G", "--.", "dah-dah-dit"],
+        ["U", "..-", "di-di-dah"],
+        ["H", "....", "di-di-di-dit"]
+      ],
+      "caption": "Now you can spell WORK, DARK, GUIDE, and the most important word in radio: CW."
+    },
+    {
+      "id": "track-three",
+      "type": "compact-table",
+      "heading": "Track three - the B-sides",
+      "columns": ["Letter", "Pattern", "Rhythm"],
+      "rows": [
+        ["L", ".-..", "di-DAH-di-dit"],
+        ["F", "..-.", "di-di-DAH-dit"],
+        ["P", ".--.", "di-DAH-dah-dit"],
+        ["J", ".---", "di-DAH-dah-dah"],
+        ["B", "-...", "DAH-di-di-dit"],
+        ["X", "-..-", "DAH-di-di-dah"],
+        ["Y", "-.--", "DAH-di-dah-dah"],
+        ["C", "-.-.", "DAH-di-DAH-dit"],
+        ["Z", "--..", "dah-dah-di-dit"],
+        ["Q", "--.-", "dah-dah-di-dah"],
+        ["V", "...-", "di-di-di-dah"]
+      ],
+      "caption": "The deep cuts. Notice C has its own bounce - dah-di-DAH-dit sounds like a horse at a gallop."
+    },
+    {
+      "id": "mixing",
+      "type": "text",
+      "heading": "Why the track order works",
+      "body": "Each track adds letters whose rhythms are maximally different from what you already know, so confusion has nowhere to hide. The classic mistake is learning the alphabet in order - A, B, C, D - which teaches you the sequence of the alphabet, not the sound of the letters. In a real conversation nobody sends you the alphabet."
+    },
+    {
+      "id": "practice",
+      "type": "checklist",
+      "heading": "The daily ten minutes",
+      "items": [
+        { "label": "Five minutes: hear a letter, name it before the rhythm ends", "detail": "Any Morse practice app on random letters, one track at a time." },
+        { "label": "Five minutes: tap or hum words from your day", "detail": "COFFEE is dah-di-DAH-dit, dah-dah-dah, di-di-DAH-dit, di-di-DAH-dit, dit, dit. Now breakfast is practice." },
+        { "label": "Never translate through dots and dashes on paper", "detail": "Paper Morse trains reading, not hearing. The skill is sound to letter, direct." }
+      ]
+    },
+    {
+      "id": "check-model",
+      "type": "exercise",
+      "heading": "Check the rhythm",
+      "prompt": "You hear di-di-dit. Which letter is it?",
+      "options": ["S", "I", "H"],
+      "answer": 0,
+      "explanation": "di-di-dit is three short beats: S. I is two (di-dit), and H is four (di-di-di-dit). The rhythm is the letter - no counting required once the track is burned in."
+    },
+    {
+      "id": "references",
+      "type": "resource-list",
+      "heading": "Keep listening",
+      "items": [
+        { "label": "Morse code - Wikipedia", "detail": "The full character set, timing rules, and history.", "url": "https://en.wikipedia.org/wiki/Morse_code" },
+        { "label": "The ARRL", "detail": "Code practice audio and the Koch/Farnsworth methods this page's track order borrows from.", "url": "https://www.arrl.org" }
+      ]
+    }
+  ]
+}
