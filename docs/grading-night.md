@@ -44,7 +44,9 @@ Generation doesn't have to come from one place. Pages get farmed out to differen
 
 ## Generator handoff packet
 
-The hundred pages don't all get built by one agent. Each generating agent gets the same six-part handoff. Fill in the brackets and paste it:
+The hundred pages don't all get built by one agent. Four generators split them: **Grok, GPT, Claude, and Instinct**, roughly 25 subjects each. Every agent pulls its batch from the `subjects` table, so no two agents take the same subject on the same axis, and we always know which agent produced which artifact (the table records the assignment; the artifact's `contributor` field names the agent). That provenance matters when grading: it lets us see whether a pattern in the grades is about the page or about the generator.
+
+Each generator gets the same six-part handoff. Fill in the brackets and paste it:
 
 ```text
 1. WHY
@@ -55,7 +57,8 @@ grades teach Showmob's gradient what a good Chris page looks like. Your
 pages are test material, not finished content.
 
 2. BATCH
-Subjects: [subject IDs/titles from the subjects table]
+You are: [Grok | GPT | Claude | Instinct]. Set "contributor" to that name.
+Subjects: [your ~25 subject IDs/titles, assigned to you in the subjects table]
 Genre: [plans | pitch decks | day organizers | course material | shop notes | ...]
 
 3. VARIATION AXIS
@@ -126,7 +129,7 @@ Content does **not** move into Supabase. It stays as repo JSON, because it feeds
 
 The tables are for machinery only:
 
-- **`subjects`**: the ~100 candidates from the genre conversation. Generators pull from here.
+- **`subjects`**: the ~100 candidates from the genre conversation, each with its genre, variation axis, and assigned generator. Generators pull their batch from here.
 - **`grades`**: one row per grade.
 
 Rough shape of `grades`:
