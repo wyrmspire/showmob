@@ -1,0 +1,396 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-the-full-radio-spectrum-from-elf-to-gamma-who-uses-each-band-and-why",
+  "title": "The full radio spectrum from ELF to gamma: who uses each band and why",
+  "summary": "Book-scale tour of the spectrum from ELF through microwave and beyond — who lives in each band and why physics pushed them there.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "night",
+  "tags": [
+    "grading-night",
+    "rf",
+    "spectrum",
+    "radio",
+    "hierarchy"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Extreme / curious — earned structure",
+      "title": "Every band is a compromise with physics",
+      "body": "Frequency is not a fashion choice. Wavelength, antenna size, bandwidth, propagation, and regulation shove services into neighborhoods. This page walks ELF toward light and high-energy radiation so you can see who lives where — and why they cannot casually move."
+    },
+    {
+      "id": "scale",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "Hz → EHz",
+          "label": "Orders of magnitude in one story"
+        },
+        {
+          "value": "λ = c/f",
+          "label": "Antenna size tracks wavelength"
+        },
+        {
+          "value": "Bandwidth",
+          "label": "Higher carriers can carry fatter pipes — with new pains"
+        }
+      ]
+    },
+    {
+      "id": "spine",
+      "type": "diagram",
+      "heading": "Hierarchy spine (read low → high frequency)",
+      "nodes": [
+        {
+          "title": "ELF",
+          "detail": "< 3 Hz–3 kHz (loosely). Users: Submarine / geophysics cues. Note: Huge antennas, tiny bandwidth. Not a ham playground."
+        },
+        {
+          "title": "VF / voice-freq-ish",
+          "detail": "3–30 kHz. Users: Navigation, some submarine systems. Note: Still enormous wavelengths."
+        },
+        {
+          "title": "LF",
+          "detail": "30–300 kHz. Users: Time signals, navigation orphans, some experimental. Note: Longwave AM leftovers in a few regions."
+        },
+        {
+          "title": "MF",
+          "detail": "300 kHz–3 MHz. Users: AM broadcast, NDBs, 160 m ham. Note: Groundwave by day stories; night skip drama."
+        },
+        {
+          "title": "HF",
+          "detail": "3–30 MHz. Users: Shortwave broadcast, aviation, maritime, ham HF. Note: Ionospheric skip — the classic DX map."
+        },
+        {
+          "title": "VHF",
+          "detail": "30–300 MHz. Users: FM broadcast, aviation, marine VHF, 2 m / 6 m ham. Note: Line-of-sight plus tropospheric surprises."
+        },
+        {
+          "title": "UHF",
+          "detail": "300 MHz–3 GHz. Users: TV, cellular, Wi‑Fi edges, 70 cm ham, GPS L1 neighborhood. Note: Handheld antennas; indoor pain; capacity king."
+        },
+        {
+          "title": "SHF (microwave)",
+          "detail": "3–30 GHz. Users: Satellite, radar, 5G mmWave neighbors, dishes. Note: Beams, rain fade, point-to-point."
+        },
+        {
+          "title": "EHF",
+          "detail": "30–300 GHz. Users: Backhaul, science, security scanners, research. Note: Atmospheric absorption walls appear."
+        },
+        {
+          "title": "THz / far-IR edge",
+          "detail": "~300 GHz–3 THz. Users: Labs, imaging research. Note: Not a consumer band — still 'radio' to physicists."
+        }
+      ]
+    },
+    {
+      "id": "div1",
+      "type": "divider",
+      "label": "Low frequencies — big antennas, slow pipes"
+    },
+    {
+      "id": "low-text",
+      "type": "text",
+      "heading": "Why ELF–MF exist at all",
+      "body": "At low frequency, wavelengths are enormous. Antennas become landscapes. Data rates crawl. The payoff is penetration and reach: seawater, earth, and beyond-line-of-sight paths that microwave cannot casually copy. If a service lives here, it usually needs physics that higher bands refuse to give."
+    },
+    {
+      "id": "low-table",
+      "type": "compact-table",
+      "heading": "ELF → MF snapshot",
+      "columns": [
+        "Band",
+        "Approx range",
+        "Typical users",
+        "Why here"
+      ],
+      "rows": [
+        [
+          "ELF / VLF",
+          "Hz–tens of kHz",
+          "Submarine / geophysical / specialized",
+          "Penetrates what GHz cannot"
+        ],
+        [
+          "LF",
+          "30–300 kHz",
+          "Time/nav remnants, experiments",
+          "Longwave infrastructure inertia + range"
+        ],
+        [
+          "MF",
+          "300 kHz–3 MHz",
+          "AM broadcast, 160 m, NDBs",
+          "Regional groundwave + night skywave lore"
+        ]
+      ]
+    },
+    {
+      "id": "div2",
+      "type": "divider",
+      "label": "HF — the ionosphere as infrastructure"
+    },
+    {
+      "id": "hf-text",
+      "type": "text",
+      "heading": "HF is a weather system for radio",
+      "body": "Between roughly 3 and 30 MHz, the ionosphere can refract signals back to Earth. That makes cheap long-haul links possible — and unreliable. Aviation, maritime, shortwave broadcast, and amateur radio still share this lively, congested commons because satellites and fiber did not erase every need for independent long paths."
+    },
+    {
+      "id": "hf-table",
+      "type": "compact-table",
+      "heading": "HF neighborhoods",
+      "columns": [
+        "Slice",
+        "Users",
+        "Why not just go VHF+"
+      ],
+      "rows": [
+        [
+          "Lower HF",
+          "Regional / NVIS needs",
+          "Vertical coverage over hills without satellites"
+        ],
+        [
+          "Mid HF",
+          "DX, broadcast, some aero/marine",
+          "Skip distance matches continents"
+        ],
+        [
+          "Upper HF",
+          "When MUF allows",
+          "More bandwidth until the ionosphere says no"
+        ]
+      ]
+    },
+    {
+      "id": "div3",
+      "type": "divider",
+      "label": "VHF / UHF — line of sight and capacity"
+    },
+    {
+      "id": "vhf-text",
+      "type": "text",
+      "heading": "Handhelds, towers, and cellular economics",
+      "body": "VHF and UHF shrink antennas into handhelds and cars. Propagation becomes mostly line-of-sight plus clutter. Bandwidth and channelization explode compared with HF, which is why broadcasting, public safety, aviation voice, marine VHF, Wi‑Fi-adjacent services, and much of mobile telephony parked here. Regulation is dense because everyone wants the same real estate."
+    },
+    {
+      "id": "vhf-table",
+      "type": "compact-table",
+      "heading": "VHF / UHF who-and-why",
+      "columns": [
+        "Band",
+        "Example users",
+        "Governing constraint"
+      ],
+      "rows": [
+        [
+          "VHF",
+          "FM broadcast, aero, marine, 2 m",
+          "Horizon + antenna height"
+        ],
+        [
+          "lower UHF",
+          "TV, public safety, 70 cm",
+          "Building clutter, reuse patterns"
+        ],
+        [
+          "upper UHF / low GHz",
+          "Cellular, GNSS, ISM/Wi‑Fi edges",
+          "Capacity vs indoor penetration trade"
+        ]
+      ]
+    },
+    {
+      "id": "div4",
+      "type": "divider",
+      "label": "Microwaves and above — beams, dishes, absorption"
+    },
+    {
+      "id": "mw-text",
+      "type": "text",
+      "heading": "When antennas become optics-adjacent",
+      "body": "From a few GHz upward, dishes and phased arrays make narrow beams. Satellite downlinks, radar, point-to-point backhaul, and modern mobile layers live on aiming, noise figures, and atmospheric windows. Rain fade and oxygen/water absorption stop being trivia. Past the traditional radio bands, infrared and optical links continue the communications story with different hardware — and X-rays/gamma remind you the electromagnetic spectrum keeps going long after Wi‑Fi ends."
+    },
+    {
+      "id": "mw-table",
+      "type": "compact-table",
+      "heading": "SHF → high-energy context",
+      "columns": [
+        "Region",
+        "Users",
+        "Why it is harsh"
+      ],
+      "rows": [
+        [
+          "SHF",
+          "Satcom, radar, microwave links",
+          "Aiming, noise, licensing"
+        ],
+        [
+          "EHF / mmWave",
+          "Dense capacity, science, security",
+          "Path loss + atmospheric hits"
+        ],
+        [
+          "THz / IR / optical",
+          "Labs, fiber, FSO",
+          "Different engineering culture"
+        ],
+        [
+          "X-ray / gamma",
+          "Medicine, astro, nuclear",
+          "Not a communications neighborhood"
+        ]
+      ]
+    },
+    {
+      "id": "why-table",
+      "type": "compact-table",
+      "heading": "Recurring 'why this band' forces",
+      "columns": [
+        "Force",
+        "Pushes services…",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Antenna size",
+          "Up in frequency for portability",
+          "Handheld UHF vs LF towers"
+        ],
+        [
+          "Bandwidth need",
+          "Up in frequency",
+          "Video / broadband"
+        ],
+        [
+          "Penetration / reach",
+          "Down in frequency",
+          "Submarine, AM coverage"
+        ],
+        [
+          "Regulatory inertia",
+          "Wherever history parked them",
+          "Broadcast allocations"
+        ],
+        [
+          "Atmospheric windows",
+          "Into specific microwave slots",
+          "Satcom bands"
+        ]
+      ]
+    },
+    {
+      "id": "compare",
+      "type": "comparison",
+      "heading": "Two wrong instincts",
+      "columns": [
+        {
+          "name": "Higher is always better",
+          "detail": "Ignores penetration, range, and device simplicity. HF and VHF exist for reasons silicon marketing slides forget."
+        },
+        {
+          "name": "Lower is always more 'real radio'",
+          "detail": "Ignores capacity and antenna physics. Your phone is not a moral failure for living in UHF/GHz."
+        }
+      ]
+    },
+    {
+      "id": "ham",
+      "type": "checklist",
+      "heading": "Amateur radio as a guided tour pass",
+      "items": [
+        {
+          "label": "HF bands teach skip and patience",
+          "detail": "Propagation is the curriculum."
+        },
+        {
+          "label": "VHF/UHF teach line-of-sight and repeaters",
+          "detail": "Local infrastructure mindset."
+        },
+        {
+          "label": "Microwave ham allocations teach dishes and paths",
+          "detail": "When you are ready for aiming."
+        },
+        {
+          "label": "Listen across services (legally) to hear the neighborhoods",
+          "detail": "Airband, marine, broadcast — context for why allocations look weird."
+        }
+      ]
+    },
+    {
+      "id": "slideshow",
+      "type": "slideshow",
+      "heading": "Five mental models",
+      "slides": [
+        {
+          "title": "Wavelength rules antennas",
+          "body": "If λ is huge, your 'antenna' is real estate."
+        },
+        {
+          "title": "Bandwidth rules applications",
+          "body": "Fat pipes need spectrum room — usually higher up."
+        },
+        {
+          "title": "Propagation rules geography",
+          "body": "Skip, LOS, rain fade — each band has a weather."
+        },
+        {
+          "title": "Regulation rules neighbors",
+          "body": "You inherit decades of treaties and incumbents."
+        },
+        {
+          "title": "Purpose rules compromise",
+          "body": "Pick the pain you can afford: range, capacity, or penetration."
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Placement check",
+      "prompt": "A handheld voice radio for hikers that must work without satellites most often lives in…",
+      "options": [
+        "ELF",
+        "HF only",
+        "VHF/UHF",
+        "X-ray"
+      ],
+      "answer": 2,
+      "explanation": "Portable antennas and local/repeater LOS culture put hikers' radios in VHF/UHF. ELF is absurd for handhelds; X-ray is not a voice band."
+    },
+    {
+      "id": "resources",
+      "type": "resource-list",
+      "heading": "Go deeper",
+      "items": [
+        {
+          "label": "ITU / spectrum overview reading",
+          "detail": "How allocations are framed internationally.",
+          "url": "https://www.itu.int/"
+        },
+        {
+          "label": "ARRL band plans (amateur lens)",
+          "detail": "A practical map of HF–microwave ham neighborhoods.",
+          "url": "https://www.arrl.org/"
+        },
+        {
+          "label": "NASA EM spectrum overview",
+          "detail": "Visual bridge from radio through gamma.",
+          "url": "https://science.nasa.gov/ems/"
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Curiosity next step",
+      "body": "Pick one service you use daily (FM, GNSS, Wi‑Fi, LTE/5G). Find its band and name the physics tax it pays. That single hop makes the whole map stick."
+    }
+  ]
+}

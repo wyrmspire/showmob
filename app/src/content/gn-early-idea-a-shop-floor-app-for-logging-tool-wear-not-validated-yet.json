@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-early-idea-a-shop-floor-app-for-logging-tool-wear-not-validated-yet",
+  "title": "Early idea: a shop-floor app for logging tool wear, not validated yet",
+  "summary": "A weak, unvalidated idea — intentionally little UI. One question and a short note on what evidence would earn more page.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "idea",
+    "shop",
+    "validation",
+    "semantic-mass"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "idea",
+      "type": "hero",
+      "title": "Maybe: a phone app where operators log tool wear at the machine",
+      "body": "That is the whole idea so far. No users interviewed. No workflow observed. No reason yet to draw screens."
+    },
+    {
+      "id": "earn",
+      "type": "note-callout",
+      "title": "What would earn more UI",
+      "body": "Watch three changeovers. Ask who already tracks inserts today (paper? memory? never?). If nobody feels pain, stop. If they do, the next page can be a tiny worksheet — not a dashboard.",
+      "tone": "note"
+    }
+  ]
+}

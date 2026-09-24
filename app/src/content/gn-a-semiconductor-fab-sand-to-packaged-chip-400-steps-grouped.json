@@ -1,0 +1,360 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-semiconductor-fab-sand-to-packaged-chip-400-steps-grouped",
+  "title": "A semiconductor fab: sand to packaged chip, 400+ steps grouped",
+  "summary": "Four hundred-plus fab steps collapsed into real process stages — from quartz sand to a packaged, tested chip — with awe kept proportional to the factories that earn it.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "night",
+  "tags": [
+    "grading-night",
+    "semiconductor",
+    "fab",
+    "process",
+    "manufacturing"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Extreme procedure — grouped, not padded",
+      "title": "Four hundred steps that only make sense in stages",
+      "body": "A modern logic fab does not feel like a recipe with 400 equal lines. It feels like a handful of giant stage machines — purify, grow, pattern, dope, interconnect, dice, package, test — each containing dozens of tool passes. This page groups the flood into those stages so a reader can hold the factory in their head."
+    },
+    {
+      "id": "scale",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "400+",
+          "label": "Typical process steps (node-dependent)"
+        },
+        {
+          "value": "~8",
+          "label": "Stage groups on this map"
+        },
+        {
+          "value": "months",
+          "label": "Order of cycle time, wafer to packaged unit"
+        }
+      ]
+    },
+    {
+      "id": "stage-map",
+      "type": "diagram",
+      "heading": "Stage map — sand to packaged chip",
+      "nodes": [
+        {
+          "title": "1. Raw materials",
+          "detail": "Quartz sand → metallurgical silicon → ultrapure polysilicon. Chemistry before any 'chip' exists."
+        },
+        {
+          "title": "2. Crystal & wafer",
+          "detail": "Czochralski (or float-zone) ingot growth, grind, slice, polish → prime wafers."
+        },
+        {
+          "title": "3. Front-end device build",
+          "detail": "Oxidation, deposition, lithography, etch, implant, anneal — repeated in loops to form transistors."
+        },
+        {
+          "title": "4. Middle-of-line / contacts",
+          "detail": "Contact openings, local interconnect beginnings — devices meet wiring."
+        },
+        {
+          "title": "5. Back-end interconnect",
+          "detail": "Multi-layer metal + dielectric stacks (damascene copper eras). Routing the city."
+        },
+        {
+          "title": "6. Wafer finish & sort",
+          "detail": "Passivation, probe/sort, ink or electronic binning."
+        },
+        {
+          "title": "7. Singulation & assembly",
+          "detail": "Dice, attach, wirebond or flip-chip, mold, balls/leads."
+        },
+        {
+          "title": "8. Final test & pack",
+          "detail": "Package test, burn-in where required, tape/reel or tray, ship."
+        }
+      ]
+    },
+    {
+      "id": "div1",
+      "type": "divider",
+      "label": "Upstream — before the cleanroom story most people picture"
+    },
+    {
+      "id": "materials",
+      "type": "compact-table",
+      "heading": "Stage 1–2: sand → wafers (dozens of chemical/mechanical steps)",
+      "columns": [
+        "Sub-stage",
+        "What happens",
+        "Why it is many steps"
+      ],
+      "rows": [
+        [
+          "Purification",
+          "Reduce impurities by many orders of magnitude",
+          "Each refine pass is its own plant operation"
+        ],
+        [
+          "Ingot growth",
+          "Pull a single-crystal boule",
+          "Diameter, oxygen, defects all managed"
+        ],
+        [
+          "Wafering",
+          "Saw, edge, lap, polish, clean",
+          "Surface perfection is the product"
+        ],
+        [
+          "Prime checks",
+          "Flatness, particles, resistivity",
+          "Reject early — fabs are expensive"
+        ]
+      ],
+      "caption": "Already tens of steps before a lithography scanner ever fires."
+    },
+    {
+      "id": "div2",
+      "type": "divider",
+      "label": "Front-end — where '400 steps' mostly lives"
+    },
+    {
+      "id": "frontend-text",
+      "type": "text",
+      "heading": "Stage 3: the loop that multiplies",
+      "body": "Almost every transistor feature is a short refrain: clean → film → coat resist → expose → develop → etch or implant → strip → anneal/clean. Advanced nodes repeat that refrain across many layers and multiple patterning schemes. Counting each tool visit is how you reach hundreds of steps without inventing filler."
+    },
+    {
+      "id": "loop",
+      "type": "steps",
+      "heading": "One patterning loop (counts as many steps in the MES)",
+      "items": [
+        "Surface prep / clean",
+        "Deposit or grow a film (oxide, nitride, poly, metal hardmask…)",
+        "Coat photoresist; soft bake",
+        "Expose (scanner / stepper); post-expose bake as required",
+        "Develop; inspect",
+        "Etch the film (or implant through the mask); strip resist",
+        "Clean; metrology; sometimes anneal or cure",
+        "Repeat for the next mask layer — dozens to hundreds of times"
+      ]
+    },
+    {
+      "id": "frontend-table",
+      "type": "compact-table",
+      "heading": "Front-end building blocks inside the loops",
+      "columns": [
+        "Family",
+        "Examples",
+        "Role"
+      ],
+      "rows": [
+        [
+          "Lithography",
+          "Coat, expose, develop, overlays",
+          "Draws the geometry"
+        ],
+        [
+          "Etch",
+          "Plasma / wet etches",
+          "Transfers geometry into films"
+        ],
+        [
+          "Deposition",
+          "CVD, ALD, PVD, epi",
+          "Adds materials"
+        ],
+        [
+          "Implant + anneal",
+          "Dopants, activation, repair",
+          "Sets electrical behavior"
+        ],
+        [
+          "CMP",
+          "Planarization",
+          "Keeps stacks buildable"
+        ],
+        [
+          "Metrology / inspection",
+          "CD, defects, overlay",
+          "Feeds control loops"
+        ]
+      ]
+    },
+    {
+      "id": "mol-beol",
+      "type": "compact-table",
+      "heading": "Stages 4–5: contacts and interconnect stacks",
+      "columns": [
+        "Stage",
+        "Grouped work",
+        "Step inflation reason"
+      ],
+      "rows": [
+        [
+          "MOL / contacts",
+          "Open contacts, fill, barrier/liner work",
+          "Every contact module is its own mini-flow"
+        ],
+        [
+          "BEOL metal 1…N",
+          "Dielectric, pattern, copper dual damascene, CMP, cap",
+          "Each metal layer ≈ a full patterning campaign"
+        ],
+        [
+          "Advanced packaging prep",
+          "On some flows: extra RDL / stacking prep",
+          "Blurry line between fab and OSAT"
+        ]
+      ],
+      "caption": "A 10–15 metal-layer part alone can dominate the step count."
+    },
+    {
+      "id": "div3",
+      "type": "divider",
+      "label": "Downstream — wafer becomes a part you can buy"
+    },
+    {
+      "id": "back-end",
+      "type": "compact-table",
+      "heading": "Stages 6–8: sort, assemble, test",
+      "columns": [
+        "Stage",
+        "Grouped steps",
+        "What 'good' means"
+      ],
+      "rows": [
+        [
+          "Wafer finish + sort",
+          "Passivation, probe, bin",
+          "Know which die deserve assembly"
+        ],
+        [
+          "Assembly",
+          "Mount, interconnect, encapsulate, ball/lead",
+          "Mechanical + electrical package"
+        ],
+        [
+          "Final test / finish",
+          "Package test, burn-in, pack-out",
+          "Ship only what meets the datasheet world"
+        ]
+      ]
+    },
+    {
+      "id": "count",
+      "type": "comparison",
+      "heading": "How 400+ appears without padding",
+      "columns": [
+        {
+          "name": "Naive list",
+          "detail": "400 equally weighted bullet points. Unreadable. Teaches nothing about dependency."
+        },
+        {
+          "name": "Stage grouping (this page)",
+          "detail": "Eight stages, loops called out, metal layers acknowledged as multipliers. Same factory — holdable mental model."
+        }
+      ]
+    },
+    {
+      "id": "awe",
+      "type": "quote",
+      "quote": "The awe is not the number four hundred. The awe is that each of those steps has a tool, a recipe, a control limit, and a person who notices when the limit blinks.",
+      "attribution": "Fab floor working note"
+    },
+    {
+      "id": "slideshow",
+      "type": "slideshow",
+      "heading": "Walk one wafer through the map",
+      "slides": [
+        {
+          "title": "Sand & crystal",
+          "body": "Impurities fall; a boule rises; wafers appear like blank cities."
+        },
+        {
+          "title": "Front-end loops",
+          "body": "Pattern, etch, dope, polish — transistors emerge as distributed decisions."
+        },
+        {
+          "title": "Wiring the city",
+          "body": "Contacts and metal layers turn devices into circuits."
+        },
+        {
+          "title": "Sort",
+          "body": "Probe tells the truth before packaging spends money."
+        },
+        {
+          "title": "Package & test",
+          "body": "A naked die becomes a part with pins, balls, and a name."
+        }
+      ]
+    },
+    {
+      "id": "checklist",
+      "type": "checklist",
+      "heading": "Reader checkpoints (no fluff)",
+      "items": [
+        {
+          "label": "Can you name the eight stages in order?",
+          "detail": "If yes, the page worked."
+        },
+        {
+          "label": "Do you see why metal layers multiply step count?",
+          "detail": "BEOL is not one step called 'add wires'."
+        },
+        {
+          "label": "Do you know sort happens before assembly spend?",
+          "detail": "Economics, not trivia."
+        }
+      ]
+    },
+    {
+      "id": "warn",
+      "type": "note-callout",
+      "title": "Node and foundry variance",
+      "body": "Exact step counts, tool sets, and whether advanced packaging sits in-fab or at an OSAT vary wildly by node and company. This is a teaching map, not a proprietary process-of-record.",
+      "tone": "warning"
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Stage check",
+      "prompt": "Most of the '400 steps' usually hide inside…",
+      "options": [
+        "Only final test",
+        "Repeated front-end patterning / film / implant loops plus multi-layer BEOL",
+        "Shipping cartons",
+        "Marketing datasheets"
+      ],
+      "answer": 1,
+      "explanation": "Step multiplication comes from looping FEOL modules and stacking many interconnect layers — not from packing boxes."
+    },
+    {
+      "id": "resources",
+      "type": "resource-list",
+      "heading": "Further reading",
+      "items": [
+        {
+          "label": "Overview texts on IC fabrication",
+          "detail": "For module-level depth beyond this map.",
+          "url": "https://en.wikipedia.org/wiki/Semiconductor_device_fabrication"
+        },
+        {
+          "label": "Packaging / assembly overview",
+          "detail": "Where OSAT and fab boundaries blur.",
+          "url": "https://en.wikipedia.org/wiki/Integrated_circuit_packaging"
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Keep the map",
+      "body": "Next time someone says 'a chip is made in 400 steps,' answer with the eight stages — then ask which metal layer they are on."
+    }
+  ]
+}
