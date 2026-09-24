@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-intermittent-fault-a-conveyor-stops-at-random-2-3-times-a-week-cause-unknown",
+  "title": "Intermittent fault: a conveyor stops at random 2-3 times a week, cause unknown",
+  "summary": "A working investigation board for a conveyor that dies a few times a week \u2014 known facts separated hard from guesses.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "night",
+  "tags": [
+    "grading-night",
+    "troubleshooting",
+    "conveyor",
+    "intermittent"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Cause unknown \u2014 keep the ledger honest",
+      "title": "Stops 2\u20133 times a week, no smoking gun",
+      "body": "A packaging conveyor at a fictional plant halts without a clear pattern. This page is an investigation board: what is known stays known, what is guessed stays labeled as guess."
+    },
+    {
+      "id": "split",
+      "type": "note-callout",
+      "title": "Rule for this page",
+      "body": "Anything not observed, logged, or measured is a guess. Do not promote a guess into the Known column because it feels satisfying.",
+      "tone": "warning"
+    },
+    {
+      "id": "known",
+      "type": "compact-table",
+      "heading": "KNOWN (verified)",
+      "columns": [
+        "Fact",
+        "How we know"
+      ],
+      "rows": [
+        [
+          "Conveyor stops 2\u20133 times per week",
+          "Maintenance log + operator reports, last 6 weeks"
+        ],
+        [
+          "Restart often works after a minute",
+          "Operator statements; no formal MTTR study yet"
+        ],
+        [
+          "No standing fault on the HMI when techs arrive",
+          "Multiple work orders say \"cleared / no code\""
+        ],
+        [
+          "E-stop circuit not latched when found stopped",
+          "Checked twice on different days"
+        ],
+        [
+          "Motor nameplate and VFD size match the design print",
+          "Nameplate photo vs. print revision C"
+        ]
+      ],
+      "caption": "If it is not on this table, it is not known yet."
+    },
+    {
+      "id": "guessed",
+      "type": "compact-table",
+      "heading": "GUESSED (unverified hypotheses)",
+      "columns": [
+        "Guess",
+        "What would confirm or kill it"
+      ],
+      "rows": [
+        [
+          "Flaky photoeye on the infeed",
+          "Trend the input bit; wiggle test; replace only after correlation"
+        ],
+        [
+          "Overheat on a soft-start / VFD",
+          "Thermal camera during run; fault history download"
+        ],
+        [
+          "Intermittent network loss to the PLC",
+          "Managed switch logs; watchdog timers; duplicate IP hunt"
+        ],
+        [
+          "Mechanical bind when cold",
+          "Stops clustered on Monday mornings? Check timestamps before blaming temperature"
+        ],
+        [
+          "Operator bumping a pull-cord",
+          "Camera or witness \u2014 do not assume people are the fault"
+        ]
+      ],
+      "caption": "Guesses are useful. Mislabeling them as facts is how intermittent faults live forever."
+    },
+    {
+      "id": "next",
+      "type": "steps",
+      "heading": "Next measurements (not next opinions)",
+      "items": [
+        "Export VFD and PLC fault histories for the last 30 days \u2014 even \"empty\" is data.",
+        "Add a cheap datalogger or use existing historian on run permission, drive ready, and the two most-suspected inputs.",
+        "Require a photo of the HMI and the drive keypad before anyone resets \u2014 breaks the \"no code\" fog.",
+        "Only after correlation: change one thing, label the WO with the hypothesis ID from the Guessed table."
+      ]
+    },
+    {
+      "id": "diagram",
+      "type": "diagram",
+      "heading": "Where intermittent gremlins usually hide",
+      "nodes": [
+        {
+          "title": "Field inputs",
+          "detail": "Eyes, proxes, pull cords \u2014 vibration and loose connectors."
+        },
+        {
+          "title": "Drive / motor",
+          "detail": "Thermal, DC bus, encoder (if any), wiring to the motor."
+        },
+        {
+          "title": "PLC & network",
+          "detail": "Scan time, IO drops, switch errors \u2014 silent until you log them."
+        },
+        {
+          "title": "Mechanicals",
+          "detail": "Seized roller, slipping clutch, jam that clears itself."
+        }
+      ]
+    },
+    {
+      "id": "uncertain",
+      "type": "comparison",
+      "heading": "How to talk about uncertainty on the floor",
+      "columns": [
+        {
+          "name": "Say this",
+          "detail": "\"Known: stops ~3\u00d7/week with no retained fault. Guess: photoeye. Next: trend that bit for two weeks.\""
+        },
+        {
+          "name": "Not this",
+          "detail": "\"It's definitely the eye\" after one glance, or \"the PLC is haunted\" with no logs."
+        },
+        {
+          "name": "Why",
+          "detail": "Intermittents punish confident storytelling. They reward boring instrumentation."
+        }
+      ]
+    },
+    {
+      "id": "checklist",
+      "type": "checklist",
+      "heading": "Investigation hygiene",
+      "items": [
+        {
+          "label": "Timestamp every stop",
+          "detail": "Date, time, product running, shift."
+        },
+        {
+          "label": "Separate Known vs Guessed in the WO",
+          "detail": "Copy the two-table habit."
+        },
+        {
+          "label": "One change at a time",
+          "detail": "Swapping three parts teaches nothing."
+        },
+        {
+          "label": "Declare when a guess is retired",
+          "detail": "Write \"killed: cold bind \u2014 stops occur on warm Fridays too.\""
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Classification check",
+      "prompt": "A tech says \"I bet it's the network.\" Where does that belong on this board?",
+      "options": [
+        "Known table \u2014 techs betting counts as verification",
+        "Guessed table \u2014 until logs or tests confirm",
+        "Neither \u2014 delete it so the board stays tidy",
+        "The motor nameplate row"
+      ],
+      "answer": 1,
+      "explanation": "A bet is a hypothesis. It goes in Guessed with a confirmation test attached.",
+      "correctFeedback": "Correct \u2014 label it Guessed and add a kill/confirm test.",
+      "wrongFeedback": "Re-read the page rule: unverified ideas stay in Guessed."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Leave the board better than you found it",
+      "body": "Update Known and Guessed after every stop. The cause is allowed to remain unknown until the data says otherwise."
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-is-a-used-lathe-worth-2-500-photos-show-wear-seller-not-answering",
+  "title": "Is a used lathe worth $2,500? Photos show wear, seller not answering",
+  "summary": "A skeptical walk through a $2,500 used lathe listing when photos show wear and the seller goes quiet.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "machines",
+    "buying",
+    "evidence"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Evidence over hope",
+      "title": "$2,500 asks a question the photos must answer",
+      "body": "A classified listing shows a used bench/gap lathe for $2,500. The photos show ways wear and a bruised tailstock. The seller stopped answering messages. This page is how to decide without romanticizing \"project iron.\""
+    },
+    {
+      "id": "evidence",
+      "type": "compact-table",
+      "heading": "What the listing actually shows (example)",
+      "columns": [
+        "Evidence",
+        "Skeptical read"
+      ],
+      "rows": [
+        [
+          "Price $2,500",
+          "Not a steal until spindle and ways are proven \u2014 price is a claim"
+        ],
+        [
+          "Photos: shine on ways near the chuck",
+          "Could be wear polish; could be oil. Need a straightedge and light."
+        ],
+        [
+          "Tailstock quill nick visible",
+          "Repairable maybe; alignment unknown"
+        ],
+        [
+          "No thread-dial / incomplete change gears in photos",
+          "Budget for missing tooling"
+        ],
+        [
+          "Seller silent after asking for spindle-play video",
+          "Treat silence as data \u2014 not as \"they're busy, it's fine\""
+        ]
+      ],
+      "caption": "Example listing details for grading. Not a real seller."
+    },
+    {
+      "id": "must",
+      "type": "checklist",
+      "heading": "Must-know before $2,500 moves",
+      "items": [
+        {
+          "label": "Spindle bearing play cold and warm",
+          "detail": "Video with indicator preferred. Hand-feel alone is how people buy noise."
+        },
+        {
+          "label": "Way wear with a straightedge / photos under raking light",
+          "detail": "Ask for it. If refused, walk."
+        },
+        {
+          "label": "Motor wiring voltage and phase",
+          "detail": "A \"deal\" that needs a $900 RPC or VFD changes the math."
+        },
+        {
+          "label": "What tooling is included \u2014 named, not vibes",
+          "detail": "Chuck condition, steady rest, change gears, wrenches."
+        },
+        {
+          "label": "Title / who can accept payment",
+          "detail": "Scam pattern: urgency + silence + odd payment channel."
+        }
+      ]
+    },
+    {
+      "id": "math",
+      "type": "comparison",
+      "heading": "Price math under skepticism",
+      "columns": [
+        {
+          "name": "If inspection passes",
+          "detail": "Example: $2,500 + transport + tooling gaps might still beat a worn $4k machine with paperwork \u2014 only with measurements."
+        },
+        {
+          "name": "If seller stays silent",
+          "detail": "Your offer expires. Do not \"hold space\" for a ghost. Market listings exist elsewhere."
+        },
+        {
+          "name": "If ways are hollowed",
+          "detail": "Scrap or parts value. Refeed / regrind economics often exceed the asking price on small lathes."
+        }
+      ]
+    },
+    {
+      "id": "red",
+      "type": "note-callout",
+      "title": "Red flags already present",
+      "body": "Visible wear plus unanswered technical questions is enough to pause. A good seller of a good machine usually likes talking about the machine.",
+      "tone": "warning"
+    },
+    {
+      "id": "decision",
+      "type": "steps",
+      "heading": "Decision tree for this week",
+      "items": [
+        "Send one clear message: ask for spindle-play video, way close-ups, voltage, and a reply deadline (48 hours).",
+        "If silence continues past the deadline \u2014 walk. Mark the listing mentally as unavailable.",
+        "If they answer with evidence, schedule an in-person check with indicator and straightedge \u2014 or pay a local tech for an hour.",
+        "Only then negotiate. Price drops are for known problems, not for mysteries."
+      ]
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Skeptical check",
+      "prompt": "The seller says \"it's a solid machine, just busy, take it or leave it\" and still sends no spindle video. Best move?",
+      "options": [
+        "Wire the money today before someone else gets it",
+        "Treat missing evidence as a reason not to buy at $2,500",
+        "Assume ways wear is only cosmetic shine",
+        "Offer $3,000 to show good faith"
+      ],
+      "answer": 1,
+      "explanation": "Without measurements, $2,500 is a hope purchase. Silence after a specific ask is informative.",
+      "correctFeedback": "Yes \u2014 no evidence, no wire.",
+      "wrongFeedback": "Re-read the red flags. Urgency without data is not a discount."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Another lathe will appear",
+      "body": "The scarce resource is a verifiable spindle and ways \u2014 not this particular listing."
+    }
+  ]
+}

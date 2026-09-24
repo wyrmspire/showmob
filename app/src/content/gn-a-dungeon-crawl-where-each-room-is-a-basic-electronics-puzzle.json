@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-dungeon-crawl-where-each-room-is-a-basic-electronics-puzzle",
+  "title": "A dungeon crawl where each room is a basic electronics puzzle",
+  "summary": "A playful session: move room to room, solve basic electronics puzzles, earn the next door.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "field",
+  "tags": [
+    "grading-night",
+    "electronics",
+    "game",
+    "session"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Session start",
+      "title": "You wake up in the Ohmworks Crypt",
+      "body": "Torches flicker. Each door opens only when you solve the room's electronics puzzle. No dragons \u2014 just Kirchhoff, LEDs, and one slightly judgmental multimeter golem. Play in order."
+    },
+    {
+      "id": "rules",
+      "type": "note-callout",
+      "title": "Party rules",
+      "body": "One attempt mindset: read the room text, then answer the exercise. Wrong answers still teach \u2014 the golem sighs, then explains. Fictional dungeon; real circuit ideas.",
+      "tone": "positive"
+    },
+    {
+      "id": "map",
+      "type": "diagram",
+      "heading": "Dungeon map",
+      "nodes": [
+        {
+          "title": "Room 1 \u2014 Resistor Bridge",
+          "detail": "Voltage divider basics"
+        },
+        {
+          "title": "Room 2 \u2014 LED Shrine",
+          "detail": "Forward voltage + series resistor"
+        },
+        {
+          "title": "Room 3 \u2014 Node Cavern",
+          "detail": "KCL at a junction"
+        },
+        {
+          "title": "Room 4 \u2014 Capacitance Vault",
+          "detail": "RC time constant intuition"
+        },
+        {
+          "title": "Boss Door",
+          "detail": "Combine ideas to escape"
+        }
+      ]
+    },
+    {
+      "id": "room1",
+      "type": "text",
+      "heading": "Room 1 \u2014 Resistor Bridge",
+      "body": "Two resistors in series across a 12 V torch battery: 3 k\u03a9 on top, 1 k\u03a9 on bottom. The door sensor reads the middle node. What voltage does it see (ideal, unloaded)?"
+    },
+    {
+      "id": "ex1",
+      "type": "exercise",
+      "heading": "Puzzle 1",
+      "prompt": "12 V across 3 k\u03a9 then 1 k\u03a9 to ground. V at the middle node?",
+      "options": [
+        "3 V",
+        "4 V",
+        "6 V",
+        "9 V"
+      ],
+      "answer": 0,
+      "explanation": "Divider: Vout = Vin \u00d7 Rbottom / (Rtop + Rbottom) = 12 \u00d7 (1/4) = 3 V.",
+      "correctFeedback": "The stone door grinds open. The golem nods once.",
+      "wrongFeedback": "The golem points at the divider formula: Vout = Vin \u00d7 Rbottom / (Rtop+Rbottom)."
+    },
+    {
+      "id": "room2",
+      "type": "text",
+      "heading": "Room 2 \u2014 LED Shrine",
+      "body": "A red LED wants about 2 V forward and 10 mA. Your supply is 5 V. You must pick a series resistor from the altar tray."
+    },
+    {
+      "id": "ex2",
+      "type": "exercise",
+      "heading": "Puzzle 2",
+      "prompt": "Approx series resistor for 5 V supply, 2 V LED, 10 mA?",
+      "options": [
+        "100 \u03a9",
+        "300 \u03a9",
+        "1 k\u03a9",
+        "10 k\u03a9"
+      ],
+      "answer": 1,
+      "explanation": "Voltage across resistor \u2248 5 \u2212 2 = 3 V. R = V/I = 3 / 0.01 = 300 \u03a9.",
+      "correctFeedback": "The LED blazes to life; the shrine door unlocks.",
+      "wrongFeedback": "Subtract LED Vf from the supply, then Ohm's law for 10 mA."
+    },
+    {
+      "id": "room3",
+      "type": "text",
+      "heading": "Room 3 \u2014 Node Cavern",
+      "body": "Three tunnels meet at a node. Into the node: 20 mA from the north. Out to the east: 7 mA. The south tunnel's current is unknown. KCL says the currents must balance."
+    },
+    {
+      "id": "ex3",
+      "type": "exercise",
+      "heading": "Puzzle 3",
+      "prompt": "If 20 mA enters and 7 mA leaves east, what must leave south (no other paths)?",
+      "options": [
+        "7 mA",
+        "13 mA",
+        "20 mA",
+        "27 mA"
+      ],
+      "answer": 1,
+      "explanation": "KCL: sum in = sum out \u2192 20 = 7 + Isouth \u2192 Isouth = 13 mA.",
+      "correctFeedback": "The cavern bridge solidifies. You cross.",
+      "wrongFeedback": "What enters a node must leave \u2014 solve for the missing outflow."
+    },
+    {
+      "id": "room4",
+      "type": "text",
+      "heading": "Room 4 \u2014 Capacitance Vault",
+      "body": "A 1 \u00b5F capacitor charges through 1 k\u03a9 toward 5 V. The vault door cracks open near one time constant, when the capacitor has climbed roughly 63% of the way."
+    },
+    {
+      "id": "ex4",
+      "type": "exercise",
+      "heading": "Puzzle 4",
+      "prompt": "\u03c4 = R\u00d7C for 1 k\u03a9 and 1 \u00b5F is:",
+      "options": [
+        "1 \u00b5s",
+        "1 ms",
+        "1 s",
+        "1 ks"
+      ],
+      "answer": 1,
+      "explanation": "\u03c4 = 1000 \u00d7 1e-6 = 1e-3 s = 1 ms.",
+      "correctFeedback": "The vault sighs open on schedule.",
+      "wrongFeedback": "Multiply ohms by farads: 1e3 \u00d7 1e-6 = 1e-3 seconds."
+    },
+    {
+      "id": "boss",
+      "type": "text",
+      "heading": "Boss door \u2014 the Golem's riddle",
+      "body": "The golem blocks the exit with a series LED circuit on a 9 V battery: LED Vf \u2248 2 V, target \u2248 10 mA, plus a divider question whispered as distraction. Stay focused on the resistor you need for the LED branch."
+    },
+    {
+      "id": "ex5",
+      "type": "exercise",
+      "heading": "Boss puzzle",
+      "prompt": "9 V battery, LED Vf 2 V, want ~10 mA series current. Closest resistor?",
+      "options": [
+        "70 \u03a9",
+        "700 \u03a9",
+        "7 k\u03a9",
+        "2 \u03a9"
+      ],
+      "answer": 1,
+      "explanation": "(9\u22122)/0.01 = 700 \u03a9.",
+      "correctFeedback": "The golem steps aside. Daylight. You have escaped the Ohmworks Crypt.",
+      "wrongFeedback": "Same LED method as Room 2: (Vsupply \u2212 Vf) / I."
+    },
+    {
+      "id": "loot",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "+5",
+          "label": "Rooms cleared"
+        },
+        {
+          "value": "0",
+          "label": "Dragons fought"
+        },
+        {
+          "value": "\u221e",
+          "label": "Multimeter respect earned"
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Session complete",
+      "body": "Replay with friends: one reads the room, one owns the multimeter, everyone argues kindly before locking an answer."
+    }
+  ]
+}
