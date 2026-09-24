@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "workshop",
+  "updated": "2026-09-24",
+  "series": {
+    "id": "chainmail-collective",
+    "title": "Chainmail Collective",
+    "order": 7
+  },
+  "slug": "chainmail-collective-money",
+  "title": "Money: real sales, no pyramid",
+  "summary": "Finished pieces, custom/bulk, kits, pattern royalties, affiliate on real sales \u2014 no buy-in, no recruiting pay, no required inventory.",
+  "tags": [
+    "chainmail",
+    "business",
+    "idea",
+    "education",
+    "money"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Chainmail Collective \u00b7 7 of 9",
+      "title": "Cash from craft, not from recruiting",
+      "body": "Revenue follows products and honest commissions. If a dollar only moves when someone \"signs up,\" the model is wrong for this collective."
+    },
+    {
+      "id": "lines",
+      "type": "compact-table",
+      "heading": "Revenue lines",
+      "columns": [
+        "Line",
+        "Who gets paid",
+        "Trigger"
+      ],
+      "rows": [
+        [
+          "Finished pieces",
+          "Shop / makers",
+          "Customer buys a built item"
+        ],
+        [
+          "Custom / bulk",
+          "Shop + assemblers",
+          "Accepted brief and deposit"
+        ],
+        [
+          "Kits & supplies",
+          "Shop",
+          "Builder buys a kit or ring pack"
+        ],
+        [
+          "Pattern sales",
+          "Designer cut + platform",
+          "Pattern or design license sells"
+        ],
+        [
+          "Affiliate",
+          "Promoter",
+          "Tracked link \u2192 real product sale"
+        ]
+      ]
+    },
+    {
+      "id": "anti-pyramid",
+      "type": "note-callout",
+      "title": "Explicit anti-pyramid rules",
+      "body": "No buy-in fee to join. No pay for recruiting people. No required inventory purchase. Affiliate money is commission on product sales only \u2014 never on signup volume.",
+      "tone": "warning"
+    },
+    {
+      "id": "clean",
+      "type": "checklist",
+      "heading": "Clean money checklist",
+      "items": [
+        {
+          "label": "Price covers labor",
+          "detail": "Assembler rates and shop prices respect the Tier-1 time study."
+        },
+        {
+          "label": "Designer royalties are written",
+          "detail": "Cut, duration, and territory in plain language."
+        },
+        {
+          "label": "Affiliate disclosure",
+          "detail": "Promoters say when a link pays them."
+        },
+        {
+          "label": "Tax and registration",
+          "detail": "Treat the shop like a real business \u2014 see Risks."
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Prove sales before you scale pay",
+      "body": "Rollout phase 1 asks for stranger sales. Do not open paid assembler or affiliate spiffs until those sales exist."
+    }
+  ]
+}

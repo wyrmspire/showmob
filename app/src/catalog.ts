@@ -74,6 +74,11 @@ export const seriesMeta: Record<string, { kicker: string; blurb: string }> = {
     blurb:
       "Allegory as lossy encoding: eight rules, two checks, an underside limit, then execution, public norms, and the art of the costume.",
   },
+  "chainmail-collective": {
+    kicker: "Maker business outline",
+    blurb:
+      "Small colored rings into shapes that advertise themselves — products, lanes, content, make & ship, community, money, rollout, and risks.",
+  },
 };
 
 function buildSeries(list: Artifact[]) {

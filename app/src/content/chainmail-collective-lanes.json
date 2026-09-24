@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "workshop",
+  "updated": "2026-09-24",
+  "series": {
+    "id": "chainmail-collective",
+    "title": "Chainmail Collective",
+    "order": 3
+  },
+  "slug": "chainmail-collective-lanes",
+  "title": "Lanes: how people participate",
+  "summary": "Buyer, custom/bulk, builder, paid assembler, designer, affiliate \u2014 lanes stack, entry stays low.",
+  "tags": [
+    "chainmail",
+    "business",
+    "idea",
+    "education"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Chainmail Collective \u00b7 3 of 9",
+      "title": "Pick a lane \u2014 or stack a few",
+      "body": "Not everyone wants the same depth. Some people only buy. Some only share. Some build at the kitchen table. The model works when each lane has a clear offer and nobody is forced into inventory or recruiting."
+    },
+    {
+      "id": "lanes-table",
+      "type": "compact-table",
+      "heading": "Six lanes",
+      "caption": "Lanes stack. A designer can also be an affiliate; a builder can grow into paid assembler.",
+      "columns": [
+        "Lane",
+        "What they get",
+        "Entry"
+      ],
+      "rows": [
+        [
+          "Buyer",
+          "Finished piece, shipped",
+          "Click and pay"
+        ],
+        [
+          "Custom / bulk",
+          "Logos for company, club, event; volume pricing",
+          "Brief + quantity"
+        ],
+        [
+          "Builder",
+          "Kits, patterns, a place to show work",
+          "One kit"
+        ],
+        [
+          "Paid assembler",
+          "Pay per piece from home",
+          "Skill badge + QC pass"
+        ],
+        [
+          "Designer",
+          "Royalty when a design sells",
+          "Submit a pattern"
+        ],
+        [
+          "Affiliate",
+          "Commission on sales they bring",
+          "Share a tracked link"
+        ]
+      ]
+    },
+    {
+      "id": "stack",
+      "type": "text",
+      "heading": "Stacking is the default",
+      "body": "A club officer might buy a sample, place a bulk order for the team, then share an affiliate link for fans. A builder might start with one kit, post gallery shots, earn a skill badge, and take paid assembly work. Low entry for designer and affiliate; builders start with a single kit, not a warehouse."
+    },
+    {
+      "id": "low-entry",
+      "type": "checklist",
+      "heading": "Low-entry promises",
+      "items": [
+        {
+          "label": "No buy-in",
+          "detail": "Nobody pays a fee to \"join\" a lane."
+        },
+        {
+          "label": "No required inventory",
+          "detail": "Assemblers are paid per accepted piece; they are not forced to stock rings."
+        },
+        {
+          "label": "No recruiting pay",
+          "detail": "Affiliate commission is on product sales only \u2014 see Money."
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Content sells every lane",
+      "body": "Whatever lane you pick, the next drill is the pipeline: design, build, clip, post, order."
+    }
+  ]
+}

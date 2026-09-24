@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "workshop",
+  "updated": "2026-09-24",
+  "series": {
+    "id": "chainmail-collective",
+    "title": "Chainmail Collective",
+    "order": 4
+  },
+  "slug": "chainmail-collective-content",
+  "title": "Content pipeline: the loop that sells",
+  "summary": "Design \u2192 build \u2192 photos/clips \u2192 posts/ads \u2192 orders \u2014 manual first, AI optional, then guided for members.",
+  "tags": [
+    "chainmail",
+    "business",
+    "idea",
+    "education",
+    "content"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Chainmail Collective \u00b7 4 of 9",
+      "title": "Content does the selling",
+      "body": "A three-second clip of rings snapping into a heart beats a paragraph of product copy. The pipeline is a loop: each order funds the next design, and each design feeds the next clip."
+    },
+    {
+      "id": "loop",
+      "type": "diagram",
+      "heading": "The selling loop",
+      "nodes": [
+        {
+          "title": "Design",
+          "detail": "Shape, color map, size, and who it is for."
+        },
+        {
+          "title": "Build",
+          "detail": "Make one real piece \u2014 proof, not mockup-only."
+        },
+        {
+          "title": "Photos + clips",
+          "detail": "Still shots, snap-together video, unboxing."
+        },
+        {
+          "title": "Posts + ads",
+          "detail": "Captions, schedule, listings, light paid boost."
+        },
+        {
+          "title": "Orders",
+          "detail": "Single, small batch, or bulk \u2014 then back to design."
+        }
+      ]
+    },
+    {
+      "id": "stages",
+      "type": "steps",
+      "heading": "Three maturity stages",
+      "items": [
+        "Stage 1 \u2014 Manual: founders design, build, shoot, and post by hand. Prove stranger sales before tools.",
+        "Stage 2 \u2014 Optional AI: mockups, caption drafts, color variants. Humans still approve and fulfill.",
+        "Stage 3 \u2014 Guided: members follow playbooks; the collective supplies templates, not a requirement to use AI."
+      ]
+    },
+    {
+      "id": "assets",
+      "type": "compact-table",
+      "heading": "Asset checklist per design",
+      "columns": [
+        "Asset",
+        "Purpose",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "Mockups",
+          "Test colors before full build",
+          "Optional AI assist"
+        ],
+        [
+          "Photo set",
+          "Listing + gallery",
+          "Neutral light, scale reference"
+        ],
+        [
+          "Snap clip",
+          "The ad that needs no copy",
+          "Under 5 seconds ideal"
+        ],
+        [
+          "Animation / still loop",
+          "Stories and ads",
+          "Keep file sizes honest"
+        ],
+        [
+          "Captions",
+          "Platforms + listings",
+          "One truth, many cuts"
+        ],
+        [
+          "Schedule",
+          "Cadence without burnout",
+          "Batch when possible"
+        ],
+        [
+          "Listing",
+          "Shop page or cart SKU",
+          "Price, size, turnaround"
+        ]
+      ]
+    },
+    {
+      "id": "ai-note",
+      "type": "note-callout",
+      "title": "AI is optional, never required",
+      "body": "Members can run the whole loop with phone camera and notes. Tools speed mockups and captions; they do not replace a real built piece or honest QC.",
+      "tone": "warning"
+    }
+  ]
+}
