@@ -171,7 +171,12 @@ export default async function handler(req: RequestLike, res: ResponseLike) {
     }
 
     if (req.method === "POST") {
-      const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body;
+      let body: unknown;
+      try {
+        body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body;
+      } catch {
+        return res.status(400).json({ error: "Malformed JSON body" });
+      }
       if (typeof body !== "object" || body === null || Array.isArray(body)) {
         return res.status(400).json({ error: "JSON object body required" });
       }
@@ -211,7 +216,7 @@ export default async function handler(req: RequestLike, res: ResponseLike) {
 
     res.setHeader("allow", "GET, POST");
     return res.status(405).json({ error: "method not allowed" });
-  } catch (err) {
-    return res.status(500).json({ error: (err as Error).message.slice(0, 300) });
+  } catch {
+    return res.status(500).json({ error: "internal server error" });
   }
 }

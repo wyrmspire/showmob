@@ -290,13 +290,13 @@ export function Grading({
       : undefined;
   const twinArtifact = twin ? artifactForSubject(twin) : undefined;
 
-  // Blind A/B: the two renders swap sides at random each viewing; the
+  // Blind A/B: the two renders swap sides at random each subject open; the
   // recorded pick is a subject id, never a side.
   const pairOrder = useMemo(() => {
     if (!open || !twin) return [];
     return Math.random() < 0.5 ? [open, twin] : [twin, open];
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [openId, compare]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- reshuffle only when the subject changes, never when toggling compare
+  }, [openId]);
 
   // Behavior capture: time on page, deepest scroll, widget touches.
   useEffect(() => {
