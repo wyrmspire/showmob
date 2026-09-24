@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-pitch-showmob-to-a-skeptical-developer-in-90-seconds",
+  "title": "Pitch Showmob to a skeptical developer in 90 seconds",
+  "summary": "The pitch, the three objections you will actually get, and the one demo that settles it.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "signal",
+  "tags": ["grading-night", "showmob", "pitch"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Ninety seconds, starting now",
+      "body": "Your skeptic has heard every pitch and built half of them. Skip the vision deck. Here is the argument, in the order a developer actually hears it."
+    },
+    {
+      "id": "pitch",
+      "type": "timeline",
+      "heading": "The pitch, timed",
+      "items": [
+        { "time": "0:00-0:20", "title": "The claim", "detail": "Showmob is a visual language an AI can speak. Agents write JSON artifacts - one file per page - and a renderer draws them. No HTML generation, no layout hallucination, just a vocabulary of blocks." },
+        { "time": "0:20-0:40", "title": "Why that is not another page builder", "detail": "Page builders are editing surfaces for humans, tens of thousands of lines of drag-and-drop. Showmob is renderer-only. The authoring surface is the agent. The whole repo stays small enough for one agent to read end to end - that is the feature." },
+        { "time": "0:40-1:00", "title": "The mechanism", "detail": "Nineteen block types - hero, steps, timeline, comparison, exercise, and friends - with a runtime validator. Invalid JSON never renders. Themes are semantic tokens, so the agent picks a mood, not a hex code." },
+        { "time": "1:00-1:30", "title": "The proof", "detail": "A hundred artifacts were generated for grading night by four different generators, graded by a human reader. The grades train what good output looks like. Nobody else is measuring taste this way." }
+      ]
+    },
+    {
+      "id": "objections",
+      "type": "comparison",
+      "heading": "The three objections, pre-answered",
+      "columns": [
+        { "name": "'JSON pages? I can prompt HTML directly'", "detail": "And you get unreviewable, unvalidatable soup that drifts with the model. A constrained vocabulary is what makes output gradable, diffable, and safe to render untrusted." },
+        { "name": "'This is just a CMS'", "detail": "A CMS serves pages to humans. Showmob serves pages written BY agents, and the grading loop is the point: the system learns which representation fits which situation. The CMS part is table stakes." },
+        { "name": "'Nineteen blocks will run out fast'", "detail": "Correct, and deliberate. Blocks get added only when graded pages demand them - content, attempt, grade, then primitive. Never widget first, use case second." }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "The close",
+      "body": "Open the block gallery, then open any artifact's JSON. Thirty seconds of seeing both at once settles what ninety seconds of talking cannot: the agent writes meaning, and the renderer does the rest."
+    }
+  ]
+}

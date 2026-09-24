@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-the-weather-report-but-for-a-factory-floor-s-mood",
+  "title": "The weather report, but for a factory floor's mood",
+  "summary": "Today's floor forecast: a high-pressure front of overtime moving in from the east, with scattered grumbling clearing by second break.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "signal",
+  "tags": ["grading-night", "whimsy", "factory", "forecast"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "The Floor Forecast, 6 AM edition",
+      "title": "Mostly productive, turning fractious by mid-afternoon",
+      "body": "Good morning, floor. Here is what the atmosphere is doing today, measured in the only units that matter: coffee levels, radio volume, and the number of times someone says 'per the drawing.'"
+    },
+    {
+      "id": "today",
+      "type": "timeline",
+      "heading": "Today's conditions",
+      "items": [
+        { "time": "6:00 AM", "title": "Low morale fog at the doors", "detail": "Burning off by first break as the coffee pot cycles for the third time. Visibility poor around the punch clock." },
+        { "time": "9:00 AM", "title": "A productive high settles in", "detail": "Clear skies over the machining cell. The good carbide was found. Expect steady chip-making with light banter from the northwest corner." },
+        { "time": "11:30 AM", "title": "A front of hot orders arrives", "detail": "The front office descends with a job that was due yesterday. Gusts of walking-fast-with-papers. The schedule board will not survive unchanged." },
+        { "time": "2:00 PM", "title": "Scattered grumbling, locally dense", "detail": "Concentrated around the machine whose probe batteries chose today to die. A 40% chance of a maintenance ticket, upgraded to 100% by 3." },
+        { "time": "4:30 PM", "title": "Clearing rapidly", "detail": "Overtime was not called. The exit lane sees its daily rush-hour congestion. Tonight: calm, with a slight chance of someone coming in early tomorrow to finish the hot job anyway." }
+      ]
+    },
+    {
+      "id": "extended",
+      "type": "compact-table",
+      "heading": "Extended outlook",
+      "columns": ["Day", "Outlook", "Advisory"],
+      "rows": [
+        ["Tomorrow", "Inventory count", "Steel-toed patience recommended; counts drift by afternoon"],
+        ["Friday", "Payday high-pressure system", "Morale rising sharply, productivity dipping in inverse proportion"],
+        ["Monday", "Weekend-gap turbulence", "Expect the first-hour ritual of remembering where everything was"]
+      ]
+    },
+    {
+      "id": "almanac",
+      "type": "note-callout",
+      "title": "The almanac says",
+      "body": "On this date in floor history: the forklift was found in the far lot with no driver and no explanation. It remains the warmest cold case on record.",
+      "tone": "note"
+    }
+  ]
+}
