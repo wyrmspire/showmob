@@ -11,6 +11,7 @@
 //
 // Optional: GN_API_URL (default https://showmob.vercel.app/api/gn), --content <dir>.
 // Needs the grader passcode, so this is a local check, not a CI test.
+// CI covers handoff↔disk via tests/gn-handoff-slugs.test.mjs; this script remains for DB artifact_slug reconciliation.
 // Exits 1 if any built/assigned/graded subject fails to resolve or two subjects share one page.
 
 import { readdirSync, readFileSync } from "node:fs";
