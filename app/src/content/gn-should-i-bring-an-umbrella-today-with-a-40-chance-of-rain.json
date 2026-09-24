@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-should-i-bring-an-umbrella-today-with-a-40-chance-of-rain",
+  "title": "Should I bring an umbrella today with a 40% chance of rain",
+  "summary": "Bring it if getting wet would ruin your day; leave it if you do not mind a light soaking.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": ["grading-night", "everyday", "decision", "weather"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "answer",
+      "type": "hero",
+      "title": "Bring the umbrella if getting wet would bother you; otherwise leave it",
+      "body": "Forty percent means rain is plausible, not certain. The useful question is cost of being wrong wet versus wrong dry — not whether the forecast is precise."
+    }
+  ]
+}

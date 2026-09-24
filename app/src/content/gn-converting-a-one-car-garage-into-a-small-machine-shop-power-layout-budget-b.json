@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-converting-a-one-car-garage-into-a-small-machine-shop-power-layout-budget-b",
+  "title": "Converting a one-car garage into a small machine shop: power, layout, budget",
+  "summary": "Floorplan-first: where the lathe, mill, welder, and circuits sit in a ~12×20 one-car bay, then the power and budget that make that map real.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "shop", "layout", "power", "floorplan"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Floorplan first — machines and circuits on the map",
+      "title": "Draw the shop before you buy the subpanel",
+      "body": "A one-car garage (~12×20 ft usable) only works as a small machine shop if heavy machines, chip paths, and receptacles share one plan. This page starts with where things sit. Power sizing and budget follow the drawing."
+    },
+    {
+      "id": "footprint",
+      "type": "stat-strip",
+      "items": [
+        { "value": "12×20", "label": "Example usable bay (ft)" },
+        { "value": "60 A", "label": "Example subpanel for light metal work" },
+        { "value": "~$4–7k", "label": "Starter power + layout budget band" }
+      ]
+    },
+    {
+      "id": "bay-map",
+      "type": "diagram",
+      "heading": "Bay map — where machines go",
+      "nodes": [
+        { "title": "North wall — lathe", "detail": "Long axis parallel to the wall. Tailstock toward the service door so stock can stick out without blocking egress. Leave ~36 in clear in front of the apron." },
+        { "title": "Northeast corner — mill / drill", "detail": "Beside the lathe so you can walk a part between spindles without crossing the welder arc zone. Keep the quill clear of the overhead door track." },
+        { "title": "South wall — weld / grind cell", "detail": "Against a masonry or protected wall with ventilation path to the outdoors. Keep grind sparks away from solvent and paper storage." },
+        { "title": "West wall — bench + vise", "detail": "Under the best daylight or LED run. Hand tools hang above; low cabinets below. Aisle down the center stays open for a cart." },
+        { "title": "Southeast — compressor + vac", "detail": "Near the overhead door for exhaust and hose reach. Noise and vibration stay off the precision machine pads." },
+        { "title": "Center aisle", "detail": "Keep a continuous walk path ~36 in wide from the man-door to the overhead door. No permanent machine in the middle." }
+      ]
+    },
+    {
+      "id": "ascii-plan",
+      "type": "code",
+      "heading": "Rough plan (looking down, door at bottom)",
+      "language": "text",
+      "code": " N wall\n+------------------------------+\n| LATHE =========    MILL []   |\n|                              |\n|   aisle                      |\n|                              |\n| BENCH =====     WELD [ ]     |\n|                 GRIND        |\n| COMPRESSOR                   |\n+------------[overhead door]---+\n              S"
+    },
+    {
+      "id": "circuits",
+      "type": "diagram",
+      "heading": "Circuit map — receptacles follow the machines",
+      "nodes": [
+        { "title": "Subpanel on the east wall", "detail": "Near the service entrance. Labeled breakers. Lockable cover. This is the shop's power hub — not a tangle of extension cords." },
+        { "title": "240 V / 20–30 A at lathe and welder", "detail": "Hard-located receptacles or whip drops at the machine pads. Do not share a single 240 V run between weld and spindle if both can run together." },
+        { "title": "120 V duplex every 6–8 ft on bench walls", "detail": "Dedicated circuits for compressor and dust collector. GFCI where code and damp walls demand it." },
+        { "title": "Lighting on its own circuit", "detail": "Two LED shop-light runs (north and south) so a tool breaker trip does not leave you in the dark mid-cut." },
+        { "title": "Emergency stop / disconnects", "detail": "Within reach of each powered machine. Welder and compressor get local disconnects you can see from the work zone." }
+      ]
+    },
+    {
+      "id": "loads",
+      "type": "compact-table",
+      "heading": "Example machine pads and circuit asks",
+      "columns": ["Pad", "Example tool", "Circuit ask", "Clearance note"],
+      "rows": [
+        ["North wall", "13×40 lathe", "240 V 20 A", "36 in apron aisle"],
+        ["NE corner", "Benchtop mill", "120 V 20 A", "Keep quill clear of door track"],
+        ["South wall", "MIG welder", "240 V 30–50 A", "Vent path + spark zone"],
+        ["SE corner", "60 gal compressor", "240 V 20–30 A", "Hose reach, noise away from lathe"],
+        ["West bench", "Grinder / chargers", "120 V duplex", "Under lights, GFCI if damp"]
+      ],
+      "caption": "Sizes are examples for a light metal hobby/jobbing shop — not a engineered load calc."
+    },
+    {
+      "id": "power-budget",
+      "type": "compact-table",
+      "heading": "Budget that follows the floorplan",
+      "columns": ["Item", "Why it is on the map", "Example band"],
+      "rows": [
+        ["60 A subpanel + feeder", "Feeds the circuit map above", "$800–1,800 parts + labor varies"],
+        ["240 V receptacles / whips", "Lathe + welder pads", "$200–600"],
+        ["120 V circuits + GFCI", "Bench, lights, compressor control", "$300–900"],
+        ["LED shop lighting", "Two runs so work stays visible", "$150–400"],
+        ["Machine pads / leveling", "Point loads on slab", "$100–400"],
+        ["Vent / spark protection", "Weld-grind cell", "$100–500"]
+      ],
+      "caption": "Rough DIY-parts band for a starter shop. Hire a licensed electrician for the feeder and panel work if that is not your trade."
+    },
+    {
+      "id": "layout-rules",
+      "type": "checklist",
+      "heading": "Layout rules that keep the map honest",
+      "items": [
+        { "label": "Place heaviest machines first", "detail": "Lathe and mill pads lock the rest of the drawing." },
+        { "label": "Chip and spark zones do not overlap paper or solvent", "detail": "Weld-grind cell stays south; precision spindles stay north." },
+        { "label": "Every powered pad has a visible disconnect path", "detail": "No machine that can only be killed from the house panel." },
+        { "label": "Aisle stays clear after the first real job", "detail": "If the first project blocks the man-door, the floorplan failed — redraw before buying more tools." }
+      ]
+    },
+    {
+      "id": "phases-from-map",
+      "type": "steps",
+      "heading": "Build order that respects the floorplan",
+      "items": [
+        "Tape the machine footprints and aisle on the empty floor. Walk it with a cart. Adjust before any concrete anchors.",
+        "Mark receptacle and lighting drops on the same tape plan. Photograph the marked floor.",
+        "Install the subpanel and the circuits that land on those marks.",
+        "Roll machines onto their pads, level, and wire. Prove one end-to-end job before expanding the map."
+      ]
+    },
+    {
+      "id": "warn",
+      "type": "note-callout",
+      "title": "Power work is not a floorplan sketch",
+      "body": "This page is a spatial planning artifact with example loads. Feeder sizing, grounding, and permitting belong to local code and a qualified electrician — especially anything 240 V or a new subpanel.",
+      "tone": "warning"
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Sanity check",
+      "prompt": "On this floorplan-first approach, what should you place before ordering the subpanel?",
+      "options": [
+        "The full tooling catalog for five years out",
+        "Taped machine footprints, aisle, and receptacle marks on the floor",
+        "A second welder for overflow work",
+        "Only the lighting circuit"
+      ],
+      "answer": 1,
+      "explanation": "The circuit map and subpanel size follow where machines and aisles actually sit. Tape the bay first so power lands on real pads."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Next move",
+      "body": "Tonight: tape the lathe, mill, weld cell, and aisle. Tomorrow: mark the receptacles on that same plan. Power and budget only after the map stops changing."
+    }
+  ]
+}

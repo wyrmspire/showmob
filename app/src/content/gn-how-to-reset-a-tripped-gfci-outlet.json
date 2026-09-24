@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-how-to-reset-a-tripped-gfci-outlet",
+  "title": "How to reset a tripped GFCI outlet",
+  "summary": "Unplug the load, press RESET on the outlet with the TEST/RESET buttons, then plug back in. If it will not stay reset, stop and find the fault.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "electrical", "home", "procedure"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Unplug, press RESET, plug back in",
+      "body": "A tripped GFCI has popped its internal breaker. Clearing the load and pressing RESET is the whole job when the outlet is healthy."
+    },
+    {
+      "id": "steps",
+      "type": "steps",
+      "heading": "Reset sequence",
+      "items": [
+        "Unplug whatever was in the outlet (and anything on downstream outlets it protects).",
+        "Press RESET firmly until it clicks and stays in. The outlet should now have power.",
+        "Plug the device back in. If RESET will not stay down, or trips again immediately, leave it unplugged and troubleshoot the device or the circuit — do not keep forcing it."
+      ]
+    },
+    {
+      "id": "warn",
+      "type": "note-callout",
+      "title": "If it will not reset",
+      "body": "A GFCI that refuses to reset, or trips with nothing plugged in, is telling you about a ground fault or a failed device. Kill the breaker, stop using the circuit, and get a qualified person if you are not sure.",
+      "tone": "warning"
+    }
+  ]
+}

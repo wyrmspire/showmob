@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-six-week-plan-to-learn-ladder-logic-well-enough-for-a-controls-tech-interview",
+  "title": "Six-week plan to learn ladder logic well enough for a controls tech interview",
+  "summary": "A six-week path from contacts and coils to a small PLC project you can explain under interview pressure.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "signal",
+  "tags": ["grading-night", "plc", "ladder-logic", "interview", "learning"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Encouraging, interview-shaped",
+      "title": "Six weeks to talk ladder like a controls tech",
+      "body": "You do not need to master every vendor quirk. You need clean mental models for contacts, coils, timers, counters, and one small program you can walk through out loud. This plan is built for that interview."
+    },
+    {
+      "id": "target",
+      "type": "stat-strip",
+      "items": [
+        { "value": "6 weeks", "label": "~5 focused hours / week" },
+        { "value": "1 project", "label": "Start/stop station with interlocks you can draw" },
+        { "value": "Pass bar", "label": "Explain scan cycle + debug a stuck output" }
+      ]
+    },
+    {
+      "id": "weeks",
+      "type": "timeline",
+      "heading": "Week-by-week spine",
+      "items": [
+        {
+          "time": "Week 1",
+          "title": "Contacts, coils, and the scan",
+          "detail": "NO/NC contacts, energize vs latch, and how a PLC reads inputs → solves logic → writes outputs each scan. Draw a simple start/stop latch by hand."
+        },
+        {
+          "time": "Week 2",
+          "title": "Timers and sealing circuits",
+          "detail": "TON/TOF/RTO patterns. Add a seal-in start/stop with a fault reset. Practice saying why the seal contact exists."
+        },
+        {
+          "time": "Week 3",
+          "title": "Counters, compares, and one-shots",
+          "detail": "CTU/CTD, EQU/GRT style compares, and rising-edge one-shots so you do not double-count. Build a part-count stop."
+        },
+        {
+          "time": "Week 4",
+          "title": "Interlocks and safe states",
+          "detail": "E-stop as a hard condition in the logic story (and know what belongs in hardware). Permissives, jam detects, and what 'fail safe' means on a rung."
+        },
+        {
+          "time": "Week 5",
+          "title": "I/O, addressing, and a real (or sim) PLC",
+          "detail": "Map digital I/O, force vs toggle carefully, and commission a small program on a trainer or simulator. Document tag names like an adult."
+        },
+        {
+          "time": "Week 6",
+          "title": "Interview drills",
+          "detail": "Whiteboard a motor starter ladder from a word problem. Trace a bug: 'output stuck on.' Narrate scan order. Prep two stories from your practice project."
+        }
+      ]
+    },
+    {
+      "id": "weekly-rhythm",
+      "type": "checklist",
+      "heading": "Each week, do these three things",
+      "items": [
+        { "label": "Study one pattern until you can redraw it cold", "detail": "Latch, timer, counter, interlock — one per early week." },
+        { "label": "Build or modify a tiny program", "detail": "Simulator is fine. Typing rungs beats only watching videos." },
+        { "label": "Explain it out loud in under two minutes", "detail": "Interview muscle. Record yourself once a week if that helps." }
+      ]
+    },
+    {
+      "id": "project",
+      "type": "steps",
+      "heading": "Capstone project (finish by week 5)",
+      "items": [
+        "Motor start/stop with seal-in and overload/fault input that drops the seal.",
+        "A TON that delays a 'ready' light after start.",
+        "A counter that stops the motor after N cycles and requires a reset.",
+        "A short written rung-by-rung explanation you could hand an interviewer."
+      ]
+    },
+    {
+      "id": "interview-asks",
+      "type": "compact-table",
+      "heading": "Likely interview asks → what to practice",
+      "columns": ["They ask", "You should be able to", "Practice move"],
+      "rows": [
+        ["Draw a start/stop latch", "NO start, NC stop, seal contact, coil", "Redraw daily in week 1–2"],
+        ["What does a scan do?", "Read inputs, solve, write outputs", "Say it in one breath"],
+        ["Timer vs counter", "Time base vs event count; when each fits", "Swap one for the other in your project"],
+        ["Output stuck ON", "Trace force, seal path, welded contact story", "Inject a bug on purpose in sim"],
+        ["E-stop", "Hardware remove power vs logic permissives", "Know what not to put only in software"]
+      ]
+    },
+    {
+      "id": "resources",
+      "type": "resource-list",
+      "heading": "Lean resource stack",
+      "items": [
+        { "label": "Vendor simulator or cheap trainer", "detail": "Pick one ecosystem and stay there for six weeks.", "url": "https://www.plcacademy.com/" },
+        { "label": "Ladder logic fundamentals guide", "detail": "Contacts, coils, timers, counters without marketing fluff.", "url": "https://www.allaboutcircuits.com/" },
+        { "label": "Your own notebook", "detail": "Hand-drawn rungs stick better than bookmarked tabs.", "url": "https://en.wikipedia.org/wiki/Ladder_logic" }
+      ]
+    },
+    {
+      "id": "encouragement",
+      "type": "note-callout",
+      "title": "You are aiming for clear, not encyclopedic",
+      "body": "Controls interviews reward people who can narrate a rung and find a fault. Six honest weeks of small programs beat a year of passive video. Show up with one project you understand cold.",
+      "tone": "positive"
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Start this week",
+      "body": "Tonight: draw a start/stop latch from memory. This weekend: enter it in a simulator. Week 6 you will be glad you started ugly and early."
+    }
+  ]
+}
