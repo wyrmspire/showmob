@@ -88,6 +88,7 @@ type Panel = {
   interaction: string;
   scan: string;
   wouldSend: string;
+  gapKind: string;
   widgetNotes: string;
   missing: string;
   unneeded: string;
@@ -104,6 +105,7 @@ const emptyPanel = (): Panel => ({
   interaction: "",
   scan: "",
   wouldSend: "",
+  gapKind: "",
   widgetNotes: "",
   missing: "",
   unneeded: "",
@@ -193,6 +195,7 @@ const PANEL_KEYS = [
   "interaction",
   "scan",
   "wouldSend",
+  "gapKind",
   "widgetNotes",
   "missing",
   "unneeded",
@@ -292,14 +295,12 @@ const PLAN_VS_LABELS: Record<string, string> = Object.fromEntries(
 /** Second step after the plan is visible: judge plan vs execution. Optional; never blocks navigation. */
 function PlanJudgment({
   subjectId,
-  artifactSlug,
   latest,
   passcode,
   onUnauthorized,
   onSaved,
 }: {
   subjectId: string;
-  artifactSlug: string;
   latest: GradeRow | undefined;
   passcode: string;
   onUnauthorized: () => void;
@@ -330,17 +331,15 @@ function PlanJudgment({
   const readOnly = Boolean(existing) || savedLocal;
 
   const submitJudgment = async () => {
-    if (!choice || !latest) {
+    if (!choice) {
       setError("Pick a plan-vs-execution judgment first.");
       return;
     }
-    const rating = Number(latest.scores.one_to_ten);
-    if (!Number.isInteger(rating) || rating < 1 || rating > 10) {
-      setError("Latest grade is missing a 1-10 rating; re-save the grade first.");
+    if (!latest?.id) {
+      setError("No saved cold grade to amend — re-save the grade first.");
       return;
     }
     const scores: Record<string, unknown> = {
-      one_to_ten: rating,
       plan_vs_execution: choice,
     };
     if (note.trim()) scores.plan_vs_execution_note = note.trim();
@@ -351,11 +350,8 @@ function PlanJudgment({
         method: "POST",
         headers: { "content-type": "application/json", "x-grading-passcode": passcode },
         body: JSON.stringify({
-          subject_id: subjectId,
-          artifact_slug: artifactSlug,
+          amend_grade_id: latest.id,
           scores,
-          suggestion: "(plan judgment)",
-          behavior: {},
         }),
       });
       if (res.status === 401) {
@@ -694,6 +690,7 @@ export function Grading({
     }
     if (panel.scan) scores.scan = panel.scan;
     if (panel.wouldSend) scores.would_send = panel.wouldSend === "yes";
+    if (panel.gapKind) scores.gap_kind = panel.gapKind;
     if (panel.widgetNotes.trim()) scores.widget_notes = panel.widgetNotes.trim();
     if (panel.missing.trim()) scores.missing = panel.missing.trim();
     if (panel.unneeded.trim()) scores.unneeded = panel.unneeded.trim();
@@ -964,6 +961,16 @@ export function Grading({
                         { value: "no", label: "No" },
                       ]}
                     />
+                    <ChoiceRow
+                      label="Gap kind — turns complaints into a widget build list"
+                      value={panel.gapKind}
+                      onChange={set("gapKind")}
+                      options={[
+                        { value: "wrong_choice", label: "Wrong widget choice" },
+                        { value: "missing_primitive", label: "Missing primitive" },
+                        { value: "n_a", label: "N/A (neither)" },
+                      ]}
+                    />
                     <div className="gn-grid">
                       <ScoreScale label="Content" value={panel.content} onChange={set("content")} />
                       <ScoreScale label="Representation" value={panel.representation} onChange={set("representation")} />
@@ -1023,18 +1030,23 @@ export function Grading({
                 {(justSaved || gradedIds.has(open.id)) && (
                   <>
                     <PlanReveal subjectId={open.id} />
-                    <PlanJudgment
-                      subjectId={open.id}
-                      artifactSlug={openArtifact.slug}
-                      latest={(gradesBySubject.get(open.id) ?? [])
-                        .slice()
-                        .sort((a, b) => b.graded_at.localeCompare(a.graded_at))[0]}
-                      passcode={passcode}
-                      onUnauthorized={() =>
-                        lock("Passcode rejected - enter it again, then save.", true)
-                      }
-                      onSaved={(grade) => setGrades((current) => [grade, ...current])}
-                    />
+                    {planForSubject(open.id)?.provenance === "first-hand" && (
+                      <PlanJudgment
+                        subjectId={open.id}
+                        latest={(gradesBySubject.get(open.id) ?? [])
+                          .slice()
+                          .sort((a, b) => b.graded_at.localeCompare(a.graded_at))[0]}
+                        passcode={passcode}
+                        onUnauthorized={() =>
+                          lock("Passcode rejected - enter it again, then save.", true)
+                        }
+                        onSaved={(grade) =>
+                          setGrades((current) =>
+                            current.map((g) => (g.id === grade.id ? { ...g, scores: grade.scores } : g)),
+                          )
+                        }
+                      />
+                    )}
                   </>
                 )}
               </section>
