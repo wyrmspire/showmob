@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-refurbishing-a-used-benchtop-oscilloscope-test-repair-calibrate",
+  "title": "Refurbishing a used benchtop oscilloscope: test, repair, calibrate",
+  "summary": "A used scope earns trust in three passes: prove what is wrong, fix what is actually broken, then calibrate against what it claims to measure.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "electronics", "repair", "test-equipment"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Test, repair, calibrate - in that order",
+      "body": "A used benchtop scope is a promise: the trace tells the truth. Refurbishing is how you find out whether the promise holds. Test first so you know what you bought, repair only what testing proves broken, and calibrate last so the knobs mean what they say."
+    },
+    {
+      "id": "safety",
+      "type": "note-callout",
+      "title": "The two things that can hurt you",
+      "body": "The CRT anode runs at thousands of volts and the tube holds that charge after unplugging - the anode cap is not a probing target. Mains filter capacitors in the power supply hold a bite too. Discharge both through a resistor, verify with a meter, then work.",
+      "tone": "warning"
+    },
+    {
+      "id": "passes",
+      "type": "timeline",
+      "heading": "The three passes",
+      "items": [
+        { "time": "Pass 1", "title": "Test", "detail": "Power up gently, run the self-checks, and write down every symptom before touching a screwdriver." },
+        { "time": "Pass 2", "title": "Repair", "detail": "Fix only what Pass 1 proved. Shotgunning parts into a scope makes two faults from one." },
+        { "time": "Pass 3", "title": "Calibrate", "detail": "Bring vertical gain, timebase, and probe compensation back to spec, in the manual's order." }
+      ]
+    },
+    {
+      "id": "power-up",
+      "type": "steps",
+      "heading": "First power-up, the gentle way",
+      "items": [
+        "Open the case first. Look for bulged capacitors, scorched resistors, and cracked solder joints on the power supply and CRT socket.",
+        "Power it through a dim-bulb limiter or a variac. A dead short glows the bulb instead of venting the supply.",
+        "Let it warm up for fifteen minutes. Old electrolytics reform slowly; judge nothing in the first five.",
+        "Feed the built-in calibrator output to channel 1. A 1 kHz square wave at a known amplitude is the scope's own reference.",
+        "Note every symptom before any repair: trace drift, fuzzy focus, missing intensity, a band that will not trigger."
+      ]
+    },
+    {
+      "id": "symptoms",
+      "type": "compact-table",
+      "heading": "What the usual symptoms usually mean",
+      "columns": ["Symptom", "Likely cause", "First check"],
+      "rows": [
+        ["No trace, power light on", "High-voltage or CRT circuit", "CRT socket pins and the HV supply fuse"],
+        ["Trace drifts or will not hold position", "Aging electrolytics in the supply rails", "Rail voltages against the service manual's table"],
+        ["Fuzzy focus at one end of the screen", "Weak CRT or focus divider drift", "Focus divider resistors for value drift"],
+        ["One channel reads low on both volts/div", "Attenuator or input amp fault", "Swap channels - if the fault stays with the channel, it is real"],
+        ["Trigger works on auto, not on normal", "Trigger coupling or level circuit", "Trigger source switch contacts, then the coupling caps"]
+      ],
+      "caption": "Patterns, not verdicts. The manual's troubleshooting tree wins any argument with this table."
+    },
+    {
+      "id": "recap",
+      "type": "text",
+      "heading": "Recap with a scalpel, not a broom",
+      "body": "Forty-year-old electrolytics are the usual fault, but replace them in the order testing indicts them: supply rails first, then anything in the signal path that measured bad. Mark each cap's orientation before removal - a reversed replacement fails loudly. Keep the old parts in a bag until the scope passes; they are your rollback."
+    },
+    {
+      "id": "calibration",
+      "type": "checklist",
+      "heading": "Calibration, in the manual's order",
+      "items": [
+        { "label": "Power supply rails within tolerance", "detail": "Every other adjustment assumes the rails are honest." },
+        { "label": "Vertical gain against a known DC source", "detail": "A fresh 1.5 V cell and a good meter get you surprisingly close." },
+        { "label": "Timebase against the calibrator's 1 kHz", "detail": "Ten cycles should span exactly ten divisions at 1 ms/div." },
+        { "label": "Probe compensation trimmed per channel", "detail": "Square wave corners flat - not peaked, not rounded." },
+        { "label": "Bandwidth sanity check", "detail": "A fast edge should not look slower than the front-panel MHz rating promises." }
+      ]
+    },
+    {
+      "id": "stop",
+      "type": "note-callout",
+      "title": "Know when it is a parts unit",
+      "body": "A cracked CRT, a burnt transformer, or a missing custom IC from 1978 can each end the project economically. Deciding that early is a good outcome, not a failed one - the knobs, case, and probes live on in the next scope.",
+      "tone": "note"
+    },
+    {
+      "id": "check-model",
+      "type": "exercise",
+      "heading": "Check the method",
+      "prompt": "The scope powers up and shows a trace, but channel 1 reads 20% low on every range. What comes first?",
+      "options": [
+        "Replace the channel 1 input capacitors",
+        "Verify the power supply rails against the manual",
+        "Adjust the vertical gain pots until it reads right"
+      ],
+      "answer": 1,
+      "explanation": "A low rail makes every measurement on every channel suspect, and it is the cheapest thing to prove. Test before repair, rails before signal path - and never calibrate around an unproven supply."
+    }
+  ]
+}

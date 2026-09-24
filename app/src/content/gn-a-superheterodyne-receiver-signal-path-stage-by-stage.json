@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-superheterodyne-receiver-signal-path-stage-by-stage",
+  "title": "A superheterodyne receiver signal path, stage by stage",
+  "summary": "How one 1930s idea still pulls a station out of the air: mix every signal to one fixed frequency, then do all the hard work there.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "signal",
+  "tags": ["grading-night", "radio", "receivers", "electronics"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "The receiver almost everything uses",
+      "title": "Move every station to one address, then answer it",
+      "body": "Tuning the whole dial is easy. The hard parts of a receiver - pulling a weak station out of noise and rejecting the loud one next door - are far easier at a single, fixed frequency. The superheterodyne idea is to convert whatever you want to hear into that one frequency, and invest all the cleverness there."
+    },
+    {
+      "id": "key-numbers",
+      "type": "stat-strip",
+      "items": [
+        { "value": "455 kHz", "label": "Classic AM broadcast intermediate frequency" },
+        { "value": "10.7 MHz", "label": "Classic FM broadcast intermediate frequency" },
+        { "value": "1 fixed IF", "label": "Where nearly all gain and selectivity live" }
+      ]
+    },
+    {
+      "id": "chain",
+      "type": "diagram",
+      "heading": "The signal path, end to end",
+      "nodes": [
+        { "title": "Antenna", "detail": "Every station in town arrives at once, plus noise." },
+        { "title": "RF stage", "detail": "Light amplification and a first, loose filter that tracks the dial." },
+        { "title": "Mixer", "detail": "Combines the signal with the local oscillator; outputs sum and difference frequencies." },
+        { "title": "IF filter", "detail": "Keeps only the difference frequency - the intermediate frequency. This is where selectivity happens." },
+        { "title": "IF amplifier", "detail": "Most of the radio's gain, at one fixed frequency where great amplifiers are easy to build." },
+        { "title": "Detector", "detail": "Recovers the audio from the IF - the information leaves the carrier here." },
+        { "title": "Audio stage", "detail": "Volume and power for the speaker or headphones." }
+      ]
+    },
+    {
+      "id": "the-trick",
+      "type": "text",
+      "heading": "The trick, in one move",
+      "body": "Multiply two sinusoids and you get their sum and their difference. The local oscillator is tuned to sit exactly one IF above the station you want. Whatever station that is, the mixer drops it onto the same IF - 455 kHz in a classic AM set. Tune the dial and the LO moves with it, so the difference never changes. The rest of the radio is built once, for one frequency, and built well."
+    },
+    {
+      "id": "worked",
+      "type": "compact-table",
+      "heading": "A worked pass through the dial",
+      "columns": ["Quantity", "Value", "Why"],
+      "rows": [
+        ["Wanted station", "1000 kHz", "The carrier you asked the dial for"],
+        ["Local oscillator", "1455 kHz", "Always the station plus the IF (high-side injection)"],
+        ["Mixer difference", "455 kHz", "1455 minus 1000 - the IF, as designed"],
+        ["Image frequency", "1910 kHz", "1455 plus 455 - an unwanted station here also lands on the IF"],
+        ["Neighbor at 1010 kHz", "Rejected", "Its difference is 445 kHz, outside the IF filter's passband"]
+      ],
+      "caption": "One station converts to 455 kHz. Everything else misses the filter and goes nowhere."
+    },
+    {
+      "id": "image",
+      "type": "note-callout",
+      "title": "The image is the design's one shadow",
+      "body": "A station at the LO frequency plus the IF also mixes down to the same 455 kHz - the image. The RF stage's loose tracking filter exists mostly to kill it before the mixer. This is why better receivers use a higher first IF: the farther the image sits from the wanted station, the easier it is to filter out.",
+      "tone": "warning"
+    },
+    {
+      "id": "follow",
+      "type": "steps",
+      "heading": "Follow one song from air to speaker",
+      "items": [
+        "A 1000 kHz carrier, amplitude-modulated with music, lands on the antenna microvolts tall.",
+        "The RF stage lifts it a little and rejects 1910 kHz, the image.",
+        "The mixer combines it with 1455 kHz from the LO; the difference is 455 kHz, music intact.",
+        "The IF filter keeps a tight window around 455 kHz and dumps the adjacent stations.",
+        "IF amplifiers boost the signal a million-fold, at a frequency chosen to make that easy.",
+        "The detector strips the carrier and hands the music to the audio stage.",
+        "The audio stage drives the speaker. The song arrives."
+      ]
+    },
+    {
+      "id": "agc",
+      "type": "text",
+      "heading": "The quiet feedback loop",
+      "body": "The detector also produces a voltage proportional to signal strength, fed backward to turn down the IF and RF gain on strong stations. That automatic gain control is why a weak distant station and a local blowtorch both come out of the speaker at a civilized volume, and why the tuning meter - if the radio has one - moves with signal strength."
+    },
+    {
+      "id": "why-455",
+      "type": "text",
+      "heading": "Why 455 kHz specifically",
+      "body": "Low enough that stable, selective filters and huge gain are cheap; high enough that the image sits far enough away to filter. Every IF is this same compromise. FM broadcast chose 10.7 MHz for wider channels; many modern receivers use two or three conversions, stepping down through a high first IF for image rejection and a low final IF for selectivity."
+    },
+    {
+      "id": "check-selectivity",
+      "type": "exercise",
+      "heading": "Check the path",
+      "prompt": "Where does a superheterodyne receiver get most of its ability to reject the station 10 kHz away?",
+      "options": [
+        "The IF filter, working at one fixed frequency",
+        "The antenna, by being directional",
+        "The audio stage, by filtering treble"
+      ],
+      "answer": 0,
+      "explanation": "Adjacent-channel rejection is the IF filter's job. Because every station is converted to the same IF, one excellent fixed filter does the work for the whole dial - that is the entire point of the architecture."
+    },
+    {
+      "id": "check-lo",
+      "type": "exercise",
+      "heading": "Check the arithmetic",
+      "prompt": "An AM receiver with a 455 kHz IF is tuned to 1200 kHz using high-side injection. Where is its local oscillator?",
+      "options": [
+        "1655 kHz - the station plus the IF",
+        "745 kHz - the station minus the IF",
+        "455 kHz - always at the IF"
+      ],
+      "answer": 0,
+      "explanation": "With high-side injection the LO sits one IF above the wanted station: 1200 + 455 = 1655 kHz. The mixer difference lands on 455 kHz no matter where the dial points."
+    },
+    {
+      "id": "references",
+      "type": "resource-list",
+      "heading": "Go deeper",
+      "items": [
+        { "label": "Superheterodyne receiver - Wikipedia", "detail": "History, variants, and the math of mixing.", "url": "https://en.wikipedia.org/wiki/Superheterodyne_receiver" },
+        { "label": "The ARRL", "detail": "Receiver design chapters aimed at people who build them.", "url": "https://www.arrl.org" }
+      ]
+    }
+  ]
+}
