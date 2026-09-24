@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-interview-prep-sheet-star-stories-for-a-maintenance-tech-role-example-candidate",
+  "title": "Interview prep sheet: STAR stories for a maintenance tech role (example candidate)",
+  "summary": "Fictional candidate Maya Ortega's STAR stories for a maintenance tech interview \u2014 situations you can adapt, not a biography.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "career",
+    "interview",
+    "maintenance"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Example candidate only",
+      "title": "STAR stories you can rehearse aloud",
+      "body": "Maya Ortega is a fictional maintenance tech preparing for a plant interview. The stories below are invented examples in STAR form \u2014 Situation, Task, Action, Result \u2014 so you can practice structure without borrowing anyone's real resume."
+    },
+    {
+      "id": "fictional",
+      "type": "note-callout",
+      "title": "All people and plants here are fictional",
+      "body": "Names, employers, and metrics are made up for rehearsal. Swap in your own verified stories before any real interview.",
+      "tone": "note"
+    },
+    {
+      "id": "target",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "3",
+          "label": "Core STAR stories prepared"
+        },
+        {
+          "value": "60\u201390 s",
+          "label": "Spoken length per story"
+        },
+        {
+          "value": "1",
+          "label": "Backup story for safety culture"
+        }
+      ]
+    },
+    {
+      "id": "story1",
+      "type": "text",
+      "heading": "Story 1 \u2014 Intermittent stop on a filler (troubleshooting)",
+      "body": "Situation: On Line 4 at fictional Northbridge Packaging, a filler stopped two or three times a shift with no repeatable alarm. Task: Maya owned finding a cause without blaming operators. Action: She logged timestamps, correlated with a flaky photoeye on a vibrating bracket, and added temporary monitoring before the permanent bracket fix. Result: Unplanned stops on that fault dropped to zero for the next month, and the work order included the vibration root cause \u2014 not just a swapped sensor."
+    },
+    {
+      "id": "story1-star",
+      "type": "compact-table",
+      "heading": "Story 1 in STAR bullets",
+      "columns": [
+        "Letter",
+        "Maya's line"
+      ],
+      "rows": [
+        [
+          "S",
+          "Filler stops 2\u20133\u00d7/shift, no clear alarm pattern"
+        ],
+        [
+          "T",
+          "Find cause without guessing and without blaming people"
+        ],
+        [
+          "A",
+          "Timestamp log \u2192 correlate \u2192 find vibrating photoeye bracket \u2192 monitor \u2192 permanent brace"
+        ],
+        [
+          "R",
+          "Fault gone for a month; WO captured root cause"
+        ]
+      ]
+    },
+    {
+      "id": "story2",
+      "type": "text",
+      "heading": "Story 2 \u2014 Weekend PM that prevented a Monday failure (planning)",
+      "body": "Situation: A gearbox on a case erector was due for oil analysis and showed rising wear metals. Task: Complete the PM inside a Saturday window without risking Monday's production start. Action: Maya staged seals and oil Friday, locked out Saturday morning, finished the change, and ran a dry cycle before releasing the line. Result: Monday started on time; the old oil report justified the work to the planner."
+    },
+    {
+      "id": "story3",
+      "type": "text",
+      "heading": "Story 3 \u2014 Teaching a new tech LOTO (leadership / safety)",
+      "body": "Situation: A new hire was about to open a panel that still showed bus voltage lamps lit. Task: Stop the unsafe step and turn it into training without humiliation. Action: Maya halted the work, walked the verify-zero-energy steps together, and added a checklist note the crew now uses. Result: Near miss documented; new hire completed supervised LOTO drills the same week."
+    },
+    {
+      "id": "backup",
+      "type": "comparison",
+      "heading": "Backup angles if they dig deeper",
+      "columns": [
+        {
+          "name": "Safety culture",
+          "detail": "Use Story 3; emphasize verify, not assume."
+        },
+        {
+          "name": "Documentation",
+          "detail": "Point at Story 1's work order that captured vibration, not only the part number."
+        },
+        {
+          "name": "Teamwork",
+          "detail": "Add how Maya looped in the operator who first noticed the pattern \u2014 fictional partner 'Dee' on nights."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "checklist",
+      "heading": "Rehearsal checklist",
+      "items": [
+        {
+          "label": "Speak each story out loud once under two minutes",
+          "detail": "Cut adjectives; keep verbs and numbers."
+        },
+        {
+          "label": "Prepare one honest failure version",
+          "detail": "What Maya would do differently on Story 1 if the bracket fix had been delayed."
+        },
+        {
+          "label": "Map stories to the job posting keywords",
+          "detail": "Troubleshooting, PM discipline, safety \u2014 match their language without inventing skills."
+        },
+        {
+          "label": "Replace fiction with your facts before the real interview",
+          "detail": "This page is a template, not a script to claim as your life."
+        }
+      ]
+    },
+    {
+      "id": "prompt",
+      "type": "exercise",
+      "heading": "Practice prompt",
+      "prompt": "An interviewer asks: \"Tell me about a time you fixed a problem that kept coming back.\" Which prepared story fits best?",
+      "options": [
+        "Story 2 (weekend gearbox PM)",
+        "Story 1 (intermittent filler stops / vibrating eye)",
+        "Story 3 (LOTO teaching moment)",
+        "None \u2014 invent a new story on the spot"
+      ],
+      "answer": 1,
+      "explanation": "Recurring intermittent faults map to Story 1. Story 2 is planning/PM; Story 3 is safety coaching.",
+      "correctFeedback": "Yes \u2014 recurring fault \u2192 Story 1.",
+      "wrongFeedback": "Match the question's shape: coming back = intermittent/chronic, which is Story 1."
+    },
+    {
+      "id": "cta",
+      "type": "cta-band",
+      "heading": "Your turn",
+      "body": "Write three STAR cards from your real work this week. Keep Maya's structure; use your verified results."
+    }
+  ]
+}

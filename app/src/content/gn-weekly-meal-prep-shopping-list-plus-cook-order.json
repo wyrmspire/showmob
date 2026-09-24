@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-weekly-meal-prep-shopping-list-plus-cook-order",
+  "title": "Weekly meal prep: shopping list plus cook order",
+  "summary": "One calm week of lunches and dinners: shop once, cook in the right order, store what will actually get eaten.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "field",
+  "tags": [
+    "grading-night",
+    "kitchen",
+    "planning"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Sunday prep for a work week",
+      "title": "Shop once, cook in sequence",
+      "body": "This plan feeds two adults lunch and dinner for five workdays with leftover breakfast options. Quantities are examples \u2014 scale for your household."
+    },
+    {
+      "id": "menu",
+      "type": "compact-table",
+      "heading": "Example week menu",
+      "columns": [
+        "Slot",
+        "Dish",
+        "Prep note"
+      ],
+      "rows": [
+        [
+          "Lunches",
+          "Grain bowls (chicken + roasted veg)",
+          "Portion into 5 containers"
+        ],
+        [
+          "Dinners Mon/Wed",
+          "Sheet-pan sausage and peppers",
+          "Reheat or finish fresh Wed"
+        ],
+        [
+          "Dinners Tue/Thu",
+          "Bean chili",
+          "Make a pot; freeze two servings if needed"
+        ],
+        [
+          "Dinner Fri",
+          "Tacos from chili leftovers + fresh toppings",
+          "Short Friday cook"
+        ],
+        [
+          "Breakfast backup",
+          "Overnight oats base",
+          "Mix dry; add milk night-before"
+        ]
+      ]
+    },
+    {
+      "id": "shop",
+      "type": "checklist",
+      "heading": "Shopping list",
+      "items": [
+        {
+          "label": "2 lb chicken thighs, 1 lb sausage",
+          "detail": "Or tofu/beans-only if you skip meat \u2014 double the chili beans."
+        },
+        {
+          "label": "2 bell peppers, 2 onions, 1 bag carrots, 1 head broccoli",
+          "detail": "Roast most on one sheet."
+        },
+        {
+          "label": "2 cans beans, 1 can tomatoes, chili spices",
+          "detail": "Check pantry spices before buying duplicates."
+        },
+        {
+          "label": "Rice or quinoa (enough for 5 lunches)",
+          "detail": "Cook a full pot while the oven works."
+        },
+        {
+          "label": "Yogurt, eggs, oats, tortillas, salsa, greens",
+          "detail": "Breakfast and Friday finishers."
+        },
+        {
+          "label": "Olive oil, salt, garlic",
+          "detail": "Only if the kitchen is actually out."
+        }
+      ]
+    },
+    {
+      "id": "order",
+      "type": "steps",
+      "heading": "Cook order (about 2 hours)",
+      "items": [
+        "Heat oven; start rice/quinoa on the stove.",
+        "Season chicken and chopped vegetables; get sheet pans in.",
+        "While that roasts, start chili on the stove (onions \u2192 spices \u2192 beans/tomatoes).",
+        "Cook sausage in a skillet or on a second pan; slice peppers for Mon/Wed.",
+        "Cool, portion lunches, fridge dinners in clear containers, label with day stickers.",
+        "Mix oat dry base so weekday mornings are one bowl away."
+      ]
+    },
+    {
+      "id": "store",
+      "type": "comparison",
+      "heading": "Storage that matches reality",
+      "columns": [
+        {
+          "name": "Eat this week",
+          "detail": "Lunches on the top shelf at eye level. If you cannot see it, you will order takeout."
+        },
+        {
+          "name": "Freeze",
+          "detail": "Two chili portions max unless you know you will thaw them \u2014 frozen soup graves are real."
+        },
+        {
+          "name": "Fresh Friday",
+          "detail": "Keep tortillas and greens unopened until Friday so taco night still feels like cooking."
+        }
+      ]
+    },
+    {
+      "id": "timeline",
+      "type": "timeline",
+      "heading": "Sunday clock",
+      "items": [
+        {
+          "time": "0:00",
+          "title": "Shop home, wash hands, clear counters",
+          "detail": "Put away non-prep groceries first so the deck is clear."
+        },
+        {
+          "time": "0:20",
+          "title": "Oven and grains on",
+          "detail": "Long poles start first."
+        },
+        {
+          "time": "1:10",
+          "title": "Chili simmering, pans out",
+          "detail": "Taste salt now, not on Wednesday."
+        },
+        {
+          "time": "1:50",
+          "title": "Portion and label",
+          "detail": "Future-you is tired. Labels beat memory."
+        },
+        {
+          "time": "2:10",
+          "title": "Done",
+          "detail": "Sink empty enough that Monday does not start with Sunday's pans."
+        }
+      ]
+    },
+    {
+      "id": "flex",
+      "type": "note-callout",
+      "title": "If the week goes sideways",
+      "body": "Chili and grain bowls both freeze and reheat. The plan's job is to reduce decisions, not to punish you for a dinner out on Thursday.",
+      "tone": "positive"
+    },
+    {
+      "id": "cta",
+      "type": "cta-band",
+      "heading": "Print the list, then leave the store",
+      "body": "The cook order only works if the shopping list was honest. Check the pantry once before you go."
+    }
+  ]
+}
