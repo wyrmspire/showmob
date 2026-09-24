@@ -40,15 +40,20 @@ test('content-plans/gn-plans.json holds 50 inferred plans for Grok+GPT handoff s
     byId.set(plan.id, plan);
   }
 
-  const expected = [...parseHandoff('handoff-grok.md'), ...parseHandoff('handoff-gpt.md')];
+  const expected = [
+    ...parseHandoff('handoff-grok.md').map((entry) => ({ ...entry, contributor: 'Grok' })),
+    ...parseHandoff('handoff-gpt.md').map((entry) => ({ ...entry, contributor: 'GPT' })),
+  ];
   assert.equal(expected.length, 50);
+  assert.equal(expected.filter(({ contributor }) => contributor === 'Grok').length, 25);
+  assert.equal(expected.filter(({ contributor }) => contributor === 'GPT').length, 25);
 
-  const inferred = expected.map(({ id, slug }) => {
+  const inferred = expected.map(({ id, slug, contributor }) => {
     const plan = byId.get(id);
     assert.ok(plan, `missing plan for ${id}`);
     assert.equal(plan.slug, slug);
     assert.equal(plan.provenance, 'inferred');
-    assert.equal(plan.contributor, 'Grok', `${id}: inferred plan author should be Grok`);
+    assert.equal(plan.contributor, contributor, `${id}: inferred plan author should be ${contributor}`);
     assert.ok(plan.goal && plan.why_widgets && plan.rejected);
 
     const total = plan.goal.length + plan.why_widgets.length + plan.rejected.length;
