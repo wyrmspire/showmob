@@ -27,6 +27,9 @@ This folder is the **database side of the persistence foundation**. It is not a 
 2. [`migrations/20260923154500_artifact_lifecycle_ownership.sql`](migrations/20260923154500_artifact_lifecycle_ownership.sql)
    - Denormalized `status` (`draft` \| `preview` \| `published` \| `archived`) synced from the document on save.
    - Nullable `owner_id` ownership boundary placeholder for future Auth (Phase 4). No Auth policies yet.
+3. [`migrations/20260924135500_grading_night.sql`](migrations/20260924135500_grading_night.sql)
+   - `showmob_gn_subjects` (the ~100 grading-night subjects) and `showmob_gn_grades` (one row per grade). See [`../docs/grading-night.md`](../docs/grading-night.md).
+   - `showmob_gn_list_subjects` / `showmob_gn_record_grade` / `showmob_gn_list_grades`: service_role only. RLS on, no policies.
 
 ## How to configure a future development project
 
