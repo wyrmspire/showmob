@@ -2,44 +2,105 @@
   "schemaVersion": 1,
   "slug": "gn-preventive-maintenance-schedule-that-updates-as-tasks-close",
   "title": "Preventive maintenance schedule that updates as tasks close",
-  "summary": "A PM schedule where closing a task is what schedules the next one - the calendar derives itself from the work, not the other way around.",
+  "summary": "A static PM example distinguishes completion-based intervals from fixed-calendar and usage-based schedules.",
   "contributor": "Instinct",
   "status": "preview",
   "theme": "workshop",
-  "tags": ["grading-night", "maintenance", "planning", "schedule"],
+  "tags": [
+    "grading-night",
+    "maintenance",
+    "planning",
+    "schedule"
+  ],
   "updated": "2026-09-24",
   "blocks": [
     {
       "id": "start",
       "type": "hero",
       "title": "The schedule is a consequence of the work",
-      "body": "Most PM calendars rot because they are maintained by hand: tasks close late, nobody retypes the dates, and within a quarter the calendar is fiction. This schedule has one rule that fixes it - closing a task is what schedules the next occurrence. The page below is a small example of that rule running."
+      "body": "This is a static worked schedule, not a task system. Closing a task can set the next due date for completion-based maintenance; fixed-calendar and meter-based tasks need different rules. Select the rule from the equipment requirements and approved maintenance program."
     },
     {
       "id": "board",
       "type": "compact-table",
       "heading": "The board, Thursday morning",
-      "columns": ["Asset", "Task", "Interval", "Last closed", "Next due", "State"],
-      "rows": [
-        ["Air compressor", "Drain tank and check belt", "7 days", "Sep 18", "Sep 25", "Due tomorrow"],
-        ["Air compressor", "Change oil", "90 days", "Jul 02", "Sep 30", "Coming up"],
-        ["Band saw", "Blade guides and tracking", "30 days", "Aug 30", "Sep 29", "Coming up"],
-        ["Forklift", "Chains, forks, brakes inspection", "30 days", "Sep 21", "Oct 21", "Closed this week - rolled forward"],
-        ["CNC mill", "Way lube and filter check", "7 days", "Sep 22", "Sep 29", "Closed this week - rolled forward"],
-        ["CNC mill", "Ball screw backlash check", "90 days", "Jun 25", "Sep 23", "OVERDUE - yesterday"],
-        ["Welder", "Liner, tip, and drive rolls", "30 days", "Sep 10", "Oct 10", "On track"]
+      "columns": [
+        "Asset",
+        "Task",
+        "Interval",
+        "Last closed",
+        "Next due",
+        "State"
       ],
-      "caption": "Every Next due was written by the previous closing, not by a person with a calendar."
+      "rows": [
+        [
+          "Air compressor",
+          "Drain tank and check belt",
+          "7 days",
+          "Sep 18",
+          "Sep 25",
+          "Due tomorrow"
+        ],
+        [
+          "Air compressor",
+          "Change oil",
+          "90 days",
+          "Jul 02",
+          "Sep 30",
+          "Coming up"
+        ],
+        [
+          "Band saw",
+          "Blade guides and tracking",
+          "30 days",
+          "Aug 30",
+          "Sep 29",
+          "Coming up"
+        ],
+        [
+          "Example handling fixture",
+          "Periodic condition review",
+          "30 days",
+          "Sep 21",
+          "Oct 21",
+          "Completion-based example"
+        ],
+        [
+          "CNC mill",
+          "Way lube and filter check",
+          "7 days",
+          "Sep 22",
+          "Sep 29",
+          "Closed this week - rolled forward"
+        ],
+        [
+          "CNC mill",
+          "Ball screw backlash check",
+          "90 days",
+          "Jun 25",
+          "Sep 23",
+          "OVERDUE - yesterday"
+        ],
+        [
+          "Welder",
+          "Liner, tip, and drive rolls",
+          "30 days",
+          "Sep 10",
+          "Oct 10",
+          "On track"
+        ]
+      ],
+      "caption": "Fictional date arithmetic for completion-based example tasks. No dates are recalculated here; intervals are not equipment recommendations."
     },
     {
       "id": "the-rule",
       "type": "steps",
-      "heading": "The one rule that keeps it honest",
+      "heading": "Choose the scheduling rule before automating it",
       "items": [
-        "A task closes only with a date and a name. Closing is an event, not a checkbox someone remembers.",
-        "The next due date is computed from the closing date plus the interval - never edited by hand.",
-        "Close late and the schedule slides honestly: a 30-day task closed 10 days late is next due 30 days from the late close, and the lateness stays visible in the log.",
-        "Close early and it slides the other way - which is why intervals exist, so eager weeks do not silently compress the year."
+        "Record actual completion, responsible person and evidence without erasing the original due date.",
+        "Completion-based: next due = actual close + interval, when the approved program permits it.",
+        "Fixed-calendar: retain the required calendar cadence. A late completion must not silently extend a mandatory deadline.",
+        "Usage-based: calculate from the relevant meter and record its reading; calendar arithmetic alone is insufficient."
       ]
     },
     {
@@ -54,10 +115,22 @@
       "type": "diagram",
       "heading": "The loop",
       "nodes": [
-        { "title": "Task comes due", "detail": "Computed, not remembered - it appears because the last close plus the interval says so." },
-        { "title": "Work gets done", "detail": "Or it visibly does not - both outcomes stay on the board." },
-        { "title": "Close with date and name", "detail": "The closing event is the only write to the schedule." },
-        { "title": "Next due computes itself", "detail": "The calendar rolls forward from reality." }
+        {
+          "title": "Task comes due",
+          "detail": "Computed, not remembered - it appears because the last close plus the interval says so."
+        },
+        {
+          "title": "Work gets done",
+          "detail": "Or it visibly does not - both outcomes stay on the board."
+        },
+        {
+          "title": "Close with date and name",
+          "detail": "The closing event is the only write to the schedule."
+        },
+        {
+          "title": "Next due computes itself",
+          "detail": "Apply the task’s approved completion-based, fixed-calendar or meter-based rule; preserve overdue history."
+        }
       ]
     },
     {
@@ -65,10 +138,21 @@
       "type": "checklist",
       "heading": "The weekly ten minutes",
       "items": [
-        { "label": "Read the overdue and due-this-week lines only", "detail": "The rest of the board is doing its job; do not audit what is healthy." },
-        { "label": "Assign every due task to a name, not to 'the shop'", "detail": "A task with no name is a task with a date and a hope." },
-        { "label": "Ask why about anything overdue twice in a row", "detail": "Chronic lateness means the interval is wrong, the task is wrong, or the staffing is - the schedule just told you which assets to ask about." }
+        {
+          "label": "Read the overdue and due-this-week lines only",
+          "detail": "The rest of the board is doing its job; do not audit what is healthy."
+        },
+        {
+          "label": "Assign every due task to a name, not to 'the shop'",
+          "detail": "A task with no name is a task with a date and a hope."
+        },
+        {
+          "label": "Ask why about anything overdue twice in a row",
+          "detail": "Chronic lateness means the interval is wrong, the task is wrong, or the staffing is - the schedule just told you which assets to ask about."
+        }
       ]
     }
   ]
 }
+
+

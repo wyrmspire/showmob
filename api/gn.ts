@@ -138,6 +138,29 @@ export function cleanPlanJudgmentPatch(raw: unknown): Record<string, unknown> {
   return out;
 }
 
+/** Keep the blind's answer key out of the browser response. */
+export function cleanSubjects(raw: unknown): Record<string, unknown>[] {
+  if (!Array.isArray(raw)) throw new Error("subjects response must be an array");
+  return raw.map((subject) => {
+    const row = (typeof subject === "object" && subject !== null
+      ? subject
+      : {}) as Record<string, unknown>;
+    return {
+      id: row.id,
+      title: row.title,
+      bucket: row.bucket,
+      density: row.density,
+      interaction: row.interaction,
+      shape: row.shape,
+      register: row.register,
+      lifetime: row.lifetime,
+      ab_pair: row.ab_pair,
+      status: row.status,
+      artifact_slug: row.artifact_slug,
+    };
+  });
+}
+
 function cleanBehavior(raw: unknown): Record<string, unknown> {
   if (raw === null || raw === undefined) return {};
   if (typeof raw !== "object" || Array.isArray(raw)) {
@@ -189,7 +212,7 @@ export default async function handler(req: RequestLike, res: ResponseLike) {
         scores: g.scores,
         graded_at: g.graded_at,
       }));
-      return res.status(200).json({ subjects, grades: slim });
+      return res.status(200).json({ subjects: cleanSubjects(subjects), grades: slim });
     }
 
     if (req.method === "POST") {

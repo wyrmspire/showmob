@@ -2,54 +2,73 @@
   "schemaVersion": 1,
   "slug": "gn-lockout-tagout-the-full-procedure-and-why-each-step-exists",
   "title": "Lockout/tagout: the full procedure and why each step exists",
-  "summary": "Eight steps, no improvisation. Each one exists because someone was hurt when it was skipped.",
+  "summary": "A training overview of energy control, verification and release; the machine-specific written procedure governs.",
   "contributor": "Claude",
   "status": "preview",
   "theme": "workshop",
-  "tags": ["grading-night", "safety", "lockout-tagout", "procedure"],
+  "tags": [
+    "grading-night",
+    "safety",
+    "lockout-tagout",
+    "procedure"
+  ],
   "updated": "2026-09-24",
   "blocks": [
     {
       "id": "start",
       "type": "hero",
       "title": "Lockout/tagout, whole and in order",
-      "body": "Lockout/tagout is how a machine is made incapable of moving while someone is inside its reach. The procedure below is the general shape of OSHA 1910.147 as practiced in small shops. Your site's written program and the machine's specific procedure govern - this page teaches the sequence and the reasoning, it does not replace them."
+      "body": "Unexpected startup and stored energy can injure during service. Authorized employees follow the site’s energy-control program and machine-specific procedure. This is a learning outline, not a complete procedure for an unidentified machine or electrical task."
     },
     {
       "id": "procedure",
       "type": "steps",
       "heading": "The procedure, in order",
       "items": [
-        "NOTIFY: Tell every affected employee the machine is going down for service, and for how long.",
-        "IDENTIFY: Find every energy source - electrical, pneumatic, hydraulic, gravity, springs, stored thermal, chemical. Miss one and the rest of this is theater.",
-        "SHUT DOWN: Stop the machine by its normal controls, in its normal sequence.",
-        "ISOLATE: Open every disconnect, close every valve, block every energy path identified in step 2.",
-        "LOCK AND TAG: Each person working on the machine applies their own personal lock and tag to every isolation point. One person, one lock, one key on that person's hip.",
-        "DISSIPATE: Bleed air, block rams, discharge capacitors, let flywheels stop. Stored energy is still energy.",
-        "VERIFY: Try the start controls. Press the buttons, attempt the cycle. Then test with a meter where electrical work is involved. The tryout is the step that catches step 2 mistakes.",
-        "WORK: Only now does the wrench come out."
+        "Prepare: identify every hazardous energy source and the approved isolation method; notify affected employees.",
+        "Shut down normally, then operate the specified energy-isolating devices. A stop button or software command is not isolation.",
+        "Apply lockout/tagout under the written procedure, including the approved group arrangement when needed.",
+        "Relieve, restrain or otherwise render stored energy safe. Continue verification if hazardous energy can reaccumulate.",
+        "Verify isolation and de-energization before work. Return attempted operating controls to their safe/off position. Electrical testing requires qualified personnel and the appropriate procedure.",
+        "Work only within the verified conditions; reassess if the task or conditions change."
       ]
     },
     {
       "id": "why",
       "type": "compact-table",
       "heading": "Why each step exists",
-      "columns": ["Step", "What it prevents"],
+      "columns": [
+        "Step",
+        "What it prevents"
+      ],
       "rows": [
-        ["Notify", "Someone restarting the machine because nobody told them why it was down"],
-        ["Identify", "The classic fatality: the second energy source nobody listed"],
-        ["Shut down", "Damage from isolating a machine mid-cycle, and surprises at restart"],
-        ["Isolate", "Any path for energy to reach the work zone"],
-        ["Lock and tag", "Anyone, including you, being overridden by a helpful coworker"],
-        ["Dissipate", "The cylinder that drifts, the capacitor that bites, the flywheel that coasts"],
-        ["Verify", "Every mistake in all previous steps, found while it is still safe to find them"]
+        [
+          "Prepare",
+          "Identify all sources and affected people"
+        ],
+        [
+          "Isolate",
+          "Separate equipment from hazardous supply"
+        ],
+        [
+          "Control stored energy",
+          "Prevent movement, pressure release or other residual-energy hazards"
+        ],
+        [
+          "Verify",
+          "Establish the required safe condition before exposure"
+        ],
+        [
+          "Release",
+          "Confirm equipment and people are ready before restoration"
+        ]
       ]
     },
     {
       "id": "personal-lock",
       "type": "note-callout",
       "title": "Your lock is your life insurance",
-      "body": "No supervisor, no coworker, no emergency justifies removing another person's lock. If a lockout must be cleared without the person present, that is a formal procedure of its own - documented attempts to contact, inspection of the machine, management sign-off. If your shop has never written that procedure down, the answer is simpler: the lock stays on.",
+      "body": "Normally the employee who applied a device removes it. Removal in that employee’s absence requires the employer’s specific documented procedure, including verifying absence, reasonable contact efforts, and ensuring the employee knows before returning to work. It is not an informal supervisor override.",
       "tone": "warning"
     },
     {
@@ -57,24 +76,49 @@
       "type": "steps",
       "heading": "Coming back to service, in order",
       "items": [
-        "INSPECT: Tools, rags, and people out of the machine. Guards back on.",
-        "NOTIFY AGAIN: Announce the machine is returning to service before anyone reaches for a disconnect.",
-        "REMOVE LOCKS: Each person removes only their own lock, after confirming their own work is done.",
-        "RESTORE: Re-energize in the reverse of isolation, then test the machine normally before releasing it to production."
+        "Inspect the equipment and work area; remove nonessential items and confirm components are intact.",
+        "Ensure people are safely positioned or removed and controls are in the required state.",
+        "Remove devices under the written removal procedure.",
+        "After device removal and before startup, notify affected employees that devices have been removed.",
+        "Restore and restart using the machine-specific procedure; do not assume it is simply isolation in reverse."
       ]
     },
     {
       "id": "group-work",
       "type": "text",
       "heading": "When more than one person is on the machine",
-      "body": "Every person hangs their own lock - a hasp holds six or more, and a lockout has as many locks as people at risk. For shift changes, the oncoming person applies their lock before the outgoing person removes theirs, or the machine passes through a documented group lockout procedure with a named coordinator. A machine left locked and unowned across a shift change is a machine nobody truly controls."
+      "body": "Group lockout must provide equivalent personal protection through the approved procedure, often using a group lockbox. Shift changes require an orderly transfer that maintains protection. Each worker does not necessarily place a lock on every individual isolator."
     },
     {
       "id": "bottom-line",
       "type": "note-callout",
-      "title": "The bottom line",
-      "body": "Every step in this list traces to an injury that happened when it was skipped. The procedure is short enough to follow every single time - including the five-minute job. Especially the five-minute job.",
-      "tone": "positive"
+      "title": "Use the actual procedure",
+      "body": "If the procedure does not cover the machine, energy source or task, stop and resolve the gap with the responsible authorized person.",
+      "tone": "warning"
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources and further reading",
+      "items": [
+        {
+          "label": "OSHA 1910.147",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "detail": "Energy-control requirements, stored energy, group arrangements and removal exceptions."
+        },
+        {
+          "label": "OSHA: typical minimal procedure",
+          "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147AppA",
+          "detail": "Illustrative sequence; the employer supplies equipment-specific details."
+        },
+        {
+          "label": "OSHA: release from lockout/tagout",
+          "url": "https://www.osha.gov/etools/lockout-tagout/tutorial/release-from-lockout-tagout",
+          "detail": "Inspection, personnel position, device removal and notification before startup."
+        }
+      ]
     }
   ]
 }
+
+

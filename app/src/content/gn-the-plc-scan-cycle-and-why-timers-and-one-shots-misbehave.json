@@ -2,53 +2,70 @@
   "schemaVersion": 1,
   "slug": "gn-the-plc-scan-cycle-and-why-timers-and-one-shots-misbehave",
   "title": "The PLC scan cycle and why timers and one-shots misbehave",
-  "summary": "A PLC does not run your program continuously - it reads, solves, writes, repeat. Every mysterious timer and one-shot bug is the scan cycle collecting a debt.",
+  "summary": "Use the cyclic scan as a teaching model, then check the actual controller’s task, I/O and instruction behavior.",
   "contributor": "Claude",
   "status": "preview",
   "theme": "signal",
-  "tags": ["grading-night", "plc", "controls", "scan-cycle"],
+  "tags": [
+    "grading-night",
+    "plc",
+    "controls",
+    "scan-cycle"
+  ],
   "updated": "2026-09-24",
   "blocks": [
     {
       "id": "start",
       "type": "hero",
       "title": "Read, solve, write, repeat",
-      "body": "A PLC runs in a loop with three strict phases: copy all inputs into an image table, solve the whole program top to bottom against that frozen table, then copy the results out to the physical outputs. Nothing inside the program touches the real world mid-scan. Once that clicks, the classic mysteries - timers that skip, one-shots that double-fire, outputs that ignore you - stop being mysteries."
+      "body": "A simple cyclic PLC model samples inputs, executes logic in order and updates outputs. It is useful for learning scan effects, but not universal: modern controllers can update I/O asynchronously and run multiple tasks. Start by naming the model, then check the actual controller and task configuration."
     },
     {
       "id": "phases",
       "type": "diagram",
-      "heading": "One scan, three phases",
+      "heading": "The simplified cyclic model",
       "nodes": [
-        { "title": "1. Read inputs", "detail": "Every physical input is copied into the input image table. The table is now frozen for the rest of the scan." },
-        { "title": "2. Solve logic", "detail": "The program runs top to bottom, rung by rung, reading only image tables and writing only to the output image table." },
-        { "title": "3. Write outputs", "detail": "The output image table is copied to the physical outputs, all at once." },
-        { "title": "Housekeeping", "detail": "Comms, diagnostics, watchdog. Then the next scan begins. Typical total: 1-20 ms." }
+        {
+          "title": "1. Read inputs",
+          "detail": "Every physical input is copied into the input image table. The table is now frozen for the rest of the scan."
+        },
+        {
+          "title": "2. Solve logic",
+          "detail": "Execute rungs in order; writes to internal tags can affect later rungs in the same task execution."
+        },
+        {
+          "title": "3. Write outputs",
+          "detail": "The output image table is copied to the physical outputs, all at once."
+        },
+        {
+          "title": "Housekeeping",
+          "detail": "Communication and diagnostics also take time. Measure the configured task/scan behavior instead of assuming a typical value."
+        }
       ]
     },
     {
       "id": "frozen-world",
       "type": "text",
-      "heading": "The input that changed mid-scan does not exist yet",
-      "body": "If a pushbutton changes state while the PLC is solving logic, the program sees the old state until the next read phase. This is usually irrelevant - scans are milliseconds - but it becomes very relevant when logic is long, when inputs pulse briefly, or when one rung's assumptions depend on an input another rung already consumed. The image table is the deal the PLC makes: consistency within a scan, latency between scans."
+      "heading": "What happens between samples?",
+      "body": "In this teaching model, a changed input is not seen until the next sample. On a controller with asynchronous I/O, separate reads can see different values within one logic execution. Use the platform’s supported buffering methods when a consistent snapshot is required. Input filtering and module update intervals also affect what is observed."
     },
     {
       "id": "timers",
       "type": "text",
       "heading": "Why timers misbehave",
-      "body": "A timer instruction is not a clock running in the background - it is code that gets evaluated once per scan, when its rung is reached. Two consequences. First, timer resolution is the scan time: a 1 ms timer on a 10 ms scan is really a 10 ms timer. Second, and more dangerous, a timer in a rung that stops being scanned stops timing. Put a timer inside a skipped subroutine or behind a conditional jump and it freezes mid-count, then completes instantly when the rung resumes, because its accumulated time logic depends on being visited. Same story for a timer whose enabling rung flickers: some PLC families reset on a false rung, some hold, and porting logic between them changes behavior without changing a single address."
+      "body": "Separate timer timebase resolution from the interval at which logic observes its result. A controller can track time more finely than the task period, while the program reacts only when it executes. Retentive/non-retentive behavior, false-rung handling and skipped execution depend on the instruction and platform. Skipping a routine is not necessarily the same as executing its rung false. Verify all four conditions in the manual and a controlled test."
     },
     {
       "id": "one-shots",
       "type": "text",
       "heading": "Why one-shots misbehave",
-      "body": "A one-shot (rising-edge contact) works by remembering last scan's state and comparing. That memory only updates when the rung is scanned. Put the one-shot in a subroutine that runs every third scan and it compares against stale history - it can fire on a state three scans old, or fire twice for one real edge. The rule: edge detection must live in code that runs every single scan, and the signal it watches must itself be updated every scan. Violate either half and the one-shot lies."
+      "body": "An edge detector compares the current sample with remembered state. It needs a defined execution schedule and its own correctly managed storage. A pulse entirely between executions may be missed. Conditional execution, shared storage or initialization can change behavior, but stale history alone does not guarantee double-firing. Identify which observed transition produced each pulse."
     },
     {
       "id": "double-write",
       "type": "text",
       "heading": "The output that ignores you",
-      "body": "If two rungs both write the same output coil, the later rung wins, every scan, silently. The program is not broken in an obvious place - rung 40 drives the output on, rung 900 drives it off, and the machine does what rung 900 says while everyone stares at rung 40. Cross-reference every output before debugging anything else. One coil, one writer is the rule that keeps a program readable by its future maintainer."
+      "body": "Within one sequential execution, a later write to the same tag can replace an earlier write. Other tasks, forces and asynchronous I/O can complicate the result. Cross-reference all writers and task order. One deliberate owner per output makes the logic easier to diagnose."
     },
     {
       "id": "example",
@@ -61,25 +78,73 @@
       "id": "symptoms",
       "type": "compact-table",
       "heading": "Symptom to scan-cycle cause",
-      "columns": ["Symptom", "Scan-cycle cause", "Fix"],
+      "columns": [
+        "Symptom",
+        "Scan-cycle cause",
+        "Fix"
+      ],
       "rows": [
-        ["Timer completes instantly after a skip", "Rung was not scanned; timer froze and resumed stale", "Keep timers in always-scanned code"],
-        ["One-shot fires twice for one press", "Edge memory stale from conditional scanning", "Move edge detection to unconditional rungs"],
-        ["Short pulses randomly missed", "Pulse shorter than one scan", "Use a latching input, interrupt, or high-speed counter"],
-        ["Output ignores its obvious rung", "Later rung writes the same coil", "One coil, one writer; cross-reference first"],
-        ["Machine behavior changed after porting PLC brands", "Different false-rung timer semantics", "Check timer behavior on rung-disable explicitly"]
+        [
+          "Unexpected timer result after a skipped routine",
+          "Instruction was not executed normally",
+          "Check the timer’s documented skipped-execution behavior"
+        ],
+        [
+          "Unexpected edge pulse",
+          "History, initialization or another writer differs from the assumption",
+          "Trace samples and edge-storage state"
+        ],
+        [
+          "Short pulses missed",
+          "Pulse may fall between observations or be removed by filtering",
+          "Review input filtering, module timing and appropriate capture hardware"
+        ],
+        [
+          "Output does not follow the rung being watched",
+          "Another writer, force or task may intervene",
+          "Cross-reference writers and execution order"
+        ],
+        [
+          "Ported logic changes behavior",
+          "Instruction or I/O semantics differ",
+          "Test initialization, disable and resume explicitly"
+        ]
       ]
     },
     {
       "id": "check",
       "type": "exercise",
       "heading": "Check the model",
-      "prompt": "A 5 ms pulse arrives on an input, but the PLC's scan time is 12 ms. What does the program see?",
-      "options": ["The pulse, reliably, because inputs are real-time", "The pulse only if it happens to span an input-read phase", "Nothing - pulses under the scan time are always lost", "A stretched 12 ms version of the pulse"],
+      "prompt": "In the simplified model, the input is sampled every 12 ms with no hardware capture or filtering. A 5 ms pulse arrives. What can the program see?",
+      "options": [
+        "The pulse, reliably, because inputs are real-time",
+        "The pulse only if it happens to span an input-read phase",
+        "Nothing - pulses under the scan time are always lost",
+        "A stretched 12 ms version of the pulse"
+      ],
       "answer": 1,
-      "explanation": "Inputs are sampled once per scan. A pulse shorter than the scan time is seen only if it is present at the instant of the read phase - a coin flip, which is why missed pulses look random. The fix is hardware that latches (interrupts, high-speed counters), not faster program logic.",
+      "explanation": "The pulse is observed only if one sample falls inside its high interval. It is not reliably captured and not necessarily a 50/50 chance. For uniformly random phase in this ideal model, 5/12 of arrivals overlap a sample. Real modules add filtering and update behavior.",
       "correctFeedback": "Right - it is a sampling problem, not a logic problem.",
       "wrongFeedback": "Think about when the input image table gets written: once per scan. The pulse exists only in the real world, and the program only reads the table."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources and further reading",
+      "items": [
+        {
+          "label": "Rockwell Automation: I/O update timing",
+          "url": "https://www.rockwellautomation.com/en-dk/docs/technical/logix5000/_online/1756-um900/controllogix-5590-controller-user-manual-ditamap/manage-controller-i-o-connections/determine-when-i-o-data-is-updated.html",
+          "detail": "Concrete counterexample to the claim that all PLC I/O is frozen through a scan."
+        },
+        {
+          "label": "Rockwell Automation: controller design considerations",
+          "url": "https://literature.rockwellautomation.com/idc/groups/literature/documents/rm/1756-rm094_-en-p.pdf",
+          "detail": "Task and I/O design must follow the specific platform."
+        }
+      ]
     }
   ]
 }
+
+
