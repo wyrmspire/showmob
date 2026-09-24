@@ -29,6 +29,7 @@ interface ResponseLike {
 
 const SUBJECT_ID = /^GN-[0-9]{3}$/;
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const GRADE_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const MAX_TEXT = 8000;
 const MAX_BODY = 64_000;
 const MAX_WIDGET_EVENTS = 200;
@@ -117,6 +118,23 @@ export function cleanScores(raw: unknown): Record<string, unknown> {
   if (planVs) out.plan_vs_execution = planVs;
   const planNote = text(input.plan_vs_execution_note, 2000);
   if (planNote) out.plan_vs_execution_note = planNote;
+  const gapKind = pick(input.gap_kind, ["wrong_choice", "missing_primitive", "n_a"] as const);
+  if (gapKind) out.gap_kind = gapKind;
+  return out;
+}
+
+/** Patch-only cleaner for plan judgment amend: merges into an existing grade's scores. */
+export function cleanPlanJudgmentPatch(raw: unknown): Record<string, unknown> {
+  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) {
+    throw new Error("scores must be a JSON object");
+  }
+  const input = raw as Record<string, unknown>;
+  const out: Record<string, unknown> = {};
+  const planVs = pick(input.plan_vs_execution, ["plan", "execution", "both", "neither"] as const);
+  if (!planVs) throw new Error("scores.plan_vs_execution is required");
+  out.plan_vs_execution = planVs;
+  const planNote = text(input.plan_vs_execution_note, 2000);
+  if (planNote) out.plan_vs_execution_note = planNote;
   return out;
 }
 
@@ -188,6 +206,28 @@ export default async function handler(req: RequestLike, res: ResponseLike) {
         return res.status(400).json({ error: "body too large" });
       }
       const input = body as Record<string, unknown>;
+
+      // Amend path: merge a plan-judgment patch into an existing grade row.
+      if (input.amend_grade_id !== undefined && input.amend_grade_id !== null) {
+        if (typeof input.amend_grade_id !== "string" || !GRADE_ID.test(input.amend_grade_id)) {
+          return res.status(400).json({ error: "amend_grade_id must be a uuid" });
+        }
+        let patch: Record<string, unknown>;
+        try {
+          patch = cleanPlanJudgmentPatch(input.scores);
+        } catch (err) {
+          return res.status(400).json({ error: (err as Error).message });
+        }
+        const rows = (await rpc("showmob_gn_amend_grade_scores", {
+          p_grade_id: input.amend_grade_id,
+          p_scores_patch: patch,
+        })) as Record<string, unknown>[];
+        if (!rows[0]) {
+          return res.status(404).json({ error: "grade not found" });
+        }
+        return res.status(200).json({ grade: rows[0] });
+      }
+
       const subjectId = typeof input.subject_id === "string" ? input.subject_id : "";
       if (!SUBJECT_ID.test(subjectId)) {
         return res.status(400).json({ error: "subject_id must look like GN-001" });

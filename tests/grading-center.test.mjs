@@ -39,6 +39,7 @@ test('the browser never holds a Supabase key or a table name', () => {
 test('grades write only through the record-grade RPC with a server-held key', () => {
   const api = read('../api/gn.ts');
   assert.match(api, /showmob_gn_record_grade/);
+  assert.match(api, /showmob_gn_amend_grade_scores/);
   assert.match(api, /showmob_gn_list_subjects/);
   assert.match(api, /showmob_gn_list_grades/);
   assert.match(api, /SHOWMOB_SUPABASE_URL/);
