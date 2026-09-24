@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "workshop",
+  "updated": "2026-09-24",
+  "series": {
+    "id": "chainmail-collective",
+    "title": "Chainmail Collective",
+    "order": 1
+  },
+  "slug": "chainmail-collective",
+  "title": "Chainmail Collective",
+  "summary": "Small colored rings linked into shapes that advertise themselves \u2014 one medium, endless designs, lanes for every kind of maker.",
+  "tags": [
+    "chainmail",
+    "business",
+    "idea",
+    "education",
+    "craft"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Chainmail Collective \u00b7 1 of 9",
+      "title": "The shape is the ad",
+      "body": "Small colored chainmail rings snap into hearts, crosses, letters, logos, and jewelry. A short clip of rings closing into a heart needs zero explanation. One simple medium. Endless designs. Content does the selling; people pick a lane."
+    },
+    {
+      "id": "name-note",
+      "type": "note-callout",
+      "title": "Working name",
+      "body": "\"Chainmail Collective\" is a placeholder until something better sticks. Idea credit: Chris Stubbs (Sep 24, 2026). This series is the thin front door \u2014 drill pages hold the detail.",
+      "tone": "note"
+    },
+    {
+      "id": "big-idea",
+      "type": "text",
+      "heading": "Big idea in one breath",
+      "body": "Link colored rings into shapes people already want. Founders prove it by hand first, then teach members. AI can help with mockups and captions later \u2014 it is never required. Everyone chooses how deep to go: buy a piece, order bulk, build from a kit, assemble for pay, design for royalty, or share and earn affiliate commission on real sales."
+    },
+    {
+      "id": "medium",
+      "type": "comparison",
+      "heading": "Same craft, two stories",
+      "columns": [
+        {
+          "name": "One medium",
+          "detail": "Jump rings, pliers, color, and patience. The skill transfers across every product line."
+        },
+        {
+          "name": "Endless designs",
+          "detail": "Hearts, letters, club logos, wall pieces, kits, pattern files, gift lines \u2014 same rings, new shapes."
+        }
+      ]
+    },
+    {
+      "id": "open-next",
+      "type": "diagram",
+      "heading": "Open next",
+      "nodes": [
+        {
+          "title": "Products",
+          "detail": "Wearables, symbols, kits, patterns, gifts."
+        },
+        {
+          "title": "Lanes",
+          "detail": "Buyer through affiliate \u2014 stack freely."
+        },
+        {
+          "title": "Content",
+          "detail": "Design \u2192 build \u2192 clip \u2192 post \u2192 order."
+        },
+        {
+          "title": "Make & ship",
+          "detail": "Tiers, QC, rings, packing."
+        },
+        {
+          "title": "Community",
+          "detail": "Gallery, challenges, badges, meetups."
+        },
+        {
+          "title": "Money",
+          "detail": "Real revenue \u2014 no pyramid."
+        },
+        {
+          "title": "Rollout",
+          "detail": "Five phases with proof."
+        },
+        {
+          "title": "Risks",
+          "detail": "Labor, copycats, legal, open questions."
+        }
+      ]
+    },
+    {
+      "id": "series-map",
+      "type": "resource-list",
+      "heading": "Series map",
+      "items": [
+        {
+          "label": "Products",
+          "detail": "What you can sell and ship.",
+          "url": "https://showmob.vercel.app/a/chainmail-collective-products"
+        },
+        {
+          "label": "Lanes",
+          "detail": "Six ways to participate; they stack.",
+          "url": "https://showmob.vercel.app/a/chainmail-collective-lanes"
+        },
+        {
+          "label": "Content pipeline",
+          "detail": "The loop that does the selling.",
+          "url": "https://showmob.vercel.app/a/chainmail-collective-content"
+        },
+        {
+          "label": "Make & ship",
+          "detail": "Production tiers through unboxing.",
+          "url": "https://showmob.vercel.app/a/chainmail-collective-make-ship"
+        },
+        {
+          "label": "Community",
+          "detail": "Gallery, challenges, clubs.",
+          "url": "https://showmob.vercel.app/a/chainmail-collective-community"
+        },
+        {
+          "label": "Money",
+          "detail": "Revenue lines and anti-pyramid rules.",
+          "url": "https://showmob.vercel.app/a/chainmail-collective-money"
+        },
+        {
+          "label": "Rollout",
+          "detail": "Phases 1\u20135 with a proof column.",
+          "url": "https://showmob.vercel.app/a/chainmail-collective-rollout"
+        },
+        {
+          "label": "Risks",
+          "detail": "Labor, trademarks, QC, open ownership questions.",
+          "url": "https://showmob.vercel.app/a/chainmail-collective-risks"
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Start with Products or Lanes",
+      "body": "Skim Products if you want the catalog shape. Open Lanes if you want to know where you fit. Keep the rest for when you are ready to drill."
+    }
+  ]
+}

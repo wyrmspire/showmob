@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "workshop",
+  "updated": "2026-09-24",
+  "series": {
+    "id": "chainmail-collective",
+    "title": "Chainmail Collective",
+    "order": 5
+  },
+  "slug": "chainmail-collective-make-ship",
+  "title": "Make & ship: tiers, QC, unboxing",
+  "summary": "Founder builds \u2192 home assemblers \u2192 bulk/workshop; ring supply, kits packed ahead, filmable packaging.",
+  "tags": [
+    "chainmail",
+    "business",
+    "idea",
+    "education",
+    "ops"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Chainmail Collective \u00b7 5 of 9",
+      "title": "Hands first, then hands many",
+      "body": "Production scales only after quality and timing are boring. Three tiers keep the craft honest while volume grows."
+    },
+    {
+      "id": "tiers",
+      "type": "timeline",
+      "heading": "Manufacturing tiers",
+      "items": [
+        {
+          "time": "Tier 1",
+          "title": "Founders by hand",
+          "detail": "Every early SKU is built by the people teaching it. Proof of time, price floor, and filmable make."
+        },
+        {
+          "time": "Tier 2",
+          "title": "Home assemblers",
+          "detail": "Paid per accepted piece. Skill badge + QC sample before live orders."
+        },
+        {
+          "time": "Tier 3",
+          "title": "Bulk / workshop",
+          "detail": "Repeat bulk and event runs. Still the same QC bar; just more benches."
+        }
+      ]
+    },
+    {
+      "id": "ops",
+      "type": "checklist",
+      "heading": "Ops that keep orders calm",
+      "items": [
+        {
+          "label": "QC",
+          "detail": "Size, weave integrity, color match, sharp-edge check before pack."
+        },
+        {
+          "label": "Ring supply",
+          "detail": "Stock by color and gauge; reorder before a drop, not after."
+        },
+        {
+          "label": "Kits packed ahead",
+          "detail": "Builder kits pre-bagged so a sale is label-and-ship."
+        },
+        {
+          "label": "Order sizes",
+          "detail": "Single gift, small batch (team/club), bulk (event/company)."
+        },
+        {
+          "label": "Shipping / unboxing",
+          "detail": "Packaging worth filming \u2014 soft wrap, color card, care note."
+        }
+      ]
+    },
+    {
+      "id": "price-floor",
+      "type": "note-callout",
+      "title": "Time is a cost",
+      "body": "Track minutes per piece at Tier 1 before you set a shop price or an assembler rate. Underpaying labor to win a listing is a risk, not a strategy \u2014 see Risks.",
+      "tone": "warning"
+    },
+    {
+      "id": "flow",
+      "type": "steps",
+      "heading": "From order to doorstep",
+      "items": [
+        "Confirm SKU, colorway, and due date.",
+        "Pull from finished stock, kit shelf, or assign an assembler.",
+        "QC against the design card.",
+        "Pack for the camera, ship, log the turnaround."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "workshop",
+  "updated": "2026-09-24",
+  "series": {
+    "id": "chainmail-collective",
+    "title": "Chainmail Collective",
+    "order": 9
+  },
+  "slug": "chainmail-collective-risks",
+  "title": "Risks: labor, copycats, legal, open questions",
+  "summary": "Price floors, copycats, trademarks, fair pay, QC at scale, registration/tax/disclosure, and ownership/cost questions still open.",
+  "tags": [
+    "chainmail",
+    "business",
+    "idea",
+    "education",
+    "risks"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Chainmail Collective \u00b7 9 of 9",
+      "title": "Name the hard parts early",
+      "body": "This page is the honesty shelf. An idea page that skips risks becomes a pitch. Keep these visible while you roll out."
+    },
+    {
+      "id": "risk-list",
+      "type": "checklist",
+      "heading": "Known risks",
+      "items": [
+        {
+          "label": "Labor time / price floor",
+          "detail": "Minutes per heart set the minimum honest price. Ignore this and either you or assemblers eat the loss."
+        },
+        {
+          "label": "Copycats",
+          "detail": "Rings are commodity. Edge is community, fresh designs, and speed of content \u2014 not secrecy of pliers."
+        },
+        {
+          "label": "Trademarks",
+          "detail": "Custom logos need permission. Fan marks and school crests are not free clip art."
+        },
+        {
+          "label": "Fair assembler pay",
+          "detail": "Piece rates must clear a living-effective hourly after QC rejects."
+        },
+        {
+          "label": "QC at scale",
+          "detail": "More builders means more variance. Badges and sample pulls are mandatory, not nice-to-have."
+        },
+        {
+          "label": "Legal basics",
+          "detail": "Business registration, sales tax, contractor vs employee questions, affiliate disclosure on posts."
+        }
+      ]
+    },
+    {
+      "id": "open",
+      "type": "checklist",
+      "heading": "Open questions (not decided yet)",
+      "items": [
+        {
+          "label": "\u2610 Who owns what",
+          "detail": "Maker vs platform vs content rights for photos, patterns, and member gallery posts."
+        },
+        {
+          "label": "\u2610 Ring cost vs heart sell price",
+          "detail": "Unit economics per hero SKU, including waste, shipping, and payment fees."
+        }
+      ]
+    },
+    {
+      "id": "mitigations",
+      "type": "steps",
+      "heading": "Default mitigations",
+      "items": [
+        "Publish time studies before opening paid assembly.",
+        "Require written logo permission on every custom job.",
+        "Keep affiliate terms product-only; audit recruiting-shaped talk.",
+        "Revisit ownership and unit economics before Phase 5 scale."
+      ]
+    },
+    {
+      "id": "close",
+      "type": "note-callout",
+      "title": "Back to the front door",
+      "body": "Risks do not kill the idea \u2014 they set the pace. Return to Chainmail Collective for the map, or to Rollout for the next proof gate.",
+      "tone": "note"
+    }
+  ]
+}

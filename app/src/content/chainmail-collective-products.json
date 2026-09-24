@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "workshop",
+  "updated": "2026-09-24",
+  "series": {
+    "id": "chainmail-collective",
+    "title": "Chainmail Collective",
+    "order": 2
+  },
+  "slug": "chainmail-collective-products",
+  "title": "Products: rings into things people want",
+  "summary": "Wearables, symbols, everyday items, patches, custom logos, wall art, DIY kits, pattern files, and gift lines \u2014 one medium, many SKUs.",
+  "tags": [
+    "chainmail",
+    "business",
+    "idea",
+    "education",
+    "products"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Chainmail Collective \u00b7 2 of 9",
+      "title": "What the rings become",
+      "body": "Every line below is the same craft under a different label. Start narrow (a few hearts and letters), then add lines only when content and orders ask for them."
+    },
+    {
+      "id": "catalog",
+      "type": "compact-table",
+      "heading": "Product families",
+      "caption": "Illustrative catalog \u2014 not a finished SKU list.",
+      "columns": [
+        "Family",
+        "Examples",
+        "Why it works"
+      ],
+      "rows": [
+        [
+          "Wearables",
+          "Bracelets, chokers, earrings, keychains",
+          "Worn = photographed = free ads"
+        ],
+        [
+          "Small symbols",
+          "Hearts, crosses, stars, initials",
+          "Clip-friendly; gift-ready"
+        ],
+        [
+          "Everyday items",
+          "Bag charms, bookmarks, zipper pulls",
+          "Low price, high frequency"
+        ],
+        [
+          "Patches & pins",
+          "Maille panels, pin-backs, morale patches",
+          "Clubs, events, merch tables"
+        ],
+        [
+          "Custom logos",
+          "Company, school, team, event marks",
+          "Bulk lane; permission required"
+        ],
+        [
+          "Wall art",
+          "Framed panels, hanging shapes",
+          "Higher ticket; filmable make"
+        ],
+        [
+          "DIY kits",
+          "Rings, pliers note, pattern card",
+          "Builder lane entry"
+        ],
+        [
+          "Pattern files",
+          "Counted layouts, color maps",
+          "Designer royalty line"
+        ],
+        [
+          "Gift / occasion",
+          "Valentine, graduation, team spirit",
+          "Seasonal content calendar"
+        ]
+      ]
+    },
+    {
+      "id": "focus",
+      "type": "text",
+      "heading": "Ship a thin first shelf",
+      "body": "Founders do not need nine families on day one. Five to ten designs that photograph cleanly beat a bloated catalog. Add a family when you can show a clip, a listing, and a path to fulfill the order."
+    },
+    {
+      "id": "kit-note",
+      "type": "note-callout",
+      "title": "Kits and patterns are products too",
+      "body": "Finished pieces sell the dream. Kits and pattern files sell the craft. Both feed the same content loop and the same community gallery.",
+      "tone": "positive"
+    },
+    {
+      "id": "next",
+      "type": "steps",
+      "heading": "After you pick a shelf",
+      "items": [
+        "Pick three shapes that read in a three-second clip.",
+        "Decide which are finished goods vs kit vs pattern-only.",
+        "Open Lanes to see who buys, builds, or designs each one."
+      ]
+    }
+  ]
+}

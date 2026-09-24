@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "workshop",
+  "updated": "2026-09-24",
+  "series": {
+    "id": "chainmail-collective",
+    "title": "Chainmail Collective",
+    "order": 8
+  },
+  "slug": "chainmail-collective-rollout",
+  "title": "Rollout: five phases with proof",
+  "summary": "Prove it \u2192 shop \u2192 open lanes \u2192 guided pipelines \u2192 scale \u2014 each phase has a proof gate.",
+  "tags": [
+    "chainmail",
+    "business",
+    "idea",
+    "education",
+    "rollout"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Chainmail Collective \u00b7 8 of 9",
+      "title": "Do not skip the proof column",
+      "body": "Each phase unlocks the next only when something measurable is true. Skipping proof is how kits sit in a closet and assemblers wait on orders that never come."
+    },
+    {
+      "id": "phases",
+      "type": "timeline",
+      "heading": "Phases 1\u20135",
+      "items": [
+        {
+          "time": "Phase 1",
+          "title": "Prove it",
+          "detail": "5\u201310 designs built and filmed. First stranger sales \u2014 not only friends and family."
+        },
+        {
+          "time": "Phase 2",
+          "title": "Shop",
+          "detail": "Listings live. Steady weekly orders at a price that covers labor and rings."
+        },
+        {
+          "time": "Phase 3",
+          "title": "Open lanes",
+          "detail": "Builders, designers, affiliates, then paid assemblers once badges and QC exist. Members earning on real sales."
+        },
+        {
+          "time": "Phase 4",
+          "title": "Guided pipelines",
+          "detail": "Members run content with playbooks. Founders edit less, coach more."
+        },
+        {
+          "time": "Phase 5",
+          "title": "Scale",
+          "detail": "Repeat bulk and workshop capacity without dropping QC or fair pay."
+        }
+      ]
+    },
+    {
+      "id": "proof",
+      "type": "compact-table",
+      "heading": "Proof gates",
+      "columns": [
+        "Phase",
+        "Proof you need",
+        "If missing"
+      ],
+      "rows": [
+        [
+          "1 Prove it",
+          "Stranger receipt + clip library",
+          "Stay in the workshop"
+        ],
+        [
+          "2 Shop",
+          "Weekly order count \u2265 your floor",
+          "Fix listing, price, or content"
+        ],
+        [
+          "3 Open lanes",
+          "Member earnings on product sales",
+          "Do not recruit \"team builders\""
+        ],
+        [
+          "4 Guided",
+          "Member-made posts that convert",
+          "Keep founders on the camera"
+        ],
+        [
+          "5 Scale",
+          "Bulk repeat with QC pass rate",
+          "Pause growth; fix process"
+        ]
+      ]
+    },
+    {
+      "id": "habit",
+      "type": "steps",
+      "heading": "Weekly habit while rolling out",
+      "items": [
+        "Ship or refuse: every open order gets a date or a no.",
+        "Film one make or unbox.",
+        "Review one risk from the Risks page.",
+        "Only then add a SKU or a lane."
+      ]
+    }
+  ]
+}

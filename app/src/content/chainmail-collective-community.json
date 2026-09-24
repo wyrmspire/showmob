@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "workshop",
+  "updated": "2026-09-24",
+  "series": {
+    "id": "chainmail-collective",
+    "title": "Chainmail Collective",
+    "order": 6
+  },
+  "slug": "chainmail-collective-community",
+  "title": "Community: gallery, challenges, clubs",
+  "summary": "Show work, monthly design challenges, how-tos, skill badges, school/club chapters, local meetups.",
+  "tags": [
+    "chainmail",
+    "business",
+    "idea",
+    "education",
+    "community"
+  ],
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Chainmail Collective \u00b7 6 of 9",
+      "title": "The edge is people, not pliers",
+      "body": "Copycats can buy the same rings. They cannot easily copy a gallery full of member work, monthly challenges, and local clubs that already know each other's weave."
+    },
+    {
+      "id": "pillars",
+      "type": "diagram",
+      "heading": "Community pillars",
+      "nodes": [
+        {
+          "title": "Gallery",
+          "detail": "Member builds and colorways, credited."
+        },
+        {
+          "title": "Challenges",
+          "detail": "Monthly design prompts with a shareable brief."
+        },
+        {
+          "title": "How-tos",
+          "detail": "Lessons from founders, then from badge holders."
+        },
+        {
+          "title": "Badges",
+          "detail": "Skill marks that gate paid assembler eligibility."
+        },
+        {
+          "title": "Clubs & schools",
+          "detail": "Chapters with a bulk lane and a mentor."
+        },
+        {
+          "title": "Meetups",
+          "detail": "Local build nights; phones down for the weave, up for the clip."
+        }
+      ]
+    },
+    {
+      "id": "badges",
+      "type": "text",
+      "heading": "Badges are for craft, not hierarchy",
+      "body": "A skill badge means you passed QC samples and can take paid assembly. It is not a rank people buy. How-to lessons stay free enough that a curious builder can reach the badge without a paywall maze."
+    },
+    {
+      "id": "rhythm",
+      "type": "steps",
+      "heading": "A simple monthly rhythm",
+      "items": [
+        "Publish one design challenge with a clear size and color constraint.",
+        "Feature gallery winners (permission first) in content clips.",
+        "Run one how-to that unlocks the next badge checkpoint.",
+        "Optional: host or list a local meetup."
+      ]
+    },
+    {
+      "id": "close",
+      "type": "quote",
+      "quote": "The catalog is rings. The moat is the room where people learn to link them.",
+      "attribution": "Working line for this series"
+    }
+  ]
+}
