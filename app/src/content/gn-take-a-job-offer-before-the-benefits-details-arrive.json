@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-take-a-job-offer-before-the-benefits-details-arrive",
+  "title": "Take a job offer before the benefits details arrive?",
+  "summary": "An uncertain decision page: what you can safely accept now, what to condition, and what to wait for before the benefits packet lands.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "career",
+    "decision",
+    "benefits",
+    "uncertainty"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Uncertain on purpose",
+      "title": "You can lean yes — you should not pretend the packet does not matter",
+      "body": "Base pay and start date are arriving without medical, retirement match, PTO, or equity paperwork. This page separates what is safe to signal from what is reckless to finalize."
+    },
+    {
+      "id": "split",
+      "type": "comparison",
+      "heading": "Two different acts",
+      "columns": [
+        {
+          "name": "Signal interest / soft accept",
+          "detail": "Thank them, confirm base/comp and role, ask for the benefits summary in writing with a date. Keeps momentum without locking blind."
+        },
+        {
+          "name": "Hard accept / resign elsewhere",
+          "detail": "Wait for the benefits packet (or a written summary of the big four: health, 401k match, PTO, equity/bonus). Resigning on vibes is how people get surprised."
+        }
+      ]
+    },
+    {
+      "id": "need",
+      "type": "checklist",
+      "heading": "Minimum written facts before a hard yes",
+      "items": [
+        {
+          "label": "Health plan type + employee premium estimate",
+          "detail": "High-deductible vs PPO changes take-home a lot."
+        },
+        {
+          "label": "Retirement match formula",
+          "detail": "Percent and vesting — not just 'we have a 401k'."
+        },
+        {
+          "label": "PTO / sick / holidays",
+          "detail": "Especially if you are comparing against a current job."
+        },
+        {
+          "label": "Bonus / equity eligibility and timing",
+          "detail": "Offer letter vs handbook — know which document wins."
+        }
+      ]
+    },
+    {
+      "id": "script",
+      "type": "note-callout",
+      "title": "A calm reply that buys the packet",
+      "body": "I'm excited about the role and the base compensation. Before I give a final acceptance, could you send the benefits summary (medical premiums, 401k match, PTO, and any bonus/equity eligibility) by [date]? Happy to hop on a quick call if that is faster.",
+      "tone": "note"
+    },
+    {
+      "id": "warn",
+      "type": "note-callout",
+      "title": "When waiting is not free",
+      "body": "If the employer has a real exploding deadline, ask whether a conditional accept pending benefits review is allowed. If they refuse any written benefits detail, that itself is information.",
+      "tone": "warning"
+    }
+  ]
+}

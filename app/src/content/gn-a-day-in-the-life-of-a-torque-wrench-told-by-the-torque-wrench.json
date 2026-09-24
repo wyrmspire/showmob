@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-day-in-the-life-of-a-torque-wrench-told-by-the-torque-wrench",
+  "title": "A day in the life of a torque wrench, told by the torque wrench",
+  "summary": "A whimsical first-person note from a click-type torque wrench about calibration anxiety, over-torquers, and the one bolt that mattered.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "field",
+  "tags": [
+    "grading-night",
+    "tools",
+    "narrative",
+    "torque",
+    "whimsical"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Whimsical — narrated by the tool",
+      "title": "I am a torque wrench, and today I clicked for a living",
+      "body": "I live in a foam cutout that smells faintly of oil. Humans borrow me, set my numbers, and pretend the click is optional. It is not."
+    },
+    {
+      "id": "day",
+      "type": "timeline",
+      "heading": "My shift",
+      "items": [
+        {
+          "time": "06:12",
+          "title": "Crib checkout",
+          "detail": "A hand with coffee breath writes my asset tag on a log. Flattering."
+        },
+        {
+          "time": "07:40",
+          "title": "First truth",
+          "detail": "Cylinder head bolts. I am set correctly. I click. Someone still leans 'just a hair more.' I forgive nothing."
+        },
+        {
+          "time": "11:05",
+          "title": "Abuse attempt",
+          "detail": "Used as a breaker bar. My soul leaves through the ratchet. A lead notices. I am rescued."
+        },
+        {
+          "time": "14:20",
+          "title": "The careful one",
+          "detail": "Slow pull, straight axis, stop on click. This is what calibration dreams about."
+        },
+        {
+          "time": "15:50",
+          "title": "Return",
+          "detail": "Wound back toward storage setting, wiped, logged OK. I sleep in foam. Tomorrow: another flange."
+        }
+      ]
+    },
+    {
+      "id": "voice",
+      "type": "quote",
+      "quote": "The click is not a suggestion. It is the end of the sentence.",
+      "attribution": "— the wrench"
+    },
+    {
+      "id": "plea",
+      "type": "note-callout",
+      "title": "If you borrow me",
+      "body": "Set me in my range, pull smooth, stop at click, never use me to bust frozen bolts, and put my spring near rest when you put me away. I will repay you with fasteners that stay where engineering put them.",
+      "tone": "positive"
+    }
+  ]
+}
