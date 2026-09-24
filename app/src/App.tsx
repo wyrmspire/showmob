@@ -4,6 +4,7 @@ import { ArtifactView } from "./ArtifactView";
 import { Home } from "./Home";
 import { Studio } from "./Studio";
 import { Everything } from "./Everything";
+import { Grading } from "./Grading";
 import { screenFromLocation, writeScreen } from "./routing";
 import { isReservedSlug } from "./screen";
 import "./style.css";
@@ -39,6 +40,9 @@ export function App() {
   }
   if (screen === "everything") {
     return <Everything open={open} home={home} />;
+  }
+  if (screen === "grading") {
+    return <Grading home={home} />;
   }
   if (screen === "author") {
     return <Studio back={home} />;

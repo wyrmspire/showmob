@@ -1,6 +1,6 @@
 # Supabase: current state
 
-Checked against the live database on 2026-09-24. The site still reads repository JSON. Nothing in the renderer talks to Supabase.
+Checked against the live database on 2026-09-24. The site still reads repository JSON for content. The one surface that talks to Supabase is the grading-night test center (`/grading`), through the `/api/gn` Vercel function with the service key held server-side; nothing in the renderer holds a key.
 
 ## What exists now
 

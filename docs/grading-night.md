@@ -1,6 +1,6 @@
 # Grading night
 
-Status: **direction doc** (2026-09-23). Nothing here is built yet. Steward: Chris (intent) / Instinct (doc).
+Status: **in motion** (2026-09-24). The 100 subjects are chosen and loaded into `showmob_gn_subjects`, the machinery tables exist, and the test center is built (`/grading`). Steward: Chris (intent) / Instinct (doc).
 
 ## Why
 
@@ -87,6 +87,10 @@ The 100 are not the product. They are the microscope.
 ## The rapid test center
 
 One grading page. It lists the ~100 candidates as links. Click one, read it, grade it, come back, click the next.
+
+**Built 2026-09-24.** The test center lives at [`/grading`](https://showmob.vercel.app/grading): unlisted (no Home link), `noindex`, grouped by coverage bucket. It renders each built `gn-*` artifact inline (preview pages never publish), tracks time on page, scroll depth, finish and widget touches while Chris reads, and posts the grade to `/api/gn`. Blind pairs can be compared side by side with the sides swapped at random; the pick is recorded as a subject id. Generator names and render axes stay hidden from the panel — Chris grades pages, not provenance.
+
+`/api/gn` is the one Vercel server function that holds the Supabase service-role key. `GET` returns subjects plus existing grades; `POST` validates one grade and calls `showmob_gn_record_grade`. The browser never sees the key and never touches the tables (RLS denies everything else). Environment lives in Vercel project settings as `SHOWMOB_SUPABASE_URL` and `SHOWMOB_SUPABASE_SERVICE_ROLE_KEY` — never `VITE_*`, never in the repo.
 
 Candidates vary on purpose. The coverage matrix above picks the situations; these render axes vary how each one is drawn:
 

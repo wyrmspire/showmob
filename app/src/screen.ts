@@ -15,10 +15,13 @@
  * indistinguishable from the route itself (e.g. a preview page named "home"
  * would render Home instead of "Not published"), so validation rejects them.
  */
-export const RESERVED_SLUGS = ["home", "author", "everything"] as const;
+export const RESERVED_SLUGS = ["home", "author", "everything", "grading"] as const;
 
 /** Unlisted index of published + preview pages. Not linked from Home. */
 export const EVERYTHING_PATH = "/everything";
+
+/** Grading night test center. Unlisted and noindex, like /everything. */
+export const GRADING_PATH = "/grading";
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
@@ -76,6 +79,12 @@ export function resolveScreen(
     pathname.replace(/\/$/, "") === EVERYTHING_PATH
   ) {
     return "everything";
+  }
+  if (
+    typeof pathname === "string" &&
+    pathname.replace(/\/$/, "") === GRADING_PATH
+  ) {
+    return "grading";
   }
   if (typeof pathname === "string" && !fromPath && !isRootPath(pathname)) {
     return NOT_FOUND_SCREEN;
