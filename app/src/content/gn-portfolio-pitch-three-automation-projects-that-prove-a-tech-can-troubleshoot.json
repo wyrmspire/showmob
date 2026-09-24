@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-portfolio-pitch-three-automation-projects-that-prove-a-tech-can-troubleshoot",
+  "title": "Portfolio pitch: three automation projects that prove a tech can troubleshoot",
+  "summary": "Three fictional automation projects framed as portfolio proof that a tech can troubleshoot under pressure.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "career",
+    "portfolio",
+    "automation"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Fictional portfolio",
+      "title": "Three projects, one claim: I can troubleshoot",
+      "body": "Alex Rivera (fictional) built this portfolio pitch for a senior tech interview. Each project shows a different troubleshooting muscle: intermittent electrical, sequence logic, and network IO. Steal the structure; replace with your real work."
+    },
+    {
+      "id": "fiction",
+      "type": "note-callout",
+      "title": "Projects are fictional",
+      "body": "Plant names, metrics, and Alex Rivera are invented for this artifact. Present only work you actually did in real interviews.",
+      "tone": "note"
+    },
+    {
+      "id": "claim",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "3",
+          "label": "Projects in the pitch deck"
+        },
+        {
+          "value": "1",
+          "label": "Clear claim: troubleshoot to root cause"
+        },
+        {
+          "value": "5 min",
+          "label": "Spoken budget per project"
+        }
+      ]
+    },
+    {
+      "id": "p1",
+      "type": "text",
+      "heading": "Project 1 \u2014 Intermittent e-stop drop on a case packer",
+      "body": "Situation: Packer at fictional Clearwater Foods dropped e-stop randomly. Action: Alex logged bus voltage and safety loop continuity, found a cracked conductor in a hinge flex. Result: Fault cleared; added a flex-loop inspection to PM. Proof point: instrumentation before parts roulette."
+    },
+    {
+      "id": "p2",
+      "type": "text",
+      "heading": "Project 2 \u2014 Transfer timing race after a die change",
+      "body": "Situation: After a die swap, Line B double-hit blanks. Action: Compared encoder counts and PLC permissive bits to the prior recipe; found a leftover offset in the transfer teach. Result: Corrected teach + checklist item \"verify transfer points after die change.\" Proof point: sequence literacy, not just module swaps."
+    },
+    {
+      "id": "p3",
+      "type": "text",
+      "heading": "Project 3 \u2014 Cell IO drop every night at 02:10",
+      "body": "Situation: Nightly IO freeze on a filler cell. Action: Switch logs showed a broadcast storm when a misconfigured camera NVR rejoined. Result: Segmented the camera VLAN; freeze stopped. Proof point: networks are part of automation troubleshooting."
+    },
+    {
+      "id": "matrix",
+      "type": "compact-table",
+      "heading": "Proof matrix",
+      "columns": [
+        "Project",
+        "Muscle shown",
+        "Artifact to show"
+      ],
+      "rows": [
+        [
+          "E-stop flex",
+          "Electrical intermittent rigor",
+          "Before/after scope or meter log + PM add"
+        ],
+        [
+          "Transfer race",
+          "PLC/sequence reasoning",
+          "Recipe diff + checklist line"
+        ],
+        [
+          "02:10 IO drop",
+          "Network + OT hygiene",
+          "Switch log snippet + VLAN change note"
+        ]
+      ]
+    },
+    {
+      "id": "how",
+      "type": "steps",
+      "heading": "How to deliver the pitch",
+      "items": [
+        "Open with the claim in one sentence.",
+        "Tell each project as Situation \u2192 Action \u2192 Result in under five minutes.",
+        "Show one artifact per project (photo of flex, checklist, redacted log).",
+        "Close by mapping their job posting keywords to these three muscles."
+      ]
+    },
+    {
+      "id": "compare",
+      "type": "comparison",
+      "heading": "Confident vs. fluffy",
+      "columns": [
+        {
+          "name": "Confident",
+          "detail": "\"I logged the safety loop and found a cracked flex. Here's the PM change.\""
+        },
+        {
+          "name": "Fluffy",
+          "detail": "\"I'm a passionate team player who loves automation and synergy.\""
+        },
+        {
+          "name": "Why it matters",
+          "detail": "Hiring managers buy evidence of troubleshooting, not adjectives."
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Portfolio check",
+      "prompt": "Which project best answers \"Tell me about a time you fixed a network-related downtime\"?",
+      "options": [
+        "Project 1 e-stop flex",
+        "Project 2 transfer race",
+        "Project 3 02:10 IO drop",
+        "None \u2014 invent a fourth on the spot"
+      ],
+      "answer": 2,
+      "explanation": "Project 3 is explicitly network/VLAN. Match question shape to project muscle.",
+      "correctFeedback": "Yes \u2014 Project 3.",
+      "wrongFeedback": "Use the proof matrix: network muscle is Project 3."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Build your three",
+      "body": "Write three real STAR cards this week. Alex's structure is the scaffold; your logs are the proof."
+    }
+  ]
+}

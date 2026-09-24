@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-love-letter-to-the-555-timer-ic",
+  "title": "A love letter to the 555 timer IC",
+  "summary": "An affectionate note to the 555: eight pins, a century of hobbyist blinks, still teaching timing.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "signal",
+  "tags": [
+    "grading-night",
+    "electronics",
+    "555",
+    "narrative"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "For the chip that blinked first",
+      "title": "Dear 555,",
+      "body": "You are not the fastest, the densest, or the most fashionable. You are the reason a thousand kitchen-table engineers learned what a timing capacitor feels like. This is a thank-you note disguised as a datasheet summary."
+    },
+    {
+      "id": "why",
+      "type": "text",
+      "heading": "Why anyone still cares",
+      "body": "Hans Camenzind's 555 (introduced in the early 1970s) packed a comparator sandwich and a flip-flop into a friendly DIP. Astable mode blinked LEDs. Monostable mode debounced buttons. Students met thresholds at one-third and two-thirds VCC before they met microcontrollers. Fashion moved on; the pedagogy did not."
+    },
+    {
+      "id": "modes",
+      "type": "comparison",
+      "heading": "The two moods everyone learns first",
+      "columns": [
+        {
+          "name": "Astable",
+          "detail": "Free-running oscillator. Charge and discharge a capacitor between thresholds \u2014 square-ish waves for days."
+        },
+        {
+          "name": "Monostable",
+          "detail": "One-shot. A trigger pulse and you output a single timed high, then rest. Debounce, stretch, delay."
+        }
+      ]
+    },
+    {
+      "id": "pins",
+      "type": "compact-table",
+      "heading": "Eight pins, still worth memorizing",
+      "columns": [
+        "Pin",
+        "Name",
+        "Affectionate gloss"
+      ],
+      "rows": [
+        [
+          "1",
+          "GND",
+          "The quiet floor"
+        ],
+        [
+          "2",
+          "TRIG",
+          "The tap that starts a one-shot"
+        ],
+        [
+          "3",
+          "OUT",
+          "Where the LED learns to blink"
+        ],
+        [
+          "4",
+          "RESET",
+          "The polite interrupt"
+        ],
+        [
+          "5",
+          "CTRL",
+          "Optional threshold tweak \u2014 often capped quietly"
+        ],
+        [
+          "6",
+          "THRESH",
+          "The upper eye on the capacitor"
+        ],
+        [
+          "7",
+          "DISCH",
+          "Open-collector pull-down for the timing node"
+        ],
+        [
+          "8",
+          "VCC",
+          "Usually 4.5\u201316 V for the classic bipolar"
+        ]
+      ]
+    },
+    {
+      "id": "quote",
+      "type": "quote",
+      "quote": "You taught us that time is just a voltage climbing a curve.",
+      "attribution": "Every lab partner who ever watched an electrolytic crawl toward 2/3 VCC"
+    },
+    {
+      "id": "close-note",
+      "type": "note-callout",
+      "title": "Still useful, still humble",
+      "body": "Microcontrollers stole the glamorous jobs. The 555 kept the honest ones: a clean pulse, a teaching schematic, a part you can still buy when the supply chain jokes go quiet.",
+      "tone": "positive"
+    }
+  ]
+}
