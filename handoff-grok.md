@@ -19,22 +19,22 @@ Your batch is the 25 situations below. Each line: id - suggested slug - title - 
 GN-001 - gn-what-to-pack-for-a-one-night-work-trip - What to pack for a one-night work trip | Restraint test: a short list, not a dashboard
 GN-005 - gn-grocery-list-for-tacos-for-four - Grocery list for tacos for four
 GN-009 - gn-weekly-chore-rotation-for-three-roommates - Weekly chore rotation for three roommates
-GN-013 - gn-converting-a-one-car-garage-into-a-small-machine-shop-power-layout-budget - Converting a one-car garage into a small machine shop: power, layout, budget | A/B pair 2 (A): render schedule-first (phases over time)
+GN-013 - gn-converting-a-one-car-garage-into-a-small-machine-shop-power-layout-budget-a - Converting a one-car garage into a small machine shop: power, layout, budget | A/B pair 2 (A): render schedule-first (phases over time)
 GN-017 - gn-building-a-2-meter-j-pole-antenna-this-weekend - Building a 2-meter J-pole antenna this weekend
 GN-021 - gn-planting-a-4x8-raised-vegetable-bed-for-spring - Planting a 4x8 raised vegetable bed for spring
-GN-025 - gn-how-a-mosfet-switches-gate-charge-rds-on-and-thermal-limits - How a MOSFET switches: gate charge, Rds(on), and thermal limits | A/B pair 3 (A): render as a linear read-through course
+GN-025 - gn-how-a-mosfet-switches-gate-charge-rds-on-and-thermal-limits-a - How a MOSFET switches: gate charge, Rds(on), and thermal limits | A/B pair 3 (A): render as a linear read-through course
 GN-029 - gn-g-code-fundamentals-reading-a-20-line-facing-program-line-by-line - G-code fundamentals: reading a 20-line facing program line by line
 GN-033 - gn-a-troubleshooting-decision-tree-for-a-vfd-that-trips-on-overvoltage-during-decel - A troubleshooting decision tree for a VFD that trips on overvoltage during decel | Used at the drive cabinet: must scan fast
 GN-037 - gn-daily-pre-shift-inspection-checklist-for-a-cnc-lathe - Daily pre-shift inspection checklist for a CNC lathe | Template, generic example data
 GN-041 - gn-interview-prep-sheet-star-stories-for-a-maintenance-tech-role-example-candidate - Interview prep sheet: STAR stories for a maintenance tech role (example candidate) | Fictional candidate
-GN-045 - gn-tomorrow-three-meetings-a-dentist-appointment-and-a-4-hour-focus-block - Tomorrow: three meetings, a dentist appointment, and a 4-hour focus block | A/B pair 4 (A): render as a plain agenda list
+GN-045 - gn-tomorrow-three-meetings-a-dentist-appointment-and-a-4-hour-focus-block-a - Tomorrow: three meetings, a dentist appointment, and a 4-hour focus block | A/B pair 4 (A): render as a plain agenda list
 GN-049 - gn-weekly-meal-prep-shopping-list-plus-cook-order - Weekly meal prep: shopping list plus cook order
-GN-053 - gn-the-history-of-the-transistor-from-1947-to-the-first-microprocessor - The history of the transistor, from 1947 to the first microprocessor | A/B pair 5 (A): render as a timeline
+GN-053 - gn-the-history-of-the-transistor-from-1947-to-the-first-microprocessor-a - The history of the transistor, from 1947 to the first microprocessor | A/B pair 5 (A): render as a timeline
 GN-057 - gn-radio-from-spark-gap-to-software-defined-radio - Radio from spark gap to software-defined radio
 GN-061 - gn-intermittent-fault-a-conveyor-stops-at-random-2-3-times-a-week-cause-unknown - Intermittent fault: a conveyor stops at random 2-3 times a week, cause unknown | Must show what's known vs guessed
 GN-065 - gn-is-a-used-lathe-worth-2-500-photos-show-wear-seller-not-answering - Is a used lathe worth $2,500? Photos show wear, seller not answering
 GN-069 - gn-an-entire-automotive-stamping-plant-lines-plcs-networks-maintenance-crews - An entire automotive stamping plant: lines, PLCs, networks, maintenance crews
-GN-073 - gn-the-us-electrical-grid-from-power-plant-to-wall-outlet - The US electrical grid from power plant to wall outlet | A/B pair 6 (B): render as a zoomable map, region to house
+GN-073 - gn-the-us-electrical-grid-from-power-plant-to-wall-outlet-b - The US electrical grid from power plant to wall outlet | A/B pair 6 (B): render as a zoomable map, region to house
 GN-077 - gn-a-dungeon-crawl-where-each-room-is-a-basic-electronics-puzzle - A dungeon crawl where each room is a basic electronics puzzle
 GN-081 - gn-a-love-letter-to-the-555-timer-ic - A love letter to the 555 timer IC
 GN-085 - gn-pitch-to-a-plant-manager-replace-three-aging-relay-panels-with-one-plc - Pitch to a plant manager: replace three aging relay panels with one PLC | Downtime and cost numbers are examples
@@ -89,7 +89,7 @@ Some of your situations are also being rendered by another generator on a differ
 ============================================================
 
 - One JSON artifact per situation, schemaVersion 1, saved under app/src/content/ in wyrmspire/showmob.
-- File name and slug: the slug is the kebab-case title prefixed gn- (example: gn-vfd-decel-trip). Use the slugs listed in section 2.
+- File name and slug: the slug is the kebab-case title prefixed gn- (example: gn-vfd-decel-trip). Use the slugs listed in section 2. A/B pair rows (the axis note marks them "A/B pair N (X)"): append the pair side to the slug, -a or -b matching the side letter (example: gn-what-to-pack-for-a-one-night-work-trip-a). The listed slugs for pair rows already include the suffix.
 - status: "preview" on every artifact. Always. Never "published".
 - Every artifact must pass repo validation: npm test must be green.
 - Density reference: for rows marked "dense" or "extreme", the bar is app/src/content/plan-data-sufficiency.json (https://showmob.vercel.app/a/plan-data-sufficiency). Density follows signal - match that bar where the subject earns it, never pad to reach it. Microscopic and light rows should be genuinely small.
