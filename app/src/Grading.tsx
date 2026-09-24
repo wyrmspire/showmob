@@ -170,6 +170,60 @@ function ChoiceRow({
 }
 
 const PASSCODE_KEY = "showmob-grading-passcode";
+const DRAFT_KEY_PREFIX = "showmob-gn-draft-";
+const SUBJECT_ID_RE = /^GN-\d{3}$/;
+
+const PANEL_KEYS = [
+  "rating",
+  "moreLess",
+  "density",
+  "content",
+  "representation",
+  "interaction",
+  "scan",
+  "wouldSend",
+  "widgetNotes",
+  "missing",
+  "unneeded",
+  "suggestion",
+  "abChoice",
+] as const;
+
+function draftKey(id: string): string {
+  return `${DRAFT_KEY_PREFIX}${id}`;
+}
+
+function readDraft(id: string): Panel | null {
+  try {
+    const raw = sessionStorage.getItem(draftKey(id));
+    if (!raw) return null;
+    const parsed: unknown = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") return null;
+    const obj = parsed as Record<string, unknown>;
+    for (const key of PANEL_KEYS) {
+      if (typeof obj[key] !== "string") return null;
+    }
+    return parsed as Panel;
+  } catch {
+    return null;
+  }
+}
+
+function writeDraft(id: string, panel: Panel): void {
+  try {
+    sessionStorage.setItem(draftKey(id), JSON.stringify(panel));
+  } catch {
+    // Quota / private mode — ignore.
+  }
+}
+
+function clearDraft(id: string): void {
+  try {
+    sessionStorage.removeItem(draftKey(id));
+  } catch {
+    // ignore
+  }
+}
 
 function storedPasscode(): string {
   try {
@@ -225,6 +279,7 @@ export function Grading({
   const [saveError, setSaveError] = useState("");
   const [justSaved, setJustSaved] = useState(false);
   const behaviorRef = useRef<BehaviorDraft>({ start: 0, maxDepth: 0, events: [] });
+  const openIdRef = useRef<string | null>(null);
   const [passcode, setPasscode] = useState<string>(() => storedPasscode());
   const [gateError, setGateError] = useState("");
 
@@ -343,18 +398,67 @@ export function Grading({
 
   const gradedIds = useMemo(() => new Set(grades.map((g) => g.subject_id)), [grades]);
 
+  // Keep a ref so hashchange can compare without re-binding every openId change.
+  openIdRef.current = openId;
+
+  // Persist the open panel draft while grading (survives back-nav; cleared on save).
+  useEffect(() => {
+    if (!openId || justSaved) return;
+    writeDraft(openId, panel);
+  }, [openId, panel, justSaved]);
+
+  // Deep-link /grading#GN-042 and browser back/forward between subjects.
+  useEffect(() => {
+    if (!subjects || !passcode) return;
+
+    const openFromHash = () => {
+      const raw = decodeURIComponent(window.location.hash.replace(/^#/, ""));
+      if (!raw) {
+        if (openIdRef.current) {
+          setOpenId(null);
+          setCompare(false);
+        }
+        return;
+      }
+      if (!SUBJECT_ID_RE.test(raw)) return;
+      if (!subjects.some((s) => s.id === raw)) return;
+      if (openIdRef.current === raw) return;
+      setOpenId(raw);
+      setCompare(false);
+      setPanel(readDraft(raw) ?? emptyPanel());
+      setSaveError("");
+      setJustSaved(false);
+      window.scrollTo(0, 0);
+    };
+
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+    return () => window.removeEventListener("hashchange", openFromHash);
+  }, [subjects, passcode]);
+
   const openSubject = (id: string) => {
+    openIdRef.current = id;
     setOpenId(id);
     setCompare(false);
-    setPanel(emptyPanel());
+    setPanel(readDraft(id) ?? emptyPanel());
     setSaveError("");
     setJustSaved(false);
-    globalThis.window?.scrollTo(0, 0);
+    if (window.location.hash !== `#${id}`) {
+      // Assigning hash pushes history so back/forward works; scrollTo below undoes any jump.
+      window.location.hash = id;
+    }
+    window.scrollTo(0, 0);
   };
 
   const closeSubject = () => {
+    openIdRef.current = null;
     setOpenId(null);
     setCompare(false);
+    // Leave the sessionStorage draft so re-opening restores it; only clear the hash.
+    if (window.location.hash) {
+      const path = window.location.pathname + window.location.search;
+      history.replaceState(null, "", path);
+    }
   };
 
   const set = (key: keyof Panel) => (value: string) =>
@@ -420,6 +524,7 @@ export function Grading({
       const data = (await res.json()) as { grade?: GradeRow; error?: string };
       if (!res.ok || !data.grade) throw new Error(data.error || `save failed (${res.status})`);
       setGrades((current) => [data.grade as GradeRow, ...current]);
+      clearDraft(open.id);
       setJustSaved(true);
     } catch (err) {
       setSaveError((err as Error).message);

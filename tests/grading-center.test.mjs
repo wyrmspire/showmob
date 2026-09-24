@@ -77,3 +77,14 @@ test('grading surface links to the unlisted /everything index; Home stays clean'
   const home = read('../app/src/Home.tsx');
   assert.doesNotMatch(home, /everything/i);
 });
+
+test('grader panel drafts persist in sessionStorage under a per-subject key', () => {
+  const grading = read('../app/src/Grading.tsx');
+  assert.match(grading, /sessionStorage/);
+  assert.match(grading, /showmob-gn-draft-/);
+});
+
+test('grading deep-links subjects via location.hash and hashchange', () => {
+  const grading = read('../app/src/Grading.tsx');
+  assert.match(grading, /location\.hash|hashchange/);
+});
