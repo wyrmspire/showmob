@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { type Artifact, type Block, type ThemeId } from "./schema";
 import { formatIssues, parseArtifact, restoreDraft } from "./validation";
 import { BlockView } from "./components/BlockView";
+import { heroDensityClass } from "./hero-density";
 import { Callout } from "./components/file-kit";
 import { themes } from "./catalog";
 import {
@@ -655,7 +656,9 @@ export function Studio({ back }: { back: () => void }) {
           </section>
           <section className="live">
             <span className="eyebrow">Block preview</span>
-            <div className={`mini-shell artifact theme-${draft.theme}`}>
+            <div
+                className={`mini-shell artifact theme-${draft.theme}${heroDensityClass(draft.blocks)}`}
+              >
               <BlockView block={b} />
             </div>
           </section>

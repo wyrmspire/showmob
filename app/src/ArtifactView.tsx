@@ -8,6 +8,7 @@ import {
 import { BlockView } from "./components/BlockView";
 import { type Artifact, type ThemeId } from "./schema";
 import { ArtifactLink, artifactHref } from "./components/ArtifactLink";
+import { heroDensityClass } from "./hero-density";
 import {
   applyArtifactShareMeta,
   clearArtifactShareMeta,
@@ -152,7 +153,11 @@ export function ArtifactView({
           Show controls <span aria-hidden>·</span> Esc
         </button>
       )}
-      <div id="artifact-content" className="shell" tabIndex={-1}>
+      <div
+          id="artifact-content"
+          className={`shell${heroDensityClass(entry.blocks)}`}
+          tabIndex={-1}
+        >
         {entry.blocks.map((b) => (
           <div className="block-frame" key={b.id}>
             <BlockView block={b} />

@@ -129,3 +129,31 @@ test('Home/Studio chrome no longer hardcodes #635d59 or #146a5b outside the root
   assert.match(css, /\.entry-card p\{color:var\(--muted\)/);
   assert.match(css, /var\(--card-accent,var\(--accent\)\)/);
 });
+
+test('hero scales to page size so short pages do not open on a full-screen title', () => {
+  const view = read('../app/src/ArtifactView.tsx');
+  const grading = read('../app/src/Grading.tsx');
+  const studio = read('../app/src/Studio.tsx');
+  const css = read('../app/src/style.css');
+  assert.match(view, /heroDensityClass\(entry\.blocks\)/);
+  assert.match(grading, /heroDensityClass\(artifact\.blocks\)/);
+  assert.match(studio, /heroDensityClass\(draft\.blocks\)/);
+  assert.match(css, /\.hero-micro \.hero h1\{font-size:clamp\(30px,6vw,52px\)/);
+  assert.match(css, /\.hero-short \.hero h1\{font-size:clamp\(36px,7\.5vw,76px\)/);
+  // the grand default hero is untouched for full-length pages
+  assert.match(css, /\.hero\{padding-top:clamp\(48px,10vw,120px\)\}/);
+  assert.match(css, /\.hero h1\{font-family:Georgia/);
+});
+
+test('hero density tiers by block count', async () => {
+  const { heroDensity, heroDensityClass } = await import('../app/src/hero-density.ts');
+  const blocks = (n) => Array.from({ length: n }, (_, i) => ({ id: `b${i}`, type: 'text', heading: 'h', body: 'b' }));
+  assert.equal(heroDensity(blocks(2)), 'micro');
+  assert.equal(heroDensity(blocks(4)), 'micro');
+  assert.equal(heroDensity(blocks(5)), 'short');
+  assert.equal(heroDensity(blocks(8)), 'short');
+  assert.equal(heroDensity(blocks(9)), 'full');
+  assert.equal(heroDensity(blocks(23)), 'full');
+  assert.equal(heroDensityClass(blocks(3)), ' hero-micro');
+  assert.equal(heroDensityClass(blocks(12)), '');
+});
