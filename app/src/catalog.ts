@@ -69,6 +69,11 @@ export const seriesMeta: Record<string, { kicker: string; blurb: string }> = {
     blurb:
       "Safe, consent-based pages for isolating owned devices, observing local services and learning from decoys without exposing anyone else.",
   },
+  "allegory-encoding": {
+    kicker: "Privacy craft for teaching stories",
+    blurb:
+      "Allegory as lossy encoding: eight rules, two checks, an underside limit, then execution, public norms, and the art of the costume.",
+  },
 };
 
 function buildSeries(list: Artifact[]) {

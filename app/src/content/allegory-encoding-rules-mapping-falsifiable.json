@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "night",
+  "tags": [
+    "education",
+    "allegory",
+    "privacy",
+    "encoding"
+  ],
+  "updated": "2026-09-24",
+  "slug": "allegory-encoding-rules-mapping-falsifiable",
+  "title": "Rules 5–6: unstable mapping and falsifiability",
+  "summary": "Do not reuse the same costume across tellings, and make claims sharp enough to be wrong — anti-astrology.",
+  "series": {
+    "id": "allegory-encoding",
+    "title": "Allegory that stays private",
+    "order": 4
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Allegory that stays private · 4 of 9",
+      "title": "Rotate the costume; sharpen the claim",
+      "body": "Privacy dies by accumulation, and teaching dies by vagueness. Rule 5 stops readers from aligning chapters into a key. Rule 6 stops the page from becoming incense that flatters everyone and commits to nothing."
+    },
+    {
+      "id": "r5",
+      "type": "text",
+      "heading": "5. Do not keep the mapping stable",
+      "body": "If you write more than one allegory from the same life, change the costume. A stable mapping — same stand-in names, same invented company, same geography metaphor — lets a persistent reader align chapters and recover the key. Rotate vocabulary, swap which role carries which trait, and avoid a private legend that only you and one friend can read across pages.\n\nEach page should stand alone under the same lossy rules. Continuity is for fiction series; here continuity is a deanonymization attack."
+    },
+    {
+      "id": "r5-cmp",
+      "type": "comparison",
+      "heading": "Stable legend vs rotating costume",
+      "columns": [
+        {
+          "name": "Stable mapping (risk)",
+          "detail": "Same invented town, same trio of nicknames, same \"blue warehouse.\" Later pages become a codebook."
+        },
+        {
+          "name": "Unstable mapping (safer)",
+          "detail": "New domain, new role labels, reshuffled traits. The mechanism repeats; the costume does not."
+        }
+      ]
+    },
+    {
+      "id": "r6",
+      "type": "text",
+      "heading": "6. Make it falsifiable (anti-astrology)",
+      "body": "Astrology flatters everyone and commits to nothing. Private allegory must still be wrong about something specific — otherwise it is not a lesson, it is incense. State a mechanism, a tradeoff, or a failure mode that a reader can check against their own experience: \"When the person who can stop the line is not the person who hears the alarm, response time collapses.\"\n\nIf every reader can nod along no matter what they lived, you under-specified. Add a claim sharp enough that someone could say \"that is not how our shop works\" — without needing to know who you meant."
+    },
+    {
+      "id": "r6-steps",
+      "type": "steps",
+      "heading": "Anti-astrology pass",
+      "items": [
+        "Underline the moral. Is it a mechanism or a mood?",
+        "Rewrite until a competent outsider could disagree.",
+        "Check that disagreement does not require knowing your cast."
+      ]
+    },
+    {
+      "id": "close",
+      "type": "quote",
+      "quote": "Mystery without a mechanism is astrology. Mechanism without mystery is a dossier.",
+      "attribution": "Rules 5–6 tension"
+    }
+  ]
+}

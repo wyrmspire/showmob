@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "night",
+  "tags": [
+    "education",
+    "allegory",
+    "privacy",
+    "encoding",
+    "society",
+    "norms",
+    "publishing"
+  ],
+  "updated": "2026-09-24",
+  "slug": "allegory-encoding-society",
+  "title": "Society: publishing allegory in public",
+  "summary": "Norms for shared readings, communities, and products — what stays safe, what becomes a cipher, and how groups can use encodings without turning them into dossiers.",
+  "series": {
+    "id": "allegory-encoding",
+    "title": "Allegory that stays private",
+    "order": 8
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Allegory that stays private · 8 of 9",
+      "title": "Private craft in public rooms",
+      "body": "Allegory leaves the desk. It shows up in newsletters, team retros, community forums, product docs, and shared readings. Society needs norms: how groups use encodings without turning a lesson into a cipher that only insiders can weaponize — or a dossier dressed as fiction."
+    },
+    {
+      "id": "safe-vs",
+      "type": "comparison",
+      "heading": "Safe share vs cipher risk",
+      "columns": [
+        {
+          "name": "Safe enough for a wide room",
+          "detail": "Mechanism-forward, high floor, rotating costumes, clear action for the reader, no winks to a living cast."
+        },
+        {
+          "name": "Becomes a cipher (avoid)",
+          "detail": "Stable private legends, \"you know who,\" insider confirmations in comments, stacked rare traits, threads that assemble a key."
+        }
+      ]
+    },
+    {
+      "id": "norms",
+      "type": "steps",
+      "heading": "Norms worth adopting",
+      "items": [
+        "Publish the allegory; do not publish the mapping — not in Slack, not in a \"for context\" reply.",
+        "Moderate comments that try to name the cast. Naming is a social re-identification attack.",
+        "Prefer one-off costumes in community spaces; discourage series that reward decoding.",
+        "If a product embeds allegorical examples, generate them as generic fixtures — never from customer data.",
+        "Shared readings: discuss the mechanism and the action, not the guessed identities.",
+        "When in doubt, raise the floor or do not post. Virality is not a privacy control."
+      ]
+    },
+    {
+      "id": "products",
+      "type": "text",
+      "heading": "Products and platforms",
+      "body": "If you build tools that help people write or share encodings, default to lossy prompts, warn on proper nouns and stacked rare traits, and never store a side-channel that links allegory to real identities. A \"private legend\" feature is a deanonymization product with better branding.\n\nCommunities can host allegory the way they host other teaching stories: with moderation against pile-on identification, and with a culture that treats \"I figured out who\" as a failure, not a flex."
+    },
+    {
+      "id": "civic",
+      "type": "note-callout",
+      "title": "Public interest is not a free pass",
+      "body": "Whistleblowing, journalism, and accountability have their own ethics and laws. This section does not replace them. Private allegory is for teaching patterns when identification is not the goal. If identification is the goal, use the appropriate channel — do not launder it through metaphor.",
+      "tone": "warning"
+    },
+    {
+      "id": "close",
+      "type": "quote",
+      "quote": "A healthy room discusses the failure mode. An unhealthy room holds a naming contest.",
+      "attribution": "Social norm for allegorical shares"
+    }
+  ]
+}

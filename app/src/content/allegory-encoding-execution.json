@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "night",
+  "tags": [
+    "education",
+    "allegory",
+    "privacy",
+    "encoding",
+    "execution",
+    "workflow"
+  ],
+  "updated": "2026-09-24",
+  "slug": "allegory-encoding-execution",
+  "title": "Execution: practicing the eight rules",
+  "summary": "A concrete workflow for drafting, stress-testing, and shipping private allegory — principles turned into steps you can run.",
+  "series": {
+    "id": "allegory-encoding",
+    "title": "Allegory that stays private",
+    "order": 7
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Allegory that stays private · 7 of 9",
+      "title": "From principles to a writing loop",
+      "body": "Rules without a workflow become posters. This page is the playbook: how you actually apply the eight rules when you sit down to build or write — draft cold, encode on purpose, check hard, then publish only what survives."
+    },
+    {
+      "id": "loop",
+      "type": "diagram",
+      "heading": "The loop",
+      "nodes": [
+        {
+          "title": "Capture privately",
+          "detail": "Notes that never ship: names, dates, the raw graph."
+        },
+        {
+          "title": "Encode on a clean page",
+          "detail": "New draft with lossy vocabulary; no paste of the private note."
+        },
+        {
+          "title": "Check, then share",
+          "detail": "Re-ID + neighbour. Fix or stop. Then publish the allegory only."
+        }
+      ]
+    },
+    {
+      "id": "workflow",
+      "type": "steps",
+      "heading": "Execution playbook",
+      "items": [
+        "Write a private capture note first (offline if needed): entities, timeline, what you are tempted to say. This file does not publish.",
+        "On a blank page, list only relationships and the mechanism you want to teach — no names.",
+        "Choose a metaphor domain that is not your real industry's gossip channel (see Art).",
+        "Draft with a lossy vocabulary. Stop when every noun has many possible referents.",
+        "Run the stack review (Rule 4) and the anti-astrology pass (Rule 6).",
+        "End on a verb the reader owns (Rule 7). Delete any line that only helps naming.",
+        "Run re-identification and neighbour tests. If either fails, coarsen or abandon.",
+        "Ask the underside question once more. If you should not have the story, delete the drafts — private and public.",
+        "Publish the allegory alone. Do not keep a public mapping, and do not reuse the costume next time (Rule 5)."
+      ]
+    },
+    {
+      "id": "tools",
+      "type": "comparison",
+      "heading": "What stays local vs what may ship",
+      "columns": [
+        {
+          "name": "Local only",
+          "detail": "Capture notes, real names, message screenshots, \"who was who\" tables, drafts that still invert."
+        },
+        {
+          "name": "May ship",
+          "detail": "The lossy page, the mechanism, the action gate, fictional/generic examples that pass both tests."
+        }
+      ]
+    },
+    {
+      "id": "fail",
+      "type": "note-callout",
+      "title": "Common execution failures",
+      "body": "Editing the private note into the public page (residue of names). Testing with a wider circle than the story deserves. Shipping because the prose felt good before the neighbour check. Reusing last month's invented town because it was \"already established.\"",
+      "tone": "warning"
+    },
+    {
+      "id": "habit",
+      "type": "text",
+      "heading": "Make it a habit, not a heroics pass",
+      "body": "The playbook is short enough to run every time. If you only encode carefully for \"sensitive\" stories, you will misjudge sensitivity. Default to the loop. Treat exceptions as rare and documented to yourself — still not as a public key."
+    }
+  ]
+}
