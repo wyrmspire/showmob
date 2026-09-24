@@ -20,6 +20,7 @@ Genres floated so far:
 - course material
 - shop notes
 - organizational stuff
+- guided worksheets / forms: structured columns and prompts as an artifact. This one tests whether the block language can carry interactive worksheet-style content, not just reading pages. Template content only: generic example rows, never personal data.
 
 "It could be anything really." The list comes out of the conversation, not out of this doc.
 
@@ -59,7 +60,9 @@ pages are test material, not finished content.
 2. BATCH
 You are: [Grok | GPT | Claude | Instinct]. Set "contributor" to that name.
 Subjects: [your ~25 subject IDs/titles, assigned to you in the subjects table]
-Genre: [plans | pitch decks | day organizers | course material | shop notes | ...]
+Genre: [plans | pitch decks | day organizers | course material | shop notes |
+       guided worksheets | ...]
+(Worksheets: generic example rows only, never personal data.)
 
 3. VARIATION AXIS
 Your axis: [dense | denser | deeper | more technical | more ethereal |
