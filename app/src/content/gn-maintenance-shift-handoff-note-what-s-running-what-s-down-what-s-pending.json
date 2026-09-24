@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-maintenance-shift-handoff-note-what-s-running-what-s-down-what-s-pending",
+  "title": "Maintenance shift handoff note: what's running, what's down, what's pending",
+  "summary": "A focused session handoff: running assets, down assets, and pending work so the next crew does not rediscover the plant from zero.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "maintenance",
+    "handoff",
+    "shift",
+    "inventory"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Focused session handoff — fictional plant snapshot",
+      "title": "What's running, what's down, what's pending",
+      "body": "Outgoing crew fills this once. Incoming crew reads it before touching a wrench. Example rows invent a small packaging line — swap in your asset IDs."
+    },
+    {
+      "id": "pulse",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "11",
+          "label": "Assets running"
+        },
+        {
+          "value": "2",
+          "label": "Down / LOTO"
+        },
+        {
+          "value": "5",
+          "label": "Pending follow-ups"
+        }
+      ]
+    },
+    {
+      "id": "running",
+      "type": "compact-table",
+      "heading": "Running (watch items only)",
+      "columns": [
+        "Asset",
+        "Status",
+        "Note for next crew"
+      ],
+      "rows": [
+        [
+          "Filler F-1",
+          "Running",
+          "Seam temp trending high — check at 14:00"
+        ],
+        [
+          "Capper C-2",
+          "Running",
+          "New chuck jaws installed mid-shift; torque OK"
+        ],
+        [
+          "Conveyor CV-4",
+          "Running",
+          "Belt tracking nudged; recheck after warm-up"
+        ],
+        [
+          "Case packer P-1",
+          "Running",
+          "No issues"
+        ],
+        [
+          "Air compressor A-1",
+          "Running",
+          "Duty cycle high on hot day — watch cut-out"
+        ]
+      ],
+      "caption": "Do not list every happy pump. List what the next person might misread."
+    },
+    {
+      "id": "down",
+      "type": "compact-table",
+      "heading": "Down / held",
+      "columns": [
+        "Asset",
+        "Since",
+        "LOTO?",
+        "Why / next action"
+      ],
+      "rows": [
+        [
+          "Labeler L-3",
+          "11:20",
+          "Yes — tags on panel + air",
+          "Servo fault E214; waiting OEM callback. Do not clear LOTO without lead."
+        ],
+        [
+          "Pump PK-7 (glue)",
+          "09:05",
+          "Yes — electrical + valve",
+          "Seal leak; parts on order ETA tomorrow AM. Pan staged under drip."
+        ]
+      ]
+    },
+    {
+      "id": "pending",
+      "type": "checklist",
+      "heading": "Pending — own these explicitly",
+      "items": [
+        {
+          "label": "OEM callback on L-3 servo",
+          "detail": "Ticket #4821; contact on whiteboard."
+        },
+        {
+          "label": "Replace CV-4 snub roller next planned stop",
+          "detail": "Part in crib bin R-18."
+        },
+        {
+          "label": "PM: F-1 nozzle clean overdue 2 days",
+          "detail": "Slip only if production releases a window."
+        },
+        {
+          "label": "Cal due: torque wrench T-12 returned overdue",
+          "detail": "See crib log; do not use on caps until cal cleared."
+        },
+        {
+          "label": "Training: new hire shadow on capper changeover",
+          "detail": "Scheduled 15:00 if L-3 still down."
+        }
+      ]
+    },
+    {
+      "id": "safety",
+      "type": "note-callout",
+      "title": "Non-negotiables at handoff",
+      "body": "Verbal + written. Walk the LOTO board together. No 'I think it's locked out.' If an asset is down, the tag story and the log story must match before the outgoing crew leaves.",
+      "tone": "warning"
+    },
+    {
+      "id": "script",
+      "type": "steps",
+      "heading": "Five-minute handoff script",
+      "items": [
+        "Read running watch list out loud.",
+        "Stand at each down asset; confirm tags and reasons.",
+        "Transfer pending owners by name, not by 'someone'.",
+        "Note any partial jobs (bolts loose, covers off) that look dangerous if misunderstood.",
+        "Incoming lead initials the sheet; outgoing lead keeps a photo or carbon."
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "End of shift",
+      "body": "Update the three tables, initial the script, and leave the plant more legible than you found it."
+    }
+  ]
+}

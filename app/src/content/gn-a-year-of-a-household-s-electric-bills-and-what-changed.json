@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-year-of-a-household-s-electric-bills-and-what-changed",
+  "title": "A year of a household's electric bills and what changed",
+  "summary": "Example monthly kWh and dollar data for one household, with notes on what actually moved the bill.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "energy",
+    "household",
+    "bills",
+    "example-data"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Example data — fictional household",
+      "title": "Twelve bills, and the few things that moved them",
+      "body": "A temperate-climate household, electric heat pump + dryer, work-from-home two days a week. Numbers are illustrative so you can see season and behavior — not a utility quote."
+    },
+    {
+      "id": "year",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "9,480 kWh",
+          "label": "Example annual use"
+        },
+        {
+          "value": "$1,422",
+          "label": "Example annual cost"
+        },
+        {
+          "value": "~15¢",
+          "label": "Blended rate used in examples"
+        }
+      ]
+    },
+    {
+      "id": "months",
+      "type": "compact-table",
+      "heading": "Monthly example (kWh and $)",
+      "columns": [
+        "Month",
+        "kWh",
+        "Bill $",
+        "What changed"
+      ],
+      "rows": [
+        [
+          "Jan",
+          "980",
+          "147",
+          "Heat pump hard days; WFH week"
+        ],
+        [
+          "Feb",
+          "910",
+          "136",
+          "Still heating; one vacation week (down)"
+        ],
+        [
+          "Mar",
+          "720",
+          "108",
+          "Shoulder season begins"
+        ],
+        [
+          "Apr",
+          "610",
+          "92",
+          "Mild; windows open some days"
+        ],
+        [
+          "May",
+          "580",
+          "87",
+          "Almost no heat/cool"
+        ],
+        [
+          "Jun",
+          "640",
+          "96",
+          "First AC weeks; guests one weekend"
+        ],
+        [
+          "Jul",
+          "820",
+          "123",
+          "Hot stretch; AC setpoints dropped"
+        ],
+        [
+          "Aug",
+          "860",
+          "129",
+          "Hottest month; pool pump at neighbor's — N/A; dryer heavy"
+        ],
+        [
+          "Sep",
+          "700",
+          "105",
+          "Cooling eases"
+        ],
+        [
+          "Oct",
+          "630",
+          "94",
+          "Shoulder again"
+        ],
+        [
+          "Nov",
+          "740",
+          "111",
+          "Heat returns; LED swap completed"
+        ],
+        [
+          "Dec",
+          "890",
+          "134",
+          "Holiday cooking + lights; heat"
+        ]
+      ],
+      "caption": "Blended ~$0.15/kWh for readability. Real bills include fixed charges and tiers."
+    },
+    {
+      "id": "drivers",
+      "type": "timeline",
+      "heading": "What actually changed mid-year",
+      "items": [
+        {
+          "time": "March",
+          "title": "Thermostat schedule tightened",
+          "detail": "Night setback on heat — visible in Mar–May dip vs prior winter pattern."
+        },
+        {
+          "time": "June",
+          "title": "Cooling season starts",
+          "detail": "kWh rises with outdoor temperature more than with 'bad habits.'"
+        },
+        {
+          "time": "August",
+          "title": "Setpoint war",
+          "detail": "Household dropped AC two degrees during a heat wave — bill bump without new appliances."
+        },
+        {
+          "time": "November",
+          "title": "Remaining halogen bulbs replaced",
+          "detail": "Small persistent cut; easy to overclaim vs weather."
+        }
+      ]
+    },
+    {
+      "id": "lesson",
+      "type": "comparison",
+      "heading": "Signal vs noise on a household bill",
+      "columns": [
+        {
+          "name": "Usually dominates",
+          "detail": "Weather (heat/cool), occupancy, major always-on loads, rate changes."
+        },
+        {
+          "name": "Easy to overthink",
+          "detail": "Phone chargers, one LED bulb, 'vampire' myth stacks that do not move a $120 summer bill."
+        }
+      ]
+    },
+    {
+      "id": "note",
+      "type": "note-callout",
+      "title": "How to use this shape",
+      "body": "Export your own twelve months. Annotate the two or three real life events. If a month spikes without weather or guests, then hunt appliances — not before.",
+      "tone": "note"
+    }
+  ]
+}

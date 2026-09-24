@@ -1,0 +1,339 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-tomorrow-three-meetings-a-dentist-appointment-and-a-4-hour-focus-block-b",
+  "title": "Tomorrow: three meetings, a dentist appointment, and a 4-hour focus block",
+  "summary": "Draggable time-block metaphor: rearrange the day's tiles with checklists and a block table until the 4-hour focus lands in one unbroken span.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "calendar",
+    "time-blocks",
+    "planning",
+    "focus"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "B render — draggable blocks (metaphor via tables + checklists)",
+      "title": "Slide the tiles until focus gets four clean hours",
+      "body": "Tomorrow is not a to-do list; it is a set of blocks you can reorder. Meetings and the dentist are mostly fixed. The 4-hour focus block is the piece you drag. Use the checklists like a drag handle: pick a placement, then read the resulting day grid."
+    },
+    {
+      "id": "tiles",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "3",
+          "label": "Meeting tiles (mostly sticky)"
+        },
+        {
+          "value": "1",
+          "label": "Dentist tile (sticky)"
+        },
+        {
+          "value": "4h",
+          "label": "Focus tile (the one you drag)"
+        }
+      ]
+    },
+    {
+      "id": "inventory",
+      "type": "compact-table",
+      "heading": "Tile inventory (example times)",
+      "columns": [
+        "Tile",
+        "Duration",
+        "Stickiness",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "Standup",
+          "30 min",
+          "Sticky 09:00",
+          "Team sync — hard to move"
+        ],
+        [
+          "Design review",
+          "60 min",
+          "Sticky 11:00",
+          "Other people booked"
+        ],
+        [
+          "Dentist",
+          "90 min incl. travel",
+          "Sticky 14:00",
+          "Leave by 13:30"
+        ],
+        [
+          "Vendor call",
+          "45 min",
+          "Semi-sticky 16:00",
+          "Can slip ±30 min if needed"
+        ],
+        [
+          "Focus — deep work",
+          "4 hours",
+          "Draggable",
+          "Needs one unbroken span"
+        ]
+      ],
+      "caption": "Sticky = treat as nailed down. Drag only the focus tile unless you renegotiate."
+    },
+    {
+      "id": "drag-choices",
+      "type": "checklist",
+      "heading": "Drag handle — where does the 4-hour focus tile land? (pick one)",
+      "items": [
+        {
+          "label": "Placement A — early: 07:00–11:00",
+          "detail": "Before standup bleed. Requires starting early; design review still interrupts late morning if it stays at 11:00."
+        },
+        {
+          "label": "Placement B — mid: 09:30–13:30",
+          "detail": "Broken by standup + design review unless you shorten or move those. Usually a bad drop zone."
+        },
+        {
+          "label": "Placement C — late afternoon/evening: 16:45–20:45",
+          "detail": "After vendor call. Protects morning for errands; energy may dip."
+        },
+        {
+          "label": "Placement D — split forbidden: two 2-hour chunks",
+          "detail": "Looks neat on a calendar; fails the '4-hour focus' requirement. Do not drop here."
+        }
+      ]
+    },
+    {
+      "id": "grid-a",
+      "type": "compact-table",
+      "heading": "Day grid if you drop focus on Placement A (07:00–11:00)",
+      "columns": [
+        "Block",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+      ],
+      "rows": [
+        [
+          "Focus",
+          "██",
+          "██",
+          "██",
+          "██",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Standup",
+          "",
+          "",
+          "▮",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Design review",
+          "",
+          "",
+          "",
+          "",
+          "▮▮",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Lunch / buffer",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "·",
+          "·",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Dentist + travel",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "→",
+          "███",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Vendor",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "▮",
+          ""
+        ]
+      ],
+      "caption": "█ = focus, ▮ = meeting, · = soft buffer. Focus stays contiguous before the 11:00 review."
+    },
+    {
+      "id": "grid-c",
+      "type": "compact-table",
+      "heading": "Day grid if you drop focus on Placement C (16:45–20:45)",
+      "columns": [
+        "Block",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "rows": [
+        [
+          "Standup",
+          "▮",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Design review",
+          "",
+          "",
+          "▮▮",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Dentist + travel",
+          "",
+          "",
+          "",
+          "",
+          "→",
+          "███",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Vendor",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "▮",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "Focus",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "·",
+          "██",
+          "██",
+          "██",
+          "██"
+        ]
+      ],
+      "caption": "Focus after the sticky tiles. Works if evenings are quiet and you will not soft-cancel yourself."
+    },
+    {
+      "id": "rules",
+      "type": "steps",
+      "heading": "How to 'drag' without a real DnD widget",
+      "items": [
+        "Lock sticky tiles first (standup, design review, dentist).",
+        "Find the longest empty span that is actually four hours — not four hours with meetings inside.",
+        "Check the matching day grid above (or sketch your own).",
+        "If no span exists, renegotiate one sticky tile — do not pretend a split focus block is still four hours."
+      ]
+    },
+    {
+      "id": "verdict",
+      "type": "note-callout",
+      "title": "Recommended drop for this example",
+      "body": "Placement A (early focus) or Placement C (evening focus) both keep four unbroken hours. Placement B and any split fail the requirement. Pick the one that matches your energy, then defend it like a meeting with someone important — because it is.",
+      "tone": "positive"
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Before tonight ends",
+      "body": "Circle Placement A or C on the checklist. Block it on the real calendar as 'Focus — do not book.' Soft buffers around the dentist travel stay visible."
+    }
+  ]
+}

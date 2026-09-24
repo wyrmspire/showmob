@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-tool-crib-checkout-log",
+  "title": "Tool crib checkout log",
+  "summary": "A living checkout log template for a shop tool crib — who took what, when it is due, and what came back.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "shop",
+    "inventory",
+    "log",
+    "tools"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Living log — example rows only",
+      "title": "Tool crib checkout log",
+      "body": "One place to see what left the crib, who has it, and whether it came back intact. Rows below are fictional examples for a small job shop — replace with your crib's real traffic."
+    },
+    {
+      "id": "open",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "7",
+          "label": "Open checkouts (example)"
+        },
+        {
+          "value": "2",
+          "label": "Overdue (example)"
+        },
+        {
+          "value": "1",
+          "label": "Returned damaged (today)"
+        }
+      ]
+    },
+    {
+      "id": "log",
+      "type": "compact-table",
+      "heading": "Checkout log (example)",
+      "columns": [
+        "Tool / asset",
+        "Taken by",
+        "Out",
+        "Due",
+        "In",
+        "Condition"
+      ],
+      "rows": [
+        [
+          "1-2-3 indicator #I-04",
+          "A. Reyes — Cell 2",
+          "09-24 06:40",
+          "09-24 EOD",
+          "—",
+          "OUT"
+        ],
+        [
+          "Torque wrench 10–100 Nm #T-12",
+          "J. Okonkwo — Assembly",
+          "09-23 14:10",
+          "09-24 12:00",
+          "—",
+          "OVERDUE"
+        ],
+        [
+          "M12×1.75 tap set",
+          "Bench float",
+          "09-24 07:05",
+          "09-24 noon",
+          "09-24 11:40",
+          "OK"
+        ],
+        [
+          "Bore gage 1–2 in #B-02",
+          "K. Nguyen — QC",
+          "09-24 08:00",
+          "09-24 EOD",
+          "—",
+          "OUT"
+        ],
+        [
+          "Dead-blow 24 oz",
+          "Night shift cart",
+          "09-23 22:00",
+          "09-24 06:00",
+          "09-24 06:15",
+          "OK"
+        ],
+        [
+          "Edge finder set",
+          "A. Reyes — Cell 2",
+          "09-22 09:00",
+          "09-23 EOD",
+          "—",
+          "OVERDUE"
+        ],
+        [
+          "Parallels 1/8–1-1/4",
+          "Setup cart A",
+          "09-24 06:50",
+          "open job",
+          "—",
+          "OUT"
+        ]
+      ],
+      "caption": "Generic names and asset tags. Print or paste into your crib sheet — do not store personal data beyond badge/job need."
+    },
+    {
+      "id": "rules",
+      "type": "checklist",
+      "heading": "Crib rules that keep the log honest",
+      "items": [
+        {
+          "label": "No tool leaves without a row",
+          "detail": "Even 'just for a minute' tools grow legs."
+        },
+        {
+          "label": "Write the due time when you know the job length",
+          "detail": "Open-ended loans become missing inventory."
+        },
+        {
+          "label": "Return notes: OK / needs cal / damaged",
+          "detail": "Damaged returns go to quarantine, not back on the shadow board."
+        },
+        {
+          "label": "Overdue list reviewed at shift start",
+          "detail": "Two names on the board beat a missing torque wrench mid-job."
+        }
+      ]
+    },
+    {
+      "id": "blank",
+      "type": "compact-table",
+      "heading": "Blank rows for the next shift",
+      "columns": [
+        "Tool / asset",
+        "Taken by",
+        "Out",
+        "Due",
+        "In",
+        "Condition"
+      ],
+      "rows": [
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "caption": "Fill on paper or duplicate this table in your shop system."
+    },
+    {
+      "id": "note",
+      "type": "note-callout",
+      "title": "Living artifact",
+      "body": "This page is a template shape, not a database. When the crib is busy, the log only works if someone owns the overdue review at every shift handoff.",
+      "tone": "note"
+    }
+  ]
+}
