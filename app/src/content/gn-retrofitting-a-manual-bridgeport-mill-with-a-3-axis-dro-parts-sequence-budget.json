@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-retrofitting-a-manual-bridgeport-mill-with-a-3-axis-dro-parts-sequence-budget",
+  "title": "Retrofitting a manual Bridgeport mill with a 3-axis DRO: parts, sequence, budget",
+  "summary": "Glass scales on X, Y, and Z turn a dial-counting Bridgeport into a read-the-number machine. Here is the parts list, the install order, and what it costs.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "machining", "retrofit", "dro"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Stop counting dial revolutions",
+      "body": "A digital readout bolts onto a manual mill and displays actual table position to a tenth. The retrofit is a weekend of drilling, tapping, and alignment - no electronics work beyond plugging in scales. This plan covers a typical 9x42 Bridgeport with a knee."
+    },
+    {
+      "id": "parts",
+      "type": "checklist",
+      "heading": "Parts to buy",
+      "items": [
+        { "label": "3-axis DRO display unit", "detail": "Any glass-scale console with mill functions - bolt-hole circles and line arrays earn their keep on a Bridgeport." },
+        { "label": "X-axis scale, travel plus 140 mm", "detail": "For a 30-inch X travel that is roughly a 900 mm scale. Measure your table, not the catalog number." },
+        { "label": "Y-axis scale", "detail": "Around 400-450 mm for 12 inches of saddle travel." },
+        { "label": "Z-axis scale", "detail": "Knee or quill. Knee gives true position for tool changes; quill is cheaper and covers drilling depth. Pick one." },
+        { "label": "Mounting brackets and spacers", "detail": "Most kits include generic brackets; expect to modify or make one from aluminum plate." },
+        { "label": "Scale covers", "detail": "Aluminum extrusion or folded sheet. Chips and coolant kill exposed scales." }
+      ]
+    },
+    {
+      "id": "sequence",
+      "type": "steps",
+      "heading": "Install sequence",
+      "items": [
+        "Clean the machine and tram nothing yet - this is carpentry first, metrology later.",
+        "Mount the X scale body to the table's rear face, parallel within a few thou over its length. Indicate along the scale, not the table edge.",
+        "Hang the X reader head on the saddle bracket. Check clearance through full travel before tightening anything.",
+        "Repeat for Y: scale body on the base, reader on the saddle. Watch for interference with the knee crank.",
+        "Mount the Z scale on the column or quill stop, per your choice. Quill mounting is a half hour; knee mounting is an afternoon.",
+        "Fit covers over every scale. Route cables clear of the spindle belt and chip trays.",
+        "Wire the console, set scale resolutions, and calibrate each axis against a gage block stack or a known step.",
+        "Cut a test part with known dimensions - a simple stepped block - and verify all three axes read true."
+      ]
+    },
+    {
+      "id": "budget",
+      "type": "compact-table",
+      "heading": "Budget, entry to mid-tier",
+      "columns": ["Item", "Low", "High", "Note"],
+      "rows": [
+        ["3-axis console", "$200", "$700", "Price tracks display quality and mill functions"],
+        ["Three glass scales", "$250", "$600", "Length drives cost"],
+        ["Brackets and hardware", "$20", "$80", "Assumes you make one bracket yourself"],
+        ["Covers and cable routing", "$15", "$60", "Extrusion plus zip ties and gland fittings"],
+        ["Total", "$485", "$1,440", "Add zero dollars for labor if it is your mill and your weekend"]
+      ],
+      "caption": "Magnetic scales cost more and survive coolant better; glass is the default for a reason."
+    },
+    {
+      "id": "gotchas",
+      "type": "note-callout",
+      "title": "Where installs go wrong",
+      "body": "The scale must be parallel to the axis, or you bake in cosine error that grows with distance. Drill and tap into cast iron confidently - but map where the oil passages run on a Bridgeport table before the first hole. And leave the reader-head cable slack for full travel; a tight cable is a broken scale next month.",
+      "tone": "warning"
+    },
+    {
+      "id": "payoff",
+      "type": "text",
+      "heading": "What changes",
+      "body": "Backlash does not disappear - the screw still has slop - but the readout shows where the table actually is, so you stop losing parts to a missed dial revolution. Bolt-hole patterns that took an hour of layout become a console function. Most people report the mill feels twice as capable; the honest version is that you removed the counting errors, not the machine's flex."
+    }
+  ]
+}

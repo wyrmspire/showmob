@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-moving-apartments-in-10-days-what-happens-each-day",
+  "title": "Moving apartments in 10 days: what happens each day",
+  "summary": "A day-by-day plan that front-loads the paperwork and leaves only boxes for the final weekend.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "paper",
+  "tags": ["grading-night", "moving", "planning"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Ten days, one apartment to another",
+      "body": "The anxiety of a fast move comes from everything feeling simultaneous. It is not. Each day has one job, and the jobs have an order - paper first, stuff last. Here is the order."
+    },
+    {
+      "id": "days",
+      "type": "timeline",
+      "heading": "The ten days",
+      "items": [
+        { "time": "Day 1", "title": "Paper day", "detail": "Give notice if required, sign the new lease, book the freight elevator at both ends, and schedule movers or reserve the truck. Everything else waits on these four." },
+        { "time": "Day 2", "title": "Utilities and address", "detail": "Set electric and internet start dates at the new place, end dates at the old one the day AFTER you leave. File the mail forwarding order." },
+        { "time": "Day 3", "title": "Supplies and purge", "detail": "Buy more boxes than feels reasonable, tape, markers, bags. Walk every room and fill three trash bags of things that are not coming." },
+        { "time": "Day 4", "title": "Storage and decor", "detail": "Pack everything off shelves and walls. Books, decorations, spare linens. Label boxes with room and contents, not just room." },
+        { "time": "Day 5", "title": "Closet triage", "detail": "Pack out-of-season and occasion clothes. Leave one week's wardrobe out. Donate the maybe pile today, not on moving day." },
+        { "time": "Day 6", "title": "Kitchen, mostly", "detail": "Pack all but one pan, one pot, a plate and a fork per person. Eat the freezer down this week." },
+        { "time": "Day 7", "title": "The awkward middle", "detail": "Disassemble what you can: shelving, the desk, the spare bed. Photograph cable setups before unplugging anything." },
+        { "time": "Day 8", "title": "Everything but the kit", "detail": "Pack to the walls. What stays out fits in one overnight bag: bedding, toiletries, chargers, two days of clothes, the coffee maker, toilet paper, a box cutter." },
+        { "time": "Day 9", "title": "Clean and confirm", "detail": "Clean the old place room by room as it empties. Reconfirm elevator slots and movers by text, in writing." },
+        { "time": "Day 10", "title": "Move day", "detail": "Overnight bag and paperwork travel with you, never in the truck. Do the old-place walkthrough with photos before handing over keys." }
+      ]
+    },
+    {
+      "id": "first-night",
+      "type": "checklist",
+      "heading": "The first-night box rides up front",
+      "items": [
+        { "label": "Bedding and pillows", "detail": "Making the bed is the only unpacking that cannot wait." },
+        { "label": "Toiletries and medications", "detail": "Plus a towel. Searching boxes for a toothbrush at midnight is the classic low point." },
+        { "label": "Chargers", "detail": "Phone, laptop. Tape them into one bag." },
+        { "label": "Toilet paper, soap, light bulbs", "detail": "The three things new apartments never have." },
+        { "label": "Box cutter and basic tools", "detail": "You cannot open the boxes without the box cutter. Ask how people learn this." }
+      ]
+    },
+    {
+      "id": "watch-out",
+      "type": "note-callout",
+      "title": "The two things that actually blow up a move",
+      "body": "Elevator reservations and key logistics. Buildings book freight elevators out and cancel unconfirmed slots, and a lease that starts on the 1st does not guarantee keys before noon. Confirm both in writing on day 9. Everything else - a missing box, a scratched dresser - is recoverable.",
+      "tone": "warning"
+    }
+  ]
+}

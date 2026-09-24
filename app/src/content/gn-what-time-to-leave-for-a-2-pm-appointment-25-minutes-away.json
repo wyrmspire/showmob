@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-what-time-to-leave-for-a-2-pm-appointment-25-minutes-away",
+  "title": "What time to leave for a 2 PM appointment 25 minutes away",
+  "summary": "Leave at 1:25 PM.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "paper",
+  "tags": ["grading-night", "time", "planning"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "answer",
+      "type": "hero",
+      "title": "Leave at 1:25 PM",
+      "body": "Twenty-five minutes of driving puts you at the door at 1:50, ten minutes early - enough to park and check in without arriving flustered."
+    },
+    {
+      "id": "arithmetic",
+      "type": "note-callout",
+      "title": "The arithmetic",
+      "body": "2:00 appointment minus 25 minutes driving minus 10 minutes of buffer for parking and the waiting room equals a 1:25 departure. If the route has a bridge, a school zone, or game-day traffic, leave at 1:15 instead.",
+      "tone": "note"
+    }
+  ]
+}
