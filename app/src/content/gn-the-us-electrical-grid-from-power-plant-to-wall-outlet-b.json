@@ -1,0 +1,360 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-the-us-electrical-grid-from-power-plant-to-wall-outlet-b",
+  "title": "The US electrical grid from power plant to wall outlet",
+  "summary": "A map-style tour of the US grid: regions and interconnections down to a house panel \u2014 geography first, not a single causal essay.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "night",
+  "tags": [
+    "grading-night",
+    "grid",
+    "electricity",
+    "map"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "A/B map edition",
+      "title": "Read the grid like a map",
+      "body": "This sibling page (-b) treats the path from power plant to wall outlet as nested geography: interconnection \u2192 region \u2192 utility territory \u2192 substation neighborhood \u2192 house. It is deliberately not a pure causal chain of \"then the voltage becomes\u2026\" \u2014 zoom levels are the spine."
+    },
+    {
+      "id": "sibling",
+      "type": "note-callout",
+      "title": "Sibling artifact exists",
+      "body": "Instinct's gn-the-us-electrical-grid-from-power-plant-to-wall-outlet (no -b) covers stage-by-stage causality. This -b file is the map metaphor. Do not merge them mentally into one page.",
+      "tone": "note"
+    },
+    {
+      "id": "zoom",
+      "type": "diagram",
+      "heading": "Zoom levels (map spine)",
+      "nodes": [
+        {
+          "title": "Interconnection",
+          "detail": "Eastern, Western, Texas (ERCOT) \u2014 the big synchronous islands"
+        },
+        {
+          "title": "Region / balancing area",
+          "detail": "Where generation and load are matched day to day"
+        },
+        {
+          "title": "Utility / co-op territory",
+          "detail": "Who owns the wires to your town"
+        },
+        {
+          "title": "Substation neighborhood",
+          "detail": "Transmission steps down; feeders leave for streets"
+        },
+        {
+          "title": "Service drop \u2192 panel \u2192 outlet",
+          "detail": "The last hundred feet you actually touch"
+        }
+      ]
+    },
+    {
+      "id": "stats",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "3",
+          "label": "Primary US interconnections (Eastern, Western, ERCOT)"
+        },
+        {
+          "value": "Map",
+          "label": "This page's metaphor \u2014 regions before recipes"
+        },
+        {
+          "value": "120/240 V",
+          "label": "Typical US residence split-phase at the wall"
+        }
+      ]
+    },
+    {
+      "id": "div-inter",
+      "type": "divider",
+      "label": "Zoom 1 \u2014 Interconnections"
+    },
+    {
+      "id": "inter",
+      "type": "comparison",
+      "heading": "Three big islands on the map",
+      "columns": [
+        {
+          "name": "Eastern Interconnection",
+          "detail": "Most of the US east of the Rockies plus connected neighbors \u2014 a huge synchronous machine in map terms."
+        },
+        {
+          "name": "Western Interconnection",
+          "detail": "The West \u2014 another synchronous island with its own geography of hydro, deserts, and coastal load."
+        },
+        {
+          "name": "ERCOT (Texas)",
+          "detail": "Most of Texas operates as its own interconnection \u2014 a political and geographic fact on every grid map."
+        }
+      ]
+    },
+    {
+      "id": "inter-text",
+      "type": "text",
+      "heading": "Why interconnections matter on a map",
+      "body": "Inside one interconnection, machines stay in lockstep frequency. Between interconnections, power moves only through special ties (or not at all). If you only remember one map fact: your outlet's frequency story is regional, not \"national\" in the synchronous sense."
+    },
+    {
+      "id": "div-region",
+      "type": "divider",
+      "label": "Zoom 2 \u2014 Regions & plants"
+    },
+    {
+      "id": "region",
+      "type": "compact-table",
+      "heading": "What a regional map marks",
+      "columns": [
+        "Map mark",
+        "What it is",
+        "Why you care"
+      ],
+      "rows": [
+        [
+          "Power plant icons",
+          "Thermal, nuclear, hydro, wind, solar",
+          "Where megawatts enter the map"
+        ],
+        [
+          "Transmission corridors",
+          "High-voltage paths between hubs",
+          "The freeways of electricity"
+        ],
+        [
+          "Load centers",
+          "Cities and industrial clusters",
+          "Where megawatts exit into lives"
+        ],
+        [
+          "Balancing boundaries",
+          "Who matches gen to load",
+          "Reliability is a regional sport"
+        ]
+      ]
+    },
+    {
+      "id": "plants",
+      "type": "diagram",
+      "heading": "Plant \u2192 corridor (still a map edge)",
+      "nodes": [
+        {
+          "title": "Generating station",
+          "detail": "A pinned location with a nameplate capacity"
+        },
+        {
+          "title": "Switchyard",
+          "detail": "On-site yard where the plant ties to transmission"
+        },
+        {
+          "title": "Transmission corridor",
+          "detail": "Lines crossing counties \u2014 the visible right-of-way on satellite view"
+        }
+      ]
+    },
+    {
+      "id": "div-utility",
+      "type": "divider",
+      "label": "Zoom 3 \u2014 Utility territory"
+    },
+    {
+      "id": "utility",
+      "type": "text",
+      "heading": "Who colors your county",
+      "body": "Investor-owned utilities, municipal utilities, and cooperatives paint different territories on the same state map. The outlet in your wall sits in someone's service territory \u2014 that someone maintains the poles, the meters, and the outage map you refresh during storms."
+    },
+    {
+      "id": "utility-table",
+      "type": "compact-table",
+      "heading": "Territory vs. wires (reader's distinction)",
+      "columns": [
+        "Idea",
+        "Map meaning"
+      ],
+      "rows": [
+        [
+          "Service territory",
+          "Who bills you and answers the outage call"
+        ],
+        [
+          "Transmission owner",
+          "Who owns the high-voltage corridors (sometimes different)"
+        ],
+        [
+          "ISO/RTO footprint",
+          "Who runs the wholesale market / reliability coordination in many regions"
+        ]
+      ],
+      "caption": "Overlapping polygons are normal. Grid maps are layered stickers, not one crayon."
+    },
+    {
+      "id": "div-sub",
+      "type": "divider",
+      "label": "Zoom 4 \u2014 Substation neighborhood"
+    },
+    {
+      "id": "substation",
+      "type": "steps",
+      "heading": "Find your substation on a mental map",
+      "items": [
+        "Transmission lines arrive at a fenced yard with transformers and buswork.",
+        "Voltage steps down to distribution levels used on street poles or underground feeders.",
+        "Feeders leave like spokes \u2014 each feeder is a neighborhood-scale branch.",
+        "Faults and switching on one feeder can reconfigure who is lit without changing the interconnection map."
+      ]
+    },
+    {
+      "id": "sub-compare",
+      "type": "comparison",
+      "heading": "Neighborhood objects",
+      "columns": [
+        {
+          "name": "Substation",
+          "detail": "Regional \u2192 local voltage change; switching hub."
+        },
+        {
+          "name": "Feeder",
+          "detail": "A named circuit serving many transformers."
+        },
+        {
+          "name": "Distribution transformer",
+          "detail": "Pole or pad mount \u2014 last step before the service drop."
+        }
+      ]
+    },
+    {
+      "id": "div-house",
+      "type": "divider",
+      "label": "Zoom 5 \u2014 House"
+    },
+    {
+      "id": "house",
+      "type": "diagram",
+      "heading": "Last hundred feet",
+      "nodes": [
+        {
+          "title": "Service drop / lateral",
+          "detail": "From pole or pad to your meter"
+        },
+        {
+          "title": "Meter",
+          "detail": "The custody boundary on most maps of \"your\" electricity"
+        },
+        {
+          "title": "Panel (load center)",
+          "detail": "Breakers as a tiny internal map of rooms and circuits"
+        },
+        {
+          "title": "Outlet",
+          "detail": "120 V receptacles on branch circuits \u2014 the pixel you plug into"
+        }
+      ]
+    },
+    {
+      "id": "house-table",
+      "type": "compact-table",
+      "heading": "House map legend",
+      "columns": [
+        "Label",
+        "Typical US residence"
+      ],
+      "rows": [
+        [
+          "Service",
+          "Split-phase 120/240 V"
+        ],
+        [
+          "Main breaker",
+          "Whole-house shutoff at the panel"
+        ],
+        [
+          "Branch breaker",
+          "One room or appliance circuit"
+        ],
+        [
+          "Outlet",
+          "The endpoint of this entire national map"
+        ]
+      ]
+    },
+    {
+      "id": "slideshow",
+      "type": "slideshow",
+      "heading": "Zoom animation (mental)",
+      "slides": [
+        {
+          "title": "Continent",
+          "body": "Three interconnection colors."
+        },
+        {
+          "title": "State",
+          "body": "Utility territories and transmission corridors."
+        },
+        {
+          "title": "County",
+          "body": "A substation diamond with feeder spokes."
+        },
+        {
+          "title": "Street",
+          "body": "Transformers ticking along the block."
+        },
+        {
+          "title": "Kitchen",
+          "body": "One outlet. Same electrons' journey; new zoom level."
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Map check",
+      "prompt": "On this -b page, ERCOT is best described as what kind of map object?",
+      "options": [
+        "A single kitchen circuit breaker",
+        "A major interconnection / synchronous island covering most of Texas",
+        "A type of wall outlet",
+        "A brand of distribution transformer"
+      ],
+      "answer": 1,
+      "explanation": "ERCOT is one of the three primary US interconnections on the zoom-1 map.",
+      "correctFeedback": "Correct \u2014 interconnection-level geography.",
+      "wrongFeedback": "Return to Zoom 1 \u2014 interconnections are the top map colors."
+    },
+    {
+      "id": "vs",
+      "type": "text",
+      "heading": "How to use -b versus the causal sibling",
+      "body": "Use this page when you need to orient: where am I on the national map, whose territory, which substation neighborhood. Use the non -b sibling when you need the physics story of conversion stages. Together they are a pair; separately they keep map and mechanism from smudging."
+    },
+    {
+      "id": "resources",
+      "type": "resource-list",
+      "heading": "Map-friendly resources",
+      "items": [
+        {
+          "label": "EIA energy maps",
+          "detail": "Public maps of infrastructure and energy themes.",
+          "url": "https://www.eia.gov/maps/"
+        },
+        {
+          "label": "NERC",
+          "detail": "Reliability context for interconnection-scale thinking.",
+          "url": "https://www.nerc.com/"
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Zoom out once this week",
+      "body": "When a breaker trips, remember which map layer failed \u2014 branch circuit, feeder, or something bigger on the outage map."
+    }
+  ]
+}

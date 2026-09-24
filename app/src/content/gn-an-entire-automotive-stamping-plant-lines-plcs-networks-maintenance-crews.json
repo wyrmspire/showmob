@@ -1,0 +1,405 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-an-entire-automotive-stamping-plant-lines-plcs-networks-maintenance-crews",
+  "title": "An entire automotive stamping plant: lines, PLCs, networks, maintenance crews",
+  "summary": "A hierarchical map of a fictional stamping plant \u2014 from the front gate down through lines, controls, networks, and the crews who keep steel moving.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "night",
+  "tags": [
+    "grading-night",
+    "automotive",
+    "stamping",
+    "hierarchy",
+    "plant"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Navigate the hierarchy",
+      "title": "One plant, five layers deep",
+      "body": "Fictional Riverbend Stampings presses automotive body panels across three press lines. This page is a navigation map: plant \u2192 lines \u2192 controls \u2192 network \u2192 crews. Nothing here is a real OEM's confidential layout \u2014 it is a teaching plant you can hold in your head."
+    },
+    {
+      "id": "fictional",
+      "type": "note-callout",
+      "title": "Fictional plant",
+      "body": "Riverbend Stampings, its line names, IP schemes, and crew rosters are invented for this artifact. Use it to learn hierarchy, not to reverse-engineer a real site.",
+      "tone": "note"
+    },
+    {
+      "id": "scale",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "3",
+          "label": "Press lines (A blanking, B/C transfer)"
+        },
+        {
+          "value": "~180",
+          "label": "People on two main shifts (example)"
+        },
+        {
+          "value": "Plant\u2192Crew",
+          "label": "Five navigation layers on this page"
+        }
+      ]
+    },
+    {
+      "id": "nav",
+      "type": "diagram",
+      "heading": "Layer map",
+      "nodes": [
+        {
+          "title": "1. Plant",
+          "detail": "Site, utilities, shipping, quality lab"
+        },
+        {
+          "title": "2. Lines",
+          "detail": "Press lines A/B/C and end-of-line racks"
+        },
+        {
+          "title": "3. Controls",
+          "detail": "Line PLCs, safety PLCs, HMI, drives"
+        },
+        {
+          "title": "4. Network",
+          "detail": "Cell, plant backbone, historian, remote access rules"
+        },
+        {
+          "title": "5. Crews",
+          "detail": "Production, die set, electrical, mechanical, tooling"
+        }
+      ]
+    },
+    {
+      "id": "div-plant",
+      "type": "divider",
+      "label": "Layer 1 \u2014 Plant"
+    },
+    {
+      "id": "plant",
+      "type": "text",
+      "heading": "Riverbend as a system",
+      "body": "Coil steel enters on the north dock, blanks move to press lines, finished panels leave on the south docks toward assembly plants. Compressed air, 480 V distribution, and process water are shared utilities. The quality lab sits between Lines B and C so auditors walk less. The plant's job is cadence: dies change, steel grades change, but the hierarchy stays so a new tech can find the right cabinet."
+    },
+    {
+      "id": "plant-table",
+      "type": "compact-table",
+      "heading": "Plant-level rooms that matter",
+      "columns": [
+        "Area",
+        "Owns",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "North dock",
+          "Coil intake",
+          "Crane + coil cars; not a tourist zone"
+        ],
+        [
+          "Press hall",
+          "Lines A/B/C",
+          "Hearing protection; red pathways for die moves"
+        ],
+        [
+          "Die bay",
+          "Die storage & repair",
+          "Huge travel paths \u2014 schedule conflicts with production"
+        ],
+        [
+          "Main electrical",
+          "480 V switchgear",
+          "Utility & feeder ownership"
+        ],
+        [
+          "Control room / MTR",
+          "Plant servers, historian",
+          "Climate and access controlled"
+        ]
+      ]
+    },
+    {
+      "id": "div-lines",
+      "type": "divider",
+      "label": "Layer 2 \u2014 Lines"
+    },
+    {
+      "id": "lines",
+      "type": "comparison",
+      "heading": "Three lines, three jobs",
+      "columns": [
+        {
+          "name": "Line A \u2014 Blanking",
+          "detail": "Coil to blanks. Faster cadence, simpler dies, feeds B and C. Downtime here starves everyone."
+        },
+        {
+          "name": "Line B \u2014 Transfer press",
+          "detail": "Major body panels. Multi-station transfer; die changes are planned like pit stops."
+        },
+        {
+          "name": "Line C \u2014 Transfer press",
+          "detail": "Sister to B with different die set. Often runs the overflow / alternate part family."
+        }
+      ]
+    },
+    {
+      "id": "line-flow",
+      "type": "steps",
+      "heading": "What \"the line is up\" actually means",
+      "items": [
+        "Coil or blank stacked and verified for the active die recipe.",
+        "Die in press, clamps confirmed, shut height and counterbalance set per sheet.",
+        "Automation (transfer / robots) homed with clear aisle photos or light curtains healthy.",
+        "First-off quality check signed before rate production.",
+        "End-of-line racking and scrap conveyors not backed up into the press envelope."
+      ]
+    },
+    {
+      "id": "div-controls",
+      "type": "divider",
+      "label": "Layer 3 \u2014 Controls"
+    },
+    {
+      "id": "controls",
+      "type": "diagram",
+      "heading": "Controls on one transfer line (example)",
+      "nodes": [
+        {
+          "title": "Safety PLC",
+          "detail": "Light curtains, e-stops, gate locks \u2014 independent of convenience logic."
+        },
+        {
+          "title": "Line PLC",
+          "detail": "Sequence, transfer timing, fault handling, recipe select."
+        },
+        {
+          "title": "Press / drive controllers",
+          "detail": "Main motor, slide, transfer servos \u2014 often vendor islands with handshake bits."
+        },
+        {
+          "title": "HMIs",
+          "detail": "Operator stations at feed, press, and end-of-line."
+        }
+      ]
+    },
+    {
+      "id": "controls-table",
+      "type": "compact-table",
+      "heading": "Example control assets (fictional tags)",
+      "columns": [
+        "Asset",
+        "Role",
+        "Talks to"
+      ],
+      "rows": [
+        [
+          "PLC-B1",
+          "Line B sequence",
+          "Safety PLC-B-S, drives, HMIs"
+        ],
+        [
+          "PLC-B-S",
+          "Line B safety",
+          "Hardwired safety devices + safety network"
+        ],
+        [
+          "HMI-B-OP1",
+          "Operator at feed",
+          "PLC-B1"
+        ],
+        [
+          "DRV-B-MAIN",
+          "Main press drive",
+          "PLC-B1 permissive + vendor keypad"
+        ]
+      ],
+      "caption": "Tags are teaching labels, not a real addressing scheme."
+    },
+    {
+      "id": "div-net",
+      "type": "divider",
+      "label": "Layer 4 \u2014 Network"
+    },
+    {
+      "id": "network",
+      "type": "text",
+      "heading": "Networks as a hierarchy too",
+      "body": "Cell networks on each line stay close to the I/O and drives. A plant backbone carries historian traffic, recipe distribution, and supervised remote access. The serious rule: operator convenience VLANs do not casually bridge into safety or motion segments. When someone says \"the network is down,\" ask which layer \u2014 cell switch, backbone, or the laptop VPN path into the MTR."
+    },
+    {
+      "id": "net-table",
+      "type": "compact-table",
+      "heading": "Example network layers",
+      "columns": [
+        "Layer",
+        "Example traffic",
+        "Who touches it"
+      ],
+      "rows": [
+        [
+          "Cell / line",
+          "PLC IO, drive cyclic data, local HMI",
+          "Controls & line electricians"
+        ],
+        [
+          "Plant backbone",
+          "Historian, MES light traffic, printers",
+          "IT/OT hybrid team"
+        ],
+        [
+          "DMZ / remote",
+          "Vendor support sessions",
+          "Documented, time-boxed, logged"
+        ]
+      ]
+    },
+    {
+      "id": "net-note",
+      "type": "note-callout",
+      "title": "Remote access is a procedure, not a port",
+      "body": "Fictional Riverbend requires a ticket, a time window, and a named escort for vendor VPNs. That policy is part of the hierarchy \u2014 same as a lockout.",
+      "tone": "warning"
+    },
+    {
+      "id": "div-crews",
+      "type": "divider",
+      "label": "Layer 5 \u2014 Crews"
+    },
+    {
+      "id": "crews",
+      "type": "comparison",
+      "heading": "Who owns which layer",
+      "columns": [
+        {
+          "name": "Production",
+          "detail": "Runs rate, calls stops, owns first response on jams within training."
+        },
+        {
+          "name": "Die set / tooling",
+          "detail": "Die changes, shut height, panel quality tied to die condition."
+        },
+        {
+          "name": "Mechanical maintenance",
+          "detail": "Lubrication, clutches, conveyors, hydraulics."
+        },
+        {
+          "name": "Electrical / controls",
+          "detail": "PLCs, drives, networks, safety devices \u2014 with LOTO still mandatory."
+        }
+      ]
+    },
+    {
+      "id": "roster",
+      "type": "compact-table",
+      "heading": "Example day-shift coverage (fictional)",
+      "columns": [
+        "Crew",
+        "Headcount example",
+        "Primary radio / area"
+      ],
+      "rows": [
+        [
+          "Line B operators",
+          "6",
+          "Press hall B"
+        ],
+        [
+          "Die set",
+          "4",
+          "Die bay + active line"
+        ],
+        [
+          "Mechanical",
+          "5",
+          "Floating \u2014 prioritizes down lines"
+        ],
+        [
+          "Electrical/controls",
+          "3",
+          "Cabinets + MTR"
+        ]
+      ],
+      "caption": "Numbers are examples for a teaching narrative."
+    },
+    {
+      "id": "escalate",
+      "type": "timeline",
+      "heading": "A fault climbing the hierarchy",
+      "items": [
+        {
+          "time": "T+0",
+          "title": "Operator",
+          "detail": "Line B stops; HMI shows transfer timeout."
+        },
+        {
+          "time": "T+5 min",
+          "title": "Production lead",
+          "detail": "Confirms not a trivial jam; calls maintenance."
+        },
+        {
+          "time": "T+15 min",
+          "title": "Electrical",
+          "detail": "Checks safety OK, then drive/PLC handshake bits on cell network."
+        },
+        {
+          "time": "T+40 min",
+          "title": "Controls + vendor window",
+          "detail": "If vendor motion controller needs a session, Layer 4 remote procedure starts \u2014 not a casual TeamViewer from the break room."
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Hierarchy check",
+      "prompt": "A light curtain fault on Line C is primarily which layer's device, even though the HMI lives on the network?",
+      "options": [
+        "Layer 5 HR paperwork",
+        "Layer 3 controls / safety PLC devices",
+        "Layer 1 south dock shipping",
+        "Layer 4 DMZ vendor VPN"
+      ],
+      "answer": 1,
+      "explanation": "Safety devices and the safety PLC are controls-layer assets. Networks may report the fault; they are not the curtain itself.",
+      "correctFeedback": "Yes \u2014 safety devices sit in controls, with safety PLC ownership.",
+      "wrongFeedback": "Use the layer map: curtains \u2192 safety PLC \u2192 controls layer."
+    },
+    {
+      "id": "slideshow",
+      "type": "slideshow",
+      "heading": "Walk the plant in your head",
+      "slides": [
+        {
+          "title": "Gate",
+          "body": "You badge in. The hierarchy starts with where you are allowed to walk."
+        },
+        {
+          "title": "Press hall",
+          "body": "Three lines. Your ears tell you which is under power."
+        },
+        {
+          "title": "Cabinet row",
+          "body": "PLC-B1 and PLC-B-S labeled. Magenta wiring for safety stays sacred."
+        },
+        {
+          "title": "MTR",
+          "body": "Historian humming. Remote access binder on the shelf \u2014 procedure as artifact."
+        },
+        {
+          "title": "Crew board",
+          "body": "Names on magnets. The plant is people who know which layer to call."
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Hold the map, then zoom",
+      "body": "When something fails at Riverbend, name the layer first. The right crew and the right cabinet follow."
+    }
+  ]
+}
