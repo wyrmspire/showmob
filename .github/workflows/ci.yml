@@ -35,3 +35,17 @@ jobs:
             sleep 1
           done
           grep -q '<div id="root"></div>' /tmp/showmob.html
+
+  gn-slugs:
+    name: grading subjects resolve to pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      # Offline check against the checked-in slim snapshot: no passcode, no DB access.
+      # Fails on broken/shared built-or-assigned subjects; pending and orphans only warn.
+      - name: check-gn-slugs against supabase/snapshots/gn-subjects.json
+        run: node scripts/check-gn-slugs.mjs --subjects supabase/snapshots/gn-subjects.json

@@ -52,6 +52,19 @@ SHOWMOB_DATABASE_URL='postgresql://…' \
   node --experimental-strip-types scripts/milestone-one-check.mjs showmob-guide
 ```
 
+## Grading subjects snapshot (CI)
+
+[`snapshots/gn-subjects.json`](snapshots/gn-subjects.json) is a slim, checked-in copy of `showmob_gn_subjects` so CI can run `scripts/check-gn-slugs.mjs` without the grader passcode. It holds only `id`, `title`, `status`, `artifact_slug`, `ab_pair`. No `generator`, no `axis_note` (that would be a second answer key for the blind), no grades. `tests/gn-subjects-snapshot.test.mjs` fails if any other field shows up.
+
+Refresh it after the subjects table changes (a human runs this locally with the passcode, reads the diff, and commits it):
+
+```sh
+GRADING_PASSCODE=... node scripts/snapshot-gn-subjects.mjs
+git diff supabase/snapshots/gn-subjects.json
+```
+
+CI job `gn-slugs` fails when a built/assigned/graded subject resolves to no page or two subjects share one page. Pending subjects, pending-only shares and orphan `gn-*` pages are warnings. The snapshot is only as fresh as its last commit, so a stale snapshot shows up as warnings or failures after the table moves; refresh it rather than editing it by hand.
+
 ## Agent dump (printcode)
 
 From the repo root, dump only this foundation slice for another agent:
