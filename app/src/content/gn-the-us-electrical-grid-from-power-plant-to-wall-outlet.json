@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-the-us-electrical-grid-from-power-plant-to-wall-outlet",
+  "title": "The US electrical grid from power plant to wall outlet",
+  "summary": "One causal chain, start to finish: how a watt is made, stepped up, moved, stepped down, and delivered - and why every stage looks the way it does.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "night",
+  "tags": ["grading-night", "grid", "electricity", "infrastructure"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "The machine we all share",
+      "title": "Follow one watt home",
+      "body": "The North American grid is often called the largest machine ever built, and it runs with almost no storage: the power you use was generated a fraction of a second ago. This page walks the whole causal chain from a spinning generator to your wall outlet, and explains why each transformation exists."
+    },
+    {
+      "id": "key-numbers",
+      "type": "stat-strip",
+      "items": [
+        { "value": "~20 kV", "label": "Typical generator output voltage" },
+        { "value": "138-765 kV", "label": "Long-distance transmission voltages" },
+        { "value": "7.2 kV", "label": "A common neighborhood distribution voltage" },
+        { "value": "120/240 V", "label": "What finally reaches the outlet" }
+      ]
+    },
+    {
+      "id": "the-chain",
+      "type": "diagram",
+      "heading": "The whole chain in one look",
+      "nodes": [
+        { "title": "Generation", "detail": "A turbine spins a generator; electricity is made at the moment it is needed." },
+        { "title": "Step-up transformer", "detail": "Voltage jumps to transmission levels so current - and loss - drops." },
+        { "title": "Transmission", "detail": "High-voltage lines move bulk power across regions." },
+        { "title": "Substation", "detail": "Voltage steps down to distribution levels near where power is used." },
+        { "title": "Distribution", "detail": "Pole and pad lines carry power through neighborhoods." },
+        { "title": "Service transformer", "detail": "The can on the pole drops 7,200 V to 120/240 V for a handful of homes." },
+        { "title": "Meter and panel", "detail": "The utility measures usage; the breaker panel splits it into circuits." },
+        { "title": "Outlet", "detail": "120 V for most things, 240 V for the big loads." }
+      ]
+    },
+    {
+      "id": "generation",
+      "type": "text",
+      "heading": "Stage one: making it",
+      "body": "Almost all grid power starts as motion: steam spun by boiling water (coal, gas, nuclear, geothermal), falling water (hydro), wind, or gas turbines - with solar the notable exception, making DC directly from light. The generator converts that motion to three-phase AC at roughly 11 to 25 kV. Three-phase is used because it delivers steady power and creates the rotating magnetic fields motors want."
+    },
+    {
+      "id": "why-high-voltage",
+      "type": "text",
+      "heading": "Why the voltage goes up: the loss equation",
+      "body": "Power loss in a wire is current squared times resistance. Move the same power at ten times the voltage and you need a tenth the current - and losses fall a hundred-fold. That single equation is the reason the grid's backbone exists: high voltage is not about power, it is about not heating the countryside with your electricity before it arrives."
+    },
+    {
+      "id": "step-up",
+      "type": "text",
+      "heading": "Stage two: stepping up",
+      "body": "At the plant fence, a step-up transformer raises generator voltage to transmission level - anywhere from 138 kV to 765 kV on the big lines. Transformers only work on AC, which is a large part of why AC won the original current war: it can be transformed efficiently, and transformation is what makes long-distance power possible at all."
+    },
+    {
+      "id": "transmission",
+      "type": "text",
+      "heading": "Stage three: moving it",
+      "body": "Transmission lines are the grid's highways, carrying bulk power between regions and from remote generation to cities. The continental US is not one grid but three big interconnections - Eastern, Western, and most of Texas - that run independently, joined only by a handful of DC ties. Inside each one, every generator spins in synchrony at 60 Hz, and that shared rhythm is what an operator means by grid stability."
+    },
+    {
+      "id": "balance",
+      "type": "note-callout",
+      "title": "There is no warehouse",
+      "body": "Except for a small and growing amount of battery and pumped-hydro storage, supply must equal demand every second. When you flip a switch, a generator somewhere feels it instantly as a tiny extra load. Grid operators spend their day forecasting demand and scheduling generation to meet it; frequency drifting off 60 Hz is the visible symptom of imbalance.",
+      "tone": "note"
+    },
+    {
+      "id": "substation",
+      "type": "text",
+      "heading": "Stage four: stepping down",
+      "body": "Near where power gets used, substations step transmission voltage down to distribution levels - commonly 4 to 35 kV. A substation is also a switchyard: breakers, buswork, and protection relays that can isolate a faulted line in cycles, so one tree branch does not darken a county. This is where the grid stops being a highway and becomes streets."
+    },
+    {
+      "id": "distribution",
+      "type": "text",
+      "heading": "Stage five: the neighborhood wires",
+      "body": "Distribution feeders leave the substation at neighborhood voltage - 7,200 V to ground is common in the US - and run along poles or underground. This is the part of the grid you can see, and the part that fails most: squirrels, branches, and car-versus-pole all live here. Fuses and reclosers sectionalize faults so a problem on one street stays on one street."
+    },
+    {
+      "id": "service-transformer",
+      "type": "text",
+      "heading": "Stage six: the can on the pole",
+      "body": "The final transformer - the gray can on the pole or the green box on the lawn - drops 7,200 V to 120/240 V split-phase for a handful of homes. Split-phase gives two 120 V legs of opposite phase; between either leg and neutral you get 120 V, and across both legs you get 240 V for the dryer, range, and EV charger. One failed can darkens a few houses, which is why those outages feel personal."
+    },
+    {
+      "id": "meter-panel",
+      "type": "text",
+      "heading": "Stage seven: into the house",
+      "body": "The service drop (or lateral, underground) runs from the transformer through the meter - the utility's cash register - to the main panel. The panel's main breaker protects the service, and branch breakers split power into 15 and 20 amp circuits. Everything downstream of the panel is yours; everything upstream is the utility's. The meter is the border."
+    },
+    {
+      "id": "voltage-table",
+      "type": "compact-table",
+      "heading": "The voltage ladder, rung by rung",
+      "columns": ["Stage", "Typical voltage", "Why that level"],
+      "rows": [
+        ["Generator output", "11-25 kV", "As high as generator insulation allows"],
+        ["Transmission", "138-765 kV", "High enough to beat I-squared-R losses over distance"],
+        ["Subtransmission", "34.5-69 kV", "Feeding substations and large industrial sites"],
+        ["Distribution", "4-35 kV (often 7.2 kV)", "Low enough to run through neighborhoods"],
+        ["Service", "120/240 V", "Safe enough for homes, high enough for big loads"]
+      ],
+      "caption": "Every step down trades efficiency for safety, one transformer at a time."
+    },
+    {
+      "id": "follow-the-watt",
+      "type": "steps",
+      "heading": "Follow the watt, condensed",
+      "items": [
+        "A gas turbine spins up because the evening forecast said you would cook dinner.",
+        "Its generator makes 18 kV three-phase AC; the step-up transformer raises that to 345 kV.",
+        "Transmission lines carry it eighty miles at a few percent loss.",
+        "A substation steps it to 7.2 kV and hands it to your street's feeder.",
+        "The pole can drops it to 120/240 V for your house and four neighbors.",
+        "The meter counts it, the panel splits it, and the outlet delivers it - generated less than a second ago."
+      ]
+    },
+    {
+      "id": "check-voltage",
+      "type": "exercise",
+      "heading": "Check the reasoning",
+      "prompt": "Why is long-distance transmission done at hundreds of kilovolts instead of at distribution voltage?",
+      "options": [
+        "Higher voltage means lower current for the same power, and losses fall with the square of current",
+        "Higher voltage makes the electricity travel faster",
+        "Insulators only work above 100 kV"
+      ],
+      "answer": 0,
+      "explanation": "Loss is I-squared-R. Ten times the voltage means a tenth the current and a hundredth the loss. Speed through the line is essentially the same either way."
+    },
+    {
+      "id": "check-border",
+      "type": "exercise",
+      "heading": "Check the map",
+      "prompt": "The gray can on the pole fails at dusk. Roughly how many homes go dark?",
+      "options": [
+        "A handful - it serves only the few houses fed from it",
+        "The whole neighborhood - it is the substation",
+        "Nobody - the grid reroutes instantly at that level"
+      ],
+      "answer": 0,
+      "explanation": "A service transformer feeds a small group of homes. Its failure is hyper-local - your street goes dark while the next street keeps its porch lights, which is exactly the pattern these outages show."
+    },
+    {
+      "id": "references",
+      "type": "resource-list",
+      "heading": "Go deeper",
+      "items": [
+        { "label": "EIA - Electricity explained", "detail": "The US Energy Information Administration's plain-language tour of generation, transmission, and distribution.", "url": "https://www.eia.gov/energyexplained/electricity/" },
+        { "label": "North American power transmission grid - Wikipedia", "detail": "The three interconnections and how they relate.", "url": "https://en.wikipedia.org/wiki/North_American_power_transmission_grid" }
+      ]
+    }
+  ]
+}

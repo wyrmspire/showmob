@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-quoting-a-machining-job-when-the-material-price-is-unconfirmed",
+  "title": "Quoting a machining job when the material price is unconfirmed",
+  "summary": "The material quote is three days out and the customer wants a number Friday. How to price the work without pretending the unknown is known.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "machining", "quoting", "uncertainty"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Quote the work, bracket the material",
+      "body": "A repeat customer wants a firm number on 40 brackets by Friday. Your time and tooling you know cold. The 6061 plate price you will not have until the supplier answers, and copper taught everyone what waiting costs. The job is to send a number that is honest about which part of it can still move."
+    },
+    {
+      "id": "knowns",
+      "type": "stat-strip",
+      "items": [
+        { "value": "6.5 hrs", "label": "Machine time at $95/hr - known: $617.50" },
+        { "value": "$840 +/-15%", "label": "Material estimate - not confirmed" },
+        { "value": "3 days", "label": "Until the supplier's real price lands" }
+      ]
+    },
+    {
+      "id": "options",
+      "type": "comparison",
+      "heading": "The three honest shapes the quote can take",
+      "columns": [
+        { "name": "Firm price with an escalation clause", "detail": "Quote $1,760 total and write down: material billed at actual cost plus 5% handling, labor fixed. The customer holds the price risk and knows it. Most repeat customers take this." },
+        { "name": "Quote with a validity window", "detail": "Firm $1,760, but the offer expires in five business days and reprices if the plate moves more than 10%. You hold the risk, but only briefly and only up to a wall." },
+        { "name": "Wait for the supplier", "detail": "No number until Monday. Zero price risk for you, real schedule risk for the customer, and a quiet message that uncertainty makes you freeze." }
+      ]
+    },
+    {
+      "id": "scenarios",
+      "type": "compact-table",
+      "heading": "What the material swing does to the job",
+      "columns": ["Plate lands at", "Material cost", "Job total (labor fixed)", "Margin on $1,760 quote"],
+      "rows": [
+        ["-10%", "$756", "$1,373.50", "+$386.50 - a good Friday"],
+        ["Estimate", "$840", "$1,457.50", "+$302.50 - the plan"],
+        ["+10%", "$924", "$1,541.50", "+$218.50 - thinner, fine"],
+        ["+25%", "$1,050", "$1,667.50", "+$92.50 - the wall the clause is for"]
+      ],
+      "caption": "Labor and overhead are fixed at $617.50 plus $200 shop burden. Only one number in this table is a guess."
+    },
+    {
+      "id": "writing",
+      "type": "steps",
+      "heading": "Writing it so the unknown is visible",
+      "items": [
+        "Break the quote into labor and material lines. A single blended number hides which part can move.",
+        "State the assumption in the quote, in writing: material priced at the estimate, actual invoice plus 5% at ship.",
+        "Name the date the quote expires. An open-ended quote is a risk you forgot you sold.",
+        "Offer the customer the choice: their risk (clause) or your risk (firm price with the wall). Putting the choice in writing is what makes it professional instead of slippery."
+      ]
+    },
+    {
+      "id": "not-lying",
+      "type": "note-callout",
+      "title": "What you may not do",
+      "body": "Pad the material by 30% and call it firm. That is not quoting, it is betting against your customer with their money, and repeat customers eventually read invoices. The whole craft here is making the uncertainty legible - whoever carries it should do so with their eyes open.",
+      "tone": "warning"
+    },
+    {
+      "id": "check-model",
+      "type": "exercise",
+      "heading": "Check the frame",
+      "prompt": "What makes an escalation clause honest rather than weaselly?",
+      "options": [
+        "It names which line can move, by how much it is measured, and who carries it - before anyone signs",
+        "It lets you raise the price later if costs go up",
+        "It is written in smaller print than the total"
+      ],
+      "answer": 0,
+      "explanation": "An honest clause allocates a specific, measurable risk in advance. A weaselly one is a vague license to reprice. The difference is specificity, agreed before the signature."
+    }
+  ]
+}

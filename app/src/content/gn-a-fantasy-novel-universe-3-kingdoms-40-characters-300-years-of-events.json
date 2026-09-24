@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-fantasy-novel-universe-3-kingdoms-40-characters-300-years-of-events",
+  "title": "A fantasy novel universe: 3 kingdoms, 40 characters, 300 years of events",
+  "summary": "The invented world of the Tidewars saga, organized so a new reader can hold it: three powers, seven eras, and the dozen characters who steer them.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "field",
+  "tags": ["grading-night", "fantasy", "worldbuilding", "reference"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "A reader's map to an invented world",
+      "title": "Three powers, one sea, three hundred years",
+      "body": "The Tidewars saga spans three centuries and forty named characters, and it does not slow down to explain itself. This is the orientation chapter: the shape of the world, the arc of its history, and the people worth tracking. Everything here is invented - treat it as the saga's front matter."
+    },
+    {
+      "id": "scale",
+      "type": "stat-strip",
+      "items": [
+        { "value": "3", "label": "Powers: a mountain crown, a river compact, a salt theocracy" },
+        { "value": "40", "label": "Named characters; a dozen actually steer events" },
+        { "value": "300", "label": "Years since the Breaking of the old empire" }
+      ]
+    },
+    {
+      "id": "invented",
+      "type": "note-callout",
+      "title": "All of this is made up",
+      "body": "Every kingdom, character, date, and proverb on this page was invented for the saga and this reference. Nothing here describes a real place, person, or event - the page's job is to show how a large fictional world can be organized so a reader keeps their footing.",
+      "tone": "note"
+    },
+    {
+      "id": "the-three",
+      "type": "comparison",
+      "heading": "The three powers",
+      "columns": [
+        { "name": "Vaelmoor, the Highland Crown", "detail": "Mountain kingdom of the Vael line. Controls the passes, the mines, and every toll between the rivers and the sea. Proud, old, and permanently convinced it is owed." },
+        { "name": "The Three Rivers Compact", "detail": "Merchant republic of the river cities Sarre, Lun, and Ild. Rules by ledger rather than crown; its armies are hired, its laws are contracts, and its memory is double-entry." },
+        { "name": "Ashkara, the Salt Coast", "detail": "Theocracy of the Tide-Speakers, who read divine will in the sea's behavior. Poor in iron, rich in faith, salt, and ships - and the only power whose soldiers believe." }
+      ]
+    },
+    {
+      "id": "vaelmoor",
+      "type": "text",
+      "heading": "Vaelmoor: the crown that collects",
+      "body": "The Vael kings unified the highlands in the Crown Wars and have taxed everything that moves through their passes since. Their self-image is guardianship - the mountains protect the lowlands from themselves. Everyone else's image is a toll booth with a throne. The current ruler, Queen Idra Vael, is the first of her line to wonder aloud whether the tolls cost more than they earn."
+    },
+    {
+      "id": "compact",
+      "type": "text",
+      "heading": "The Compact: the republic of ledgers",
+      "body": "Born in year 96 when the river cities confederated against Vaelmoor tariffs, the Compact is run by consuls elected from the counting houses. Its genius and its rot are the same: everything can be priced, including loyalty. The Three Accountants of Sarre - an office, not a person - quietly hold the debt of half the nobles in the world."
+    },
+    {
+      "id": "ashkara",
+      "type": "text",
+      "heading": "Ashkara: the coast that listens",
+      "body": "The Tide-Speakers began as lighthouse keepers who claimed the sea answered them. Two centuries later their temple is a state. Ashkara's strength is cohesion - a fishing village and a war fleet obey the same tide tables and the same god. Its weakness is succession: when a Tide-Speaker dies, the sea is silent until the priests agree on the next voice, and the sea can stay silent for years."
+    },
+    {
+      "id": "eras",
+      "type": "timeline",
+      "heading": "Three hundred years in seven eras",
+      "items": [
+        { "time": "Years 0-40", "title": "The Splintering", "detail": "The old empire breaks; forty petty kings hold forty valleys. Nothing on the map matches twice in a row." },
+        { "time": "Years 41-95", "title": "The Crown Wars", "detail": "Queen Mabren Vael unifies the highlands by marriage, siege, and one famous avalanche. The Vael line begins." },
+        { "time": "Years 96-130", "title": "The Compact Forms", "detail": "The river cities federate against the crown's tolls. Shipmaster-Consul Yara fen Lunn writes the Articles of the Ledger." },
+        { "time": "Years 131-170", "title": "The Salt Ascension", "detail": "The Tide-Speakers turn a temple into a state. Mera Sol's heresy - that the sea answers everyone, not just priests - is drowned with its author." },
+        { "time": "Years 171-220", "title": "The Ledger Peace", "detail": "Fifty years of trade. The Compact gets rich, the crown gets debt, and Ashkara gets quiet in the way that worries people." },
+        { "time": "Years 221-265", "title": "The War of the Tides", "detail": "Three-power war over the straits. Ends not with a victor but with a storm season that sinks three fleets and everyone's appetite." },
+        { "time": "Years 266-300", "title": "The Concord", "detail": "The present. Queen Idra's fragile union of toll, ledger, and tide - held together, so far, by her refusal to call it permanent." }
+      ]
+    },
+    {
+      "id": "proverb",
+      "type": "quote",
+      "quote": "The mountains do not pay tolls. They collect them.",
+      "attribution": "Vaelmoor proverb, quoted at every negotiating table in the saga"
+    },
+    {
+      "id": "notables",
+      "type": "compact-table",
+      "heading": "The dozen who steer (of the forty named)",
+      "columns": ["Character", "Power", "Why they matter"],
+      "rows": [
+        ["Queen Mabren Vael", "Vaelmoor", "Unifier of the highlands; everything after her is her shadow"],
+        ["King Odrick the Toll-Taker", "Vaelmoor", "Her grandson; weaponized the passes and provoked the Compact"],
+        ["Yara fen Lunn", "Compact", "Wrote the Articles of the Ledger; the republic's founding mind"],
+        ["The First Tide-Speaker, Callow", "Ashkara", "Lighthouse keeper who heard the sea answer; the faith's origin"],
+        ["Mera Sol", "Ashkara", "Heretic who taught the sea answers everyone; drowned for it, remembered anyway"],
+        ["The Three Accountants", "Compact", "An office, not a person; holds half the world's debt"],
+        ["Admiral Brego Dal", "Compact", "Won the straits twice and lost them once, which is why there was a war"],
+        ["King Aelan II, the Winter King", "Vaelmoor", "Spent the crown's gold on the war and the passes' goodwill on pride"],
+        ["Saint-Viceroy Oshun", "Ashkara", "Ruled during the Silent Years without ever claiming the tide's voice"],
+        ["Spymaster Leth", "Unaffiliated", "Sells to all three powers; the saga's recurring question mark"],
+        ["Queen Idra Vael", "Vaelmoor", "Architect of the Concord; the present tense of the saga"],
+        ["Tide-Speaker Nao", "Ashkara", "Youngest ever raised to the voice; hears something the priests hoped the sea had forgotten"]
+      ]
+    },
+    {
+      "id": "the-web",
+      "type": "diagram",
+      "heading": "How the powers lean on each other",
+      "nodes": [
+        { "title": "Vaelmoor needs", "detail": "Compact grain and loans; Ashkaran salt for the mines." },
+        { "title": "The Compact needs", "detail": "The crown's passes kept open and the temple's ships kept home." },
+        { "title": "Ashkara needs", "detail": "Iron from the highlands and grain from the rivers - and to be believed." },
+        { "title": "Everyone needs", "detail": "The straits calm. The war happened when all three forgot it at once." }
+      ]
+    },
+    {
+      "id": "war-tour",
+      "type": "slideshow",
+      "heading": "The War of the Tides in four frames",
+      "slides": [
+        { "title": "The spark (year 221)", "body": "The Winter King doubles the strait tolls. The Compact's answer is a convoy that simply does not pay, escorted by Brego Dal's fleet." },
+        { "title": "The temple chooses (year 224)", "body": "Ashkara declares the sea offended by the tolls - theologically convenient, strategically perfect - and closes the straits to everyone." },
+        { "title": "The storm season (year 263)", "body": "Three fleets sink in one autumn, more to weather than to each other. Every power reads the same omen in its own book." },
+        { "title": "The exhausted peace (year 265)", "body": "No victor signs the treaty because there is none. The treaty names the sea the straits' only sovereign. Idra Vael, then a princess, watches her father sign and starts planning the Concord." }
+      ]
+    },
+    {
+      "id": "keeping-straight",
+      "type": "checklist",
+      "heading": "Keeping the cast straight while you read",
+      "items": [
+        { "label": "Track power first, person second", "detail": "Every character acts as their power's interest until the moment they famously do not." },
+        { "label": "Vaels come in pairs", "detail": "Each strong Vael ruler is answered by a weak heir; the dynasty breathes in and out." },
+        { "label": "When Ashkara goes silent, something is wrong", "detail": "Silence between Tide-Speakers is the saga's omen of choice." },
+        { "label": "Leth is never on a side", "detail": "If the spymaster appears loyal, reread the chapter." }
+      ]
+    },
+    {
+      "id": "check-model",
+      "type": "exercise",
+      "heading": "Check your bearings",
+      "prompt": "The Three Rivers Compact was founded primarily in response to what?",
+      "options": [
+        "Vaelmoor's tolls on the passes and straits",
+        "The Tide Heresy spreading upriver",
+        "The old empire's tax collectors"
+      ],
+      "answer": 0,
+      "explanation": "The Articles of the Ledger (year 96) federated the river cities against the Highland Crown's tolls. The empire was fifty years gone by then, and the heresy came later."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Start with the war, or start with the avalanche",
+      "body": "Reading order is a real choice in this saga: publication order opens on the War of the Tides, chronological order opens with Mabren's avalanche. Either way, you now hold the map."
+    }
+  ]
+}
