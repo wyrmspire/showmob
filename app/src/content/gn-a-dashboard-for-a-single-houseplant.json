@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-dashboard-for-a-single-houseplant",
+  "title": "A dashboard for a single houseplant",
+  "summary": "Everything there is to know about one pothos, presented at exactly the scale of the information.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "field",
+  "tags": ["grading-night", "dashboard", "plants", "restraint"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Fernando the pothos, fully monitored",
+      "body": "Behold the complete operational picture of one houseplant. It fits on this page because a sticky note would also have fit - so this page is sized like the sticky note."
+    },
+    {
+      "id": "vitals",
+      "type": "stat-strip",
+      "items": [
+        { "value": "Damp-ish", "label": "Soil, assessed by the highly calibrated index finger" },
+        { "value": "East window", "label": "Light exposure, unchanged since 2024" },
+        { "value": "6 days", "label": "Since last watering - well within pothos tolerance" }
+      ]
+    },
+    {
+      "id": "actions",
+      "type": "checklist",
+      "heading": "Action items",
+      "items": [
+        { "label": "Water when the top inch of soil is dry", "detail": "Probably Thursday. The finger will know." },
+        { "label": "Rotate a quarter turn on watering day", "detail": "So it does not lean into the light like it is eavesdropping." }
+      ]
+    },
+    {
+      "id": "honesty",
+      "type": "note-callout",
+      "title": "No further telemetry at this time",
+      "body": "There is no moisture sensor, no growth-rate chart, and no trailing twelve-month leaf KPI, because there is one plant and it is fine. The correct dashboard for Fernando was always this size.",
+      "tone": "positive"
+    }
+  ]
+}

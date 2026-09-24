@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-choose-your-own-adventure-youre-the-plc-and-someone-just-hit-the-e-stop",
+  "title": "Choose your own adventure: you're the PLC and someone just hit the e-stop",
+  "summary": "A playful walk through a serious subject: what actually happens in the half second after an e-stop, from the point of view of the controller who finds out last.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "night",
+  "tags": ["grading-night", "plc", "safety", "adventure"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "A tiny adventure in one scan cycle",
+      "title": "You are the PLC. The big red button just went down.",
+      "body": "You run a packaging cell. You have a comfortable routine: read inputs, run your program, write outputs, repeat a hundred times a second. Somewhere out there a palm is coming down on a mushroom-headed red button. Your adventure is what happens next - and the plot twist is that it was never really up to you."
+    },
+    {
+      "id": "beat-one",
+      "type": "text",
+      "heading": "Beat one: you notice nothing at first",
+      "body": "The e-stop button is not wired to you. It is wired to the safety relay, which cuts power to the contactors directly, in hardware, without asking anyone's program. This is by design: a stop that must work even if you are crashed, confused, or compromised cannot route through you. The actuators start dying before you know anything happened."
+    },
+    {
+      "id": "choice-one",
+      "type": "note-callout",
+      "title": "Choice: do you trust the silence?",
+      "body": "Your outputs vanish from the field. As an adventure hero you might investigate. As a PLC you cannot - the contactors are gone and no program logic brings them back. If you chose trust the silence, turn to the next beat. If you chose override it, the safety relay ignores you and the story still turns to the next beat. That is the point.",
+      "tone": "note"
+    },
+    {
+      "id": "beat-two",
+      "type": "text",
+      "heading": "Beat two: your inputs tell the story",
+      "body": "On your next input scan - a few milliseconds later - the e-stop's monitoring channel reads as dropped, and the safety relay's feedback contacts change state. Now you know. Your program's job in this beat is not to stop the machine (hardware already did) but to record what happened: latch the fault, note which gate or button, and decide what a restart is allowed to look like."
+    },
+    {
+      "id": "scan-cycle",
+      "type": "steps",
+      "heading": "Your whole life in one scan, for reference",
+      "items": [
+        "Read all inputs into the image table - a snapshot, frozen for this scan.",
+        "Run the program against that snapshot, top to bottom.",
+        "Write the results to the output image table, then to the field.",
+        "Do housekeeping and comms, then start over. A hundred times a second on a slow day.",
+        "During an e-stop, the field stops listening between steps two and three - which is why your program must never assume an output actually happened."
+      ]
+    },
+    {
+      "id": "beat-three",
+      "type": "text",
+      "heading": "Beat three: the aftermath is your real job",
+      "body": "The operator twists the button to release it. Nothing restarts - by design, reset is a separate deliberate act. You verify the safety relay's feedback says it is healthy, check that no guard is still open, and only then let the amber lamp become a green one when the human presses reset. If any check fails, you hold the fault and say why on the display. You are not the brake; you are the witness and the gatekeeper of the restart."
+    },
+    {
+      "id": "endings",
+      "type": "comparison",
+      "heading": "Two endings, and only one is allowed",
+      "columns": [
+        { "name": "The good ending", "detail": "Hardware stopped the danger. You latched the fault, identified the station, gated the restart, and logged everything. The human learned what happened from you." },
+        { "name": "The ending that gets machines decertified", "detail": "A program that treats the e-stop as just another input - logic that could delay, filter, or override it. In the real world this ending is not dramatic; it is a finding on an audit and a line that does not run." }
+      ]
+    },
+    {
+      "id": "check-model",
+      "type": "exercise",
+      "heading": "Check the moral",
+      "prompt": "Why is the e-stop deliberately NOT wired through the PLC's program?",
+      "options": [
+        "So the stop works even when the controller is crashed, wrong, or compromised",
+        "Because buttons predate programmable logic",
+        "Because it saves one input card per machine"
+      ],
+      "answer": 0,
+      "explanation": "Safety functions must not depend on anything that can fail in software. The e-stop cuts power in hardware; the PLC's role is witnessing, latching, and controlling the restart - a partnership, not a chain of command."
+    }
+  ]
+}

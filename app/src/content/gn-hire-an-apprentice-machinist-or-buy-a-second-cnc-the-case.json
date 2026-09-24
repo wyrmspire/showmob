@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-hire-an-apprentice-machinist-or-buy-a-second-cnc-the-case",
+  "title": "Hire an apprentice machinist or buy a second CNC: the case",
+  "summary": "A two-person job shop has one bottleneck and two ways to spend the same money. This page makes the case for the person - and says what would change the answer.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "machining", "business", "decision"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "A case, argued on purpose",
+      "title": "The bottleneck is not spindle hours",
+      "body": "A fictional two-person shop is turning away work and has about 70,000 dollars a year to throw at it. Option one: a used CNC machining center. Option two: an apprentice machinist. The numbers are illustrative, the reasoning is the real content - and this page takes the apprentice's side."
+    },
+    {
+      "id": "money",
+      "type": "compact-table",
+      "heading": "The same money, three years out",
+      "columns": ["Line", "Second CNC (used)", "Apprentice"],
+      "rows": [
+        ["Year-one cash", "$68,000 machine + $9,000 rigging and tooling", "$52,000 wages and burden at $18/hr to start"],
+        ["Ongoing yearly", "$9,000 maintenance, tooling, power", "$54,000-60,000 as skills and wages grow"],
+        ["Capacity added", "Spindle hours - if someone can set it up", "Setups, deburring, inspection, saw work, quoting help"],
+        ["What it does when work is slow", "Sits there costing floor space", "Learns, cleans, maintains, cross-trains"],
+        ["Resale or exit", "Depreciates to maybe $40,000", "Walks away with everything you taught - that is the risk"]
+      ],
+      "caption": "Illustrative numbers for a fictional shop. Your shop's figures differ; the shape of the comparison is the point."
+    },
+    {
+      "id": "the-bottleneck",
+      "type": "text",
+      "heading": "What is actually limiting the shop",
+      "body": "The existing mill already waits idle during quoting, setups, saw cutting, deburring, inspection, and shipping - all the work only the two owners can currently do. A second spindle inherits the same wait. Spindle utilization, not spindle count, is the constraint, and utilization is made of exactly the tasks an apprentice absorbs first."
+    },
+    {
+      "id": "for-the-person",
+      "type": "steps",
+      "heading": "The case for the apprentice",
+      "items": [
+        "They attack the real bottleneck: every hour of setup, deburr, and saw work they take returns an hour of cutting on the machine you already own.",
+        "They flex across the whole shop. A machine does one job; a person does the seven jobs that surround cutting.",
+        "They compound. In three years you have a journeyman-shaped employee trained exactly to your standards, at the moment a second machine would actually make sense.",
+        "The capability is anti-fragile: a person notices the wrong thing at 3 PM on a Tuesday. A spindle notices nothing."
+      ]
+    },
+    {
+      "id": "for-the-machine",
+      "type": "text",
+      "heading": "Steel's honest counterargument",
+      "body": "A machine does not quit, does not need two years of patience before it pays, and doubles lights-out capacity if your work is long, repeatable runs with stable setups. If the shop's pain is a queue of identical parts and the setups are already fast, the spindle wins and this page's verdict flips. The argument is about the bottleneck, not about loyalty to people over iron."
+    },
+    {
+      "id": "the-risk",
+      "type": "note-callout",
+      "title": "The risk nobody skips",
+      "body": "You can train a machinist for three years and watch them leave for five dollars more an hour. That risk is real and it is priced into the case: the retention tools are boring - raises on a schedule, real work early, and being the shop people stay at. The machine's version of the same risk is quieter: it can be the wrong machine, and it never becomes the right employee.",
+      "tone": "warning"
+    },
+    {
+      "id": "verdict",
+      "type": "cta-band",
+      "heading": "Hire the apprentice; buy the machine in year three",
+      "body": "Grow the person who unlocks the spindle you have. When their skill makes spindle hours the bottleneck again - and it will - that is the year the second CNC buys something real. Sequence the investment after the constraint moves, not before."
+    },
+    {
+      "id": "check-model",
+      "type": "exercise",
+      "heading": "Check the argument",
+      "prompt": "What single observation would most weaken this page's recommendation?",
+      "options": [
+        "The existing mill already runs two full shifts of cutting with setups under ten minutes",
+        "Apprentices sometimes leave after training",
+        "Used CNC machines hold their value poorly"
+      ],
+      "answer": 0,
+      "explanation": "The case rests on the bottleneck being everything-around-cutting. If the mill is already saturated with pure cutting and setups are trivial, spindle hours really are the constraint - and the machine is the right buy."
+    }
+  ]
+}
