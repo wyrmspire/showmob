@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-spare-parts-inventory-with-reorder-points-for-a-packaging-line",
+  "title": "Spare parts inventory with reorder points for a packaging line",
+  "summary": "A living spare-parts list for a fictional packaging line with on-hand counts, reorder points, and who owns the buy.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "inventory",
+    "maintenance",
+    "packaging"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Spares that match the line's failure modes",
+      "body": "Fictional Line P3 (flow wrapper + case erector) keeps a small crib of parts that actually stop the line when missing. Reorder points below are examples \u2014 tune to your lead times."
+    },
+    {
+      "id": "policy",
+      "type": "note-callout",
+      "title": "Operating policy",
+      "body": "If on-hand \u2264 reorder point, create a PO the same shift. Critical parts (marked) escalate to the planner within an hour if the PO cannot place.",
+      "tone": "note"
+    },
+    {
+      "id": "inventory",
+      "type": "compact-table",
+      "heading": "Line P3 spare crib (example)",
+      "columns": [
+        "Part",
+        "On hand",
+        "Reorder at",
+        "Lead time",
+        "Critical"
+      ],
+      "rows": [
+        [
+          "Photoeye, M12 diffuse (std)",
+          "4",
+          "2",
+          "3 days",
+          "Yes"
+        ],
+        [
+          "Relay, 24V ice cube",
+          "10",
+          "4",
+          "2 days",
+          "Yes"
+        ],
+        [
+          "Wrapper knife blade",
+          "2",
+          "1",
+          "10 days",
+          "Yes"
+        ],
+        [
+          "Timing belt, 560-5M-15",
+          "1",
+          "1",
+          "14 days",
+          "Yes"
+        ],
+        [
+          "Pneumatic fitting kit",
+          "1",
+          "1",
+          "5 days",
+          "No"
+        ],
+        [
+          "HMI backlight (model X)",
+          "0",
+          "1",
+          "21 days",
+          "No \u2014 on order"
+        ],
+        [
+          "Contactor, 25A",
+          "2",
+          "1",
+          "7 days",
+          "Yes"
+        ],
+        [
+          "Grease cartridges (spec)",
+          "6",
+          "2",
+          "4 days",
+          "No"
+        ]
+      ],
+      "caption": "Example SKUs and counts for a teaching line \u2014 not a vendor catalog."
+    },
+    {
+      "id": "how-rop",
+      "type": "steps",
+      "heading": "How these reorder points were set (method)",
+      "items": [
+        "List parts that stopped Line P3 in the last year (historian + WO tags).",
+        "For each, note supplier lead time and how many failures occur before a spare arrives.",
+        "Reorder point \u2248 expected use during lead time + a small buffer for weekends.",
+        "Review quarterly \u2014 a part that never moves may not deserve crib space."
+      ]
+    },
+    {
+      "id": "roles",
+      "type": "comparison",
+      "heading": "Who does what",
+      "columns": [
+        {
+          "name": "Technician",
+          "detail": "Draws parts with a scan or tag; notes if bin hits reorder."
+        },
+        {
+          "name": "Planner / crib owner",
+          "detail": "Places POs; adjusts reorder points; kills zombie SKUs."
+        },
+        {
+          "name": "Supervisor",
+          "detail": "Escalates critical stockouts that threaten the shift."
+        }
+      ]
+    },
+    {
+      "id": "daily",
+      "type": "checklist",
+      "heading": "Shift-end crib check",
+      "items": [
+        {
+          "label": "Scan or count critical bins that moved today",
+          "detail": "Photoeyes, relays, knives."
+        },
+        {
+          "label": "Create PO for anything \u2264 reorder point",
+          "detail": "Same shift \u2014 not \"tomorrow morning.\""
+        },
+        {
+          "label": "Flag open critical POs older than lead time",
+          "detail": "Chase suppliers before the line does."
+        },
+        {
+          "label": "Return unused draws",
+          "detail": "Phantom stockouts often start as parts in a toolbox."
+        }
+      ]
+    },
+    {
+      "id": "timeline",
+      "type": "timeline",
+      "heading": "Example week",
+      "items": [
+        {
+          "time": "Mon",
+          "title": "Knife blade drawn",
+          "detail": "On hand 2\u21921; already at reorder \u2014 PO placed."
+        },
+        {
+          "time": "Wed",
+          "title": "Two photoeyes fail same day",
+          "detail": "On hand 4\u21922; hits reorder; PO for +4."
+        },
+        {
+          "time": "Fri",
+          "title": "Belt still at 1",
+          "detail": "Critical at reorder floor \u2014 confirm PO status before weekend."
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Reorder check",
+      "prompt": "Ice-cube relays show on hand 4 and reorder at 4. What should happen?",
+      "options": [
+        "Nothing \u2014 equality does not count",
+        "Place a PO this shift per policy (\u2264 reorder point)",
+        "Wait until zero",
+        "Remove relays from the crib"
+      ],
+      "answer": 1,
+      "explanation": "Policy uses \u2264 reorder point. Sitting on the line is already late enough.",
+      "correctFeedback": "Correct \u2014 order at the floor, not after a stockout.",
+      "wrongFeedback": "Re-read the operating policy callout."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Keep the crib honest",
+      "body": "Inventory is an operating system. Counts without reorder action are just a museum of almost-useful plastic bins."
+    }
+  ]
+}

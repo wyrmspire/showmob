@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-should-i-drink-more-water",
+  "title": "Should I drink more water?",
+  "summary": "Usually yes if your urine is dark or you feel thirsty \u2014 that is most of the answer.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "paper",
+  "tags": [
+    "grading-night",
+    "health",
+    "everyday"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "answer",
+      "type": "hero",
+      "title": "If you are thirsty or your urine is dark, drink water",
+      "body": "That is the page. Most healthy people can trust thirst and urine color more than a viral gallon-a-day rule."
+    },
+    {
+      "id": "edge",
+      "type": "note-callout",
+      "title": "When to ask a clinician instead",
+      "body": "Kidney disease, heart failure, endurance events, or medications that change fluid balance need personal medical advice \u2014 not a grading-night micro-page.",
+      "tone": "note"
+    }
+  ]
+}

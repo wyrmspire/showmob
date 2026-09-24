@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-pitch-to-a-plant-manager-replace-three-aging-relay-panels-with-one-plc",
+  "title": "Pitch to a plant manager: replace three aging relay panels with one PLC",
+  "summary": "A persuasive plant-manager pitch to collapse three aging relay panels into one PLC \u2014 with example downtime and cost numbers clearly labeled as examples.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "plc",
+    "pitch",
+    "migration"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Decision memo style",
+      "title": "Three relay panels \u2192 one PLC",
+      "body": "Riverbend Packaging's Line 2 still runs on three aging relay panels from different decades. This pitch asks for budget to replace them with a single PLC platform \u2014 not because relays are morally wrong, but because the failure mode is now spare-parts archaeology."
+    },
+    {
+      "id": "examples",
+      "type": "note-callout",
+      "title": "Numbers below are EXAMPLES",
+      "body": "Downtime hours, dollar figures, and spare lead times are illustrative for a fictional plant. They are not a quote, not Riverbend's real books, and not a promise. Replace them with your measured historian data before any real capital request.",
+      "tone": "warning"
+    },
+    {
+      "id": "problem",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "14 h",
+          "label": "EXAMPLE unplanned downtime last quarter tied to relay faults"
+        },
+        {
+          "value": "3",
+          "label": "Panels with overlapping, undocumented interlocks"
+        },
+        {
+          "value": "6\u201312 wk",
+          "label": "EXAMPLE lead time on obsolete relay skus"
+        }
+      ]
+    },
+    {
+      "id": "why-now",
+      "type": "text",
+      "heading": "Why this quarter",
+      "body": "The panels still run. That is the trap. Each nuisance fault trains the crew to \"tap the contactor\" instead of instrumenting the root cause. Meanwhile the vendor for Panel C's ice-cube relays already lists several skus as last-time-buy. Waiting for a catastrophic failure turns a planned project into a weekend scramble with premium labor."
+    },
+    {
+      "id": "proposal",
+      "type": "diagram",
+      "heading": "Proposed shape",
+      "nodes": [
+        {
+          "title": "Keep field devices",
+          "detail": "Sensors and actuators stay; re-land on new terminals."
+        },
+        {
+          "title": "One PLC + I/O",
+          "detail": "Sequence logic centralized; safety stays hardwired or on a safety PLC per policy."
+        },
+        {
+          "title": "HMI for faults",
+          "detail": "Named alarms instead of which-coil-is-buzzing theater."
+        },
+        {
+          "title": "Staged cutover",
+          "detail": "Weekend windows with rollback \u2014 same discipline as any relay-to-PLC migration."
+        }
+      ]
+    },
+    {
+      "id": "cost",
+      "type": "compact-table",
+      "heading": "EXAMPLE cost frame (not a quote)",
+      "columns": [
+        "Bucket",
+        "Example $",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "PLC, I/O, HMI hardware",
+          "$18k\u201328k",
+          "Depends on brand standards already in the plant"
+        ],
+        [
+          "Panel build & install labor",
+          "$22k\u201335k",
+          "Including weekend premiums"
+        ],
+        [
+          "Engineering & documentation",
+          "$12k\u201320k",
+          "Prints, logic comments, training"
+        ],
+        [
+          "Contingency 15%",
+          "$8k\u201312k",
+          "Because panels always hide a surprise"
+        ],
+        [
+          "EXAMPLE total",
+          "$60k\u201395k",
+          "Illustrative band only"
+        ]
+      ],
+      "caption": "Replace every cell with vendor quotes and your maintenance ledger before presenting upstairs."
+    },
+    {
+      "id": "roi",
+      "type": "comparison",
+      "heading": "EXAMPLE value arguments",
+      "columns": [
+        {
+          "name": "Downtime avoided",
+          "detail": "If EXAMPLE 14 h/quarter at EXAMPLE $2,500/h contribution continues, the project pays for itself in a few quarters \u2014 only if your historian agrees."
+        },
+        {
+          "name": "Spare-parts risk",
+          "detail": "Obsolete relays are a silent balance-sheet risk. One hard-to-get coil can cost more than a weekend of planned work."
+        },
+        {
+          "name": "Diagnosability",
+          "detail": "Named faults shorten MTTR. That benefit is real even when the dollar model is conservative."
+        }
+      ]
+    },
+    {
+      "id": "risks",
+      "type": "checklist",
+      "heading": "Risks to say out loud",
+      "items": [
+        {
+          "label": "Scope creep into mechanical rebuilds",
+          "detail": "This pitch is controls. Keep mechanical separately funded."
+        },
+        {
+          "label": "Safety circuit mishandling",
+          "detail": "E-stops and guard doors stay compliant \u2014 not \"absorbed\" casually into standard PLC outputs."
+        },
+        {
+          "label": "Tribal knowledge loss",
+          "detail": "Budget documentation and shadowing; the relay puzzles in people's heads must become comments and prints."
+        },
+        {
+          "label": "Optimistic downtime savings",
+          "detail": "Call examples examples. Measure before promising ROI."
+        }
+      ]
+    },
+    {
+      "id": "plan",
+      "type": "timeline",
+      "heading": "EXAMPLE staged plan",
+      "items": [
+        {
+          "time": "Weeks 1\u20133",
+          "title": "Survey & prints",
+          "detail": "Ring out existing panels; freeze scope."
+        },
+        {
+          "time": "Weeks 4\u20138",
+          "title": "Build & shop test",
+          "detail": "New panel dry-tested before the line sees it."
+        },
+        {
+          "time": "Weekend A",
+          "title": "Land outputs / monitoring",
+          "detail": "Rollback possible; line runs Monday."
+        },
+        {
+          "time": "Weekend B",
+          "title": "Cut sequence over",
+          "detail": "Production prove-out; old panels retained until stable."
+        },
+        {
+          "time": "Week +4",
+          "title": "Decommission relays",
+          "detail": "Only after the PLC earns trust."
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "type": "steps",
+      "heading": "The ask",
+      "items": [
+        "Approve engineering hours to produce a firm quote (not this example band).",
+        "Reserve two weekend windows on the production calendar.",
+        "Assign a maintenance owner and an operations owner for cutover criteria.",
+        "Require a rollback plan in writing before the first wire moves."
+      ]
+    },
+    {
+      "id": "quote",
+      "type": "quote",
+      "quote": "We are not replacing relays because they are old. We are replacing a failure mode we can no longer spare-parts our way out of.",
+      "attribution": "The sentence to leave on the table"
+    },
+    {
+      "id": "alternatives",
+      "type": "comparison",
+      "heading": "Alternatives considered",
+      "columns": [
+        {
+          "name": "Do nothing",
+          "detail": "EXAMPLE: keep paying intermittent downtime and last-time-buy premiums until a hard failure forces overtime rates."
+        },
+        {
+          "name": "Refurbish relays in place",
+          "detail": "Buys months, not years, if the skus are already obsolete. Still leaves three undocumented brains."
+        },
+        {
+          "name": "One PLC (this ask)",
+          "detail": "Central logic, named faults, staged cutover with rollback \u2014 higher upfront EXAMPLE cost, lower archaeological risk."
+        }
+      ]
+    },
+    {
+      "id": "success",
+      "type": "checklist",
+      "heading": "Success criteria for the capital ask",
+      "items": [
+        {
+          "label": "Firm quote within EXAMPLE band or explained variance",
+          "detail": "No silent scope growth mid-build."
+        },
+        {
+          "label": "Two documented weekend windows with rollback drills",
+          "detail": "Monday production is non-negotiable."
+        },
+        {
+          "label": "Training complete for A and B shift techs before decommission",
+          "detail": "HMI navigation and fault trees practiced."
+        },
+        {
+          "label": "Old panels retained until 30 stable production days",
+          "detail": "Then strip \u2014 not before."
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Pitch discipline check",
+      "prompt": "A manager asks if the $2,500/h downtime figure is guaranteed. Best reply?",
+      "options": [
+        "Yes, guaranteed forever",
+        "It is an EXAMPLE \u2014 we will substitute historian-measured rates before capital approval",
+        "Ignore the question and talk about HMI colors",
+        "Triple the number to be safe"
+      ],
+      "answer": 1,
+      "explanation": "This page labels dollars as examples on purpose. Credibility is the pitch.",
+      "correctFeedback": "Yes \u2014 keep examples labeled; bring real data next.",
+      "wrongFeedback": "Re-read the warning callout. Example numbers are scaffolding, not scripture."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Next step",
+      "body": "If the manager nods, schedule the survey week. If they hesitate, leave the EXAMPLE ROI model and the obsolete-parts lead times \u2014 those two pages argue while you are gone."
+    }
+  ]
+}
