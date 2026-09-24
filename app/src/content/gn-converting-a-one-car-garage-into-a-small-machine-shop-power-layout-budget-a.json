@@ -1,0 +1,280 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-converting-a-one-car-garage-into-a-small-machine-shop-power-layout-budget-a",
+  "title": "Converting a one-car garage into a small machine shop: power, layout, budget",
+  "summary": "A phased schedule for turning a one-car garage into a usable small shop \u2014 power and layout follow the calendar, not a floorplan sketch.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "shop",
+    "planning",
+    "power"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Schedule first, then wire and place",
+      "title": "Build the shop in phases you can finish",
+      "body": "A one-car garage becomes a small machine shop when power, floor load, and machine placement arrive in the right order. This page starts with the calendar. Floorplan sketches wait until the phases that need them."
+    },
+    {
+      "id": "scale",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "1 car",
+          "label": "Typical footprint \u2014 about 12\u00d720 ft usable"
+        },
+        {
+          "value": "60 A",
+          "label": "Example subpanel target for a light metal shop"
+        },
+        {
+          "value": "4 phases",
+          "label": "Safety \u2192 power \u2192 layout \u2192 first cuts"
+        }
+      ]
+    },
+    {
+      "id": "spine",
+      "type": "timeline",
+      "heading": "Phases over time",
+      "items": [
+        {
+          "time": "Week 0",
+          "title": "Decide what the shop is for",
+          "detail": "Lathe and mill? Weld cell? Wood only? The answer sets voltage, dust, and floor loads before you buy a single breaker."
+        },
+        {
+          "time": "Weeks 1\u20132",
+          "title": "Phase 1 \u2014 Make it safe to work in",
+          "detail": "Clear junk, fix leaks, add lighting you can actually see by, and confirm the door and egress still work with machines inside."
+        },
+        {
+          "time": "Weeks 3\u20135",
+          "title": "Phase 2 \u2014 Power that matches the tools",
+          "detail": "Load calc, subpanel or feeder decision, and receptacles placed for the machines you already own or have on order."
+        },
+        {
+          "time": "Weeks 6\u20138",
+          "title": "Phase 3 \u2014 Layout that leaves aisle space",
+          "detail": "Place heavy machines first, then benches and storage. Leave a path wide enough to walk past a running spindle without sideways dancing."
+        },
+        {
+          "time": "Weeks 9\u201310",
+          "title": "Phase 4 \u2014 Prove the shop with real work",
+          "detail": "One simple job end-to-end: stock in, chips out, part measured. Fix what the first job reveals before buying the next tool."
+        }
+      ]
+    },
+    {
+      "id": "phase1",
+      "type": "text",
+      "heading": "Phase 1 detail: safe shell",
+      "body": "Before any machine rolls in, the garage has to be a dry, lit room with a floor that will not surprise you. Patch roof leaks, seal the biggest air leaks around the door, and replace a single bare bulb with at least two LED shop lights on separate switches. Confirm the slab can take point loads \u2014 a benchtop mill on casters is different from a 1,200 lb lathe on three pads."
+    },
+    {
+      "id": "phase2",
+      "type": "diagram",
+      "heading": "Phase 2: power decisions in order",
+      "nodes": [
+        {
+          "title": "List nameplate amps",
+          "detail": "Every tool you own or will buy in year one \u2014 voltage and FLA from the plate, not from memory."
+        },
+        {
+          "title": "Load calculation",
+          "detail": "Sum continuous loads with diversity. Example light shop often lands near a 60 A 240 V feeder; verify locally."
+        },
+        {
+          "title": "Subpanel vs. shared",
+          "detail": "A dedicated subpanel in the garage keeps shop breakers out of the house panel and makes lockout saner."
+        },
+        {
+          "title": "Receptacle map",
+          "detail": "Place 120 V and 240 V outlets for the Phase 3 machine positions \u2014 do not wire the walls until machines have footprints."
+        }
+      ]
+    },
+    {
+      "id": "power-budget",
+      "type": "compact-table",
+      "heading": "Example power and budget hang-offs (illustrative)",
+      "columns": [
+        "Item",
+        "Why it waits for this phase",
+        "Example $"
+      ],
+      "rows": [
+        [
+          "LED shop lights + wiring",
+          "Phase 1 \u2014 you need to see to work safely",
+          "$150\u2013300"
+        ],
+        [
+          "60 A subpanel + feeder",
+          "Phase 2 \u2014 sized after the tool list",
+          "$800\u20131,800"
+        ],
+        [
+          "240 V receptacle for lathe/welder",
+          "Phase 2 \u2014 location locked to Phase 3 placement",
+          "$120\u2013250"
+        ],
+        [
+          "Anti-fatigue mats / mobile bases",
+          "Phase 3 \u2014 after machines know their homes",
+          "$200\u2013400"
+        ],
+        [
+          "First metrology kit (calipers, indicators)",
+          "Phase 4 \u2014 prove parts, not aesthetics",
+          "$80\u2013200"
+        ]
+      ],
+      "caption": "Dollar ranges are examples for a hobby-scale garage shop in 2026 dollars, not a quote. Local electrical work and permits dominate the real number."
+    },
+    {
+      "id": "phase3",
+      "type": "text",
+      "heading": "Phase 3 detail: layout after power",
+      "body": "With receptacles rough-located, roll in the heaviest machine first and chalk the swing of its handles and chip throw. Put the lathe or mill where the 240 V lands without an extension cord. Benches and storage fill the leftover wall runs. Aisle width matters more than symmetry \u2014 if you cannot walk past a running machine carrying a long bar, the layout failed."
+    },
+    {
+      "id": "layout-rules",
+      "type": "checklist",
+      "heading": "Layout checks before you bolt anything down",
+      "items": [
+        {
+          "label": "Chip and coolant path does not cross the walking aisle",
+          "detail": "Or you will track metal into the house forever."
+        },
+        {
+          "label": "Door still opens fully with machines placed",
+          "detail": "Egress and delivery both care about this."
+        },
+        {
+          "label": "No extension cords for 240 V tools",
+          "detail": "If the cord is required, the receptacle is in the wrong place \u2014 move the outlet or the machine."
+        },
+        {
+          "label": "One clear wall for future growth",
+          "detail": "Shops that fill every inch in month one become storage units by month six."
+        }
+      ]
+    },
+    {
+      "id": "phase4",
+      "type": "steps",
+      "heading": "Phase 4: first real job",
+      "items": [
+        "Pick a simple part you already understand \u2014 a bushing, a bracket, a fixture plate.",
+        "Run stock to finished dimension and measure it with the tools you actually own.",
+        "Write down what failed: lighting glare, missing outlet, wobbly bench, no place for chips.",
+        "Fix those before the next tool purchase. The shop earns upgrades by surviving work."
+      ]
+    },
+    {
+      "id": "budget-frame",
+      "type": "comparison",
+      "heading": "Where the money actually goes",
+      "columns": [
+        {
+          "name": "Power and safety",
+          "detail": "Often the largest early check: feeder, panel, receptacles, lighting, and any required permits or electrician time."
+        },
+        {
+          "name": "Machines",
+          "detail": "Can dwarf everything else if you buy new. Used iron with known backlash often beats a shiny import that fights you."
+        },
+        {
+          "name": "Consumables and time",
+          "detail": "Tooling, cutting fluid, PPE, and weekends. A shop that only exists on paper still costs evenings."
+        }
+      ]
+    },
+    {
+      "id": "code",
+      "type": "note-callout",
+      "title": "Electrical work is local",
+      "body": "Load calculations, grounding, and permit rules vary by jurisdiction. Treat the amps and dollar figures here as planning examples. If you are not qualified to pull a feeder, hire someone who is \u2014 a shop fire is not a learning project.",
+      "tone": "warning"
+    },
+    {
+      "id": "skip-floorplan",
+      "type": "note-callout",
+      "title": "Why this page is not a floorplan first",
+      "body": "Pretty layouts drawn before the power plan tend to put a mill where no 240 V will ever land. The schedule forces decisions in the order that keeps you from rewiring twice.",
+      "tone": "note"
+    },
+    {
+      "id": "tool-order",
+      "type": "compact-table",
+      "heading": "Buy order that respects the schedule",
+      "columns": [
+        "When",
+        "Buy",
+        "Wait on"
+      ],
+      "rows": [
+        [
+          "Before Phase 1",
+          "Lights, PPE, shop vac",
+          "Any machine that needs 240 V"
+        ],
+        [
+          "During Phase 2",
+          "Subpanel parts / electrician time",
+          "Tooling kits for machines you do not own yet"
+        ],
+        [
+          "During Phase 3",
+          "Mobile bases, benches, storage",
+          "A second large machine that steals aisle space"
+        ],
+        [
+          "After Phase 4 proves out",
+          "Specialty tooling for the work you actually do",
+          "Cosmetic upgrades and CNC fantasies"
+        ]
+      ],
+      "caption": "Money follows completed phases. Buying the lathe before the feeder is how shops stall."
+    },
+    {
+      "id": "risks",
+      "type": "steps",
+      "heading": "Common ways this project stalls",
+      "items": [
+        "Drawing a pretty floorplan, then discovering the only 240 V outlet is on the wrong wall.",
+        "Parking a car in the bay again after Phase 1, which quietly turns the shop back into storage.",
+        "Skipping the first measured part and calling the room finished because the tools look good in photos."
+      ]
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Phase check",
+      "prompt": "You have lighting and a cleared floor, but no load calculation yet. A friend offers you a free 240 V lathe this weekend. What do you do?",
+      "options": [
+        "Roll it in immediately \u2014 free iron never waits",
+        "Finish Phase 2 power planning first, then accept delivery when a receptacle exists",
+        "Store it in the driveway indefinitely and call the shop done",
+        "Wire an extension cord from the dryer outlet and hope"
+      ],
+      "answer": 1,
+      "explanation": "Phase 2 exists so heavy tools arrive to power that matches them. A free lathe on an extension cord is how weekend shops earn expensive lessons.",
+      "correctFeedback": "Right \u2014 the schedule protects you from free-iron urgency.",
+      "wrongFeedback": "Re-read Phase 2. Power before placement keeps you from rewiring under a machine."
+    },
+    {
+      "id": "done",
+      "type": "cta-band",
+      "heading": "Done looks like chips on the floor",
+      "body": "When Phase 4 produces one measured part without extension cords or darkness, the garage is a shop. Everything after that is iteration."
+    }
+  ]
+}
