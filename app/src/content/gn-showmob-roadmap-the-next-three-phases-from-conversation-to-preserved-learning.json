@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-showmob-roadmap-the-next-three-phases-from-conversation-to-preserved-learning",
+  "title": "Showmob roadmap: the next three phases from conversation to preserved learning",
+  "summary": "Phase 1's first milestone is on the board. What comes next: sizing sections on purpose, users without a login wall, and expansion requests with graded verdicts.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "signal",
+  "tags": ["grading-night", "showmob", "roadmap"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Following From here to data-sufficient",
+      "title": "The next three phases",
+      "body": "The numbered plan has eight phases. Phase 1's first milestone is real: artifacts now save to a database as immutable revisions, proven end to end. This page is the reflective version of what comes after - sizing, then people, then requests - and why that order."
+    },
+    {
+      "id": "where-we-stand",
+      "type": "stat-strip",
+      "items": [
+        { "value": "Phase 1", "label": "In flight - revisions save and read back, renderer still reads repo JSON" },
+        { "value": "100", "label": "Grading-night pages in build - the first big content experiment" },
+        { "value": "3", "label": "Phases covered here: 2, 3, and 4" }
+      ]
+    },
+    {
+      "id": "at-a-glance",
+      "type": "timeline",
+      "heading": "The next three at a glance",
+      "items": [
+        { "time": "Phase 2", "title": "Size sections on purpose", "detail": "A thinking structure for how big a section or artifact should be - the rubric that turns taste into something checkable." },
+        { "time": "Phase 3", "title": "Users without a login wall", "detail": "Dev-mode auto-admin for builders, plus simulated commenters and requesters, so multi-user behavior gets rehearsed before identity is real." },
+        { "time": "Phase 4", "title": "Expansion requests", "detail": "A viewer asks for more on a subject; an agent answers with a graded verdict. The first write that is not the builder's own." }
+      ]
+    },
+    {
+      "id": "phase-two",
+      "type": "text",
+      "heading": "Phase 2 - size sections on purpose",
+      "body": "Today, density is instinct. One page gets twenty-two blocks because the subject earned them; another gets three because it earned three, and nobody wrote down why. Phase 2 writes it down: a working structure that maps how developed an idea is to how much interface it deserves. A weak concept earns a sentence and a needs-evidence marker, not a dashboard. A mature one earns sections, visuals, and links. The output is not a style guide to obey; it is a vocabulary for arguing about size."
+    },
+    {
+      "id": "phase-two-grading",
+      "type": "note-callout",
+      "title": "Grading night is Phase 2's field test",
+      "body": "The hundred pages being built right now are the first real data for that rubric. Each one has a target density - microscopic through extreme - and a person about to grade whether the size fit the idea. The grades are the ground truth Phase 2 gets written from.",
+      "tone": "note"
+    },
+    {
+      "id": "phase-two-done",
+      "type": "checklist",
+      "heading": "Phase 2 is done when",
+      "items": [
+        { "label": "A written sizing structure exists", "detail": "Short enough to hold in your head; honest about edge cases." },
+        { "label": "Two existing pages have been re-sized against it", "detail": "One that shrinks, one that grows - proving the rubric moves both directions." },
+        { "label": "New pages carry a size rationale in their plan note", "detail": "One sentence: why this page is this big." }
+      ]
+    },
+    {
+      "id": "phase-three",
+      "type": "text",
+      "heading": "Phase 3 - users without a login wall",
+      "body": "Real identity is Phase 4-and-later work, but multi-user behavior cannot wait for it. Phase 3 fakes the crowd honestly: the builder runs as auto-admin in dev, and simulated commenters and requesters leave their marks. That is enough to answer the questions identity would complicate - where do requests live, what does a comment do to a page, who sees what in the list - without standing up an auth system to learn them."
+    },
+    {
+      "id": "phase-three-done",
+      "type": "checklist",
+      "heading": "Phase 3 is done when",
+      "items": [
+        { "label": "A simulated requester can leave a request against a page", "detail": "Stored, listed, and attributable to the simulation - not confused with a real person." },
+        { "label": "The builder can answer, defer, or decline it in dev mode", "detail": "The triage loop exists before the users do." },
+        { "label": "Nothing simulated renders as if a real human said it", "detail": "Provenance stays honest end to end." }
+      ]
+    },
+    {
+      "id": "phase-four",
+      "type": "text",
+      "heading": "Phase 4 - expansion requests",
+      "body": "This is the first write to the system that is not the builder's own hand. A reader asks for more on a subject - go deeper, add the example, cover the exception - and an agent answers with a graded verdict: expand, defer, or decline, with reasons. The verdict matters as much as the expansion. A page that grows on every ask becomes a pile; the graded verdict is what keeps growth honest."
+    },
+    {
+      "id": "phase-four-done",
+      "type": "checklist",
+      "heading": "Phase 4 is done when",
+      "items": [
+        { "label": "A request can travel from reader to verdict without chat", "detail": "The system carries it, not a message thread." },
+        { "label": "An accepted expansion lands as a new revision", "detail": "Immutable history - the page grows by appending, never by overwriting." },
+        { "label": "Declines explain themselves", "detail": "A no with reasons teaches the next request; a silent no teaches nothing." }
+      ]
+    },
+    {
+      "id": "the-loop",
+      "type": "diagram",
+      "heading": "The loop these three phases serve",
+      "nodes": [
+        { "title": "Conversation", "detail": "An idea starts as ordinary talk." },
+        { "title": "Artifact", "detail": "The idea gets composed as portable JSON." },
+        { "title": "Presentation", "detail": "Someone opens the artifact as a room and walks it." },
+        { "title": "Interaction", "detail": "Questions, requests, and notes land against the page." },
+        { "title": "Preserved learning", "detail": "What the room captured is kept, not lost when the tab closes." },
+        { "title": "Enriched artifact", "detail": "Approved follow-ups fold back into the page's series as new revisions." }
+      ]
+    },
+    {
+      "id": "why-this-order",
+      "type": "text",
+      "heading": "Why sizing comes before people",
+      "body": "Tempting as it is to build the social layer first, requests about badly-sized pages just make more badly-sized pages. Phase 2 gives the system a sense of proportion; Phase 3 rehearses the crowd; Phase 4 lets the crowd actually tug on the content. By the time preserved learning arrives in earnest, the system already knows how big an answer should be."
+    },
+    {
+      "id": "references",
+      "type": "resource-list",
+      "heading": "Read the source pages",
+      "items": [
+        { "label": "From here to data-sufficiency", "detail": "The full eight-phase plan this page reflects on.", "url": "https://showmob.vercel.app/a/plan-data-sufficiency" },
+        { "label": "The Showmob repo", "detail": "Code, contract, and the migration files behind Phase 1.", "url": "https://github.com/wyrmspire/showmob" }
+      ]
+    }
+  ]
+}

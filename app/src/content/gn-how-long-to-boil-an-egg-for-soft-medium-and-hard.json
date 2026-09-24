@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-how-long-to-boil-an-egg-for-soft-medium-and-hard",
+  "title": "How long to boil an egg for soft, medium, and hard",
+  "summary": "A timer that starts when the water boils: six, eight, or eleven minutes to the yolk you want.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "paper",
+  "tags": ["grading-night", "kitchen", "timing"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "The boiling-water timer",
+      "title": "Start the clock when the water does",
+      "body": "Eggs do not care when you put the pot on. They care how long they spend at a rolling boil. Cover cold eggs with an inch of cold water, bring it to a full boil, and that first big bubble is minute zero."
+    },
+    {
+      "id": "the-dial",
+      "type": "timeline",
+      "heading": "Pick a yolk, count from the boil",
+      "items": [
+        { "time": "6:00", "title": "Soft", "detail": "White just set, yolk runs. Peel under running water and eat it today - soft eggs do not keep." },
+        { "time": "8:00", "title": "Medium", "detail": "Yolk goes jammy at the edges and stays soft in the middle. The egg-salad and ramen sweet spot." },
+        { "time": "11:00", "title": "Hard", "detail": "Fully set with no green ring. Past twelve minutes the sulfur smell starts and the white goes rubbery." }
+      ]
+    },
+    {
+      "id": "the-bell",
+      "type": "note-callout",
+      "title": "When the count ends",
+      "body": "Off the heat and straight into ice water at the bell - the yolk keeps cooking in a hot shell. Peel from the fat end, where the air pocket lives.",
+      "tone": "note"
+    }
+  ]
+}

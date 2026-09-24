@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-splitting-a-143-dinner-bill-four-ways-with-a-20-tip",
+  "title": "Splitting a $143 dinner bill four ways with a 20% tip",
+  "summary": "One number: $42.90 each. The whole math fits on a napkin.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "paper",
+  "tags": ["grading-night", "math", "everyday"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "the-number",
+      "type": "hero",
+      "title": "$42.90 each",
+      "body": "That is the whole answer. The working is below for anyone who wants to check it."
+    },
+    {
+      "id": "the-math",
+      "type": "stat-strip",
+      "items": [
+        { "value": "$143.00", "label": "The bill" },
+        { "value": "$28.60", "label": "20% tip" },
+        { "value": "$171.60", "label": "Total" },
+        { "value": "$42.90", "label": "Per person, split four ways" }
+      ]
+    },
+    {
+      "id": "the-exception",
+      "type": "note-callout",
+      "title": "If one person is treating the tip",
+      "body": "Then the food is $35.75 a head and one hero covers the $28.60. But if you just needed the number, it is at the top of the page.",
+      "tone": "note"
+    }
+  ]
+}
