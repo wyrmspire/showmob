@@ -2,9 +2,11 @@
 
 One plan per grading-night page: what the page was going for, why its main
 blocks were chosen, and what was deliberately left out. Plans are grading
-data, not site content - nothing in this directory is imported by the app,
-and the pages in `app/src/content/gn-*.json` are never modified to add or
-reference plans.
+data, not site content. The grading surface (`Grading.tsx` via `gn-plans.ts`)
+imports `gn-plans.json` only so it can reveal a plan after a grade is saved
+(or when reopening an already-graded subject). Public pages and the cold
+first view never reference plans, and the pages in `app/src/content/gn-*.json`
+are never modified to add or reference plans.
 
 ## Files
 

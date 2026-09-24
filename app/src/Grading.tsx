@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { allEntries } from "./catalog";
+import { planForSubject, planProvenanceLabel } from "./gn-plans";
 import { BlockView } from "./components/BlockView";
 import { heroDensityClass } from "./hero-density";
 import { setUnlistedRobots } from "./share-meta";
@@ -241,6 +242,40 @@ function storedPasscode(): string {
   } catch {
     return "";
   }
+}
+
+
+function PlanReveal({ subjectId }: { subjectId: string }) {
+  const plan = planForSubject(subjectId);
+  if (!plan) {
+    return (
+      <aside className="gn-plan" aria-label="Plan">
+        <p className="gn-plan-empty">No plan recorded</p>
+      </aside>
+    );
+  }
+  return (
+    <aside className="gn-plan" aria-label="Plan">
+      <header className="gn-plan-head">
+        <h3>Plan</h3>
+        <small>{planProvenanceLabel(plan.provenance)}</small>
+      </header>
+      <dl>
+        <div>
+          <dt>Goal</dt>
+          <dd>{plan.goal}</dd>
+        </div>
+        <div>
+          <dt>Why these widgets</dt>
+          <dd>{plan.why_widgets}</dd>
+        </div>
+        <div>
+          <dt>Rejected</dt>
+          <dd>{plan.rejected}</dd>
+        </div>
+      </dl>
+    </aside>
+  );
 }
 
 function PasscodeGate({ onSubmit, error }: { onSubmit: (code: string) => void; error: string }) {
@@ -840,6 +875,7 @@ export function Grading({
                     </div>
                   </form>
                 )}
+                {(justSaved || gradedIds.has(open.id)) && <PlanReveal subjectId={open.id} />}
               </section>
             </div>
           )}
