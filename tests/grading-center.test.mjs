@@ -50,3 +50,22 @@ test('grades write only through the record-grade RPC with a server-held key', ()
   assert.match(api, /\^GN-\[0-9\]\{3\}\$/);
   assert.match(api, /one_to_ten/);
 });
+
+test('the grading API is gated by a server-held passcode on every method', () => {
+  const api = read('../api/gn.ts');
+  assert.match(api, /SHOWMOB_GRADING_PASSCODE/);
+  assert.match(api, /x-grading-passcode/);
+  assert.match(api, /timingSafeEqual/);
+  // The check runs before any method branch, so GET and POST both need it.
+  assert.ok(api.indexOf('authorized(req)') < api.indexOf('req.method === "GET"'));
+  assert.match(api, /status\(401\)/);
+  // Fails closed when the env var is missing.
+  assert.match(api, /if \(!expected\) return false/);
+});
+
+test('the grading page sends the passcode and never ships one', () => {
+  const grading = read('../app/src/Grading.tsx');
+  assert.match(grading, /x-grading-passcode/);
+  assert.match(grading, /localStorage/);
+  assert.doesNotMatch(grading, /SHOWMOB_GRADING_PASSCODE/);
+});

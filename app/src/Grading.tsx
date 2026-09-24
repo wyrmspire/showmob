@@ -168,6 +168,45 @@ function ChoiceRow({
   );
 }
 
+const PASSCODE_KEY = "showmob-grading-passcode";
+
+function storedPasscode(): string {
+  try {
+    return localStorage.getItem(PASSCODE_KEY) ?? "";
+  } catch {
+    return "";
+  }
+}
+
+function PasscodeGate({ onSubmit, error }: { onSubmit: (code: string) => void; error: string }) {
+  const [value, setValue] = useState("");
+  return (
+    <form
+      className="gn-gate"
+      onSubmit={(event) => {
+        event.preventDefault();
+        if (value.trim()) onSubmit(value.trim());
+      }}
+    >
+      <label>
+        Grader passcode
+        <input
+          type="password"
+          autoComplete="current-password"
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+          autoFocus
+        />
+      </label>
+      <button type="submit">Unlock</button>
+      {error && <p className="gn-error">{error}</p>}
+      <p>
+        <small>Asked once; this browser remembers it.</small>
+      </p>
+    </form>
+  );
+}
+
 export function Grading({ home }: { home: () => void }) {
   const [subjects, setSubjects] = useState<Subject[] | null>(null);
   const [grades, setGrades] = useState<GradeRow[]>([]);
@@ -179,13 +218,52 @@ export function Grading({ home }: { home: () => void }) {
   const [saveError, setSaveError] = useState("");
   const [justSaved, setJustSaved] = useState(false);
   const behaviorRef = useRef<BehaviorDraft>({ start: 0, maxDepth: 0, events: [] });
+  const [passcode, setPasscode] = useState<string>(() => storedPasscode());
+  const [gateError, setGateError] = useState("");
+
+  const unlock = (code: string) => {
+    try {
+      localStorage.setItem(PASSCODE_KEY, code);
+    } catch {
+      // Private mode: keep it for this session only.
+    }
+    setGateError("");
+    setLoadError("");
+    setPasscode(code);
+  };
+
+  const lock = (message: string, keepSubjects = false) => {
+    try {
+      localStorage.removeItem(PASSCODE_KEY);
+    } catch {
+      // nothing stored
+    }
+    if (!keepSubjects) setSubjects(null);
+    setGateError(message);
+    setPasscode("");
+  };
 
   useEffect(() => {
     document.title = "Grading · Showmob";
     setUnlistedRobots(true);
+    return () => {
+      document.title = "Showmob";
+      setUnlistedRobots(false);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!passcode) return;
     (async () => {
       try {
-        const res = await fetch("/api/gn", { cache: "no-store" });
+        const res = await fetch("/api/gn", {
+          cache: "no-store",
+          headers: { "x-grading-passcode": passcode },
+        });
+        if (res.status === 401) {
+          lock("That passcode didn’t work.");
+          return;
+        }
         if (!res.ok) throw new Error(`grading API answered ${res.status}`);
         const data = (await res.json()) as { subjects: Subject[]; grades: GradeRow[] };
         setSubjects(data.subjects);
@@ -194,11 +272,8 @@ export function Grading({ home }: { home: () => void }) {
         setLoadError((err as Error).message);
       }
     })();
-    return () => {
-      document.title = "Showmob";
-      setUnlistedRobots(false);
-    };
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [passcode]);
 
   const open = subjects?.find((s) => s.id === openId);
   const openArtifact = open ? artifactForSubject(open) : undefined;
@@ -321,7 +396,7 @@ export function Grading({ home }: { home: () => void }) {
     try {
       const res = await fetch("/api/gn", {
         method: "POST",
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json", "x-grading-passcode": passcode },
         body: JSON.stringify({
           subject_id: open.id,
           artifact_slug: openArtifact.slug,
@@ -330,6 +405,11 @@ export function Grading({ home }: { home: () => void }) {
           behavior,
         }),
       });
+      if (res.status === 401) {
+        // Keep the open page and the panel draft; re-enter, then save again.
+        lock("Passcode rejected - enter it again, then save.", true);
+        return;
+      }
       const data = (await res.json()) as { grade?: GradeRow; error?: string };
       if (!res.ok || !data.grade) throw new Error(data.error || `save failed (${res.status})`);
       setGrades((current) => [data.grade as GradeRow, ...current]);
@@ -373,6 +453,14 @@ export function Grading({ home }: { home: () => void }) {
         </div>
       </header>
 
+      {open && !passcode && (
+        <div className="shell">
+          <section className="block">
+            <PasscodeGate onSubmit={unlock} error={gateError} />
+          </section>
+        </div>
+      )}
+
       {!open && (
         <div className="shell">
           <section className="block">
@@ -388,7 +476,8 @@ export function Grading({ home }: { home: () => void }) {
                 not be configured yet.
               </p>
             )}
-            {!subjects && !loadError && <p>Loading subjects…</p>}
+            {!passcode && <PasscodeGate onSubmit={unlock} error={gateError} />}
+            {passcode && !subjects && !loadError && <p>Loading subjects…</p>}
           </section>
           {subjects &&
             Object.entries(BUCKETS).map(([bucket, label]) => {
