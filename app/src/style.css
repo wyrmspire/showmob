@@ -191,6 +191,17 @@ html,body,#root{margin:0;min-height:100%;} body{background:var(--ds-page);color:
 .gn-pane-label{position:sticky;top:var(--gn-bar,57px);z-index:8;padding:8px 18px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:var(--surface);border-bottom:1px solid color-mix(in srgb,var(--text) 12%,transparent)}
 @media(max-width:900px){.gn-compare{grid-template-columns:1fr}.gn-pane:first-child{border-right:0;border-bottom:1px solid color-mix(in srgb,var(--text) 12%,transparent)}}
 @media(max-width:620px){.gn-row{grid-template-columns:64px 1fr}.gn-row small{grid-column:2;justify-content:start}}
+
+/* Plan reveal: post-grade only, phone-readable under the grade panel. */
+.gn-plan{margin-top:22px;padding:16px 0 0;border-top:1px solid color-mix(in srgb,var(--text) 14%,transparent);display:grid;gap:14px}
+.gn-plan-head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline}
+.gn-plan-head h3{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(22px,4vw,28px);letter-spacing:-.02em}
+.gn-plan-head small{color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.gn-plan dl{margin:0;display:grid;gap:12px}
+.gn-plan dl>div{display:grid;gap:4px}
+.gn-plan dt{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.gn-plan dd{margin:0;font-size:clamp(15px,2.4vw,18px);line-height:1.45;color:var(--text);overflow-wrap:anywhere}
+.gn-plan-empty{margin:0;color:var(--muted);font-size:14px}
 /* Grading panel, phone-first: tap scales, sticky save, one-row toolbar. */
 .gn-scale{border:0;margin:0;padding:0;min-width:0}
 .gn-scale legend{display:flex;gap:8px;align-items:baseline;width:100%;font-weight:700;font-size:14px;padding:0;margin-bottom:7px}
