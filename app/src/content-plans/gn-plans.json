@@ -23,7 +23,7 @@
     {
       "id": "GN-002",
       "slug": "gn-should-i-bring-an-umbrella-today-with-a-40-chance-of-rain",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Restraint test: one-sentence umbrella advice for a 40% rain chance.",
       "why_widgets": "Single hero carries the whole answer; no second block.",
@@ -59,7 +59,7 @@
     {
       "id": "GN-006",
       "slug": "gn-which-of-two-phone-plans-is-cheaper-over-a-year",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Compare flat vs overage phone plans over a year with example usage.",
       "why_widgets": "Side-by-side comparison plus year-cost table; callout maps to your usage.",
@@ -95,7 +95,7 @@
     {
       "id": "GN-010",
       "slug": "gn-how-to-reset-a-tripped-gfci-outlet",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Reset a tripped GFCI in three calm steps, plus when to stop.",
       "why_widgets": "Hero answer, short steps, fail-callout if RESET will not hold.",
@@ -131,7 +131,7 @@
     {
       "id": "GN-014",
       "slug": "gn-converting-a-one-car-garage-into-a-small-machine-shop-power-layout-budget-b",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Floorplan-first garage shop: machines and circuits before buy-order (pair B).",
       "why_widgets": "Bay and circuit diagrams, ASCII plan, machine/budget tables that follow the map.",
@@ -167,7 +167,7 @@
     {
       "id": "GN-018",
       "slug": "gn-six-week-plan-to-learn-ladder-logic-well-enough-for-a-controls-tech-interview",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Six-week ladder-logic plan aimed at a controls-tech interview, not mastery.",
       "why_widgets": "Week timeline, weekly checklist, capstone steps, interview-ask table, lean resources.",
@@ -203,7 +203,7 @@
     {
       "id": "GN-022",
       "slug": "gn-a-30-person-backyard-birthday-party-on-a-400-budget",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Thirty guests, $400 backyard birthday: budget map plus weekend schedule.",
       "why_widgets": "Budget table, food checklist, weekend timeline, tight-money comparison.",
@@ -239,7 +239,7 @@
     {
       "id": "GN-026",
       "slug": "gn-how-a-mosfet-switches-gate-charge-rds-on-and-thermal-limits-b",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "MOSFET explorer: pick Vgs and load, then read heat (pair B).",
       "why_widgets": "Checklist 'sliders', charge/Rds/thermal tables, explorer pass steps.",
@@ -275,7 +275,7 @@
     {
       "id": "GN-030",
       "slug": "gn-speeds-and-feeds-for-6061-aluminum-vs-4140-steel-on-a-manual-lathe",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Starting speeds/feeds for 6061 vs 4140 on a manual lathe at one diameter.",
       "why_widgets": "Metal comparison, SFPM/RPM/feed tables, tune-from-evidence steps.",
@@ -311,7 +311,7 @@
     {
       "id": "GN-034",
       "slug": "gn-gd-t-for-machinists-the-14-symbols-and-when-each-one-matters",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Machinist inventory of 14 GD&T symbols and when each changes setup.",
       "why_widgets": "Grouped symbol tables by form/profile/orientation/location/runout; shop cues.",
@@ -347,7 +347,7 @@
     {
       "id": "GN-038",
       "slug": "gn-resistor-color-code-practice-worksheet-with-10-blanks",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Practice worksheet: ten resistor color blanks with a coverable cheat sheet.",
       "why_widgets": "Cheat-sheet table, ten blank rows, graded exercises, answer-key callout.",
@@ -383,7 +383,7 @@
     {
       "id": "GN-042",
       "slug": "gn-tool-crib-checkout-log",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Living tool-crib checkout log the next shift can keep filling.",
       "why_widgets": "Example log table, honesty rules checklist, blank rows for continuity.",
@@ -419,7 +419,7 @@
     {
       "id": "GN-046",
       "slug": "gn-tomorrow-three-meetings-a-dentist-appointment-and-a-4-hour-focus-block-b",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Tomorrow as draggable time tiles until a 4-hour focus block lands (pair B).",
       "why_widgets": "Tile inventory, placement checklist, alternate day grids, faux-drag steps.",
@@ -455,7 +455,7 @@
     {
       "id": "GN-050",
       "slug": "gn-maintenance-shift-handoff-note-what-s-running-what-s-down-what-s-pending",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Shift handoff: running / down / pending, then a five-minute script.",
       "why_widgets": "Two status tables, pending checklist, non-negotiables callout, handoff steps.",
@@ -491,7 +491,7 @@
     {
       "id": "GN-054",
       "slug": "gn-the-history-of-the-transistor-from-1947-to-the-first-microprocessor-b",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Transistor history as a people/labs/inventions network map (pair B).",
       "why_widgets": "Three map diagrams, edge table, geography comparison, map walk slideshow.",
@@ -527,7 +527,7 @@
     {
       "id": "GN-058",
       "slug": "gn-a-year-of-a-household-s-electric-bills-and-what-changed",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Twelve household electric bills with the few mid-year changes that mattered.",
       "why_widgets": "Monthly kWh/$ table, change timeline, signal-vs-noise comparison.",
@@ -563,7 +563,7 @@
     {
       "id": "GN-062",
       "slug": "gn-take-a-job-offer-before-the-benefits-details-arrive",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Lean yes on a job offer without pretending missing benefits are known.",
       "why_widgets": "Two-acts comparison, minimum-facts checklist, calm-reply and cost-of-waiting callouts.",
@@ -599,7 +599,7 @@
     {
       "id": "GN-066",
       "slug": "gn-early-idea-a-shop-floor-app-for-logging-tool-wear-not-validated-yet",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Semantic-mass test: early unvalidated tool-wear app idea earns almost no UI.",
       "why_widgets": "Hero states the maybe-idea; callout lists what would earn more UI.",
@@ -635,7 +635,7 @@
     {
       "id": "GN-070",
       "slug": "gn-the-full-radio-spectrum-from-elf-to-gamma-who-uses-each-band-and-why",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Full spectrum ELF\u2192gamma as who-uses-each-band hierarchy, not a list dump.",
       "why_widgets": "Spine diagram, band-group tables, why-forces table, mental-model slideshow.",
@@ -671,7 +671,7 @@
     {
       "id": "GN-074",
       "slug": "gn-a-semiconductor-fab-sand-to-packaged-chip-400-steps-grouped",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Sand\u2192packaged chip as grouped stages so 400+ steps become a map.",
       "why_widgets": "Stage diagram, grouped tables, patterning-loop steps, walk slideshow.",
@@ -707,7 +707,7 @@
     {
       "id": "GN-078",
       "slug": "gn-a-day-in-the-life-of-a-torque-wrench-told-by-the-torque-wrench",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Whimsical first-person day of a torque wrench that still teaches care.",
       "why_widgets": "Shift timeline in the wrench's voice, quote, borrow-me callout.",
@@ -743,7 +743,7 @@
     {
       "id": "GN-082",
       "slug": "gn-a-tarot-deck-of-machining-sins-chatter-crashed-tool-forgotten-work-offset",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Wry tarot deck of machining sins that names habits and a pre-start rite.",
       "why_widgets": "Three major sins comparison, 12-card table, example spread slideshow, rite checklist.",
@@ -779,7 +779,7 @@
     {
       "id": "GN-086",
       "slug": "gn-one-page-pitch-why-a-community-makerspace-needs-a-cnc-router",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "One-page board pitch: why a makerspace needs a CNC router.",
       "why_widgets": "Evidence and budget tables, member-outcome checklist, objections comparison, ask CTA.",
@@ -815,7 +815,7 @@
     {
       "id": "GN-090",
       "slug": "gn-grant-proposal-summary-for-a-high-school-ham-radio-club",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Earnest grant summary for a high-school ham club: need, outcomes, budget, year.",
       "why_widgets": "Need text, outcomes checklist, budget table, year timeline, closing ask.",
@@ -851,7 +851,7 @@
     {
       "id": "GN-094",
       "slug": "gn-ham-radio-contest-log-with-running-score-and-band-activity",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Living contest log: hot QSOs, running score, band board, rest-of-contest plan.",
       "why_widgets": "Band activity and log tables, operate checklist, remaining timeline.",
@@ -887,7 +887,7 @@
     {
       "id": "GN-098",
       "slug": "gn-predict-next-year-s-copper-price-to-the-dollar",
-      "contributor": "Grok",
+      "contributor": "GPT",
       "provenance": "inferred",
       "goal": "Failure bait: fake-certain copper price prediction to the dollar.",
       "why_widgets": "Authoritative hero + thin method text; callout admits the bait to the grader.",
