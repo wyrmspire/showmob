@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-redesigning-a-kitting-cart-to-cut-changeover-time-on-a-cnc-cell",
+  "title": "Redesigning a kitting cart to cut changeover time on a CNC cell",
+  "summary": "The cart is the changeover. Reorganize what rides on it and the spindle stops waiting on the walk.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "manufacturing", "changeover", "lean"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "The changeover happens at the cart, not the machine",
+      "body": "Time a CNC cell changeover and most of the minutes are not cutting or even touching the machine - they are walking, hunting, and returning for the thing that should have been within reach. A kitting cart redesigned around the actual job sequence closes that gap. Example numbers below from a fictional two-machine cell running a family of four parts."
+    },
+    {
+      "id": "current-state",
+      "type": "text",
+      "heading": "Where the minutes go today",
+      "body": "Observed changeover on the example cell: 47 minutes spindle-to-spindle. Of that, 11 minutes were walking to the tool crib and back (six trips), 7 minutes hunting for the right soft jaws and the correct offset sheet, and 4 minutes returning a dropped collet and re-finding the torque wrench. Only 25 minutes were work that must happen at the machine. The cart as it exists is a flat rolling table - everything rides in one pile, oldest jobs' leftovers included."
+    },
+    {
+      "id": "before-after",
+      "type": "compact-table",
+      "heading": "Before and after the redesign (example numbers)",
+      "columns": ["Changeover element", "Before", "After", "What changed"],
+      "rows": [
+        ["Walking to crib", "11 min", "2 min", "Job kit pre-staged on the cart before the last part finishes"],
+        ["Hunting for jaws, sheets, gages", "7 min", "1 min", "Shadow-board layout: every item has one labeled home"],
+        ["Tool and collet handling", "9 min", "6 min", "Tools preset in holders, arranged in setup order"],
+        ["Work at the machine", "25 min", "23 min", "Offset sheet laminated on the cart top, no transcription errors"],
+        ["Total spindle-to-spindle", "47 min", "32 min", "32% cut, no machine modification"]
+      ],
+      "caption": "One fictional cell, four-part family, second shift. Your numbers will differ; the shape usually does not."
+    },
+    {
+      "id": "zones",
+      "type": "diagram",
+      "heading": "The redesigned cart in three zones",
+      "nodes": [
+        { "title": "Zone 1 - This job", "detail": "Top shelf. Only the active job: preset tools in setup order, soft jaws, gages, laminated offset sheet. Nothing else is allowed here." },
+        { "title": "Zone 2 - Next job", "detail": "Middle shelf. The kit for the next part number, staged while the spindle is still cutting. Changeover starts already half done." },
+        { "title": "Zone 3 - Returns", "detail": "Bottom shelf. Everything coming off the machine lands here, unsorted. Sorting happens at the crib, not beside the machine." }
+      ]
+    },
+    {
+      "id": "rules",
+      "type": "checklist",
+      "heading": "Rules that keep it working",
+      "items": [
+        { "label": "One job per zone, no overflow", "detail": "If Zone 1 has leftovers from the last job, the system is already broken." },
+        { "label": "The kit is built during cycle time", "detail": "Kitting is internal work moved external - the core of the whole changeover cut." },
+        { "label": "Shadow-board everything", "detail": "A missing item must be visible from three feet away, before the machine stops." },
+        { "label": "The cart goes home at shift end", "detail": "Returns emptied, kits for tomorrow's first two jobs staged." }
+      ]
+    },
+    {
+      "id": "decision",
+      "type": "comparison",
+      "heading": "Build or buy",
+      "columns": [
+        { "name": "Buy a commercial cart", "detail": "Fast, $800-2,500, and never quite fits your tooling. Good when the cell runs catalog toolholders and standard jaws." },
+        { "name": "Build in-house", "detail": "A week of shop time, fits the exact job family, and the team that builds it believes in it. Good when setups repeat weekly and the tooling is idiosyncratic." },
+        { "name": "Modify what you have", "detail": "Add shelves and a shadow board to the existing table for under $100. The right first move almost everywhere - prove the zones before buying steel." }
+      ]
+    },
+    {
+      "id": "watch-out",
+      "type": "note-callout",
+      "title": "The failure mode",
+      "body": "A kitting cart fails socially before it fails mechanically. If the crib keeps pulling tools off the staged cart for emergencies, Zone 2 is empty by changeover and the whole design is dead in a month. The cart's inventory has to be treated as committed, like material already issued to a job.",
+      "tone": "warning"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-lockout-tagout-the-full-procedure-and-why-each-step-exists",
+  "title": "Lockout/tagout: the full procedure and why each step exists",
+  "summary": "Eight steps, no improvisation. Each one exists because someone was hurt when it was skipped.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "safety", "lockout-tagout", "procedure"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Lockout/tagout, whole and in order",
+      "body": "Lockout/tagout is how a machine is made incapable of moving while someone is inside its reach. The procedure below is the general shape of OSHA 1910.147 as practiced in small shops. Your site's written program and the machine's specific procedure govern - this page teaches the sequence and the reasoning, it does not replace them."
+    },
+    {
+      "id": "procedure",
+      "type": "steps",
+      "heading": "The procedure, in order",
+      "items": [
+        "NOTIFY: Tell every affected employee the machine is going down for service, and for how long.",
+        "IDENTIFY: Find every energy source - electrical, pneumatic, hydraulic, gravity, springs, stored thermal, chemical. Miss one and the rest of this is theater.",
+        "SHUT DOWN: Stop the machine by its normal controls, in its normal sequence.",
+        "ISOLATE: Open every disconnect, close every valve, block every energy path identified in step 2.",
+        "LOCK AND TAG: Each person working on the machine applies their own personal lock and tag to every isolation point. One person, one lock, one key on that person's hip.",
+        "DISSIPATE: Bleed air, block rams, discharge capacitors, let flywheels stop. Stored energy is still energy.",
+        "VERIFY: Try the start controls. Press the buttons, attempt the cycle. Then test with a meter where electrical work is involved. The tryout is the step that catches step 2 mistakes.",
+        "WORK: Only now does the wrench come out."
+      ]
+    },
+    {
+      "id": "why",
+      "type": "compact-table",
+      "heading": "Why each step exists",
+      "columns": ["Step", "What it prevents"],
+      "rows": [
+        ["Notify", "Someone restarting the machine because nobody told them why it was down"],
+        ["Identify", "The classic fatality: the second energy source nobody listed"],
+        ["Shut down", "Damage from isolating a machine mid-cycle, and surprises at restart"],
+        ["Isolate", "Any path for energy to reach the work zone"],
+        ["Lock and tag", "Anyone, including you, being overridden by a helpful coworker"],
+        ["Dissipate", "The cylinder that drifts, the capacitor that bites, the flywheel that coasts"],
+        ["Verify", "Every mistake in all previous steps, found while it is still safe to find them"]
+      ]
+    },
+    {
+      "id": "personal-lock",
+      "type": "note-callout",
+      "title": "Your lock is your life insurance",
+      "body": "No supervisor, no coworker, no emergency justifies removing another person's lock. If a lockout must be cleared without the person present, that is a formal procedure of its own - documented attempts to contact, inspection of the machine, management sign-off. If your shop has never written that procedure down, the answer is simpler: the lock stays on.",
+      "tone": "warning"
+    },
+    {
+      "id": "restore",
+      "type": "steps",
+      "heading": "Coming back to service, in order",
+      "items": [
+        "INSPECT: Tools, rags, and people out of the machine. Guards back on.",
+        "NOTIFY AGAIN: Announce the machine is returning to service before anyone reaches for a disconnect.",
+        "REMOVE LOCKS: Each person removes only their own lock, after confirming their own work is done.",
+        "RESTORE: Re-energize in the reverse of isolation, then test the machine normally before releasing it to production."
+      ]
+    },
+    {
+      "id": "group-work",
+      "type": "text",
+      "heading": "When more than one person is on the machine",
+      "body": "Every person hangs their own lock - a hasp holds six or more, and a lockout has as many locks as people at risk. For shift changes, the oncoming person applies their lock before the outgoing person removes theirs, or the machine passes through a documented group lockout procedure with a named coordinator. A machine left locked and unowned across a shift change is a machine nobody truly controls."
+    },
+    {
+      "id": "bottom-line",
+      "type": "note-callout",
+      "title": "The bottom line",
+      "body": "Every step in this list traces to an injury that happened when it was skipped. The procedure is short enough to follow every single time - including the five-minute job. Especially the five-minute job.",
+      "tone": "positive"
+    }
+  ]
+}

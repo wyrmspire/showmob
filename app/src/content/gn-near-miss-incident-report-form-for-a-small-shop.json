@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-near-miss-incident-report-form-for-a-small-shop",
+  "title": "Near-miss incident report form for a small shop",
+  "summary": "A one-page form that takes five minutes to fill out and catches the accident that has not happened yet. Template plus a fictional example entry.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "safety", "near-miss", "form"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Report the miss, not just the hit",
+      "body": "A near-miss is the accident that got lucky: the sling that slipped without anyone under it, the chuck key left in the chuck, the guard found open. Small shops rarely have a safety department, so the form has to be short enough that a machinist will actually fill it out. Five minutes, one page, no blame. Everything below is a template with fictional example entries."
+    },
+    {
+      "id": "the-form",
+      "type": "checklist",
+      "heading": "The form - eight fields, that is all",
+      "items": [
+        { "label": "1. Date and time", "detail": "When it happened, not when you are writing. Example: 2026-03-12, about 14:30." },
+        { "label": "2. Location or machine", "detail": "Specific enough to walk to. Example: Lathe 2, north end." },
+        { "label": "3. What happened, in plain words", "detail": "Two or three sentences, no analysis yet. Example: Chuck key left in the chuck; lathe started and the key flew across the aisle and hit the wall." },
+        { "label": "4. What almost happened", "detail": "The bad version. Example: Anyone walking the aisle could have been struck." },
+        { "label": "5. Who was involved or nearby", "detail": "Names for follow-up, not for blame. Example: Operator at Lathe 2, one person passing." },
+        { "label": "6. What allowed it", "detail": "The condition, not the person. Example: No spring-loaded chuck key on Lathe 2; shift was short-staffed and setup was rushed." },
+        { "label": "7. What would prevent it", "detail": "The reporter's suggestion counts even if it is not adopted. Example: Self-ejecting chuck keys on all lathes." },
+        { "label": "8. Reported by", "detail": "Name or anonymous - a shop that punishes reports stops getting them." }
+      ]
+    },
+    {
+      "id": "example-entry",
+      "type": "text",
+      "heading": "A filled-out example (fictional)",
+      "body": "Date: 2026-03-12, 14:30. Location: Lathe 2, north end. What happened: During a rushed setup the chuck key was left in the chuck. On spindle start the key ejected, crossed the aisle, and struck the wall about four feet up. What almost happened: the aisle is the main path to the tool crib - ten minutes earlier or later and someone is walking it. Involved: operator at Lathe 2; one person had passed a minute before. What allowed it: Lathe 2 has a plain chuck key, not a spring-loaded self-ejecting one; the job was a hot order and setup steps were being run from memory. Prevention suggested: fit self-ejecting keys to all three lathes, and add 'key out' as the last spoken word of the setup routine. Reported by: second-shift lead."
+    },
+    {
+      "id": "after",
+      "type": "steps",
+      "heading": "What happens after a report lands",
+      "items": [
+        "Same day: someone with authority reads it and decides if anything needs to be made safe right now.",
+        "Within a week: the report gets a one-line disposition - action taken, action planned, or reasoned no-action. Silence is what kills a reporting culture.",
+        "Monthly: read the pile as a set. Three near-misses around one machine is not three coincidences.",
+        "The fix gets verified: self-ejecting keys bought is not the same as self-ejecting keys installed."
+      ]
+    },
+    {
+      "id": "why-bother",
+      "type": "note-callout",
+      "title": "Why a five-person shop needs this",
+      "body": "Serious injuries are rare, which means there is little data to learn from - unless near-misses count. They are the free lessons: same causes, no ambulance. A shop that writes down its near-misses for a year owns a map of exactly where its next injury lives.",
+      "tone": "positive"
+    },
+    {
+      "id": "rules",
+      "type": "note-callout",
+      "title": "Two rules that make or break it",
+      "body": "First: no blame, ever, or the reports stop and the map goes dark. Second: every report gets a visible answer, even when the answer is 'we are not changing this and here is why.' People will report into a system that listens; they will not report into a drawer.",
+      "tone": "warning"
+    }
+  ]
+}
