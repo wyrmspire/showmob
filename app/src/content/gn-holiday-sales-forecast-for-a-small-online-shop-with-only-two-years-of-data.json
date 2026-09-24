@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-holiday-sales-forecast-for-a-small-online-shop-with-only-two-years-of-data",
+  "title": "Holiday sales forecast for a small online shop with only two years of data",
+  "summary": "Two holiday seasons of one fictional shop, and a forecast that is honest enough to be a range instead of a number.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "paper",
+  "tags": ["grading-night", "forecast", "uncertainty", "small-business"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Two data points is not a trend",
+      "body": "A fictional candle-and-soap shop has two Novembers and two Decembers behind it, and has to decide how much stock to build for this holiday season. The honest forecast is a range with reasoning, not a number with confidence."
+    },
+    {
+      "id": "the-data",
+      "type": "compact-table",
+      "heading": "What the two years actually say",
+      "columns": ["Month", "Year one", "Year two", "Change"],
+      "rows": [
+        ["September", "$6,100", "$6,700", "+10%"],
+        ["October", "$7,400", "$8,300", "+12%"],
+        ["November", "$12,800", "$15,100", "+18%"],
+        ["December", "$18,900", "$23,400", "+24%"],
+        ["January", "$5,200", "$5,500", "+6%"]
+      ],
+      "caption": "Fictional shop, fictional numbers - the shape (growth plus a holiday spike) is the real subject."
+    },
+    {
+      "id": "what-grows",
+      "type": "text",
+      "heading": "Two things are growing at once",
+      "body": "The baseline is drifting up about 10% a year - that is the shop growing. The holiday spike is also growing faster - November and December rose 18 to 24%. Are holiday sales a multiple of baseline (year one: December was 3.1x September; year two: 3.5x), or is the spike itself inflating? Two years cannot separate those stories. That is the entire problem."
+    },
+    {
+      "id": "scenarios",
+      "type": "comparison",
+      "heading": "Three defensible Decembers",
+      "columns": [
+        { "name": "Floor: $24,500", "detail": "The spike ratio stays at year one's 3.1x against a baseline that grew 10%. Assumes year two's stronger ratio was luck, weather, or one good post." },
+        { "name": "Middle: $26,800", "detail": "The ratio holds at year two's 3.5x. Assumes nothing got better or worse - the single least-crazy assumption available." },
+        { "name": "Ceiling: $29,500", "detail": "The ratio keeps climbing to 3.9x, continuing the two-year pattern. Possible, and indistinguishable from a story you are telling yourself." }
+      ]
+    },
+    {
+      "id": "the-range",
+      "type": "stat-strip",
+      "items": [
+        { "value": "$24.5k-$29.5k", "label": "The honest December range" },
+        { "value": "$26.8k", "label": "The middle - plan staffing here" },
+        { "value": "2", "label": "Holiday seasons of data. That is why this is a range" }
+      ]
+    },
+    {
+      "id": "decide",
+      "type": "steps",
+      "heading": "Stocking against a range instead of a number",
+      "items": [
+        "Build to the floor plus the firm pre-orders you actually hold. That stock is safe.",
+        "Secure the ability to make more fast - materials on hand, a second pour weekend penciled in - sized to reach the middle.",
+        "Do not build to the ceiling. Unsold candles in January are the tuition for believing your own story.",
+        "Write down which scenario you stocked to and why. Next year there will be three data points, and the note is what makes the third one useful."
+      ]
+    },
+    {
+      "id": "honest-limits",
+      "type": "note-callout",
+      "title": "What would actually shrink the range",
+      "body": "Not more spreadsheet. Pre-orders, email-list response rates, and week-by-week sell-through in November - leading indicators that arrive before the decision is locked. The third year of data helps most, and there is no shortcut to it.",
+      "tone": "note"
+    },
+    {
+      "id": "check-model",
+      "type": "exercise",
+      "heading": "Check the instinct",
+      "prompt": "Why not just forecast $26,800 and stock to it?",
+      "options": [
+        "Because the point estimate hides the uncertainty; stocking and staffing decisions need the range, not the average",
+        "Because rounding to the nearest hundred is more accurate",
+        "Because customers dislike precise numbers"
+      ],
+      "answer": 0,
+      "explanation": "With two years of data the true December plausibly sits anywhere in a $5,000 band. A single number pretends the band does not exist, and the build-or-hold decisions price very differently at the floor than at the ceiling."
+    }
+  ]
+}
