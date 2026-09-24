@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-half-finished-notes-from-a-vendor-call-about-a-new-servo-drive-gaps-marked",
+  "title": "Half-finished notes from a vendor call about a new servo drive, gaps marked",
+  "summary": "Real notes from a real kind of call: half the answers, twice the confidence. Everything unknown is marked unknown.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "notes", "vendor", "servo"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Vendor call notes, as actually taken",
+      "body": "Call with the drive vendor's applications engineer about migrating the packaging line's axis to their new servo series. Notes captured live, cleaned up only enough to read. Every gap is marked [GAP] rather than smoothed over - the gaps are the action items."
+    },
+    {
+      "id": "notes",
+      "type": "checklist",
+      "heading": "What we know",
+      "items": [
+        { "label": "Drive series: their new 400V line, 1.5 kW model quoted", "detail": "Replaces our 200V unit. Same mounting pattern, he says - verify against the drawing before ordering. [GAP: drawing not sent yet]" },
+        { "label": "Continuous torque 4.8 Nm, peak 14.3 Nm for 3 s", "detail": "Our cycle peaks at about 11 Nm for under a second. Fits on paper. [GAP: no thermal curve for our duty cycle - he is sending it]" },
+        { "label": "Encoder: 23-bit absolute, battery-free", "detail": "Battery-free absolute means no homing after power loss and no battery PM. Genuinely useful for us." },
+        { "label": "Comms: EtherCAT standard", "detail": "Our PLC talks EtherCAT on the other line already. [GAP: our PLC is two firmware versions behind - does the drive need a newer ESI file than we can load?]" },
+        { "label": "Safe torque off built in, SIL3 rated", "detail": "Would let us drop the external contactor on this axis. [GAP: our risk assessment assumed the contactor - needs a rewrite, not just a swap]" },
+        { "label": "Price: about 20% above the current unit", "detail": "His number, ballpark, 'depends on quantity.' [GAP: actual quote]" }
+      ]
+    },
+    {
+      "id": "claims",
+      "type": "text",
+      "heading": "Claims to take with salt",
+      "body": "'Drop-in replacement' was said twice. Nothing is a drop-in replacement. The tuning parameters will not transfer between drive generations, the regen resistor sizing is our problem not theirs, and 'the commissioning software is much improved' is what every vendor says about every generation. He also said delivery is 'running about four weeks' - [GAP: get that in writing on the quote, with the actual ship date for our config]."
+    },
+    {
+      "id": "open",
+      "type": "note-callout",
+      "title": "Open items before a decision",
+      "body": "Four gaps to close: the mounting drawing, the thermal curve for our duty cycle, ESI/firmware compatibility with our PLC revision, and a written quote with lead time. The STO risk-assessment rewrite is on us, not him. No purchase until all four land.",
+      "tone": "warning"
+    },
+    {
+      "id": "honesty",
+      "type": "note-callout",
+      "title": "Why the gaps are marked instead of filled",
+      "body": "Notes like these get read six months later by someone making an ordering decision. A gap smoothed into a confident sentence becomes a fact nobody checks. [GAP] is a promise to the future reader: this was not known on the day of the call.",
+      "tone": "note"
+    }
+  ]
+}

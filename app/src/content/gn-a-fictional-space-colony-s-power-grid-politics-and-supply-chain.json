@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-fictional-space-colony-s-power-grid-politics-and-supply-chain",
+  "title": "A fictional space colony's power grid, politics, and supply chain",
+  "summary": "Meridian Station runs on 40 megawatts, three factions, and a parts pipeline fourteen months long. A tour of how the electrons, the arguments, and the cargo ships connect.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "night",
+  "tags": ["grading-night", "fiction", "worldbuilding", "infrastructure"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Meridian Station, population 11,400",
+      "body": "A colony is a machine for keeping people alive, and its power grid is the part everything else rides on. Meridian Station, a fictional settlement on a tidally locked world, runs a grid, a government, and a supply chain that are really one system wearing three names. This is the tour - simulation notes for a world that does not exist, drawn the way an engineer would draw it if it did."
+    },
+    {
+      "id": "load",
+      "type": "stat-strip",
+      "items": [
+        { "value": "40 MW", "label": "Peak grid load" },
+        { "value": "31 MW", "label": "Life support and thermal" },
+        { "value": "14 months", "label": "Earth-to-Meridian parts pipeline" },
+        { "value": "72 hours", "label": "Battery reserve at full load" }
+      ]
+    },
+    {
+      "id": "grid",
+      "type": "diagram",
+      "heading": "The grid in four layers",
+      "nodes": [
+        { "title": "Generation", "detail": "Two fission plants (2 x 25 MW, one always spinning in reserve) plus a solar farm that is decorative half the year, given the long night." },
+        { "title": "Distribution", "detail": "A ring bus around the habitat sectors. Any sector can island itself; the ring survives any single break." },
+        { "title": "Storage", "detail": "Flow batteries at the ring nodes. Seventy-two hours at full load sounds generous until a reactor trip lands in the long night." },
+        { "title": "Loads", "detail": "Life support is untouchable. Everything else - industry, agriculture, comfort - is negotiable in a load-shed emergency, in that order." }
+      ]
+    },
+    {
+      "id": "why-fission",
+      "type": "text",
+      "heading": "Why the grid looks like this",
+      "body": "A tidally locked world gives Meridian a two-week night, and solar across a two-week night is a battery problem the size of a city. Fission carries the base load because nothing else can. The solar farm exists for the daylight half of the cycle and for politics - the agricultural faction wanted visible renewable capacity, and visible it is. Engineers budget it as zero in the winter plan and are right to."
+    },
+    {
+      "id": "load-shed",
+      "type": "compact-table",
+      "heading": "Load-shed order, as written in the emergency charter",
+      "columns": ["Tier", "Load", "Drops when"],
+      "rows": [
+        ["Tier 1", "Industry: smelter, fab shop, fuel cracking", "Reserve margin falls below 20%"],
+        ["Tier 2", "Agriculture lighting beyond survival spectrum", "Below 15%"],
+        ["Tier 3", "Comfort: heating above minimums, recreation, nonessential transit", "Below 10%"],
+        ["Tier 4", "Nothing. Life support is never shed", "The charter has no tier 4. The grid fails before life support is rationed"]
+      ]
+    },
+    {
+      "id": "factions",
+      "type": "comparison",
+      "heading": "The three factions and what they want from the grid",
+      "columns": [
+        { "name": "The Charterists", "detail": "Original settlers and their party. Want the emergency charter followed literally: industry sheds first, always. Their power base is the habitat sectors, who remember the Year 11 brownouts." },
+        { "name": "The Foundry bloc", "detail": "Smelter and fabrication workers plus the administrators who budget around them. Argue the grid exists to build the colony, not to coddle it - every shed hour is a delayed expansion. Want a third reactor approved yesterday." },
+        { "name": "The Garden caucus", "detail": "Agriculture and water. Numerically small, politically decisive: they control food. Their ask is always the same - agriculture is life support with a delay, and tier 2 status insults the math." }
+      ]
+    },
+    {
+      "id": "third-reactor",
+      "type": "text",
+      "heading": "The third reactor question",
+      "body": "Every Meridian political fight eventually becomes the third reactor fight. The Foundry bloc is right that reserve margin has shrunk for six straight years. The Charterists are right that a reactor ordered today produces its first watt in nine years, so the decision cannot wait for certainty. The Garden caucus holds the swing votes and trades them for tier reclassification, which the engineers quietly note does not change a single electron - but politics is not about electrons. It is about who absorbs risk, and in what order."
+    },
+    {
+      "id": "supply-chain",
+      "type": "diagram",
+      "heading": "The supply chain, end to end",
+      "nodes": [
+        { "title": "Earth-side fabrication", "detail": "Reactor spares, turbine blades, control electronics. Anything precision comes from Earth; Meridian's fab shop handles the crude and the urgent." },
+        { "title": "The launch window", "detail": "Cargo launches when the planets allow, roughly every eight months. Miss a window and the delay is not eight months - it is sixteen." },
+        { "title": "The transit", "detail": "Six months of coast. The cargo manifest is fixed at launch; a part not on the ship is a part that does not exist." },
+        { "title": "Orbital transfer and landing", "detail": "The riskiest leg. A crashed lander in Year 6 put the station on power rationing for a year - the spare main transformer was aboard." },
+        { "title": "Surface logistics", "detail": "Two weeks by crawler from the landing field. The station inventories by what's on the ground, not what's on the ships." }
+      ]
+    },
+    {
+      "id": "stockpile",
+      "type": "compact-table",
+      "heading": "The stockpile doctrine",
+      "columns": ["Item class", "Policy", "Why"],
+      "rows": [
+        ["Grid-critical spares", "Two of everything, on the ground, tested", "Fourteen months is longer than any failure's grace period"],
+        ["Consumables: filters, seals, coolant", "Three-year rolling stock", "Cheap to make on Earth, impossible to make locally"],
+        ["Fabrication feedstock", "Mined and smelted locally", "Mass is the enemy; bulk materials never ride the ship"],
+        ["Electronics", "Hoarded beyond doctrine", "The fab shop cannot print a rad-hard controller. Nobody says this part aloud at charter meetings"]
+      ]
+    },
+    {
+      "id": "crisis",
+      "type": "slideshow",
+      "heading": "A simulated crisis: the Year 14 reactor trip",
+      "slides": [
+        { "title": "Hour 0", "body": "Reactor 2 trips on a coolant sensor fault. The ring carries the load on Reactor 1 alone - 25 MW against a 40 MW demand. Tier 1 sheds in ninety seconds, as designed." },
+        { "title": "Hour 6", "body": "The sensor fault is confirmed spurious, but restart procedures are slow by charter. The Foundry bloc demands an emergency session: every hour is smelter output lost." },
+        { "title": "Hour 30", "body": "Restart approved on engineering sign-off, over Charterist objection. The Garden caucus extracts its price: agriculture's tier review moves to the next charter session's agenda. This is how the grid actually gets governed." },
+        { "title": "Week 2", "body": "Post-incident review finds the real margin problem: battery degradation is 8% worse than modeled. A replacement cell order goes into the next launch manifest - delivery in twenty-two months. The station will spend those months one sensor fault from tier 2." }
+      ]
+    },
+    {
+      "id": "threads",
+      "type": "text",
+      "heading": "Why the three threads are one story",
+      "body": "The grid sets what is physically possible. The supply chain sets what is replaceable. Politics decides who bears the gap between the two. Meridian works as a simulation because each thread constrains the others: the Foundry cannot have its reactor before the physics allows it, the Charterists cannot shed risk the parts pipeline will not backfill, and the Garden caucus's leverage lasts exactly as long as the food does. A world built this way generates its own stories - every power bill is a plot point."
+    },
+    {
+      "id": "designer-notes",
+      "type": "note-callout",
+      "title": "Designer's notes",
+      "body": "Everything on this page is invented, but nothing is arbitrary: the numbers were chosen so the constraints bite. Forty megawatts is small enough that one reactor matters; fourteen months is long enough that inventory is destiny; three factions is the smallest number that produces real coalition math. Change any one and the politics changes with it - which is the point of a simulation.",
+      "tone": "note"
+    }
+  ]
+}
