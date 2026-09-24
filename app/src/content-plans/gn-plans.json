@@ -1,0 +1,465 @@
+{
+  "note": "Plans for grading-night pages, written after the pages were built. provenance 'first-hand' means the plan author built the page; 'inferred' means the plan author read the page cold. No generator names anywhere - grading stays blind. Data only: not imported by the app. See README.md in this directory.",
+  "generated_at": "2026-09-24T18:43:00Z",
+  "fields": [
+    "id",
+    "slug",
+    "contributor",
+    "provenance",
+    "goal",
+    "why_widgets",
+    "rejected"
+  ],
+  "plans": [
+    {
+      "id": "GN-003",
+      "slug": "gn-how-long-to-boil-an-egg-for-soft-medium-and-hard-a",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Reference card for a one-time read, skimmed at the stove with wet hands.",
+      "why_widgets": "One compact table because the whole question is a lookup: doneness against minutes, with yolk and white as the check columns. The hero carries the only real instruction (cold start, count from the boil) so the table stays pure lookup.",
+      "rejected": "A timer widget, step-by-step photos, and any egg science - nobody boiling an egg wants to study."
+    },
+    {
+      "id": "GN-004",
+      "slug": "gn-how-long-to-boil-an-egg-for-soft-medium-and-hard",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Light one-time read, but built to be remembered rather than re-looked-up.",
+      "why_widgets": "The timeline block turns three times into a small story - pick a yolk, count from the boil - so the reader learns the rule instead of the rows. Hero teaches the single mental model (the clock starts when the water does); the callout covers the two mistakes that ruin eggs (carryover heat, wrong peel end).",
+      "rejected": "A table. This A/B twin bets a timeline teaches better than a grid."
+    },
+    {
+      "id": "GN-007",
+      "slug": "gn-steps-to-jump-start-a-car-with-cables",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Emergency procedure, read once in a parking lot under stress, so every block earns its place.",
+      "why_widgets": "Steps blocks do the work because clamp order is the entire safety case - the sequence is the content. The warning callout explains why the last clamp grounds to metal: a scared reader follows an order they understand.",
+      "rejected": "Battery chemistry, alternator diagnostics beyond one paragraph, and any tools-and-shopping list - none of it helps a stranded driver."
+    },
+    {
+      "id": "GN-008",
+      "slug": "gn-splitting-a-143-dinner-bill-four-ways-with-a-20-tip",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "One-time read sized to the question: the answer is a number, so the number is the hero, first thing on the page.",
+      "why_widgets": "Stat-strip shows the working as four checkable hops for the one friend who wants to audit the math. A single callout handles the only realistic variation (someone treats the tip).",
+      "rejected": "A calculator widget, an itemized-split option, tipping etiquette - all answers to questions nobody asked."
+    },
+    {
+      "id": "GN-011",
+      "slug": "gn-what-time-to-leave-for-a-2-pm-appointment-25-minutes-away",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "A one-line question gets a one-line page: light, one-time, answer-first.",
+      "why_widgets": "The hero is the departure time with the reasoning compressed into one sentence, and a single callout shows the arithmetic for anyone who wants to check it. The traffic caveat (leave 1:15 if the route is fragile) is the only judgment on the page.",
+      "rejected": "A map, a timeline, a checklist - the question closes in five seconds."
+    },
+    {
+      "id": "GN-012",
+      "slug": "gn-changing-a-furnace-filter-finding-the-size-and-which-way-the-arrow-points",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Reference-plus-procedure for a job done every 90 days and half-remembered between.",
+      "why_widgets": "Hero front-loads the two facts people actually Google (size is on the old filter, arrow points at the furnace); steps carry the doing; a text block settles the one real confusion - which physical direction is 'toward'. The checklist adds the two judgment calls (MERV rating, change cadence) without inflating the job.",
+      "rejected": "Diagrams and HVAC theory: the reader is crouched at a return vent, not studying."
+    },
+    {
+      "id": "GN-015",
+      "slug": "gn-retrofitting-a-manual-bridgeport-mill-with-a-3-axis-dro-parts-sequence-budget",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Project plan for a machinist deciding whether and how to do this retrofit - dense, studied at a bench, kept as reference during the install.",
+      "why_widgets": "Checklist does the parts list because buying is a check-off job; steps carry the install because order and alignment tolerances matter; the compact table prices it because the budget question is go/no-go. Warning callout names the three ways installs actually fail (cosine error, oil passages, cable slack).",
+      "rejected": "Brand-by-brand console comparisons and CNC conversion talk - the page picks the fight it can win."
+    },
+    {
+      "id": "GN-016",
+      "slug": "gn-migrating-a-plant-line-from-relay-logic-to-a-plc-over-three-weekend-shutdowns",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Study-grade migration plan for a controls person with a production line that cannot go down - dense, read before the shutdown, re-read each weekend.",
+      "why_widgets": "The whole page is built around one constraint (Monday always runs), so the widgets serve reversibility: a table of three windows with done-when and rollback columns, a timeline for weekend 1 as the worked example, a diagram to show both brains coexisting. The exercise block tests the one decision adrenaline gets wrong.",
+      "rejected": "Ladder-vs-relay tutorials and PLC brand selection - the reader already chose."
+    },
+    {
+      "id": "GN-019",
+      "slug": "gn-moving-apartments-in-10-days-what-happens-each-day",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Light reference used daily for ten days - the reader checks today, not the whole plan.",
+      "why_widgets": "One timeline block is the entire spine because the insight is sequencing (paper first, stuff last), so ten day-entries carry everything. The checklist isolates the first-night box, the classic failure. The warning callout names the two things that actually blow up moves (elevators, keys).",
+      "rejected": "Packing how-tos, mover comparison, address-change master list - the page is a schedule, not an encyclopedia."
+    },
+    {
+      "id": "GN-020",
+      "slug": "gn-showmob-roadmap-the-next-three-phases-from-conversation-to-preserved-learning",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Dense study piece for the builder and the agents - the roadmap is an argument, not a schedule.",
+      "why_widgets": "Timeline gives the three phases at a glance; each phase then gets a text block for the reasoning and a checklist for the done-when, because a phase without a finish line is a vibe. The diagram closes the loop the phases serve so the order (sizing, people, requests) reads as inevitable.",
+      "rejected": "Dates and owners - this page sells sequence and rationale, not a Gantt chart."
+    },
+    {
+      "id": "GN-023",
+      "slug": "gn-redesigning-a-kitting-cart-to-cut-changeover-time-on-a-cnc-cell",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Lean-improvement case for a shop lead, studied once then used as a template.",
+      "why_widgets": "The before/after table is the persuasion engine - minutes walking vs minutes working makes the argument better than prose. The diagram lays out the three cart zones because the design is spatial; the comparison block answers the inevitable build-or-buy question with 'modify first' as the honest recommendation. Warning callout names the social failure mode.",
+      "rejected": "SMED theory and a 5S lecture - one cart, one cell, one fix."
+    },
+    {
+      "id": "GN-024",
+      "slug": "gn-refurbishing-a-used-benchtop-oscilloscope-test-repair-calibrate",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Method page for a hobbyist with a used scope and a weekend - dense, studied, then kept nearby during the work.",
+      "why_widgets": "The timeline sells the discipline (test, repair, calibrate, in that order); steps cover the dangerous part (first power-up); the symptom table is the reference the reader returns to mid-repair. The checklist runs calibration in the manual's order; the exercise tests the one shortcut everyone wants to take.",
+      "rejected": "Schematic-level repair walkthroughs and model-specific teardowns - the method transfers, the particulars don't."
+    },
+    {
+      "id": "GN-027",
+      "slug": "gn-pid-loop-tuning-for-a-temperature-controller-from-p-only-to-full-pid",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Teaching page for a controls tech tuning a real loop - dense, studied, then used as a job aid at the panel.",
+      "why_widgets": "Steps blocks run the three passes because tuning is a procedure with judgment calls, each step pairing an action with what to watch for. Two tables do reference duty: what each term fixes vs costs, and the worked example end to end so readers can sanity-check their own numbers. The exercise tests the classic mistake (treating windup overshoot as a gain problem).",
+      "rejected": "Ziegler-Nichols formulas and Laplace anything - the page teaches hands-on judgment, not theory."
+    },
+    {
+      "id": "GN-028",
+      "slug": "gn-smith-chart-basics-for-matching-an-antenna-to-50-ohms",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Full course lesson for a ham or RF beginner - dense, studied over multiple sittings, reference later.",
+      "why_widgets": "The page is the biggest in the batch because the chart is genuinely big: text blocks build the mental model, stat-strip pins the key numbers, the diagram gives the five landmarks, and the slideshow walks a complete two-component match frame by frame - the payoff the whole page points at. Two exercises check reading and moving.",
+      "rejected": "The complex math of the bilinear transform and stub matching - the chart is taught as a map, not a derivation."
+    },
+    {
+      "id": "GN-031",
+      "slug": "gn-the-plc-scan-cycle-and-why-timers-and-one-shots-misbehave",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Study page for a PLC programmer who has been bitten - dense text on purpose, because the payoff is a mental model, not a procedure.",
+      "why_widgets": "The diagram fixes the three-phase loop in the head; text blocks then spend the model on the four classic mysteries (frozen timers, double-firing one-shots, ignored outputs, missed pulses). The code block shows the double-write bug in three rungs - the cheapest possible concrete case. The symptom table is the return-visit reference.",
+      "rejected": "Ladder-logic syntax lessons and brand manuals - the concept transfers everywhere."
+    },
+    {
+      "id": "GN-032",
+      "slug": "gn-a-superheterodyne-receiver-signal-path-stage-by-stage",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Course lesson for a radio-curious reader - study pace, reference later when a radio misbehaves.",
+      "why_widgets": "The diagram walks the signal path because the architecture IS a chain; stat-strip pins the two IF numbers worth remembering; the worked table makes mixing arithmetic concrete (station, LO, image, rejected neighbor). Steps re-run the whole thing as one song's journey so abstraction becomes narrative. Exercises check the two things that matter (where selectivity lives, where the LO sits).",
+      "rejected": "Mixer circuit topologies and detector math - the block-level idea is the lesson."
+    },
+    {
+      "id": "GN-035",
+      "slug": "gn-lockout-tagout-the-full-procedure-and-why-each-step-exists",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Safety procedure meant to be studied once and then trusted - dense but short, because a safety page nobody finishes protects nobody.",
+      "why_widgets": "Steps blocks carry the procedure and the restore, because order is literally the safety case. The why-table is the heart: each step mapped to the injury it prevents, which is what makes a shortcut feel expensive. The warning callout guards the one rule people bend (another person's lock).",
+      "rejected": "OSHA citations and machine-specific procedures - the page disclaims those up front and teaches the reasoning instead."
+    },
+    {
+      "id": "GN-036",
+      "slug": "gn-modbus-rtu-framing-and-crc-byte-by-byte",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Reference-plus-lesson for someone about to debug or implement Modbus - dense, studied once, revisited at the bench forever.",
+      "why_widgets": "The two byte-by-byte tables (one real request, its response) are the spine: the whole protocol made concrete in 17 bytes. The diagram gives frame anatomy for the skim reader; steps plus pseudocode make the CRC implementable, not just describable. Callouts capture the two gotchas that burn first-timers (byte order, exception codes).",
+      "rejected": "ASCII and TCP variants and register-map conventions - one frame, fully understood, beats a survey."
+    },
+    {
+      "id": "GN-039",
+      "slug": "gn-near-miss-incident-report-form-for-a-small-shop",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Working template for a shop owner, light enough to photocopy - reference, one-time read then reused forever.",
+      "why_widgets": "The checklist IS the form: eight fields, each with a fictional example entry so nobody stares at a blank line. A separate text block shows a fully filled report so the target shape is unambiguous; steps cover what happens after, because a form with no follow-through is a drawer. The warning callout holds the two culture rules (no blame, always answer).",
+      "rejected": "OSHA paperwork detail and incident-investigation methodology - five minutes, one page."
+    },
+    {
+      "id": "GN-040",
+      "slug": "gn-monthly-household-budget-worksheet-with-example-numbers",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Reusable worksheet, light reference - read once, filled monthly.",
+      "why_widgets": "Three compact tables split money into in / must-pay / steerable because that split is the entire budget idea, and each table has an empty 'Yours' column so the page works as a form. The stat-strip checks the zero-sum math; steps and checklist turn the page into a monthly habit instead of a one-off exercise. The callout disclaims the example numbers up front.",
+      "rejected": "Investment advice, debt-payoff strategies, app recommendations - a worksheet, not a finance course."
+    },
+    {
+      "id": "GN-043",
+      "slug": "gn-ohm-s-law-practice-problems-with-worked-answers-revealed-on-request",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Practice page for a beginner - interactive study, not reference.",
+      "why_widgets": "Five exercise blocks are the whole page, each pairing a problem with distractors engineered from the actual mistakes (multiply vs divide, milli-prefix slips), and explanations that name the trap. The hero sets the only rule (pencil first, reveal second); the closing callout hands over the triangle mnemonic for anyone still slow.",
+      "rejected": "A theory chapter and a series/parallel deep dive - the page is reps, and five is the right number."
+    },
+    {
+      "id": "GN-044",
+      "slug": "gn-portfolio-project-write-up-template-for-an-automation-build-with-a-sample-entry",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Template for a trades-person building a portfolio - reference, returned to with each new project.",
+      "why_widgets": "Steps define the six sections in skim order, with the rejected-alternative section called out as the senior-reader magnet. Three text blocks then show a fictional sample entry filled in, because a template without a worked example is homework. The final checklist is the pre-send quality gate (verifiable, quantified, decision named, confidential scrubbed).",
+      "rejected": "Resume advice and photo guidance - the write-up shape is the whole product."
+    },
+    {
+      "id": "GN-047",
+      "slug": "gn-saturday-errand-route-hardware-store-pharmacy-post-office-gym",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Light one-time read that smuggles in a planning principle.",
+      "why_widgets": "Steps give the four-stop order with the reason attached to each stop, because the reasoning (closing times, cargo, stall risk) is the portable part - the route itself is fictional. The diagram renders the loop as a shape for the visual reader; the text block argues against shortest-path directly, which is the actual lesson. The callout handles the one realistic disruption.",
+      "rejected": "A map widget and real addresses - the page teaches routing judgment, not navigation."
+    },
+    {
+      "id": "GN-048",
+      "slug": "gn-a-morning-routine-with-a-6-15-am-hard-stop",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Light one-time read, sized like the routine itself.",
+      "why_widgets": "One timeline block is the entire design - six stations with times - because a morning routine is a schedule, not an essay. Each entry's detail explains the prep that makes the station decision-free, which is the real mechanism. The callout states the thesis: the hard stop matters more than the routine, because it moves failures to the evening.",
+      "rejected": "Habit science, wake-up light reviews, breakfast recipes - the page is a conveyor, not a lifestyle blog."
+    },
+    {
+      "id": "GN-051",
+      "slug": "gn-travel-day-flight-rental-car-hotel-check-in-dinner-reservation",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Reference itinerary for a traveler, skimmed on the day itself - the lesson is buffers, so the layout makes seams visible.",
+      "why_widgets": "The timeline runs hour by hour with each leg's practical gotcha attached (boarding-pass screenshot, car photos, bag drop); the compact table then abstracts the three seams and their buffers so the method transfers to any itinerary. The warning callout covers the one real failure mode (flight slips) with the counterintuitive advice (call the restaurant first).",
+      "rejected": "Packing lists and airline reviews - the day is the unit."
+    },
+    {
+      "id": "GN-052",
+      "slug": "gn-inbox-triage-14-example-emails-sorted-into-do-delegate-defer-drop",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Teaching page built as a worked example - study once, then the method runs itself.",
+      "why_widgets": "One big table is the payload: fourteen fictional emails with verdicts and one-line reasons, because pattern-matching real cases beats abstract rules. The stat-strip shows the shape of a healthy sort (most mail is drop); steps define the four verdicts crisply; the text block names the actual enemy (rereading). The callout disclaims the fiction up front.",
+      "rejected": "Productivity-system branding and tool recommendations - four buckets is the whole system."
+    },
+    {
+      "id": "GN-055",
+      "slug": "gn-how-cnc-evolved-from-punched-tape-nc-machines",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "History lesson for a machinist curious about their control - medium density, one sitting, no return visits expected.",
+      "why_widgets": "The timeline is the natural widget: eight eras, each framed as 'fixed the pain before it.' The table sharpens that into pain-removed vs pain-introduced, the honest version most histories skip. The text block lands the thesis (G-code never changed, everything around it did); the quote closes on the human note.",
+      "rejected": "Technical specs per era and manufacturer family trees - the shape of the evolution is the lesson."
+    },
+    {
+      "id": "GN-056",
+      "slug": "gn-48-hours-of-one-machine-breakdown-from-first-alarm-to-root-cause",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Story-format teaching page for maintenance folks - dense narrative, read start to finish like a case study.",
+      "why_widgets": "The timeline carries the incident as it happened (clock view); the diagram then strips the clock away to show the causal chain - the two-lenses structure is the page's core move. The table itemizes what each wrong suspect cost and taught; steps turn it into four changed habits. The exercise tests the key reframe (a trip is data). The callout disclaims the fiction.",
+      "rejected": "A 5-why template and FMEA - one story told well instead."
+    },
+    {
+      "id": "GN-059",
+      "slug": "gn-the-1911-triangle-shirtwaist-fire-and-how-it-shaped-workplace-safety-law",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "History with a purpose - study pace, one sitting, aimed at readers who work under modern safety law.",
+      "why_widgets": "Text blocks tell the event straight and stay restrained; the timeline then maps consequence (commission, first laws, federal era, OSHA) because the causality chain is the point, not the disaster itself. The quote closes on the reform movement's own words.",
+      "rejected": "Graphic detail beyond what explains the exits, and a labor-history survey - one fire, one line of descent to the panic bar on your shop door."
+    },
+    {
+      "id": "GN-060",
+      "slug": "gn-a-small-repos-git-history-told-as-a-story-what-each-commit-changed-and-why",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Teaching page for a new developer learning to read history - medium density, study once, apply forever.",
+      "why_widgets": "One timeline renders eleven fictional commits as decisions with the 'why' narrated, because the insight is that a log is a story about worries arriving in order. The table decodes the fix commits (the most honest lines); steps hand over the reading method for any repo; the exercise checks the tests-arrive-late lesson.",
+      "rejected": "Actual diffs, git commands, branching - the page teaches interpretation, not tooling."
+    },
+    {
+      "id": "GN-063",
+      "slug": "gn-half-finished-notes-from-a-vendor-call-about-a-new-servo-drive-gaps-marked",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "An artifact-as-lesson page: realistic working notes, light to read, returned to when the quote lands.",
+      "why_widgets": "The checklist format is the joke and the point - real call notes, with every unknown explicitly marked [GAP] instead of smoothed over. The text block separates vendor claims from facts; callouts list the four gaps that block a decision and explain why marking gaps is the whole discipline.",
+      "rejected": "A servo selection guide and an evaluation spreadsheet template - the page models one good habit, not the whole purchasing process."
+    },
+    {
+      "id": "GN-064",
+      "slug": "gn-quoting-a-machining-job-when-the-material-price-is-unconfirmed",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Judgment page for a shop owner - study once, reuse the pattern on every uncertain quote.",
+      "why_widgets": "The stat-strip splits known from unknown up front; the comparison block lays out the three honest quote shapes with who-carries-the-risk named for each; the scenario table makes the material swing concrete so the escalation clause has teeth. Steps turn it into writing practice; the warning callout draws the ethical line (padding is betting against your customer). The exercise tests the frame.",
+      "rejected": "Estimating software and hourly-rate theory - one uncertainty, handled cleanly."
+    },
+    {
+      "id": "GN-067",
+      "slug": "gn-conflicting-advice-on-whether-it-s-safe-to-discharge-a-capacitor-with-a-screwdriver",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Myth-sorting page for an electronics tinkerer - study once, keep as the answer to a recurring forum fight.",
+      "why_widgets": "The comparison block states both camps fairly before the synthesis, because dismissing the screwdriver crowd would lose them. The energy table is the actual verdict: five capacitor types with the screwdriver call for each, making 'which capacitor' the operative question. Steps give the boring correct method; the text explains why the conflict persists (experience is narrow, energy spans six orders of magnitude).",
+      "rejected": "Deep ESR theory and bleed-resistor sizing charts - judgment, not engineering."
+    },
+    {
+      "id": "GN-068",
+      "slug": "gn-holiday-sales-forecast-for-a-small-online-shop-with-only-two-years-of-data",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Decision-support page for a small shop owner - study once before the stocking decision.",
+      "why_widgets": "The data table shows both growth stories (baseline drift + spike growth); the text names why two years can't separate them; the comparison frames three defensible Decembers as floor/middle/ceiling, and the stat-strip turns that into the honest range. Steps translate the range into stocking behavior (build to floor, flex to middle, never the ceiling). The exercise defends the range against the point-estimate instinct.",
+      "rejected": "Forecasting math beyond ratios and inventory theory - the honesty IS the method."
+    },
+    {
+      "id": "GN-071",
+      "slug": "gn-a-fictional-space-colony-s-power-grid-politics-and-supply-chain",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Worldbuilding showcase, extreme density on purpose - a study read for the worldbuilding-curious.",
+      "why_widgets": "The structure mirrors the thesis: three threads (grid, politics, supply chain) each get their own widgets (diagram of the grid, comparison of factions, diagram of the pipeline), then text blocks braid them. The stat-strip grounds the fiction in numbers; the slideshow simulates a crisis so the constraints perform instead of just existing. The designer's-notes callout admits the method.",
+      "rejected": "Characters, plot, prose fiction - this is simulation notes, and says so."
+    },
+    {
+      "id": "GN-072",
+      "slug": "gn-the-us-electrical-grid-from-power-plant-to-wall-outlet",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Reference explainer for a curious homeowner or student - dense study the first time, then a lookup for 'what voltage is that wire.'",
+      "why_widgets": "The diagram gives the whole chain in one look; text blocks take each stage in order with the why (the loss equation gets its own block because it explains the entire architecture); the voltage ladder table is the keepable artifact; steps re-run it as one watt's journey for the narrative reader. Two exercises check reasoning, not recall.",
+      "rejected": "Generation-mix politics and smart-grid futures - the physical chain, end to end."
+    },
+    {
+      "id": "GN-075",
+      "slug": "gn-the-global-supply-chain-of-one-smartphone",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Big-systems explainer, dense study for the curious - the density is the point: a phone is not a simple subject.",
+      "why_widgets": "Structure follows the hierarchy: the stat-strip for scale, text and diagram blocks walking the four layers (assembly, components, materials, ore), the timeline compressing the ore-to-pocket journey, the table mapping the chokepoints. The quote lands the 'nobody knows how' thesis.",
+      "rejected": "Company names beyond geographies (fictional handset) and a sourcing-ethics deep dive - the map is the lesson."
+    },
+    {
+      "id": "GN-076",
+      "slug": "gn-a-fantasy-novel-universe-3-kingdoms-40-characters-300-years-of-events",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Extreme-density reference for an invented saga - built to prove a large fictional world fits on one page without flattening.",
+      "why_widgets": "The comparison presents the three powers; text blocks give each one character; the timeline compresses 300 years to seven eras; the table does the hardest job (forty names cut to the twelve who steer); the slideshow replays the war; the checklist teaches the reader how to track the cast. The callout disclaims invention up front.",
+      "rejected": "Maps, family trees, chapter summaries - orientation, not encyclopedia."
+    },
+    {
+      "id": "GN-079",
+      "slug": "gn-every-screwdriver-type-ranked-by-how-easy-it-is-to-strip",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Entertainment page with real payload - light one-time read, shared in group chats.",
+      "why_widgets": "One table carries the whole joke: eight drive types ranked by strip-proneness, each note earning its laugh with a real fact (cam-out was a feature, JIS vs Phillips confusion). Steps give the coping procedure so the page is useful after the laugh; the quote lands the thesis.",
+      "rejected": "Torque specs and brand recommendations - the honesty is in the 'unscientific' framing, and every ranking is still defensible."
+    },
+    {
+      "id": "GN-080",
+      "slug": "gn-choose-your-own-adventure-youre-the-plc-and-someone-just-hit-the-e-stop",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Playful teaching page - light read with a serious exam inside.",
+      "why_widgets": "The second-person adventure framing makes the safety architecture visceral: text beats walk the half-second after the button, and the fake choice callout is the joke that teaches (you cannot override hardware - both choices converge). Steps recap the scan cycle for grounding; the comparison plays the two endings against each other; the exercise checks the moral.",
+      "rejected": "Safety standards numbers and relay wiring - one idea, fully felt."
+    },
+    {
+      "id": "GN-083",
+      "slug": "gn-the-weather-report-but-for-a-factory-floor-s-mood",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Pure whimsy, light one-time read - a genre transplant executed straight.",
+      "why_widgets": "The timeline does the day-forecast as five 'weather' events, each a real factory moment in meteorological drag (hot orders as a front, grumbling as scattered showers). The table extends the forecast; the almanac callout is the closer. The craft is total commitment.",
+      "rejected": "Any winking explanation of the joke, and real production metrics - anyone who has worked a floor recognizes every line."
+    },
+    {
+      "id": "GN-084",
+      "slug": "gn-learning-morse-code-as-a-mixtape-letters-by-rhythm",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Learning-method page for a radio beginner - study, then daily practice companion.",
+      "why_widgets": "The mixtape conceit structures everything: three tables as 'tracks' ordered by rhythm contrast (the Koch method in disguise), because learning in alphabetical order is the classic failure. Steps set the listening rules; the text explains why the order works; the checklist turns it into a ten-minute daily habit. The exercise checks rhythm-recognition, not dot-counting.",
+      "rejected": "The full character set and keyer hardware talk - the method is the content."
+    },
+    {
+      "id": "GN-087",
+      "slug": "gn-pitch-showmob-to-a-skeptical-developer-in-90-seconds",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "A pitch script - light one-time read for the builder or anyone evangelizing the project.",
+      "why_widgets": "The timeline does the 90 seconds literally, four beats with the argument in the order a developer hears it; the comparison pre-answers the three real objections (HTML prompting, just-a-CMS, blocks-run-out) because a skeptic's questions are predictable. The CTA closes with the one demo that settles it.",
+      "rejected": "Market sizing and a competitor matrix - a pitch to one developer, not investors."
+    },
+    {
+      "id": "GN-088",
+      "slug": "gn-hire-an-apprentice-machinist-or-buy-a-second-cnc-the-case",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Decision page that argues a side on purpose - dense study for a shop owner facing this exact fork.",
+      "why_widgets": "The money table puts both options on the same three-year ledger; the text names the real bottleneck (utilization, not spindle count); steps make the case for the person while a separate text block gives steel its honest counterargument - the page's credibility lives in that concession. The callout prices the flight risk; the CTA states the verdict with its sequencing logic; the exercise tests what evidence would flip it.",
+      "rejected": "Tax treatment and specific machine models."
+    },
+    {
+      "id": "GN-091",
+      "slug": "gn-live-oee-dashboard-for-a-3-machine-cnc-cell-example-data",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Dashboard-format teaching page for a manufacturing lead - skim the numbers, study the interpretation.",
+      "why_widgets": "The stat-strip and the per-machine table play the board itself (fictional but internally consistent); the real content is everything around them: text earning each number, a losses table assigning points to owners, a timeline narrating the shift, steps teaching how to operate on the board. The warning callout caps it with what OEE cannot say.",
+      "rejected": "Live data plumbing and OEE industry benchmarks - the judgment around the number is the lesson."
+    },
+    {
+      "id": "GN-092",
+      "slug": "gn-preventive-maintenance-schedule-that-updates-as-tasks-close",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "System-design page for a maintenance owner - study once, then implement.",
+      "why_widgets": "The board table shows the rule running (seven assets with computed due dates, one honest OVERDUE line); steps define the one rule (closing schedules the next occurrence); the diagram closes the loop; the checklist scopes the weekly ten minutes. The callout reframes the overdue line as the trust feature - the page's best idea.",
+      "rejected": "CMMS software recommendations and interval-setting methodology - one mechanism, fully argued."
+    },
+    {
+      "id": "GN-095",
+      "slug": "gn-showmob-artifact-status-board-draft-in-pr-published",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Meta page about the project's own pipeline - light reference for the builder and the agents.",
+      "why_widgets": "One table is the board (three columns with counts and exit criteria); the text teaches which number matters (the PR middle column is where work waits); the checklist covers daily operations; the callout argues why 'in PR' is first-class. The page practices what it preaches by being a preview-status artifact itself.",
+      "rejected": "Burn-down charts and per-artifact rows - a status board about status boards needs the shape, not the data."
+    },
+    {
+      "id": "GN-096",
+      "slug": "gn-andon-board-for-a-small-assembly-line-stations-alerts-response-times",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Lean concept page for a line lead - study once, then champion it.",
+      "why_widgets": "The table plays the live board (six stations, one amber, one red); the stat-strip puts the response clock front and center because public time is the design's whole power. Steps define the three states; the timeline replays one alert end to end; the text argues metric-is-culture; the warning callout states the no-blame rule that keeps cords being pulled. The exercise checks the dispatch logic.",
+      "rejected": "Vendor hardware and Toyota history - the deal, not the museum."
+    },
+    {
+      "id": "GN-099",
+      "slug": "gn-an-infographic-of-my-favorite-color",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "The restraint play taken to its floor - light one-time read, thirty seconds.",
+      "why_widgets": "One hero (the word blue, one affectionate sentence) and one callout explaining why there is no chart: one data point drawn as a pie chart is a circle. The page is a proof that the renderer's smallest honest size is this small.",
+      "rejected": "A stat-strip, color theory, a shades-of-blue ranking - any third block would betray the joke."
+    },
+    {
+      "id": "GN-100",
+      "slug": "gn-a-dashboard-for-a-single-houseplant",
+      "contributor": "Instinct",
+      "provenance": "first-hand",
+      "goal": "Comedy through format mismatch - light one-time read, shareable.",
+      "why_widgets": "The dashboard widgets (stat-strip vitals, checklist action items) are deployed at full sincerity for a subject whose entire data fits on a sticky note, and the callout says so out loud. The joke lands because the blocks are real and the content is honest - 'Damp-ish' is a genuine sensor reading.",
+      "rejected": "Moisture charts, a growth timeline, a care guide: the correct dashboard for Fernando was always this size."
+    }
+  ]
+}
