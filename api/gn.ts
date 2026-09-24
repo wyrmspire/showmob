@@ -8,10 +8,17 @@
 // Environment (Vercel project settings — never VITE_*, never in the repo):
 //   SHOWMOB_SUPABASE_URL               e.g. https://<project-ref>.supabase.co
 //   SHOWMOB_SUPABASE_SERVICE_ROLE_KEY  service_role key from Supabase API settings
+//   SHOWMOB_GRADING_PASSCODE           shared grader passcode; every GET and POST
+//                                      must send it as the x-grading-passcode
+//                                      header. Unset means the API refuses all
+//                                      requests (fails closed).
+
+import { createHash, timingSafeEqual } from "node:crypto";
 
 interface RequestLike {
   method?: string;
   body?: unknown;
+  headers?: Record<string, string | string[] | undefined>;
 }
 
 interface ResponseLike {
@@ -30,6 +37,20 @@ function env(name: string): string {
   const value = process.env[name];
   if (!value) throw new Error(`${name} is not configured`);
   return value;
+}
+
+function digest(value: string): Buffer {
+  return createHash("sha256").update(value, "utf8").digest();
+}
+
+/** Constant-time passcode check. No configured passcode means no access. */
+function authorized(req: RequestLike): boolean {
+  const expected = process.env.SHOWMOB_GRADING_PASSCODE;
+  if (!expected) return false;
+  const raw = req.headers?.["x-grading-passcode"];
+  const given = Array.isArray(raw) ? raw[0] : raw;
+  if (typeof given !== "string" || !given) return false;
+  return timingSafeEqual(digest(given), digest(expected));
 }
 
 async function rpc(fn: string, params: Record<string, unknown>): Promise<unknown> {
@@ -127,6 +148,10 @@ function cleanBehavior(raw: unknown): Record<string, unknown> {
 
 export default async function handler(req: RequestLike, res: ResponseLike) {
   res.setHeader("cache-control", "no-store");
+  res.setHeader("x-robots-tag", "noindex, nofollow");
+  if (!authorized(req)) {
+    return res.status(401).json({ error: "passcode required" });
+  }
   try {
     if (req.method === "GET") {
       const [subjects, grades] = await Promise.all([
