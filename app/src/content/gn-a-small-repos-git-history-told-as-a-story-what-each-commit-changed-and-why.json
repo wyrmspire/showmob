@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-small-repos-git-history-told-as-a-story-what-each-commit-changed-and-why",
+  "title": "A small repo's git history told as a story: what each commit changed and why",
+  "summary": "Eleven commits from a fictional plant-tracker repo, read as decisions instead of diffs - a history is a story about what the author was worried about.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "signal",
+  "tags": ["grading-night", "git", "history", "story"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "A log is a story if you read the why",
+      "body": "This fictional repo tracks one backyard greenhouse: a sensor, a spreadsheet habit, and eleven commits over five months. Read as diffs it is dull. Read as decisions, it is the story of what its author kept worrying about - in order."
+    },
+    {
+      "id": "the-log",
+      "type": "timeline",
+      "heading": "Eleven commits, five months",
+      "items": [
+        { "time": "May 3", "title": "init: temperature logger that prints to the console", "detail": "The smallest thing that could possibly work. One sensor, one number, zero structure. Every repo starts as a dare." },
+        { "time": "May 9", "title": "add: write readings to a CSV with timestamps", "detail": "The first worry: memory. Printing was not enough; the author wanted to look back. Note what is not here yet - no tests, no config." },
+        { "time": "May 16", "title": "fix: handle the sensor returning nothing", "detail": "The first scar. Something failed in the real world and the code admits it now. Null readings get skipped, logged, and counted." },
+        { "time": "Jun 1", "title": "add: daily summary row - min, max, mean", "detail": "The second worry: meaning. A pile of readings is not an answer. The repo starts summarizing instead of just collecting." },
+        { "time": "Jun 20", "title": "refactor: split logging from summarizing", "detail": "Two jobs were living in one file. No behavior changed; the shape of the code admitted what it had become." },
+        { "time": "Jul 4", "title": "add: humidity sensor", "detail": "Scope grows, and the June refactor is what made it cheap. Histories are full of these quiet payoffs." },
+        { "time": "Jul 19", "title": "fix: CSV columns drifted when humidity was missing", "detail": "A real bug with a real lesson: the file format was a promise, and July 4 had quietly broken it. The fix adds a header row and pins column order." },
+        { "time": "Aug 2", "title": "add: tests for the CSV writer", "detail": "Tests arrive late - after the first format bug, not before. That is how most test suites are actually born: as a memorial to a specific failure." },
+        { "time": "Aug 30", "title": "add: alert if temperature drops below 4 C overnight", "detail": "The third worry: being told. The repo stops waiting to be read and starts speaking up. A watcher script, an email, done." },
+        { "time": "Sep 12", "title": "fix: alert fired three times for one cold night", "detail": "Alert fatigue gets its own commit. One night, one alert; the code learns to latch until conditions clear." },
+        { "time": "Sep 27", "title": "docs: README with wiring photo and setup steps", "detail": "The final commit here is for the next person - who is the author, in March, having forgotten everything. Documentation is a letter to your future self." }
+      ]
+    },
+    {
+      "id": "the-shape",
+      "type": "text",
+      "heading": "The shape underneath",
+      "body": "Three worries, in order: remember (May), understand (June), be told (August). Each worry arrived only after the previous one was solved, and each fix commit taught something the feature commits could not. That is a normal, healthy history: needs appear in sequence, and the code grows a layer per need instead of guessing all of them on day one."
+    },
+    {
+      "id": "fixes",
+      "type": "compact-table",
+      "heading": "What the fix commits were really saying",
+      "columns": ["Fix", "On the surface", "Underneath"],
+      "rows": [
+        ["May 16", "Sensor returns nothing", "Real hardware fails; plan for it"],
+        ["Jul 19", "CSV columns drifted", "A file format is a promise; version it or pin it"],
+        ["Sep 12", "Alert fired three times", "An alert is a contract with the reader's attention"]
+      ],
+      "caption": "Fix commits are the most honest lines in any history."
+    },
+    {
+      "id": "how-to-read",
+      "type": "steps",
+      "heading": "Reading any history this way",
+      "items": [
+        "Read the commit messages newest-to-oldest once, then oldest-to-newest - the story only runs one direction.",
+        "Mark each commit as feature, fix, refactor, or docs. The ratio tells you the era the repo is in.",
+        "Ask of each fix: what assumption died here? That is the author's real education.",
+        "Ask of each gap: what was happening in the six quiet weeks? Sometimes the answer is the code just worked."
+      ]
+    },
+    {
+      "id": "check-model",
+      "type": "exercise",
+      "heading": "Check the story",
+      "prompt": "The tests arrived on August 2, months after the first feature. What does that timing usually mean?",
+      "options": [
+        "A specific failure taught the author what to test",
+        "The author was careless until August",
+        "The repo was not real code until it had tests"
+      ],
+      "answer": 0,
+      "explanation": "Late-arriving tests usually memorialize a bug - here, the July 19 CSV drift. Healthy histories show tests born from specific failures, not from abstract guilt."
+    }
+  ]
+}

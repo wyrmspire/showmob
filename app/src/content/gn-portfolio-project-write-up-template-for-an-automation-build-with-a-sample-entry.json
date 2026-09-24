@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-portfolio-project-write-up-template-for-an-automation-build-with-a-sample-entry",
+  "title": "Portfolio project write-up template for an automation build, with a sample entry",
+  "summary": "The six-section shape of a project write-up a hiring manager can skim in ninety seconds, plus one fictional sample entry showing it filled in.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "portfolio", "template", "automation"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "A write-up is evidence, not a summary",
+      "body": "Anyone can list projects. A write-up proves you did the work: what was broken or missing, what you decided, what it cost, and what the machine does now. Six sections, ninety seconds to skim, and the reader can tell in the first paragraph whether you were there."
+    },
+    {
+      "id": "sections",
+      "type": "steps",
+      "heading": "The six sections, in order",
+      "items": [
+        "The situation - one paragraph: the machine, the problem, and what it cost while unsolved.",
+        "The constraint - budget, downtime window, or parts on hand. Real projects have one; naming it proves yours was real.",
+        "What you built - the actual work, specific enough to be checked: part numbers, I/O counts, cycle times.",
+        "What you decided not to do - one rejected alternative and why. This is the section juniors skip and seniors read first.",
+        "The result - numbers before and after: downtime, scrap rate, cycle time. Adjectives do not count.",
+        "What you would do differently - one honest line. It signals the write-up is evidence, not advertising."
+      ]
+    },
+    {
+      "id": "sample-note",
+      "type": "note-callout",
+      "title": "The sample below is fictional",
+      "body": "The conveyor retrofit entry that follows was invented for this template. The company, numbers, and machine are made up - the shape is what you are meant to copy.",
+      "tone": "note"
+    },
+    {
+      "id": "sample-situation",
+      "type": "text",
+      "heading": "Sample - the situation",
+      "body": "A case-packing conveyor at a fictional bottling plant jammed two or three times per shift where cases merged from two lanes to one. Each jam cost roughly ten minutes of line time and an operator climbing over the guard to clear it. The merge point had no jam detection - the line only stopped when the downstream photo-eye starved."
+    },
+    {
+      "id": "sample-built",
+      "type": "text",
+      "heading": "Sample - what was built and decided",
+      "body": "Added two retroreflective sensors at the merge, wired into spare PLC inputs, with a jam routine: if both sensors stay blocked for four seconds, the upstream lane stops and an amber stack light calls the operator. Total cost about 180 dollars in sensors and one Saturday of downtime. Rejected alternative: a mechanical lane combiner quoted at 4,000 dollars with a week of install - declined because the jam was a detection problem, not a geometry problem."
+    },
+    {
+      "id": "sample-result",
+      "type": "text",
+      "heading": "Sample - the result and the honest line",
+      "body": "In the first month, jams stopped the upstream lane eleven times and the full merge zero times; clearing an upstream stop takes about ninety seconds instead of ten minutes. What I would do differently: mount the sensors on a slotted bracket from day one - the fixed bracket needed a shim after a case supplier changed corrugated thickness."
+    },
+    {
+      "id": "checklist",
+      "type": "checklist",
+      "heading": "Before the write-up leaves your hands",
+      "items": [
+        { "label": "Could someone phone the plant and verify this?", "detail": "Specifics invite checking; vagueness invites doubt." },
+        { "label": "Is there a number for before and after?", "detail": "Minutes, dollars, cycles, jams - pick the one that mattered." },
+        { "label": "Is the rejected alternative named?", "detail": "Decision-making is the skill; the build is the evidence." },
+        { "label": "Is anything confidential scrubbed?", "detail": "Customer names, recipes, and exact layouts stay out; the engineering stays in." }
+      ]
+    }
+  ]
+}
