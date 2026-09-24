@@ -10,7 +10,7 @@ test('allegory-encoding is a published multi-page education series outside gn-10
   const files = readdirSync(contentDir)
     .filter((f) => f.startsWith('allegory-encoding') && f.endsWith('.json'))
     .sort();
-  assert.ok(files.length >= 9, `expected ≥9 allegory pages, got ${files.length}`);
+  assert.ok(files.length >= 10, `expected ≥10 allegory pages, got ${files.length}`);
 
   const byOrder = [];
   for (const file of files) {
@@ -39,6 +39,11 @@ test('allegory-encoding is a published multi-page education series outside gn-10
   assert.match(blob, /Execution playbook|workflow/i);
   assert.match(blob, /Society|norms for|cipher/i);
   assert.match(blob, /Metaphor domains|artful/i);
+  assert.match(blob, /[Mm]emegory|allegory that travels|reverse questions/i);
+
+  const ordersExpected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  assert.deepEqual(orders, ordersExpected, 'series orders 1–10');
+  assert.equal(byOrder[9].slug, 'allegory-encoding-memegory');
 
   const catalog = read('../app/src/catalog.ts');
   assert.match(catalog, /"allegory-encoding"/);

@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "night",
+  "tags": [
+    "education",
+    "allegory",
+    "privacy",
+    "encoding",
+    "memegory",
+    "manipulation",
+    "detection",
+    "falsifiability"
+  ],
+  "updated": "2026-09-24",
+  "slug": "allegory-encoding-memegory",
+  "title": "Memegory: allegory that travels",
+  "summary": "Allegory built to spread — good when it whispers a checkable proof past the walls of the mind; bad when it steers you to one uncheckable conclusion. Same vehicle, different load.",
+  "series": {
+    "id": "allegory-encoding",
+    "title": "Allegory that stays private",
+    "order": 10
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Allegory that stays private · 10 of 10",
+      "title": "Whispering proofs past the walls of the mind",
+      "body": "Some lessons bounce off the front door. Memegory is allegory built to travel — shareable, sticky, easy to retell — so a mechanism can arrive sideways. Used well, it carries a proof you would not have let in. Used badly, it steers you toward one fixed conclusion and a claim nobody can be held to. Same vehicle. Different load."
+    },
+    {
+      "id": "define",
+      "type": "text",
+      "heading": "What memegory is",
+      "body": "Memegory = allegory built to spread, the way a meme spreads. It is deniable (you can share the story without naming the target), shareable (it travels farther than a private note), and often uncheckable at first glance (feeling arrives before the audit).\n\nThose three traits are not virtues or vices by themselves. They are the vehicle. The load decides whether the spread is insight or manipulation. Good memegory gets through the walls of the mind — it whispers a falsifiable proof around defenses. Bad memegory uses the same soft entry to fix one conclusion, evade accountability, and work by feeling rather than anything a reader could check."
+    },
+    {
+      "id": "pieces",
+      "type": "compact-table",
+      "heading": "Three traits, two readings",
+      "caption": "Each trait can serve teaching or persuasion incense — inspect the load, not only the costume.",
+      "columns": [
+        "Trait",
+        "Good reading",
+        "Bad reading"
+      ],
+      "rows": [
+        [
+          "Deniable",
+          "Lets a mechanism travel without naming a living cast",
+          "Lets an accusation travel without anyone owning it"
+        ],
+        [
+          "Shareable",
+          "Insight lands in more rooms than a frontal brief",
+          "Steering spreads faster than correction"
+        ],
+        [
+          "Uncheckable at first",
+          "Feeling opens the door; a checkable claim waits inside",
+          "Feeling is the whole payload — no fact would make it not fit"
+        ]
+      ]
+    },
+    {
+      "id": "compare",
+      "type": "comparison",
+      "heading": "Good memegory vs manipulative memegory",
+      "columns": [
+        {
+          "name": "Good — proof that slips in",
+          "detail": "Carries a mechanism sharp enough to be wrong. Leaves the conclusion with you. Survives translate-back, falsifiability, clean sourcing, and a clear reader action. Ties to the underside rule: encoding is not permission."
+        },
+        {
+          "name": "Manipulative — conclusion already picked",
+          "detail": "Steers to one fixed ending. The claim is vague enough that nobody can be held to it. Works by vibe. Translate-back names a real cast, or no fact would overturn it, or the signal came from data you had no right to."
+        }
+      ]
+    },
+    {
+      "id": "reverse",
+      "type": "checklist",
+      "heading": "Four reverse questions (detection checklist)",
+      "items": [
+        {
+          "label": "1. Translate it back",
+          "detail": "What literal claim, about whom? If a real recognizable person or group appears under the costume, it is an accusation in costume — not private allegory craft."
+        },
+        {
+          "label": "2. Ask whether it could be wrong",
+          "detail": "If no fact would make the story not fit, you have Barnum / persuasion incense. Good memegory inherits Rule 6: a claim sharp enough that someone could disagree without knowing the cast."
+        },
+        {
+          "label": "3. Ask where the signal came from",
+          "detail": "Allegory built on data you had no right to is surveillance in a nice coat. The underside rule still applies — beauty and virality do not grant a source."
+        },
+        {
+          "label": "4. Ask what it wants you to do, and who benefits",
+          "detail": "Good allegory leaves the conclusion with the reader (reader as key). Manipulative memegory has one ending already picked out, and the benefit points away from the reader."
+        }
+      ]
+    },
+    {
+      "id": "fingerprints",
+      "type": "note-callout",
+      "title": "Intent is invisible — defend by fingerprints",
+      "body": "You cannot see the author's motives. Defend by how the piece works on you: Does translate-back name someone real? Could any observation overturn it? Was the source clean? Who gains if you accept the ending? Those fingerprints matter more than guessed intent. The same tension shows up in falsifiability and clean sourcing — astronomy-style claims that invite check versus uncheckable insight that only feels true.",
+      "tone": "warning"
+    },
+    {
+      "id": "craft",
+      "type": "steps",
+      "heading": "Before you let a traveling allegory stick",
+      "items": [
+        "Run the four reverse questions out loud or on paper.",
+        "Keep the mechanism; discard any ending that only works by vibe.",
+        "If you are the author: leave the conclusion with the reader, keep the claim falsifiable, and never encode data you should not have.",
+        "If it fails the checklist, treat it as persuasion incense — not as private allegory craft."
+      ]
+    },
+    {
+      "id": "end",
+      "type": "quote",
+      "quote": "Same vehicle, different load. Useful when it carries a proof you would not have let in the front door; dangerous when it carries a claim nobody can be held to.",
+      "attribution": "Memegory in one line"
+    }
+  ]
+}
