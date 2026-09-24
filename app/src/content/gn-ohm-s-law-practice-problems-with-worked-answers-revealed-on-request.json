@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-ohm-s-law-practice-problems-with-worked-answers-revealed-on-request",
+  "title": "Ohm's law practice problems with worked answers revealed on request",
+  "summary": "Five problems, one triangle. Try each before opening the worked answer.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "signal",
+  "tags": ["grading-night", "electronics", "practice", "ohms-law"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "V = I x R, until it is reflex",
+      "body": "Ohm's law has three letters and one idea: push (voltage), flow (current), and resistance trade against each other. V = I x R, I = V / R, R = V / I. Five problems below, each with its worked answer hidden until you ask for it. Pencil first, reveal second."
+    },
+    {
+      "id": "p1",
+      "type": "exercise",
+      "heading": "Problem 1",
+      "prompt": "A 12 V supply sits across a 100 ohm resistor. What current flows?",
+      "options": ["0.12 A", "1.2 A", "8.3 A", "12 A"],
+      "answer": 0,
+      "explanation": "I = V / R = 12 / 100 = 0.12 A, or 120 mA. The trap answers come from multiplying instead of dividing (12 x 100 = 1200, nonsense) and from flipping the fraction (100 / 12 = 8.3).",
+      "correctFeedback": "Right. 120 mA.",
+      "wrongFeedback": "Set up I = V / R before touching the numbers."
+    },
+    {
+      "id": "p2",
+      "type": "exercise",
+      "heading": "Problem 2",
+      "prompt": "A bench supply shows 9 V across a resistor carrying 30 mA. What is the resistance?",
+      "options": ["0.3 ohm", "3 ohm", "300 ohm", "3,000 ohm"],
+      "answer": 2,
+      "explanation": "R = V / I = 9 / 0.030 = 300 ohm. The milli is where problems like this are won and lost: 30 mA is 0.030 A. Dividing by 30 instead of 0.030 gives 0.3, a hundredfold error from one prefix.",
+      "correctFeedback": "Right - and you handled the milli prefix, which is the real test.",
+      "wrongFeedback": "Convert 30 mA to 0.030 A first, then R = V / I."
+    },
+    {
+      "id": "p3",
+      "type": "exercise",
+      "heading": "Problem 3",
+      "prompt": "A 470 ohm resistor must carry 50 mA. What voltage do you need across it?",
+      "options": ["2.35 V", "9.4 V", "23.5 V", "235 V"],
+      "answer": 2,
+      "explanation": "V = I x R = 0.050 x 470 = 23.5 V. Check the feel of it: 50 mA through roughly 500 ohm should need roughly 25 V. Answers off by ten in either direction fail the smell test.",
+      "correctFeedback": "Right. 23.5 V.",
+      "wrongFeedback": "V = I x R with I in amps: 0.050 x 470."
+    },
+    {
+      "id": "p4",
+      "type": "exercise",
+      "heading": "Problem 4",
+      "prompt": "Two 1 kohm resistors in series sit across 24 V. What current flows through the pair?",
+      "options": ["6 mA", "12 mA", "24 mA", "48 mA"],
+      "answer": 1,
+      "explanation": "Series resistances add: 1k + 1k = 2 kohm. I = V / R = 24 / 2000 = 12 mA. In series the same current passes through both - the pair behaves as one 2 kohm resistor.",
+      "correctFeedback": "Right. Series adds, then divide.",
+      "wrongFeedback": "Add the series resistors first (2 kohm total), then I = V / R."
+    },
+    {
+      "id": "p5",
+      "type": "exercise",
+      "heading": "Problem 5",
+      "prompt": "A 12 V battery feeds a lamp drawing 500 mA. What is the lamp's hot resistance, and what power does it dissipate?",
+      "options": ["24 ohm and 6 W", "24 ohm and 60 W", "6 ohm and 6 W", "240 ohm and 6 W"],
+      "answer": 0,
+      "explanation": "R = V / I = 12 / 0.5 = 24 ohm. Power is P = V x I = 12 x 0.5 = 6 W. Hot resistance matters because a lamp's cold resistance is far lower - the inrush current at switch-on is several times the running current.",
+      "correctFeedback": "Right - 24 ohm, 6 W.",
+      "wrongFeedback": "Two steps: R = 12 / 0.5, then P = 12 x 0.5."
+    },
+    {
+      "id": "wrap",
+      "type": "note-callout",
+      "title": "If any of these felt slow",
+      "body": "Write the triangle - V on top, I and R below - cover the letter you want, and the remaining positions tell you whether to multiply or divide. Ten minutes of that and the formula stops being a formula and starts being how you see circuits.",
+      "tone": "note"
+    }
+  ]
+}

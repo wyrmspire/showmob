@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-travel-day-flight-rental-car-hotel-check-in-dinner-reservation",
+  "title": "Travel day: flight, rental car, hotel check-in, dinner reservation",
+  "summary": "One fictional travel day laid out so the connections between legs are visible - the buffers are the plan.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "paper",
+  "tags": ["grading-night", "travel", "itinerary"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Four legs, three places to lose the day",
+      "body": "A fictional itinerary: morning flight, rental car, hotel check-in, 7 PM dinner. Travel days fail at the seams - the gap between landing and driving, between driving and check-in, between check-in and dinner. This layout makes the seams and their buffers explicit."
+    },
+    {
+      "id": "the-day",
+      "type": "timeline",
+      "heading": "The day, hour by hour",
+      "items": [
+        { "time": "5:40 AM", "title": "Leave for the airport", "detail": "For a 7:15 departure: parked, through security, and at the gate by 6:35. The airline's 'arrive 2 hours early' assumes the worst line you have ever seen; 75 minutes handles a normal bad day at a mid-size airport." },
+        { "time": "7:15 AM", "title": "Flight departs", "detail": "Boarding pass on the phone and a screenshot of it. Airplane mode plus a dying battery is how boarding passes vanish." },
+        { "time": "9:50 AM", "title": "Land", "detail": "Text anyone waiting before you stand up. Gate-checked bags add 20 minutes to everything after this." },
+        { "time": "10:45 AM", "title": "Rental car pickup", "detail": "An hour after landing is the honest number with a shuttle and a counter line. Photograph every panel of the car before leaving the lot - sixty seconds, and the fuel and mileage on the agreement match the dash." },
+        { "time": "12:15 PM", "title": "Lunch near the hotel", "detail": "Check-in is 3 PM. Arriving at noon with luggage means lunch first; pick somewhere close so the bag drop is one stop." },
+        { "time": "1:30 PM", "title": "Hotel bag drop", "detail": "Most front desks hold bags and text when the room is ready. Ask early - the answer changes the shape of the afternoon." },
+        { "time": "3:00 PM", "title": "Check-in", "detail": "Confirm the checkout time and the Wi-Fi on the way up, not at 11 PM. Twenty minutes to unpack the bag properly is the difference between living in a room and living out of a suitcase." },
+        { "time": "6:15 PM", "title": "Leave for dinner", "detail": "For a 7:00 reservation 20 minutes away: parked and inside by 6:50. Reservation name and confirmation number live in the same note as the address." }
+      ]
+    },
+    {
+      "id": "seams",
+      "type": "compact-table",
+      "heading": "The three seams and their buffers",
+      "columns": ["Seam", "What eats it", "Buffer held"],
+      "rows": [
+        ["Landing to driving", "Shuttle, counter line, lot inspection", "55 min"],
+        ["Driving to check-in", "3 PM check-in wall", "Bag drop plus lunch absorbs 3 hours"],
+        ["Check-in to dinner", "Traffic, parking, finding the door", "45 min"]
+      ]
+    },
+    {
+      "id": "if-late",
+      "type": "note-callout",
+      "title": "If the flight slips",
+      "body": "A delay of over 90 minutes starts threatening dinner. Call the restaurant from the tarmac, not from the rental lot - kitchens hold tables for people who call. The rental car and the hotel do not need warning; the reservation does.",
+      "tone": "warning"
+    }
+  ]
+}
