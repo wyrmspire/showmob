@@ -11,9 +11,8 @@
   --hairline:#d8d1c7;
   /* Callout tones: each fill is paired with its own ink so a theme can never
      land dark ink on a dark fill. Night overrides these in its theme class.
-     The note tone
-     reads --accent/--accent-soft/--text at the callout itself (via var()
-     fallbacks in .file-callout) so it always follows the active theme. */
+     The note tone reads --accent/--accent-soft/--text at the callout itself
+     (via var() fallbacks in .file-callout) so it follows the active theme. */
   --callout-positive-edge:#496c2e;
   --callout-positive-fill:#e9efdf;
   --callout-positive-ink:#2f491f;
