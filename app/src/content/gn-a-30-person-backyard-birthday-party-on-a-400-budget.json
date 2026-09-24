@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-30-person-backyard-birthday-party-on-a-400-budget",
+  "title": "A 30-person backyard birthday party on a $400 budget",
+  "summary": "A celebratory $400 plan for 30 people: food, drinks, decor, and a contingency that still feels like a party.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "field",
+  "tags": [
+    "grading-night",
+    "party",
+    "budget",
+    "planning"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Celebratory, not corporate",
+      "title": "Thirty people, four hundred dollars, one backyard",
+      "body": "This is a working budget for a casual afternoon birthday — grill food, drinks, simple decor, and music from a speaker you already own. Numbers are example targets you can swap."
+    },
+    {
+      "id": "totals",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "$400",
+          "label": "Hard ceiling"
+        },
+        {
+          "value": "30",
+          "label": "Guests (mix of adults + kids)"
+        },
+        {
+          "value": "~$13",
+          "label": "Per person all-in target"
+        }
+      ]
+    },
+    {
+      "id": "budget",
+      "type": "compact-table",
+      "heading": "Budget map",
+      "columns": [
+        "Bucket",
+        "Example spend",
+        "What it buys"
+      ],
+      "rows": [
+        [
+          "Food (grill + sides)",
+          "$180",
+          "Burgers/dogs, buns, salad, chips, fruit, condiments"
+        ],
+        [
+          "Drinks",
+          "$70",
+          "Water, lemonade, a small cooler of sodas; BYOB optional for adults"
+        ],
+        [
+          "Cake / dessert",
+          "$45",
+          "Grocery sheet cake or cupcakes + candles"
+        ],
+        [
+          "Decor + tableware",
+          "$55",
+          "Plates, cups, napkins, balloons, one banner"
+        ],
+        [
+          "Ice + misc",
+          "$20",
+          "Bags of ice, trash bags, wet wipes"
+        ],
+        [
+          "Contingency",
+          "$30",
+          "Forgot mustard, extra ice, last-minute chairs"
+        ]
+      ],
+      "caption": "Totals $400. Slide money from decor into food if your crowd is hungrier than fancy."
+    },
+    {
+      "id": "menu",
+      "type": "checklist",
+      "heading": "Food plan that feeds 30 without catering prices",
+      "items": [
+        {
+          "label": "Main: burgers + hot dogs (plan ~1.25 servings/person)",
+          "detail": "Buy patties and dogs on sale; freeze extras the day before if needed."
+        },
+        {
+          "label": "Sides: big bowl salad, chips, cut fruit",
+          "detail": "Two large sides beat six tiny fancy ones on this budget."
+        },
+        {
+          "label": "Dessert: one sheet cake, first-name on it",
+          "detail": "Skip individual plated desserts."
+        },
+        {
+          "label": "Ask two friends to bring a side each",
+          "detail": "Keeps the host budget honest without turning it into a potluck free-for-all."
+        }
+      ]
+    },
+    {
+      "id": "timeline",
+      "type": "timeline",
+      "heading": "Weekend build schedule",
+      "items": [
+        {
+          "time": "Friday",
+          "title": "Shop + chill drinks",
+          "detail": "Buy non-perishables, ice chests ready, playlist queued."
+        },
+        {
+          "time": "Saturday AM",
+          "title": "Yard + tables",
+          "detail": "Mow path, set tables, hang banner, stage trash/recycle."
+        },
+        {
+          "time": "Saturday +2h",
+          "title": "Food prep",
+          "detail": "Paties formed, sides chopped, cake in fridge, cooler packed."
+        },
+        {
+          "time": "Guests arrive",
+          "title": "Grill open, drinks iced",
+          "detail": "Host works the grill; a friend runs the drink cooler."
+        },
+        {
+          "time": "After cake",
+          "title": "Soft landing",
+          "detail": "Trash run, leftover plan, thank-you texts later — not during cleanup."
+        }
+      ]
+    },
+    {
+      "id": "cuts",
+      "type": "comparison",
+      "heading": "If money gets tight",
+      "columns": [
+        {
+          "name": "Keep",
+          "detail": "Enough food, cold drinks, a named cake, somewhere to sit, a clear trash plan."
+        },
+        {
+          "name": "Cut first",
+          "detail": "Theme decor kits, custom napkins, rented bounce house, professional photographer, multiple meat options."
+        }
+      ]
+    },
+    {
+      "id": "host-notes",
+      "type": "note-callout",
+      "title": "Tone check",
+      "body": "A $400 backyard party wins on warmth and enough food, not on Instagram props. Put the money where guests feel it: grill smoke, cold lemonade, and a cake with the right name.",
+      "tone": "positive"
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Tonight",
+      "body": "Write the six budget lines on a sticky note. Invite with a clear end time. Ask two people to bring sides. Protect the $30 contingency like it is sacred."
+    }
+  ]
+}

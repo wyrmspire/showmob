@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-speeds-and-feeds-for-6061-aluminum-vs-4140-steel-on-a-manual-lathe",
+  "title": "Speeds and feeds for 6061 aluminum vs 4140 steel on a manual lathe",
+  "summary": "Side-by-side starting SFPM, RPM, and feed guidance for 6061 vs 4140 on a manual lathe — then how to adjust by chip and sound.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "machining",
+    "lathe",
+    "speeds-feeds",
+    "comparison"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Instructive comparison for manual turning",
+      "title": "Same diameter, two metals, different SFPM",
+      "body": "6061 aluminum wants speed; 4140 steel wants respect. This page puts starting surface feet per minute, RPM, and feed side by side for a manual lathe, then shows how to tune from chips and sound — not from blind faith in a chart."
+    },
+    {
+      "id": "formula",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "RPM",
+          "label": "≈ (SFPM × 3.82) / diameter (inches)"
+        },
+        {
+          "value": "SFPM",
+          "label": "Surface feet per minute at the cut"
+        },
+        {
+          "value": "Feed",
+          "label": "Inches per revolution (IPR) on the carriage"
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "type": "comparison",
+      "heading": "6061 aluminum vs 4140 steel — starting posture",
+      "columns": [
+        {
+          "name": "6061-T6 aluminum",
+          "detail": "Fast SFPM, sharper tools, watch built-up edge. Coolant or mist helps finish; many hobby cuts run dry with air blast. Light DOC still cuts cleanly when the edge is keen."
+        },
+        {
+          "name": "4140 steel (annealed / prehard examples)",
+          "detail": "Lower SFPM, rigid setup, consistent feed. HSS works; carbide likes steady chipload. Prematurely hard grades need even more conservative starts. Never starve the cut with timid feed that rubs."
+        }
+      ]
+    },
+    {
+      "id": "sfpm",
+      "type": "compact-table",
+      "heading": "Example starting SFPM (HSS / general-purpose carbide)",
+      "columns": [
+        "Operation",
+        "6061 HSS",
+        "6061 carbide",
+        "4140 HSS",
+        "4140 carbide"
+      ],
+      "rows": [
+        [
+          "Rough turning",
+          "400–700",
+          "800–1500",
+          "80–120",
+          "250–400"
+        ],
+        [
+          "Finish turning",
+          "500–800",
+          "1000–1800",
+          "100–150",
+          "300–500"
+        ],
+        [
+          "Facing",
+          "same band",
+          "same band",
+          "same band",
+          "same band"
+        ],
+        [
+          "Parting (careful)",
+          "200–400",
+          "400–800",
+          "40–80",
+          "150–250"
+        ]
+      ],
+      "caption": "Starting bands only. Tool geometry, stickout, machine HP, and whether 4140 is annealed vs prehard move these numbers a lot."
+    },
+    {
+      "id": "rpm-ex",
+      "type": "compact-table",
+      "heading": "Example RPM at Ø1.000 in (using RPM ≈ SFPM × 3.82)",
+      "columns": [
+        "Material / aim",
+        "SFPM used",
+        "Approx RPM",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "6061 rough, HSS",
+          "500",
+          "~1900",
+          "Many small lathes top out — gear down if noisy"
+        ],
+        [
+          "6061 finish, carbide",
+          "1200",
+          "~4600",
+          "May exceed hobby spindle limits; use what you have safely"
+        ],
+        [
+          "4140 rough, HSS",
+          "100",
+          "~380",
+          "Rigid, sharp HSS; steady feed"
+        ],
+        [
+          "4140 rough, carbide",
+          "300",
+          "~1150",
+          "Need stiffness and chipload"
+        ]
+      ],
+      "caption": "Halve RPM when you double diameter. Always respect your machine's rated speed and chuck rating."
+    },
+    {
+      "id": "feeds",
+      "type": "compact-table",
+      "heading": "Example feed (IPR) starting points",
+      "columns": [
+        "Cut",
+        "6061",
+        "4140",
+        "Feel check"
+      ],
+      "rows": [
+        [
+          "Rough turn",
+          "0.008–0.015",
+          "0.005–0.012",
+          "Continuous chip preferred over dust"
+        ],
+        [
+          "Finish turn",
+          "0.002–0.006",
+          "0.002–0.005",
+          "Light DOC + sharp nose radius"
+        ],
+        [
+          "Parting",
+          "0.002–0.005",
+          "0.001–0.003",
+          "Plenty of oil; watch bind"
+        ]
+      ],
+      "caption": "Undernourished feed that only rubs heats the edge — especially in steel."
+    },
+    {
+      "id": "tune",
+      "type": "steps",
+      "heading": "Tune from evidence, not ego",
+      "items": [
+        "Start at the low-middle of the SFPM band for your tool and material.",
+        "Take a short trial cut. Read chip color/shape, surface, and sound.",
+        "Aluminum: stringy birds-nest or built-up edge → sharper tool, more speed/rake help, clear chips. Squeal → check stickout and speed.",
+        "Steel: blue chips on HSS may mean too fast; shiny rubbed surface with heat → increase feed slightly or fix sharpness; chatter → reduce stickout, change speed, or DOC.",
+        "Only then write your shop's personal numbers on the chart."
+      ]
+    },
+    {
+      "id": "safety",
+      "type": "note-callout",
+      "title": "Manual lathe realities",
+      "body": "Long aluminum chips wrap. Steel parting binds. Unbalanced chuck speeds are limited for a reason. These tables do not override your machine manual, tool maker data, or common sense about guards and eye protection.",
+      "tone": "warning"
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Quick check",
+      "prompt": "You move from Ø1 in 6061 to Ø2 in 4140 on HSS roughing. What should happen to RPM first?",
+      "options": [
+        "Double RPM because steel is tougher",
+        "Drop SFPM for steel and roughly half again for the larger diameter",
+        "Keep the same RPM and only change feed",
+        "Always run maximum spindle speed"
+      ],
+      "answer": 1,
+      "explanation": "4140 wants much lower SFPM than 6061, and doubling diameter halves RPM for the same SFPM. Both effects cut speed hard."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Shop next step",
+      "body": "Print the SFPM table, pencil your lathe's real RPM limits beside it, and record one good cut in each metal this week."
+    }
+  ]
+}

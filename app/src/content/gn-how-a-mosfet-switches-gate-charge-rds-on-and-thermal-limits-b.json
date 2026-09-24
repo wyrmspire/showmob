@@ -1,0 +1,264 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-how-a-mosfet-switches-gate-charge-rds-on-and-thermal-limits-b",
+  "title": "How a MOSFET switches: gate charge, Rds(on), and thermal limits",
+  "summary": "Explorer-style walkthrough: pick a gate-drive voltage and a load current, then read Qg, Rds(on), conduction loss, and temperature rise from the tables.",
+  "contributor": "GPT",
+  "status": "preview",
+  "theme": "signal",
+  "tags": [
+    "grading-night",
+    "mosfet",
+    "electronics",
+    "simulation",
+    "explorer"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Explorer — gate voltage × load (no live widgets; tables stand in)",
+      "title": "Dial Vgs and load current, then read the heat",
+      "body": "Treat the checklists below like sliders: pick one gate-drive voltage and one load current. The tables and stats show what that choice does to gate charge, on-resistance, conduction loss, and a rough ΔT. This is an illustrative explorer, not a datasheet substitute."
+    },
+    {
+      "id": "knobs",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "Vgs",
+          "label": "Knob A — gate drive (4.5 / 7 / 10 V examples)"
+        },
+        {
+          "value": "Id",
+          "label": "Knob B — load current (2 / 5 / 10 A examples)"
+        },
+        {
+          "value": "ΔT",
+          "label": "Output — estimated junction rise"
+        }
+      ]
+    },
+    {
+      "id": "set-vgs",
+      "type": "checklist",
+      "heading": "Slider A — choose gate-drive voltage (pick one mentally)",
+      "items": [
+        {
+          "label": "Vgs = 4.5 V (logic-level drive)",
+          "detail": "Works if the part is characterized there; Rds(on) is usually worse than at 10 V."
+        },
+        {
+          "label": "Vgs = 7 V (middle drive)",
+          "detail": "Common compromise on 5–12 V rails with a gate driver."
+        },
+        {
+          "label": "Vgs = 10 V (classic strong drive)",
+          "detail": "Often the Rds(on) number glowing on the front page of the datasheet."
+        }
+      ]
+    },
+    {
+      "id": "set-load",
+      "type": "checklist",
+      "heading": "Slider B — choose load current (pick one mentally)",
+      "items": [
+        {
+          "label": "Id = 2 A continuous",
+          "detail": "Light load — conduction loss usually small unless Rds(on) is high."
+        },
+        {
+          "label": "Id = 5 A continuous",
+          "detail": "Medium — where many hobby switching stages live."
+        },
+        {
+          "label": "Id = 10 A continuous",
+          "detail": "Heavy for a tiny package — heat dominates the story."
+        }
+      ]
+    },
+    {
+      "id": "flow",
+      "type": "diagram",
+      "heading": "What the explorer computes (conceptually)",
+      "nodes": [
+        {
+          "title": "1. Gate charge at your Vgs",
+          "detail": "Qg (and related Qgd) set how hard the driver must push to switch in time."
+        },
+        {
+          "title": "2. Rds(on) at that Vgs and temperature",
+          "detail": "On-resistance falls as Vgs rises (within ratings) and rises as the die heats."
+        },
+        {
+          "title": "3. Conduction loss ≈ Id² × Rds(on)",
+          "detail": "Steady on-state heat. Switching loss is extra when you chop fast — noted below, not fully modeled here."
+        },
+        {
+          "title": "4. ΔT ≈ Ploss × RθJA (or RθJC+heatsink path)",
+          "detail": "If ΔT pushes you past T_j(max), you need copper, airflow, a bigger FET, or less current."
+        }
+      ]
+    },
+    {
+      "id": "qg-table",
+      "type": "compact-table",
+      "heading": "Example gate charge vs Vgs (illustrative mid-size N-FET)",
+      "columns": [
+        "Vgs setting",
+        "Approx Qg",
+        "Driver ask (rough)",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "4.5 V",
+          "18 nC",
+          "Igate ≈ Qg/t_switch",
+          "Confirm logic-level Rds(on) curve exists"
+        ],
+        [
+          "7 V",
+          "28 nC",
+          "Higher charge than 4.5 V",
+          "Typical with a small gate driver"
+        ],
+        [
+          "10 V",
+          "35 nC",
+          "Strongest drive in this set",
+          "Often the datasheet headline point"
+        ]
+      ],
+      "caption": "Numbers are teaching examples. Real parts vary widely — read the Qg vs Vgs curve."
+    },
+    {
+      "id": "rds-table",
+      "type": "compact-table",
+      "heading": "Example Rds(on) and conduction loss at 25 °C",
+      "columns": [
+        "Vgs",
+        "Rds(on)",
+        "P at 2 A",
+        "P at 5 A",
+        "P at 10 A"
+      ],
+      "rows": [
+        [
+          "4.5 V",
+          "12 mΩ",
+          "0.05 W",
+          "0.30 W",
+          "1.20 W"
+        ],
+        [
+          "7 V",
+          "8 mΩ",
+          "0.03 W",
+          "0.20 W",
+          "0.80 W"
+        ],
+        [
+          "10 V",
+          "6 mΩ",
+          "0.02 W",
+          "0.15 W",
+          "0.60 W"
+        ]
+      ],
+      "caption": "P ≈ Id² × Rds(on). Cross your two slider picks to read a cell."
+    },
+    {
+      "id": "thermal",
+      "type": "compact-table",
+      "heading": "Thermal read-out (example RθJA ≈ 40 °C/W on 1 in² copper)",
+      "columns": [
+        "Your P_cond",
+        "ΔT_j-a approx",
+        "If Tamb = 40 °C",
+        "Verdict"
+      ],
+      "rows": [
+        [
+          "0.15 W",
+          "~6 °C",
+          "Tj ~46 °C",
+          "Comfortable"
+        ],
+        [
+          "0.60 W",
+          "~24 °C",
+          "Tj ~64 °C",
+          "OK if switching loss is modest"
+        ],
+        [
+          "1.20 W",
+          "~48 °C",
+          "Tj ~88 °C",
+          "Watch margins; copper and airflow matter"
+        ],
+        [
+          "2.00 W+",
+          "~80 °C+",
+          "Tj high",
+          "Resize FET, add sink, or cut current"
+        ]
+      ],
+      "caption": "Add switching loss when you PWM hard. Hot Rds(on) is higher than the 25 °C row — derate."
+    },
+    {
+      "id": "how-to-run",
+      "type": "steps",
+      "heading": "How to run one explorer pass",
+      "items": [
+        "Pick a Vgs row in the gate-charge and Rds tables (slider A).",
+        "Pick an Id column (slider B) and read conduction loss.",
+        "Drop that loss into the thermal table (or multiply by your own Rθ).",
+        "Ask: is Tj still inside rating with room for switching loss and hot Rds(on)?"
+      ]
+    },
+    {
+      "id": "switching-note",
+      "type": "note-callout",
+      "title": "What this explorer under-models",
+      "body": "Switching loss (~½·Vds·Id·(tr+tf)·f plus gate-drive loss Qg·Vdrive·f) is not fully simulated here. Fast PWM at high Vds can dominate heat even when Id²R looks fine. Treat the tables as the conduction half of the story.",
+      "tone": "warning"
+    },
+    {
+      "id": "drill",
+      "type": "exercise",
+      "heading": "Explorer drill",
+      "prompt": "You set Vgs = 4.5 V and Id = 10 A on the example tables. What should worry you first?",
+      "options": [
+        "Gate charge is mysteriously zero",
+        "Conduction loss ~1.2 W and a soft thermal margin before switching loss",
+        "Rds(on) becomes negative",
+        "The FET cannot turn on at any current"
+      ],
+      "answer": 1,
+      "explanation": "At 4.5 V / 10 A the example conduction loss is about 1.2 W — already a meaningful ΔT before you add switching loss and hot Rds(on)."
+    },
+    {
+      "id": "compare-knobs",
+      "type": "comparison",
+      "heading": "What each knob usually changes",
+      "columns": [
+        {
+          "name": "Raise Vgs (within abs max)",
+          "detail": "Often lowers Rds(on) and conduction loss; raises Qg and gate-drive effort."
+        },
+        {
+          "name": "Raise Id",
+          "detail": "Loss scales with Id² in conduction. Thermal headroom shrinks fast."
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Next",
+      "body": "Open a real datasheet. Find Rds(on) vs Vgs, Qg, and thermal resistance. Re-run the same two-slider pass with the part you will actually buy."
+    }
+  ]
+}
