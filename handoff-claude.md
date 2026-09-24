@@ -16,7 +16,7 @@ Grading night is a one-evening study. Chris will personally read about a hundred
 You are Claude. Set the "contributor" field in every artifact to "Claude".
 Your batch is the 25 situations below. Each line: id - suggested slug - title - axis note.
 
-GN-003 - gn-how-long-to-boil-an-egg-for-soft-medium-and-hard - How long to boil an egg for soft, medium, and hard | A/B pair 1 (A): render as a plain comparison table
+GN-003 - gn-how-long-to-boil-an-egg-for-soft-medium-and-hard-a - How long to boil an egg for soft, medium, and hard | A/B pair 1 (A): render as a plain comparison table
 GN-007 - gn-steps-to-jump-start-a-car-with-cables - Steps to jump-start a car with cables | Read in a parking lot on a phone: scan quality matters
 GN-011 - gn-what-time-to-leave-for-a-2-pm-appointment-25-minutes-away - What time to leave for a 2 PM appointment 25 minutes away | Restraint test: answer is a time
 GN-015 - gn-retrofitting-a-manual-bridgeport-mill-with-a-3-axis-dro-parts-sequence-budget - Retrofitting a manual Bridgeport mill with a 3-axis DRO: parts, sequence, budget
@@ -85,7 +85,7 @@ Some of your situations are also being rendered by another generator on a differ
 ============================================================
 
 - One JSON artifact per situation, schemaVersion 1, saved under app/src/content/ in wyrmspire/showmob.
-- File name and slug: the slug is the kebab-case title prefixed gn- (example: gn-vfd-decel-trip). Use the slugs listed in section 2.
+- File name and slug: the slug is the kebab-case title prefixed gn- (example: gn-vfd-decel-trip). Use the slugs listed in section 2. A/B pair rows (the axis note marks them "A/B pair N (X)"): append the pair side to the slug, -a or -b matching the side letter (example: gn-what-to-pack-for-a-one-night-work-trip-a). The listed slugs for pair rows already include the suffix.
 - status: "preview" on every artifact. Always. Never "published".
 - Every artifact must pass repo validation: npm test must be green.
 - Density reference: for rows marked "dense" or "extreme", the bar is app/src/content/plan-data-sufficiency.json (https://showmob.vercel.app/a/plan-data-sufficiency). Density follows signal - match that bar where the subject earns it, never pad to reach it. Microscopic and light rows should be genuinely small.

@@ -19,17 +19,17 @@ Your batch is the 25 situations below. Each line: id - suggested slug - title - 
 GN-002 - gn-should-i-bring-an-umbrella-today-with-a-40-chance-of-rain - Should I bring an umbrella today with a 40% chance of rain | Restraint test: one sentence answer should win
 GN-006 - gn-which-of-two-phone-plans-is-cheaper-over-a-year - Which of two phone plans is cheaper over a year | Plan A $45/mo flat vs Plan B $30/mo + $8 per GB overage, example usage
 GN-010 - gn-how-to-reset-a-tripped-gfci-outlet - How to reset a tripped GFCI outlet
-GN-014 - gn-converting-a-one-car-garage-into-a-small-machine-shop-power-layout-budget - Converting a one-car garage into a small machine shop: power, layout, budget | A/B pair 2 (B): render floorplan-first (where machines and circuits go)
+GN-014 - gn-converting-a-one-car-garage-into-a-small-machine-shop-power-layout-budget-b - Converting a one-car garage into a small machine shop: power, layout, budget | A/B pair 2 (B): render floorplan-first (where machines and circuits go)
 GN-018 - gn-six-week-plan-to-learn-ladder-logic-well-enough-for-a-controls-tech-interview - Six-week plan to learn ladder logic well enough for a controls tech interview
 GN-022 - gn-a-30-person-backyard-birthday-party-on-a-400-budget - A 30-person backyard birthday party on a $400 budget
-GN-026 - gn-how-a-mosfet-switches-gate-charge-rds-on-and-thermal-limits - How a MOSFET switches: gate charge, Rds(on), and thermal limits | A/B pair 3 (B): render as an explorer with gate-voltage and load sliders
+GN-026 - gn-how-a-mosfet-switches-gate-charge-rds-on-and-thermal-limits-b - How a MOSFET switches: gate charge, Rds(on), and thermal limits | A/B pair 3 (B): render as an explorer with gate-voltage and load sliders
 GN-030 - gn-speeds-and-feeds-for-6061-aluminum-vs-4140-steel-on-a-manual-lathe - Speeds and feeds for 6061 aluminum vs 4140 steel on a manual lathe
 GN-034 - gn-gd-t-for-machinists-the-14-symbols-and-when-each-one-matters - GD&T for machinists: the 14 symbols and when each one matters
 GN-038 - gn-resistor-color-code-practice-worksheet-with-10-blanks - Resistor color code practice worksheet with 10 blanks
 GN-042 - gn-tool-crib-checkout-log - Tool crib checkout log
-GN-046 - gn-tomorrow-three-meetings-a-dentist-appointment-and-a-4-hour-focus-block - Tomorrow: three meetings, a dentist appointment, and a 4-hour focus block | A/B pair 4 (B): render as draggable time blocks
+GN-046 - gn-tomorrow-three-meetings-a-dentist-appointment-and-a-4-hour-focus-block-b - Tomorrow: three meetings, a dentist appointment, and a 4-hour focus block | A/B pair 4 (B): render as draggable time blocks
 GN-050 - gn-maintenance-shift-handoff-note-what-s-running-what-s-down-what-s-pending - Maintenance shift handoff note: what's running, what's down, what's pending
-GN-054 - gn-the-history-of-the-transistor-from-1947-to-the-first-microprocessor - The history of the transistor, from 1947 to the first microprocessor | A/B pair 5 (B): render as a map of people, labs, and inventions
+GN-054 - gn-the-history-of-the-transistor-from-1947-to-the-first-microprocessor-b - The history of the transistor, from 1947 to the first microprocessor | A/B pair 5 (B): render as a map of people, labs, and inventions
 GN-058 - gn-a-year-of-a-household-s-electric-bills-and-what-changed - A year of a household's electric bills and what changed | Example data
 GN-062 - gn-take-a-job-offer-before-the-benefits-details-arrive - Take a job offer before the benefits details arrive?
 GN-066 - gn-early-idea-a-shop-floor-app-for-logging-tool-wear-not-validated-yet - Early idea: a shop-floor app for logging tool wear, not validated yet | Semantic mass test: weak idea earns little UI
@@ -88,7 +88,7 @@ Some of your situations are also being rendered by another generator on a differ
 ============================================================
 
 - One JSON artifact per situation, schemaVersion 1, saved under app/src/content/ in wyrmspire/showmob.
-- File name and slug: the slug is the kebab-case title prefixed gn- (example: gn-vfd-decel-trip). Use the slugs listed in section 2.
+- File name and slug: the slug is the kebab-case title prefixed gn- (example: gn-vfd-decel-trip). Use the slugs listed in section 2. A/B pair rows (the axis note marks them "A/B pair N (X)"): append the pair side to the slug, -a or -b matching the side letter (example: gn-what-to-pack-for-a-one-night-work-trip-a). The listed slugs for pair rows already include the suffix.
 - status: "preview" on every artifact. Always. Never "published".
 - Every artifact must pass repo validation: npm test must be green.
 - Density reference: for rows marked "dense" or "extreme", the bar is app/src/content/plan-data-sufficiency.json (https://showmob.vercel.app/a/plan-data-sufficiency). Density follows signal - match that bar where the subject earns it, never pad to reach it. Microscopic and light rows should be genuinely small.
