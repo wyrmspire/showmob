@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-conflicting-advice-on-whether-it-s-safe-to-discharge-a-capacitor-with-a-screwdriver",
+  "title": "Conflicting advice on whether it's safe to discharge a capacitor with a screwdriver",
+  "summary": "Forum wisdom says short it with a screwdriver; textbook caution says never. Both are talking about different capacitors. Here is how to sort it out.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "electronics", "safety", "capacitors"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Two confident answers, one missing question",
+      "body": "Ask whether you can discharge a capacitor with a screwdriver and the internet splits in half: 'everyone does it' versus 'never do it.' The fight exists because both sides are answering about different capacitors without saying so. The missing question is always: which capacitor, charged to what, holding how much energy?"
+    },
+    {
+      "id": "positions",
+      "type": "comparison",
+      "heading": "The two camps, stated fairly",
+      "columns": [
+        { "name": "Camp: just short it", "detail": "Comes from tube-radio and CRT repair culture, where caps hold hundreds of volts at modest energy and the screwdriver is always in your hand. Their method 'works': bang, spark, discharged - with pitting on the screwdriver and stress on the capacitor as uncounted costs." },
+        { "name": "Camp: never short it", "detail": "Comes from electronics teaching and from people who have seen a low-ESR bank dump hundreds of amps through a dead short - welded screwdrivers, exploded cans, damaged dielectrics. Their rule survives every case, but treats a 10 uF signal cap and a photoflash bank as the same animal." },
+        { "name": "The synthesis", "detail": "Discharge through a resistor, sized to the capacitor. The resistor turns a violent event into a boring one. Boring is the goal." }
+      ]
+    },
+    {
+      "id": "energy",
+      "type": "compact-table",
+      "heading": "What you are actually dealing with",
+      "columns": ["Capacitor", "Typical charge", "Energy", "Screwdriver verdict"],
+      "rows": [
+        ["Signal / coupling cap, 10 uF at 25 V", "Millijoules", "Trivial", "Harmless but pointless - a resistor or even a meter lead does it without drama"],
+        ["SMPS bulk cap, 470 uF at 400 V", "~38 joules", "Painful, can injure", "Shorting pits tools and can crack the cap's internals. Resistor, always"],
+        ["Microwave oven cap, 1 uF at 2,100 V", "~2.2 joules at high voltage", "Lethal voltage", "Never a screwdriver - the voltage outlives bad technique. Resistor with insulated leads, then verify"],
+        ["Photoflash / pulse bank", "Hundreds of joules", "Welding-level event", "A dead short here is an arc-flash experiment. Bleeder resistor and a procedure"],
+        ["Supercapacitor, farads at 2.7 V", "Low voltage, huge current capacity", "Not a shock hazard", "Shorting makes a heater and a welder, not a shock. Resistor to protect the cell"]
+      ],
+      "caption": "Energy is 1/2 x C x V^2. The voltage term is squared, which is why high-voltage small caps deserve more respect than big-voltage numbers suggest and low-voltage big caps get disrespected wrongly."
+    },
+    {
+      "id": "method",
+      "type": "steps",
+      "heading": "The boring, correct method",
+      "items": [
+        "Identify the capacitor and estimate its voltage rating - assume it is charged to that.",
+        "Pick a resistor that limits current to something tame: for hundreds of volts, a few kilohms at a suitable wattage is the classic choice.",
+        "Connect the resistor across the terminals with insulated leads or clips. Never your fingers.",
+        "Wait: five time constants (5 x R x C) brings it under 1% of the starting voltage.",
+        "Verify with a meter before touching anything. The meter reading near zero is the discharge, not the elapsed time.",
+        "Treat anything that cannot be verified as still charged."
+      ]
+    },
+    {
+      "id": "why-conflict",
+      "type": "text",
+      "heading": "Why the advice stays conflicting",
+      "body": "Each camp generalizes from its own bench. The radio restorer's 450 V electrolytic tolerates decades of screwdriver shorts, so the habit feels proven. The power engineer's motor-drive bank turns the same habit into an explosion, so the prohibition feels absolute. Advice conflicts most where experience is narrowest - and capacitor energy spans six orders of magnitude, so 'a capacitor' is nearly a contentless word. When advice conflicts, find the variable the advisors disagree on silently. Here it is energy and ESR. Ask 'charged to what, holding how much' and the conflict dissolves."
+    },
+    {
+      "id": "caution",
+      "type": "note-callout",
+      "title": "The cautious reader's takeaway",
+      "body": "If you cannot identify the capacitor, its voltage, or its energy, you do not yet know whether it is safe to touch at all - discharged is a measurement, not an assumption. A resistor, insulated leads, and a verifying meter cover every case on this page. The screwdriver covers none of them well.",
+      "tone": "warning"
+    }
+  ]
+}

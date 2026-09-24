@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-the-global-supply-chain-of-one-smartphone",
+  "title": "The global supply chain of one smartphone",
+  "summary": "One phone, forty-plus countries, a million tons of moved material per gram of device. Follow a single fictional handset from ore to pocket, layer by layer.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "field",
+  "tags": ["grading-night", "supply-chain", "electronics", "manufacturing"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "A phone is a map you can hold",
+      "body": "Follow one fictional flagship handset - call it the Meridian One - backward from your pocket and the supply chain unfolds like a hierarchy: assembly at the top, components beneath, materials beneath those, ore at the bottom. Each layer spans countries. None of it is simple, and all of it had to happen before the box was sealed."
+    },
+    {
+      "id": "layers",
+      "type": "stat-strip",
+      "items": [
+        { "value": "40+", "label": "Countries touched" },
+        { "value": "1,500+", "label": "Individual components" },
+        { "value": "~70", "label": "Elements of the periodic table inside" },
+        { "value": "9 months", "label": "Ore-to-shelf for the longest part" }
+      ]
+    },
+    {
+      "id": "layer-assembly",
+      "type": "text",
+      "heading": "Layer 1: final assembly - the part everyone knows",
+      "body": "The Meridian One is assembled in sprawling factory campuses in southern China and, increasingly, India and Vietnam. This is the layer the news covers: hundreds of thousands of workers, lines that ramp from zero to a million units a week, the logo on the box. Assembly matters, but it is the thinnest layer of value - the parts arriving at those gates carry most of the cost and nearly all of the complexity."
+    },
+    {
+      "id": "layer-components",
+      "type": "diagram",
+      "heading": "Layer 2: the components that arrive at the assembly gate",
+      "nodes": [
+        { "title": "Display", "detail": "OLED panels from South Korea or China - the single most expensive component, built in fabs that cost more than aircraft carriers." },
+        { "title": "Processor and memory", "detail": "Designed in California, fabricated in Taiwan on the world's most advanced lithography, packaged and tested in Malaysia or China." },
+        { "title": "Camera modules", "detail": "Lenses ground in Taiwan or Japan, sensors from Japan, assembled into modules in China or Vietnam." },
+        { "title": "Battery cells", "detail": "China dominates cell manufacture; the chemistry inside ties together lithium from Chile or Australia, cobalt from the Congo, nickel from Indonesia." },
+        { "title": "Enclosure and glass", "detail": "Aluminum frames machined in China; cover glass from the United States, Japan, or China, chemically strengthened in proprietary baths." },
+        { "title": "The long tail", "detail": "Gyroscopes, antennas, haptics, microphones, charging coils - a thousand small parts from a hundred specialist suppliers, each the best in the world at one small thing." }
+      ]
+    },
+    {
+      "id": "layer-materials",
+      "type": "diagram",
+      "heading": "Layer 3: the materials beneath the components",
+      "nodes": [
+        { "title": "Silicon", "detail": "Ultra-pure polysilicon - 99.9999999% pure - smelted in a handful of plants, then grown into single-crystal ingots before the fab ever sees it." },
+        { "title": "Lithium", "detail": "Brine evaporated in the Atacama desert or hard rock spodumene from Australia, refined mostly in China." },
+        { "title": "Cobalt", "detail": "Seventy percent from the Democratic Republic of Congo, the supply chain's most scrutinized link, with tracing programs that still cannot prove every kilogram." },
+        { "title": "Rare earths", "detail": "Neodymium for the haptic motor magnets and speakers. China processes the overwhelming majority, whatever flag the mine flies." },
+        { "title": "Gold, tin, tantalum, tungsten", "detail": "The conflict-minerals four, in grams per phone but billions of phones per year." },
+        { "title": "Copper and aluminum", "detail": "The unglamorous bulk: wiring, frames, heat spreaders. Sourced everywhere, recycled everywhere." }
+      ]
+    },
+    {
+      "id": "layer-ore",
+      "type": "text",
+      "heading": "Layer 4: the bottom - ore, energy, and time",
+      "body": "At the root, everything is a hole in the ground or a brine pond, plus staggering amounts of energy and water. The semiconductor fab that prints the processor runs on electricity and ultrapure water at municipal scale. The aluminum frame was smelted near cheap power - hydro in Canada or Iceland, coal in China. And the whole structure runs on clock time nobody can compress: mines take a decade to open, fabs take three years to build, and a phone generation lasts twelve months."
+    },
+    {
+      "id": "journey",
+      "type": "timeline",
+      "heading": "One phone's journey, compressed",
+      "items": [
+        { "time": "Month 0", "title": "Ore and brine", "detail": "Lithium leaves Chilean ponds, cobalt leaves Congolese pits, silicon leaves a quartz quarry." },
+        { "time": "Month 1-2", "title": "Refining", "detail": "Materials cross oceans to refineries - mostly in China - and emerge as battery-grade chemicals and pure metals." },
+        { "time": "Month 2-4", "title": "Component fabrication", "detail": "The wafer fab alone runs hundreds of process steps over ten weeks. Displays, sensors, and cells run in parallel in other countries." },
+        { "time": "Month 4-5", "title": "Module assembly", "detail": "Components become modules: camera stacks, display assemblies, battery packs." },
+        { "time": "Month 5", "title": "Final assembly", "detail": "The campus line: about 400 stations and a few days from parts to boxed phone." },
+        { "time": "Month 5-6", "title": "Logistics", "detail": "Air freight for launch volumes, sea freight for the long tail. A phone crosses the Pacific faster than its own battery materials did." },
+        { "time": "Month 6+", "title": "Retail and life", "detail": "Shelf, pocket, two to four years of service - then, mostly, a drawer. The recycling chain is the supply chain's weakest link by far." }
+      ]
+    },
+    {
+      "id": "concentration",
+      "type": "compact-table",
+      "heading": "Where the chain concentrates",
+      "columns": ["Stage", "Dominant geography", "Why it sticks"],
+      "rows": [
+        ["Advanced chip fabrication", "Taiwan", "A single firm holds most of the leading-edge capacity; the machines it uses come from one Dutch company"],
+        ["Battery materials refining", "China", "Built deliberately over twenty years; refining capacity is harder to move than mines"],
+        ["Rare earth processing", "China", "Processing, not mining, is the chokepoint"],
+        ["Assembly", "China, diversifying to India and Vietnam", "Scale and supplier density; the migration is real but a decade slow"],
+        ["Chip design", "United States", "Tools, IP, and talent clusters"]
+      ],
+      "caption": "Every government's supply-chain anxiety lives in one of these rows."
+    },
+    {
+      "id": "why-it-holds",
+      "type": "text",
+      "heading": "Why this structure exists at all",
+      "body": "The chain did not get designed; it got selected. Each stage drifted to wherever the combination of skill, capital, scale, and cost was unbeatable, until the whole system became a set of single points of genius - and single points of failure. The phone in your pocket is the cheapest possible way to deliver that much engineering, and also one of the most fragile objects in commerce. Both facts are the same fact."
+    },
+    {
+      "id": "wonder",
+      "type": "quote",
+      "quote": "Nobody knows how to make a smartphone. Ten thousand organizations each know one part of it, and the market is the only thing that knows the whole.",
+      "attribution": "Supply-chain folklore, after Leonard Read's pencil"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-every-screwdriver-type-ranked-by-how-easy-it-is-to-strip",
+  "title": "Every screwdriver type ranked by how easy it is to strip",
+  "summary": "A completely unscientific ranking, from 'designed to strip' to 'you will break before it does.'",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "tools", "ranking"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "A field guide to rounded fasteners",
+      "body": "Every drive type is a small bet between the screw maker and your patience. Some bets are rigged. Ranked here by how eagerly the head gives up, from most to least strip-prone. Science was not consulted, but every entry was earned."
+    },
+    {
+      "id": "ranking",
+      "type": "compact-table",
+      "heading": "The official unofficial ranking",
+      "columns": ["Rank", "Drive", "Strip verdict", "Notes from the field"],
+      "rows": [
+        ["1 (worst)", "Phillips", "Cam-out is a feature, literally", "Designed to slip at high torque so 1930s assemblers would not overtighten. It still slips. You are not imagining it."],
+        ["2", "Slotted", "One bad angle from a gouge", "The screwdriver doubles as a pry bar, chisel, and paint can opener, which is why nobody owns an undamaged one."],
+        ["3", "Pozidriv", "Looks like Phillips, strips like it too", "The little tick marks mean 'I fixed Phillips.' It fixed it about halfway."],
+        ["4", "JIS", "Phillips, but honest", "Japanese standard, no cam-out. Stripped only by people using Phillips drivers on it, which is everyone."],
+        ["5", "Hex (Allen)", "Small sizes round off if looked at", "The 2.5 mm key is a consumable. Ball ends trade grip for convenience and round off faster."],
+        ["6", "Torx", "Rarely strips, snaps instead", "Excellent grip until T10 and below, where the bit itself becomes the failure point."],
+        ["7", "Robertson (square)", "The screw holds the driver", "Canada's gift. Screws stick to the bit one-handed. Stripping requires genuine effort."],
+        ["8 (best)", "External hex / bolt head", "You will round the wrench first", "Six full flats of contact. The fastener fails by snapping, which at least feels decisive."]
+      ]
+    },
+    {
+      "id": "coping",
+      "type": "steps",
+      "heading": "When the head is already going",
+      "items": [
+        "Stop. Every additional turn is machining the hole rounder.",
+        "Seat the driver with a tap from a hammer - a stuck driver is a gripping driver.",
+        "Press harder than you turn. Axial force is what keeps the flats engaged.",
+        "Last resorts, in order: rubber band in the head, screw extractor, cutting a slot, drilling it out. The drill is surrender, but honest surrender."
+      ]
+    },
+    {
+      "id": "verdict",
+      "type": "quote",
+      "quote": "Phillips was not designed to be driven. It was designed to be assembled by someone else, quickly, in 1936.",
+      "attribution": "Every machinist, eventually"
+    }
+  ]
+}
