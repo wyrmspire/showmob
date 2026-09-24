@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-migrating-a-plant-line-from-relay-logic-to-a-plc-over-three-weekend-shutdowns",
+  "title": "Migrating a plant line from relay logic to a PLC over three weekend shutdowns",
+  "summary": "Three weekend windows, a hard stop every Sunday at 20:00, and a rollback plan for each phase - the line runs every Monday no matter what.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "plc", "migration", "planning"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "A migration plan with no brave Sundays",
+      "title": "Relay to PLC in three shutdowns",
+      "body": "The line runs five days a week and pays for everything. You get three weekend windows to move it from relay logic to a PLC, and each window ends with the line able to run Monday on either system. That constraint is the plan."
+    },
+    {
+      "id": "shape",
+      "type": "stat-strip",
+      "items": [
+        { "value": "3", "label": "Weekend shutdowns, each with its own scope" },
+        { "value": "Sun 20:00", "label": "Hard stop, every weekend, no exceptions" },
+        { "value": "0", "label": "Wires landed without a ring-out and a checkmark" }
+      ]
+    },
+    {
+      "id": "the-rule",
+      "type": "note-callout",
+      "title": "The rule that makes this work",
+      "body": "You never carry a half-landed change into a production week. If a phase is not proven by Saturday night, you roll back while there is still time - not at 19:40 on Sunday with adrenaline making the decisions.",
+      "tone": "warning"
+    },
+    {
+      "id": "windows",
+      "type": "compact-table",
+      "heading": "The three windows",
+      "columns": ["Window", "Scope", "Done-when", "Rollback"],
+      "rows": [
+        ["Weekend 1", "Panel build and wire landing, outputs only", "Every output forces from the PLC with the line in manual", "Relays never left the circuit - close the panel and walk away"],
+        ["Weekend 2", "Inputs and sequence logic, line dry-cycled", "Two full dry cycles with no faults", "Changeover plug back to relays; troubleshoot on the bench this week"],
+        ["Weekend 3", "Production proving at rate", "Ten consecutive good cycles at full rate", "Plug back to relays; the PLC watches in monitor mode another week"]
+      ],
+      "caption": "Each window is independently shippable. That is what makes the deadlines survivable."
+    },
+    {
+      "id": "weekend-one",
+      "type": "timeline",
+      "heading": "Weekend 1, as it should run",
+      "items": [
+        { "time": "Fri 18:00", "title": "Lockout, tag, verify zero energy", "detail": "The week ends with the line safe, not with wires moved. Nothing else happens Friday." },
+        { "time": "Sat 08:00", "title": "Land outputs on the PLC terminal rails", "detail": "One wire, one ring-out, one checkmark. Batch landing is how a crossed pair hides until Saturday night." },
+        { "time": "Sat 20:00", "title": "Force every output from the PLC", "detail": "Each solenoid, contactor, and lamp proven individually with the line in manual." },
+        { "time": "Sun 12:00", "title": "Punch-list whatever did not force", "detail": "A missed output becomes a weekday bench job, not a Sunday scramble." },
+        { "time": "Sun 20:00", "title": "Hard stop", "detail": "Panel closed, line back on relays for Monday. Weekend 1 is done either way." }
+      ]
+    },
+    {
+      "id": "plug",
+      "type": "steps",
+      "heading": "The changeover plug is the rollback",
+      "items": [
+        "Build the wiring so either the relay panel or the PLC can drive the outputs through one keyed plug.",
+        "The plug makes rollback a single motion, not a rewiring session.",
+        "No wire leaves the relay panel until the PLC has run production for a full week.",
+        "Only after that week do you strip the old logic - and you still keep the prints."
+      ]
+    },
+    {
+      "id": "coexist",
+      "type": "diagram",
+      "heading": "Two brains, one line, three weeks",
+      "nodes": [
+        { "title": "Field devices", "detail": "Sensors and pushbuttons stay common to both systems." },
+        { "title": "Changeover plug", "detail": "Keyed plug selects which brain drives the outputs." },
+        { "title": "Relay panel", "detail": "The proven system. Untouched until the PLC earns retirement." },
+        { "title": "PLC", "detail": "The new system. Proven in stages: outputs, then logic, then rate." }
+      ]
+    },
+    {
+      "id": "scope",
+      "type": "text",
+      "heading": "What migrates and what never does",
+      "body": "Safety circuits - e-stops, gate switches, the safety relay - stay hardwired and outside the PLC program from start to finish. The migration covers sequence logic only: timers, counters, interlocks of convenience. If removing power from the PLC must not disable a function, that function was never the PLC's to hold."
+    },
+    {
+      "id": "weekend-two-done",
+      "type": "checklist",
+      "heading": "Before you call Weekend 2 done",
+      "items": [
+        { "label": "Every input forced and seen in the PLC's input table", "detail": "Including the ones you are sure about." },
+        { "label": "Two full dry cycles with zero faults", "detail": "One good cycle proves it ran once. Two starts to prove it runs." },
+        { "label": "E-stop drop tested from both gate positions", "detail": "Safety is hardwired, but you prove the wiring after a panel rebuild." },
+        { "label": "Punch list written down, not remembered", "detail": "Monday-you deserves a list, not a vibe." }
+      ]
+    },
+    {
+      "id": "rollback-ok",
+      "type": "note-callout",
+      "title": "Rollback is not failure",
+      "body": "If Sunday noon arrives with an unexplained fault, the plan says roll back and find it on the bench during the week. The hard deadline is what keeps a brave Sunday night from becoming a ruined Monday.",
+      "tone": "positive"
+    },
+    {
+      "id": "paperwork",
+      "type": "text",
+      "heading": "The paperwork nobody wants",
+      "body": "An updated I/O list, wire numbers as actually landed, and red-lined prints after each weekend. The next person to open this panel - possibly you, at 02:00 in a year - inherits whatever you wrote down. The PLC program gets printed and taped inside the door with the date on it."
+    },
+    {
+      "id": "check-model",
+      "type": "exercise",
+      "heading": "Check the plan",
+      "prompt": "It is 19:30 on Sunday of Weekend 2. The dry cycle shows one intermittent fault you have not explained. What does the plan say to do?",
+      "options": [
+        "Run one more test and decide at 19:55",
+        "Roll back to relays and troubleshoot on the bench during the week",
+        "Leave the PLC in charge but watch it closely on Monday"
+      ],
+      "answer": 1,
+      "explanation": "The hard stop exists so the decision is made by the plan, not by adrenaline. An intermittent fault plus a production Monday is exactly the combination the rollback was built for."
+    }
+  ]
+}

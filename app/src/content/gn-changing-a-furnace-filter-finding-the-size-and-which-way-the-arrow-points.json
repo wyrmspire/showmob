@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-changing-a-furnace-filter-finding-the-size-and-which-way-the-arrow-points",
+  "title": "Changing a furnace filter: finding the size and which way the arrow points",
+  "summary": "The size is printed on the old filter. The arrow points at the furnace. Everything else is a five-minute job.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "paper",
+  "tags": ["grading-night", "home", "maintenance"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Two facts solve the whole job",
+      "body": "The size is written on the old filter's cardboard frame. The arrow on the new one points toward the furnace, because that is the way the air goes. Everything below is detail."
+    },
+    {
+      "id": "the-job",
+      "type": "steps",
+      "heading": "The five-minute version",
+      "items": [
+        "Slide the old filter out and read the size printed on its frame - something like 16 x 25 x 1. That exact string is what you buy.",
+        "Find the arrow printed on the new filter's frame before you take it to the furnace.",
+        "The arrow points the way the air moves: out of the return duct, through the filter, into the blower.",
+        "Slide the new filter in with the arrow aimed at the furnace cabinet.",
+        "Write today's date on the frame edge with a marker, so the next change is not a guessing game."
+      ]
+    },
+    {
+      "id": "which-way",
+      "type": "text",
+      "heading": "Which way is toward the furnace",
+      "body": "Stand in front of the slot. The air is traveling from the house, through this filter, and into the big metal box with the blower in it. If the return duct is on the left and the furnace cabinet is on the right, the arrow points right. When in doubt, follow the big box."
+    },
+    {
+      "id": "extras",
+      "type": "checklist",
+      "heading": "Worth doing while you are down there",
+      "items": [
+        { "label": "Match the MERV rating to what was installed, usually 8 to 11", "detail": "Higher is not automatically better - a very restrictive filter can starve an older blower of air." },
+        { "label": "Set a reminder for 90 days", "detail": "Monthly if there are pets, dust, or a renovation underway." }
+      ]
+    }
+  ]
+}
