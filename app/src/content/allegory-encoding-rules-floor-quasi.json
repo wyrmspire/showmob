@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "night",
+  "tags": [
+    "education",
+    "allegory",
+    "privacy",
+    "encoding"
+  ],
+  "updated": "2026-09-24",
+  "slug": "allegory-encoding-rules-floor-quasi",
+  "title": "Rules 3–4: floor and quasi-identifiers",
+  "summary": "Set a k-anonymity floor so many situations fit, and coarsen the stacks of facts that act like fingerprints.",
+  "series": {
+    "id": "allegory-encoding",
+    "title": "Allegory that stays private",
+    "order": 3
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Allegory that stays private · 3 of 9",
+      "title": "A floor, then coarsen the stacks",
+      "body": "Even a good relationship map fails if the supporting details form a fingerprint. Rules 3 and 4 borrow from privacy engineering: anonymity sets, and quasi-identifiers that only become lethal in combination."
+    },
+    {
+      "id": "r3",
+      "type": "text",
+      "heading": "3. Set a floor (k-anonymity)",
+      "body": "After encoding, at least k real situations should fit the description. If k is one — only your story matches — you have published an identifier wearing a costume. Aim for a floor where a careful stranger cannot narrow the field to a handful of candidates.\n\nYou do not need a formal k. You need the habit: \"Could five teams I do not know recognize themselves here without being the subject?\" If not, coarsen further."
+    },
+    {
+      "id": "r3-note",
+      "type": "note-callout",
+      "title": "The floor is a design target",
+      "body": "Pick a floor that matches the risk. A soft lesson about handoffs can live with a smaller k. A story that could cost someone a job needs a higher floor — more possible referents, fewer rare traits.",
+      "tone": "warning"
+    },
+    {
+      "id": "r4",
+      "type": "text",
+      "heading": "4. Coarsen quasi-identifiers",
+      "body": "Quasi-identifiers are facts that are harmless alone and lethal in combination: job title + city + unusual hobby + a specific month. Allegory often leaks through the stack, not through any single colorful detail.\n\nCoarsen each axis until the combination stops being a fingerprint. Turn \"the only woman CNC lead in a 40-person shop in Racine who races vintage motorcycles\" into \"a skilled lead in a small shop who keeps a loud hobby outside work.\" Same human texture; far fewer bits."
+    },
+    {
+      "id": "r4-check",
+      "type": "checklist",
+      "heading": "Stack review",
+      "items": [
+        {
+          "label": "List the rare traits",
+          "detail": "Titles, places, hobbies, timelines, tools, one-off incidents."
+        },
+        {
+          "label": "Ask what combination remains unique",
+          "detail": "If three traits still point at one person you know, drop or blur one."
+        },
+        {
+          "label": "Keep one texture cue",
+          "detail": "Flavor is allowed; fingerprints are not."
+        }
+      ]
+    },
+    {
+      "id": "r4-note",
+      "type": "note-callout",
+      "title": "Stacks leak",
+      "body": "One vivid detail is flavor. Three rare details together are a name.",
+      "tone": "warning"
+    }
+  ]
+}

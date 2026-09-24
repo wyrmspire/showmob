@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "night",
+  "tags": [
+    "education",
+    "allegory",
+    "privacy",
+    "encoding",
+    "art",
+    "craft",
+    "metaphor"
+  ],
+  "updated": "2026-09-24",
+  "slug": "allegory-encoding-art",
+  "title": "Art: the craft of the encoding",
+  "summary": "Metaphor domains as artistic medium — aesthetic choices that stay lossy, artful vocabularies, and examples that teach without pointing at real people.",
+  "series": {
+    "id": "allegory-encoding",
+    "title": "Allegory that stays private",
+    "order": 9
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Allegory that stays private · 9 of 9",
+      "title": "Lossy on purpose, beautiful on purpose",
+      "body": "Privacy craft and art craft meet in the vocabulary. The metaphor domain is not only a disguise — it is the medium. Choose domains that carry tone, pressure, and image while remaining generic. Stay fictional. Stay non-identifying. Make the page worth reading as prose, not only as a policy."
+    },
+    {
+      "id": "domains",
+      "type": "compact-table",
+      "heading": "Metaphor domains that tend to stay lossy",
+      "caption": "Illustrative domains only — swap freely; never pin them to a real cast.",
+      "columns": [
+        "Domain",
+        "What it carries well",
+        "Watch-out"
+      ],
+      "rows": [
+        [
+          "Harbor / shipping",
+          "Dependencies, delayed signals, veto points at the gate",
+          "Do not reuse one invented port across essays"
+        ],
+        [
+          "Kitchen brigade",
+          "Handoffs, timing, who hears the ticket",
+          "Avoid celebrity-chef gossip echoes"
+        ],
+        [
+          "Orchard seasons",
+          "Slow failure, maintenance, weather as externality",
+          "Skip real farm or town tells"
+        ],
+        [
+          "Orchestra pit",
+          "Roles, cues, one late entrance collapsing a phrase",
+          "No living ensemble fingerprints"
+        ],
+        [
+          "Trail crew",
+          "Shared tools, weather windows, who carries the radio",
+          "Keep geography coarse"
+        ]
+      ]
+    },
+    {
+      "id": "aesthetic",
+      "type": "text",
+      "heading": "Aesthetic choices that earn their place",
+      "body": "Artful encoding picks concrete sensory detail that many lives could share: the smell of overheated dust, the sound of a radio that only one role carries, the way a line goes quiet before a stop. Those details are texture. They fail the art when they become unique: a scar, a license plate, a joke only six people tell.\n\nPrefer image systems that are rich and common over image systems that are sparse and rare. A crowded metaphor domain hides you better and usually reads better."
+    },
+    {
+      "id": "examples",
+      "type": "checklist",
+      "heading": "Artful, still lossy",
+      "items": [
+        {
+          "label": "Good texture",
+          "detail": "\"The ticket printer spat three orders before anyone looked up\" — common kitchen pressure."
+        },
+        {
+          "label": "Too pointed",
+          "detail": "\"The ticket printer under the faded Packers schedule in Unit 4\" — stacked quasi-identifiers."
+        },
+        {
+          "label": "Good domain shift",
+          "detail": "Retell a plant-floor handoff as a harbor tug waiting on a signature from shore."
+        },
+        {
+          "label": "Bad continuity",
+          "detail": "The same tug, same dock, same captain nickname across five essays."
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "steps",
+      "heading": "A short studio exercise",
+      "items": [
+        "Take a mechanism you already encoded in plain roles.",
+        "Rewrite it once in a harbor domain and once in a kitchen domain.",
+        "Keep the falsifiable claim identical; only the costume changes.",
+        "Pick the version that is more vivid and still passes Rules 1–4."
+      ]
+    },
+    {
+      "id": "close",
+      "type": "note-callout",
+      "title": "Art does not suspend the underside",
+      "body": "A beautiful allegory about data you should not have is still a violation with better lighting. Finish with the underside rule, then enjoy the craft.",
+      "tone": "warning"
+    },
+    {
+      "id": "end",
+      "type": "quote",
+      "quote": "The best private allegory is specific to the reader who needed it and generic to everyone else — and still a pleasure to read.",
+      "attribution": "Where the section lands"
+    }
+  ]
+}

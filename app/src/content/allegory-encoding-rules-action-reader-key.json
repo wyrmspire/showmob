@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "night",
+  "tags": [
+    "education",
+    "allegory",
+    "privacy",
+    "encoding"
+  ],
+  "updated": "2026-09-24",
+  "slug": "allegory-encoding-rules-action-reader-key",
+  "title": "Rules 7–8: action and the reader as key",
+  "summary": "Gate the page on something a reader can do — and let their own life supply the decryption, not a footnote from you.",
+  "series": {
+    "id": "allegory-encoding",
+    "title": "Allegory that stays private",
+    "order": 5
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Allegory that stays private · 5 of 9",
+      "title": "Toward a verb; toward their life",
+      "body": "The last two rules decide what the page is for. If it only invites recognition gossip, privacy and teaching both fail. If you ship a decoder ring, you undid the encoding."
+    },
+    {
+      "id": "r7",
+      "type": "text",
+      "heading": "7. Gate everything on action",
+      "body": "The page exists so a reader can do something differently: ask a better question, refuse a bad default, redesign a handoff, leave a paper trail. If the allegory only invites gossip or recognition (\"I know who that is\"), it failed the privacy craft and the teaching craft at once.\n\nWrite toward a verb. End near an action the reader owns — not toward a reveal about people they do not."
+    },
+    {
+      "id": "r7-check",
+      "type": "checklist",
+      "heading": "Action gate",
+      "items": [
+        {
+          "label": "Name the verb",
+          "detail": "Ask, refuse, redesign, document, escalate, leave — something concrete."
+        },
+        {
+          "label": "Place it near the end",
+          "detail": "Recognition without a next step is entertainment, not education."
+        },
+        {
+          "label": "Strip gossip bait",
+          "detail": "If a line only helps someone guess who you meant, cut it."
+        }
+      ]
+    },
+    {
+      "id": "r8",
+      "type": "text",
+      "heading": "8. Let the reader's own life be the key",
+      "body": "You are not shipping a decoder ring. The useful decryption happens when the reader's memory supplies the entities that match your relationships. That is intentional: the people who need the lesson already have the context; strangers get a transferable pattern without a roster.\n\nIf you feel the urge to add a footnote that \"really\" explains who was who, you are undoing the encoding. Trust the reader who has lived something adjacent. Everyone else was never your audience for the private layer."
+    },
+    {
+      "id": "r8-diagram",
+      "type": "diagram",
+      "heading": "Who holds which key",
+      "nodes": [
+        {
+          "title": "You encode",
+          "detail": "Relationships, mechanism, lossy costume."
+        },
+        {
+          "title": "Page publishes",
+          "detail": "No roster, no mapping table, no wink that only one friend can read."
+        },
+        {
+          "title": "Reader decrypts",
+          "detail": "Their life supplies entities. Strangers keep the pattern only."
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "type": "note-callout",
+      "title": "Eight rules complete",
+      "body": "Next: the two checks that catch drafts that still point, and the underside rule that encoding is not permission. Then execution, society, and art.",
+      "tone": "note"
+    }
+  ]
+}

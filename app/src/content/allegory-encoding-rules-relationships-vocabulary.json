@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "night",
+  "tags": [
+    "education",
+    "allegory",
+    "privacy",
+    "encoding"
+  ],
+  "updated": "2026-09-24",
+  "slug": "allegory-encoding-rules-relationships-vocabulary",
+  "title": "Rules 1–2: relationships and lossy vocabulary",
+  "summary": "Map the graph of the trouble, not recoverable people — and choose words that discard identifying detail by construction.",
+  "series": {
+    "id": "allegory-encoding",
+    "title": "Allegory that stays private",
+    "order": 2
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Allegory that stays private · 2 of 9",
+      "title": "Relationships first, vocabulary second",
+      "body": "The first two rules set the codec. If you encode entities, later coarsening is cleanup. If you pick a lossless vocabulary, every vivid noun is a fingerprint. Start here."
+    },
+    {
+      "id": "r1",
+      "type": "text",
+      "heading": "1. Map relationships, not entities",
+      "body": "Encode the graph: who depends on whom, who can block whom, what incentive pulls which way. Do not encode the nodes as recoverable people. \"A mid-level operator who cannot shut the line down without a signature from someone two buildings away\" is a relationship. \"Dana in Building C who reports to Marc\" is an entity dump.\n\nInvertibility test: if a motivated reader with ordinary public information could reverse your allegory back to a short list of real people, you mapped entities. Rewrite until the graph could describe a dozen workplaces, not one."
+    },
+    {
+      "id": "r1-note",
+      "type": "note-callout",
+      "title": "Invertibility test",
+      "body": "Ask: given only this page and ordinary search, could someone name the people? If yes, you still have entities. Strip until the answer is no — while the lesson about the relationship still stands.",
+      "tone": "note"
+    },
+    {
+      "id": "r1-ex",
+      "type": "comparison",
+      "heading": "Entity dump vs relationship map",
+      "columns": [
+        {
+          "name": "Entities (avoid)",
+          "detail": "Named people, unique titles, one building, one date. Easy to invert; hard to reuse as a lesson elsewhere."
+        },
+        {
+          "name": "Relationships (prefer)",
+          "detail": "Roles, dependencies, veto points, delayed signals. Many shops fit; the failure mode still teaches."
+        }
+      ]
+    },
+    {
+      "id": "r2",
+      "type": "text",
+      "heading": "2. Pick a lossy vocabulary on purpose",
+      "body": "Loss is the point. Choose words that discard identifying detail by construction: seasons instead of dates, roles instead of names, \"a coastal plant\" instead of the city, \"a vendor with a long lead time\" instead of the brand. A lossy vocabulary is a deliberate codec — you decide what survives compression.\n\nIf every noun in the draft could only refer to one real thing you know, the vocabulary is still lossless. Swap in categories until each noun has many possible referents."
+    },
+    {
+      "id": "r2-steps",
+      "type": "steps",
+      "heading": "A quick vocabulary pass",
+      "items": [
+        "Underline every proper noun, exact date, and rare job title.",
+        "Replace each with a category that still carries the pressure of the scene.",
+        "Read the paragraph aloud: does the mechanism still sound true?",
+        "If a category still points at one person you know, coarsen once more."
+      ]
+    },
+    {
+      "id": "close",
+      "type": "quote",
+      "quote": "If the nouns are unique, the story is a roster. If the relationships are clear, the story is a lesson.",
+      "attribution": "Rules 1–2 in one line"
+    }
+  ]
+}

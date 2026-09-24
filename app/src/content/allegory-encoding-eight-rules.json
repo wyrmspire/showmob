@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "night",
+  "tags": [
+    "education",
+    "allegory",
+    "privacy",
+    "encoding"
+  ],
+  "updated": "2026-09-24",
+  "slug": "allegory-encoding-eight-rules",
+  "title": "Allegory as lossy encoding",
+  "summary": "Why private allegory exists: teach from a real situation without publishing the people inside it.",
+  "series": {
+    "id": "allegory-encoding",
+    "title": "Allegory that stays private",
+    "order": 1
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Allegory that stays private · 1 of 9",
+      "title": "Allegory as lossy encoding",
+      "body": "Sometimes you need to teach from a real situation — a workplace mess, a family pattern, a near-miss — without publishing the people inside it. Allegory is not decoration. Done well, it is a deliberate, lossy encoding: enough structure for a thoughtful reader to learn, not enough bits for a stranger (or a neighbor) to re-identify who you meant."
+    },
+    {
+      "id": "why",
+      "type": "text",
+      "heading": "Why encode at all?",
+      "body": "Plain disclosure is honest and often wrong for the medium. Names, dates, and unique combinations of facts travel farther than the conversation that justified them. Silence protects privacy but teaches nothing. Allegory sits between those poles: you keep the relationships, incentives, and failure modes that made the situation worth telling, and you discard the identifiers that only matter to the people who already lived it.\n\nThe craft is privacy engineering dressed as storytelling. This section is the map — eight rules, two checks, an underside limit, then how to practice the craft, how to use it in public, and how to treat it as art."
+    },
+    {
+      "id": "core-quote",
+      "type": "quote",
+      "quote": "Map the shape of the trouble, not the passport numbers of the people inside it.",
+      "attribution": "Working rule for private allegory"
+    },
+    {
+      "id": "two-paths",
+      "type": "comparison",
+      "heading": "Same truth, two payloads",
+      "columns": [
+        {
+          "name": "Raw disclosure",
+          "detail": "Names, employer, timeline, and a unique stack of quasi-identifiers. A reader who already knows the cast can confirm; a reader who does not can still search their way there."
+        },
+        {
+          "name": "Allegory encoding",
+          "detail": "Roles, pressures, and decisions under a lossy vocabulary. A reader who lived something similar recognizes the pattern. A stranger cannot invert the story back to a shortlist of real people."
+        }
+      ]
+    },
+    {
+      "id": "flow",
+      "type": "diagram",
+      "heading": "What you are actually doing",
+      "nodes": [
+        {
+          "title": "Lived situation",
+          "detail": "People, places, dates, and stakes you are not free to publish."
+        },
+        {
+          "title": "Encode (lossy)",
+          "detail": "Keep relationships and dynamics. Drop invertibility. Coarsen the rest."
+        },
+        {
+          "title": "Shared page",
+          "detail": "A story that teaches. The reader's own life is the key — not a table in the appendix."
+        }
+      ]
+    },
+    {
+      "id": "map",
+      "type": "steps",
+      "heading": "How this section is organized",
+      "items": [
+        "Rules 1–2: relationships over entities; lossy vocabulary on purpose.",
+        "Rules 3–4: k-anonymity floor; coarsen quasi-identifiers.",
+        "Rules 5–6: unstable mapping; falsifiable claims (anti-astrology).",
+        "Rules 7–8: gate on action; the reader's life as the key.",
+        "Two tests and the underside rule (encoding ≠ permission).",
+        "Execution: a concrete writing workflow.",
+        "Society: norms for publishing allegorical encodings in public.",
+        "Art: metaphor domains and aesthetic choices that stay lossy."
+      ]
+    },
+    {
+      "id": "close",
+      "type": "note-callout",
+      "title": "Outside the grading night",
+      "body": "This section is education for anyone writing private allegory. It is not a grading-night subject and does not sit in the gn-100 handoffs.",
+      "tone": "note"
+    }
+  ]
+}

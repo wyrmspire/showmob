@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "night",
+  "tags": [
+    "education",
+    "allegory",
+    "privacy",
+    "encoding"
+  ],
+  "updated": "2026-09-24",
+  "slug": "allegory-encoding-tests-underside",
+  "title": "Two tests and the underside rule",
+  "summary": "Re-identification and neighbour checks before you publish — and the limit that encoding never launders data you should not have had.",
+  "series": {
+    "id": "allegory-encoding",
+    "title": "Allegory that stays private",
+    "order": 6
+  },
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Allegory that stays private · 6 of 9",
+      "title": "Checks before publish; a hard underside",
+      "body": "Rules are easy to agree with in the abstract. These two checks catch the drafts that still point. The underside rule catches the drafts that should not have been written at all."
+    },
+    {
+      "id": "tests-lead",
+      "type": "text",
+      "heading": "Run these before you publish",
+      "body": "Do not skip the neighbour. Strangers are easy; people who share your world are the real adversary for invertibility."
+    },
+    {
+      "id": "two-tests",
+      "type": "checklist",
+      "heading": "Privacy checks",
+      "items": [
+        {
+          "label": "Re-identification test",
+          "detail": "Give the page to someone who does not know your life. Can they name a person, employer, or incident with ordinary searching? If they get close, coarsen and rotate until they cannot."
+        },
+        {
+          "label": "Neighbour test",
+          "detail": "Give the page to someone who does know your world — a coworker, a sibling, a friend from that chapter. Can they tell who you meant without you confirming? If yes, you still encoded entities. Pass the neighbour and strangers will not invert you."
+        }
+      ]
+    },
+    {
+      "id": "how-run",
+      "type": "steps",
+      "heading": "How to run the checks without leaking more",
+      "items": [
+        "Use readers who already owed you discretion — do not expand the circle to \"test\" the page.",
+        "Ask only: can you name who this is about? Do not confirm or deny details afterward.",
+        "If either check fails, rewrite before a wider share. Do not argue the reader out of a hit."
+      ]
+    },
+    {
+      "id": "underside",
+      "type": "note-callout",
+      "title": "The underside rule",
+      "body": "Encoding is not permission. Allegory does not grant you the right to possess, retain, or retell data you should not have had. If the underlying facts were obtained without consent, under a duty of confidentiality, or in a context that forbids reuse, dressing them as fiction does not launder the claim. First ask whether you should have the story at all — then, only if yes, encode it so it cannot be inverted.",
+      "tone": "warning"
+    },
+    {
+      "id": "close",
+      "type": "quote",
+      "quote": "Clever encoding is not a license. If you should not have the story, no costume fixes that.",
+      "attribution": "Underside rule"
+    }
+  ]
+}
