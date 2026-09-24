@@ -6,13 +6,18 @@
 //   2. otherwise "gn-" + kebab(subject.title)
 //
 // Usage (from repo root):
-//   GRADING_PASSCODE=... node scripts/check-gn-slugs.mjs
-//   node scripts/check-gn-slugs.mjs --subjects subjects.json   # offline, from a saved GET /api/gn
+//   GRADING_PASSCODE=... node scripts/check-gn-slugs.mjs          # live, against the DB via /api/gn
+//   node scripts/check-gn-slugs.mjs --subjects supabase/snapshots/gn-subjects.json   # offline; what CI runs
 //
 // Optional: GN_API_URL (default https://showmob.vercel.app/api/gn), --content <dir>.
-// Needs the grader passcode, so this is a local check, not a CI test.
-// CI covers handoff↔disk via tests/gn-handoff-slugs.test.mjs; this script remains for DB artifact_slug reconciliation.
-// Exits 1 if any built/assigned/graded subject fails to resolve or two subjects share one page.
+// CI runs the offline form against the checked-in slim snapshot, so CI never holds the
+// grader passcode. Refresh the snapshot with scripts/snapshot-gn-subjects.mjs whenever the
+// subjects table changes. tests/gn-handoff-slugs.test.mjs separately covers handoff<->disk.
+//
+// Fails (exit 1) when a built/assigned/graded subject resolves to no page, or when two
+// subjects share one page and at least one of them is built/assigned/graded.
+// Only warns for pending subjects (unbuilt is a legitimate state), pending-only shares,
+// and orphan gn-* pages. Under GitHub Actions, problems also print as ::error/::warning.
 
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -92,7 +97,7 @@ for (const s of subjects) {
 
   if (slug) {
     if (!resolved.has(slug)) resolved.set(slug, []);
-    resolved.get(slug).push({ id: s.id, via, pair: s.ab_pair });
+    resolved.get(slug).push({ id: s.id, via, pair: s.ab_pair, status: s.status });
     continue;
   }
 
@@ -104,53 +109,75 @@ for (const s of subjects) {
   }
 }
 
-const shared = [...resolved].filter(([, who]) => who.length > 1);
+const sharedAll = [...resolved].filter(([, who]) => who.length > 1);
+const shared = sharedAll.filter(([, who]) => who.some((w) => expectBuilt.has(w.status)));
+const sharedPending = sharedAll.filter(([, who]) => !who.some((w) => expectBuilt.has(w.status)));
+
+// GitHub Actions annotations, so CI failures and warnings show on the PR.
+const gha = process.env.GITHUB_ACTIONS === "true";
+const annotate = (level, msg) => {
+  if (gha) console.log(`::${level} title=check-gn-slugs::${msg}`);
+};
 const claimed = new Set(resolved.keys());
 const orphans = gnSlugs.filter((slug) => !claimed.has(slug));
 
 // --- report ---
 const line = (s) => `${s.id} [${s.status}${s.ab_pair ? `, pair ${s.ab_pair}` : ""}] ${s.title}`;
+const who2str = (who) => who.map((w) => `${w.id} via ${w.via}`).join(", ");
 console.log(`${subjects.length} subjects, ${gnSlugs.length} gn-* pages, ${claimed.size} pages claimed\n`);
 
 if (broken.length) {
-  console.log(`BROKEN: subject says it has a page, but nothing resolves (${broken.length})`);
-  for (const { s, candidates, badSlug } of broken) {
-    console.log(`  ${line(s)}`);
-    if (badSlug) console.log(`    artifact_slug '${s.artifact_slug}' has no file`);
-    for (const c of candidates) console.log(`    looks like: ${c}`);
-  }
-  console.log();
+  console.log(`BROKEN: subject says it has a page, but nothing resolves (${broken.length})`);
+  for (const { s, candidates, badSlug } of broken) {
+    console.log(`  ${line(s)}`);
+    if (badSlug) console.log(`    artifact_slug '${s.artifact_slug}' has no file`);
+    for (const c of candidates) console.log(`    looks like: ${c}`);
+    annotate("error", `${s.id} [${s.status}] resolves to no page${badSlug ? ` (artifact_slug '${s.artifact_slug}' has no file)` : ""}`);
+  }
+  console.log();
 }
 
 if (shared.length) {
-  console.log(`SHARED: two subjects resolve to the same page (${shared.length})`);
-  console.log("  For an A/B pair this means the blind compare shows one page against itself.");
-  for (const [slug, who] of shared) {
-    console.log(`  ${slug} <- ${who.map((w) => `${w.id} via ${w.via}`).join(", ")}`);
-  }
-  console.log();
+  console.log(`SHARED: two subjects resolve to the same page (${shared.length})`);
+  console.log("  For an A/B pair this means the blind compare shows one page against itself.");
+  for (const [slug, who] of shared) {
+    console.log(`  ${slug} <- ${who2str(who)}`);
+    annotate("error", `shared page ${slug} <- ${who2str(who)}`);
+  }
+  console.log();
+}
+
+if (sharedPending.length) {
+  console.log(`SHARED, pending only (warning): ${sharedPending.length}`);
+  for (const [slug, who] of sharedPending) {
+    console.log(`  ${slug} <- ${who2str(who)}`);
+    annotate("warning", `pending subjects share page ${slug} <- ${who2str(who)}`);
+  }
+  console.log();
 }
 
 if (pendingUnbuilt.length) {
-  const withFile = pendingUnbuilt.filter((r) => r.candidates.length);
-  console.log(`PENDING: ${pendingUnbuilt.length} not marked built; ${withFile.length} of them look like they have a page`);
-  for (const { s, candidates } of withFile) {
-    console.log(`  ${line(s)}`);
-    for (const c of candidates) console.log(`    looks like: ${c}`);
-  }
-  console.log();
+  const withFile = pendingUnbuilt.filter((r) => r.candidates.length);
+  console.log(`PENDING (warning): ${pendingUnbuilt.length} not marked built; ${withFile.length} of them look like they have a page`);
+  for (const { s, candidates } of withFile) {
+    console.log(`  ${line(s)}`);
+    for (const c of candidates) console.log(`    looks like: ${c}`);
+    annotate("warning", `${s.id} is pending but looks like it has a page (${candidates.join(", ")}); update the subjects table, then refresh the snapshot`);
+  }
+  console.log();
 }
 
 if (orphans.length) {
-  console.log(`ORPHANS: gn-* pages no subject resolves to (${orphans.length})`);
-  for (const slug of orphans) console.log(`  ${slug}`);
-  console.log();
+  console.log(`ORPHANS (warning): gn-* pages no subject resolves to (${orphans.length})`);
+  for (const slug of orphans) console.log(`  ${slug}`);
+  annotate("warning", `${orphans.length} gn-* page(s) no subject resolves to: ${orphans.join(", ")}`);
+  console.log();
 }
 
 if (fixes.length) {
-  console.log("Suggested fixes (one clear match each; check before running):");
-  for (const f of fixes) console.log(`  ${f}`);
-  console.log();
+  console.log("Suggested fixes (one clear match each; check before running):");
+  for (const f of fixes) console.log(`  ${f}`);
+  console.log();
 }
 
 const bad = broken.length + shared.length;
