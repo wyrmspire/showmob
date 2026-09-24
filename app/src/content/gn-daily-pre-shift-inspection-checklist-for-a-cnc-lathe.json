@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-daily-pre-shift-inspection-checklist-for-a-cnc-lathe",
+  "title": "Daily pre-shift inspection checklist for a CNC lathe",
+  "summary": "A neutral daily checklist template for a CNC lathe \u2014 generic example data, ready to print or copy.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": [
+    "grading-night",
+    "cnc",
+    "checklist",
+    "maintenance"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Before the first chip",
+      "body": "Use this as a pre-shift template on a CNC lathe. Example machine: fictional Haas-style 2-axis lathe \"Cell B Lathe 2\". Replace names and numbers with your site's standards."
+    },
+    {
+      "id": "header",
+      "type": "compact-table",
+      "heading": "Shift header (example)",
+      "columns": [
+        "Field",
+        "Example"
+      ],
+      "rows": [
+        [
+          "Date",
+          "2026-09-24"
+        ],
+        [
+          "Shift",
+          "Day"
+        ],
+        [
+          "Machine",
+          "Cell B Lathe 2"
+        ],
+        [
+          "Operator",
+          "A. Nguyen"
+        ],
+        [
+          "Hours meter",
+          "18432.1"
+        ]
+      ],
+      "caption": "Example data only \u2014 swap for your log format."
+    },
+    {
+      "id": "checks",
+      "type": "checklist",
+      "heading": "Daily checks",
+      "items": [
+        {
+          "label": "Way lube level in band",
+          "detail": "Top up with specified oil only. Note if consumption jumped overnight."
+        },
+        {
+          "label": "Chuck pressure / jaws",
+          "detail": "Confirm pressure set for today's workholding; jaws clean and correct for the first job."
+        },
+        {
+          "label": "Coolant level and concentration",
+          "detail": "Refractometer or site method. Skim tramp oil if the surface looks like a parking lot."
+        },
+        {
+          "label": "Guards, door interlock, e-stop",
+          "detail": "Door open should inhibit cycle start. E-stop drops spindle and axes cleanly."
+        },
+        {
+          "label": "Hydraulic / pneumatic (if equipped)",
+          "detail": "No puddles, no low-pressure alarms on power-up."
+        },
+        {
+          "label": "Tool magazine / turret",
+          "detail": "No loose inserts on the floor from last shift; verify first-tool offset page matches the setup sheet."
+        },
+        {
+          "label": "Chip conveyor / bin",
+          "detail": "Empty enough to survive the shift; clear wrapped chips at the chuck."
+        },
+        {
+          "label": "Home / reference return",
+          "detail": "Axes reference without odd noises; soft limits behave."
+        }
+      ]
+    },
+    {
+      "id": "fail",
+      "type": "note-callout",
+      "title": "If any critical item fails",
+      "body": "Do not start production to \"warm it up.\" Tag out per site rules, notify maintenance or the lead, and write the defect on the sheet. Example critical: failed door interlock, empty way lube, missing chuck pressure.",
+      "tone": "warning"
+    },
+    {
+      "id": "sign",
+      "type": "steps",
+      "heading": "Close the sheet",
+      "items": [
+        "Initial each checked line.",
+        "Record any top-ups (oil type and approximate amount).",
+        "Note the first job number and tooling page used.",
+        "File or scan per your quality system before cutting parts for sale."
+      ]
+    }
+  ]
+}

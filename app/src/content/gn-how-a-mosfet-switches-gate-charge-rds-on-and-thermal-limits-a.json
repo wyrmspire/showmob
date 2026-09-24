@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-how-a-mosfet-switches-gate-charge-rds-on-and-thermal-limits-a",
+  "title": "How a MOSFET switches: gate charge, Rds(on), and thermal limits",
+  "summary": "A linear read-through of MOSFET switching: gate charge moves the device, Rds(on) sets conduction loss, and heat decides whether it survives.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "signal",
+  "tags": [
+    "grading-night",
+    "electronics",
+    "mosfet",
+    "power"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Power electronics, in order",
+      "title": "Charge the gate, then count the heat",
+      "body": "A power MOSFET is a voltage-controlled switch. This page walks the story once, in order: what the gate charge does, why Rds(on) matters when the device is on, and how thermal limits close the loop. No sliders \u2014 just the causal chain."
+    },
+    {
+      "id": "map",
+      "type": "diagram",
+      "heading": "The three ideas, in reading order",
+      "nodes": [
+        {
+          "title": "1. Gate charge",
+          "detail": "You must move charge onto the gate before the channel fully enhances."
+        },
+        {
+          "title": "2. Rds(on)",
+          "detail": "Once on, the channel looks like a small resistance \u2014 I\u00b2R heat while conducting."
+        },
+        {
+          "title": "3. Thermal limit",
+          "detail": "Junction temperature rises until cooling balances loss, or the part fails."
+        }
+      ]
+    },
+    {
+      "id": "section-gate",
+      "type": "divider",
+      "label": "Section 1 \u2014 Gate charge"
+    },
+    {
+      "id": "gate-text",
+      "type": "text",
+      "heading": "The gate is a capacitor you have to fill",
+      "body": "Between gate and channel sits capacitance. To turn the FET on, a driver must supply gate charge Qg so Vgs climbs through the threshold and past the plateau where the drain voltage is swinging. Datasheets quote total gate charge and often break out Qgs, Qgd (the Miller charge), and Qgd-related switching energy. Slow gate drive stretches the time spent in the linear region, where voltage and current overlap and switching loss spikes."
+    },
+    {
+      "id": "gate-stats",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "Vgs(th)",
+          "label": "Threshold \u2014 channel just begins to form"
+        },
+        {
+          "value": "Miller plateau",
+          "label": "Vds falling/rising while Vgs hangs nearly flat"
+        },
+        {
+          "value": "Qg",
+          "label": "Total charge the driver must deliver each cycle"
+        }
+      ]
+    },
+    {
+      "id": "gate-note",
+      "type": "note-callout",
+      "title": "Driver current is not optional detail",
+      "body": "If the gate resistor and driver cannot move Qg quickly, the FET spends extra time half-on. That shows up as heat even when Rds(on) looks excellent on paper.",
+      "tone": "note"
+    },
+    {
+      "id": "section-rds",
+      "type": "divider",
+      "label": "Section 2 \u2014 Rds(on)"
+    },
+    {
+      "id": "rds-text",
+      "type": "text",
+      "heading": "When it is on, it is a resistor",
+      "body": "After the gate is charged and Vds has collapsed, conduction loss is roughly I_d\u00b2 \u00d7 Rds(on). Rds(on) is specified at a given Vgs and rises with junction temperature \u2014 a hot FET is a worse resistor. Choosing a part with half the Rds(on) halves conduction loss only if you actually drive the gate to the voltage the datasheet used for that rating."
+    },
+    {
+      "id": "rds-table",
+      "type": "compact-table",
+      "heading": "Example conduction loss (illustrative)",
+      "columns": [
+        "I_d",
+        "Rds(on)",
+        "P_cond \u2248 I\u00b2R",
+        "Comment"
+      ],
+      "rows": [
+        [
+          "5 A",
+          "10 m\u03a9",
+          "0.25 W",
+          "Easy on a TO-220 with modest airflow"
+        ],
+        [
+          "20 A",
+          "10 m\u03a9",
+          "4 W",
+          "Needs copper and airflow or a better package"
+        ],
+        [
+          "20 A",
+          "5 m\u03a9",
+          "2 W",
+          "Lower Rds helps \u2014 if Vgs and cooling keep up"
+        ]
+      ],
+      "caption": "Numbers are teaching examples, not a design sign-off. Always include switching loss and temperature rise of Rds(on)."
+    },
+    {
+      "id": "section-thermal",
+      "type": "divider",
+      "label": "Section 3 \u2014 Thermal limits"
+    },
+    {
+      "id": "thermal-text",
+      "type": "text",
+      "heading": "Heat is the product of loss and thermal resistance",
+      "body": "Junction temperature rises above ambient by P_total \u00d7 R\u03b8JA (or a more detailed chain through case and heatsink). P_total is conduction loss plus switching loss plus any diode recovery contribution. The datasheet's absolute maximum T_j is a cliff, not a target \u2014 reliable designs keep margin, derate with ambient, and remember that Rds(on) itself climbs as the die heats, which can run away if cooling is marginal."
+    },
+    {
+      "id": "thermal-steps",
+      "type": "steps",
+      "heading": "A linear check before you ship a board",
+      "items": [
+        "Confirm the gate driver can deliver Qg in the time your switching frequency allows.",
+        "Estimate conduction loss from expected current and hot Rds(on), not only 25\u00b0C numbers.",
+        "Add switching loss from datasheets or scope measurements of V\u00d7I overlap.",
+        "Translate total watts through the thermal stack and confirm T_j stays inside your derating plan."
+      ]
+    },
+    {
+      "id": "compare",
+      "type": "comparison",
+      "heading": "What each term usually dominates",
+      "columns": [
+        {
+          "name": "Slow gate / high f_sw",
+          "detail": "Switching loss and Miller-region time dominate. Fix drive strength and layout inductance first."
+        },
+        {
+          "name": "High current, modest f_sw",
+          "detail": "Conduction loss dominates. Chase Rds(on), copper, and cooling."
+        },
+        {
+          "name": "Tight enclosure",
+          "detail": "Thermal resistance dominates even moderate watts. Airflow and heatsinking decide survival."
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Causal check",
+      "prompt": "A FET runs cool at low PWM frequency but overheats when you raise frequency, even though average load current is unchanged. What is the most likely first suspect?",
+      "options": [
+        "Rds(on) suddenly doubled because of the frequency change alone",
+        "Switching loss rose with more transitions per second while conduction loss stayed similar",
+        "The gate charge disappeared from the datasheet",
+        "Ambient temperature must have fallen"
+      ],
+      "answer": 1,
+      "explanation": "More switching events per second increase switching energy per unit time. Conduction loss tracks current and Rds(on), which did not change in the prompt.",
+      "correctFeedback": "Yes \u2014 frequency scales switching loss when each transition still costs energy.",
+      "wrongFeedback": "Re-read Sections 1 and 3. Frequency multiplies switching events; Rds(on) does not jump just because PWM got faster."
+    },
+    {
+      "id": "close",
+      "type": "quote",
+      "quote": "Charge the gate cleanly, respect the ohms when it is on, and give the heat somewhere to go.",
+      "attribution": "The whole page, in one sentence"
+    },
+    {
+      "id": "resources",
+      "type": "resource-list",
+      "heading": "Where to go next",
+      "items": [
+        {
+          "label": "Vendor app notes on gate drive",
+          "detail": "Search your FET maker for gate-drive and Miller-plateau notes \u2014 they show the waveforms this page describes.",
+          "url": "https://www.ti.com/lit/an/slua618a/slua618a.pdf"
+        },
+        {
+          "label": "Thermal resistance basics",
+          "detail": "JEDEC and vendor packaging guides explain R\u03b8JA versus R\u03b8JC and why board copper counts.",
+          "url": "https://www.jedec.org/"
+        }
+      ]
+    }
+  ]
+}

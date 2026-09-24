@@ -1,0 +1,244 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-a-troubleshooting-decision-tree-for-a-vfd-that-trips-on-overvoltage-during-decel",
+  "title": "A troubleshooting decision tree for a VFD that trips on overvoltage during decel",
+  "summary": "Fast branch structure for a VFD overvoltage trip on deceleration \u2014 short headings, not an essay.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "night",
+  "tags": [
+    "grading-night",
+    "vfd",
+    "troubleshooting",
+    "motors"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Cabinet scan",
+      "title": "OV on decel \u2014 branch, do not essay",
+      "body": "The drive trips on overvoltage while slowing down. That usually means the DC bus is climbing faster than the brake path can absorb regenerated energy. Work the tree top-down."
+    },
+    {
+      "id": "facts",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "OV / Ou",
+          "label": "Typical fault code family \u2014 confirm on your drive"
+        },
+        {
+          "value": "Decel",
+          "label": "Trip timing: during slowdown, not at steady speed"
+        },
+        {
+          "value": "Bus \u2191",
+          "label": "Motor acting as generator into the DC bus"
+        }
+      ]
+    },
+    {
+      "id": "scan",
+      "type": "text",
+      "heading": "30-second cabinet scan",
+      "body": "Before changing parameters: read the keypad fault text, glance at the brake resistor (if present) for heat discoloration, and note whether the trip happened on a commanded stop or a speed change mid-cycle. Those three observations pick the starting branch faster than a manual chapter."
+    },
+    {
+      "id": "tree",
+      "type": "diagram",
+      "heading": "Decision tree (top \u2192 leaves)",
+      "nodes": [
+        {
+          "title": "A. Confirm timing",
+          "detail": "Trip only on decel / stop? If it also trips at constant speed, leave this page \u2014 look at line spikes and braking resistor wiring differently."
+        },
+        {
+          "title": "B. Load inertia & decel time",
+          "detail": "High inertia + aggressive decel \u21d2 lots of regen. Lengthen decel or use coast-to-stop if process allows."
+        },
+        {
+          "title": "C. Brake hardware present?",
+          "detail": "No resistor / brake chopper \u21d2 bus has nowhere to go. Add rated dynamic braking or slow the stop."
+        },
+        {
+          "title": "D. Resistor & wiring OK?",
+          "detail": "Open resistor, wrong ohms, loose lug, or chopper fault \u21d2 OV returns. Measure cold resistance; inspect thermal switch."
+        },
+        {
+          "title": "E. Parameters",
+          "detail": "Brake enable, duty cycle limits, overvoltage stall prevention / regen avoidance features \u2014 match the manual for your model."
+        },
+        {
+          "title": "F. Mechanical drag",
+          "detail": "Failing bearings or seized load can change the energy story \u2014 but if the trip is cleanly on commanded decel, stay on A\u2013E first."
+        }
+      ]
+    },
+    {
+      "id": "energy",
+      "type": "text",
+      "heading": "Why decel makes voltage climb",
+      "body": "When you command a fast stop, the motor's rotating mass keeps delivering energy into the drive. The inverter's diodes dump that energy onto the DC bus capacitors. Without a path through a brake chopper into a resistor (or a regen unit back to the line), bus voltage rises until the protection trips. Stretching decel reduces the power (energy per time). Braking hardware raises how much power you can absorb."
+    },
+    {
+      "id": "not-this",
+      "type": "note-callout",
+      "title": "Not this tree",
+      "body": "Undervoltage, ground faults, overcurrent on accel, and encoder loss are different animals. If the code is not an overvoltage family fault tied to slowing down, put this page down.",
+      "tone": "note"
+    },
+    {
+      "id": "branch-a",
+      "type": "steps",
+      "heading": "Branch A \u2014 Prove it is a decel OV",
+      "items": [
+        "Note the exact fault code and whether it appears on STOP, on a speed decrease, or also at steady RPM.",
+        "If possible, trend DC bus voltage while decelerating \u2014 a climb into the OV threshold seals the diagnosis.",
+        "If trips happen at constant speed or on power-up, stop this tree and pursue line quality / miswiring."
+      ]
+    },
+    {
+      "id": "branch-b",
+      "type": "steps",
+      "heading": "Branch B \u2014 Soften the stop",
+      "items": [
+        "Double the decel time as a test. If OV disappears, you confirmed excess regen rate.",
+        "Ask process whether a longer stop is acceptable. If not, you need braking hardware, not wishful parameters.",
+        "Try coast-to-stop (if safe for the machine) to prove the drive is healthy when it is not absorbing regen."
+      ]
+    },
+    {
+      "id": "branch-c",
+      "type": "comparison",
+      "heading": "Branch C \u2014 Hardware paths",
+      "columns": [
+        {
+          "name": "No brake resistor",
+          "detail": "Options: lengthen decel, reduce inertia (process), add chopper+resistor sized for stop energy, or a regen unit on large systems."
+        },
+        {
+          "name": "Resistor installed",
+          "detail": "Verify enable bits, ohm value vs. drive minimum, continuous/peak watt rating, and that the thermal switch is in the right input."
+        },
+        {
+          "name": "Shared / external brake",
+          "detail": "Confirm this drive is actually connected to the shared resistor network and not orphaned by a contactor."
+        }
+      ]
+    },
+    {
+      "id": "branch-d",
+      "type": "checklist",
+      "heading": "Branch D \u2014 Resistor cabinet checks",
+      "items": [
+        {
+          "label": "Measure resistor cold ohms",
+          "detail": "Compare to nameplate. Open = definite OV on any serious decel."
+        },
+        {
+          "label": "Inspect lugs and chopper terminals",
+          "detail": "Heat-discolored hardware is a clue; so is a wire on the wrong terminal."
+        },
+        {
+          "label": "Check brake transistor / chopper fault history",
+          "detail": "Some drives log brake IGBT faults separately from OV."
+        },
+        {
+          "label": "Confirm duty cycle vs. how often you stop",
+          "detail": "A resistor rated for occasional stops will cook on cyclic high-inertia indexing."
+        }
+      ]
+    },
+    {
+      "id": "params",
+      "type": "compact-table",
+      "heading": "Branch E \u2014 Parameter suspects (names vary)",
+      "columns": [
+        "Idea",
+        "What to look for",
+        "If wrong"
+      ],
+      "rows": [
+        [
+          "Decel time",
+          "Too short for inertia",
+          "OV on every stop"
+        ],
+        [
+          "Brake enable",
+          "Disabled while resistor exists",
+          "Resistor never conducts"
+        ],
+        [
+          "OV stall / regen avoid",
+          "Off when you need it",
+          "Bus spikes unchecked"
+        ],
+        [
+          "Motor data / flux",
+          "Wildly wrong nameplate data",
+          "Odd regen behavior; fix data anyway"
+        ]
+      ],
+      "caption": "Use your drive manual's exact parameter numbers. This table is a hunt list, not a programming sheet."
+    },
+    {
+      "id": "order",
+      "type": "timeline",
+      "heading": "Suggested order on the floor",
+      "items": [
+        {
+          "time": "0\u20135 min",
+          "title": "Code + timing",
+          "detail": "Screenshot fault, confirm decel-only."
+        },
+        {
+          "time": "5\u201315 min",
+          "title": "Decel time test",
+          "detail": "Lengthen decel once; note pass/fail."
+        },
+        {
+          "time": "15\u201330 min",
+          "title": "Hardware",
+          "detail": "Resistor ohms, wiring, enable bits."
+        },
+        {
+          "time": "30+ min",
+          "title": "Energy math",
+          "detail": "If still failing, size braking for stop energy or change the mechanical stop method."
+        }
+      ]
+    },
+    {
+      "id": "warning",
+      "type": "note-callout",
+      "title": "Lockout before you touch brake wiring",
+      "body": "DC bus capacitors hold charge after power-down. Follow the drive's discharge wait time. Overvoltage troubleshooting does not require live terminal exploration.",
+      "tone": "warning"
+    },
+    {
+      "id": "quiz",
+      "type": "exercise",
+      "heading": "Branch check",
+      "prompt": "OV occurs only when stopping a high-inertia fan. Lengthening decel from 5 s to 20 s clears the fault. No brake resistor is installed. Best next step for production-speed stops?",
+      "options": [
+        "Ignore it \u2014 20 s stops are fine forever without asking operations",
+        "Add properly sized dynamic braking (or approved regen) if process needs a faster stop",
+        "Raise the OV trip threshold in a hidden menu",
+        "Replace the motor first"
+      ],
+      "answer": 1,
+      "explanation": "The test proved regen rate was the issue. If the process needs a fast stop, absorb the energy with rated hardware rather than hiding the trip.",
+      "correctFeedback": "Yes \u2014 match braking hardware to the stop the process actually needs.",
+      "wrongFeedback": "Branch B explained the test; Branch C covers what to add when time alone is not acceptable."
+    },
+    {
+      "id": "close",
+      "type": "cta-band",
+      "heading": "Leave with a written branch",
+      "body": "Record which node cleared the fault. The next tech should not have to rediscover whether it was decel time or an open resistor."
+    }
+  ]
+}

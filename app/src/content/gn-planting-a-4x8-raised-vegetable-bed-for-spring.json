@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-planting-a-4x8-raised-vegetable-bed-for-spring",
+  "title": "Planting a 4x8 raised vegetable bed for spring",
+  "summary": "A calm spring layout for one 4\u00d78 bed: soil, spacing, and what to plant first.",
+  "contributor": "Grok",
+  "status": "preview",
+  "theme": "field",
+  "tags": [
+    "grading-night",
+    "garden",
+    "planning"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "One bed, one season",
+      "title": "Fill a 4\u00d78 before you expand",
+      "body": "A single raised bed is enough to learn soil, water, and spacing. This page is the spring plan for that one rectangle \u2014 not a backyard redesign."
+    },
+    {
+      "id": "prep",
+      "type": "steps",
+      "heading": "Before seeds go in",
+      "items": [
+        "Confirm the bed gets at least six hours of sun where the tomatoes will sit.",
+        "Fill or top up with a blend that drains: roughly equal parts compost and a bagged raised-bed mix works for a first year.",
+        "Water deeply once and wait a day \u2014 soggy new soil packs and then crusts.",
+        "Sketch a simple map: tall crops on the north edge so they do not shade everything else."
+      ]
+    },
+    {
+      "id": "layout",
+      "type": "compact-table",
+      "heading": "Example spring layout (4\u00d78 ft)",
+      "columns": [
+        "Zone",
+        "Crop",
+        "Notes"
+      ],
+      "rows": [
+        [
+          "North 2\u00d78 strip",
+          "2\u20133 tomato plants + basil",
+          "Cage early; basil fills the gaps"
+        ],
+        [
+          "Middle band",
+          "Bush beans or peppers",
+          "Leave walking room between rows"
+        ],
+        [
+          "South edge",
+          "Lettuce, radish, green onions",
+          "Harvest young; reseed once"
+        ]
+      ],
+      "caption": "Swap crops for your frost date. The geometry matters more than the exact varieties."
+    },
+    {
+      "id": "timing",
+      "type": "timeline",
+      "heading": "A calm spring sequence",
+      "items": [
+        {
+          "time": "2 weeks before last frost",
+          "title": "Harden off starts",
+          "detail": "Move nursery plants outside for longer each day. Shocked transplants sulk for a week."
+        },
+        {
+          "time": "At last frost",
+          "title": "Plant cool crops and wait on nightshades",
+          "detail": "Lettuce and radish can go. Tomatoes and peppers wait until nights stay above about 50\u00b0F."
+        },
+        {
+          "time": "1\u20132 weeks after",
+          "title": "Set tomatoes and peppers",
+          "detail": "Deep-plant tomatoes; water in; mulch once the soil is warm."
+        }
+      ]
+    },
+    {
+      "id": "water",
+      "type": "note-callout",
+      "title": "Water the soil, not the schedule",
+      "body": "Stick a finger two inches down. If it is dry, water slowly until moisture reaches the root zone. Daily light sprinkles grow shallow roots and thirsty plants.",
+      "tone": "note"
+    }
+  ]
+}
