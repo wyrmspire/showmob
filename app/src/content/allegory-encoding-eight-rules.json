@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "slug": "allegory-encoding-eight-rules",
+  "title": "Eight rules for allegory that stays private",
+  "summary": "How to encode a true situation as allegory so a reader can use it — without handing them a roster of real names, places, or keys.",
+  "contributor": "Grok",
+  "status": "published",
+  "theme": "night",
+  "tags": ["education", "allegory", "privacy", "encoding", "writing"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Education · privacy craft",
+      "title": "Allegory as lossy encoding",
+      "body": "Sometimes you need to teach from a real situation — a workplace mess, a family pattern, a near-miss — without publishing the people inside it. Allegory is not decoration. Done well, it is a deliberate, lossy encoding: enough structure for a thoughtful reader to learn, not enough bits for a stranger (or a neighbor) to re-identify who you meant."
+    },
+    {
+      "id": "why",
+      "type": "text",
+      "heading": "Why encode at all?",
+      "body": "Plain disclosure is honest and often wrong for the medium. Names, dates, and unique combinations of facts travel farther than the conversation that justified them. Silence protects privacy but teaches nothing. Allegory sits between those poles: you keep the relationships, incentives, and failure modes that made the situation worth telling, and you discard the identifiers that only matter to the people who already lived it.\n\nThe craft is privacy engineering dressed as storytelling. The eight rules below are the checklist that keeps the dress from falling off."
+    },
+    {
+      "id": "core-quote",
+      "type": "quote",
+      "quote": "Map the shape of the trouble, not the passport numbers of the people inside it.",
+      "attribution": "Working rule for private allegory"
+    },
+    {
+      "id": "two-paths",
+      "type": "comparison",
+      "heading": "Same truth, two payloads",
+      "columns": [
+        {
+          "name": "Raw disclosure",
+          "detail": "Names, employer, timeline, and a unique stack of quasi-identifiers. A reader who already knows the cast can confirm; a reader who does not can still Google their way there."
+        },
+        {
+          "name": "Allegory encoding",
+          "detail": "Roles, pressures, and decisions under a lossy vocabulary. A reader who lived something similar recognizes the pattern. A stranger cannot invert the story back to a shortlist of real people."
+        }
+      ]
+    },
+    {
+      "id": "flow",
+      "type": "diagram",
+      "heading": "What you are actually doing",
+      "nodes": [
+        {
+          "title": "Lived situation",
+          "detail": "People, places, dates, and the real stakes you are not free to publish."
+        },
+        {
+          "title": "Encode (lossy)",
+          "detail": "Keep relationships and dynamics. Drop invertibility. Coarsen the rest."
+        },
+        {
+          "title": "Shared page",
+          "detail": "A story that teaches. The reader's own life is the decryption key — not a table in the appendix."
+        }
+      ]
+    },
+    {
+      "id": "rules-div",
+      "type": "divider",
+      "label": "Eight rules"
+    },
+    {
+      "id": "rule-overview",
+      "type": "steps",
+      "heading": "The eight rules at a glance",
+      "items": [
+        "Map relationships, not entities — pass the invertibility test.",
+        "Pick a lossy vocabulary on purpose.",
+        "Set a floor (k-anonymity): many people could fit.",
+        "Coarsen quasi-identifiers until they stop pointing.",
+        "Do not keep the mapping stable across tellings.",
+        "Make it falsifiable — anti-astrology.",
+        "Gate everything on action the reader can take.",
+        "Let the reader's own life be the key."
+      ]
+    },
+    {
+      "id": "r1",
+      "type": "text",
+      "heading": "1. Map relationships, not entities",
+      "body": "Encode the graph: who depends on whom, who can block whom, what incentive pulls which way. Do not encode the nodes as recoverable people. \"A mid-level operator who cannot shut the line down without a signature from someone two buildings away\" is a relationship. \"Dana in Building C who reports to Marc\" is an entity dump.\n\nInvertibility test: if a motivated reader with ordinary public information could reverse your allegory back to a short list of real people, you mapped entities. Rewrite until the graph could describe a dozen workplaces, not one."
+    },
+    {
+      "id": "r1-note",
+      "type": "note-callout",
+      "title": "Invertibility test",
+      "body": "Ask: given only this page and Google, could someone name the people? If yes, you still have entities. Strip until the answer is no — while the lesson about the relationship still stands.",
+      "tone": "note"
+    },
+    {
+      "id": "r2",
+      "type": "text",
+      "heading": "2. Pick a lossy vocabulary on purpose",
+      "body": "Loss is the point. Choose words that discard identifying detail by construction: seasons instead of dates, roles instead of names, \"a coastal plant\" instead of the city, \"a vendor with a long lead time\" instead of the brand. A lossy vocabulary is a deliberate codec — you decide what survives compression.\n\nIf every noun in the draft could only refer to one real thing you know, the vocabulary is still lossless. Swap in categories until each noun has many possible referents."
+    },
+    {
+      "id": "r3",
+      "type": "text",
+      "heading": "3. Set a floor (k-anonymity)",
+      "body": "Borrow the database idea: after encoding, at least k real situations should fit the description. If k is one — only your story matches — you have published an identifier wearing a costume. Aim for a floor where a careful stranger cannot narrow the field to a handful of candidates.\n\nYou do not need a formal k. You need the habit: \"Could five teams I do not know recognize themselves here without being the subject?\" If not, coarsen further."
+    },
+    {
+      "id": "r4",
+      "type": "text",
+      "heading": "4. Coarsen quasi-identifiers",
+      "body": "Quasi-identifiers are facts that are harmless alone and lethal in combination: job title + city + unusual hobby + a specific month. Allegory often leaks through the stack, not through any single colorful detail.\n\nCoarsen each axis until the combination stops being a fingerprint. Turn \"the only woman CNC lead in a 40-person shop in Racine who races vintage motorcycles\" into \"a skilled lead in a small shop who keeps a loud hobby outside work.\" Same human texture; far fewer bits."
+    },
+    {
+      "id": "r4-note",
+      "type": "note-callout",
+      "title": "Stacks leak",
+      "body": "Review the draft for combinations. One vivid detail is flavor. Three rare details together are a name.",
+      "tone": "warning"
+    },
+    {
+      "id": "r5",
+      "type": "text",
+      "heading": "5. Do not keep the mapping stable",
+      "body": "If you write more than one allegory from the same life, change the costume. A stable mapping — same stand-in names, same invented company, same geography metaphor — lets a persistent reader align chapters and recover the key. Rotate vocabulary, swap which role carries which trait, and avoid a private legend that only you and one friend can read across pages.\n\nEach page should stand alone under the same lossy rules. Continuity is for fiction series; here continuity is a deanonymization attack."
+    },
+    {
+      "id": "r6",
+      "type": "text",
+      "heading": "6. Make it falsifiable (anti-astrology)",
+      "body": "Astrology flatters everyone and commits to nothing. Private allegory must still be wrong about something specific — otherwise it is not a lesson, it is incense. State a mechanism, a tradeoff, or a failure mode that a reader can check against their own experience: \"When the person who can stop the line is not the person who hears the alarm, response time collapses.\"\n\nIf every reader can nod along no matter what they lived, you under-specified. Add a claim sharp enough that someone could say \"that is not how our shop works\" — without needing to know who you meant."
+    },
+    {
+      "id": "r7",
+      "type": "text",
+      "heading": "7. Gate everything on action",
+      "body": "The page exists so a reader can do something differently: ask a better question, refuse a bad default, redesign a handoff, leave a paper trail. If the allegory only invites gossip or recognition (\"I know who that is\"), it failed the privacy craft and the teaching craft at once.\n\nWrite toward a verb. End near an action the reader owns — not toward a reveal about people they do not."
+    },
+    {
+      "id": "r8",
+      "type": "text",
+      "heading": "8. Let the reader's own life be the key",
+      "body": "You are not shipping a decoder ring. The useful decryption happens when the reader's memory supplies the entities that match your relationships. That is intentional: the people who need the lesson already have the context; strangers get a transferable pattern without a roster.\n\nIf you feel the urge to add a footnote that \"really\" explains who was who, you are undoing the encoding. Trust the reader who has lived something adjacent. Everyone else was never your audience for the private layer."
+    },
+    {
+      "id": "tests-div",
+      "type": "divider",
+      "label": "Two checks"
+    },
+    {
+      "id": "tests-lead",
+      "type": "text",
+      "heading": "Run these before you publish",
+      "body": "Rules are easy to agree with in the abstract. These two checks catch the drafts that still point."
+    },
+    {
+      "id": "two-tests",
+      "type": "checklist",
+      "heading": "Privacy checks",
+      "items": [
+        {
+          "label": "Re-identification test",
+          "detail": "Give the page to someone who does not know your life. Can they name a person, employer, or incident with ordinary searching? If they get close, coarsen and rotate until they cannot."
+        },
+        {
+          "label": "Neighbour test",
+          "detail": "Give the page to someone who does know your world — a coworker, a sibling, a friend from that chapter. Can they tell who you meant without you confirming? If yes, you still encoded entities. The neighbour is the hardest reader; pass them and strangers will not invert you."
+        }
+      ]
+    },
+    {
+      "id": "underside",
+      "type": "note-callout",
+      "title": "The underside rule",
+      "body": "Encoding is not permission. Allegory does not grant you the right to possess, retain, or retell data you should not have had. If the underlying facts were obtained without consent, under a duty of confidentiality, or in a context that forbids reuse, dressing them as fiction does not launder the claim. First ask whether you should have the story at all — then, only if yes, encode it so it cannot be inverted.",
+      "tone": "warning"
+    },
+    {
+      "id": "close",
+      "type": "text",
+      "heading": "What \"good\" looks like",
+      "body": "A strong private allegory feels specific to the reader who needed it and generic to everyone else. It teaches a mechanism. It invites an action. It fails the re-identification and neighbour tests on purpose. And it never confuses clever encoding with a license to publish what was never yours to share.\n\nUse the eight rules as a writing checklist, not as a costume party. The point is not to be mysterious. The point is to stay useful without becoming a directory."
+    }
+  ]
+}
