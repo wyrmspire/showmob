@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-showmob-artifact-status-board-draft-in-pr-published",
+  "title": "Showmob artifact status board: draft, in PR, published",
+  "summary": "Where every artifact stands in the pipeline, and what moves it to the next column.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "workshop",
+  "tags": ["grading-night", "showmob", "status"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "The pipeline, three columns",
+      "body": "Every Showmob artifact lives in exactly one state: draft (still being worked), preview (in or past a PR, visible by direct link only), or published (listed, live, meant for anyone). The board below is the operating picture, with example counts from a working day."
+    },
+    {
+      "id": "board",
+      "type": "compact-table",
+      "heading": "Status board (example snapshot)",
+      "columns": ["Column", "Count", "What is in it", "Moves out when"],
+      "rows": [
+        ["Draft", "4", "Local work, Studio experiments, half-finished pages", "An agent or author saves it as preview and opens a PR"],
+        ["Preview / in PR", "12", "Grading-night batches awaiting merge, pages under review", "CI goes green and the PR merges - it is then live but unlisted"],
+        ["Published", "23", "The guide, the courses, the plan series", "Rarely leaves; archived only when superseded"]
+      ],
+      "caption": "Preview pages render at their direct URL but never appear on Home. Unlisted is not private - anyone with the link sees them."
+    },
+    {
+      "id": "how-to-read",
+      "type": "text",
+      "heading": "How to read the board at a glance",
+      "body": "The number that matters is the middle column. Drafts are cheap and published pages are done; the PR column is where work waits. A board with twelve items in PR for more than a day means review is the bottleneck, not writing. A board with nothing in draft means nobody is starting anything. Healthy flow shows motion, not any particular count."
+    },
+    {
+      "id": "operations",
+      "type": "checklist",
+      "heading": "Daily operations",
+      "items": [
+        { "label": "Sweep the PR column", "detail": "Anything green merges; anything red gets fixed or closed. Nothing rots open." },
+        { "label": "Check preview pages are not linked publicly", "detail": "Preview is for review and grading. If a preview link lands somewhere public, that is a publishing decision made by accident." },
+        { "label": "Promote deliberately", "detail": "Preview to published is a human call, per artifact, after it has been read like a reader." }
+      ]
+    },
+    {
+      "id": "note",
+      "type": "note-callout",
+      "title": "Why 'in PR' is its own column",
+      "body": "Merging is not the moment an artifact gets real - the PR is. It is the first time the page renders on the real site for anyone with the link, the first time CI validates it, the first time it can be graded. Treating the PR column as first-class keeps the pipeline honest about where work actually sits.",
+      "tone": "note"
+    }
+  ]
+}

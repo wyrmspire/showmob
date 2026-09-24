@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-an-infographic-of-my-favorite-color",
+  "title": "An infographic of my favorite color",
+  "summary": "The color is blue. There is nothing else to chart.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "paper",
+  "tags": ["grading-night", "color", "restraint"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "Blue",
+      "body": "It's a good color. Deep without being gloomy, calm without being boring. Works on a wall, a truck, or a Tuesday."
+    },
+    {
+      "id": "honesty",
+      "type": "note-callout",
+      "title": "Why there is no chart here",
+      "body": "A favorite color is one data point, and one data point drawn as a pie chart is a circle. The honest infographic for 'blue' is the word blue and this sentence admitting it.",
+      "tone": "note"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-live-oee-dashboard-for-a-3-machine-cnc-cell-example-data",
+  "title": "Live OEE dashboard for a 3-machine CNC cell (example data)",
+  "summary": "Availability x performance x quality, per machine, right now. Example data from a fictional cell - the board is the point, the numbers are the illustration.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "night",
+  "tags": ["grading-night", "oee", "manufacturing", "dashboard"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "One number per machine, three numbers behind it",
+      "body": "OEE - overall equipment effectiveness - multiplies availability (was it running?), performance (was it running at rate?), and quality (was the output good?). A 3-machine cell, second shift, fictional data. The board answers 'how is the cell doing' in one glance and 'why' in one more."
+    },
+    {
+      "id": "cell-oee",
+      "type": "stat-strip",
+      "items": [
+        { "value": "58.3%", "label": "Cell OEE, shift to date" },
+        { "value": "81%", "label": "Availability" },
+        { "value": "79%", "label": "Performance" },
+        { "value": "91%", "label": "Quality" }
+      ]
+    },
+    {
+      "id": "machines",
+      "type": "compact-table",
+      "heading": "Per machine, right now",
+      "columns": ["Machine", "State", "OEE", "Availability", "Performance", "Quality", "Current job"],
+      "rows": [
+        ["Lathe 1", "Running", "71%", "88%", "86%", "94%", "Part 4417, op 2"],
+        ["Mill 2", "Down 23 min", "44%", "61%", "80%", "98%", "Part 4421, op 1 - awaiting probe batteries"],
+        ["Mill 3", "Running, behind rate", "57%", "95%", "66%", "88%", "Part 4409, op 3"]
+      ],
+      "caption": "All figures fictional but internally consistent. Mill 3's quality drag is a chatter problem wearing inserts early."
+    },
+    {
+      "id": "math",
+      "type": "text",
+      "heading": "How each number is earned",
+      "body": "Availability is run time over planned time: Mill 2's 23-minute stop against a 100-minute window is 77 minutes over... no - availability counts all planned production time, and at 61% the board is saying the machine has been down or idle over a third of the shift. Performance is actual rate over ideal rate while running: Mill 3 runs nearly always (95%) but at two-thirds of its programmed feed, usually the operator derating for chatter. Quality is good parts over total parts: 91% cell-wide means nine of every hundred parts are scrap or rework. Multiply the three and 0.81 x 0.79 x 0.91 lands at 58.3% - a thoroughly normal, thoroughly improvable cell."
+    },
+    {
+      "id": "losses",
+      "type": "compact-table",
+      "heading": "Where the 42 points went",
+      "columns": ["Loss", "Points of OEE", "Owner", "Today's note"],
+      "rows": [
+        ["Mill 2 downtime", "~14 pts", "Maintenance", "Probe batteries - a $4 part holding a $40/hour spindle"],
+        ["Mill 3 slow running", "~9 pts", "Process engineering", "Chatter derate; insert and stick-out review tomorrow"],
+        ["Mill 3 scrap", "~7 pts", "Quality + process", "Same root cause as the derate - fix the chatter twice, count it once"],
+        ["Micro-stops, all machines", "~8 pts", "Operators", "Chip bins, door cycles, and the walk to the crib"],
+        ["Everything else", "~4 pts", "Various", "Startup checks, first-article waits"]
+      ]
+    },
+    {
+      "id": "shift-trend",
+      "type": "timeline",
+      "heading": "The shift so far",
+      "items": [
+        { "time": "3:00 PM", "title": "Shift start, all three up", "detail": "Cell OEE running 71% through the first hour - the best hour of the day, as usual." },
+        { "time": "4:20 PM", "title": "Mill 3 starts chattering", "detail": "Operator derates to 66% feed. Performance loss begins; scrap follows within the hour." },
+        { "time": "5:05 PM", "title": "Mill 2 down", "detail": "Probe batteries die mid-cycle. Maintenance dispatched; crib is out of stock; someone drives to the hardware store." },
+        { "time": "5:28 PM", "title": "Mill 2 back", "detail": "Twenty-three minutes lost to a consumable that costs less than the coffee." }
+      ]
+    },
+    {
+      "id": "operate",
+      "type": "steps",
+      "heading": "How to operate on this board",
+      "items": [
+        "Read the cell number, then immediately read the three factors - a low OEE with high availability is a different animal than one with low availability.",
+        "Find the reddest machine row and ask why before asking who.",
+        "Check the losses table against the story: does the biggest loss have an owner and a date?",
+        "Act on one loss per shift. Boards that spawn five action items spawn none."
+      ]
+    },
+    {
+      "id": "caveats",
+      "type": "note-callout",
+      "title": "What this board cannot tell you",
+      "body": "OEE says nothing about whether the cell is running the right parts, whether the schedule itself is sane, or whether the ideal rates are honest. An 85% OEE on work nobody ordered is worse than 55% on the hot job. The number starts the conversation; it is never the conversation's end.",
+      "tone": "warning"
+    }
+  ]
+}
