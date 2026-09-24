@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-the-1911-triangle-shirtwaist-fire-and-how-it-shaped-workplace-safety-law",
+  "title": "The 1911 Triangle Shirtwaist fire and how it shaped workplace safety law",
+  "summary": "One hundred forty-six workers, mostly young immigrant women, died in eighteen minutes in New York City. The laws that followed were written in their names.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "paper",
+  "tags": ["grading-night", "history", "safety", "labor"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "March 25, 1911, 4:40 PM",
+      "body": "The Triangle Waist Company occupied the top three floors of the Asch Building in Manhattan, employing about 500 people, mostly immigrant women and girls, sewing shirtwaists at long tables. When fire broke out on the eighth floor near closing time, it moved through fabric scraps and wooden fixtures faster than anyone could organize an escape. One hundred forty-six people died. It remains one of the deadliest industrial disasters in American history."
+    },
+    {
+      "id": "what-happened",
+      "type": "text",
+      "heading": "Why they could not get out",
+      "body": "The exits failed in ways that were ordinary for the era and are unthinkable now. A stairway door was locked - a common practice to control theft and keep workers at their tables. Other doors opened inward and were crushed shut by the press of people. The single fire escape collapsed under the weight of those fleeing onto it. Fire department ladders reached the sixth floor; the fire was on the eighth, ninth, and tenth. Workers at the windows faced a choice between the fire behind them and the street below. Many jumped. The fire burned itself out in roughly eighteen minutes."
+    },
+    {
+      "id": "trial",
+      "type": "text",
+      "heading": "The acquittal",
+      "body": "The factory owners were tried on manslaughter charges and acquitted - the jury could not be convinced the owners knew the door was locked at the moment of the fire. In a later civil suit, families of the dead received settlements of about seventy-five dollars per life. The public reaction to these outcomes was not resignation. It was fury, organized."
+    },
+    {
+      "id": "reform",
+      "type": "timeline",
+      "heading": "What the fire changed",
+      "items": [
+        { "time": "1911", "title": "Factory Investigating Commission", "detail": "New York State empaneled a commission within months. Over four years it inspected thousands of workplaces and heard hundreds of witnesses, including survivors of the fire." },
+        { "time": "1912-1914", "title": "The first laws", "detail": "New York passed dozens of measures: mandatory fire drills and unlocked, outward-opening exit doors, fire escapes that could bear a load, limits on flammable materials in factories, and sprinkler requirements in high-risk buildings." },
+        { "time": "1910s-20s", "title": "A model for other states", "detail": "The New York code became the template. Factory safety law spread state by state, carrying the same core rules: exits that exist, open, and are never locked against the people inside." },
+        { "time": "1930s", "title": "The federal era", "detail": "Frances Perkins, who had watched the fire from the street below as a young social worker, became Secretary of Labor under Franklin Roosevelt - the first woman in a presidential cabinet. She carried the lessons into the New Deal: the Fair Labor Standards Act and the national architecture of workplace protection." },
+        { "time": "1970", "title": "OSHA", "detail": "The Occupational Safety and Health Act federalized the principle the fire established: a safe workplace is a legal right, enforced by inspection, not a favor granted by an employer." }
+      ]
+    },
+    {
+      "id": "why-it-endures",
+      "type": "text",
+      "heading": "Why it is still taught",
+      "body": "Every working safety practice on a modern shop floor has an ancestor in this fire. The outward-opening door with the panic bar, the illuminated exit sign, the drill you ran in school, the rule against locked exits, the inspector with authority to enter unannounced. The Triangle fire did not invent the idea that workers deserve protection; it made the cost of the alternative impossible to unsee."
+    },
+    {
+      "id": "remember",
+      "type": "quote",
+      "quote": "It is not enough to be sorry. We must make it impossible for such a thing to happen again.",
+      "attribution": "Sentiment of the 1911 memorial meetings, as the reform movement formed"
+    }
+  ]
+}

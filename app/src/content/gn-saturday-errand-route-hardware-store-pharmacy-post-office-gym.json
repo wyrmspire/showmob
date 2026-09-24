@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-saturday-errand-route-hardware-store-pharmacy-post-office-gym",
+  "title": "Saturday errand route: hardware store, pharmacy, post office, gym",
+  "summary": "Four stops, one loop. Order them by closing time and bag logistics, not by distance.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "field",
+  "tags": ["grading-night", "errands", "planning"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "The loop, in the order that wastes nothing",
+      "body": "Four errands look interchangeable and are not. The post office closes earliest, the hardware store sells things you do not want to carry anywhere else, and the gym only makes sense last. Fictional Saturday, fictional town - the reasoning is the portable part."
+    },
+    {
+      "id": "route",
+      "type": "steps",
+      "heading": "The order",
+      "items": [
+        "Post office first - it closes at noon and the line doubles after 10 AM. Packages go out, nothing comes home.",
+        "Pharmacy second - prescriptions are the only errand that can stall (wait fifteen minutes), so absorb the wait while the day is young. Grab the shampoo and batteries here too.",
+        "Hardware store third - the heavy, dirty, sharp purchases. Straight from the cart to the trunk, carried nowhere else.",
+        "Gym last - arrives with every bag already in the car, and nothing melts in a hot trunk while you lift."
+      ]
+    },
+    {
+      "id": "map",
+      "type": "diagram",
+      "heading": "The loop as a shape",
+      "nodes": [
+        { "title": "Home", "detail": "Start with the packages and returns already in the car." },
+        { "title": "Post office", "detail": "Northeast. Outbound only - drop, mail, leave." },
+        { "title": "Pharmacy", "detail": "Southwest of the post office, on the way to everything else." },
+        { "title": "Hardware store", "detail": "South edge of town. Trunk fills here." },
+        { "title": "Gym", "detail": "Two blocks from home. The car unloads after, not before." }
+      ]
+    },
+    {
+      "id": "why-not-distance",
+      "type": "text",
+      "heading": "Why not just shortest-path it",
+      "body": "The shortest driving loop puts the hardware store second and the gym third, which means forty pounds of potting soil and a saw blade riding along to a workout, and a post office sprint at 11:50. Errand routing is mostly not about miles. It is about closing times, what rides in the car, and which stop can blow up your schedule. Miles are the tiebreaker."
+    },
+    {
+      "id": "wildcard",
+      "type": "note-callout",
+      "title": "The wildcard",
+      "body": "If the pharmacy text says the prescription is not ready, flip it with the hardware store and let the wait happen in parallel. Never sit in a pharmacy line with frozen groceries, though - that is next week's problem worth remembering.",
+      "tone": "note"
+    }
+  ]
+}

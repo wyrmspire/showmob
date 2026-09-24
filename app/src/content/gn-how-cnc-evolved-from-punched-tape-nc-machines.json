@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "slug": "gn-how-cnc-evolved-from-punched-tape-nc-machines",
+  "title": "How CNC evolved from punched-tape NC machines",
+  "summary": "From holes in paper tape to conversational controls at the spindle: each era of numerical control fixed the era before it.",
+  "contributor": "Claude",
+  "status": "preview",
+  "theme": "night",
+  "tags": ["grading-night", "cnc", "history", "manufacturing"],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "title": "The program moved from paper to memory",
+      "body": "CNC did not arrive as an invention so much as an accumulation. Each generation of numerical control kept the same promise - the machine follows a program instead of a handwheel - and fixed whatever the previous generation made painful. Walking the eras is the fastest way to understand why a modern control works the way it does."
+    },
+    {
+      "id": "eras",
+      "type": "timeline",
+      "heading": "The eras",
+      "items": [
+        { "time": "Late 1940s", "title": "The problem", "detail": "Complex aircraft parts needed curves no machinist could handwheel consistently. The Air Force funded work at MIT to make a milling machine follow recorded positions." },
+        { "time": "1952", "title": "First NC demonstration", "detail": "A modified Cincinnati Hydrotel mill follows instructions from punched paper tape - positions encoded as holes, read one block at a time. The machine obeys; it does not compute." },
+        { "time": "Late 1950s", "title": "APT and the programming bottleneck", "detail": "Writing tape by hand for every part was misery. APT, one of the first programming languages, lets a part be described geometrically and compiled into toolpaths. Programming becomes a profession." },
+        { "time": "1960s", "title": "NC spreads", "detail": "Tape readers and hardwired logic cabinets appear on shop floors. The machines are expensive, finicky, and transformative for batch aerospace work. A crashed tape reader is a stopped machine." },
+        { "time": "Early 1970s", "title": "The C arrives", "detail": "Minicomputers get cheap enough to dedicate one to a single machine. Computer numerical control stores programs in memory, edits them at the machine, and softens the hardwired logic into software." },
+        { "time": "Late 1970s-80s", "title": "Microprocessors and the shop floor", "detail": "Fanuc and others put the control on chips. Drip-feeding long programs over serial lines, CRT screens, and the first canned cycles. CNC leaves the aerospace plant for the job shop." },
+        { "time": "1990s", "title": "PC-based controls and CAM", "detail": "Desktop CAD/CAM writes the toolpath; the control becomes a PC in a cabinet. Surface machining of molds and dies - impossible on tape-era hardware - becomes routine." },
+        { "time": "2000s-today", "title": "Conversational and connected", "detail": "Controls talk back: probing cycles measure the part in the machine, tool monitoring watches the cut, and the program flows from the network instead of a tape or a floppy. The machinist's job shifts from crank-turning to process-owning." }
+      ]
+    },
+    {
+      "id": "what-changed",
+      "type": "compact-table",
+      "heading": "What each era actually fixed",
+      "columns": ["Era", "Pain it removed", "Pain it introduced"],
+      "rows": [
+        ["Punched tape NC", "Handwheeling complex contours", "Tape editing, tape storage, reader failures"],
+        ["APT and languages", "Hand-writing tape blocks", "A programming department between drawing and machine"],
+        ["Computer NC", "Hardwired inflexibility, no editing at the machine", "Software complexity, dependence on one computer"],
+        ["Microprocessor CNC", "Cost and size of the control", "Drip-feed bottlenecks, proprietary everything"],
+        ["PC-era and connected", "The island machine", "Version control of programs becomes a real problem"]
+      ]
+    },
+    {
+      "id": "through-line",
+      "type": "text",
+      "heading": "The through-line",
+      "body": "Notice what never changed: a block of instructions, executed in order, moving axes to positions. G-code today would be legible to a 1960s tape programmer. The revolutions were all around the program - how it is written, stored, simulated, measured against, and corrected - not in what the machine fundamentally does when it obeys."
+    },
+    {
+      "id": "why-it-matters",
+      "type": "quote",
+      "quote": "We did not replace the machinist. We moved the machinist's judgment from the crank to the program.",
+      "attribution": "Shop-floor saying, origin long lost"
+    }
+  ]
+}
