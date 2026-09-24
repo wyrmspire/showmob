@@ -2,69 +2,151 @@
   "schemaVersion": 1,
   "slug": "gn-live-oee-dashboard-for-a-3-machine-cnc-cell-example-data",
   "title": "Live OEE dashboard for a 3-machine CNC cell (example data)",
-  "summary": "Availability x performance x quality, per machine, right now. Example data from a fictional cell - the board is the point, the numbers are the illustration.",
+  "summary": "A fictional 18:00 snapshot with raw counts, reproducible OEE and an honest loss breakdown.",
   "contributor": "Claude",
   "status": "preview",
   "theme": "night",
-  "tags": ["grading-night", "oee", "manufacturing", "dashboard"],
+  "tags": [
+    "grading-night",
+    "oee",
+    "manufacturing",
+    "dashboard"
+  ],
   "updated": "2026-09-24",
   "blocks": [
     {
       "id": "start",
       "type": "hero",
       "title": "One number per machine, three numbers behind it",
-      "body": "OEE - overall equipment effectiveness - multiplies availability (was it running?), performance (was it running at rate?), and quality (was the output good?). A 3-machine cell, second shift, fictional data. The board answers 'how is the cell doing' in one glance and 'why' in one more."
+      "body": "Static example at 18:00 for a shift starting at 15:00. Each machine has 180 planned minutes and a fictional ideal cycle of 1 minute per part. The page does not update from machines. Counts and elapsed times below produce every displayed OEE figure."
     },
     {
       "id": "cell-oee",
       "type": "stat-strip",
       "items": [
-        { "value": "58.3%", "label": "Cell OEE, shift to date" },
-        { "value": "81%", "label": "Availability" },
-        { "value": "79%", "label": "Performance" },
-        { "value": "91%", "label": "Quality" }
+        {
+          "value": "63.9%",
+          "label": "Cell OEE: 345 good ideal minutes / 540 planned"
+        },
+        {
+          "value": "88.0%",
+          "label": "Availability: 475 / 540"
+        },
+        {
+          "value": "77.5%",
+          "label": "Performance: 368 / 475"
+        },
+        {
+          "value": "93.8%",
+          "label": "Quality: 345 / 368"
+        }
       ]
     },
     {
       "id": "machines",
       "type": "compact-table",
-      "heading": "Per machine, right now",
-      "columns": ["Machine", "State", "OEE", "Availability", "Performance", "Quality", "Current job"],
-      "rows": [
-        ["Lathe 1", "Running", "71%", "88%", "86%", "94%", "Part 4417, op 2"],
-        ["Mill 2", "Down 23 min", "44%", "61%", "80%", "98%", "Part 4421, op 1 - awaiting probe batteries"],
-        ["Mill 3", "Running, behind rate", "57%", "95%", "66%", "88%", "Part 4409, op 3"]
+      "heading": "Machine totals at 18:00",
+      "columns": [
+        "Machine / state",
+        "Run min",
+        "Total / good",
+        "A / P / Q",
+        "OEE"
       ],
-      "caption": "All figures fictional but internally consistent. Mill 3's quality drag is a chatter problem wearing inserts early."
+      "rows": [
+        [
+          "Lathe 1 · running",
+          "160",
+          "140 / 132",
+          "88.9 / 87.5 / 94.3%",
+          "73.3%"
+        ],
+        [
+          "Mill 2 · running",
+          "145",
+          "116 / 114",
+          "80.6 / 80.0 / 98.3%",
+          "63.3%"
+        ],
+        [
+          "Mill 3 · running",
+          "170",
+          "112 / 99",
+          "94.4 / 65.9 / 88.4%",
+          "55.0%"
+        ]
+      ],
+      "caption": "All data invented. Ratios are calculated from raw counts before rounding. Common 1 min/part ideal cycle permits this simple aggregation."
     },
     {
       "id": "math",
       "type": "text",
       "heading": "How each number is earned",
-      "body": "Availability is run time over planned time: Mill 2's 23-minute stop against a 100-minute window is 77 minutes over... no - availability counts all planned production time, and at 61% the board is saying the machine has been down or idle over a third of the shift. Performance is actual rate over ideal rate while running: Mill 3 runs nearly always (95%) but at two-thirds of its programmed feed, usually the operator derating for chatter. Quality is good parts over total parts: 91% cell-wide means nine of every hundred parts are scrap or rework. Multiply the three and 0.81 x 0.79 x 0.91 lands at 58.3% - a thoroughly normal, thoroughly improvable cell."
+      "body": "Availability = run minutes / planned minutes. Performance = ideal cycle × total parts / run minutes. Quality = first-pass good / total parts. Multiplying cancels the intermediate denominators: cell OEE = 345 / 540 = 63.888…%. Do not multiply rounded display percentages and expect the exact total. Different ideal cycles require a correctly weighted aggregation."
     },
     {
       "id": "losses",
       "type": "compact-table",
-      "heading": "Where the 42 points went",
-      "columns": ["Loss", "Points of OEE", "Owner", "Today's note"],
+      "heading": "Where the 195 lost ideal minutes went",
+      "columns": [
+        "Loss",
+        "Minutes",
+        "OEE points",
+        "Basis"
+      ],
       "rows": [
-        ["Mill 2 downtime", "~14 pts", "Maintenance", "Probe batteries - a $4 part holding a $40/hour spindle"],
-        ["Mill 3 slow running", "~9 pts", "Process engineering", "Chatter derate; insert and stick-out review tomorrow"],
-        ["Mill 3 scrap", "~7 pts", "Quality + process", "Same root cause as the derate - fix the chatter twice, count it once"],
-        ["Micro-stops, all machines", "~8 pts", "Operators", "Chip bins, door cycles, and the walk to the crib"],
-        ["Everything else", "~4 pts", "Various", "Startup checks, first-article waits"]
-      ]
+        [
+          "Stopped time",
+          "65",
+          "12.0",
+          "540 planned − 475 run"
+        ],
+        [
+          "Slow running / cycle loss",
+          "107",
+          "19.8",
+          "475 run − 368 ideal total-part minutes"
+        ],
+        [
+          "Quality loss",
+          "23",
+          "4.3",
+          "368 total − 345 good, at 1 min each"
+        ],
+        [
+          "Total loss",
+          "195",
+          "36.1",
+          "63.9% OEE + 36.1% loss = 100%"
+        ]
+      ],
+      "caption": "These three categories are mutually exclusive in this model. Asset-specific root-cause claims need event-level evidence."
     },
     {
       "id": "shift-trend",
       "type": "timeline",
       "heading": "The shift so far",
       "items": [
-        { "time": "3:00 PM", "title": "Shift start, all three up", "detail": "Cell OEE running 71% through the first hour - the best hour of the day, as usual." },
-        { "time": "4:20 PM", "title": "Mill 3 starts chattering", "detail": "Operator derates to 66% feed. Performance loss begins; scrap follows within the hour." },
-        { "time": "5:05 PM", "title": "Mill 2 down", "detail": "Probe batteries die mid-cycle. Maintenance dispatched; crib is out of stock; someone drives to the hardware store." },
-        { "time": "5:28 PM", "title": "Mill 2 back", "detail": "Twenty-three minutes lost to a consumable that costs less than the coffee." }
+        {
+          "time": "15:00",
+          "title": "Shift starts",
+          "detail": "180 planned minutes per machine through 18:00."
+        },
+        {
+          "time": "16:20",
+          "title": "Mill 3 operator reports chatter",
+          "detail": "Observed symptom; tool, setup and quality records need review before declaring a root cause."
+        },
+        {
+          "time": "17:05–17:28",
+          "title": "Mill 2 stops for a probe issue",
+          "detail": "23 minutes of its 35 stopped minutes; 12 minutes came from earlier recorded stops."
+        },
+        {
+          "time": "18:00",
+          "title": "Snapshot",
+          "detail": "All three machines running. Mill 3 has the largest loss of good ideal production minutes."
+        }
       ]
     },
     {
@@ -73,7 +155,7 @@
       "heading": "How to operate on this board",
       "items": [
         "Read the cell number, then immediately read the three factors - a low OEE with high availability is a different animal than one with low availability.",
-        "Find the reddest machine row and ask why before asking who.",
+        "Read the machine state and the raw counts; Mill 3’s largest category is cycle loss, which still needs investigation.",
         "Check the losses table against the story: does the biggest loss have an owner and a date?",
         "Act on one loss per shift. Boards that spawn five action items spawn none."
       ]
@@ -87,3 +169,5 @@
     }
   ]
 }
+
+

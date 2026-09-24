@@ -2,37 +2,40 @@
   "schemaVersion": 1,
   "slug": "gn-steps-to-jump-start-a-car-with-cables",
   "title": "Steps to jump-start a car with cables",
-  "summary": "The clamp order that keeps sparks away from the battery, written to be read in a parking lot.",
+  "summary": "Check both vehicle manuals, the battery condition and designated jump points before connecting cables.",
   "contributor": "Claude",
   "status": "preview",
   "theme": "workshop",
-  "tags": ["grading-night", "car", "procedure"],
+  "tags": [
+    "grading-night",
+    "car",
+    "procedure"
+  ],
   "updated": "2026-09-24",
   "blocks": [
     {
       "id": "start",
       "type": "hero",
       "title": "Jump-start in the right order",
-      "body": "You need a second car with a good battery and a set of jumper cables. Park the good car close, both engines off, parking brakes set. The whole job is ten minutes."
+      "body": "First read the jump-start instructions for both vehicles. Confirm a compatible 12 V negative-ground setup and that the donor may be used. Hybrids, EVs and some conventional vehicles have special restrictions and remote jump points. If either manual prohibits the procedure, use roadside assistance."
     },
     {
       "id": "hook-up",
       "type": "steps",
       "heading": "Connect the cables in this order",
       "items": [
-        "RED clamp to the DEAD battery's positive (+) terminal.",
-        "Other RED clamp to the GOOD battery's positive (+) terminal.",
-        "BLACK clamp to the GOOD battery's negative (-) terminal.",
-        "Last BLACK clamp to bare metal on the dead car's engine block or frame - not the dead battery's negative terminal.",
-        "Start the good car and let it run two minutes.",
-        "Try the dead car. If it cranks slow, wait two more minutes and try again."
+        "Stop if the battery is frozen, cracked, leaking or visibly damaged. Work away from flames; wear eye protection and keep cables clear of fans and belts.",
+        "For vehicles whose manuals specify this common order: with vehicles secured, not touching, and power states as instructed, connect red to the disabled vehicle’s designated positive point.",
+        "Connect the other red to donor positive, then black to donor negative.",
+        "Connect the last black to the disabled vehicle’s designated ground point, away from the battery. Do not guess a ground location.",
+        "Follow the manuals for donor operation, wait time and cranking limits. Stop if cables heat, abnormal sparking occurs or the vehicle fails to start within the permitted attempts."
       ]
     },
     {
       "id": "why-ground",
       "type": "note-callout",
       "title": "Why the last clamp goes to metal",
-      "body": "Batteries can vent hydrogen gas, and the last connection is the one that sparks. Putting that spark on the engine block keeps it away from the battery. Never let the red and black clamps touch each other while any clamp is on a battery.",
+      "body": "The designated final ground connection keeps a possible connection spark away from battery gases. Keep clamps from touching each other or unintended metal. The vehicle manual’s specified points and sequence govern.",
       "tone": "warning"
     },
     {
@@ -40,16 +43,34 @@
       "type": "steps",
       "heading": "Once it starts",
       "items": [
-        "Remove the clamps in reverse order: black off the engine block, black off the good battery, red off the good battery, red off the dead battery.",
-        "Keep the revived car running for at least 20 minutes, or drive it, so the alternator puts charge back.",
-        "If it dies again at the next stop, the battery or the charging system needs a shop - a jump is a ride home, not a repair."
+        "Disconnect in the prescribed reverse order while keeping clamps apart and clear of moving parts.",
+        "Arrange battery/charging-system evaluation and proper charging. A short drive is not proof of a fully recharged or healthy battery."
       ]
     },
     {
       "id": "no-start",
       "type": "text",
       "heading": "If it will not crank at all",
-      "body": "Check that the clamps are biting bare metal, not paint or corrosion, and that the cables are not dollar-store thin. Five more minutes of charging from the good car fixes most stubborn cases. Clicking but no crank usually means the battery is too far gone or the terminals are corroded - clean the posts and retry before calling a tow."
+      "body": "Repeated cranking is not a diagnosis. Stop at the manufacturer’s attempt limit and call assistance if the setup or failure is unclear. Do not improvise terminal repairs while connected to a donor."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources and further reading",
+      "items": [
+        {
+          "label": "Ford: locate the correct jump-start instructions",
+          "url": "https://www.ford.com/support/how-tos/more-vehicle-topics/batteries/how-do-i-jump-start-the-battery-in-my-vehicle/",
+          "detail": "Manufacturer guidance directs owners to the vehicle-specific roadside-emergency procedure."
+        },
+        {
+          "label": "Ford owner instructions: battery warnings",
+          "url": "https://www.fordservicecontent.com/Ford_Content/vdirsnet/OwnerManual/Home/Content?ProcUid=G1448656&Uid=G1774355&buildtype=web&countryCode=USA&div=f&languageCode=en&moidRef=G1405406&userMarket=USA&vFilteringEnabled=False&variantid=4696",
+          "detail": "Example manufacturer warnings; use the manual matching each actual vehicle."
+        }
+      ]
     }
   ]
 }
+
+

@@ -89,3 +89,41 @@ test('grading deep-links subjects via location.hash and hashchange', () => {
   const grading = read('../app/src/Grading.tsx');
   assert.match(grading, /location\.hash|hashchange/);
 });
+
+test('blind subject responses omit generator and render-axis answer keys', async () => {
+  const { cleanSubjects } = await import('../api/gn.ts');
+  const [subject] = cleanSubjects([{
+    id: 'GN-001',
+    title: 'Example',
+    bucket: 1,
+    density: 'light',
+    interaction: 'observe',
+    shape: 'decision',
+    register: 'calm',
+    lifetime: 'session',
+    generator: 'Answer key',
+    axis_note: 'Also an answer key',
+    ab_pair: null,
+    status: 'built',
+    artifact_slug: 'gn-example',
+  }]);
+  assert.equal(subject.generator, undefined);
+  assert.equal(subject.axis_note, undefined);
+  assert.equal(subject.id, 'GN-001');
+  assert.equal(subject.artifact_slug, 'gn-example');
+});
+
+test('behavior capture measures the artifact and ignores grading-form clicks', () => {
+  const grading = read('../app/src/Grading.tsx');
+  assert.match(grading, /readingSurfaceRef/);
+  assert.match(grading, /surface\?\.contains\(interaction\)/);
+  assert.match(grading, /viewportBottom - surfaceTop/);
+  assert.doesNotMatch(grading, /Math\.max\(doc\.scrollHeight/);
+});
+
+test('blind pair choices save subject ids behind visible Option labels', () => {
+  const grading = read('../app/src/Grading.tsx');
+  assert.match(grading, /value: subject\.id/);
+  assert.match(grading, /label: `Option \$\{index \+ 1\}`/);
+  assert.doesNotMatch(grading, /\{ value: open\.id, label: open\.id \}/);
+});

@@ -29,8 +29,6 @@ type Subject = {
   shape: string | null;
   register: string | null;
   lifetime: string | null;
-  generator: string | null;
-  axis_note: string | null;
   ab_pair: number | null;
   status: string;
   artifact_slug: string | null;
@@ -465,6 +463,7 @@ export function Grading({
   const [saveError, setSaveError] = useState("");
   const [justSaved, setJustSaved] = useState(false);
   const behaviorRef = useRef<BehaviorDraft>({ start: 0, maxDepth: 0, events: [] });
+  const readingSurfaceRef = useRef<HTMLDivElement | null>(null);
   const openIdRef = useRef<string | null>(null);
   // The toolbar wraps at phone width, so sticky pane labels read its real
   // height from --gn-bar instead of assuming the desktop 57px.
@@ -552,28 +551,45 @@ export function Grading({
     // eslint-disable-next-line react-hooks/exhaustive-deps -- reshuffle only when the subject changes, never when toggling compare
   }, [openId]);
 
-  // Behavior capture: time on page, deepest scroll, widget touches.
+  // Start a fresh behavior sample for each subject. Comparing the pair is part
+  // of the same reading session, so toggling compare must not reset the clock.
   useEffect(() => {
     if (!openId) return;
     behaviorRef.current = { start: Date.now(), maxDepth: 0, events: [] };
+  }, [openId]);
+
+  // Behavior capture is scoped to the artifact surface. Grading controls are
+  // deliberately excluded: a rating-button tap is not a widget interaction,
+  // and reaching the bottom of the form is not what "finished the page" means.
+  useEffect(() => {
+    if (!openId) return;
     const onScroll = () => {
-      const doc = document.documentElement;
+      const surface = readingSurfaceRef.current;
+      if (!surface) return;
+      const rect = surface.getBoundingClientRect();
+      const surfaceTop = rect.top + window.scrollY;
+      const viewportBottom = window.scrollY + window.innerHeight;
       const depth = Math.round(
-        ((window.scrollY + window.innerHeight) / Math.max(doc.scrollHeight, 1)) * 100,
+        ((viewportBottom - surfaceTop) / Math.max(rect.height, 1)) * 100,
       );
       const draft = behaviorRef.current;
-      draft.maxDepth = Math.max(draft.maxDepth, Math.min(100, depth));
+      draft.maxDepth = Math.max(draft.maxDepth, Math.max(0, Math.min(100, depth)));
     };
     const onClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null;
       if (!target) return;
+      const interaction = target.closest<HTMLElement>(
+        "button, a, input, select, textarea, summary, [role='button']",
+      );
+      const surface = readingSurfaceRef.current;
+      if (!interaction || !surface?.contains(interaction)) return;
       const draft = behaviorRef.current;
       if (draft.events.length >= 200) return;
-      const framed = target.closest?.(".block-frame [id], .block-frame");
+      const block = interaction.closest<HTMLElement>(".block-frame [id]");
       draft.events.push({
         t: Math.round((Date.now() - draft.start) / 1000),
-        tag: target.tagName.toLowerCase(),
-        block: framed?.id || null,
+        tag: interaction.tagName.toLowerCase(),
+        block: block?.id || null,
       });
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -583,7 +599,7 @@ export function Grading({
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("click", onClick, true);
     };
-  }, [openId]);
+  }, [openId, compare]);
 
   const gradesBySubject = useMemo(() => {
     const map = new Map<string, GradeRow[]>();
@@ -867,7 +883,7 @@ export function Grading({
           </div>
 
           {compare && twinArtifact && openArtifact ? (
-            <div className="gn-compare">
+            <div className="gn-compare" ref={readingSurfaceRef}>
               {pairOrder.map((subject, i) => {
                 const artifact = artifactForSubject(subject);
                 return artifact ? (
@@ -879,7 +895,10 @@ export function Grading({
               })}
             </div>
           ) : openArtifact ? (
-            <div className={`artifact theme-${openArtifact.theme}`}>
+            <div
+              className={`artifact theme-${openArtifact.theme}`}
+              ref={readingSurfaceRef}
+            >
               {renderBlocks(openArtifact)}
             </div>
           ) : (
@@ -976,16 +995,22 @@ export function Grading({
                       <ScoreScale label="Representation" value={panel.representation} onChange={set("representation")} />
                       <ScoreScale label="Interaction" value={panel.interaction} onChange={set("interaction")} />
                     </div>
-                    {twin && (
+                    {twin && compare && (
                       <ChoiceRow
-                        label={`Blind pair ${open.ab_pair}: which render wins?`}
+                        label={`Blind pair ${open.ab_pair}: which option wins?`}
                         value={panel.abChoice}
                         onChange={set("abChoice")}
-                        options={[
-                          { value: open.id, label: open.id },
-                          { value: twin.id, label: twin.id },
-                        ]}
+                        options={pairOrder.map((subject, index) => ({
+                          value: subject.id,
+                          label: `Option ${index + 1}`,
+                        }))}
                       />
+                    )}
+                    {twin && !compare && (
+                      <p className="gn-history">
+                        Use “Compare the pair side by side” above to record a
+                        blind winner. The option labels will match the panes.
+                      </p>
                     )}
                     <label className="gn-field">
                       <span>Widgets: did you use them, did they earn their place?</span>
