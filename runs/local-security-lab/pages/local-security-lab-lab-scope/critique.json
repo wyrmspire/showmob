@@ -1,0 +1,61 @@
+{
+  "stage": "critique",
+  "pageId": "local-security-lab-lab-scope",
+  "judgedAgainst": "page-sheet.json (not taste), plus the rendered page at 390px and desktop",
+  "questions": {
+    "taughtOrExplained": "Teaches. It has a real task, two activating analogies, a worked example, and two apply steps.",
+    "blocksFromPressureOrHabit": "Pressure. One hero for the task, no callout, and single-select where the sheet says pick one."
+  },
+  "findings": [
+    {
+      "id": "c1",
+      "outcome": "add example",
+      "layer": "generation",
+      "finding": "The worked example is not complete. The sheet's demonstrate step asks for one complete worked scope including its one failure to catch. The draft shows devices in one table and a failure in a different table, with example answers that don't match the same household.",
+      "change": "Threat-model answers rewritten for the same shared house as the worked scope. A second table, 'The same house: the rest of its scope', shows its failure to catch, where logs live, and how long they are kept."
+    },
+    {
+      "id": "c2",
+      "outcome": "add example",
+      "layer": "generation",
+      "finding": "The fill-in asks where the lab's logs will live and who can see them, but nothing on the page shows an answer to that. The reader is asked to do something they never saw done.",
+      "change": "Covered by c1: the worked scope now includes a logs line."
+    },
+    {
+      "id": "c3",
+      "outcome": "rewrite",
+      "layer": "generation",
+      "finding": "The check is not a transfer test. The roommate's laptop is already a row in the worked scope, so the exercise asks the reader to repeat the table.",
+      "change": "Replaced with a case the page never showed: the sensor accidentally logs a roommate's phone. What do you do?"
+    },
+    {
+      "id": "c4",
+      "outcome": "add example",
+      "layer": "representation (right choice, thin content)",
+      "finding": "The choice has four failures with no detail. The reader is picking blind: nothing says what each choice means for the lab.",
+      "change": "Each option now says what the lab will watch for it. That also carries the integrate step the sheet asks for."
+    },
+    {
+      "id": "c5",
+      "outcome": "reorder",
+      "layer": "representation",
+      "finding": "Found on the rendered page at phone width: the first fix added the failure and logs lines as extra rows in the four-column device table. On a 390px screen their answers sat in the off-screen 'Why' column, so the rows looked empty.",
+      "change": "Moved those decisions into their own two-column table right after the device table."
+    }
+  ],
+  "accepted": [
+    "task",
+    "already-do",
+    "consent",
+    "pick-failure (after c4)",
+    "your-scope",
+    "sources",
+    "next"
+  ],
+  "notChanged": [
+    {
+      "what": "The consent section is one long paragraph",
+      "why": "It's an argument with a caveat. Splitting it would separate the rule from its reason."
+    }
+  ]
+}
