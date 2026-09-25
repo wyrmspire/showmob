@@ -47,6 +47,17 @@ for (const file of readdirSync(contentDir)) {
 }
 const gnSlugs = [...pages.keys()].filter((s) => s.startsWith("gn-"));
 
+// --- planned slugs (step 2 of the resolver) ---
+const planSlugs = new Map(); // subject id -> planned slug
+try {
+  const doc = JSON.parse(
+    readFileSync(join("app", "src", "content-plans", "gn-plans.json"), "utf8"),
+  );
+  for (const plan of doc.plans ?? []) planSlugs.set(plan.id, plan.slug);
+} catch {
+  console.warn("! could not read app/src/content-plans/gn-plans.json; plan fallback skipped");
+}
+
 // --- subjects from the API (or a saved response) ---
 async function loadSubjects() {
   if (subjectsFile) {
@@ -87,9 +98,15 @@ const fixes = [];
 for (const s of subjects) {
   let slug = null;
   let via = null;
-  if (s.artifact_slug && pages.has(s.artifact_slug)) {
-    slug = s.artifact_slug;
-    via = "artifact_slug";
+  if (s.artifact_slug) {
+    if (pages.has(s.artifact_slug)) {
+      slug = s.artifact_slug;
+      via = "artifact_slug";
+    }
+    // Assigned slug with no page: never fall through to a guess.
+  } else if (planSlugs.has(s.id) && pages.has(planSlugs.get(s.id))) {
+    slug = planSlugs.get(s.id);
+    via = "plan";
   } else if (pages.has(`gn-${kebab(s.title)}`)) {
     slug = `gn-${kebab(s.title)}`;
     via = "title";

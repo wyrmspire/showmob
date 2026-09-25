@@ -71,10 +71,24 @@ const kebab = (title: string) =>
 
 const bySlug = new Map(allEntries.map((entry) => [entry.slug, entry]));
 
-/** The built page for a subject, once a generator has shipped it to the repo. */
+/**
+ * The built page for a subject, once a generator has shipped it to the repo.
+ *
+ * Resolution never substitutes a guess for an assigned slug. A/B pairs share
+ * one title, so the kebab guess lands on the pair twin whenever it runs for
+ * the wrong subject — that is how GN-073 was once graded on GN-072's page.
+ * An assigned artifact_slug is authoritative even when the page is not in
+ * this build yet (the grader shows "no built artifact" instead of the twin).
+ * Only a subject with no assigned slug falls back, first to its planned slug
+ * in content-plans, then to the kebab guess.
+ */
 function artifactForSubject(subject: Subject): Artifact | undefined {
   if (subject.artifact_slug) {
-    const hit = bySlug.get(subject.artifact_slug);
+    return bySlug.get(subject.artifact_slug);
+  }
+  const planned = planForSubject(subject.id);
+  if (planned) {
+    const hit = bySlug.get(planned.slug);
     if (hit) return hit;
   }
   return bySlug.get(`gn-${kebab(subject.title)}`);
