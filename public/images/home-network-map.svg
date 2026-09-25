@@ -1,34 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 900" role="img" aria-labelledby="title desc">
   <title id="title">A home network: inside, the router, and outside</title>
-  <desc id="desc">Four devices with private addresses sit inside one subnet, 192.168.1.0/24. The router has an inside address, 192.168.1.1, and an outside address, 203.0.113.7. The internet sees only the outside address.</desc>
+  <desc id="desc">Four devices with private addresses sit inside one subnet, 192.168.1.0/24. Every device reaches the outside through the router, which has an inside address, 192.168.1.1, and an outside address, 203.0.113.7. The internet sees only the outside address.</desc>
   <defs>
     <style>
-      .bg{fill:#111817}.zone{fill:#1d2926;stroke:#80cdb8;stroke-width:3}.dev{fill:#24332f;stroke:#80cdb8;stroke-width:2}.router{fill:#302820;stroke:#e9a96c;stroke-width:3}.net{fill:#1a2230;stroke:#8fb3e9;stroke-width:3}.line{fill:none;stroke:#80cdb8;stroke-width:4}.wan{fill:none;stroke:#8fb3e9;stroke-width:4}.label{fill:#f6f4ed;font:700 24px system-ui,sans-serif}.detail{fill:#b9c7c2;font:19px ui-monospace,Menlo,monospace}.small{fill:#e9a96c;font:700 17px system-ui,sans-serif;letter-spacing:.08em}.note{fill:#b9c7c2;font:18px system-ui,sans-serif}
+      .bg{fill:#111817}.zone{fill:#1d2926;stroke:#80cdb8;stroke-width:3}.dev{fill:#24332f;stroke:#80cdb8;stroke-width:2}.router{fill:#302820;stroke:#e9a96c;stroke-width:3}.net{fill:#1a2230;stroke:#8fb3e9;stroke-width:3}.line{fill:none;stroke:#80cdb8;stroke-width:5}.wan{fill:none;stroke:#8fb3e9;stroke-width:5}.direct{fill:none;stroke:#80cdb8;stroke-width:3;stroke-dasharray:7 6}.label{fill:#f6f4ed;font:700 30px system-ui,sans-serif}.detail{fill:#d2dcd8;font:26px ui-monospace,Menlo,monospace}.small{fill:#e9a96c;font:700 22px system-ui,sans-serif;letter-spacing:.08em}.note{fill:#c3cfca;font:24px system-ui,sans-serif}
     </style>
   </defs>
-  <rect class="bg" width="1200" height="700" rx="26"/>
-  <text class="small" x="70" y="70">INSIDE: ONE SUBNET</text>
-  <text class="small" x="880" y="70">OUTSIDE</text>
-  <rect class="zone" x="60" y="95" width="520" height="520" rx="22"/>
-  <text class="label" x="90" y="140">192.168.1.0/24</text>
-  <text class="note" x="90" y="170">Every address that starts 192.168.1.</text>
-  <rect class="dev" x="90" y="200" width="210" height="80" rx="14"/><text class="label" x="110" y="235">Laptop</text><text class="detail" x="110" y="264">192.168.1.23</text>
-  <rect class="dev" x="330" y="200" width="210" height="80" rx="14"/><text class="label" x="350" y="235">Phone</text><text class="detail" x="350" y="264">192.168.1.31</text>
-  <rect class="dev" x="90" y="320" width="210" height="80" rx="14"/><text class="label" x="110" y="355">Smart plug</text><text class="detail" x="110" y="384">192.168.1.40</text>
-  <rect class="dev" x="330" y="320" width="210" height="80" rx="14"/><text class="label" x="350" y="355">Pi</text><text class="detail" x="350" y="384">192.168.1.50</text>
-  <text class="note" x="90" y="450">Neighbors on one subnet can reach</text>
-  <text class="note" x="90" y="476">each other directly, without the router</text>
-  <text class="note" x="90" y="502">deciding anything.</text>
-  <path class="line" d="M300 240 H330 M195 280 V320 M435 280 V320 M300 360 H330"/>
-  <path class="line" d="M540 360 H640"/>
-  <rect class="router" x="640" y="250" width="200" height="220" rx="20"/>
-  <text class="label" x="690" y="295">Router</text>
-  <text class="note" x="662" y="330">inside</text><text class="detail" x="662" y="356">192.168.1.1</text>
-  <text class="note" x="662" y="400">outside</text><text class="detail" x="662" y="426">203.0.113.7</text>
-  <path class="wan" d="M840 360 H900"/>
-  <rect class="net" x="900" y="250" width="240" height="220" rx="60"/>
-  <text class="label" x="960" y="340">Internet</text>
-  <text class="note" x="925" y="378">Sees only</text><text class="detail" x="925" y="406">203.0.113.7</text>
-  <text class="note" x="640" y="530">Gateway, hands out addresses (DHCP),</text>
-  <text class="note" x="640" y="556">and shares one outside address (NAT).</text>
+  <rect class="bg" width="640" height="900" rx="26"/>
+  <text class="small" x="40" y="52">INSIDE: ONE SUBNET</text>
+  <rect class="zone" x="30" y="70" width="580" height="400" rx="22"/>
+  <text class="label" x="56" y="116">192.168.1.0/24</text>
+  <rect class="dev" x="56" y="140" width="250" height="100" rx="14"/><text class="label" x="76" y="182">Laptop</text><text class="detail" x="76" y="220">192.168.1.23</text>
+  <rect class="dev" x="334" y="140" width="250" height="100" rx="14"/><text class="label" x="354" y="182">Phone</text><text class="detail" x="354" y="220">192.168.1.31</text>
+  <rect class="dev" x="56" y="264" width="250" height="100" rx="14"/><text class="label" x="76" y="306">Smart plug</text><text class="detail" x="76" y="344">192.168.1.40</text>
+  <rect class="dev" x="334" y="264" width="250" height="100" rx="14"/><text class="label" x="354" y="306">Pi</text><text class="detail" x="354" y="344">192.168.1.50</text>
+  <path class="direct" d="M306 190 H334 M306 314 H334"/>
+  <path class="direct" d="M56 412 H106"/><text class="note" x="118" y="420">neighbors talk directly</text>
+  <path class="line" d="M320 470 V540"/>
+  <text class="note" x="338" y="515">all devices exit here</text>
+  <rect class="router" x="130" y="540" width="380" height="150" rx="20"/>
+  <text class="label" x="150" y="582">Router</text>
+  <text class="note" x="150" y="624">inside</text><text class="detail" x="250" y="624">192.168.1.1</text>
+  <text class="note" x="150" y="664">outside</text><text class="detail" x="250" y="664">203.0.113.7</text>
+  <path class="wan" d="M320 690 V750"/>
+  <text class="small" x="40" y="740">OUTSIDE</text>
+  <rect class="net" x="130" y="750" width="380" height="120" rx="60"/>
+  <text class="label" x="258" y="800">Internet</text>
+  <text class="note" x="178" y="842">sees only 203.0.113.7</text>
 </svg>

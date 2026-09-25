@@ -1,0 +1,72 @@
+{
+  "stage": "critique",
+  "pageId": "local-security-lab-network-basics",
+  "judgedAgainst": "page-sheet.json (not taste), plus a rendered look at the figure",
+  "questions": {
+    "taughtOrExplained": "Explains, which is this page's job. It starts from the reader's own machine and ends with them writing down their own network.",
+    "blocksFromPressureOrHabit": "Mostly pressure. The figure exists because the content is spatial. The trace uses the diagram block for what it's built for: a strict sequence."
+  },
+  "findings": [
+    {
+      "id": "n1",
+      "outcome": "request visual",
+      "layer": "representation (figure content)",
+      "finding": "Rendered, the figure is wrong. Connector lines run between devices, and only the Pi connects to the router. It reads as if the devices are wired to each other and only the Pi can reach the outside. That contradicts the page's main idea: every device reaches the outside through the router.",
+      "change": "Redrew the figure: no device-to-device wiring, the subnet as a whole connects to the router, and dashed lines mark direct neighbor traffic."
+    },
+    {
+      "id": "n1b",
+      "outcome": "request visual",
+      "layer": "representation (figure form)",
+      "finding": "Found on the rendered page at phone width: the figure was a wide 1200x700 landscape drawing. At 390px its labels and addresses shrank below readable size, so on a phone the page's main visual was decoration.",
+      "change": "Redrew it as a tall, portrait figure (inside on top, router in the middle, internet at the bottom) with larger text. Checked at 390px and desktop."
+    },
+    {
+      "id": "n2",
+      "outcome": "add example",
+      "layer": "generation",
+      "finding": "The sheet requires finding your subnet on all three systems. The macOS commands give the address and gateway but not the subnet. Windows shows a subnet mask (255.255.255.0), but the page and the fill-in use /24 and never connect the two. A Windows reader can't fill in 'My subnet'.",
+      "change": "Added the macOS subnet mask command, and a line that 255.255.255.0 is the same as /24."
+    },
+    {
+      "id": "n3",
+      "outcome": "add example",
+      "layer": "generation",
+      "finding": "The fill-in asks for the router's outside address 'from the router's status page', but the page never says how to reach that page.",
+      "change": "The placeholder and router-jobs row now say: open the gateway address in a browser and look for WAN or Internet."
+    },
+    {
+      "id": "n4",
+      "outcome": "cut",
+      "layer": "generation",
+      "finding": "The RFC 4864 source is about whether NAT protects you. The sheet explicitly excludes that topic from this page.",
+      "change": "Removed from sources."
+    },
+    {
+      "id": "n5",
+      "outcome": "rewrite",
+      "layer": "generation",
+      "finding": "Weak link to the series. 'Neighbors reach each other directly' is the reason the lab later gets its own network, but the page only says it inside the figure.",
+      "change": "The analogy now ends with that point: the lab will get its own floor."
+    }
+  ],
+  "accepted": [
+    "start",
+    "find-yours (after n2)",
+    "private-ranges",
+    "map (after n1, n1b)",
+    "analogy (after n5)",
+    "router-jobs",
+    "trace",
+    "check",
+    "yours (after n3)",
+    "sources (after n4)",
+    "next"
+  ],
+  "notChanged": [
+    {
+      "what": "The trace repeats the analogy's mail story",
+      "why": "One abstract picture and one concrete trace, from two angles. The sheet asks for one traced example; the analogy is not that."
+    }
+  ]
+}

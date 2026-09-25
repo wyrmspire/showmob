@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "slug": "local-security-lab-network-basics",
+  "title": "How your home network is wired",
+  "summary": "Find your own addresses, then see the model behind them: private addresses, one subnet, and a router with an inside and an outside.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "night",
+  "series": {
+    "id": "local-security-lab",
+    "title": "Defensive local security",
+    "order": 3
+  },
+  "tags": [
+    "security",
+    "networking",
+    "defensive-lab",
+    "ip-addresses",
+    "routers"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Defensive local security · foundations 2",
+      "title": "Your network has an inside, an outside, and one door",
+      "body": "Every device in your home has an address on the inside. The router is the door to the outside. Once you can draw that for your own house, every later step in the lab has a place to go."
+    },
+    {
+      "id": "find-yours",
+      "type": "code",
+      "heading": "Find your address and your router",
+      "language": "shell",
+      "code": "# Linux: your address with its subnet (the /24), then your router (the default gateway)\nip -4 addr show\nip route | grep default\n\n# macOS (Wi-Fi is usually en0)\nipconfig getifaddr en0\nipconfig getoption en0 subnet_mask\nroute -n get default | grep gateway\n\n# Windows PowerShell or Command Prompt\nipconfig\n# look for IPv4 Address, Subnet Mask, and Default Gateway\n\n# A subnet mask of 255.255.255.0 is the same thing as /24"
+    },
+    {
+      "id": "private-ranges",
+      "type": "compact-table",
+      "heading": "Addresses reserved for the inside",
+      "columns": [
+        "Range",
+        "What it looks like at home"
+      ],
+      "rows": [
+        [
+          "192.168.0.0 - 192.168.255.255",
+          "The most common: 192.168.0.x or 192.168.1.x"
+        ],
+        [
+          "10.0.0.0 - 10.255.255.255",
+          "Some routers and ISPs: 10.0.0.x"
+        ],
+        [
+          "172.16.0.0 - 172.31.255.255",
+          "Less common at home"
+        ]
+      ],
+      "caption": "These ranges are reserved for private networks and never used on the public internet. If your address starts with one of them, you are looking at the inside."
+    },
+    {
+      "id": "map",
+      "type": "image",
+      "heading": "One subnet, one router, one outside address",
+      "src": "/images/home-network-map.svg",
+      "alt": "Four devices with private addresses sit inside one subnet, 192.168.1.0/24, and can talk to each other directly. Every device reaches the outside through the router, which has an inside address, 192.168.1.1, and an outside address, 203.0.113.7. The internet sees only the outside address.",
+      "caption": "Example addresses. The outside address is from a range reserved for documentation; yours will differ."
+    },
+    {
+      "id": "analogy",
+      "type": "text",
+      "heading": "Think of an apartment building",
+      "body": "The building has one street address. That is your router's outside address, the only one the internet sees. Inside, every apartment has its own number. Those are the private addresses. A subnet is one floor: everyone on it can knock on each other's doors directly. The front desk is the router. Mail going out gets the building's street address on it, and when replies come back, the desk remembers which apartment asked and delivers it there. That last part matters for the lab: anything on your floor can reach your devices without passing the desk. That is why the lab later gets a floor of its own."
+    },
+    {
+      "id": "router-jobs",
+      "type": "compact-table",
+      "heading": "Three jobs your router does",
+      "columns": [
+        "Job",
+        "What it does",
+        "Where you see it"
+      ],
+      "rows": [
+        [
+          "Gateway",
+          "Forwards anything not on your subnet to the outside",
+          "The Default Gateway in the commands above"
+        ],
+        [
+          "DHCP",
+          "Hands each device its address when it joins",
+          "The router's list of connected devices"
+        ],
+        [
+          "NAT",
+          "Rewrites outgoing traffic to use the one outside address, and maps replies back",
+          "Open the gateway address in a browser (for example http://192.168.1.1) and look for WAN or Internet"
+        ]
+      ]
+    },
+    {
+      "id": "trace",
+      "type": "diagram",
+      "heading": "One request, out and back",
+      "nodes": [
+        {
+          "title": "Laptop sends",
+          "detail": "From 192.168.1.23 to a server on the internet."
+        },
+        {
+          "title": "Not on my subnet",
+          "detail": "The laptop hands it to the gateway, 192.168.1.1."
+        },
+        {
+          "title": "Router rewrites",
+          "detail": "Swaps the sender to 203.0.113.7 and remembers the laptop asked."
+        },
+        {
+          "title": "Server replies",
+          "detail": "To 203.0.113.7, the only address it knows."
+        },
+        {
+          "title": "Router maps back",
+          "detail": "Looks up who asked and forwards the reply to 192.168.1.23."
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "type": "exercise",
+      "heading": "Which one is a neighbor?",
+      "prompt": "Your laptop is 192.168.1.23 on a /24 subnet. Which address is on the same local network?",
+      "options": [
+        "192.168.1.200",
+        "192.168.2.23",
+        "10.0.0.23"
+      ],
+      "answer": 0,
+      "explanation": "A /24 subnet means the first three numbers must match. 192.168.1.200 shares 192.168.1, so it's a neighbor. The other two are on different networks and would go through the router."
+    },
+    {
+      "id": "yours",
+      "type": "fill-in",
+      "heading": "Your network",
+      "items": [
+        {
+          "label": "My device's address",
+          "placeholder": "192.168.1.23"
+        },
+        {
+          "label": "My subnet",
+          "placeholder": "192.168.1.0/24 (mask 255.255.255.0)"
+        },
+        {
+          "label": "My router's inside address (gateway)",
+          "placeholder": "192.168.1.1"
+        },
+        {
+          "label": "My router's outside address",
+          "placeholder": "open the gateway address in a browser, look for WAN"
+        }
+      ]
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Standards behind this page",
+      "items": [
+        {
+          "label": "RFC 1918: private address ranges",
+          "detail": "Defines the three ranges reserved for private networks.",
+          "url": "https://www.rfc-editor.org/rfc/rfc1918.html"
+        },
+        {
+          "label": "RFC 5737: documentation addresses",
+          "detail": "Why the example outside address is 203.0.113.7.",
+          "url": "https://www.rfc-editor.org/rfc/rfc5737.html"
+        }
+      ]
+    },
+    {
+      "id": "next",
+      "type": "cta-band",
+      "heading": "Next: what is listening on your machine",
+      "body": "You know where each device lives. The next page looks inside one of them and finds every service waiting for a connection."
+    }
+  ]
+}
