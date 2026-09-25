@@ -5,6 +5,7 @@ import { type Block } from "../schema";
 export function BlockView({ block }: { block: Block }) {
   const [id, setId] = useState<number | null>(null);
   const [checked, setChecked] = useState<number[]>([]);
+  const [picked, setPicked] = useState<number | null>(null);
   if (block.type === "hero")
     return (
       <section className="hero block" id={block.id}>
@@ -98,6 +99,30 @@ export function BlockView({ block }: { block: Block }) {
         <p className="session-note">
           This checklist resets when the page closes.
         </p>
+      </section>
+    );
+  if (block.type === "choice")
+    return (
+      <section className="block" id={block.id}>
+        <h2>{block.heading}</h2>
+        <div className="choice" role="radiogroup" aria-label={block.heading}>
+          {block.items.map((x, i) => (
+            <button
+              role="radio"
+              aria-checked={picked === i}
+              className={picked === i ? "done" : ""}
+              onClick={() => setPicked((c) => (c === i ? null : i))}
+              key={x.label}
+            >
+              <span aria-hidden>{picked === i ? "◉" : "○"}</span>
+              <span>
+                <strong>{x.label}</strong>
+                {x.detail && <small>{x.detail}</small>}
+              </span>
+            </button>
+          ))}
+        </div>
+        <p className="session-note">This choice resets when the page closes.</p>
       </section>
     );
   if (block.type === "timeline")

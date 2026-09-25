@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "slug": "showmob-block-gallery",
   "title": "Block gallery",
-  "summary": "Vocabulary sheet for all 19 Showmob blocks, plus a few starter recipes as grammar suggestions\u2014not required slots.",
+  "summary": "Vocabulary sheet for all 19 Showmob blocks, plus a few starter recipes as grammar suggestions—not required slots.",
   "contributor": "Showmob",
   "status": "published",
   "theme": "workshop",
@@ -18,7 +18,7 @@
       "type": "hero",
       "eyebrow": "Content language",
       "title": "Block gallery",
-      "body": "This page is the vocabulary-and-grammar sheet for Showmob. Layer one shows every block type once. Layer two shows a few starter recipes\u2014named combinations that do a job. Recipes are suggestions under gradient judgment: choose among them and drop empty blocks. They are never required slots to fill."
+      "body": "This page is the vocabulary-and-grammar sheet for Showmob. Layer one shows every block type once. Layer two shows a few starter recipes—named combinations that do a job. Recipes are suggestions under gradient judgment: choose among them and drop empty blocks. They are never required slots to fill."
     },
     {
       "id": "intro-note",
@@ -30,12 +30,12 @@
     {
       "id": "vocab-divider",
       "type": "divider",
-      "label": "Vocabulary \u2014 one of each type"
+      "label": "Vocabulary — one of each type"
     },
     {
       "id": "spec-hero-note",
       "type": "text",
-      "heading": "hero \u2014 page orientation",
+      "heading": "hero — page orientation",
       "body": "Recipe: open with one hero. Short title, clear body, optional eyebrow. Prefer a single hero per page."
     },
     {
@@ -48,7 +48,7 @@
     {
       "id": "spec-text-note",
       "type": "note-callout",
-      "title": "text \u2014 one explanation",
+      "title": "text — one explanation",
       "body": "Recipe: one heading, one body. Split long prose into multiple text blocks instead of stuffing paragraphs.",
       "tone": "note"
     },
@@ -56,12 +56,12 @@
       "id": "spec-text",
       "type": "text",
       "heading": "Name the reference",
-      "body": "A text block holds one idea. The renderer treats the body as a single paragraph of ordinary text\u2014no Markdown parsing."
+      "body": "A text block holds one idea. The renderer treats the body as a single paragraph of ordinary text—no Markdown parsing."
     },
     {
       "id": "spec-stat-note",
       "type": "text",
-      "heading": "stat-strip \u2014 sourced figures",
+      "heading": "stat-strip — sourced figures",
       "body": "Recipe: a few labeled values the reader should remember. Format numbers as strings; labels carry units and scope."
     },
     {
@@ -85,7 +85,7 @@
     {
       "id": "spec-steps-note",
       "type": "text",
-      "heading": "steps \u2014 ordered sequence",
+      "heading": "steps — ordered sequence",
       "body": "Recipe: numbered list when order matters. Keep each step one action."
     },
     {
@@ -101,7 +101,7 @@
     {
       "id": "spec-comparison-note",
       "type": "text",
-      "heading": "comparison \u2014 alternatives side by side",
+      "heading": "comparison — alternatives side by side",
       "body": "Recipe: two or more columns with name + detail. Keep details comparable."
     },
     {
@@ -122,7 +122,7 @@
     {
       "id": "spec-quote-note",
       "type": "text",
-      "heading": "quote \u2014 attributable line",
+      "heading": "quote — attributable line",
       "body": "Recipe: short quote plus attribution. Do not invent a source."
     },
     {
@@ -134,7 +134,7 @@
     {
       "id": "spec-note-callout-note",
       "type": "text",
-      "heading": "note-callout \u2014 limit, tip, or warning",
+      "heading": "note-callout — limit, tip, or warning",
       "body": "Recipe: title + body; optional tone note | positive | warning. Say the meaning in words, not only color."
     },
     {
@@ -147,7 +147,7 @@
     {
       "id": "spec-cta-note",
       "type": "text",
-      "heading": "cta-band \u2014 closing action as text",
+      "heading": "cta-band — closing action as text",
       "body": "Recipe: heading + body that name what to do next. Not a button or link."
     },
     {
@@ -159,7 +159,7 @@
     {
       "id": "spec-checklist-note",
       "type": "text",
-      "heading": "checklist \u2014 temporary self-check",
+      "heading": "checklist — temporary self-check",
       "body": "Recipe: labels the reader can toggle locally. Selections are not saved evidence of completion."
     },
     {
@@ -179,8 +179,30 @@
     {
       "id": "spec-timeline-note",
       "type": "text",
-      "heading": "timeline \u2014 chronology",
+      "heading": "timeline — chronology",
       "body": "Recipe: time, title, detail in authored order. The renderer does not sort dates."
+    },
+    {
+      "id": "spec-choice-note",
+      "type": "note-callout",
+      "title": "choice",
+      "body": "A radio group for \"pick one\" copy: one selection replaces the last, tapping the selection clears it. Session-local, resets on unmount.",
+      "tone": "note"
+    },
+    {
+      "id": "spec-choice",
+      "type": "choice",
+      "heading": "Pick exactly one",
+      "items": [
+        {
+          "label": "First option",
+          "detail": "Selecting this replaces any other pick."
+        },
+        {
+          "label": "Second option",
+          "detail": "Tap again to clear your pick."
+        }
+      ]
     },
     {
       "id": "spec-timeline",
@@ -202,7 +224,7 @@
     {
       "id": "spec-code-note",
       "type": "text",
-      "heading": "code \u2014 literal data to read",
+      "heading": "code — literal data to read",
       "body": "Recipe: heading + code string. Optional language is retained but not highlighted. Nothing executes."
     },
     {
@@ -215,7 +237,7 @@
     {
       "id": "spec-embed-note",
       "type": "text",
-      "heading": "embed \u2014 source / reference card",
+      "heading": "embed — source / reference card",
       "body": "Recipe: heading, source name, caption; optional absolute HTTPS URL. Renders a card, not an iframe."
     },
     {
@@ -229,7 +251,7 @@
     {
       "id": "spec-image-note",
       "type": "text",
-      "heading": "image \u2014 authored visual",
+      "heading": "image — authored visual",
       "body": "Recipe: src (repo path or HTTPS), alt, caption; optional heading. Prefer repository assets."
     },
     {
@@ -243,7 +265,7 @@
     {
       "id": "spec-resource-note",
       "type": "text",
-      "heading": "resource-list \u2014 curated next steps",
+      "heading": "resource-list — curated next steps",
       "body": "Recipe: label, detail, absolute HTTPS url per item."
     },
     {
@@ -258,7 +280,7 @@
         },
         {
           "label": "Product brief",
-          "detail": "Gallery \u2192 story \u2192 refs build order.",
+          "detail": "Gallery → story → refs build order.",
           "url": "https://github.com/wyrmspire/showmob/blob/main/docs/product-brief.md"
         }
       ]
@@ -266,7 +288,7 @@
     {
       "id": "spec-exercise-note",
       "type": "text",
-      "heading": "exercise \u2014 check understanding",
+      "heading": "exercise — check understanding",
       "body": "Recipe: prompt, options, zero-based answer index, explanation. Feedback strings are optional."
     },
     {
@@ -284,7 +306,7 @@
     {
       "id": "spec-table-note",
       "type": "text",
-      "heading": "compact-table \u2014 small grid",
+      "heading": "compact-table — small grid",
       "body": "Recipe: columns + rows of strings; optional caption. Keep cells short."
     },
     {
@@ -310,7 +332,7 @@
     {
       "id": "spec-diagram-note",
       "type": "text",
-      "heading": "diagram \u2014 process nodes",
+      "heading": "diagram — process nodes",
       "body": "Recipe: ordered nodes with title + detail. Good for flows, not free-form graphs."
     },
     {
@@ -335,7 +357,7 @@
     {
       "id": "spec-slideshow-note",
       "type": "text",
-      "heading": "slideshow \u2014 paced slides in-page",
+      "heading": "slideshow — paced slides in-page",
       "body": "Recipe: heading + slides with title and body. Browse remains the whole page; present inside the block."
     },
     {
@@ -356,7 +378,7 @@
     {
       "id": "spec-divider-note",
       "type": "text",
-      "heading": "divider \u2014 section break",
+      "heading": "divider — section break",
       "body": "Recipe: optional label. Use to name major sections without another heading block."
     },
     {
@@ -368,7 +390,7 @@
       "id": "recipes-intro",
       "type": "text",
       "heading": "Starter recipes (suggestions)",
-      "body": "Named combinations that do a job. Re-using block types here is expected. Gradient judgment picks among recipes and drops what the content does not need\u2014never treat these as mandatory section lists."
+      "body": "Named combinations that do a job. Re-using block types here is expected. Gradient judgment picks among recipes and drops what the content does not need—never treat these as mandatory section lists."
     },
     {
       "id": "recipe-explain-divider",
