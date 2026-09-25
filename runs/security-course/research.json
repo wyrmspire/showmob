@@ -1,0 +1,981 @@
+{
+  "schemaVersion": 1,
+  "seriesId": "security-course",
+  "subject": {
+    "title": "Defensive security practice on systems you own",
+    "framing": "This subject teaches people how to understand, reduce, and observe risk on devices, accounts, and networks they control or are explicitly authorized to protect. It is oriented toward consent-based practice: inventory, boundaries, least privilege, recovery readiness, and safe observation. It is not an offense cookbook. The existing Showmob page defensive-local-security-lab already proved the topic is teachable as practice, but it compressed consent, topology, listener inventory, sensors, and honeypot gates into a single page. Research here surfaces why that compression was forced: the subject has many natural seams (identity, device surface, network zones, observation, decoys, cloud accounts, travel/shared networks, incident recovery) that a blind scope pass should be able to find without being told a page count."
+  },
+  "audienceAssumptions": {
+    "whoArrives": [
+      "Curious home users who want a clearer picture of their own network and accounts",
+      "Hobbyists with a spare Pi, travel router, or old laptop who want a reversible lab",
+      "Small-team operators (family IT, indie shop, volunteer org) without a security team",
+      "Developers who ship software and need defensive instincts for the systems they run",
+      "Privacy-conscious individuals who care more about exposure and retention than red-team glory"
+    ],
+    "likelyAlreadyKnow": [
+      "Basic OS use (install apps, change Wi-Fi, find settings)",
+      "That passwords and updates matter, even if practice is inconsistent",
+      "Rough idea that home routers, phones, and cloud accounts are connected",
+      "How to open a terminal or Settings and follow a short checklist"
+    ],
+    "likelyDoNotKnow": [
+      "Difference between a listening service, an open port, and an exposed path",
+      "Why network zones and outbound deny matter before any decoy",
+      "How consent and authorization bound what monitoring is legal and ethical",
+      "What 'recovery ready' means beyond having a password manager",
+      "How standards frameworks (CSF, CIS, OWASP) map to home-scale practice"
+    ],
+    "readingStance": "Willing to do things on owned gear; not looking for unauthorized access methods; may be intimidated by jargon and by fear of breaking their network."
+  },
+  "deliberatelyExcluded": [
+    {
+      "item": "Exploit development, weaponization, or PoC attack procedures",
+      "why": "Product and safety policy: teach defensive understanding and consent-based practice only."
+    },
+    {
+      "item": "Unauthorized scanning, interception, or access of others' devices or traffic",
+      "why": "Consent is the first control; shared networks require a boundary the learner controls."
+    },
+    {
+      "item": "Offense-oriented CTF playbooks framed as 'how to break in'",
+      "why": "Wrong job for this series; would invert the teaching goal."
+    },
+    {
+      "item": "Malware authorship, keyloggers, stealth persistence how-tos",
+      "why": "Dual-use and surveillance-theft adjacent; out of scope even as fiction."
+    },
+    {
+      "item": "Rewriting or replacing the existing defensive-local-security-lab page in this research stage",
+      "why": "Research feeds Phase 2 scope; it does not rewrite shipped content."
+    },
+    {
+      "item": "Prescribing page count, series order, or sheet mode assignments",
+      "why": "Page count and grouping are scope's job after topic map; research must not smuggle an outline."
+    }
+  ],
+  "perspectives": [
+    {
+      "id": "home-lab-defender",
+      "name": "Home lab defender",
+      "caresAbout": [
+        "Reversible setup on spare hardware",
+        "Seeing listeners and zones without breaking family Wi-Fi",
+        "Clear consent rules when roommates share upstream internet"
+      ],
+      "misses": [
+        "Cloud account takeover paths that never touch the home lab",
+        "Travel and hotel-network failure modes",
+        "Organizational policy and evidence retention expectations"
+      ]
+    },
+    {
+      "id": "small-team-operator",
+      "name": "Small-team operator",
+      "caresAbout": [
+        "Shared accounts vs individual accounts",
+        "Offboarding and device return",
+        "Cheap controls that survive busy weeks"
+      ],
+      "misses": [
+        "Deep packet craft and sensor tuning",
+        "Formal compliance mapping unless a contract forces it",
+        "Personal privacy tradeoffs that differ from business risk"
+      ]
+    },
+    {
+      "id": "privacy-conscious-individual",
+      "name": "Privacy-conscious individual",
+      "caresAbout": [
+        "Data minimization and retention",
+        "Who can see location, messages, and backups",
+        "Avoiding tools that become surveillance of themselves or household members"
+      ],
+      "misses": [
+        "Detection value of limited, consented logs",
+        "Recovery after lockout when privacy hardening removes fallback paths",
+        "That isolation and observability are complementary, not opposites"
+      ]
+    },
+    {
+      "id": "incident-responder-lite",
+      "name": "Incident responder (home / small scale)",
+      "caresAbout": [
+        "What changed, when, and what to preserve",
+        "Containment without destroying evidence they need for recovery",
+        "Knowing who to call (bank, cloud provider, device maker) and in what order"
+      ],
+      "misses": [
+        "Prevention basics that would have shrunk the blast radius",
+        "Steady-state hygiene that never feels like an 'incident'"
+      ]
+    },
+    {
+      "id": "standards-compliance",
+      "name": "Standards / compliance-aware reader",
+      "caresAbout": [
+        "Mapping practice to named outcomes (identify, protect, detect, respond, recover)",
+        "Checklists that auditors or insurers recognize at a high level",
+        "Documented baselines and change records"
+      ],
+      "misses": [
+        "That home labs need reversible experiments more than binder-ready policy",
+        "Overfitting enterprise controls onto a single household"
+      ]
+    },
+    {
+      "id": "developer-operator",
+      "name": "Developer who also operates what they ship",
+      "caresAbout": [
+        "Secrets in repos and CI",
+        "Exposed admin panels and default credentials on side projects",
+        "Same mental model for laptop, VPS, and home server"
+      ],
+      "misses": [
+        "Physical and household shared-network consent issues",
+        "Family-device and IoT inventory as first-class risk"
+      ]
+    }
+  ],
+  "concepts": [
+    {
+      "id": "consent-boundary",
+      "name": "Consent and authorization boundary",
+      "briefMeaning": "You only observe, configure, or experiment on equipment and traffic you own or are explicitly authorized to touch. On shared networks, put the lab behind a router you control.",
+      "relatedIds": ["network-zones", "observation-ethics", "shared-network-edge"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "asset-inventory",
+      "name": "Asset and identity inventory",
+      "briefMeaning": "A dated list of devices, accounts, admins, and 'what this is for' — the baseline everything else compares against.",
+      "relatedIds": ["listener-inventory", "account-hygiene", "change-baseline"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "listener-inventory",
+      "name": "Listening-service inventory",
+      "briefMeaning": "On owned hosts, list processes bound to network sockets; distinguish loopback-only from LAN- or WAN-reachable; document why each exists.",
+      "relatedIds": ["asset-inventory", "attack-surface", "least-privilege"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "attack-surface",
+      "name": "Attack surface (defensive view)",
+      "briefMeaning": "The set of ways an unauthorized party could interact with your systems: exposed services, weak identities, physical access, supply-chain defaults, recovery paths.",
+      "relatedIds": ["listener-inventory", "identity-authentication", "network-zones"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "network-zones",
+      "name": "Network zones and segmentation",
+      "briefMeaning": "Separate trust levels (trusted devices, guest, IoT, lab/decoy) with routing and firewall rules you can verify from both sides — not just a 'guest SSID' label.",
+      "relatedIds": ["consent-boundary", "outbound-deny", "topology-verification"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "topology-verification",
+      "name": "Topology verification",
+      "briefMeaning": "Prove the boundary works: lab cannot reach protected LANs; decoy cannot phone home; admin paths are intentional.",
+      "relatedIds": ["network-zones", "outbound-deny", "change-baseline"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "identity-authentication",
+      "name": "Identity and authentication",
+      "briefMeaning": "Who can act as you: passwords, passkeys, MFA, session cookies, device trust, recovery codes — and how takeover usually happens through recovery or reuse.",
+      "relatedIds": ["account-hygiene", "session-lifecycle", "recovery-readiness"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "account-hygiene",
+      "name": "Account hygiene",
+      "briefMeaning": "Unique credentials, MFA where available, remove unused admins and OAuth grants, prefer passkeys or app-based MFA over SMS when practical.",
+      "relatedIds": ["identity-authentication", "cloud-takeover-recovery", "secrets-handling"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "session-lifecycle",
+      "name": "Session and device trust lifecycle",
+      "briefMeaning": "Signed-in sessions, remembered devices, and API tokens outlive password changes unless you revoke them; inventory and kill stale trust.",
+      "relatedIds": ["identity-authentication", "cloud-takeover-recovery"],
+      "foundationVsAdvanced": "advanced"
+    },
+    {
+      "id": "least-privilege",
+      "name": "Least privilege and role separation",
+      "briefMeaning": "Daily work uses non-admin accounts; services run with minimal rights; shared 'family admin' passwords are a single point of failure.",
+      "relatedIds": ["listener-inventory", "account-hygiene", "secrets-handling"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "patch-and-firmware",
+      "name": "Patch, firmware, and default credentials",
+      "briefMeaning": "Routers, cameras, NAS, and IoT often ship with known defaults and rare updates; update cadence and credential change are first-line protect controls.",
+      "relatedIds": ["asset-inventory", "attack-surface", "iot-edge"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "secrets-handling",
+      "name": "Secrets handling",
+      "briefMeaning": "Passwords, API keys, backup codes, and SSH keys must not live in chat, screenshots, or public repos; rotate when exposed.",
+      "relatedIds": ["account-hygiene", "developer-operator-surface", "recovery-readiness"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "backup-and-integrity",
+      "name": "Backup, integrity, and restore practice",
+      "briefMeaning": "Backups that have never been restored are theory; ransomware and lockout make restore drills a protect-and-recover control.",
+      "relatedIds": ["recovery-readiness", "ransomware-pattern", "change-baseline"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "passive-observation",
+      "name": "Passive observation and metadata-first sensing",
+      "briefMeaning": "On authorized segments, collect connection and protocol metadata before deep content capture; limit retention; know what the sensor cannot see (encrypted payloads).",
+      "relatedIds": ["consent-boundary", "detection-baselines", "sensor-choice"],
+      "foundationVsAdvanced": "advanced"
+    },
+    {
+      "id": "sensor-choice",
+      "name": "Sensor and decoy choice",
+      "briefMeaning": "Pick the smallest useful tool: rich connection logs vs alert-oriented IDS vs lightweight decoy services — match job to tool, one at a time.",
+      "relatedIds": ["passive-observation", "honeypot-containment", "detection-baselines"],
+      "foundationVsAdvanced": "advanced"
+    },
+    {
+      "id": "detection-baselines",
+      "name": "Baselines and anomaly readiness",
+      "briefMeaning": "Without a dated 'normal', every alert is noise; baselines cover listeners, zones, and typical outbound destinations for owned devices.",
+      "relatedIds": ["listener-inventory", "passive-observation", "change-baseline"],
+      "foundationVsAdvanced": "advanced"
+    },
+    {
+      "id": "change-baseline",
+      "name": "Change as evidence",
+      "briefMeaning": "Security practice is comparative: what differed after an update, a new device, or a suspected compromise.",
+      "relatedIds": ["asset-inventory", "detection-baselines", "incident-containment"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "honeypot-containment",
+      "name": "Decoy / honeypot containment",
+      "briefMeaning": "A decoy is only educational if isolated, outbound-denied, free of real secrets, LAN-first, and paired with defined retention and review.",
+      "relatedIds": ["network-zones", "outbound-deny", "sensor-choice", "consent-boundary"],
+      "foundationVsAdvanced": "advanced"
+    },
+    {
+      "id": "outbound-deny",
+      "name": "Outbound deny by default for untrusted roles",
+      "briefMeaning": "Untrusted or decoy systems must not become launch points; verify egress blocks, not just inbound filters.",
+      "relatedIds": ["honeypot-containment", "topology-verification", "network-zones"],
+      "foundationVsAdvanced": "advanced"
+    },
+    {
+      "id": "observation-ethics",
+      "name": "Observation ethics and retention",
+      "briefMeaning": "Logs can become household surveillance; define purpose, who can read, how long kept, and when deleted — especially on shared family networks.",
+      "relatedIds": ["consent-boundary", "passive-observation", "privacy-vs-detection"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "privacy-vs-detection",
+      "name": "Privacy vs detection tension",
+      "briefMeaning": "More visibility can improve detection and also increase sensitive retention; resolve with consent, minimization, and zone design — not by ignoring either side.",
+      "relatedIds": ["observation-ethics", "passive-observation", "network-zones"],
+      "foundationVsAdvanced": "advanced"
+    },
+    {
+      "id": "shared-network-edge",
+      "name": "Shared and untrusted upstream networks",
+      "briefMeaning": "Roommates, cafes, hotels, and family Wi-Fi change what you can safely observe and what you must assume about the path to the internet.",
+      "relatedIds": ["consent-boundary", "travel-hardening", "network-zones"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "travel-hardening",
+      "name": "Travel laptop / phone hardening",
+      "briefMeaning": "Assume hostile or curious networks; prefer full-disk encryption, screen lock, VPN only where trusted, and avoid admin tasks on untrusted Wi-Fi.",
+      "relatedIds": ["shared-network-edge", "identity-authentication", "backup-and-integrity"],
+      "foundationVsAdvanced": "advanced"
+    },
+    {
+      "id": "iot-edge",
+      "name": "IoT and always-on edge devices",
+      "briefMeaning": "Cameras, speakers, printers, and smart plugs expand surface with weak update stories; zone them away from trusted workstations when possible.",
+      "relatedIds": ["patch-and-firmware", "network-zones", "asset-inventory"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "cloud-takeover-recovery",
+      "name": "Cloud account takeover recovery",
+      "briefMeaning": "Recovery order matters: regain auth, revoke sessions and apps, rotate secrets, check forwarding rules and MFA changes, then restore from known-good state.",
+      "relatedIds": ["session-lifecycle", "account-hygiene", "incident-containment", "recovery-readiness"],
+      "foundationVsAdvanced": "advanced"
+    },
+    {
+      "id": "incident-containment",
+      "name": "Containment without self-sabotage",
+      "briefMeaning": "Isolate first when compromise is plausible; avoid panic reimaging that destroys the only evidence of what was taken; document actions.",
+      "relatedIds": ["change-baseline", "cloud-takeover-recovery", "recovery-readiness"],
+      "foundationVsAdvanced": "advanced"
+    },
+    {
+      "id": "recovery-readiness",
+      "name": "Recovery readiness",
+      "briefMeaning": "Printed or offline recovery codes, secondary admin, tested backups, and known contacts — established before the incident, not during it.",
+      "relatedIds": ["backup-and-integrity", "identity-authentication", "cloud-takeover-recovery"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "developer-operator-surface",
+      "name": "Developer-operator surface",
+      "briefMeaning": "Side projects, home servers, CI tokens, and exposed admin UIs are often the learner's largest real surface — same controls as 'security lab', applied to what they already run.",
+      "relatedIds": ["secrets-handling", "listener-inventory", "least-privilege"],
+      "foundationVsAdvanced": "advanced"
+    },
+    {
+      "id": "standards-map-home",
+      "name": "Standards mapped to home scale",
+      "briefMeaning": "NIST CSF functions and CIS-style hygiene translate to household verbs (inventory, protect, detect, respond, recover) without requiring enterprise tooling.",
+      "relatedIds": ["asset-inventory", "passive-observation", "incident-containment", "recovery-readiness"],
+      "foundationVsAdvanced": "advanced"
+    },
+    {
+      "id": "ransomware-pattern",
+      "name": "Ransomware and destructive pattern (defensive)",
+      "briefMeaning": "Understand the pattern as backup integrity + privilege + remote access failure — teach prevention and restore drills, not payload analysis.",
+      "relatedIds": ["backup-and-integrity", "least-privilege", "remote-access-paths"],
+      "foundationVsAdvanced": "advanced"
+    },
+    {
+      "id": "remote-access-paths",
+      "name": "Remote access paths",
+      "briefMeaning": "VPN, reverse proxies, cloud tunnels, RDP/SSH, and vendor 'remote support' are intentional doors; inventory them like listeners.",
+      "relatedIds": ["listener-inventory", "attack-surface", "account-hygiene"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "physical-access",
+      "name": "Physical access and lost-device reality",
+      "briefMeaning": "Theft and shoulder-surfing defeat purely network-centric advice; encryption at rest and remote wipe plans matter.",
+      "relatedIds": ["travel-hardening", "backup-and-integrity", "identity-authentication"],
+      "foundationVsAdvanced": "foundation"
+    },
+    {
+      "id": "supply-chain-defaults",
+      "name": "Supply-chain and vendor defaults",
+      "briefMeaning": "Preinstalled apps, OEM remote management, and 'smart' features create surface the owner never chose; inventory and disable what you do not need.",
+      "relatedIds": ["asset-inventory", "patch-and-firmware", "iot-edge"],
+      "foundationVsAdvanced": "advanced"
+    },
+    {
+      "id": "false-sense-of-tools",
+      "name": "Tool theater vs verified controls",
+      "briefMeaning": "Installing a sensor or VPN without verifying zones, listeners, and recovery readiness creates a false sense of safety.",
+      "relatedIds": ["topology-verification", "detection-baselines", "honeypot-containment"],
+      "foundationVsAdvanced": "foundation"
+    }
+  ],
+  "dependencies": [
+    { "from": "consent-boundary", "to": "network-zones", "why": "Zones only make ethical sense once the authorized observation set is defined." },
+    { "from": "consent-boundary", "to": "passive-observation", "why": "Sensors without consent turn into unauthorized interception." },
+    { "from": "consent-boundary", "to": "honeypot-containment", "why": "Decoys sit inside the same authorization story as the lab." },
+    { "from": "asset-inventory", "to": "listener-inventory", "why": "You need a device list before socket inventories are meaningful." },
+    { "from": "asset-inventory", "to": "change-baseline", "why": "Baselines are differences against a dated inventory." },
+    { "from": "listener-inventory", "to": "attack-surface", "why": "Exposed listeners are a primary surface component on owned hosts." },
+    { "from": "network-zones", "to": "topology-verification", "why": "Unverified segmentation is theater." },
+    { "from": "network-zones", "to": "outbound-deny", "why": "Egress policy is part of zone design for untrusted roles." },
+    { "from": "topology-verification", "to": "honeypot-containment", "why": "Containment claims require proof from both sides." },
+    { "from": "outbound-deny", "to": "honeypot-containment", "why": "A decoy that can phone home is a liability." },
+    { "from": "identity-authentication", "to": "account-hygiene", "why": "Hygiene is the daily practice of identity controls." },
+    { "from": "identity-authentication", "to": "session-lifecycle", "why": "Sessions and device trust extend identity beyond passwords." },
+    { "from": "account-hygiene", "to": "cloud-takeover-recovery", "why": "Recovery assumes you know how accounts were secured and what to revoke." },
+    { "from": "session-lifecycle", "to": "cloud-takeover-recovery", "why": "Revoking stale sessions is a recovery step, not optional cleanup." },
+    { "from": "least-privilege", "to": "ransomware-pattern", "why": "Destructive malware amplifies when every process runs as admin." },
+    { "from": "backup-and-integrity", "to": "recovery-readiness", "why": "Restore drills are how backups become recovery." },
+    { "from": "backup-and-integrity", "to": "ransomware-pattern", "why": "Integrity-checked offline or versioned backups are the main recover control." },
+    { "from": "passive-observation", "to": "detection-baselines", "why": "Logs without a notion of normal cannot detect meaningful change." },
+    { "from": "sensor-choice", "to": "passive-observation", "why": "Tool choice follows the observation job." },
+    { "from": "sensor-choice", "to": "honeypot-containment", "why": "Decoy tools are a sensor class with stricter containment needs." },
+    { "from": "change-baseline", "to": "incident-containment", "why": "Containment decisions need a before/after picture." },
+    { "from": "observation-ethics", "to": "privacy-vs-detection", "why": "Retention and purpose limits are how the tension is managed." },
+    { "from": "shared-network-edge", "to": "travel-hardening", "why": "Travel is the extreme case of untrusted upstream." },
+    { "from": "shared-network-edge", "to": "consent-boundary", "why": "Shared upstream forces a personal boundary device." },
+    { "from": "iot-edge", "to": "network-zones", "why": "IoT is the common reason households need more than one trust zone." },
+    { "from": "patch-and-firmware", "to": "iot-edge", "why": "IoT risk is dominated by update and default-credential failure." },
+    { "from": "remote-access-paths", "to": "attack-surface", "why": "Intentional doors are still surface." },
+    { "from": "secrets-handling", "to": "developer-operator-surface", "why": "Leaked tokens are a top developer-operator failure mode." },
+    { "from": "recovery-readiness", "to": "cloud-takeover-recovery", "why": "Offline codes and secondary admins must exist before lockout." },
+    { "from": "incident-containment", "to": "recovery-readiness", "why": "Containment without a recovery plan stalls at isolation." },
+    { "from": "false-sense-of-tools", "to": "topology-verification", "why": "Verification is the antidote to tool theater." },
+    { "from": "standards-map-home", "to": "asset-inventory", "why": "CSF Identify maps cleanly to inventory at home scale." },
+    { "from": "physical-access", "to": "travel-hardening", "why": "Lost/stolen devices are a travel-class risk year-round." },
+    { "from": "supply-chain-defaults", "to": "asset-inventory", "why": "You cannot disable what you have not listed." }
+  ],
+  "examples": [
+    {
+      "id": "owned-desktop-listeners",
+      "situation": "Inventory listeners on a personal Linux/macOS/Windows machine after installing a game launcher and a remote-access helper.",
+      "teaches": ["listener-inventory", "change-baseline", "least-privilege"],
+      "consentNote": "Machine owned by the learner."
+    },
+    {
+      "id": "home-lab-behind-travel-router",
+      "situation": "Place a Pi sensor and a spare laptop behind a travel router on a roommate-shared upstream, verify isolation both ways.",
+      "teaches": ["consent-boundary", "network-zones", "topology-verification"],
+      "consentNote": "Only lab segment observed; roommate traffic stays upstream of the lab router."
+    },
+    {
+      "id": "family-wifi-iot-zone",
+      "situation": "Move cameras and smart plugs to a guest/IoT SSID with no access to work laptops; confirm printer still works for intended devices only.",
+      "teaches": ["iot-edge", "network-zones", "topology-verification"],
+      "consentNote": "Household-owned devices; discuss with household before changing shared Wi-Fi."
+    },
+    {
+      "id": "travel-hotel-laptop",
+      "situation": "Work from a hotel network: full-disk encryption on, avoid admin banking over captive portal, use personal hotspot when doing sensitive mail.",
+      "teaches": ["travel-hardening", "shared-network-edge", "identity-authentication"],
+      "consentNote": "Learner's own devices; no monitoring of hotel patrons."
+    },
+    {
+      "id": "cloud-mailbox-takeover-recovery",
+      "situation": "Suspicious forwarding rule appears in personal email; regain access, revoke sessions, kill unknown OAuth apps, rotate password and MFA, check sent mail.",
+      "teaches": ["cloud-takeover-recovery", "session-lifecycle", "account-hygiene"],
+      "consentNote": "Account owned by the learner."
+    },
+    {
+      "id": "nas-default-creds",
+      "situation": "New home NAS still on vendor default admin; change creds, disable WAN management, put on trusted zone, inventory shares.",
+      "teaches": ["patch-and-firmware", "remote-access-paths", "least-privilege"],
+      "consentNote": "Device owned by the learner."
+    },
+    {
+      "id": "side-project-exposed-admin",
+      "situation": "Hobby VPS still has an admin panel on a public IP with a weak password from a tutorial; lock down SSH keys, remove panel exposure, rotate secrets that were in the repo once.",
+      "teaches": ["developer-operator-surface", "secrets-handling", "listener-inventory"],
+      "consentNote": "VPS and repo owned by the learner."
+    },
+    {
+      "id": "backup-restore-drill",
+      "situation": "Quarterly restore of one important folder from backup to a scratch location; time it; note what failed.",
+      "teaches": ["backup-and-integrity", "recovery-readiness"],
+      "consentNote": "Own data."
+    },
+    {
+      "id": "contained-decoy-lan-only",
+      "situation": "After zones and listeners are documented, add one LAN-only decoy with outbound denied; review its alerts for a week; delete logs on schedule.",
+      "teaches": ["honeypot-containment", "outbound-deny", "observation-ethics"],
+      "consentNote": "Only inside learner-controlled lab; no internet exposure."
+    },
+    {
+      "id": "lost-phone-weekend",
+      "situation": "Phone missing after a trip; use find/wipe, revoke app sessions from another device, check authenticator backup plan.",
+      "teaches": ["physical-access", "recovery-readiness", "session-lifecycle"],
+      "consentNote": "Own device and accounts."
+    }
+  ],
+  "analogies": [
+    {
+      "id": "house-locks-zones",
+      "angle": "Physical house",
+      "analogy": "Network zones are rooms with doors; a guest SSID without firewall rules is a hallway labeled 'guest' with no door. Outbound deny for a decoy is boarding up the window so a stranger who entered the mudroom cannot leave with your keys.",
+      "teachesToward": ["network-zones", "outbound-deny", "honeypot-containment"]
+    },
+    {
+      "id": "inventory-before-alarm",
+      "angle": "Shop floor / tools",
+      "analogy": "You cannot tell if a wrench is missing until you had a tool inventory. Listener and asset inventories are the same idea for digital doors.",
+      "teachesToward": ["asset-inventory", "listener-inventory", "change-baseline"]
+    },
+    {
+      "id": "consent-fence",
+      "angle": "Property line",
+      "analogy": "Monitoring without a consent boundary is like pointing cameras into a neighbor's yard because their Wi-Fi is nearby. The travel router is your fence.",
+      "teachesToward": ["consent-boundary", "shared-network-edge"]
+    },
+    {
+      "id": "smoke-detector-not-sprinkler",
+      "angle": "Fire safety",
+      "analogy": "A passive sensor is a smoke detector; a honeypot is a labeled drill prop in a locked room. Neither replaces extinguishers (backups, MFA, patching), and wiring a drill prop to the gas main is how labs go wrong.",
+      "teachesToward": ["passive-observation", "honeypot-containment", "false-sense-of-tools"]
+    },
+    {
+      "id": "spare-key-recovery",
+      "angle": "Keys and locksmith",
+      "analogy": "Recovery codes are spare keys stored somewhere other than under the mat. MFA without offline recovery is a lock that locks you out when the phone dies.",
+      "teachesToward": ["recovery-readiness", "identity-authentication"]
+    },
+    {
+      "id": "shared-kitchen",
+      "angle": "Household privacy",
+      "analogy": "Full packet capture on family Wi-Fi can be as intimate as reading someone's mail 'for safety.' Metadata-first, purpose-limited, zone-scoped observation is the difference between a smoke alarm and opening their letters.",
+      "teachesToward": ["observation-ethics", "privacy-vs-detection"]
+    },
+    {
+      "id": "stage-crew-vs-audience",
+      "angle": "Theater",
+      "analogy": "Tool theater installs impressive gear in view of the audience; verified controls are stage crew checks nobody applauds — proving the trap door is bolted before the decoy scene.",
+      "teachesToward": ["false-sense-of-tools", "topology-verification"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "guest-ssid-equals-isolation",
+      "belief": "A guest Wi-Fi name means devices are isolated.",
+      "whyItFails": "Many consumer routers still allow guest-to-LAN or device-to-device paths; labels are not firewall proofs.",
+      "correctsWith": ["network-zones", "topology-verification"]
+    },
+    {
+      "id": "vpn-equals-secure",
+      "belief": "A VPN makes the device and home network 'secure.'",
+      "whyItFails": "A VPN mainly changes path trust to a provider; it does not patch listeners, fix defaults, or restore backups.",
+      "correctsWith": ["attack-surface", "false-sense-of-tools", "listener-inventory"]
+    },
+    {
+      "id": "antivirus-is-enough",
+      "belief": "Antivirus alone covers modern account and cloud risk.",
+      "whyItFails": "Most consumer takeovers are credential, session, or recovery-path failures, not local malware signatures.",
+      "correctsWith": ["account-hygiene", "session-lifecycle", "cloud-takeover-recovery"]
+    },
+    {
+      "id": "honeypot-first",
+      "belief": "The exciting first step is deploying a honeypot.",
+      "whyItFails": "Without zones, outbound deny, and baselines, a decoy can become a launch point or a retention mess.",
+      "correctsWith": ["consent-boundary", "honeypot-containment", "outbound-deny"]
+    },
+    {
+      "id": "localhost-is-harmless",
+      "belief": "Anything bound to localhost cannot matter.",
+      "whyItFails": "Local services still expand risk with malicious local code, misbound interfaces, and container port publishes that escape intent.",
+      "correctsWith": ["listener-inventory", "developer-operator-surface"]
+    },
+    {
+      "id": "mfa-always-blocks-takeover",
+      "belief": "MFA means the account cannot be taken over.",
+      "whyItFails": "Prompt bombing, SIM swap on SMS MFA, session theft, and recovery-flow weaknesses still succeed; MFA reduces risk, it does not erase it.",
+      "correctsWith": ["identity-authentication", "session-lifecycle", "recovery-readiness"]
+    },
+    {
+      "id": "more-logs-more-security",
+      "belief": "Keep everything forever; more logs always equal more security.",
+      "whyItFails": "Unbounded retention increases privacy harm and search noise; purpose and deletion schedules are part of the control.",
+      "correctsWith": ["observation-ethics", "privacy-vs-detection", "detection-baselines"]
+    },
+    {
+      "id": "iot-too-dumb-to-matter",
+      "belief": "Cheap IoT is too simple to be a real risk.",
+      "whyItFails": "Always-on, rarely updated devices with defaults become durable footholds and lateral paths on flat networks.",
+      "correctsWith": ["iot-edge", "patch-and-firmware", "network-zones"]
+    },
+    {
+      "id": "security-is-hacking-skill",
+      "belief": "You must learn offense to practice defense.",
+      "whyItFails": "Most home and small-team wins are inventory, identity, zones, backups, and recovery — none require exploit craft.",
+      "correctsWith": ["asset-inventory", "account-hygiene", "recovery-readiness"]
+    },
+    {
+      "id": "password-change-clears-sessions",
+      "belief": "Changing the password automatically signs out every other device and app.",
+      "whyItFails": "Many services keep sessions and OAuth grants until explicitly revoked.",
+      "correctsWith": ["session-lifecycle", "cloud-takeover-recovery"]
+    },
+    {
+      "id": "backups-without-restore",
+      "belief": "Having a backup product enabled means you can recover.",
+      "whyItFails": "Untested restores fail on credentials, incomplete selections, or ransomware-reachable sync folders.",
+      "correctsWith": ["backup-and-integrity", "recovery-readiness"]
+    },
+    {
+      "id": "shared-admin-is-fine-at-home",
+      "belief": "One shared family admin password is fine because it is 'just home.'",
+      "whyItFails": "It couples every person's risk and makes offboarding (breakups, roommates leaving, kid devices) painful and unsafe.",
+      "correctsWith": ["least-privilege", "account-hygiene"]
+    }
+  ],
+  "edgeCases": [
+    {
+      "id": "cg-nat-or-mesh-isp",
+      "boundary": "ISP CGNAT, mesh Wi-Fi, or ISP-managed routers hide or restrict true boundary control.",
+      "breaksNaiveAdvice": "Advice that assumes you can set VLANs or mirror ports on the only router may be impossible without adding your own downstream router.",
+      "relatedConcepts": ["network-zones", "shared-network-edge", "topology-verification"]
+    },
+    {
+      "id": "partner-employer-device",
+      "boundary": "Household includes employer-managed laptops or partner-owned phones.",
+      "breaksNaiveAdvice": "'Inventory everything on the Wi-Fi' can violate policy or consent; teach device ownership tags and lab isolation instead.",
+      "relatedConcepts": ["consent-boundary", "asset-inventory", "observation-ethics"]
+    },
+    {
+      "id": "mfa-device-is-the-only-factor",
+      "boundary": "Authenticator lives only on the phone that was just lost.",
+      "breaksNaiveAdvice": "Hardening without offline recovery codes creates lockout; recovery readiness must be taught with MFA, not after.",
+      "relatedConcepts": ["recovery-readiness", "physical-access", "identity-authentication"]
+    },
+    {
+      "id": "encrypted-dns-and-vpn-blur",
+      "boundary": "DoH/DoT and always-on VPN change what a home sensor can see.",
+      "breaksNaiveAdvice": "Expecting full DNS visibility from a LAN sensor fails; teach what metadata remains and what does not.",
+      "relatedConcepts": ["passive-observation", "detection-baselines", "privacy-vs-detection"]
+    },
+    {
+      "id": "power-user-flat-network",
+      "boundary": "Homelab enthusiast already has VLANs but no documentation.",
+      "breaksNaiveAdvice": "Complex undocumented zones are harder to verify than a simple travel-router lab; documentation becomes the foundation.",
+      "relatedConcepts": ["topology-verification", "change-baseline", "false-sense-of-tools"]
+    },
+    {
+      "id": "minors-on-network",
+      "boundary": "Household includes minors; monitoring intersects safety and privacy laws/norms.",
+      "breaksNaiveAdvice": "Blanket packet capture advice is inappropriate; prefer device controls, zones, and transparent household agreements.",
+      "relatedConcepts": ["observation-ethics", "consent-boundary", "privacy-vs-detection"]
+    },
+    {
+      "id": "cloud-only-household",
+      "boundary": "No self-hosted gear; everything is phones + cloud accounts.",
+      "breaksNaiveAdvice": "Pi/honeypot tutorials miss the real surface; identity, sessions, and recovery dominate.",
+      "relatedConcepts": ["account-hygiene", "cloud-takeover-recovery", "session-lifecycle"]
+    },
+    {
+      "id": "shared-password-manager",
+      "boundary": "Couples or teams share a vault incorrectly (one login for all).",
+      "breaksNaiveAdvice": "Password manager adoption without individual accounts and emergency access design recreates single-point failure.",
+      "relatedConcepts": ["secrets-handling", "least-privilege", "recovery-readiness"]
+    }
+  ],
+  "realWorldFailures": [
+    {
+      "id": "credential-stuffing-reuse",
+      "pattern": "Credential stuffing against reused passwords on consumer and small-business sites",
+      "whatBroke": "Password reuse + slow breach response; accounts taken without malware on the device",
+      "layers": ["identity-authentication", "account-hygiene"],
+      "publicRefs": [
+        "https://www.owasp.org/www-community/attacks/Credential_stuffing",
+        "https://haveibeenpwned.com/"
+      ]
+    },
+    {
+      "id": "sim-swap-account-recovery",
+      "pattern": "SIM swap and SMS-based account recovery abuse",
+      "whatBroke": "Phone number treated as a strong identity; recovery flow weaker than primary MFA",
+      "layers": ["identity-authentication", "recovery-readiness", "cloud-takeover-recovery"],
+      "publicRefs": [
+        "https://www.fcc.gov/sim-swap-and-port-out-fraud"
+      ]
+    },
+    {
+      "id": "exposed-rdp-botnet",
+      "pattern": "Internet-exposed remote desktop / admin panels with weak or default credentials",
+      "whatBroke": "Remote access path left open; ransomware and botnets followed",
+      "layers": ["remote-access-paths", "patch-and-firmware", "least-privilege"],
+      "publicRefs": [
+        "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-158a"
+      ]
+    },
+    {
+      "id": "iot-botnet-defaults",
+      "pattern": "IoT botnets built from default credentials and unpatched firmwares (Mirai-class pattern)",
+      "whatBroke": "Always-on devices with defaults on flat networks; owners unaware they were enrolled",
+      "layers": ["iot-edge", "patch-and-firmware", "network-zones"],
+      "publicRefs": [
+        "https://www.cisa.gov/news-events/alerts/2016/10/14/heightened-ddos-threat-posed-mirai-and-other-botnets"
+      ]
+    },
+    {
+      "id": "router-compromise-home",
+      "pattern": "Consumer router compromise via outdated firmware or remote management left on",
+      "whatBroke": "Single chokepoint device; DNS or traffic redirected; all household devices affected",
+      "layers": ["patch-and-firmware", "network-zones", "remote-access-paths"],
+      "publicRefs": [
+        "https://csrc.nist.gov/pubs/ir/8425/a/final"
+      ]
+    },
+    {
+      "id": "oauth-token-and-app-grants",
+      "pattern": "Malicious or overly broad OAuth app grants and forgotten third-party access",
+      "whatBroke": "Password stayed secret while mail/drive access persisted via tokens",
+      "layers": ["session-lifecycle", "account-hygiene", "cloud-takeover-recovery"],
+      "publicRefs": [
+        "https://www.microsoft.com/en-us/security/blog/"
+      ]
+    },
+    {
+      "id": "ransomware-backup-reachable",
+      "pattern": "Ransomware encrypts live sync folders and online-only backups reachable with the same credentials",
+      "whatBroke": "Backup design lacked offline/versioned/immutable copy; restore failed when needed",
+      "layers": ["backup-and-integrity", "ransomware-pattern", "least-privilege"],
+      "publicRefs": [
+        "https://www.cisa.gov/stopransomware"
+      ]
+    },
+    {
+      "id": "cloud-misconfig-public-bucket",
+      "pattern": "Public cloud storage or admin interfaces left open by misconfiguration (small teams and solo devs)",
+      "whatBroke": "Default-open mental model; no listener/remote-access inventory for cloud resources",
+      "layers": ["developer-operator-surface", "secrets-handling", "attack-surface"],
+      "publicRefs": [
+        "https://owasp.org/www-project-top-ten/"
+      ]
+    },
+    {
+      "id": "insider-or-household-trust",
+      "pattern": "Shared credentials and unmanaged ex-household or ex-coworker access",
+      "whatBroke": "No offboarding; 'trust' substituted for accounts and zones",
+      "layers": ["least-privilege", "account-hygiene", "consent-boundary"],
+      "publicRefs": []
+    }
+  ],
+  "practiceOpenings": [
+    {
+      "id": "draw-then-inventory",
+      "moment": "Before buying gear: draw the real network, mark ownership and consent, list devices.",
+      "ownedSystemsOnly": true,
+      "relatedConcepts": ["consent-boundary", "asset-inventory"]
+    },
+    {
+      "id": "one-host-ss",
+      "moment": "On one owned computer, run a listener inventory, save a dated baseline, explain each unknown before changing anything.",
+      "ownedSystemsOnly": true,
+      "relatedConcepts": ["listener-inventory", "change-baseline"]
+    },
+    {
+      "id": "router-admin-passwords",
+      "moment": "Change default router admin password, disable remote WAN admin if present, note firmware version and update path.",
+      "ownedSystemsOnly": true,
+      "relatedConcepts": ["patch-and-firmware", "remote-access-paths"]
+    },
+    {
+      "id": "password-manager-and-mfa-pass",
+      "moment": "Move the top five accounts into a password manager; turn on non-SMS MFA where offered; store recovery codes offline.",
+      "ownedSystemsOnly": true,
+      "relatedConcepts": ["account-hygiene", "recovery-readiness"]
+    },
+    {
+      "id": "session-revocation-drill",
+      "moment": "On one cloud account, review active sessions and third-party apps; revoke anything unrecognized.",
+      "ownedSystemsOnly": true,
+      "relatedConcepts": ["session-lifecycle", "cloud-takeover-recovery"]
+    },
+    {
+      "id": "iot-zone-move",
+      "moment": "If the router supports it, move one camera or plug to guest/IoT and verify it cannot reach a work laptop.",
+      "ownedSystemsOnly": true,
+      "relatedConcepts": ["iot-edge", "topology-verification"]
+    },
+    {
+      "id": "travel-router-lab-boundary",
+      "moment": "Put a spare device behind a travel router; verify upstream roommate network is not being inspected.",
+      "ownedSystemsOnly": true,
+      "relatedConcepts": ["consent-boundary", "network-zones", "shared-network-edge"]
+    },
+    {
+      "id": "restore-one-folder",
+      "moment": "Restore one folder from backup to a scratch path; write down time-to-recover and gaps.",
+      "ownedSystemsOnly": true,
+      "relatedConcepts": ["backup-and-integrity", "recovery-readiness"]
+    },
+    {
+      "id": "metadata-sensor-week",
+      "moment": "After zones exist, add one passive metadata sensor on the lab segment only; review retention settings day one.",
+      "ownedSystemsOnly": true,
+      "relatedConcepts": ["passive-observation", "observation-ethics"]
+    },
+    {
+      "id": "lan-only-decoy-gates",
+      "moment": "Only after verification: deploy one contained decoy, walk the honeypot safety gates checklist, keep outbound denied.",
+      "ownedSystemsOnly": true,
+      "relatedConcepts": ["honeypot-containment", "outbound-deny"]
+    }
+  ],
+  "visualCandidates": [
+    {
+      "id": "consent-topology",
+      "what": "Annotated home topology: upstream ISP, household LAN, lab router, trusted / IoT / decoy zones, with ownership and consent labels on each link.",
+      "whyPicture": "Consent and zones are spatial; prose lists hide the boundary.",
+      "currentDiagramBlockSufficient": false,
+      "missingPrimitiveNote": "Showmob diagram is a linear node list; needs annotated figure / floor-map style (already flagged as earned primitive in LEARNING-ARCHITECTURE.md). Existing lab page used image+SVG for this reason."
+    },
+    {
+      "id": "cause-chain-takeover",
+      "what": "Branching cause chain: phishing or reuse → session/token → forwarding rule → lockout, with defensive cut-points marked.",
+      "whyPicture": "Account takeover is multi-step; readers need to see where revoke/MFA/recovery codes cut the chain.",
+      "currentDiagramBlockSufficient": false,
+      "missingPrimitiveNote": "Branching cause chain is explicitly called out as beyond linear diagram nodes."
+    },
+    {
+      "id": "listener-baseline-table",
+      "what": "Before/after compact table of listeners with process, bind address, reachability, justified?",
+      "whyPicture": "Comparison over time; table/comparison blocks may suffice.",
+      "currentDiagramBlockSufficient": true,
+      "missingPrimitiveNote": null
+    },
+    {
+      "id": "honeypot-gates-checklist-visual",
+      "what": "Safety gates as a sequential gate diagram (isolation → outbound deny → no secrets → LAN-only → retention).",
+      "whyPicture": "Order matters; checklist alone understates sequence dependence.",
+      "currentDiagramBlockSufficient": true,
+      "missingPrimitiveNote": "Checklist or steps may be enough; annotated figure nicer but not required."
+    },
+    {
+      "id": "csf-home-map",
+      "what": "NIST CSF five functions mapped to household verbs and example practices.",
+      "whyPicture": "Standards feel abstract until drawn as a cycle with home examples.",
+      "currentDiagramBlockSufficient": true,
+      "missingPrimitiveNote": null
+    },
+    {
+      "id": "privacy-detection-slider",
+      "what": "Visual tension between retention depth and privacy harm, with minimization sweet spot.",
+      "whyPicture": "Tradeoff is easier as a continuum than as a moral lecture.",
+      "currentDiagramBlockSufficient": false,
+      "missingPrimitiveNote": "No continuum/annotated-axis primitive; comparison or custom image workaround."
+    }
+  ],
+  "naturalBoundaries": [
+    {
+      "id": "consent-and-mental-model",
+      "seam": "Consent, authorization, and what 'defensive' means — the gate before any tool.",
+      "whyNatural": "Without this seam, every later practice can drift into unauthorized monitoring.",
+      "conceptAnchors": ["consent-boundary", "observation-ethics", "false-sense-of-tools"]
+    },
+    {
+      "id": "know-what-you-have",
+      "seam": "Asset, identity, and listener inventory — establish baselines.",
+      "whyNatural": "The existing lab page already starts here; it is a complete teaching job before zones get deep.",
+      "conceptAnchors": ["asset-inventory", "listener-inventory", "change-baseline", "attack-surface"]
+    },
+    {
+      "id": "identity-and-accounts",
+      "seam": "Authentication, MFA, sessions, secrets, and cloud account recovery.",
+      "whyNatural": "Cloud-only households never need a Pi lab; this seam is a whole course track on its own.",
+      "conceptAnchors": ["identity-authentication", "account-hygiene", "session-lifecycle", "cloud-takeover-recovery", "secrets-handling"]
+    },
+    {
+      "id": "zones-and-verification",
+      "seam": "Segmentation, topology proof, IoT placement, shared-upstream boundaries.",
+      "whyNatural": "Distinct skills from identity; matches the lab page's topology half without the decoy.",
+      "conceptAnchors": ["network-zones", "topology-verification", "iot-edge", "shared-network-edge"]
+    },
+    {
+      "id": "observe-with-limits",
+      "seam": "Passive sensing, baselines, retention ethics, privacy vs detection.",
+      "whyNatural": "Sensors are a different mode (how-to + ethics) from building zones.",
+      "conceptAnchors": ["passive-observation", "sensor-choice", "detection-baselines", "privacy-vs-detection"]
+    },
+    {
+      "id": "contained-decoy",
+      "seam": "Honeypot/decoy practice only after gates; outbound deny; LAN-first.",
+      "whyNatural": "The existing page crammed this with everything else; it is an advanced, optional seam that depends on prior verification.",
+      "conceptAnchors": ["honeypot-containment", "outbound-deny", "sensor-choice"]
+    },
+    {
+      "id": "travel-and-physical",
+      "seam": "Travel networks, lost devices, physical access assumptions.",
+      "whyNatural": "Different environment and threat assumptions than a static home lab.",
+      "conceptAnchors": ["travel-hardening", "physical-access", "shared-network-edge"]
+    },
+    {
+      "id": "survive-and-recover",
+      "seam": "Backups, ransomware-pattern defense, incident containment, recovery readiness.",
+      "whyNatural": "Respond/recover are CSF-distinct from protect/detect; practice openings differ.",
+      "conceptAnchors": ["backup-and-integrity", "ransomware-pattern", "incident-containment", "recovery-readiness"]
+    },
+    {
+      "id": "developer-operator-track",
+      "seam": "Side projects, VPS, CI secrets, exposed admin UIs — same defensive verbs, different surface.",
+      "whyNatural": "Audience fork: many Showmob readers are builders; this seam keeps them without forcing honeypots.",
+      "conceptAnchors": ["developer-operator-surface", "secrets-handling", "remote-access-paths", "listener-inventory"]
+    },
+    {
+      "id": "standards-bridge",
+      "seam": "Map household practice to CSF / CIS / OWASP high-level language for readers who need vocabulary for work or insurance.",
+      "whyNatural": "Optional advanced bridge; not required to practice, but a clear explanatory seam.",
+      "conceptAnchors": ["standards-map-home"]
+    }
+  ],
+  "compressionNote": {
+    "existingPage": "defensive-local-security-lab",
+    "whatItBundled": [
+      "Consent callout",
+      "Topology image and role table",
+      "Four-stage build sequence",
+      "Listener inventory commands",
+      "Sensor comparison (Zeek, Suricata, OpenCanary, Cowrie)",
+      "Honeypot safety gates",
+      "Resource list",
+      "Slideshow stages and CTA"
+    ],
+    "whyCourseShaped": "Each bundled piece has different prerequisites, practice openings, failure modes, and visuals. Consent and inventory do not require a decoy. Identity/cloud recovery barely appears yet dominates real household incidents. Scope should be able to discover multiple seams from research density alone — that is the Phase 2 blind test.",
+    "doNotRewritePageInThisPR": true
+  },
+  "sources": [
+    {
+      "label": "Showmob existing lab page",
+      "url": "app/src/content/defensive-local-security-lab.json",
+      "kind": "internal"
+    },
+    {
+      "label": "LEARNING-ARCHITECTURE.md",
+      "url": "LEARNING-ARCHITECTURE.md",
+      "kind": "internal"
+    },
+    {
+      "label": "NIST IR 8425A — consumer router cybersecurity profile",
+      "url": "https://csrc.nist.gov/pubs/ir/8425/a/final",
+      "kind": "public"
+    },
+    {
+      "label": "NIST SP 1800-15 — IoT security for home / small business",
+      "url": "https://csrc.nist.gov/pubs/sp/1800/15/final",
+      "kind": "public"
+    },
+    {
+      "label": "NIST Cybersecurity Framework",
+      "url": "https://www.nist.gov/cyberframework",
+      "kind": "public"
+    },
+    {
+      "label": "CIS Critical Security Controls",
+      "url": "https://www.cisecurity.org/controls",
+      "kind": "public"
+    },
+    {
+      "label": "OWASP Top Ten",
+      "url": "https://owasp.org/www-project-top-ten/",
+      "kind": "public"
+    },
+    {
+      "label": "CISA StopRansomware",
+      "url": "https://www.cisa.gov/stopransomware",
+      "kind": "public"
+    },
+    {
+      "label": "FCC SIM swap and port-out fraud",
+      "url": "https://www.fcc.gov/sim-swap-and-port-out-fraud",
+      "kind": "public"
+    },
+    {
+      "label": "OpenWrt guest Wi-Fi",
+      "url": "https://openwrt.org/docs/guide-user/network/wifi/guestwifi/start",
+      "kind": "public"
+    },
+    {
+      "label": "Zeek monitoring guide",
+      "url": "https://docs.zeek.org/en/lts/monitoring.html",
+      "kind": "public"
+    }
+  ],
+  "meta": {
+    "author": "Grok Bot",
+    "date": "2026-09-24",
+    "status": "draft",
+    "notes": [
+      "Research stage only for seriesId security-course.",
+      "Feeds LEARNING-ARCHITECTURE Phase 2 blind scope test (topic map + scope) once Phase 1 sheets land.",
+      "Does not prescribe page count, series.json, topic-map.json, or page sheets.",
+      "Grounded in compression of defensive-local-security-lab into one page; surfaces why the subject is course-shaped.",
+      "Defensive and consent-based throughout; no exploit steps or unauthorized-access instructions.",
+      "Voice aligned lightly with GRADIENT.md (content pressure, no empty template slots) and docs/product-brief.md (real course later; this is pipeline input, not gallery work)."
+    ]
+  }
+}
