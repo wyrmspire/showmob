@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "slug": "gn-tomorrow-three-meetings-a-dentist-appointment-and-a-4-hour-focus-block-a",
   "title": "Tomorrow: three meetings, a dentist appointment, and a 4-hour focus block",
-  "summary": "A plain agenda for one overloaded tomorrow \u2014 meetings, dentist, and a protected focus block listed in order.",
+  "summary": "A plain agenda for one overloaded tomorrow — meetings, dentist, and a protected focus block listed in order.",
   "contributor": "Grok",
   "status": "preview",
   "theme": "paper",
@@ -17,7 +17,7 @@
       "id": "start",
       "type": "hero",
       "title": "One day, written as a list",
-      "body": "Tomorrow already has three meetings and a dentist appointment. The only way a 4-hour focus block survives is if it appears on the same list with real clock times \u2014 not as a hope in the margins."
+      "body": "Tomorrow already has three meetings and a dentist appointment. The only way a 4-hour focus block survives is if it appears on the same list with real clock times — not as a hope in the margins."
     },
     {
       "id": "agenda",
@@ -25,47 +25,47 @@
       "heading": "Tomorrow's agenda",
       "items": [
         {
-          "time": "08:00\u201308:25",
+          "time": "08:00–08:25",
           "title": "Arrive, coffee, open the focus doc",
           "detail": "Do not check chat yet. Put the focus task title at the top of a note."
         },
         {
-          "time": "08:30\u201309:00",
-          "title": "Meeting 1 \u2014 standup",
+          "time": "08:30–09:00",
+          "title": "Meeting 1 — standup",
           "detail": "Camera on if required; decisions only. Park anything that wants to become a second meeting."
         },
         {
-          "time": "09:05\u201311:05",
-          "title": "Focus block A (2 hours)",
-          "detail": "First half of the 4-hour deep work. Phone face down. Chat status: busy."
+          "time": "09:05–11:10",
+          "title": "Shallow-work window",
+          "detail": "Chat, email, meeting prep, the small tickets. This is where the interruptions live so the afternoon does not get them."
         },
         {
-          "time": "11:15\u201312:00",
-          "title": "Meeting 2 \u2014 project sync",
+          "time": "11:15–12:00",
+          "title": "Meeting 2 — project sync",
           "detail": "Bring one status sentence and one ask. Leave with owners, not vibes."
         },
         {
-          "time": "12:00\u201312:40",
+          "time": "12:00–12:40",
           "title": "Lunch and travel buffer",
-          "detail": "Eat something with protein. Leave early enough that parking stress does not eat Focus B."
+          "detail": "Eat something with protein. Leave early enough that parking stress does not eat the focus block."
         },
         {
-          "time": "13:00\u201313:45",
+          "time": "13:00–13:45",
           "title": "Dentist appointment",
           "detail": "Already booked. Put the confirmation email in a place you can show at the desk."
         },
         {
-          "time": "14:15\u201314:45",
-          "title": "Meeting 3 \u2014 1:1",
-          "detail": "Short. If it tries to expand, schedule a follow-up instead of stealing Focus B."
+          "time": "14:15–14:45",
+          "title": "Meeting 3 — 1:1",
+          "detail": "Short. If it tries to expand, schedule a follow-up instead of stealing the focus block."
         },
         {
-          "time": "14:50\u201316:50",
-          "title": "Focus block B (2 hours)",
-          "detail": "Second half of the 4 hours. Same task as morning if unfinished; otherwise the next concrete deliverable."
+          "time": "14:50–18:50",
+          "title": "Focus block — four uninterrupted hours",
+          "detail": "One block, not two halves. Phone face down, chat status: busy, same task start to finish."
         },
         {
-          "time": "16:50\u201317:10",
+          "time": "18:50–19:05",
           "title": "Shutdown",
           "detail": "Write tomorrow's first line. Close the laptop on purpose."
         }
@@ -75,7 +75,7 @@
       "id": "protect",
       "type": "note-callout",
       "title": "How the focus block stays real",
-      "body": "The plan provides four hours total in two two-hour sessions, not one uninterrupted four-hour block. Protect 09:05\u201311:05 and 14:50\u201316:50; if continuous time is required, one or more fixed commitments must move.",
+      "body": "The only run of the day with nothing booked inside it is 14:50–18:50, so that is the block — one four-hour stretch, not two two-hour halves. The tradeoff is a late finish. If you would rather focus 09:00–13:00, a fixed commitment has to move: make the standup async and slide project sync to the afternoon. What does not work is splitting it — two 2-hour blocks is a different assignment.",
       "tone": "note"
     },
     {
@@ -92,7 +92,7 @@
         },
         {
           "value": "4 hr",
-          "label": "Focus time split into two protected blocks"
+          "label": "One uninterrupted focus block"
         }
       ]
     }
