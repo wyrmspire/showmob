@@ -17,7 +17,7 @@
  */
 export const RESERVED_SLUGS = ["home", "author", "everything", "grading"] as const;
 
-/** Unlisted index of published + preview pages. Not linked from Home. */
+/** Passcode-gated index of published + preview pages. Linked from Home. */
 export const EVERYTHING_PATH = "/everything";
 
 /** Grading night test center. Unlisted and noindex, like /everything. */

@@ -98,6 +98,12 @@ export function Home({
         <p className="result-count" aria-live="polite">
           {visible.length} of {entries.length} pages
         </p>
+        <p className="everything-link">
+          <button className="plain" onClick={() => open("everything")}>
+            Everything index <span aria-hidden>→</span>
+          </button>{" "}
+          <span className="everything-note">Passcode required</span>
+        </p>
       </div>
       {seriesList.map((g) => {
         const meta = seriesMeta[g.id];

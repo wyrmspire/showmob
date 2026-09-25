@@ -66,17 +66,21 @@ test('the grading API is gated by a server-held passcode on every method', () =>
 
 test('the grading page sends the passcode and never ships one', () => {
   const grading = read('../app/src/Grading.tsx');
-  assert.match(grading, /x-grading-passcode/);
-  assert.match(grading, /localStorage/);
+  const gate = read('../app/src/gate.tsx');
+  assert.match(grading, /PasscodeGate/);
+  assert.match(gate, /x-grading-passcode/);
+  assert.match(gate, /localStorage/);
   assert.doesNotMatch(grading, /SHOWMOB_GRADING_PASSCODE/);
+  assert.doesNotMatch(gate, /SHOWMOB_GRADING_PASSCODE/);
 });
 
-test('grading surface links to the unlisted /everything index; Home stays clean', () => {
+test('grading surface links to the passcode-gated /everything index; Home links it too', () => {
   const grading = read('../app/src/Grading.tsx');
   assert.match(grading, /everything: \(\) => void/);
   assert.match(grading, /onClick=\{everything\}/);
   const home = read('../app/src/Home.tsx');
-  assert.doesNotMatch(home, /everything/i);
+  assert.match(home, /everything/);
+  assert.match(home, /Passcode required/);
 });
 
 test('grader panel drafts persist in sessionStorage under a per-subject key', () => {

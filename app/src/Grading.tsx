@@ -4,12 +4,18 @@ import { planForSubject, planProvenanceLabel } from "./gn-plans";
 import { BlockView } from "./components/BlockView";
 import { heroDensityClass } from "./hero-density";
 import { setUnlistedRobots } from "./share-meta";
+import {
+  PasscodeGate,
+  clearPasscode,
+  loadPasscode,
+  savePasscode,
+} from "./gate";
 import type { Artifact } from "./schema";
 
 /**
  * Grading night test center at /grading (docs/grading-night.md).
  *
- * Unlisted like /everything: no Home link, no share page, noindex, and the
+ * Unlisted like /everything: no share page, noindex, and the
  * grades are never public-facing. Subjects come from
  * public.showmob_gn_subjects and grades write through the
  * showmob_gn_record_grade service-role function — both via /api/gn, the only
@@ -180,7 +186,6 @@ function ChoiceRow({
   );
 }
 
-const PASSCODE_KEY = "showmob-grading-passcode";
 const DRAFT_KEY_PREFIX = "showmob-gn-draft-";
 const SUBJECT_ID_RE = /^GN-\d{3}$/;
 
@@ -236,15 +241,6 @@ function clearDraft(id: string): void {
     // ignore
   }
 }
-
-function storedPasscode(): string {
-  try {
-    return localStorage.getItem(PASSCODE_KEY) ?? "";
-  } catch {
-    return "";
-  }
-}
-
 
 function PlanReveal({ subjectId }: { subjectId: string }) {
   const plan = planForSubject(subjectId);
@@ -417,35 +413,6 @@ function PlanJudgment({
   );
 }
 
-function PasscodeGate({ onSubmit, error }: { onSubmit: (code: string) => void; error: string }) {
-  const [value, setValue] = useState("");
-  return (
-    <form
-      className="gn-gate"
-      onSubmit={(event) => {
-        event.preventDefault();
-        if (value.trim()) onSubmit(value.trim());
-      }}
-    >
-      <label>
-        Grader passcode
-        <input
-          type="password"
-          autoComplete="current-password"
-          value={value}
-          onChange={(event) => setValue(event.target.value)}
-          autoFocus
-        />
-      </label>
-      <button type="submit">Unlock</button>
-      {error && <p className="gn-error">{error}</p>}
-      <p>
-        <small>Asked once; this browser remembers it.</small>
-      </p>
-    </form>
-  );
-}
-
 export function Grading({
   home,
   everything,
@@ -478,26 +445,18 @@ export function Grading({
     observer.observe(bar);
     return () => observer.disconnect();
   }, []);
-  const [passcode, setPasscode] = useState<string>(() => storedPasscode());
+  const [passcode, setPasscode] = useState<string>(() => loadPasscode());
   const [gateError, setGateError] = useState("");
 
   const unlock = (code: string) => {
-    try {
-      localStorage.setItem(PASSCODE_KEY, code);
-    } catch {
-      // Private mode: keep it for this session only.
-    }
+    savePasscode(code);
     setGateError("");
     setLoadError("");
     setPasscode(code);
   };
 
   const lock = (message: string, keepSubjects = false) => {
-    try {
-      localStorage.removeItem(PASSCODE_KEY);
-    } catch {
-      // nothing stored
-    }
+    clearPasscode();
     if (!keepSubjects) setSubjects(null);
     setGateError(message);
     setPasscode("");
