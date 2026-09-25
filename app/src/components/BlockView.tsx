@@ -191,39 +191,7 @@ export function BlockView({ block }: { block: Block }) {
         )}
       </section>
     );
-  if (block.type === "compact-table")
-    return (
-      <section className="block" id={block.id}>
-        <h2>{block.heading}</h2>
-        <div
-          className="table-wrap"
-          tabIndex={0}
-          aria-label={`${block.heading} table`}
-        >
-          <table>
-            {block.caption && <caption>{block.caption}</caption>}
-            <thead>
-              <tr>
-                {block.columns.map((x) => (
-                  <th key={x} scope="col">
-                    {x}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {block.rows.map((row, i) => (
-                <tr key={i}>
-                  {row.map((cell, j) => (
-                    <td key={j}>{cell}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-    );
+  if (block.type === "compact-table") return <TableBlock block={block} />;
   if (block.type === "diagram")
     return (
       <section className="block" id={block.id}>
@@ -249,6 +217,74 @@ export function BlockView({ block }: { block: Block }) {
     <section className="cta block" id={block.id}>
       <h2>{block.heading}</h2>
       <p>{block.body}</p>
+    </section>
+  );
+}
+function TableBlock({
+  block,
+}: {
+  block: Extract<Block, { type: "compact-table" }>;
+}) {
+  const wrap = useRef<HTMLDivElement>(null);
+  const [scrollable, setScrollable] = useState(false);
+  const [atEnd, setAtEnd] = useState(false);
+  useEffect(() => {
+    const el = wrap.current;
+    if (!el) return;
+    const measure = () => {
+      const can = el.scrollWidth > el.clientWidth + 1;
+      setScrollable(can);
+      setAtEnd(!can || el.scrollLeft + el.clientWidth >= el.scrollWidth - 8);
+    };
+    measure();
+    el.addEventListener("scroll", measure, { passive: true });
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => {
+      el.removeEventListener("scroll", measure);
+      observer.disconnect();
+    };
+  }, [block]);
+  return (
+    <section className="block" id={block.id}>
+      <h2>{block.heading}</h2>
+      <div
+        className={`table-outer${scrollable ? " scrollable" : ""}${atEnd ? " at-end" : ""}`}
+      >
+        <div
+          className="table-wrap"
+          tabIndex={0}
+          aria-label={`${block.heading} table`}
+          ref={wrap}
+        >
+          <table>
+            {block.caption && <caption>{block.caption}</caption>}
+            <thead>
+              <tr>
+                {block.columns.map((x) => (
+                  <th key={x} scope="col">
+                    {x}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, i) => (
+                <tr key={i}>
+                  {row.map((cell, j) => (
+                    <td key={j}>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {scrollable && !atEnd && (
+          <p className="table-scroll-hint" aria-hidden="true">
+            Scrolls sideways →
+          </p>
+        )}
+      </div>
     </section>
   );
 }

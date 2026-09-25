@@ -222,7 +222,7 @@ Use for small comparison or reference grids. Required string `heading`; required
 { "id": "matrix", "type": "compact-table", "heading": "Choose a path", "columns": ["Need", "Start"], "rows": [["Read", "Open the page"], ["Build", "Open Studio"]], "caption": "A compact starting map." }
 ```
 
-Bad: `{"id":"matrix","type":"compact-table","heading":"Map","columns":["A","B"],"rows":[["only one"]]}` has the wrong number of cells. The renderer uses a semantic table inside a horizontally scrollable container. Keep it compact; use prose for long explanations.
+Bad: `{"id":"matrix","type":"compact-table","heading":"Map","columns":["A","B"],"rows":[["only one"]]}` has the wrong number of cells. The renderer uses a semantic table inside a horizontally scrollable container. When a table is wider than its container the wrapper shows a right-edge fade and a "scrolls sideways" hint until the reader reaches the end. Keep it compact; use prose for long explanations.
 
 ### `diagram`
 
