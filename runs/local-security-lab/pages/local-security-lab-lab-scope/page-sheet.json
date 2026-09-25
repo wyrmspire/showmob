@@ -1,0 +1,41 @@
+{
+  "sheetVersion": 1,
+  "sheetKind": "planned",
+  "pageId": "local-security-lab-lab-scope",
+  "seriesId": "local-security-lab",
+  "mode": "tutorial",
+  "useShape": "once",
+  "readerMoment": "Wants to build a home security lab and is excited about the tools. Has not thought about whose traffic the lab would see, or what it is actually for.",
+  "outcome": "Can write a one-page scope for their lab: the devices and traffic they may observe, and the one failure they most want to catch.",
+  "prerequisites": [],
+  "teachingShape": {
+    "realTask": "Write the scope for your own lab before plugging anything in",
+    "activate": [
+      "Lockout/tagout: you mark what is safe to work on before you touch it",
+      "A security camera pointed at your own driveway, not the neighbor's window"
+    ],
+    "demonstrate": ["One complete worked scope for an example shared household, including its one failure to catch"],
+    "apply": ["Reader picks the one failure they care about most", "Reader fills in their own scope"],
+    "integrate": ["The scope becomes the boundary of the lab built later in the series", "Filling in devices needs a map of the network, which is the next page"]
+  },
+  "requiredIdeas": [
+    "Consent defines the lab. Owning the network does not give you authority over everyone's traffic on it.",
+    "In scope: devices you own or are explicitly allowed to watch. Out of scope: everyone else's, including devices on your Wi-Fi.",
+    "Metadata still says things about people, so it needs the same care.",
+    "A threat model is three questions: what you protect, from whom, and which failure you most want to catch.",
+    "Pick one failure to catch first. It decides what the lab watches.",
+    "Write the scope down before any tool is installed."
+  ],
+  "candidateAnalogies": [
+    "Lockout/tagout before working on a machine",
+    "Security camera angle",
+    "House keys: you already decide who gets access to what"
+  ],
+  "visualNeeds": [],
+  "deliberatelyExcluded": [
+    { "what": "Legal advice for a specific place", "why": "Laws vary. The page states the principle and points to sources." },
+    { "what": "Formal threat modeling frameworks", "why": "Three questions are enough for a home lab. A framework is weight the reader doesn't need yet." },
+    { "what": "Workplace or shared-business networks", "why": "Different authority questions. Out of scope for a home lab." }
+  ],
+  "nextPagePressure": "To list the devices in scope, the reader needs to see how the home network is wired."
+}

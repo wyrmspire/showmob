@@ -1,0 +1,40 @@
+{
+  "sheetVersion": 1,
+  "sheetKind": "planned",
+  "pageId": "local-security-lab-network-basics",
+  "seriesId": "local-security-lab",
+  "mode": "explanation",
+  "useShape": "returns",
+  "readerMoment": "Has a written scope. Knows their devices by name but not by address, and thinks of the router as 'the Wi-Fi box'.",
+  "outcome": "Can draw their own network with addresses, subnet, and router, and say what the router does between inside and outside.",
+  "prerequisites": [
+    { "idea": "A written lab scope", "taughtBy": "local-security-lab-lab-scope" }
+  ],
+  "teachingShape": {
+    "startFromWhatTheySee": "Find your own device's address and gateway",
+    "buildTheModel": ["Private addresses", "The subnet as the set of local neighbors", "The router as the one door between inside and outside"],
+    "traceOneExample": "One request going out and the reply coming back through the router",
+    "check": "Tell which address is on the same local network",
+    "makeItTheirs": "Fill in the reader's own network map"
+  },
+  "requiredIdeas": [
+    "Every home device gets a private address from a reserved range.",
+    "The subnet says which addresses are local neighbors. On the same subnet, devices can reach each other directly.",
+    "The router does three jobs: gateway to the internet, handing out addresses (DHCP), and sharing one public address among everyone (NAT).",
+    "How to find your own address, subnet, and gateway on Linux, macOS, and Windows."
+  ],
+  "candidateAnalogies": [
+    "Apartment building: one street address, many apartment numbers, a front desk that routes mail",
+    "Office phone extensions behind one main number"
+  ],
+  "visualNeeds": [
+    "The reader's network on one picture: devices with private addresses, the subnet around them, the router with an inside and an outside side, and the internet with one public address"
+  ],
+  "deliberatelyExcluded": [
+    { "what": "Whether NAT protects you", "why": "Owned by the firewall explanation page later in the series." },
+    { "what": "IPv6", "why": "Matters most for exposure. Covered with firewalls." },
+    { "what": "Subnet math beyond a typical home /24", "why": "Not needed to draw a home network." },
+    { "what": "DNS", "why": "Not needed for the lab scope or the next page." }
+  ],
+  "nextPagePressure": "With addresses in hand, the next question is what each device is listening for."
+}
