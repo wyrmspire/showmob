@@ -19,7 +19,7 @@
   "visualCheck": {
     "phone": "390px: inspected top, figure, example, table, each OS command, check, fill-in and closing at actual pixels. Table and commands are readable without losing a needed column; code stays optionally horizontally scrollable by renderer.",
     "desktop": "1280px: inspected top, figure, example, commands and fill-in at actual pixels. No clipping or unintended layering observed.",
-    "limitation": "Local renderer check; preview deployment not yet reviewed by Chris. No interactive form submission or assistive-technology audit."
+    "limitation": "Local renderer check; preview deployment not yet independently reviewed. No interactive form submission or assistive-technology audit."
   },
   "accepted": ["A single bind-address model leads the page", "a worked inventory and transfer check", "a read-only owned-host task", "temporary inputs explicitly distinguished from a saved record"],
   "caveat": "Sheet, generation, and critique are by the same author; independent review is still needed."
