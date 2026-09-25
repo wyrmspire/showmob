@@ -25,6 +25,8 @@ const blockRules = {
   'cta-band': { strings: ['heading', 'body'] },
   checklist: { strings: ['heading'], list: { key: 'items', strings: ['label'], optional: ['detail'] } },
   choice: { strings: ['heading'], list: { key: 'items', strings: ['label'], optional: ['detail'] } },
+  'fill-in': { strings: ['heading'], list: { key: 'items', strings: ['label'], optional: ['placeholder'] } },
+  reveal: { strings: ['heading', 'body'], optional: ['label'] },
   timeline: { strings: ['heading'], list: { key: 'items', strings: ['time', 'title', 'detail'] } },
   code: { strings: ['heading', 'code'], optional: ['language'] },
   embed: { strings: ['heading', 'source', 'caption'], optional: ['url'] },

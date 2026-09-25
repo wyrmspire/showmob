@@ -20,7 +20,7 @@
       "type": "hero",
       "eyebrow": "Playful session worksheet",
       "title": "Ten blanks: read the stripes, write the ohms",
-      "body": "Four-band resistors: digit, digit, multiplier, tolerance. Decode each fictional part below. Answers sit in the exercises — try not to peek until you commit."
+      "body": "Four-band resistors: digit, digit, multiplier, tolerance. Decode each fictional part below and type what you read. The answers stay hidden behind a reveal at the bottom — try not to peek until you commit."
     },
     {
       "id": "key",
@@ -110,66 +110,50 @@
     },
     {
       "id": "problems",
-      "type": "compact-table",
+      "type": "fill-in",
       "heading": "Ten blanks — write value + tolerance",
-      "columns": [
-        "#",
-        "Bands (digit-digit-mult-tol)",
-        "Your answer"
-      ],
-      "rows": [
-        [
-          "1",
-          "Brown Black Red Gold",
-          "____________"
-        ],
-        [
-          "2",
-          "Red Red Brown Silver",
-          "____________"
-        ],
-        [
-          "3",
-          "Orange Orange Orange Gold",
-          "____________"
-        ],
-        [
-          "4",
-          "Yellow Violet Red Gold",
-          "____________"
-        ],
-        [
-          "5",
-          "Green Blue Brown Gold",
-          "____________"
-        ],
-        [
-          "6",
-          "Blue Gray Black Gold",
-          "____________"
-        ],
-        [
-          "7",
-          "Brown Black Green Gold",
-          "____________"
-        ],
-        [
-          "8",
-          "Red Violet Orange Silver",
-          "____________"
-        ],
-        [
-          "9",
-          "White Brown Red Gold",
-          "____________"
-        ],
-        [
-          "10",
-          "Brown Green Gold Gold",
-          "____________"
-        ]
-      ],
-      "caption": "Example: Brown-Black-Red-Gold → 10 × 100 = 1 kΩ ±5%."
+      "items": [
+        {
+          "label": "1 — Brown Black Red Gold",
+          "placeholder": "e.g. 1 kΩ ±5%"
+        },
+        {
+          "label": "2 — Red Red Brown Silver",
+          "placeholder": "e.g. 1 kΩ ±5%"
+        },
+        {
+          "label": "3 — Orange Orange Orange Gold",
+          "placeholder": "e.g. 1 kΩ ±5%"
+        },
+        {
+          "label": "4 — Yellow Violet Red Gold",
+          "placeholder": "e.g. 1 kΩ ±5%"
+        },
+        {
+          "label": "5 — Green Blue Brown Gold",
+          "placeholder": "e.g. 1 kΩ ±5%"
+        },
+        {
+          "label": "6 — Blue Gray Black Gold",
+          "placeholder": "e.g. 1 kΩ ±5%"
+        },
+        {
+          "label": "7 — Brown Black Green Gold",
+          "placeholder": "e.g. 1 kΩ ±5%"
+        },
+        {
+          "label": "8 — Red Violet Orange Silver",
+          "placeholder": "e.g. 1 kΩ ±5%"
+        },
+        {
+          "label": "9 — White Brown Red Gold",
+          "placeholder": "e.g. 1 kΩ ±5%"
+        },
+        {
+          "label": "10 — Brown Green Gold Gold",
+          "placeholder": "e.g. 1 kΩ ±5%"
+        }
+      ]
     },
     {
       "id": "ex1",
@@ -215,10 +199,10 @@
     },
     {
       "id": "key-answers",
-      "type": "note-callout",
-      "title": "Answer key (full set)",
-      "body": "1) 1 kΩ ±5%  2) 220 Ω ±10%  3) 33 kΩ ±5%  4) 4.7 kΩ ±5%  5) 560 Ω ±5%  6) 68 Ω ±5%  7) 1 MΩ ±5%  8) 27 kΩ ±10%  9) 9.1 kΩ ±5%  10) 1.5 Ω ±5%.",
-      "tone": "positive"
+      "type": "reveal",
+      "heading": "Answer key (full set)",
+      "label": "Show the answers",
+      "body": "1) 1 kΩ ±5%  2) 220 Ω ±10%  3) 33 kΩ ±5%  4) 4.7 kΩ ±5%  5) 560 Ω ±5%  6) 68 Ω ±5%  7) 1 MΩ ±5%  8) 27 kΩ ±10%  9) 9.1 kΩ ±5%  10) 1.5 Ω ±5%."
     },
     {
       "id": "close",

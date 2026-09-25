@@ -11,6 +11,8 @@ export type Block =
   | { id:string; type:'cta-band'; heading:string; body:string }
   | { id:string; type:'checklist'; heading:string; items:{label:string;detail?:string}[] }
   | { id:string; type:'choice'; heading:string; items:{label:string;detail?:string}[] }
+  | { id:string; type:'fill-in'; heading:string; items:{label:string;placeholder?:string}[] }
+  | { id:string; type:'reveal'; heading:string; body:string; label?:string }
   | { id:string; type:'timeline'; heading:string; items:{time:string;title:string;detail:string}[] }
   | { id:string; type:'code'; heading:string; language?:string; code:string }
   | { id:string; type:'embed'; heading:string; source:string; caption:string; url?:string }

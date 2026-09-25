@@ -57,7 +57,7 @@ The validator is used for bundled content, pasted/file imports and saved-draft r
 
 To enrich an existing subject, first search `app/src/content/` for its slug, tags and `series.id`. Edit the existing artifact when the idea belongs on the same page; otherwise add another artifact with the same `series.id`, the same `series.title`, and a new `series.order`. The home shelf and previous/next navigation update automatically. Keep new work in `preview` until the contributor and publisher have reviewed it.
 
-Studio’s Add menu covers **13 of 20** types: `text`, `slideshow`, `compact-table`, `diagram`, `note-callout`, `steps`, `checklist`, `timeline`, `comparison`, `resource-list`, `quote`, `divider`, and `cta-band`. It can also edit an existing `hero`. Still missing from Add (use Import / JSON): `hero` (add), `stat-strip`, `code`, `embed`, `image`, `exercise`, `choice`. **Rich blocks = JSON tab:** unsupported Add types still render in preview when present. Templates may contain richer blocks. This catalog documents all 20 renderer types, not only Studio's Add menu.
+Studio’s Add menu covers **13 of 22** types: `text`, `slideshow`, `compact-table`, `diagram`, `note-callout`, `steps`, `checklist`, `timeline`, `comparison`, `resource-list`, `quote`, `divider`, and `cta-band`. It can also edit an existing `hero`. Still missing from Add (use Import / JSON): `hero` (add), `stat-strip`, `code`, `embed`, `image`, `exercise`, `choice`, `fill-in`, `reveal`. **Rich blocks = JSON tab:** unsupported Add types still render in preview when present. Templates may contain richer blocks. This catalog documents all 22 renderer types, not only Studio's Add menu.
 
 ## Widget reference
 
@@ -162,6 +162,26 @@ Use when the copy says pick one. Required string `heading`; `items` contains obj
 ```
 
 Bad: `{"id":"pick","type":"choice","heading":"Pick one","items":["A","B"]}` uses a string instead of an object. A radio group (`role="radiogroup"` with `role="radio"` buttons and `aria-checked`) where one selection replaces the last; tapping the selected item clears it. Use `checklist` when several selections are valid and `exercise` when one option is scored as correct. Selections are local to the mounted block, not evidence of completion. Use distinct labels.
+
+### `fill-in`
+
+Use for worksheet blanks the reader types into. Required string `heading`; `items` contains objects with required string `label` and optional string `placeholder`.
+
+```json
+{ "id": "blanks", "type": "fill-in", "heading": "Decode each part", "items": [{ "label": "1 - Brown Black Red Gold", "placeholder": "value ± tolerance" }, { "label": "2 - Red Red Brown Silver", "placeholder": "value ± tolerance" }] }
+```
+
+Bad: `{"id":"blanks","type":"fill-in","heading":"Blanks","items":["A"]}` uses a string instead of an object. Each item is a labeled text input. Entries are local to the mounted block and reset when the page closes; nothing is checked, scored or transmitted. Pair with a `reveal` when answers should stay hidden until asked for. Use distinct labels.
+
+### `reveal`
+
+Use for content that must stay hidden until the reader explicitly asks, such as an answer key. Required strings: `heading`, `body`. Optional string `label` for the show button.
+
+```json
+{ "id": "key", "type": "reveal", "heading": "Answer key", "label": "Show the answers", "body": "1) 1 kΩ ±5%  2) 220 Ω ±10%." }
+```
+
+The body renders only after the reader presses the button (`aria-expanded` toggles; the button then reads Hide). Do not put answers in plain view elsewhere on the page and claim they are hidden.
 
 ### `timeline`
 

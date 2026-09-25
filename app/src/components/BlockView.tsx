@@ -216,6 +216,8 @@ export function BlockView({ block }: { block: Block }) {
         )}
       </section>
     );
+  if (block.type === "fill-in") return <FillInBlock block={block} />;
+  if (block.type === "reveal") return <RevealBlock block={block} />;
   if (block.type === "compact-table") return <TableBlock block={block} />;
   if (block.type === "diagram")
     return (
@@ -242,6 +244,63 @@ export function BlockView({ block }: { block: Block }) {
     <section className="cta block" id={block.id}>
       <h2>{block.heading}</h2>
       <p>{block.body}</p>
+    </section>
+  );
+}
+function FillInBlock({
+  block,
+}: {
+  block: Extract<Block, { type: "fill-in" }>;
+}) {
+  const [values, setValues] = useState<string[]>(() =>
+    block.items.map(() => ""),
+  );
+  return (
+    <section className="block" id={block.id}>
+      <h2>{block.heading}</h2>
+      <div className="fill-in">
+        {block.items.map((x, i) => (
+          <label key={x.label}>
+            <strong>{x.label}</strong>
+            <input
+              type="text"
+              value={values[i] ?? ""}
+              placeholder={x.placeholder}
+              onChange={(event) =>
+                setValues((current) =>
+                  current.map((v, j) => (j === i ? event.target.value : v)),
+                )
+              }
+            />
+          </label>
+        ))}
+      </div>
+      <p className="session-note">These blanks reset when the page closes.</p>
+    </section>
+  );
+}
+function RevealBlock({
+  block,
+}: {
+  block: Extract<Block, { type: "reveal" }>;
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <section className="block reveal" id={block.id}>
+      <h2>{block.heading}</h2>
+      <button
+        className="reveal-toggle"
+        aria-expanded={open}
+        aria-controls={`${block.id}-panel`}
+        onClick={() => setOpen((o) => !o)}
+      >
+        {open ? "Hide" : (block.label ?? "Show")}
+      </button>
+      {open && (
+        <p className="reveal-panel" id={`${block.id}-panel`}>
+          {block.body}
+        </p>
+      )}
     </section>
   );
 }
