@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "slug": "local-security-lab-network-inventory",
+  "title": "Inventory every device you own and keep a baseline",
+  "summary": "Join router client observations with listener notes from owned hosts, save a dated private baseline, and investigate changes without guessing.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "night",
+  "series": {
+    "id": "local-security-lab",
+    "title": "Defensive local security",
+    "order": 5
+  },
+  "tags": [
+    "security",
+    "networking",
+    "defensive-lab",
+    "inventory",
+    "baseline"
+  ],
+  "updated": "2026-09-25",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Defensive local security · foundations 4",
+      "title": "Make a baseline of the devices you own",
+      "body": "A router list is a snapshot, not a roll call. Put it beside the listener notes from your own machine, record what you can verify, and date the result. Later, a change becomes a question you can investigate instead of a guess."
+    },
+    {
+      "id": "two-views",
+      "type": "comparison",
+      "heading": "Two views, neither complete",
+      "columns": [
+        {
+          "name": "The router sees clients",
+          "detail": "On a network you administer, find Connected devices, Clients, or DHCP leases in its settings. A lease can remain after a device leaves; guest Wi-Fi or a second router may have a separate list."
+        },
+        {
+          "name": "Your host sees its sockets",
+          "detail": "On a machine you own, bring forward the protocol, bind address, port, process and possible reach from the previous lesson. Do not assume that the router can show which service is listening."
+        }
+      ]
+    },
+    {
+      "id": "identity",
+      "type": "text",
+      "heading": "Match evidence, not just an address",
+      "body": "Give each owned device a label you recognize and a role such as laptop, printer, camera or router. Write its observed local IP, router label, where you saw it and when. Compare the device’s own network settings or your authorized owner record before marking it confirmed. DHCP can change an IP; private or randomized MAC addresses can change too. A plausible name alone does not prove whose device it is."
+    },
+    {
+      "id": "sample",
+      "type": "compact-table",
+      "heading": "A small invented baseline",
+      "columns": [
+        "Device and identity evidence",
+        "Observed network and listener notes"
+      ],
+      "rows": [
+        [
+          "Kitchen laptop · confirmed on device",
+          "Sep 25 · 192.168.1.23 in router; owned-host note: TCP 127.0.0.1:3000 preview, local only"
+        ],
+        [
+          "Hallway camera · confirmed by owner",
+          "Sep 25 · 192.168.1.40 in router; listeners unchecked, no host access"
+        ],
+        [
+          "\"Unknown-7\" · unverified",
+          "Sep 25 · 192.168.1.68 in router; owner and role unknown, verify before action"
+        ]
+      ],
+      "caption": "All names, addresses, and services are fictional. Record the actual date, network, source and uncertainty in a private copy; do not post your real client list."
+    },
+    {
+      "id": "compare",
+      "type": "compact-table",
+      "heading": "Compare a later snapshot",
+      "columns": [
+        "What changed",
+        "What it means to check"
+      ],
+      "rows": [
+        [
+          "Laptop now 192.168.1.29",
+          "Its own settings and router agree on the same device: likely address reassignment, not a new laptop. Confirm before closing."
+        ],
+        [
+          "\"Unknown-7\" appears only in one router view",
+          "Could be a guest, an old lease, or something else. Check the timestamp, other router views, and authorized owners; leave it unresolved until verified."
+        ],
+        [
+          "Laptop gains a LAN-bound listener",
+          "Compare protocol, bind address, port and process on that owned laptop. Check the app and firewall separately before calling it reachable."
+        ]
+      ],
+      "caption": "This is a comparison workflow, not an intrusion detector. An unchanged list does not prove that a network is safe."
+    },
+    {
+      "id": "procedure",
+      "type": "steps",
+      "heading": "Make and maintain your private record",
+      "items": [
+        "Scope and date it: Name the network you administer, the date and time, and any guest or separate segments you can access. Do not inspect a network you do not administer.",
+        "Collect two read-only views: Copy the router client or lease list, then walk through the owned devices you know about, including offline devices that may be absent from the router. Add listener notes from each host you own and can inspect. Mark other devices as “listeners unchecked,” not “none.”",
+        "Corroborate and label: Match a device to its own settings, physical label or authorized owner. Save device role, observed address, source, time, confidence and unresolved questions. A changing IP or MAC is not a stable identity key.",
+        "Compare again: After a deliberate change or at a cadence you choose, make a second dated snapshot. For an unfamiliar entry, check your own router records and ask its authorized owner. Inspect settings only on a device you own or have explicit permission to inspect; otherwise leave the entry unresolved. Do not block, scan or reset something based only on this list."
+      ]
+    },
+    {
+      "id": "template",
+      "type": "fill-in",
+      "heading": "Rehearse one device record",
+      "items": [
+        {
+          "label": "Device, role and authorized owner",
+          "placeholder": "Kitchen laptop · work laptop · mine"
+        },
+        {
+          "label": "Date, network, observed address and source",
+          "placeholder": "Sep 25 · home Wi-Fi · 192.168.1.23 · router clients"
+        },
+        {
+          "label": "Identity evidence and confidence",
+          "placeholder": "checked on laptop · confirmed"
+        },
+        {
+          "label": "Owned-host listeners or unchecked",
+          "placeholder": "TCP 127.0.0.1:3000 · preview · local only"
+        },
+        {
+          "label": "Question or next check",
+          "placeholder": "Why did its local address change?"
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "type": "note-callout",
+      "tone": "warning",
+      "body": "These fields are temporary and reset when you close the page. They rehearse one row, not the complete inventory. In a private file or notebook, repeat the fields for every device you own, including offline devices; date each observation and leave unresolved entries marked unknown. Hostnames, addresses, MACs and process lists reveal your network layout. Ask an authorized owner or check the device itself before changing access.",
+      "title": "Save it outside this page"
+    },
+    {
+      "id": "check",
+      "type": "exercise",
+      "heading": "A changed address is not a verdict",
+      "prompt": "Your laptop was 192.168.1.23 yesterday and is 192.168.1.29 today. The router calls it the same name. What is the strongest conclusion from that alone?",
+      "options": [
+        "An intruder replaced the laptop",
+        "The address changed; verify identity on the laptop and note the new observation",
+        "The router has proved the laptop is secure"
+      ],
+      "answer": 1,
+      "explanation": "Local addresses can be reassigned, and a router name alone is weak identity evidence. Check the actual device, then update the dated record. Neither address proves safety or intrusion."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Further reading",
+      "items": [
+        {
+          "label": "FTC: Securing Your Internet-Connected Devices at Home",
+          "detail": "Find connected clients in router settings and protect each device.",
+          "url": "https://consumer.ftc.gov/articles/securing-your-internet-connected-devices-home"
+        },
+        {
+          "label": "FTC: How To Secure Your Home Wi-Fi Network",
+          "detail": "Router settings, guest networks and connected devices at home.",
+          "url": "https://consumer.ftc.gov/articles/how-secure-your-home-wi-fi-network"
+        },
+        {
+          "label": "CIS Control 1: Inventory and Control of Enterprise Assets",
+          "detail": "A broader organizational model for keeping an asset inventory and tracking unmanaged assets.",
+          "url": "https://www.cisecurity.org/controls/inventory-and-control-of-enterprise-assets"
+        }
+      ]
+    },
+    {
+      "id": "next",
+      "type": "cta-band",
+      "heading": "Now you can ask better questions",
+      "body": "Keep both dated snapshots. The next lessons use this inventory to reason about traffic and boundaries without mistaking a router list for a security verdict."
+    }
+  ]
+}

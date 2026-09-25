@@ -1,0 +1,71 @@
+{
+  "sheetVersion": 1,
+  "sheetKind": "planned",
+  "pageId": "local-security-lab-network-inventory",
+  "seriesId": "local-security-lab",
+  "mode": "how-to",
+  "useShape": "alongside",
+  "readerMoment": "Has scoped an owned network, identified its router and subnet, and made a read-only listener list for one owned host. The router shows an unfamiliar list of device names and addresses.",
+  "outcome": "Can produce a dated, private baseline of their owned devices and known listeners, compare a later snapshot, and investigate a changed or unknown entry before acting.",
+  "coreModel": "A baseline is a dated comparison point, not a verdict: router observations and host observations are incomplete, so a difference becomes a question to verify.",
+  "prerequisites": [
+    {
+      "idea": "Authorized scope",
+      "taughtBy": "local-security-lab-lab-scope"
+    },
+    {
+      "idea": "Own subnet, router and gateway",
+      "taughtBy": "local-security-lab-network-basics"
+    },
+    {
+      "idea": "Local listener and bind scope",
+      "taughtBy": "local-security-lab-host-listeners"
+    }
+  ],
+  "teachingShape": {
+    "realTask": "Make a dated private device and listener inventory without scanning or changing anything",
+    "activate": [
+      "Bring the owned-host listener list from the previous page",
+      "Open the router's connected devices or client list for an authorized network"
+    ],
+    "demonstrate": [
+      "Join two invented device observations to a host listener record",
+      "Compare snapshots showing one changed address and one genuinely unresolved device"
+    ],
+    "apply": [
+      "Record each owned device, where it was observed, identity evidence, and confidence",
+      "Record known listeners on hosts the reader owns; mark devices without local access as unchecked"
+    ],
+    "integrate": [
+      "Date and store the baseline privately; compare after a deliberate change or on a chosen cadence"
+    ]
+  },
+  "requiredIdeas": [
+    "Router client and DHCP lists may be partial or stale; a device can be offline, on guest Wi-Fi, or absent from that router view.",
+    "A name, local IP or MAC address is a clue, not proof of ownership; addresses can change and private/randomized MACs complicate matching.",
+    "The baseline contains device identity and role, observed address, where and when seen, owner/authorization, listener details on owned hosts, and unknowns.",
+    "Compare before/after by corroborated device identity, not just IP; distinguish expected changes from unresolved ones.",
+    "An unknown entry calls for verification with an owner or device, not disconnection, probing or public posting."
+  ],
+  "visualNeeds": [
+    "A compact before/after comparison showing an address change for a known device versus a new unresolved device"
+  ],
+  "deliberatelyExcluded": [
+    {
+      "what": "Active port scans or touching other people's devices",
+      "why": "This page joins read-only router and owned-host observations."
+    },
+    {
+      "what": "Automatically blocking or isolating devices",
+      "why": "A name or address alone cannot prove an intruder; response needs separate verification."
+    },
+    {
+      "what": "Firewall and guest-network configuration",
+      "why": "Those changes belong to later lessons."
+    }
+  ],
+  "nextPagePressure": "A baseline can now support cautious decisions about exposure and network boundaries.",
+  "candidateAnalogies": [
+    "A dated household inventory: absence from one room does not mean an item is gone; check another location before changing the list."
+  ]
+}

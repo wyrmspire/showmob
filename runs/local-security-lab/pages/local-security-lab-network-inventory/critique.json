@@ -1,0 +1,23 @@
+{
+  "stage":"critique",
+  "pageId":"local-security-lab-network-inventory",
+  "judgedAgainst":"page-sheet.json and coreModel, then actual rendered pixels at 390px and 1280px",
+  "questions":{
+    "teachesOrExplains":"A router observation is combined with an owned-host listener note, then the reader compares a known address change with an unresolved entry and applies the procedure to their own network.",
+    "coreModel":"The page repeatedly treats a dated baseline as a question source rather than an intrusion or safety verdict.",
+    "scope":"Read-only router view and owned-host records; no active scan, block or firewall change. Listener status on inaccessible devices remains unchecked."
+  },
+  "findings":[
+    {"id":"n1","layer":"page sheet","outcome":"rewrite","finding":"The router's client view can omit offline owned devices, so the original collect step could not fulfill every-device outcome.","change":"Added a walk through known owned devices, including offline ones, alongside the router view."},
+    {"id":"n2","layer":"generation","outcome":"rewrite","finding":"A one-row temporary fill-in could be mistaken for the full baseline.","change":"Call it a rehearsal and direct the reader to repeat fields per owned device in a private dated record."},
+    {"id":"n3","layer":"representation","outcome":"keep","finding":"Two-column baseline and comparison tables fit at 390px without hiding identity evidence or next checks.","change":"Kept both tables; no horizontal dependency."},
+    {"id":"n4","layer":"generation","outcome":"keep","finding":"Changed IP and unknown router label examples do not prove a threat; no step automatically acts on a guessed identity.","change":"Preserved corroboration and unknown status."}
+  ],
+  "visualCheck":{
+    "phone":"390px actual screenshot: inspected hero, two-view cards, both two-column tables, steps, worksheet, warning, exercise and sources. No clipped necessary column or overlapping text.",
+    "desktop":"1280px actual screenshot: inspected hero, tables, steps, exercise, sources and closing. Cards and text remain legible.",
+    "limitation":"Local Vite rendering, not a deployed preview or assistive-technology audit; final two copy edits reuse previously inspected block styles and need final screenshot after change."
+  },
+  "accepted":["A dated inventory with explicit confidence and source", "comparison rather than threat verdict", "private record outside the temporary fields"],
+  "caveat":"The same author produced sheet, draft and critique. Independent review remains necessary."
+}
