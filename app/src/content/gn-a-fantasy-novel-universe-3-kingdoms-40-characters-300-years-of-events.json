@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "slug": "gn-a-fantasy-novel-universe-3-kingdoms-40-characters-300-years-of-events",
   "title": "A fantasy novel universe: 3 kingdoms, 40 characters, 300 years of events",
-  "summary": "The invented world of the Tidewars saga, organized so a new reader can hold it: three powers, seven eras, and the dozen characters who steer them.",
+  "summary": "The invented Tidewars saga: three powers, seven eras, and a forty-person cast register, with central figures called out first.",
   "contributor": "Instinct",
   "status": "preview",
   "theme": "field",
@@ -21,7 +21,7 @@
       "type": "stat-strip",
       "items": [
         { "value": "3", "label": "Powers: a mountain crown, a river compact, a salt theocracy" },
-        { "value": "40", "label": "Named characters; a dozen actually steer events" },
+        { "value": "40", "label": "Named people; central figures come first" },
         { "value": "300", "label": "Years since the Breaking of the old empire" }
       ]
     },
@@ -83,7 +83,7 @@
     {
       "id": "notables",
       "type": "compact-table",
-      "heading": "The dozen who steer (of the forty named)",
+      "heading": "The central figures (eleven people and one office)",
       "columns": ["Character", "Power", "Why they matter"],
       "rows": [
         ["Queen Mabren Vael", "Vaelmoor", "Unifier of the highlands; everything after her is her shadow"],
@@ -98,7 +98,160 @@
         ["Spymaster Leth", "Unaffiliated", "Sells to all three powers; the saga's recurring question mark"],
         ["Queen Idra Vael", "Vaelmoor", "Architect of the Concord; the present tense of the saga"],
         ["Tide-Speaker Nao", "Ashkara", "Youngest ever raised to the voice; hears something the priests hoped the sea had forgotten"]
-      ]
+      ],
+      "caption": "The Three Accountants is an office, not a person. The remaining named people follow."
+    },
+    {
+      "id": "cast-crown",
+      "type": "compact-table",
+      "heading": "Vaelmoor: the rest of the cast",
+      "columns": [
+        "Person",
+        "Role in the Concord era"
+      ],
+      "rows": [
+        [
+          "Teren Vael",
+          "Heir who doubts Idra’s concessions"
+        ],
+        [
+          "Marshal Senn",
+          "Protects the northern pass"
+        ],
+        [
+          "Orra Flint",
+          "Mine steward tracking salt shortages"
+        ],
+        [
+          "Nell Arven",
+          "Courier with a missing treaty copy"
+        ],
+        [
+          "Bram Voss",
+          "Toll captain tempted by bribes"
+        ],
+        [
+          "Sister Fen",
+          "Archivist of Mabren’s campaigns"
+        ],
+        [
+          "Dain Rusk",
+          "Veteran opposing renewed conscription"
+        ],
+        [
+          "Eris Vale",
+          "Surveyor finding an untaxed route"
+        ],
+        [
+          "Holl Mere",
+          "Grain factor negotiating winter stocks"
+        ],
+        [
+          "Pell Ash",
+          "Prison clerk who remembers names"
+        ]
+      ],
+      "caption": "These are fictional people; each appears in the Concord era. The central figures are in the table above."
+    },
+    {
+      "id": "cast-compact",
+      "type": "compact-table",
+      "heading": "The Compact: the rest of the cast",
+      "columns": [
+        "Person",
+        "Role in the Concord era"
+      ],
+      "rows": [
+        [
+          "Iven Rell",
+          "First Accountant: sovereign debt"
+        ],
+        [
+          "Sova Penn",
+          "Second Accountant: shipping credit"
+        ],
+        [
+          "Daro Winn",
+          "Third Accountant: disputed claims"
+        ],
+        [
+          "Consul Breya",
+          "Sarre delegate protecting open trade"
+        ],
+        [
+          "Milo Renn",
+          "Lun delegate facing dock strikes"
+        ],
+        [
+          "Tessa Ild",
+          "Ild delegate demanding flood repairs"
+        ],
+        [
+          "Jorin Keel",
+          "Shipwright resisting naval requisitions"
+        ],
+        [
+          "Vela Nor",
+          "Grain merchant insuring dangerous cargo"
+        ],
+        [
+          "Aven Pike",
+          "River pilot who knows the shoals"
+        ],
+        [
+          "Rilla Dane",
+          "Ledger clerk finding duplicate debts"
+        ],
+        [
+          "Orren Bell",
+          "Dock organizer courting all three consuls"
+        ]
+      ],
+      "caption": "These are fictional people; each appears in the Concord era. The central figures are in the table above."
+    },
+    {
+      "id": "cast-coast",
+      "type": "compact-table",
+      "heading": "Ashkara and independent voices: the rest",
+      "columns": [
+        "Person",
+        "Role in the Concord era"
+      ],
+      "rows": [
+        [
+          "Keeper Ys",
+          "Maintains the oldest lighthouse"
+        ],
+        [
+          "Captain Varo",
+          "Escorts the temple’s grain convoys"
+        ],
+        [
+          "Suri Salt",
+          "Fishery speaker seeking a fair levy"
+        ],
+        [
+          "Novice Enna",
+          "Secret reader of Mera’s teachings"
+        ],
+        [
+          "Priest Calen",
+          "Custodian of disputed tide records"
+        ],
+        [
+          "Marek Shoal",
+          "Navigator questioning a holy forecast"
+        ],
+        [
+          "Dr. Kes Mar",
+          "Physician treating crews from all flags"
+        ],
+        [
+          "Ansel Reed",
+          "Translator who hears treaty ambiguities"
+        ]
+      ],
+      "caption": "These are fictional people; each appears in the Concord era. The central figures are in the table above."
     },
     {
       "id": "the-web",

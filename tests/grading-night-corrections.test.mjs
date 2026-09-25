@@ -98,3 +98,15 @@ test('operational examples keep lifecycle and scheduling dimensions honest', () 
   assert.doesNotMatch(text(agenda), /Focus block [AB]/);
   assert.match(text(agenda), /14:50–18:50/);
 });
+
+
+test('the fictional universe names forty distinct people and labels its central office', () => {
+  const page = artifact('gn-a-fantasy-novel-universe-3-kingdoms-40-characters-300-years-of-events');
+  const ids = ['notables', 'cast-crown', 'cast-compact', 'cast-coast'];
+  const names = ids.flatMap(id => block(page, id).rows.map(row => row[0]));
+  assert.ok(names.includes('The Three Accountants'), 'central office remains in the orientation table');
+  const people = names.filter(name => name !== 'The Three Accountants');
+  assert.equal(people.length, 40);
+  assert.equal(new Set(people).size, 40);
+  assert.match(block(page, 'notables').caption, /office, not a person/);
+});
