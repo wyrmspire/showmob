@@ -1,0 +1,37 @@
+{
+  "sheetVersion": 1,
+  "sheetKind": "planned",
+  "pageId": "local-security-lab-host-listeners",
+  "seriesId": "local-security-lab",
+  "mode": "tutorial",
+  "useShape": "alongside",
+  "readerMoment": "Has written the lab scope and mapped their own subnet and router. Has used a terminal, but does not know which services on their own machine wait for network traffic.",
+  "outcome": "Can list TCP listeners and UDP sockets on one machine they own, then record each local address, port, process, likely reach, and purpose without changing any service.",
+  "coreModel": "A loopback-bound service cannot be reached directly from another device, while a wildcard or LAN-bound service may be reachable if the network and firewall allow it.",
+  "prerequisites": [
+    { "idea": "Which machine and traffic are in scope", "taughtBy": "local-security-lab-lab-scope" },
+    { "idea": "Own address, subnet, and router", "taughtBy": "local-security-lab-network-basics" }
+  ],
+  "teachingShape": {
+    "realTask": "Make a read-only listener inventory of one machine you own",
+    "activate": ["Recall the machine's own IP and subnet from the previous page", "A door has both a room number (port) and an entrance (bind address)"],
+    "demonstrate": ["One annotated sample output: loopback TCP, wildcard TCP, and UDP with process names", "One completed inventory with cautious reach and purpose, including an unknown"],
+    "apply": ["Run the inspection commands for the reader's OS on one owned machine", "Record two of their own results, checking unknown processes before making any changes"],
+    "integrate": ["Use the inventory as input to the dated baseline on the next page"]
+  },
+  "requiredIdeas": [
+    "A process owns a socket with a local address and port; TCP LISTEN waits for connections, while UDP sockets do not have a LISTEN state.",
+    "127.0.0.1 and ::1 are loopback; 0.0.0.0 and :: mean all available interfaces for that address family; a specific LAN address binds that interface.",
+    "A bind address suggests possible reach, not proof of access: host firewall, routing, and interface state also matter.",
+    "Commands inspect locally; elevation may be needed to see process ownership. Never change or stop an unknown service from an inventory alone.",
+    "Record protocol, bind address, port, process, possible reach, purpose, and any uncertainty without posting real host details."
+  ],
+  "candidateAnalogies": ["A door number is a port; the entrance it faces is the bind address. A locked hallway (firewall) can still prevent entry."],
+  "visualNeeds": ["Three labeled entrances on one owned host: loopback, a specific LAN address, and all interfaces, with external reach marked as conditional"],
+  "deliberatelyExcluded": [
+    { "what": "Port scanning other devices", "why": "This page inspects only the owned host; consent and network reach are separate questions." },
+    { "what": "Firewall changes or disabling services", "why": "First record what exists; firewall policy and changes belong to later pages." },
+    { "what": "A dated network-wide baseline", "why": "Owned by the following inventory page." }
+  ],
+  "nextPagePressure": "A single host inventory becomes useful when the reader dates it, repeats it, and compares it with other owned devices."
+}

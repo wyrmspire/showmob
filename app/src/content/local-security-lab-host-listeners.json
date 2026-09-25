@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "slug": "local-security-lab-host-listeners",
+  "title": "Find what is listening on your machine",
+  "summary": "Inspect local TCP listeners and UDP sockets, read their bind addresses, and record what may be reachable without changing a service.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "night",
+  "series": {
+    "id": "local-security-lab",
+    "title": "Defensive local security",
+    "order": 4
+  },
+  "tags": [
+    "security",
+    "networking",
+    "defensive-lab",
+    "ports",
+    "listeners"
+  ],
+  "updated": "2026-09-24",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Defensive local security · foundations 3",
+      "title": "What is waiting on your machine?",
+      "body": "On one machine you own, list the services waiting for traffic. First look at the local address: the same port can face only this machine, your LAN, or every interface. Record what you see before you change anything."
+    },
+    {
+      "id": "entrances",
+      "type": "image",
+      "heading": "A port has an entrance",
+      "src": "/images/listener-bind-scope.svg",
+      "alt": "One owned machine shows a loopback-only service on 127.0.0.1:3000, a LAN-bound service on 192.168.1.23:8080, and a wildcard listener on 0.0.0.0:8443. Only the latter two may accept traffic from another device, depending on the network and firewall.",
+      "caption": "Example IPv4 addresses. The labels show possible bind scope, not proof that another device can connect."
+    },
+    {
+      "id": "terms",
+      "type": "text",
+      "heading": "Read the address before the port",
+      "body": "A process opens a socket at a local address and port. TCP LISTEN means it is waiting for a connection. UDP has sockets too, but no TCP-style LISTEN state. Think of a port as a door number and the bind address as which entrance that door faces. 127.0.0.1 and ::1 face only this machine. 0.0.0.0 and :: mean all available IPv4 or IPv6 interfaces, respectively. A specific LAN address faces that interface. None of these alone proves another device can get through the firewall."
+    },
+    {
+      "id": "sample",
+      "type": "code",
+      "heading": "Three example lines, not your machine",
+      "language": "text",
+      "code": "TCP  127.0.0.1:3000   preview\nTCP  0.0.0.0:8443     server\nUDP  192.168.1.23:5353  daemon"
+    },
+    {
+      "id": "read-sample",
+      "type": "compact-table",
+      "heading": "Turn the lines into an inventory",
+      "columns": [
+        "Socket / process",
+        "Reach and next check"
+      ],
+      "rows": [
+        [
+          "127.0.0.1:3000 · preview",
+          "This host only. Local preview; verify if unfamiliar."
+        ],
+        [
+          "0.0.0.0:8443 · server",
+          "Any IPv4 interface may accept, if allowed. Check what started it and the firewall."
+        ],
+        [
+          "192.168.1.23:5353 · UDP daemon",
+          "Bound to this LAN address; firewall unknown. Identify the process; UDP has no LISTEN state."
+        ]
+      ],
+      "caption": "These names and addresses are invented. Possible reach is not a connectivity test."
+    },
+    {
+      "id": "linux",
+      "type": "code",
+      "heading": "Linux: TCP listeners, then UDP sockets",
+      "language": "shell",
+      "code": "# TCP listeners, then UDP sockets\nsudo ss -ltnp\nsudo ss -lunp"
+    },
+    {
+      "id": "macos",
+      "type": "code",
+      "heading": "macOS: TCP listeners, then UDP sockets",
+      "language": "shell",
+      "code": "sudo lsof -nP -iTCP -sTCP:LISTEN\nsudo lsof -nP -iUDP"
+    },
+    {
+      "id": "windows",
+      "type": "code",
+      "heading": "Windows PowerShell: TCP and UDP endpoints",
+      "language": "shell",
+      "code": "# Run in PowerShell\nGet-NetTCPConnection -State Listen\nGet-NetUDPEndpoint\n# Replace 1234 with OwningProcess\nGet-Process -Id 1234"
+    },
+    {
+      "id": "safe-read",
+      "type": "text",
+      "heading": "What the listing does and does not say",
+      "body": "The commands above show local IPv4 and IPv6 endpoints; UDP does not have a LISTEN state, and a UDP listing may include other local sockets. Run commands only on a machine you own or are authorized to inspect. sudo on Linux or macOS may ask for your password; an elevated PowerShell may show more process details. If process names are missing, record the PID or an unknown rather than guessing. A loopback bind is local to that host. A wildcard or LAN bind could be reachable from another device, but firewall rules, routing, and active interfaces still decide whether it is. Do not test another person’s device, stop an unfamiliar process, or change firewall rules based on this list. Look up the owning application first."
+    },
+    {
+      "id": "check",
+      "type": "exercise",
+      "heading": "Does the address change the answer?",
+      "prompt": "On your own laptop, TCP port 9000 is bound to 127.0.0.1. Your LAN IP is 192.168.1.23. What does the listing alone tell you?",
+      "options": [
+        "Any device on the Wi-Fi can connect because port 9000 is open",
+        "Only processes on this laptop can connect directly to that loopback socket",
+        "The router is blocking port 9000"
+      ],
+      "answer": 1,
+      "explanation": "127.0.0.1 is loopback on this machine. It does not face the LAN, regardless of the port number. A LAN-bound or wildcard socket would still require a separate firewall and routing check before calling it reachable."
+    },
+    {
+      "id": "your-list",
+      "type": "fill-in",
+      "heading": "Start with two results from your machine",
+      "items": [
+        {
+          "label": "First: protocol, bind address:port, process or PID",
+          "placeholder": "TCP · 127.0.0.1:3000 · process name"
+        },
+        {
+          "label": "First: possible reach, purpose, and what you still need to check",
+          "placeholder": "this host only · local preview · confirm owner"
+        },
+        {
+          "label": "Second: protocol, bind address:port, process or PID",
+          "placeholder": "UDP · 192.168.1.23:5353 · PID"
+        },
+        {
+          "label": "Second: possible reach, purpose, and what you still need to check",
+          "placeholder": "LAN-bound, firewall unknown · identify app"
+        }
+      ]
+    },
+    {
+      "id": "save",
+      "type": "text",
+      "heading": "Keep the record privately",
+      "body": "These blanks are temporary and reset when the page closes. Copy these entries into your own dated inventory, then continue until you have accounted for the rest of the listeners on that machine, without posting real addresses, PIDs, or process lists to a public page. For each unknown, note what you will verify. The next page turns this first look into a baseline."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Command references",
+      "items": [
+        {
+          "label": "ss manual",
+          "detail": "Linux listening sockets and process flags.",
+          "url": "https://linux.die.net/man/8/ss"
+        },
+        {
+          "label": "lsof manual",
+          "detail": "Socket and process inspection, including TCP state and UDP filters.",
+          "url": "https://man7.org/linux/man-pages/man8/lsof.8.html"
+        },
+        {
+          "label": "Microsoft Get-NetTCPConnection",
+          "detail": "TCP state, local address and port, and owning process ID.",
+          "url": "https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-nettcpconnection?view=windowsserver2025-ps"
+        },
+        {
+          "label": "Microsoft Get-NetUDPEndpoint",
+          "detail": "UDP local endpoint and owning process ID.",
+          "url": "https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-netudpendpoint?view=windowsserver2025-ps"
+        }
+      ]
+    },
+    {
+      "id": "next",
+      "type": "cta-band",
+      "heading": "Next: make the list a baseline",
+      "body": "Date this first inventory. The next page brings in your other owned devices and shows how to spot a change against it."
+    }
+  ]
+}
