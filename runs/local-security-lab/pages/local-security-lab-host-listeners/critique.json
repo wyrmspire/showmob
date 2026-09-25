@@ -1,0 +1,26 @@
+{
+  "stage": "critique",
+  "pageId": "local-security-lab-host-listeners",
+  "judgedAgainst": "page-sheet.json and coreModel, then rendered at 390px and 1280px in local Vite",
+  "questions": {
+    "teachesOrExplains": "The page demonstrates a sample and asks the reader to inspect and record their own host. The check transfers the bind-address model to another port.",
+    "coreModel": "The carry-away sentence forced the order: bind scope first, port second; every reach claim is conditional on firewall and routing.",
+    "scope": "No other-device scan or service change. UDP is distinguished from TCP LISTEN. The two-entry worksheet is a start, not a claim of complete inventory."
+  },
+  "findings": [
+    {"id":"h1","layer":"representation","outcome":"rewrite","finding":"At 390px the original three-column worked-inventory table hid the purpose and next check off-screen, although those are part of the sheet's outcome.","change":"Reduced to two columns and put reach with next check; all parts visible on phone."},
+    {"id":"h2","layer":"representation","outcome":"reorder","finding":"A single three-OS code block was long and hard to navigate on a phone. On desktop its Windows lines remained wide.","change":"Split into three labeled OS-specific code blocks; shortened Windows commands so each line fits at 390px."},
+    {"id":"h3","layer":"generation","outcome":"rewrite","finding":"The first synthetic example line was long enough to force horizontal scrolling at phone width.","change":"Shortened the invented process labels and removed a redundant comment while keeping protocol, address, port, and process."},
+    {"id":"h4","layer":"generation","outcome":"rewrite","finding":"The figure caption said arrows show bind scope, but the figure has labeled regions, no arrows.","change":"Caption now says labels; SVG and alt checked for conditional reach."},
+    {"id":"h5","layer":"generation","outcome":"add example","finding":"The Windows command originally selected a long list of fields that overflowed at phone width.","change":"Shortened the command; the surrounding text explains where to find OwningProcess and how to resolve a PID."},
+    {"id":"h6","layer":"page sheet and generation","outcome":"rewrite","finding":"The sheet says list every listener, but two fill-in entries alone could be mistaken for completion.","change":"Called it a start, then instructs the reader to continue the private dated inventory until the rest of the machine's listeners are accounted for."},
+    {"id":"h7","layer":"generation","outcome":"rewrite","finding":"Initial wording blurred UDP endpoints with TCP listeners and implied all UDP listings were listening.","change":"States UDP has no LISTEN state and may include other sockets."}
+  ],
+  "visualCheck": {
+    "phone": "390px: inspected top, figure, example, table, each OS command, check, fill-in and closing at actual pixels. Table and commands are readable without losing a needed column; code stays optionally horizontally scrollable by renderer.",
+    "desktop": "1280px: inspected top, figure, example, commands and fill-in at actual pixels. No clipping or unintended layering observed.",
+    "limitation": "Local renderer check; preview deployment not yet reviewed by Chris. No interactive form submission or assistive-technology audit."
+  },
+  "accepted": ["A single bind-address model leads the page", "a worked inventory and transfer check", "a read-only owned-host task", "temporary inputs explicitly distinguished from a saved record"],
+  "caveat": "Sheet, generation, and critique are by the same author; independent review is still needed."
+}

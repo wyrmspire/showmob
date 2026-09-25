@@ -13,7 +13,7 @@
 <rect x="25" y="302" width="590" height="164" rx="18" fill="#213348" stroke="#f6cc72" stroke-width="2"/>
 <text x="45" y="339" fill="#f6cc72" font-size="22" font-weight="700">LAN ADDRESS · this interface</text>
 <text x="45" y="380" fill="#fff" font-size="23">192.168.1.23:8080 · app</text>
-<text x="45" y="414" fill="#d6e5f6" font-size="19">A LAN device may be able to connect.</text>
+<text x="45" y="414" fill="#d6e5f6" font-size="19">LAN devices may be able to connect.</text>
 <text x="45" y="442" fill="#d6e5f6" font-size="17">Check firewall and routing first.</text>
 <rect x="25" y="484" width="590" height="164" rx="18" fill="#213348" stroke="#e9a0a4" stroke-width="2"/>
 <text x="45" y="521" fill="#e9a0a4" font-size="22" font-weight="700">WILDCARD · all IPv4 interfaces</text>

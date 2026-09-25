@@ -33,7 +33,7 @@
       "heading": "A port has an entrance",
       "src": "/images/listener-bind-scope.svg",
       "alt": "One owned machine shows a loopback-only service on 127.0.0.1:3000, a LAN-bound service on 192.168.1.23:8080, and a wildcard listener on 0.0.0.0:8443. Only the latter two may accept traffic from another device, depending on the network and firewall.",
-      "caption": "Example IPv4 addresses. The arrows show possible bind scope, not proof that another device can connect."
+      "caption": "Example IPv4 addresses. The labels show possible bind scope, not proof that another device can connect."
     },
     {
       "id": "terms",
@@ -46,48 +46,58 @@
       "type": "code",
       "heading": "Three example lines, not your machine",
       "language": "text",
-      "code": "# Simplified synthetic output: protocol  local address:port  process\nTCP  127.0.0.1:3000     preview-app\nTCP  0.0.0.0:8443       web-server\nUDP  192.168.1.23:5353  discovery-daemon"
+      "code": "TCP  127.0.0.1:3000   preview\nTCP  0.0.0.0:8443     server\nUDP  192.168.1.23:5353  daemon"
     },
     {
       "id": "read-sample",
       "type": "compact-table",
       "heading": "Turn the lines into an inventory",
       "columns": [
-        "Socket and process",
-        "Possible reach",
-        "Purpose / next check"
+        "Socket / process",
+        "Reach and next check"
       ],
       "rows": [
         [
-          "TCP 127.0.0.1:3000 · preview-app",
-          "This host only",
-          "Local preview. Confirm the process if you did not start it."
+          "127.0.0.1:3000 · preview",
+          "This host only. Local preview; verify if unfamiliar."
         ],
         [
-          "TCP 0.0.0.0:8443 · web-server",
-          "May accept on any IPv4 interface; firewall may block it",
-          "What started the server? Check its configuration."
+          "0.0.0.0:8443 · server",
+          "Any IPv4 interface may accept, if allowed. Check what started it and the firewall."
         ],
         [
-          "UDP 192.168.1.23:5353 · discovery-daemon",
-          "Bound to this LAN address; firewall may block traffic",
-          "Unknown until you check the process. UDP is not a TCP listener."
+          "192.168.1.23:5353 · UDP daemon",
+          "Bound to this LAN address; firewall unknown. Identify the process; UDP has no LISTEN state."
         ]
       ],
       "caption": "These names and addresses are invented. Possible reach is not a connectivity test."
     },
     {
-      "id": "commands",
+      "id": "linux",
       "type": "code",
-      "heading": "Inspect one owned machine (read-only)",
+      "heading": "Linux: TCP listeners, then UDP sockets",
       "language": "shell",
-      "code": "# Linux: TCP listeners, then UDP sockets; -p asks for process names\nsudo ss -ltnp\nsudo ss -lunp\n\n# macOS: TCP LISTEN sockets, then UDP sockets\nsudo lsof -nP -iTCP -sTCP:LISTEN\nsudo lsof -nP -iUDP\n\n# Windows PowerShell: TCP listeners and UDP endpoints\nGet-NetTCPConnection -State Listen | Select-Object LocalAddress,LocalPort,OwningProcess\nGet-NetUDPEndpoint | Select-Object LocalAddress,LocalPort,OwningProcess\n# For one PID you found in either list:\nGet-Process -Id <PID> | Select-Object Id,ProcessName"
+      "code": "# TCP listeners, then UDP sockets\nsudo ss -ltnp\nsudo ss -lunp"
+    },
+    {
+      "id": "macos",
+      "type": "code",
+      "heading": "macOS: TCP listeners, then UDP sockets",
+      "language": "shell",
+      "code": "sudo lsof -nP -iTCP -sTCP:LISTEN\nsudo lsof -nP -iUDP"
+    },
+    {
+      "id": "windows",
+      "type": "code",
+      "heading": "Windows PowerShell: TCP and UDP endpoints",
+      "language": "shell",
+      "code": "# Run in PowerShell\nGet-NetTCPConnection -State Listen\nGet-NetUDPEndpoint\n# Replace 1234 with OwningProcess\nGet-Process -Id 1234"
     },
     {
       "id": "safe-read",
       "type": "text",
       "heading": "What the listing does and does not say",
-      "body": "Run commands only on a machine you own or are authorized to inspect. sudo on Linux or macOS may ask for your password; an elevated PowerShell may show more process details. If process names are missing, record the PID or an unknown rather than guessing. A loopback bind is local to that host. A wildcard or LAN bind could be reachable from another device, but firewall rules, routing, and active interfaces still decide whether it is. Do not test another person’s device, stop an unfamiliar process, or change firewall rules based on this list. Look up the owning application first."
+      "body": "The commands above show local IPv4 and IPv6 endpoints; UDP does not have a LISTEN state, and a UDP listing may include other local sockets. Run commands only on a machine you own or are authorized to inspect. sudo on Linux or macOS may ask for your password; an elevated PowerShell may show more process details. If process names are missing, record the PID or an unknown rather than guessing. A loopback bind is local to that host. A wildcard or LAN bind could be reachable from another device, but firewall rules, routing, and active interfaces still decide whether it is. Do not test another person’s device, stop an unfamiliar process, or change firewall rules based on this list. Look up the owning application first."
     },
     {
       "id": "check",
@@ -105,7 +115,7 @@
     {
       "id": "your-list",
       "type": "fill-in",
-      "heading": "Record two results from your machine",
+      "heading": "Start with two results from your machine",
       "items": [
         {
           "label": "First: protocol, bind address:port, process or PID",
@@ -129,7 +139,7 @@
       "id": "save",
       "type": "text",
       "heading": "Keep the record privately",
-      "body": "These blanks are temporary and reset when the page closes. Copy the two entries into your own dated inventory, without posting real addresses, PIDs, or process lists to a public page. For each unknown, note what you will verify. The next page turns this first look into a baseline."
+      "body": "These blanks are temporary and reset when the page closes. Copy these entries into your own dated inventory, then continue until you have accounted for the rest of the listeners on that machine, without posting real addresses, PIDs, or process lists to a public page. For each unknown, note what you will verify. The next page turns this first look into a baseline."
     },
     {
       "id": "sources",
