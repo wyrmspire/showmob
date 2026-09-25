@@ -7,6 +7,7 @@
   "useShape": "alongside",
   "readerMoment": "Curious about home network security and willing to buy a small router or a Raspberry Pi. Has used a terminal, but has never watched their own network traffic.",
   "outcome": "Can set up an isolated lab segment, inventory the listening services on a machine they own, and choose a first sensor or decoy safely.",
+  "coreModel": "A home lab is safe to operate only when its traffic is authorized and its experiments stay isolated from trusted devices.",
   "prerequisites": [
     { "idea": "Consent and scope: which devices and traffic you may observe", "taughtBy": "defensive-local-security-lab" },
     { "idea": "IP addresses, subnets, and what a router does between networks", "taughtBy": null },

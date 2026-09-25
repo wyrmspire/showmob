@@ -13,9 +13,9 @@ The fix is to split generation into separate decisions, each one inspectable.
 ## Rules
 
 - **The setup sheet controls what a page must accomplish. Gradient controls how it is expressed.**
-- One page, one primary job. Use the four Diataxis modes: tutorial (learn by doing), how-to (do a real task), reference (look it up), explanation (understand why). A series mixes modes on purpose. Do not force all four into one page.
+- One page, one primary job. Use the four Diataxis modes: tutorial (learn by doing), how-to (do a real task), reference (look it up), explanation (understand why). Add `answer` for one question with one checkable answer and no skill to build; do not use it for a how-to. A series mixes modes on purpose. Do not force all four into one page.
 - Research before outlining. Structure comes from what the topic contains, not from the topic's name.
-- Page count is an output of scope, never an input.
+- A concept is one thing you could check the reader on. Page count is an output of scope, never an input.
 - Teaching templates are jobs to accomplish, not visual sections. Block recipes stay suggestions, never required slots.
 - Generate in sections, not one call per page.
 - Judge before publishing.
@@ -62,9 +62,10 @@ The sheet is the contract. Page JSON is downstream of it. Field names can evolve
 | Field | Meaning |
 | --- | --- |
 | `pageId`, `seriesId` | Identity and place in the series |
-| `mode` | tutorial, how-to, reference, or explanation |
+| `mode` | tutorial, how-to, reference, explanation, or answer |
 | `readerMoment` | Where the reader is, mentally, when they arrive |
 | `outcome` | What they can do or understand when they leave |
+| `coreModel` | One checkable sentence for a teaching page; null for an answer |
 | `prerequisites` | What must already be known, with links to the pages that teach it |
 | `teachingShape` | The progression for this page (tutorials: realTask, activate, demonstrate, apply, integrate) |
 | `requiredIdeas` | The ideas this page must land |

@@ -14,7 +14,7 @@ Each stage wrote a readable file under `runs/local-security-lab/`:
 | Topic map | [topic-map.json](../runs/local-security-lab/topic-map.json) | research.json only | 28 concepts with `dependsOn`, tiers, 10 natural boundaries |
 | Scope | [series.json](../runs/local-security-lab/series.json) | research.json and topic-map.json | The series, with page boundaries, modes, and order |
 
-No page count, outline, or existing page content went into any stage. The scope stage used five written rules (in `series.json`): start from the map's natural boundaries, split a candidate that needs more than one Diataxis job, merge small neighbors that share one job, order pages so every dependency is taught first, and list exclusions with reasons. `tests/security-scope-run.test.mjs` checks that the output follows those rules: every concept is placed exactly once, and no page depends on a later page.
+No page count, outline, or existing page content went into any stage. The scope stage used five written rules (in `series.json`): start from the map's natural boundaries, split a candidate that needs more than one Diataxis job, merge small neighbors that share one job, order pages so every dependency is taught first, and list exclusions with reasons. The standing definition for future scope passes is: **a concept is one thing you could check the reader on.** This was adopted after this run, not an input to its blind pass; it keeps the unit of scope stable when comparing runs. `tests/security-scope-run.test.mjs` checks that the output follows the original rules: every concept is placed exactly once, and no page depends on a later page.
 
 ## What the scope pass found
 

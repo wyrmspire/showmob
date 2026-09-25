@@ -7,7 +7,7 @@ import { join } from 'node:path';
 // a sheet stays silent on visual form.
 
 const RUNS = 'runs';
-const MODES = new Set(['tutorial', 'how-to', 'reference', 'explanation']);
+const MODES = new Set(['tutorial', 'how-to', 'reference', 'explanation', 'answer']);
 const USE_SHAPES = new Set(['once', 'returns', 'alongside']);
 const KINDS = new Set(['planned', 'as-built']);
 const FORM_KEYS = new Set(['blocks', 'block', 'blockType', 'layout', 'widget', 'widgets', 'theme']);
@@ -52,6 +52,13 @@ for (const path of sheets) {
     assert.ok(USE_SHAPES.has(s.useShape), `useShape: ${s.useShape}`);
     assert.ok(typeof s.readerMoment === 'string' && s.readerMoment.length > 0, 'readerMoment');
     assert.match(s.outcome, /^Can /, 'outcome is a checkable "Can ..." line');
+    if (s.mode === 'answer') {
+      assert.equal(s.coreModel, null, 'answer pages have no coreModel');
+      assert.equal(s.teachingShape, null, 'answer pages do not claim a teaching progression');
+    } else {
+      assert.equal(typeof s.coreModel, 'string', 'teaching pages need a coreModel');
+      assert.match(s.coreModel, /^[^\n.!?]+[.!?]$/, 'coreModel is one sentence to check, not a list');
+    }
     assert.ok(Array.isArray(s.prerequisites), 'prerequisites');
     for (const p of s.prerequisites) {
       assert.equal(typeof p.idea, 'string');
