@@ -104,7 +104,7 @@
         "Scope and date it: Name the network you administer, the date and time, and any guest or separate segments you can access. Do not inspect a network you do not administer.",
         "Collect two read-only views: Copy the router client or lease list, then walk through the owned devices you know about, including offline devices that may be absent from the router. Add listener notes from each host you own and can inspect. Mark other devices as “listeners unchecked,” not “none.”",
         "Corroborate and label: Match a device to its own settings, physical label or authorized owner. Save device role, observed address, source, time, confidence and unresolved questions. A changing IP or MAC is not a stable identity key.",
-        "Compare again: After a deliberate change or at a cadence you choose, make a second dated snapshot. Investigate unfamiliar entries with the owner or device first. Do not block, scan or reset something based only on this list."
+        "Compare again: After a deliberate change or at a cadence you choose, make a second dated snapshot. For an unfamiliar entry, check your own router records and ask its authorized owner. Inspect settings only on a device you own or have explicit permission to inspect; otherwise leave the entry unresolved. Do not block, scan or reset something based only on this list."
       ]
     },
     {
