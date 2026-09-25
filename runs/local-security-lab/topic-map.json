@@ -1,0 +1,354 @@
+{
+  "stage": "topic-map",
+  "runVersion": 1,
+  "seriesId": "local-security-lab",
+  "input": "research.json only",
+  "note": "Not an outline. Concepts, what each depends on, and where the subject naturally breaks.",
+  "concepts": [
+    {
+      "id": "consent-scope",
+      "tier": "foundation",
+      "dependsOn": [],
+      "boundary": "scope-and-stakes",
+      "practiceOpening": "Write down which devices and traffic you may observe",
+      "visualCandidate": null
+    },
+    {
+      "id": "threat-model",
+      "tier": "foundation",
+      "dependsOn": [],
+      "boundary": "scope-and-stakes",
+      "practiceOpening": "Name the one failure you most want to catch",
+      "visualCandidate": null
+    },
+    {
+      "id": "ip-subnets",
+      "tier": "foundation",
+      "dependsOn": [],
+      "boundary": "network-basics",
+      "practiceOpening": null,
+      "visualCandidate": "Your addresses on one diagram: devices, subnet, router, internet"
+    },
+    {
+      "id": "router-role",
+      "tier": "foundation",
+      "dependsOn": [
+        "ip-subnets"
+      ],
+      "boundary": "network-basics",
+      "practiceOpening": null,
+      "visualCandidate": "What the router does between inside and outside"
+    },
+    {
+      "id": "nat-not-firewall",
+      "tier": "foundation",
+      "dependsOn": [
+        "router-role",
+        "firewall-rules"
+      ],
+      "boundary": "firewall-and-exposure",
+      "practiceOpening": null,
+      "visualCandidate": "NAT mapping vs a firewall rule, side by side"
+    },
+    {
+      "id": "ports-processes",
+      "tier": "foundation",
+      "dependsOn": [
+        "ip-subnets"
+      ],
+      "boundary": "host-inventory",
+      "practiceOpening": null,
+      "visualCandidate": "One host: processes, ports, and which bind addresses others can reach"
+    },
+    {
+      "id": "cli-admin",
+      "tier": "foundation",
+      "dependsOn": [],
+      "boundary": "host-inventory",
+      "practiceOpening": "Run one read-only inspection command with admin rights",
+      "visualCandidate": null
+    },
+    {
+      "id": "packets-vs-metadata",
+      "tier": "foundation",
+      "dependsOn": [
+        "ports-processes"
+      ],
+      "boundary": "seeing-traffic",
+      "practiceOpening": null,
+      "visualCandidate": "The same connection as a packet and as a log line"
+    },
+    {
+      "id": "asset-inventory",
+      "tier": "core",
+      "dependsOn": [
+        "consent-scope",
+        "ip-subnets"
+      ],
+      "boundary": "network-inventory",
+      "practiceOpening": "List every device you own on the network",
+      "visualCandidate": null
+    },
+    {
+      "id": "iot-risk",
+      "tier": "core",
+      "dependsOn": [
+        "asset-inventory"
+      ],
+      "boundary": "network-inventory",
+      "practiceOpening": null,
+      "visualCandidate": null
+    },
+    {
+      "id": "listener-inventory",
+      "tier": "core",
+      "dependsOn": [
+        "ports-processes",
+        "cli-admin"
+      ],
+      "boundary": "host-inventory",
+      "practiceOpening": "Inventory listeners on one machine and explain each",
+      "visualCandidate": null
+    },
+    {
+      "id": "baseline",
+      "tier": "core",
+      "dependsOn": [
+        "listener-inventory",
+        "asset-inventory"
+      ],
+      "boundary": "network-inventory",
+      "practiceOpening": "Save a dated baseline and diff it after a change",
+      "visualCandidate": null
+    },
+    {
+      "id": "firewall-rules",
+      "tier": "core",
+      "dependsOn": [
+        "ports-processes",
+        "router-role"
+      ],
+      "boundary": "firewall-and-exposure",
+      "practiceOpening": null,
+      "visualCandidate": null
+    },
+    {
+      "id": "firewall-testing",
+      "tier": "core",
+      "dependsOn": [
+        "firewall-rules"
+      ],
+      "boundary": "firewall-and-exposure",
+      "practiceOpening": "Try a blocked path from both sides",
+      "visualCandidate": null
+    },
+    {
+      "id": "upnp-exposure",
+      "tier": "core",
+      "dependsOn": [
+        "router-role",
+        "firewall-rules"
+      ],
+      "boundary": "firewall-and-exposure",
+      "practiceOpening": "Find and turn off UPnP; list existing forwards",
+      "visualCandidate": null
+    },
+    {
+      "id": "segmentation",
+      "tier": "core",
+      "dependsOn": [
+        "router-role",
+        "firewall-rules"
+      ],
+      "boundary": "lab-boundary",
+      "practiceOpening": null,
+      "visualCandidate": "Zones: household, trusted, lab, decoy, with allowed paths"
+    },
+    {
+      "id": "lab-boundary",
+      "tier": "core",
+      "dependsOn": [
+        "segmentation"
+      ],
+      "boundary": "lab-boundary",
+      "practiceOpening": "Put a router you control in front of the lab",
+      "visualCandidate": "Topology: upstream, lab router, sensor, decoy, blocked paths"
+    },
+    {
+      "id": "verify-isolation",
+      "tier": "core",
+      "dependsOn": [
+        "segmentation",
+        "firewall-testing"
+      ],
+      "boundary": "lab-boundary",
+      "practiceOpening": "Prove the lab cannot reach a trusted device",
+      "visualCandidate": null
+    },
+    {
+      "id": "traffic-capture",
+      "tier": "core",
+      "dependsOn": [
+        "segmentation",
+        "packets-vs-metadata"
+      ],
+      "boundary": "seeing-traffic",
+      "practiceOpening": null,
+      "visualCandidate": "Where the mirror port sits and what it copies"
+    },
+    {
+      "id": "zeek",
+      "tier": "core",
+      "dependsOn": [
+        "traffic-capture"
+      ],
+      "boundary": "sensors",
+      "practiceOpening": "Read a day of connection logs",
+      "visualCandidate": null
+    },
+    {
+      "id": "suricata",
+      "tier": "advanced",
+      "dependsOn": [
+        "traffic-capture",
+        "ip-subnets"
+      ],
+      "boundary": "sensors",
+      "practiceOpening": "Set HOME_NET and trigger a test alert",
+      "visualCandidate": null
+    },
+    {
+      "id": "sensor-choice",
+      "tier": "core",
+      "dependsOn": [
+        "zeek",
+        "suricata",
+        "threat-model"
+      ],
+      "boundary": "sensors",
+      "practiceOpening": null,
+      "visualCandidate": null
+    },
+    {
+      "id": "alert-triage",
+      "tier": "advanced",
+      "dependsOn": [
+        "suricata",
+        "baseline"
+      ],
+      "boundary": "sensors",
+      "practiceOpening": "Tune away the first noisy rule",
+      "visualCandidate": null
+    },
+    {
+      "id": "log-retention",
+      "tier": "core",
+      "dependsOn": [
+        "consent-scope",
+        "zeek"
+      ],
+      "boundary": "records",
+      "practiceOpening": null,
+      "visualCandidate": null
+    },
+    {
+      "id": "honeypot-concept",
+      "tier": "advanced",
+      "dependsOn": [
+        "threat-model",
+        "ports-processes"
+      ],
+      "boundary": "decoys",
+      "practiceOpening": null,
+      "visualCandidate": null
+    },
+    {
+      "id": "honeypot-containment",
+      "tier": "advanced",
+      "dependsOn": [
+        "honeypot-concept",
+        "segmentation",
+        "firewall-rules",
+        "verify-isolation"
+      ],
+      "boundary": "decoys",
+      "practiceOpening": "Walk the safety gates before starting a decoy",
+      "visualCandidate": "Decoy zone with outbound denied"
+    },
+    {
+      "id": "decoy-deploy",
+      "tier": "advanced",
+      "dependsOn": [
+        "honeypot-containment",
+        "cli-admin"
+      ],
+      "boundary": "decoys",
+      "practiceOpening": "Start one decoy service and touch it yourself",
+      "visualCandidate": null
+    },
+    {
+      "id": "decoy-review",
+      "tier": "advanced",
+      "dependsOn": [
+        "decoy-deploy",
+        "log-retention",
+        "baseline"
+      ],
+      "boundary": "decoys",
+      "practiceOpening": "Decide what one real touch means",
+      "visualCandidate": null
+    }
+  ],
+  "boundaries": [
+    {
+      "id": "scope-and-stakes",
+      "why": "Decides what the lab is allowed to watch and what it is for. Everything downstream inherits it."
+    },
+    {
+      "id": "network-basics",
+      "why": "Addressing and routing vocabulary every later concept leans on."
+    },
+    {
+      "id": "host-inventory",
+      "why": "Work on one machine: ports, processes, listeners."
+    },
+    {
+      "id": "network-inventory",
+      "why": "Work across the network: devices, baseline, why small devices matter."
+    },
+    {
+      "id": "firewall-and-exposure",
+      "why": "Policy at the edge: rules, NAT's limits, UPnP, testing."
+    },
+    {
+      "id": "lab-boundary",
+      "why": "Building and proving isolation. A physical build step with its own verification."
+    },
+    {
+      "id": "seeing-traffic",
+      "why": "What a sensor can see and where it has to sit."
+    },
+    {
+      "id": "sensors",
+      "why": "Running and tuning the observing tools."
+    },
+    {
+      "id": "records",
+      "why": "What gets kept and for how long. Crosses sensors and decoys."
+    },
+    {
+      "id": "decoys",
+      "why": "Deception: highest risk, depends on nearly everything before it."
+    }
+  ],
+  "stats": {
+    "concepts": 28,
+    "longestDependencyChain": 8,
+    "longestChainEndsAt": "decoy-review",
+    "byTier": {
+      "foundation": 8,
+      "core": 14,
+      "advanced": 6
+    }
+  }
+}

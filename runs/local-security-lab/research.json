@@ -1,0 +1,493 @@
+{
+  "stage": "research",
+  "runVersion": 1,
+  "seriesId": "local-security-lab",
+  "input": {
+    "subject": "Build a defensive local-security lab: a consent-based home lab for isolating owned devices, inventorying listening services, observing network metadata, and running a contained decoy.",
+    "entryReader": "Has used a terminal and owns their home router. Has never watched their own network traffic.",
+    "notGiven": "No page count, no outline, and no existing page content are inputs to this run."
+  },
+  "perspectives": [
+    {
+      "id": "defender",
+      "view": "Know what you own and what it exposes before adding tools. Inventory comes first.",
+      "sources": [
+        "cis1",
+        "nsa_home"
+      ]
+    },
+    {
+      "id": "network-engineer",
+      "view": "Isolation is a routing and firewall property you verify, not a feature name on a router box.",
+      "sources": [
+        "rfc4864",
+        "openwrt_guest",
+        "nist_iot_1800_15"
+      ]
+    },
+    {
+      "id": "analyst",
+      "view": "Sensors produce either connection records or rule alerts. Both need a copy of the traffic and both need tuning.",
+      "sources": [
+        "zeek_mon",
+        "suricata_eve",
+        "ids_compare"
+      ]
+    },
+    {
+      "id": "deception",
+      "view": "A decoy is only useful if touching it is always suspicious, and only safe if it can't become a launch point.",
+      "sources": [
+        "opencanary",
+        "honeyfarm_control"
+      ]
+    },
+    {
+      "id": "legal-ethical",
+      "view": "Owning a network does not give unlimited authority to capture what crosses it. Consent defines the lab.",
+      "sources": [
+        "monitor_law",
+        "honeynet_law"
+      ]
+    }
+  ],
+  "concepts": [
+    {
+      "id": "consent-scope",
+      "name": "Consent and scope",
+      "summary": "Which devices and traffic you may observe. Other people's traffic on your network is not automatically yours to capture.",
+      "sources": [
+        "monitor_law",
+        "honeynet_law"
+      ]
+    },
+    {
+      "id": "threat-model",
+      "name": "Threat model",
+      "summary": "What you are protecting, from whom, and which failure you care about most. Decides what the lab watches.",
+      "sources": [
+        "owasp_tm"
+      ]
+    },
+    {
+      "id": "ip-subnets",
+      "name": "IP addresses and subnets",
+      "summary": "Private address ranges, subnet boundaries, and how a device knows what is local.",
+      "sources": [
+        "nsa_home"
+      ]
+    },
+    {
+      "id": "router-role",
+      "name": "What a home router does",
+      "summary": "Routes between the home network and the internet, hands out addresses, and translates addresses (NAT).",
+      "sources": [
+        "rfc4864"
+      ]
+    },
+    {
+      "id": "nat-not-firewall",
+      "name": "NAT is not a firewall",
+      "summary": "NAT blocks unsolicited inbound traffic as a side effect of mapping state, not as a policy. IPv6 often has no NAT at all.",
+      "sources": [
+        "rfc4864",
+        "f5_nat"
+      ]
+    },
+    {
+      "id": "ports-processes",
+      "name": "Ports, sockets, and listening",
+      "summary": "A process listens on an address and port. The bind address decides who can reach it.",
+      "sources": [
+        "ss_lsof"
+      ]
+    },
+    {
+      "id": "cli-admin",
+      "name": "Admin commands",
+      "summary": "Running inspection commands with elevated rights on Linux, macOS, and Windows, and reading their output.",
+      "sources": [
+        "ss_lsof"
+      ]
+    },
+    {
+      "id": "packets-vs-metadata",
+      "name": "Packets versus connection metadata",
+      "summary": "Full packets carry content. Connection records carry who, when, how much, and which protocol. Metadata is smaller and less invasive.",
+      "sources": [
+        "zeek_mon"
+      ]
+    },
+    {
+      "id": "asset-inventory",
+      "name": "Device inventory",
+      "summary": "A list of every device you own on the network, with owner and purpose. You cannot defend what you haven't listed.",
+      "sources": [
+        "cis1"
+      ]
+    },
+    {
+      "id": "iot-risk",
+      "name": "Why small devices matter",
+      "summary": "Cameras and routers with default credentials were enlisted by the Mirai botnet at massive scale.",
+      "sources": [
+        "mirai",
+        "mirai_krebs"
+      ]
+    },
+    {
+      "id": "listener-inventory",
+      "name": "Listener inventory",
+      "summary": "Listing listening services per host, with process, bind address, port, and reason it exists.",
+      "sources": [
+        "ss_lsof"
+      ]
+    },
+    {
+      "id": "baseline",
+      "name": "Baseline and diff",
+      "summary": "A dated record of normal, re-taken after intentional changes, so unknown changes stand out.",
+      "sources": [
+        "cis1"
+      ]
+    },
+    {
+      "id": "firewall-rules",
+      "name": "Firewall rules",
+      "summary": "Allow and deny policy, stateful tracking, default-deny inbound.",
+      "sources": [
+        "nsa_home",
+        "nist_router"
+      ]
+    },
+    {
+      "id": "firewall-testing",
+      "name": "Testing a firewall from both sides",
+      "summary": "A rule is only proven when you try the blocked path from each side and see it fail.",
+      "sources": [
+        "nist_iot_1800_15"
+      ]
+    },
+    {
+      "id": "upnp-exposure",
+      "name": "UPnP and silent port forwards",
+      "summary": "Devices can ask the router to open inbound ports automatically. Guidance is to disable UPnP on the router.",
+      "sources": [
+        "upnp_cccs",
+        "upnproxy"
+      ]
+    },
+    {
+      "id": "segmentation",
+      "name": "Segmentation",
+      "summary": "Zones, VLANs, and guest networks. A Wi-Fi repeater extends a network; it does not isolate one.",
+      "sources": [
+        "openwrt_guest",
+        "guest_iot",
+        "nist_iot_1800_15"
+      ]
+    },
+    {
+      "id": "lab-boundary",
+      "name": "Lab boundary",
+      "summary": "Putting the lab behind a router you control, downstream of the household network.",
+      "sources": [
+        "openwrt_guest"
+      ]
+    },
+    {
+      "id": "verify-isolation",
+      "name": "Verifying isolation",
+      "summary": "Proving the lab cannot reach trusted devices, and recording the proof.",
+      "sources": [
+        "nist_iot_1800_15"
+      ]
+    },
+    {
+      "id": "traffic-capture",
+      "name": "Getting a copy of traffic",
+      "summary": "Mirror (SPAN) ports on a managed switch, or taps. A sensor sees nothing it isn't given.",
+      "sources": [
+        "zeek_place",
+        "zeek_mon"
+      ]
+    },
+    {
+      "id": "zeek",
+      "name": "Zeek",
+      "summary": "Turns traffic into connection and protocol logs for understanding normal behavior.",
+      "sources": [
+        "zeek_mon",
+        "ids_compare"
+      ]
+    },
+    {
+      "id": "suricata",
+      "name": "Suricata",
+      "summary": "Rule-based alerts plus EVE JSON records. HOME_NET must be set correctly or alerts flood.",
+      "sources": [
+        "suricata_eve",
+        "suricata_homenet"
+      ]
+    },
+    {
+      "id": "sensor-choice",
+      "name": "Choosing a sensor",
+      "summary": "Metadata-first versus alert-first, matched to the threat model and hardware.",
+      "sources": [
+        "ids_compare"
+      ]
+    },
+    {
+      "id": "alert-triage",
+      "name": "Alert triage and tuning",
+      "summary": "Most first alerts are noise. Installation is the start; tuning is the work.",
+      "sources": [
+        "suricata_tuning",
+        "suricata_homenet"
+      ]
+    },
+    {
+      "id": "log-retention",
+      "name": "What the lab records, and for how long",
+      "summary": "Logs contain other people's metadata. Decide retention and review before collecting.",
+      "sources": [
+        "monitor_law",
+        "suricata_eve"
+      ]
+    },
+    {
+      "id": "honeypot-concept",
+      "name": "What a decoy is",
+      "summary": "A service nobody should touch, so any touch is a signal. Low-interaction versus high-interaction.",
+      "sources": [
+        "opencanary",
+        "cowrie"
+      ]
+    },
+    {
+      "id": "honeypot-containment",
+      "name": "Decoy containment",
+      "summary": "Isolated zone, outbound denied, no real secrets. A compromised decoy must not become a launch point.",
+      "sources": [
+        "honeyfarm_control"
+      ]
+    },
+    {
+      "id": "decoy-deploy",
+      "name": "Running a decoy",
+      "summary": "Deploying OpenCanary (lightweight, alert-only) or Cowrie (SSH/Telnet emulation) inside the contained zone.",
+      "sources": [
+        "opencanary",
+        "cowrie"
+      ]
+    },
+    {
+      "id": "decoy-review",
+      "name": "Reviewing decoy activity",
+      "summary": "Reading decoy alerts against the baseline and deciding what a touch means.",
+      "sources": [
+        "opencanary"
+      ]
+    }
+  ],
+  "misconceptions": [
+    {
+      "claim": "My router's NAT is a firewall.",
+      "correction": "NAT's inbound blocking is a side effect of mapping state, not a policy, and IPv6 frequently skips NAT entirely.",
+      "concepts": [
+        "nat-not-firewall"
+      ],
+      "sources": [
+        "rfc4864",
+        "f5_nat"
+      ]
+    },
+    {
+      "claim": "A guest network isolates my devices.",
+      "correction": "Isolation depends on the router's actual rules; guest networks vary and some share more than expected. Verify it.",
+      "concepts": [
+        "segmentation",
+        "verify-isolation"
+      ],
+      "sources": [
+        "guest_iot"
+      ]
+    },
+    {
+      "claim": "A Wi-Fi extender makes a separate network.",
+      "correction": "A repeater extends the same network. Isolation needs routing and firewall rules.",
+      "concepts": [
+        "segmentation"
+      ],
+      "sources": [
+        "openwrt_guest"
+      ]
+    },
+    {
+      "claim": "If I didn't open a port, none is open.",
+      "correction": "UPnP lets devices open inbound ports on their own.",
+      "concepts": [
+        "upnp-exposure"
+      ],
+      "sources": [
+        "upnp_cccs"
+      ]
+    },
+    {
+      "claim": "A sensor anywhere on the network sees everything.",
+      "correction": "A sensor sees only traffic it is given; it needs a mirror port or tap on the right segment.",
+      "concepts": [
+        "traffic-capture"
+      ],
+      "sources": [
+        "zeek_place"
+      ]
+    },
+    {
+      "claim": "It's my network, so I can capture anything on it.",
+      "correction": "Ownership does not grant unlimited legal authority to intercept other people's communications.",
+      "concepts": [
+        "consent-scope"
+      ],
+      "sources": [
+        "monitor_law",
+        "honeynet_law"
+      ]
+    },
+    {
+      "claim": "A listening service is only a problem if it's on the internet.",
+      "correction": "A service bound to all interfaces is reachable by every device on the local network, including compromised ones.",
+      "concepts": [
+        "listener-inventory",
+        "iot-risk"
+      ],
+      "sources": [
+        "ss_lsof",
+        "mirai"
+      ]
+    }
+  ],
+  "edgeCases": [
+    {
+      "case": "Double NAT when the lab router sits behind the household router.",
+      "concepts": [
+        "lab-boundary"
+      ]
+    },
+    {
+      "case": "Unmanaged switches cannot mirror ports.",
+      "concepts": [
+        "traffic-capture"
+      ],
+      "sources": [
+        "zeek_place"
+      ]
+    },
+    {
+      "case": "IPv6 on by default gives devices globally routable addresses.",
+      "concepts": [
+        "nat-not-firewall"
+      ],
+      "sources": [
+        "rfc4864"
+      ]
+    },
+    {
+      "case": "Shared housing: other people's devices on the same network are out of scope.",
+      "concepts": [
+        "consent-scope"
+      ]
+    },
+    {
+      "case": "Encrypted traffic limits what a sensor can read, which pushes toward metadata.",
+      "concepts": [
+        "packets-vs-metadata",
+        "zeek"
+      ]
+    },
+    {
+      "case": "Small hardware (a Raspberry Pi) may drop packets under full capture.",
+      "concepts": [
+        "sensor-choice"
+      ],
+      "sources": [
+        "ids_compare"
+      ]
+    }
+  ],
+  "realWorldFailures": [
+    {
+      "failure": "Mirai botnet: IoT devices with factory default credentials enlisted for record-scale DDoS attacks in 2016.",
+      "lesson": "Inventory and credentials first.",
+      "concepts": [
+        "iot-risk",
+        "asset-inventory"
+      ],
+      "sources": [
+        "mirai",
+        "mirai_krebs"
+      ]
+    },
+    {
+      "failure": "UPnProxy: attackers injected NAT rules through exposed UPnP on consumer routers to turn them into proxies.",
+      "lesson": "Know and control what can open ports.",
+      "concepts": [
+        "upnp-exposure"
+      ],
+      "sources": [
+        "upnproxy"
+      ]
+    },
+    {
+      "failure": "Compromised honeypots used to attack systems outside the honeynet, the reason honeynets require data control.",
+      "lesson": "Outbound deny is not optional.",
+      "concepts": [
+        "honeypot-containment"
+      ],
+      "sources": [
+        "honeyfarm_control"
+      ]
+    },
+    {
+      "failure": "Home Suricata installs flooding with false positives when HOME_NET is misconfigured.",
+      "lesson": "Tuning is part of setup.",
+      "concepts": [
+        "alert-triage",
+        "suricata"
+      ],
+      "sources": [
+        "suricata_homenet",
+        "suricata_tuning"
+      ]
+    }
+  ],
+  "sources": {
+    "nist_ids": "https://csrc.nist.gov/pubs/sp/800/94/final",
+    "nsa_home": "https://media.defense.gov/2023/Feb/22/2003165170/-1/-1/0/CSI_BEST_PRACTICES_FOR_SECuring_YOUR_HOME_NETWORK.PDF",
+    "cis1": "https://www.cisecurity.org/controls/inventory-and-control-of-enterprise-assets",
+    "rfc4864": "https://www.rfc-editor.org/rfc/rfc4864.html",
+    "f5_nat": "https://www.f5.com/resources/white-papers/the-myth-of-network-address-translation-as-security",
+    "guest_iot": "https://www.bitdefender.com/en-us/blog/hotforsecurity/pros-and-cons-guest-network-iot-devices",
+    "upnp_cccs": "https://www.cyber.gc.ca/en/guidance/universal-plug-play-itsap00008",
+    "upnproxy": "https://www.akamai.com/site/en/documents/research-paper/upnproxy-blackhat-proxies-via-nat-injections-white-paper.pdf",
+    "mirai": "https://www.usenix.org/system/files/conference/usenixsecurity17/sec17-antonakakis.pdf",
+    "mirai_krebs": "https://krebsonsecurity.com/2016/10/who-makes-the-iot-things-under-attack/",
+    "zeek_mon": "https://docs.zeek.org/en/current/about/monitoring.html",
+    "zeek_place": "https://www.activecountermeasures.com/where-do-i-put-my-zeek-sensor/",
+    "suricata_eve": "https://docs.suricata.io/en/latest/output/eve/eve-json-output.html",
+    "suricata_homenet": "https://www.wirsingsecurity.com/tutorials/ids-ips-with-suricata-practical-home-network-protection/",
+    "suricata_tuning": "https://www.vdalabs.com/lessons-for-the-enterprise-from-running-suricata-at-home/",
+    "ids_compare": "https://www.sciencedirect.com/science/article/abs/pii/S1389128622002420",
+    "opencanary": "https://docs.opencanary.org/en/latest/index.html",
+    "cowrie": "https://docs.cowrie.org/en/latest/INSTALL.html",
+    "honeyfarm_control": "https://doi.org/10.2991/eeeis-16.2017.102",
+    "monitor_law": "https://conferences.sigcomm.org/imc/2007/papers/imc152.pdf",
+    "honeynet_law": "https://cdn.ttgtmedia.com/searchSecurity/downloads/Honeynet_Ch08.pdf",
+    "owasp_tm": "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+    "ss_lsof": "https://unix.stackexchange.com/questions/777963/why-ss-show-a-port-is-in-use-but-lsof-doesnt",
+    "nist_router": "https://csrc.nist.gov/pubs/ir/8425/a/final",
+    "nist_iot_1800_15": "https://csrc.nist.gov/pubs/sp/1800/15/final",
+    "openwrt_guest": "https://openwrt.org/docs/guide-user/network/wifi/guestwifi/start"
+  }
+}

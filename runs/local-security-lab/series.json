@@ -1,0 +1,257 @@
+{
+  "stage": "scope",
+  "runVersion": 1,
+  "seriesId": "local-security-lab",
+  "input": "research.json and topic-map.json. No page count or outline was given.",
+  "method": [
+    "Start from the topic map's natural boundaries. Each boundary is a candidate page.",
+    "Split a candidate when its concepts need more than one Diataxis job (one page, one job).",
+    "Merge small neighbors that share one job and would not stand alone.",
+    "Order pages so every concept's dependsOn is taught on the same page or an earlier one. The entry reader is assumed to know none of the mapped concepts.",
+    "Anything the subject implies but the lab should not do goes in excluded, with a reason."
+  ],
+  "evidence": {
+    "concepts": 28,
+    "naturalBoundaries": 10,
+    "longestDependencyChain": 8,
+    "modesNeeded": [
+      "explanation",
+      "how-to",
+      "reference",
+      "tutorial"
+    ],
+    "boundariesSplitByMode": [
+      "firewall-and-exposure",
+      "sensors",
+      "decoys"
+    ],
+    "boundariesMerged": [
+      [
+        "sensors (sensor-choice)",
+        "records"
+      ]
+    ]
+  },
+  "verdict": {
+    "shape": "multi-page series",
+    "pages": 13,
+    "why": "The subject holds several jobs (learn by doing, do a task, look up, understand why) and a dependency chain eight concepts deep, from addressing through isolation to decoy review. One page cannot give each concept a page before it that teaches its dependencies."
+  },
+  "pages": [
+    {
+      "order": 1,
+      "pageId": "local-security-lab-lab-scope",
+      "title": "Decide what your lab may watch, and why",
+      "mode": "tutorial",
+      "concepts": [
+        "consent-scope",
+        "threat-model"
+      ],
+      "outcome": "Can write a one-page scope for their lab: the devices and traffic they may observe, and the one failure they most want to catch.",
+      "dependsOnPages": []
+    },
+    {
+      "order": 2,
+      "pageId": "local-security-lab-network-basics",
+      "title": "How your home network is wired",
+      "mode": "explanation",
+      "concepts": [
+        "ip-subnets",
+        "router-role"
+      ],
+      "outcome": "Can draw their own network with addresses, subnet, and router, and say what the router does between inside and outside.",
+      "dependsOnPages": []
+    },
+    {
+      "order": 3,
+      "pageId": "local-security-lab-host-listeners",
+      "title": "Find what is listening on your machine",
+      "mode": "tutorial",
+      "concepts": [
+        "ports-processes",
+        "cli-admin",
+        "listener-inventory"
+      ],
+      "outcome": "Can list every listening service on one machine they own, and say for each one who can reach it and why it exists.",
+      "dependsOnPages": [
+        2
+      ]
+    },
+    {
+      "order": 4,
+      "pageId": "local-security-lab-network-inventory",
+      "title": "Inventory every device you own and keep a baseline",
+      "mode": "how-to",
+      "concepts": [
+        "asset-inventory",
+        "iot-risk",
+        "baseline"
+      ],
+      "outcome": "Can produce a dated device and listener baseline for their network and spot a change against it.",
+      "dependsOnPages": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "order": 5,
+      "pageId": "local-security-lab-firewalls-explained",
+      "title": "What a firewall rule does, and why NAT is not one",
+      "mode": "explanation",
+      "concepts": [
+        "firewall-rules",
+        "nat-not-firewall"
+      ],
+      "outcome": "Can explain why their router blocks some inbound traffic, and name the cases (IPv6, port forwards) where it doesn't.",
+      "dependsOnPages": [
+        2,
+        3
+      ]
+    },
+    {
+      "order": 6,
+      "pageId": "local-security-lab-close-exposure",
+      "title": "Close silent exposure and test it from outside",
+      "mode": "how-to",
+      "concepts": [
+        "upnp-exposure",
+        "firewall-testing"
+      ],
+      "outcome": "Can turn off UPnP, list existing port forwards, and prove a blocked path fails from both sides.",
+      "dependsOnPages": [
+        2,
+        5
+      ]
+    },
+    {
+      "order": 7,
+      "pageId": "local-security-lab-lab-boundary",
+      "title": "Build the lab boundary",
+      "mode": "tutorial",
+      "concepts": [
+        "segmentation",
+        "lab-boundary",
+        "verify-isolation"
+      ],
+      "outcome": "Can put the lab behind a router they control and prove it cannot reach a trusted device.",
+      "dependsOnPages": [
+        2,
+        5,
+        6
+      ]
+    },
+    {
+      "order": 8,
+      "pageId": "local-security-lab-seeing-traffic",
+      "title": "What a sensor can see, and where it has to sit",
+      "mode": "explanation",
+      "concepts": [
+        "packets-vs-metadata",
+        "traffic-capture"
+      ],
+      "outcome": "Can say what a mirror port copies, where the sensor must sit to see lab traffic, and what metadata shows without content.",
+      "dependsOnPages": [
+        3,
+        7
+      ]
+    },
+    {
+      "order": 9,
+      "pageId": "local-security-lab-run-zeek",
+      "title": "Run Zeek and read your first day of logs",
+      "mode": "how-to",
+      "concepts": [
+        "zeek"
+      ],
+      "outcome": "Can run Zeek on a mirrored lab segment and answer 'what talked to what yesterday' from its logs.",
+      "dependsOnPages": [
+        8
+      ]
+    },
+    {
+      "order": 10,
+      "pageId": "local-security-lab-run-suricata",
+      "title": "Add Suricata and tune the noise",
+      "mode": "how-to",
+      "concepts": [
+        "suricata",
+        "alert-triage"
+      ],
+      "outcome": "Can run Suricata with a correct HOME_NET, trigger a test alert, and tune away the first noisy rule.",
+      "dependsOnPages": [
+        2,
+        4,
+        8
+      ]
+    },
+    {
+      "order": 11,
+      "pageId": "local-security-lab-lab-records",
+      "title": "Sensors compared, and what your lab records",
+      "mode": "reference",
+      "concepts": [
+        "sensor-choice",
+        "log-retention"
+      ],
+      "outcome": "Can look up which sensor fits a goal and how long each kind of lab log should be kept.",
+      "dependsOnPages": [
+        1,
+        9,
+        10
+      ]
+    },
+    {
+      "order": 12,
+      "pageId": "local-security-lab-decoys-explained",
+      "title": "What a decoy is, and how one goes wrong",
+      "mode": "explanation",
+      "concepts": [
+        "honeypot-concept",
+        "honeypot-containment"
+      ],
+      "outcome": "Can explain why any touch on a decoy is a signal, and list the containment gates a decoy must pass before it runs.",
+      "dependsOnPages": [
+        1,
+        3,
+        5,
+        7
+      ]
+    },
+    {
+      "order": 13,
+      "pageId": "local-security-lab-run-a-decoy",
+      "title": "Run one contained decoy",
+      "mode": "tutorial",
+      "concepts": [
+        "decoy-deploy",
+        "decoy-review"
+      ],
+      "outcome": "Can start one decoy inside the contained zone, touch it themselves, and decide what a real touch means.",
+      "dependsOnPages": [
+        3,
+        4,
+        11,
+        12
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "what": "Exposing a decoy or sensor to the internet",
+      "why": "Needs every page before it plus operating experience. Out of scope for a first lab."
+    },
+    {
+      "what": "Testing devices or traffic you do not own",
+      "why": "Out of scope by consent, not by size."
+    },
+    {
+      "what": "Inline blocking (IPS mode)",
+      "why": "Changes the lab from observing to enforcing, with outage risk. A later series if wanted."
+    },
+    {
+      "what": "Offensive tooling and exploitation",
+      "why": "The subject is defensive."
+    }
+  ]
+}
