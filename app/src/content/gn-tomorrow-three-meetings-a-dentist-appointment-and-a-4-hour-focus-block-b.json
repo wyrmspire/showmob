@@ -86,7 +86,7 @@
     },
     {
       "id": "drag-choices",
-      "type": "checklist",
+      "type": "choice",
       "heading": "Drag handle — where does the 4-hour focus tile land? (pick one)",
       "items": [
         {

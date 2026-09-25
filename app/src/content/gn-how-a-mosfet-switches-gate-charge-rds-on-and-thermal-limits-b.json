@@ -42,7 +42,7 @@
     },
     {
       "id": "set-vgs",
-      "type": "checklist",
+      "type": "choice",
       "heading": "Slider A — choose gate-drive voltage (pick one mentally)",
       "items": [
         {
@@ -61,7 +61,7 @@
     },
     {
       "id": "set-load",
-      "type": "checklist",
+      "type": "choice",
       "heading": "Slider B — choose load current (pick one mentally)",
       "items": [
         {

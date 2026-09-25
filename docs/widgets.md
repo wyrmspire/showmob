@@ -57,7 +57,7 @@ The validator is used for bundled content, pasted/file imports and saved-draft r
 
 To enrich an existing subject, first search `app/src/content/` for its slug, tags and `series.id`. Edit the existing artifact when the idea belongs on the same page; otherwise add another artifact with the same `series.id`, the same `series.title`, and a new `series.order`. The home shelf and previous/next navigation update automatically. Keep new work in `preview` until the contributor and publisher have reviewed it.
 
-Studio’s Add menu covers **13 of 19** types: `text`, `slideshow`, `compact-table`, `diagram`, `note-callout`, `steps`, `checklist`, `timeline`, `comparison`, `resource-list`, `quote`, `divider`, and `cta-band`. It can also edit an existing `hero`. Still missing from Add (use Import / JSON): `hero` (add), `stat-strip`, `code`, `embed`, `image`, `exercise`. **Rich blocks = JSON tab:** unsupported Add types still render in preview when present. Templates may contain richer blocks. This catalog documents all 19 renderer types, not only Studio's Add menu.
+Studio’s Add menu covers **13 of 20** types: `text`, `slideshow`, `compact-table`, `diagram`, `note-callout`, `steps`, `checklist`, `timeline`, `comparison`, `resource-list`, `quote`, `divider`, and `cta-band`. It can also edit an existing `hero`. Still missing from Add (use Import / JSON): `hero` (add), `stat-strip`, `code`, `embed`, `image`, `exercise`, `choice`. **Rich blocks = JSON tab:** unsupported Add types still render in preview when present. Templates may contain richer blocks. This catalog documents all 20 renderer types, not only Studio's Add menu.
 
 ## Widget reference
 
@@ -152,6 +152,16 @@ Use for a temporary self-check. Required string `heading`; `items` contains obje
 ```
 
 Bad: `{"id":"review","type":"checklist","heading":"Review","items":["Done"]}` uses a string instead of an object. Both views use toggle buttons with `aria-pressed`; native buttons support keyboard activation. Missing `detail` hides the secondary copy. Empty items produce no buttons. Selections are local to the mounted block, not evidence of completion. Use distinct labels.
+
+### `choice`
+
+Use when the copy says pick one. Required string `heading`; `items` contains objects with required string `label` and optional string `detail`.
+
+```json
+{ "id": "pick", "type": "choice", "heading": "Choose a gate-drive voltage (pick one)", "items": [{ "label": "5 V", "detail": "Standard-level gate drive" }, { "label": "10 V", "detail": "Full enhancement for this part" }] }
+```
+
+Bad: `{"id":"pick","type":"choice","heading":"Pick one","items":["A","B"]}` uses a string instead of an object. A radio group (`role="radiogroup"` with `role="radio"` buttons and `aria-checked`) where one selection replaces the last; tapping the selected item clears it. Use `checklist` when several selections are valid and `exercise` when one option is scored as correct. Selections are local to the mounted block, not evidence of completion. Use distinct labels.
 
 ### `timeline`
 

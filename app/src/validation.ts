@@ -24,6 +24,7 @@ const blockRules = {
   'note-callout': { strings: ['title', 'body'] },
   'cta-band': { strings: ['heading', 'body'] },
   checklist: { strings: ['heading'], list: { key: 'items', strings: ['label'], optional: ['detail'] } },
+  choice: { strings: ['heading'], list: { key: 'items', strings: ['label'], optional: ['detail'] } },
   timeline: { strings: ['heading'], list: { key: 'items', strings: ['time', 'title', 'detail'] } },
   code: { strings: ['heading', 'code'], optional: ['language'] },
   embed: { strings: ['heading', 'source', 'caption'], optional: ['url'] },

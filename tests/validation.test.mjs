@@ -92,7 +92,7 @@ test('empty, duplicate, malformed and unknown blocks cannot reach the renderer',
 test('each block rejects missing fields the renderer reads', () => {
   const fields = {
     hero: 'body', text: 'heading', 'stat-strip': 'items', steps: 'items', comparison: 'columns',
-    quote: 'attribution', 'note-callout': 'title', 'cta-band': 'body', checklist: 'items',
+    quote: 'attribution', 'note-callout': 'title', 'cta-band': 'body', checklist: 'items', choice: 'items',
     timeline: 'items', code: 'code', embed: 'caption', image: 'src', 'resource-list': 'items', exercise: 'explanation', 'compact-table': 'columns', diagram: 'nodes', slideshow: 'slides', divider: 'id',
   };
   for (const block of blocks) {

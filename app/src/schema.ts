@@ -10,6 +10,7 @@ export type Block =
   | { id:string; type:'note-callout'; title:string; body:string; tone?:'note'|'positive'|'warning' }
   | { id:string; type:'cta-band'; heading:string; body:string }
   | { id:string; type:'checklist'; heading:string; items:{label:string;detail?:string}[] }
+  | { id:string; type:'choice'; heading:string; items:{label:string;detail?:string}[] }
   | { id:string; type:'timeline'; heading:string; items:{time:string;title:string;detail:string}[] }
   | { id:string; type:'code'; heading:string; language?:string; code:string }
   | { id:string; type:'embed'; heading:string; source:string; caption:string; url?:string }
