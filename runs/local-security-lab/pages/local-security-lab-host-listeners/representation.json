@@ -1,0 +1,24 @@
+{
+  "stage": "representation",
+  "pageId": "local-security-lab-host-listeners",
+  "input": "page-sheet.json only; chosen before writing prose or page JSON",
+  "coreModelUse": "Sequence every example by bind address before port number: same port, different entrance. Check the reader on possible reach without claiming the firewall is open.",
+  "sections": [
+    { "id": "start", "carries": "realTask and coreModel", "block": "hero", "why": "The reader starts with an owned host and a concrete read-only result, not tool shopping." },
+    { "id": "entrances", "carries": "activate and requiredIdeas 1-3", "block": "image", "why": "Loopback, LAN, and wildcard are spatial scopes. An authored figure shows them without claiming the outer network can actually connect.", "rejected": ["diagram: linear flow implies one entrance leads to another"] },
+    { "id": "terms", "carries": "requiredIdeas 1-2", "block": "text", "why": "Explain the one socket model and TCP/UDP distinction in sentences." },
+    { "id": "sample", "carries": "demonstrate", "block": "code", "why": "Literal, synthetic command output preserves address:port and process shape without exposing a real host." },
+    { "id": "read-sample", "carries": "demonstrate and coreModel", "block": "compact-table", "why": "The same columns as the inventory the reader makes; each line has a cautious reach claim and purpose." },
+    { "id": "commands", "carries": "apply and requiredIdea 4", "block": "code", "why": "Copyable local inspection commands for Linux, macOS and Windows; no scan or service mutation." },
+    { "id": "safe-read", "carries": "requiredIdeas 3-4 and exclusions", "block": "text", "why": "A warning needs a causal explanation: bind alone is not access; inspect before changes." },
+    { "id": "check", "carries": "transfer check of coreModel", "block": "exercise", "why": "One scored case with a different port from the demonstration; explanation hidden until requested." },
+    { "id": "your-list", "carries": "apply and requiredIdea 5", "block": "fill-in", "why": "Reader records their own machine's observations; form is local and temporary, so prompt saving privately." },
+    { "id": "sources", "carries": "command and interpretation grounding", "block": "resource-list", "why": "Primary manuals explain listening sockets and local inspection." },
+    { "id": "next", "carries": "integrate", "block": "cta-band", "why": "The one-host result becomes a dated baseline on the following page." }
+  ],
+  "notUsed": [
+    { "block": "steps", "why": "Commands and sample values need exact formatting; this is not a long procedure." },
+    { "block": "checklist", "why": "A selection is not a persistent inventory." },
+    { "block": "note-callout", "why": "Reach uncertainty belongs in the main teaching, not a sidebar." }
+  ]
+}
