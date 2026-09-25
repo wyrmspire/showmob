@@ -1,0 +1,32 @@
+{
+  "sheetVersion": 1,
+  "sheetKind": "as-built",
+  "pageId": "chainmail-collective-lanes",
+  "seriesId": "chainmail-collective",
+  "mode": "explanation",
+  "useShape": "once",
+  "readerMoment": "Just read the series front door. Likes the idea and wonders whether there is a place for them in it.",
+  "outcome": "Can name the six lanes and say that they stack.",
+  "prerequisites": [
+    { "idea": "What the collective makes and sells", "taughtBy": "chainmail-collective" }
+  ],
+  "teachingShape": {
+    "realTask": null,
+    "activate": [],
+    "demonstrate": ["One stacking example: a club officer who buys, orders bulk, then shares"],
+    "apply": [],
+    "integrate": ["Points to the content pipeline page"]
+  },
+  "requiredIdeas": [
+    "Six lanes: buyer, custom/bulk, builder, paid assembler, designer, affiliate",
+    "What each lane gets and what it takes to enter",
+    "Lanes stack",
+    "Low-entry promises: no buy-in, no required inventory, no recruiting pay"
+  ],
+  "candidateAnalogies": [],
+  "visualNeeds": [],
+  "deliberatelyExcluded": [
+    { "what": "Money and commission detail", "why": "Owned by the money page in the same series." }
+  ],
+  "nextPagePressure": "The content pipeline, which sells every lane."
+}

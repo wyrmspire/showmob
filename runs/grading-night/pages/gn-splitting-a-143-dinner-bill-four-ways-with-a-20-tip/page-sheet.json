@@ -1,0 +1,26 @@
+{
+  "sheetVersion": 1,
+  "sheetKind": "as-built",
+  "pageId": "gn-splitting-a-143-dinner-bill-four-ways-with-a-20-tip",
+  "seriesId": null,
+  "mode": "how-to",
+  "useShape": "once",
+  "readerMoment": "At the table with the check in hand and a phone out. Wants one number now, not a lesson.",
+  "outcome": "Can tell each person what they owe, and check the math if someone asks.",
+  "prerequisites": [],
+  "teachingShape": null,
+  "teachingShapeWhy": "Answer page. There is nothing to learn, only one number to get. A progression would pad it.",
+  "requiredIdeas": [
+    "Each person owes $42.90",
+    "The working: bill, 20% tip, total, divided by four",
+    "The one real variation: one person covers the tip"
+  ],
+  "candidateAnalogies": [],
+  "visualNeeds": [],
+  "deliberatelyExcluded": [
+    { "what": "A calculator or bill-splitting tool", "why": "The question has one fixed answer; a tool answers a question nobody asked." },
+    { "what": "Itemized splits", "why": "Not asked. Adds a decision the reader does not have." },
+    { "what": "Tipping etiquette", "why": "The tip rate is already given in the question." }
+  ],
+  "nextPagePressure": null
+}
