@@ -92,6 +92,9 @@ test('operational examples keep lifecycle and scheduling dimensions honest', () 
   assert.match(block(status, 'start').body, /PR state is a separate workflow dimension/);
   assert.match(block(status, 'board').caption, /preview pages stay unlisted but remain viewable by direct link/);
 
-  assert.match(block(agenda, 'protect').body, /two two-hour sessions/);
-  assert.match(block(agenda, 'protect').body, /not one uninterrupted four-hour block/);
+  // The prompt asked for a 4-hour focus block: the agenda protects one
+  // uninterrupted block and never splits it into two halves.
+  assert.match(block(agenda, 'protect').body, /one four-hour stretch/);
+  assert.doesNotMatch(text(agenda), /Focus block [AB]/);
+  assert.match(text(agenda), /14:50–18:50/);
 });
