@@ -1,0 +1,46 @@
+{
+  "sheetVersion": 1,
+  "sheetKind": "as-built",
+  "pageId": "defensive-local-security-lab",
+  "seriesId": "local-security-lab",
+  "mode": "how-to",
+  "useShape": "alongside",
+  "readerMoment": "Curious about home network security and willing to buy a small router or a Raspberry Pi. Has used a terminal, but has never watched their own network traffic.",
+  "outcome": "Can set up an isolated lab segment, inventory the listening services on a machine they own, and choose a first sensor or decoy safely.",
+  "prerequisites": [
+    { "idea": "Consent and scope: which devices and traffic you may observe", "taughtBy": "defensive-local-security-lab" },
+    { "idea": "IP addresses, subnets, and what a router does between networks", "taughtBy": null },
+    { "idea": "Ports, processes, and what it means for a service to listen", "taughtBy": null },
+    { "idea": "Firewall rules, and how to test one from both sides", "taughtBy": null },
+    { "idea": "VLANs, guest networks, and why a Wi-Fi repeater may not isolate", "taughtBy": null },
+    { "idea": "Packets versus connection metadata", "taughtBy": null },
+    { "idea": "Running commands with admin rights on Linux, macOS, or Windows", "taughtBy": null }
+  ],
+  "teachingShape": {
+    "realTask": "Build a small defensive lab at home without touching anyone else's traffic",
+    "activate": [],
+    "demonstrate": ["Listener inventory commands for three operating systems"],
+    "apply": ["Four staged build steps", "Honeypot safety gates"],
+    "integrate": ["Draw your own network and inventory one machine"]
+  },
+  "requiredIdeas": [
+    "Consent is the first control",
+    "Separate the lab behind a boundary you control",
+    "Give each part one job: router, mirror port, sensor, decoy",
+    "Inventory listening services and keep a dated baseline",
+    "Loopback-only versus all-interfaces listeners",
+    "Choose between Zeek, Suricata, OpenCanary, and Cowrie",
+    "Contain the honeypot: isolated, outbound denied, no real secrets",
+    "Define log retention and review",
+    "Grow the lab by evidence, one stage at a time"
+  ],
+  "candidateAnalogies": [],
+  "visualNeeds": [
+    "The topology: upstream network, lab router, trusted devices, sensor, and isolated decoy, with the blocked path shown"
+  ],
+  "deliberatelyExcluded": [
+    { "what": "Testing devices or traffic you do not own", "why": "Out of scope by consent, not by size." },
+    { "what": "Exposing a honeypot to the internet", "why": "Deferred until the reader knows the logs and failure modes." }
+  ],
+  "nextPagePressure": "Whatever the reader's own network inventory shows, per the page's closing line. No next page exists yet."
+}
