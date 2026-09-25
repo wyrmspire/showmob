@@ -222,6 +222,40 @@
       ]
     },
     {
+      "id": "spec-fill-in-note",
+      "type": "text",
+      "heading": "fill-in — worksheet blanks",
+      "body": "Recipe: labeled blanks the reader types into. Entries are session-local, never checked or transmitted."
+    },
+    {
+      "id": "spec-fill-in",
+      "type": "fill-in",
+      "heading": "Two blanks",
+      "items": [
+        {
+          "label": "First blank",
+          "placeholder": "type here"
+        },
+        {
+          "label": "Second blank",
+          "placeholder": "and here"
+        }
+      ]
+    },
+    {
+      "id": "spec-reveal-note",
+      "type": "text",
+      "heading": "reveal — hidden until asked",
+      "body": "Recipe: content the reader must explicitly open, like an answer key. The button toggles the panel."
+    },
+    {
+      "id": "spec-reveal",
+      "type": "reveal",
+      "heading": "A hidden fact",
+      "label": "Show the fact",
+      "body": "This sentence only renders after the reader asks for it."
+    },
+    {
       "id": "spec-code-note",
       "type": "text",
       "heading": "code — literal data to read",
