@@ -7,6 +7,7 @@
   "useShape": "returns",
   "readerMoment": "Has a written scope. Knows their devices by name but not by address, and thinks of the router as 'the Wi-Fi box'.",
   "outcome": "Can draw their own network with addresses, subnet, and router, and say what the router does between inside and outside.",
+  "coreModel": "Devices on the same subnet can talk locally; traffic outside it goes through the router.",
   "prerequisites": [
     { "idea": "A written lab scope", "taughtBy": "local-security-lab-lab-scope" }
   ],
