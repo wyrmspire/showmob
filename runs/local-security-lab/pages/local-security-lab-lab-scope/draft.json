@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "slug": "local-security-lab-lab-scope",
+  "title": "Decide what your lab may watch, and why",
+  "summary": "Before any tool: write down which devices and traffic your home lab may observe, and the one failure you most want to catch.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "night",
+  "series": { "id": "local-security-lab", "title": "Defensive local security", "order": 2 },
+  "tags": ["security", "networking", "defensive-lab", "consent", "threat-model"],
+  "updated": "2026-09-24",
+  "blocks": [
+    { "id": "task", "type": "hero", "eyebrow": "Defensive local security · foundations 1", "title": "Write your lab's scope before you plug anything in", "body": "A home security lab watches traffic. Before it watches anything, decide what it is allowed to watch and what it is for. That one page of decisions is the boundary every later step builds inside." },
+    { "id": "already-do", "type": "comparison", "heading": "You already do this", "columns": [
+      { "name": "Lockout/tagout", "detail": "Before working on a machine, you mark what is safe to touch and what is not. Nobody starts cutting first and checks the tags later." },
+      { "name": "A camera on your own driveway", "detail": "You can point a camera at your driveway. Pointing it through the neighbor's window is a different thing, even from your own property." }
+    ] },
+    { "id": "consent", "type": "text", "heading": "Consent defines the lab", "body": "Owning the router does not make every device on it yours to watch. A roommate's laptop, a guest's phone, or a work computer on your Wi-Fi all carry someone else's communications. In the US, federal wiretap law covers network traffic, and owning a network does not by itself give you authority to capture everything that crosses it. Laws vary by place, and this is not legal advice. The practical rule is simple: the lab watches devices you own or are explicitly allowed to watch, and nothing else. Metadata counts too. A log of who connected where and when says a lot about a person, even without the content." },
+    { "id": "threat-model", "type": "compact-table", "heading": "A threat model is three questions", "columns": ["Question", "Example answer"], "rows": [
+      ["What am I protecting?", "My laptop, my files, and the smart plugs I own"],
+      ["From whom?", "Anything on the internet scanning for open devices, and any cheap device of mine that gets taken over"],
+      ["Which failure do I most want to catch?", "One of my devices starts talking to somewhere new"]
+    ] },
+    { "id": "worked-scope", "type": "compact-table", "heading": "A worked scope: a shared house", "columns": ["Device", "Owner", "In scope?", "Why"], "rows": [
+      ["My laptop", "Me", "Yes", "Mine"],
+      ["Raspberry Pi for the lab", "Me", "Yes", "Mine, and it will run the tools"],
+      ["Two smart plugs", "Me", "Yes", "Mine, and exactly the kind of device that gets taken over"],
+      ["Roommate's laptop and phone", "Roommate", "No", "Not mine, no permission"],
+      ["Smart TV in the shared room", "Both of us", "Only with the roommate's OK", "Shared device, shared decision"],
+      ["My work laptop", "Employer", "No", "Belongs to my employer, with its own rules"]
+    ], "caption": "The out-of-scope rows matter as much as the in-scope ones. They are what the lab promises not to touch." },
+    { "id": "pick-failure", "type": "choice", "heading": "Pick the one failure you most want to catch first", "items": [
+      { "label": "A device of mine starts talking to somewhere new" },
+      { "label": "A service on one of my machines is reachable when it shouldn't be" },
+      { "label": "Something on my network is scanning my other devices" },
+      { "label": "Someone outside is trying to log in to something of mine" }
+    ] },
+    { "id": "your-scope", "type": "fill-in", "heading": "Your scope", "items": [
+      { "label": "Devices I own that the lab will watch", "placeholder": "laptop, Pi, smart plugs..." },
+      { "label": "Devices and traffic the lab will not touch", "placeholder": "roommate's devices, work laptop..." },
+      { "label": "The one failure I want to catch first", "placeholder": "from the choice above" },
+      { "label": "Where the lab's logs will live, and who can see them", "placeholder": "on the Pi, only me" }
+    ] },
+    { "id": "check", "type": "exercise", "heading": "Check the rule", "prompt": "Your roommate's laptop is on your home Wi-Fi. Can your lab capture its traffic?", "options": ["Yes, it's your network", "No, not without the roommate's permission", "Yes, but only metadata"], "answer": 1, "explanation": "The device isn't yours. Owning the network doesn't change that, and metadata about a person still needs their OK." },
+    { "id": "sources", "type": "resource-list", "heading": "Where the consent rule comes from", "items": [
+      { "label": "Legal issues surrounding monitoring (IMC 2007)", "detail": "How US wiretap and related laws apply to network monitoring.", "url": "https://conferences.sigcomm.org/imc/2007/papers/imc152.pdf" },
+      { "label": "Honeynet Project: legal issues", "detail": "Why owning a network doesn't give unlimited authority to monitor its users.", "url": "https://cdn.ttgtmedia.com/searchSecurity/downloads/Honeynet_Ch08.pdf" },
+      { "label": "OWASP threat modeling cheat sheet", "detail": "The fuller version of the three questions, for later.", "url": "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html" }
+    ] },
+    { "id": "next", "type": "cta-band", "heading": "Next: see how your network is wired", "body": "To fill in the devices column, you need a map. The next page finds your own addresses and draws the network you actually have." }
+  ]
+}
