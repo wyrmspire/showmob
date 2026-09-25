@@ -7,6 +7,7 @@
   "useShape": "once",
   "readerMoment": "Wants to build a home security lab and is excited about the tools. Has not thought about whose traffic the lab would see, or what it is actually for.",
   "outcome": "Can write a one-page scope for their lab: the devices and traffic they may observe, and the one failure they most want to catch.",
+  "coreModel": "A lab may watch only authorized devices and traffic, and its chosen failure determines what it records.",
   "prerequisites": [],
   "teachingShape": {
     "realTask": "Write the scope for your own lab before plugging anything in",

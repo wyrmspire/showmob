@@ -50,7 +50,7 @@ Yes, for all three, and each one through a different field.
 
 ## Open question
 
-**Is "answer" a fifth mode?** The dinner bill is not a tutorial, a reference, or an explanation. It sits in how-to only because it had to go somewhere, and the teaching shape had to be null. Many grading-night subjects are one-question answer pages. The format keeps the four Diataxis modes, as LEARNING-ARCHITECTURE.md says, and records the strain here. If more answer pages fight the four modes, adding `answer` is the likely fix.
+**At the time of this trial: is "answer" a fifth mode?** The dinner bill is not a tutorial, a reference, or an explanation. It sits in how-to only because it had to go somewhere, and the teaching shape had to be null. Many grading-night subjects are one-question answer pages. The format keeps the four Diataxis modes, as LEARNING-ARCHITECTURE.md says, and records the strain here. The later format adopted `answer`; this paragraph records the original trial question.
 
 ## What this does not show
 
