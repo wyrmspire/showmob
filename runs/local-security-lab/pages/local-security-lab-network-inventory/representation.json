@@ -1,0 +1,17 @@
+{
+  "stage":"representation",
+  "pageId":"local-security-lab-network-inventory",
+  "input":"page-sheet.json only; chosen before prose",
+  "coreModelUse":"Start with two observation sources, make an identity-aware dated table, then compare changes without calling any difference an intruder.",
+  "sections":[
+    {"id":"start","block":"hero","why":"Named read-only task and comparison model."},
+    {"id":"two-views","block":"comparison","why":"Router sees clients, owned host sees sockets; neither is the complete inventory."},
+    {"id":"sample","block":"compact-table","why":"Two-column sample avoids losing identity evidence at phone width."},
+    {"id":"comparison","block":"compact-table","why":"Show address rotation versus unexplained device in a small before/after table."},
+    {"id":"steps","block":"steps","why":"A bounded procedure to gather, corroborate, save and revisit."},
+    {"id":"worksheet","block":"fill-in","why":"Reader rehearses one record; explicitly temporary, not persistent storage."},
+    {"id":"check","block":"exercise","why":"Transfer: a changed IP is a question, not an intrusion verdict."},
+    {"id":"sources","block":"resource-list","why":"Primary consumer and asset-management guidance."}
+  ],
+  "notUsed":[{"block":"network scan","why":"No scan is needed for the lesson or authorized scope."}]
+}
