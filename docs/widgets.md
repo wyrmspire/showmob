@@ -241,7 +241,7 @@ Use for a single-choice knowledge check. Required strings: `heading`, `prompt`, 
 { "id": "check", "type": "exercise", "heading": "Check the model", "prompt": "What does a voltage need?", "options": ["A reference point", "A moving part"], "answer": 0, "explanation": "Voltage describes a difference between two points." }
 ```
 
-Bad: `{"id":"check","type":"exercise","heading":"Check","prompt":"Choose","options":["A","B"],"answer":2,"explanation":"Why"}` points past the options array. Both views show numbered buttons with `aria-pressed` and a feedback callout after selection. The same explanation is shown for every choice. Options are buttons, not a radio group; selections reset on unmount and no score is exported. Feedback is not explicitly a live region in this renderer. Do not claim assessment persistence or proven screen-reader announcements.
+Bad: `{"id":"check","type":"exercise","heading":"Check","prompt":"Choose","options":["A","B"],"answer":2,"explanation":"Why"}` points past the options array. Both views show numbered buttons with `aria-pressed` and a feedback callout after selection. The explanation stays hidden until the reader presses "Show the worked answer" after any pick; picking a different option hides it again. Options are buttons, not a radio group; selections reset on unmount and no score is exported. Feedback is not explicitly a live region in this renderer. Do not claim assessment persistence or proven screen-reader announcements.
 
 
 ### `compact-table`

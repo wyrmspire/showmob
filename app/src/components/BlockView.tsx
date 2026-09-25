@@ -3,7 +3,6 @@ import { Callout } from "./file-kit";
 import { type Block } from "../schema";
 
 export function BlockView({ block }: { block: Block }) {
-  const [id, setId] = useState<number | null>(null);
   const [checked, setChecked] = useState<number[]>([]);
   const [picked, setPicked] = useState<number | null>(null);
   if (block.type === "hero")
@@ -185,37 +184,7 @@ export function BlockView({ block }: { block: Block }) {
         </ul>
       </section>
     );
-  if (block.type === "exercise")
-    return (
-      <section className="block exercise" id={block.id}>
-        <h2>{block.heading}</h2>
-        <p>{block.prompt}</p>
-        <div>
-          {block.options.map((x, i) => (
-            <button
-              className={id === i ? "picked" : ""}
-              aria-pressed={id === i}
-              onClick={() => setId(i)}
-              key={x}
-            >
-              {i + 1}. {x}
-            </button>
-          ))}
-        </div>
-        {id !== null && (
-          <Callout
-            title={
-              id === block.answer
-                ? block.correctFeedback || "Correct"
-                : block.wrongFeedback || "Not quite"
-            }
-            tone={id === block.answer ? "positive" : "warning"}
-          >
-            {block.explanation}
-          </Callout>
-        )}
-      </section>
-    );
+  if (block.type === "exercise") return <ExerciseBlock block={block} />;
   if (block.type === "fill-in") return <FillInBlock block={block} />;
   if (block.type === "reveal") return <RevealBlock block={block} />;
   if (block.type === "compact-table") return <TableBlock block={block} />;
@@ -244,6 +213,59 @@ export function BlockView({ block }: { block: Block }) {
     <section className="cta block" id={block.id}>
       <h2>{block.heading}</h2>
       <p>{block.body}</p>
+    </section>
+  );
+}
+function ExerciseBlock({
+  block,
+}: {
+  block: Extract<Block, { type: "exercise" }>;
+}) {
+  const [picked, setPicked] = useState<number | null>(null);
+  const [revealed, setRevealed] = useState(false);
+  const correct = picked === block.answer;
+  return (
+    <section className="block exercise" id={block.id}>
+      <h2>{block.heading}</h2>
+      <p>{block.prompt}</p>
+      <div>
+        {block.options.map((x, i) => (
+          <button
+            className={picked === i ? "picked" : ""}
+            aria-pressed={picked === i}
+            onClick={() => {
+              setPicked(i);
+              setRevealed(false);
+            }}
+            key={x}
+          >
+            {i + 1}. {x}
+          </button>
+        ))}
+      </div>
+      {picked !== null && (
+        <>
+          <Callout
+            title={
+              correct
+                ? block.correctFeedback || "Correct"
+                : block.wrongFeedback || "Not quite"
+            }
+            tone={correct ? "positive" : "warning"}
+          >
+            {revealed
+              ? block.explanation
+              : "The worked answer stays hidden until you ask for it."}
+          </Callout>
+          <button
+            className="reveal-toggle exercise-reveal"
+            aria-expanded={revealed}
+            onClick={() => setRevealed((r) => !r)}
+          >
+            {revealed ? "Hide the worked answer" : "Show the worked answer"}
+          </button>
+        </>
+      )}
     </section>
   );
 }
