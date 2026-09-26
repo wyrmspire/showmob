@@ -66,5 +66,44 @@ export function writeScreen(screen: string) {
           ? artifactPath(screen)
           : "/";
   const url = `${path}${search ? `?${search}` : ""}`;
-  history.pushState({ showmobScreen: screen }, "", url);
+  saveScrollHere();
+  history.pushState({ showmobScreen: screen, navId: nextNavId() }, "", url);
+}
+
+// Scroll memory. The app navigates with pushState, so the browser's automatic
+// scroll restoration fires on popstate BEFORE React has swapped the screens
+// back - it clamps against the page that is still mounted and the reader
+// lands at the top. Positions are kept per history entry (stamped with a
+// navId) and restored by App.tsx after the pop render lands.
+const scrollPositions = new Map<number, number>();
+let navCounter =
+  typeof globalThis.window?.history.state?.navId === "number"
+    ? (globalThis.window.history.state.navId as number)
+    : 0;
+
+export function currentNavId(): number {
+  if (!globalThis.window?.history) return 0;
+  if (typeof globalThis.window.history.state?.navId !== "number") {
+    globalThis.window.history.replaceState(
+      { ...globalThis.window.history.state, navId: navCounter },
+      "",
+    );
+  }
+  return globalThis.window.history.state?.navId ?? 0;
+}
+
+// Remember where the reader is on the entry they are about to leave.
+export function saveScrollHere() {
+  if (!globalThis.window) return;
+  scrollPositions.set(currentNavId(), globalThis.window.scrollY ?? 0);
+}
+
+// Where the reader was on an earlier entry, if they ever visited it.
+export function scrollForNav(navId: number): number | undefined {
+  return scrollPositions.get(navId);
+}
+
+function nextNavId(): number {
+  navCounter += 1;
+  return navCounter;
 }

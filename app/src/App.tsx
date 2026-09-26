@@ -5,14 +5,33 @@ import { Home } from "./Home";
 import { Studio } from "./Studio";
 import { Everything } from "./Everything";
 import { Grading } from "./Grading";
-import { screenFromLocation, writeScreen } from "./routing";
+import {
+  saveScrollHere,
+  screenFromLocation,
+  scrollForNav,
+  writeScreen,
+} from "./routing";
 import { isReservedSlug } from "./screen";
 import "./style.css";
 
 export function App() {
   const [screen, setScreen] = useState(screenFromLocation);
   useEffect(() => {
-    const onPopState = () => setScreen(screenFromLocation());
+    const onPopState = (event: PopStateEvent) => {
+      // Leaving this entry: keep its scroll so a later return lands right.
+      saveScrollHere();
+      const targetId =
+        typeof event.state?.navId === "number" ? event.state.navId : -1;
+      setScreen(screenFromLocation());
+      // Restore after React has committed the previous screen and the
+      // document has its real height again.
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          const y = scrollForNav(targetId);
+          globalThis.window?.scrollTo(0, y ?? 0);
+        }),
+      );
+    };
     globalThis.window?.addEventListener("popstate", onPopState);
     return () => globalThis.window?.removeEventListener("popstate", onPopState);
   }, []);
@@ -30,6 +49,10 @@ export function App() {
   const go = (next: string) => {
     setScreen(next);
     writeScreen(next);
+    // A fresh push starts at the top, like a real page load; pops restore.
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => globalThis.window?.scrollTo(0, 0)),
+    );
   };
   const open = (s: string) => go(s);
   const home = () => go("home");
