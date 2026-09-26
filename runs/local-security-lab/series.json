@@ -1,6 +1,6 @@
 {
   "stage": "scope",
-  "runVersion": 1,
+  "runVersion": 2,
   "seriesId": "local-security-lab",
   "input": "research.json and topic-map.json. No page count or outline was given.",
   "method": [
@@ -113,7 +113,7 @@
       "order": 6,
       "pageId": "local-security-lab-close-exposure",
       "title": "Close silent exposure and test it from outside",
-      "mode": "how-to",
+      "mode": "tutorial",
       "concepts": [
         "upnp-exposure",
         "firewall-testing"
@@ -252,6 +252,14 @@
     {
       "what": "Offensive tooling and exploitation",
       "why": "The subject is defensive."
+    }
+  ],
+  "corrections": [
+    {
+      "date": "2026-09-26",
+      "pageId": "local-security-lab-close-exposure",
+      "change": "mode how-to -> tutorial",
+      "why": "Sheet stage found the page teaches a transferable capability (audit any router's openings) through the reader's own real task, matching tutorial pages 1 and 3 in this series. The outcome verb is learned capability, not steps for a reader who already has the skill. Built as the Phase 4 tutorial-template trial (docs/teaching-template-tutorial.md)."
     }
   ]
 }

@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "slug": "local-security-lab-close-exposure",
+  "title": "Close silent exposure and test it from outside",
+  "summary": "Audit the inbound openings on your own router, close the ones nobody chose, and prove a closed opening fails from both sides.",
+  "contributor": "Instinct",
+  "status": "preview",
+  "theme": "night",
+  "series": {
+    "id": "local-security-lab",
+    "title": "Defensive local security",
+    "order": 7
+  },
+  "tags": [
+    "security",
+    "networking",
+    "defensive-lab",
+    "upnp",
+    "port-forward",
+    "router"
+  ],
+  "updated": "2026-09-26",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Defensive local security · foundations 6",
+      "title": "Close the openings you never chose",
+      "body": "Your router may hold inbound openings nobody picked on purpose: a mapping an app asked for, a forward from a project long finished, remote administration left on. Today you audit them on your own router, close the silent ones, and prove they stay closed."
+    },
+    {
+      "id": "bring",
+      "type": "checklist",
+      "heading": "What you bring to the audit",
+      "items": [
+        {
+          "label": "Your listener inventory",
+          "detail": "Each LAN-facing listener from part 4 is something an opening could reach."
+        },
+        {
+          "label": "Your dated baseline",
+          "detail": "Every change you make today gets recorded there, like part 5 taught."
+        },
+        {
+          "label": "Translation is not permission",
+          "detail": "From part 6: a missing mapping is not a stated rule, so openings are checked by name, not assumed."
+        },
+        {
+          "label": "Admin access to your own router",
+          "detail": "Your router, your credentials, or the explicit okay of the person whose router it is."
+        }
+      ]
+    },
+    {
+      "id": "worked",
+      "type": "compact-table",
+      "heading": "One worked audit, start to finish",
+      "columns": [
+        "What the example router shows",
+        "Verdict and why"
+      ],
+      "rows": [
+        [
+          "UPnP is on; mapping \"TerrariaServer\" UDP 7777 → 192.168.1.40",
+          "Close. Last summer's game server, nobody hosts now. A stale UPnP mapping is exposure nobody chose."
+        ],
+        [
+          "UPnP mapping \"HTTPS\" TCP 443 → 192.168.1.10",
+          "Keep. Matches the household NAS remote access the owner set up and still uses. Named, with a reason."
+        ],
+        [
+          "Manual forward TCP 8443 → 192.168.1.10",
+          "Unknown → then kept. Not in anyone's records; the owner identified it as the NAS admin fallback and chose to keep it. Unknown stays open until named."
+        ],
+        [
+          "Remote administration from the internet: off",
+          "Nothing to close. Off is the default worth keeping; record that it was checked."
+        ]
+      ],
+      "caption": "An invented example household. Your router will show different entries; the verdicts come from your records, not from this table."
+    },
+    {
+      "id": "worked-walk",
+      "type": "text",
+      "heading": "How each verdict was reached",
+      "body": "No entry was judged by its name alone. The Terraria mapping was closed because the household's own records showed a finished project, not because games are suspicious. The 443 mapping was kept because the owner named it and gave a current reason. The 8443 forward started as unknown: it matched nothing in anyone's notes, so the next step was asking the authorized owner, who identified it. Until a finding is named, it stays unknown — unknown is not closed by guessing, and it is not kept by default either. If the owner had not recognized 8443, the verdict would have been close, with the change recorded so it could be restored by name if something broke."
+    },
+    {
+      "id": "audit",
+      "type": "steps",
+      "heading": "Run the audit on your own router",
+      "items": [
+        "Sign in to your router's admin page with your own credentials, or get the explicit okay of the person whose router it is.",
+        "Find the UPnP setting and the list of active mappings. Write down the state and every mapping.",
+        "Find the port-forwarding list (sometimes called virtual servers). Write down every forward.",
+        "Find remote administration or WAN management. Write down whether it is on.",
+        "Label each entry keep, close or unknown, using your own records first and the authorized owner for anything unfamiliar.",
+        "Close the silent entries one change at a time: delete stale forwards and mappings, and turn UPnP off if nothing you are keeping needs it.",
+        "Record every change in your dated baseline before you test anything."
+      ]
+    },
+    {
+      "id": "your-audit",
+      "type": "fill-in",
+      "heading": "Record what your router showed",
+      "items": [
+        {
+          "label": "First finding: what it is, and your verdict",
+          "placeholder": "UPnP mapping · game server · close — finished project"
+        },
+        {
+          "label": "Second finding: what it is, and your verdict",
+          "placeholder": "forward TCP 8443 · keep — owner named it"
+        },
+        {
+          "label": "What you closed, one change at a time",
+          "placeholder": "deleted stale mapping, then turned UPnP off"
+        },
+        {
+          "label": "What is still unknown, and who you will ask",
+          "placeholder": "one mapping · ask the owner Thursday"
+        }
+      ]
+    },
+    {
+      "id": "two-sides",
+      "type": "comparison",
+      "heading": "Prove it from both sides",
+      "columns": [
+        {
+          "name": "Inside: the router's own lists",
+          "detail": "After your changes, the closed entry no longer appears in the UPnP or forwarding lists, and the router still shows the keeps you named. A reboot later, the lists still match your baseline."
+        },
+        {
+          "name": "Outside: an attempt you own",
+          "detail": "From your own phone on cellular — not Wi-Fi, so you are genuinely outside — try the closed address and port. It fails. One side alone is not proof: the list could hide a mapping, and a failed attempt could be a wrong address. Together they close the question."
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "type": "exercise",
+      "heading": "The port fails from outside. What is the listener doing?",
+      "prompt": "You deleted the stale forward and proved the port fails from your phone on cellular. Back inside, the NAS still listens on 0.0.0.0:8443. What do you know?",
+      "options": [
+        "The service is off, because the outside attempt failed",
+        "The boundary no longer passes that port from outside, while the listener may still serve the house — translation and permission are separate",
+        "The router is broken, because the listener is still running"
+      ],
+      "answer": 1,
+      "explanation": "A closed opening is about the boundary, not the process. The listener on your LAN can keep serving the house; what changed is that no mapping or rule carries a new inbound flow to it. That is part 6's distinction applied to your own audit."
+    },
+    {
+      "id": "safe",
+      "type": "note-callout",
+      "tone": "warning",
+      "title": "Your router, your records, your call",
+      "body": "Audit only a router you own or are explicitly authorized to change. The fill-in fields reset when you leave; keep findings in your private baseline, never posted. If closing something breaks an app — a game, a console, a camera — your record lets you re-add that one opening by name. A chosen opening with a reason is fine; silent ones are the problem. Never test addresses that are not yours."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources behind the audit",
+      "items": [
+        {
+          "label": "Canadian Centre for Cyber Security: Universal Plug and Play (ITSAP.00.008)",
+          "detail": "What UPnP does, why unsolicited mappings are a risk, and the case for disabling it.",
+          "url": "https://www.cyber.gc.ca/en/guidance/universal-plug-play-itsap00008"
+        },
+        {
+          "label": "CISA: Home Network Security",
+          "detail": "Home-router hardening, including administration settings and unused services.",
+          "url": "https://www.cisa.gov/news-events/news/home-network-security"
+        },
+        {
+          "label": "FTC: How To Secure Your Home Wi-Fi Network",
+          "detail": "Consumer router guidance covering firewall, remote management and UPnP.",
+          "url": "https://consumer.ftc.gov/articles/how-secure-your-home-wi-fi-network"
+        }
+      ]
+    },
+    {
+      "id": "next",
+      "type": "cta-band",
+      "heading": "Next: build the lab boundary",
+      "body": "With the silent openings closed and the keeps named, the next page puts the lab behind a boundary you control and proves the lab cannot reach a trusted device."
+    }
+  ]
+}
