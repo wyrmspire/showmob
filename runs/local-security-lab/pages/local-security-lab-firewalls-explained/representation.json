@@ -1,15 +1,1 @@
-{
- "stage":"representation","pageId":"local-security-lab-firewalls-explained","input":"page-sheet.json before prose",
- "coreModelUse":"Keep destination rewriting and allow/deny as separate decisions throughout the trace and check.",
- "sections":[
-  {"id":"start","block":"hero","why":"Name the common NAT/firewall misconception."},
-  {"id":"two-jobs","block":"comparison","why":"Translation and permission need separate columns, not a single vague shield."},
-  {"id":"paths","block":"compact-table","why":"Compare outbound reply, unsolicited IPv4, forwarded IPv4 and native IPv6 without confusing address family with policy."},
-  {"id":"trace","block":"diagram","why":"Linear flow models a packet through policy and destination, while spatial reach is stated in words."},
-  {"id":"exceptions","block":"text","why":"Explain that both router and host decisions and an actual listener matter."},
-  {"id":"check","block":"exercise","why":"Transfer the distinction to IPv6 rather than memorizing NAT defaults."},
-  {"id":"worksheet","block":"fill-in","why":"List unknowns in a private read-only configuration check."},
-  {"id":"sources","block":"resource-list","why":"RFCs and FTC guidance support the policy and IPv6 distinction."}
- ],
- "notUsed":[{"block":"firewall configuration commands","why":"This page explains the model; the next page owns changes and testing."}]
-}
+{"stage":"representation","formatVersion":2,"pageId":"local-security-lab-firewalls-explained","input":"page-sheet.json before prose","coreModelUse":"Keep destination rewriting and allow/deny as separate decisions throughout the trace and check.","sections":[{"id":"start","pressure":"frame","block":"hero","why":"Name the common NAT/firewall misconception."},{"id":"two-jobs","pressure":"decision","block":"comparison","why":"Translation and permission need separate columns, not a single vague shield."},{"id":"paths","pressure":"lookup","block":"compact-table","why":"Compare outbound reply, unsolicited IPv4, forwarded IPv4 and native IPv6 without confusing address family with policy."},{"id":"trace","pressure":"sequence","block":"diagram","why":"Linear flow models a packet through policy and destination, while spatial reach is stated in words."},{"id":"exceptions","pressure":"restraint","block":"text","why":"Explain that both router and host decisions and an actual listener matter."},{"id":"check","pressure":"decision","block":"exercise","why":"Transfer the distinction to IPv6 rather than memorizing NAT defaults."},{"id":"worksheet","pressure":"practice","block":"fill-in","why":"List unknowns in a private read-only configuration check."},{"id":"sources","pressure":"source","block":"resource-list","why":"RFCs and FTC guidance support the policy and IPv6 distinction."}],"rejected":[{"block":"code","why":"Firewall configuration commands are the next page's job; this page explains the model, so commands would teach a change the page deliberately excludes."}]}
