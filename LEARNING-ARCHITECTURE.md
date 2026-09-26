@@ -1,6 +1,6 @@
 # Learning architecture
 
-Status: **active** (un-parked 2026-09-25 at Chris's direction). Phases 1–4 trialed; tutorial template v1 at [docs/teaching-template-tutorial.md](docs/teaching-template-tutorial.md); pipeline runs producing preview pages. Written by Instinct from Chris's direction.
+Status: **active** (un-parked 2026-09-25 at Chris's direction). Phases 1–4 trialed; tutorial template v1 at [docs/teaching-template-tutorial.md](docs/teaching-template-tutorial.md). Director/critique layer and grading connection specified at [docs/representation-director.md](docs/representation-director.md) and [docs/grading-connection.md](docs/grading-connection.md), enforced by tests. Written by Instinct from Chris's direction.
 
 This is the operating doc for how Showmob should generate pages that teach, not just explain. It sits next to [GRADIENT.md](GRADIENT.md): GRADIENT.md is the judgment model for how content is expressed; this doc is the pipeline that decides what a page has to accomplish before anything is expressed. It does not own the near-term product order; [docs/product-brief.md](docs/product-brief.md) still does.
 
