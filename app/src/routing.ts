@@ -67,7 +67,9 @@ export function writeScreen(screen: string) {
           : "/";
   const url = `${path}${search ? `?${search}` : ""}`;
   saveScrollHere();
-  history.pushState({ showmobScreen: screen, navId: nextNavId() }, "", url);
+  const navId = nextNavId();
+  history.pushState({ showmobScreen: screen, navId }, "", url);
+  lastNavId = navId;
 }
 
 // Scroll memory. The app navigates with pushState, so the browser's automatic
@@ -76,10 +78,16 @@ export function writeScreen(screen: string) {
 // lands at the top. Positions are kept per history entry (stamped with a
 // navId) and restored by App.tsx after the pop render lands.
 const scrollPositions = new Map<number, number>();
+
+// The entry the app is sitting on. On popstate the browser has already
+// swapped history.state to the TARGET entry, so the leaving entry can only
+// be tracked by hand - saving under currentNavId() at popstate would
+// clobber the target's remembered position with the current scroll.
 let navCounter =
   typeof globalThis.window?.history.state?.navId === "number"
     ? (globalThis.window.history.state.navId as number)
     : 0;
+let lastNavId = currentNavId();
 
 export function currentNavId(): number {
   if (!globalThis.window?.history) return 0;
@@ -96,6 +104,14 @@ export function currentNavId(): number {
 export function saveScrollHere() {
   if (!globalThis.window) return;
   scrollPositions.set(currentNavId(), globalThis.window.scrollY ?? 0);
+}
+
+// On a pop, remember where the reader was on the entry they are leaving
+// (tracked by hand, see above), then follow the browser to the target.
+export function notePop(targetNavId: number) {
+  if (!globalThis.window) return;
+  scrollPositions.set(lastNavId, globalThis.window.scrollY ?? 0);
+  lastNavId = targetNavId;
 }
 
 // Where the reader was on an earlier entry, if they ever visited it.

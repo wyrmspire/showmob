@@ -6,7 +6,7 @@ import { Studio } from "./Studio";
 import { Everything } from "./Everything";
 import { Grading } from "./Grading";
 import {
-  saveScrollHere,
+  notePop,
   screenFromLocation,
   scrollForNav,
   writeScreen,
@@ -18,10 +18,12 @@ export function App() {
   const [screen, setScreen] = useState(screenFromLocation);
   useEffect(() => {
     const onPopState = (event: PopStateEvent) => {
-      // Leaving this entry: keep its scroll so a later return lands right.
-      saveScrollHere();
       const targetId =
         typeof event.state?.navId === "number" ? event.state.navId : -1;
+      // Leaving this entry: keep its scroll so a later return lands right.
+      // (history.state already points at the target here, so the leaving
+      // entry is the one the app tracked by hand.)
+      notePop(targetId);
       setScreen(screenFromLocation());
       // Restore after React has committed the previous screen and the
       // document has its real height again.
