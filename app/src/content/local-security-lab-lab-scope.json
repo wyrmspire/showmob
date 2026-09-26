@@ -23,7 +23,7 @@
     {
       "id": "task",
       "type": "hero",
-      "eyebrow": "Defensive local security · foundations 1",
+      "eyebrow": "Defensive local security · part 2",
       "title": "Write your lab's scope before you plug anything in",
       "body": "A home security lab watches traffic. Before it watches anything, decide what it is allowed to watch and what it is for. That one page of decisions is the boundary every later step builds inside."
     },

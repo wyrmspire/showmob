@@ -24,7 +24,7 @@
     {
       "id": "start",
       "type": "hero",
-      "eyebrow": "Defensive local security · foundations 6",
+      "eyebrow": "Defensive local security · part 7",
       "title": "Close the openings you never chose",
       "body": "Your router may hold inbound openings nobody picked on purpose: a mapping an app asked for, a forward from a project long finished, remote administration left on. Today you audit them on your own router, close the silent ones, and prove they stay closed."
     },

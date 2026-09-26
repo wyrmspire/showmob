@@ -23,7 +23,7 @@
     {
       "id": "start",
       "type": "hero",
-      "eyebrow": "Defensive local security · foundations 3",
+      "eyebrow": "Defensive local security · part 4",
       "title": "What is waiting on your machine?",
       "body": "On one machine you own, list the services waiting for traffic. First look at the local address: the same port can face only this machine, your LAN, or every interface. Record what you see before you change anything."
     },

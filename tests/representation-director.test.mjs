@@ -7,13 +7,10 @@ import { join } from 'node:path';
 // required for every generated page, with pressure, block, why, and rejected;
 // the critique fails pages that ignore a tool the sheet asked for.
 
-// Keep in sync with the block types in app/src/schema.ts.
-const BLOCKS = new Set([
-  'hero', 'text', 'stat-strip', 'steps', 'comparison', 'quote', 'note-callout',
-  'cta-band', 'checklist', 'choice', 'fill-in', 'reveal', 'timeline', 'code',
-  'embed', 'image', 'resource-list', 'exercise', 'compact-table', 'diagram',
-  'slideshow', 'divider',
-]);
+// Derived from app/src/schema.ts, the same way tests/block-gallery.test.mjs
+// does it - a hardcoded copy drifts (outside review, 2026-09-26).
+const schemaSource = readFileSync(new URL('../app/src/schema.ts', import.meta.url), 'utf8');
+const BLOCKS = new Set([...schemaSource.matchAll(/type:'([^']+)'/g)].map(match => match[1]));
 const PRESSURES = new Set([
   'frame', 'sequence', 'lookup', 'spatial', 'decision', 'practice', 'warning',
   'source', 'close', 'restraint',

@@ -5,10 +5,11 @@ Checked against the live database on 2026-09-24. The site still reads repository
 ## What exists now
 
 - **Project:** `showmob-dev` (ref `vsasmtsifuylhfrrsrso`) in the `Showmob` organization, region `ca-central-1`, Free plan.
-- **Migrations applied:** both files in [`supabase/migrations/`](../supabase/migrations/):
+- **Migrations applied:** all four files in [`supabase/migrations/`](../supabase/migrations/):
   1. `20260923140000_artifact_revisions.sql`
   2. `20260923154500_artifact_lifecycle_ownership.sql`
   3. `20260924135500_grading_night.sql`
+  4. `20260924143000_gn_amend_plan_judgment.sql`
 - **Tables (schema `public`):**
   - `showmob_artifacts`: `id`, `slug` (unique), `current_revision`, `status`, `owner_id`, `created_at`, `updated_at`.
   - `showmob_artifact_revisions`: `artifact_id`, `revision`, `document` (full `schemaVersion: 1` artifact as JSONB), `document_sha256`, `parent_revision`, `request_id`, `note`, `created_at`. Append-only: a trigger rejects `UPDATE` / `DELETE` / `TRUNCATE`.
@@ -16,7 +17,7 @@ Checked against the live database on 2026-09-24. The site still reads repository
   - `showmob_gn_grades`: one row per grade: `subject_id`, `artifact_slug`, `scores` (jsonb), `suggestion`, `behavior` (jsonb), `graded_at`. Not append-only; rows can be deleted by the owner.
 - **Functions:** `showmob_gn_list_subjects(status?, generator?)`, `showmob_gn_record_grade(subject_id, artifact_slug, scores, suggestion?, behavior?)`, `showmob_gn_list_grades(subject_id?)` (service role only), plus `showmob_save_revision`, `showmob_get_revision`, `showmob_list_revisions` (service role only), plus the `showmob_reject_revision_change` trigger function.
 - **Access:** RLS is on for all four tables with zero policies, and `anon` / `authenticated` have no grants. Only the service role can read or write. Browser access is denied on purpose.
-- **Data:** one artifact (`showmob-guide`) with 4 revisions (test data from the milestone-one check). 100 grading-night subjects, all `pending`, loaded 2026-09-24 from the approved subjects list. Zero grades.
+- **Data:** one artifact (`showmob-guide`) with 4 revisions (test data from the milestone-one check). 110 grading-night subjects (`GN-001`..`GN-110`; the 10 calibration pages were appended as `GN-101`..`GN-110` on 2026-09-26), statuses moving as pages are built and graded. Grades exist from the 2026-09-26 grading night onward - check `showmob_gn_grades` for the current count.
 
 There is no separate `showmob` schema and no `events` table. If an older note mentions `showmob.artifacts` or `showmob.events`, it is out of date. The repo migrations are the source of truth.
 
@@ -28,7 +29,7 @@ Before the first `db push`, mark all three as applied:
 
 ```sh
 supabase link --project-ref vsasmtsifuylhfrrsrso
-supabase migration repair --status applied 20260923140000 20260923154500 20260924135500
+supabase migration repair --status applied 20260923140000 20260923154500 20260924135500 20260924143000
 supabase migration list   # all three should show on local and remote
 ```
 
