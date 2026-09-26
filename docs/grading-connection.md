@@ -18,6 +18,7 @@ A grade that enters the loop is a file, `runs/<series>/grades/<page-or-batch>.js
   "gradeVersion": 1,
   "pageId": "...",
   "gradeSource": { "kind": "owner", "detail": "Chris's taste pass, 2026-09-26" },
+  "contentSha256": "sha256 of the page JSON exactly as graded",
   "grade": "teaches | explains | neither",
   "classification": "representation",
   "hypothesis": "visualNeeds was spatial; the draft used text. Director check would have caught it.",
@@ -25,6 +26,7 @@ A grade that enters the loop is a file, `runs/<series>/grades/<page-or-batch>.js
 }
 ```
 
+- `contentSha256` pins the grade to a page version: if the page is edited after grading, the hash stops matching and the drift is visible instead of silent. The grading-night database rows carry the same pin (`showmob_gn_grades.document_sha256`, computed from the artifact document exactly as rendered), and amendments append a new row that supersedes the original - nothing is rewritten in place.
 - `gradeSource.kind` is `owner` or `calibrated-grader`. **The grade source must be the owner's judgment, or a grader that has been checked against the owner's judgment.** Grades that bunch together, or that always say "add something," cannot tell pages apart; a loop fed by them learns to overbuild. Chris's taste pass (teaches / explains / neither taps) is the ground truth; any other grader calibrates against it before its grades count.
 - `classification` is one layer: `research`, `scope`, `sheet`, `teaching-strategy`, `representation`, `generation`, `critique`, `missing-primitive`. A grade with no layer is a vibe; it does not enter the loop.
 - `hypothesis` states the suspected cause. `candidateChange` names a new version of a template or default only after the hypothesis survives contact with more than one page.

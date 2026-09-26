@@ -30,6 +30,7 @@ interface ResponseLike {
 const SUBJECT_ID = /^GN-[0-9]{3}$/;
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const GRADE_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const DOCUMENT_HASH = /^[0-9a-f]{64}$/;
 const MAX_TEXT = 8000;
 const MAX_BODY = 64_000;
 const MAX_WIDGET_EVENTS = 200;
@@ -211,6 +212,8 @@ export default async function handler(req: RequestLike, res: ResponseLike) {
         artifact_slug: g.artifact_slug,
         scores: g.scores,
         graded_at: g.graded_at,
+        document_sha256: g.document_sha256,
+        supersedes: g.supersedes,
       }));
       return res.status(200).json({ subjects: cleanSubjects(subjects), grades: slim });
     }
@@ -271,12 +274,20 @@ export default async function handler(req: RequestLike, res: ResponseLike) {
       } catch (err) {
         return res.status(400).json({ error: (err as Error).message });
       }
+      let documentSha256: string | null = null;
+      if (input.document_sha256 !== null && input.document_sha256 !== undefined) {
+        if (typeof input.document_sha256 !== "string" || !DOCUMENT_HASH.test(input.document_sha256)) {
+          return res.status(400).json({ error: "document_sha256 must be 64 lowercase hex chars" });
+        }
+        documentSha256 = input.document_sha256;
+      }
       const rows = (await rpc("showmob_gn_record_grade", {
         p_subject_id: subjectId,
         p_artifact_slug: artifactSlug,
         p_scores: scores,
         p_suggestion: suggestion ?? null,
         p_behavior: behavior,
+        p_document_sha256: documentSha256,
       })) as Record<string, unknown>[];
       return res.status(200).json({ grade: rows[0] ?? null });
     }
