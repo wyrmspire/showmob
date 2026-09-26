@@ -1,17 +1,122 @@
 {
-  "stage":"representation",
-  "pageId":"local-security-lab-network-inventory",
-  "input":"page-sheet.json only; chosen before prose",
-  "coreModelUse":"Start with two observation sources, make an identity-aware dated table, then compare changes without calling any difference an intruder.",
-  "sections":[
-    {"id":"start","block":"hero","why":"Named read-only task and comparison model."},
-    {"id":"two-views","block":"comparison","why":"Router sees clients, owned host sees sockets; neither is the complete inventory."},
-    {"id":"sample","block":"compact-table","why":"Two-column sample avoids losing identity evidence at phone width."},
-    {"id":"comparison","block":"compact-table","why":"Show address rotation versus unexplained device in a small before/after table."},
-    {"id":"steps","block":"steps","why":"A bounded procedure to gather, corroborate, save and revisit."},
-    {"id":"worksheet","block":"fill-in","why":"Reader rehearses one record; explicitly temporary, not persistent storage."},
-    {"id":"check","block":"exercise","why":"Transfer: a changed IP is a question, not an intrusion verdict."},
-    {"id":"sources","block":"resource-list","why":"Primary consumer and asset-management guidance."}
+  "stage": "representation",
+  "pageId": "local-security-lab-network-inventory",
+  "input": "page-sheet.json only; chosen before prose",
+  "coreModelUse": "Start with two observation sources, make an identity-aware dated table, then compare changes without calling any difference an intruder.",
+  "sections": [
+    {
+      "id": "start",
+      "block": "hero",
+      "why": "Named read-only task and comparison model.",
+      "pressure": "The page’s one task must be the first thing seen.",
+      "rejected": [
+        "text: buries the task in a paragraph"
+      ]
+    },
+    {
+      "id": "two-views",
+      "block": "comparison",
+      "why": "Router sees clients, owned host sees sockets; neither is the complete inventory.",
+      "pressure": "Two incomplete views must be held side by side, not in sequence.",
+      "rejected": [
+        "text: two views in prose blur into one list"
+      ]
+    },
+    {
+      "id": "sample",
+      "block": "compact-table",
+      "why": "Two-column sample avoids losing identity evidence at phone width.",
+      "pressure": "Phone width; identity evidence must stay attached to each row.",
+      "rejected": [
+        "text: sample records in prose are hard to scan"
+      ]
+    },
+    {
+      "id": "comparison",
+      "block": "compact-table",
+      "why": "Show address rotation versus unexplained device in a small before/after table.",
+      "pressure": "Before/after must compare in parallel rows.",
+      "rejected": [
+        "diagram: rotation vs unknown is a state comparison, not a flow"
+      ]
+    },
+    {
+      "id": "steps",
+      "block": "steps",
+      "why": "A bounded procedure to gather, corroborate, save and revisit.",
+      "pressure": "Gather → corroborate → save → revisit is an order; prose hides it.",
+      "rejected": [
+        "text: a procedure in prose hides the order"
+      ]
+    },
+    {
+      "id": "worksheet",
+      "block": "fill-in",
+      "why": "Reader rehearses one record; explicitly temporary, not persistent storage.",
+      "pressure": "The reader must rehearse one record themselves, not just read about it.",
+      "rejected": [
+        "checklist: rehearsing a record is not a tick-off task"
+      ]
+    },
+    {
+      "id": "check",
+      "block": "exercise",
+      "why": "Transfer: a changed IP is a question, not an intrusion verdict.",
+      "pressure": "Transfer needs a scored case the page didn’t walk through.",
+      "rejected": [
+        "fill-in: an open blank can’t test the transfer; it needs a right answer"
+      ]
+    },
+    {
+      "id": "sources",
+      "block": "resource-list",
+      "why": "Primary consumer and asset-management guidance.",
+      "pressure": "Claims about consumer guidance need linkable sources.",
+      "rejected": [
+        "embed: several sources, not one"
+      ]
+    }
   ],
-  "notUsed":[{"block":"network scan","why":"No scan is needed for the lesson or authorized scope."}]
+  "notUsed": [
+    {
+      "block": "network scan",
+      "why": "No scan is needed for the lesson or authorized scope."
+    }
+  ],
+  "drift": {
+    "added": [
+      {
+        "id": "identity",
+        "type": "text",
+        "why": "Added in generation: names the identity evidence (the same device seen from the router and from the host) before the sample table. Carries the core model; kept."
+      },
+      {
+        "id": "privacy",
+        "type": "note-callout",
+        "why": "Added in generation without a plan entry. Unplanned callout — the callout habit Grading Night flagged. Candidate for cut or for folding into the worksheet section."
+      },
+      {
+        "id": "next",
+        "type": "cta-band",
+        "why": "Series convention: every page closes by pointing forward. Omitted from the plan; kept."
+      }
+    ],
+    "renamed": [
+      {
+        "from": "comparison",
+        "to": "compare",
+        "why": "Generator renamed the section id; block type unchanged."
+      },
+      {
+        "from": "steps",
+        "to": "procedure",
+        "why": "Generator renamed the section id; block type unchanged."
+      },
+      {
+        "from": "worksheet",
+        "to": "template",
+        "why": "Generator renamed the section id; block type unchanged."
+      }
+    ]
+  }
 }

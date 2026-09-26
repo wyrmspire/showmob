@@ -8,7 +8,11 @@
       "id": "start",
       "carries": "realTask and coreModel",
       "block": "hero",
-      "why": "The reader starts with an owned host and a concrete read-only result, not tool shopping."
+      "why": "The reader starts with an owned host and a concrete read-only result, not tool shopping.",
+      "pressure": "Start with an owned host and a concrete read-only result, not tool shopping.",
+      "rejected": [
+        "text: buries the task in a paragraph"
+      ]
     },
     {
       "id": "entrances",
@@ -17,67 +21,113 @@
       "why": "Loopback, LAN, and wildcard are spatial scopes. An authored figure shows them without claiming the outer network can actually connect.",
       "rejected": [
         "diagram: linear flow implies one entrance leads to another"
-      ]
+      ],
+      "pressure": "Loopback, LAN, wildcard are spatial scopes; a figure shows them without claiming the outer network can connect."
     },
     {
       "id": "terms",
       "carries": "requiredIdeas 1-2",
       "block": "text",
-      "why": "Explain the one socket model and TCP/UDP distinction in sentences."
+      "why": "Explain the one socket model and TCP/UDP distinction in sentences.",
+      "pressure": "One socket model plus the TCP/UDP distinction needs sentences.",
+      "rejected": [
+        "compact-table: terms are distinctions with nuance, not rows"
+      ]
     },
     {
       "id": "sample",
       "carries": "demonstrate",
       "block": "code",
-      "why": "Short, synthetic address:port and process rows without exposing a real host; no long lines on a phone."
+      "why": "Short, synthetic address:port and process rows without exposing a real host; no long lines on a phone.",
+      "pressure": "Synthetic address:port rows must keep exact formatting; no long lines on a phone.",
+      "rejected": [
+        "text: sample output in prose loses exact formatting"
+      ]
     },
     {
       "id": "read-sample",
       "carries": "demonstrate and coreModel",
       "block": "compact-table",
-      "why": "Two compact columns match the inventory decision; a third column hid the purpose on a phone."
+      "why": "Two compact columns match the inventory decision; a third column hid the purpose on a phone.",
+      "pressure": "Two compact columns match the inventory decision; a third hid the purpose on a phone.",
+      "rejected": [
+        "text: reading a sample needs columns, not sentences"
+      ]
     },
     {
       "id": "commands",
       "carries": "apply and requiredIdea 4",
-      "block": "code (three short OS-specific blocks)",
-      "why": "Copyable local commands for Linux, macOS and Windows in separate blocks so each is readable on a phone; no scan or mutation."
+      "block": "code",
+      "why": "Copyable local commands for Linux, macOS and Windows in separate blocks so each is readable on a phone; no scan or mutation.",
+      "pressure": "Copyable local commands per OS, each readable on a phone; no scan or mutation.",
+      "rejected": [
+        "steps: the commands are not a sequence; each OS block stands alone"
+      ],
+      "shipsAs": [
+        "linux",
+        "macos",
+        "windows"
+      ]
     },
     {
       "id": "safe-read",
       "carries": "requiredIdeas 3-4 and exclusions",
       "block": "text",
-      "why": "A warning needs a causal explanation: bind alone is not access; inspect before changes."
+      "why": "A warning needs a causal explanation: bind alone is not access; inspect before changes.",
+      "pressure": "A warning needs a causal explanation: bind alone is not access.",
+      "rejected": [
+        "note-callout: the safe-reading argument is the section’s job, not a sidebar"
+      ]
     },
     {
       "id": "check",
       "carries": "transfer check of coreModel",
       "block": "exercise",
-      "why": "One scored case with a different port from the demonstration; explanation hidden until requested."
+      "why": "One scored case with a different port from the demonstration; explanation hidden until requested.",
+      "pressure": "One scored case with a different port; explanation hidden until requested.",
+      "rejected": [
+        "fill-in: a transfer check needs a right answer to check against, not an open blank"
+      ]
     },
     {
       "id": "your-list",
       "carries": "apply and requiredIdea 5",
       "block": "fill-in",
-      "why": "Reader records their own machine's observations; form is local and temporary, so prompt saving privately."
+      "why": "Reader records their own machine's observations; form is local and temporary, so prompt saving privately.",
+      "pressure": "The reader records their own machine’s observations; the form is local and temporary.",
+      "rejected": [
+        "exercise: recording observations has no single right answer"
+      ]
     },
     {
       "id": "save",
       "carries": "temporary worksheet limitation and integration",
       "block": "text",
-      "why": "Tell the reader this input does not persist and to keep a private dated record."
+      "why": "Tell the reader this input does not persist and to keep a private dated record.",
+      "pressure": "The reader must be told the input doesn’t persist and to keep a private dated record.",
+      "rejected": [
+        "fill-in: the save step explains a limitation; another blank doesn’t teach it"
+      ]
     },
     {
       "id": "sources",
       "carries": "command and interpretation grounding",
       "block": "resource-list",
-      "why": "Primary manuals explain listening sockets and local inspection."
+      "why": "Primary manuals explain listening sockets and local inspection.",
+      "pressure": "Manuals explain listening sockets and local inspection; link them.",
+      "rejected": [
+        "embed: several sources, not one"
+      ]
     },
     {
       "id": "next",
       "carries": "integrate",
       "block": "cta-band",
-      "why": "The one-host result becomes a dated baseline on the following page."
+      "why": "The one-host result becomes a dated baseline on the following page.",
+      "pressure": "The one-host result becomes a dated baseline on the following page.",
+      "rejected": [
+        "text link: the integrate step needs a visible next action, not an inline link"
+      ]
     }
   ],
   "notUsed": [
