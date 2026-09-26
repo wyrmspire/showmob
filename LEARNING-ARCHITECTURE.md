@@ -1,6 +1,6 @@
 # Learning architecture
 
-Status: **parked direction** (2026-09-24). Nothing here is built yet. Written by Instinct from Chris's direction.
+Status: **active** (un-parked 2026-09-25 at Chris's direction). Phases 1–3 trialed; pipeline runs producing preview pages. Written by Instinct from Chris's direction.
 
 This is the operating doc for how Showmob should generate pages that teach, not just explain. It sits next to [GRADIENT.md](GRADIENT.md): GRADIENT.md is the judgment model for how content is expressed; this doc is the pipeline that decides what a page has to accomplish before anything is expressed. It does not own the near-term product order; [docs/product-brief.md](docs/product-brief.md) still does.
 
@@ -121,7 +121,7 @@ grade -> classify the failure by layer -> hypothesis -> candidate change (new ve
 ## Build order
 
 1. **Page setup sheets.** Cheapest step. Write sheets by hand for one good page, one page that explains instead of teaching, and one deep topic. Check that the sheet alone predicts the difference.
-2. **Topic map and scope.** First test is blind: hand it a deep subject (security is a good one) without a page count and see whether it finds the depth on its own. Test depth judgment before generation quality.
+2. **Topic map and scope.** First test is blind: hand it a deep subject (security is a good one) without a page count and see whether it finds the depth on its own. Test depth judgment before generation quality. Guardrail: the blind-scope test reuses the subject's existing research trunk and seriesId. A new seriesId covering the same subject needs Chris's explicit call first — otherwise we fork two canonical sources for one subject.
 3. **Representation plus section generation.** Choose blocks per section from the sheet, then generate section by section.
 4. **One teaching template.** A tutorial progression (real task, activate, demonstrate, apply, integrate). One, not ten.
 5. **Critique layer.** Judge drafts against sheets; write `critique.json`.
