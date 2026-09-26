@@ -62,7 +62,7 @@ The repository version intentionally omits links to private planning documents, 
 - [High-level blueprint](docs/blueprint.md)
 - [Roadmap](docs/roadmap.md)
 - [Agent contribution guide](AGENTS.md)
-- [Authoring contract and all 19 widgets](docs/widgets.md)
+- [Authoring contract and all 22 widgets](docs/widgets.md)
 - [First solid-state lesson and vocabulary findings](docs/solid-state-course-review.md)
 
 ## Validate content
