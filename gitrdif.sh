@@ -108,7 +108,11 @@ trap 'rm -f "$TMP"' EXIT
   echo "## Commits"
   echo
   echo '```'
-  if git log --oneline "$RANGE" | grep -q .; then
+  # NOTE: do not test with "git log | grep -q ." here - under pipefail,
+  # grep -q closes the pipe on first match, git dies with SIGPIPE, and the
+  # pipeline reports failure even when the range is full of commits (that
+  # is how a 1,791-addition range once printed "(no commits in range)").
+  if [ "$(git rev-list --count "$RANGE")" -gt 0 ]; then
     git log --oneline --no-decorate "$RANGE"
   else
     echo "(no commits in range)"
