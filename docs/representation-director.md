@@ -90,8 +90,17 @@ A page can drift from its representation during generation - the security pages 
 
 A per-page critique cannot see the template a series falls into. The security pages each passed their own critique while every page opened with a hero and closed with resource-list then cta-band - better than hero/paragraph/callout, but still a habit shape. The series check asks the question the page check cannot: did this page's shape come from its pressure, or from the page before it?
 
-- No two pages in a series may ship the identical ordered block sequence.
+- No two pages in a series may ship the identical ordered block sequence on declaration alone. *(Staged softening, 2026-09-26 outside review - doc only, the test still hard-fails until Chris approves the behavior change: an identical sequence is allowed when the representation carries an independent justification for why the shared shape is each page's own answer, not the previous page's habit. "Independent" means the whys name different pressures, not reworded copies of the same one.)*
 - When every page in a series opens with the same block, each opening section's `why` must be distinct - the habit block is re-earned per page or it comes out (director question 5, applied across pages).
 - The same rule for the closing block, with the `why` taken from the closing section or, when the closer is drift, from its drift entry.
 
 Both checks run in `tests/representation-director.test.mjs` alongside the six-question tests.
+
+## Cautions from outside review (2026-09-26)
+
+Chris ran the director dump past GPT and Grok; both reads were accurate about what shipped. The cautions that survive contact with the repo:
+
+- **Paperwork theater (GPT).** Every director check can be passed by declaration: write a plausible `why`, name a rejected neighbor, list drift. The counterweight is the grading loop (docs/grading-connection.md), not more fields - fields can be rationalized too.
+- **The checks see shape, not judgment (Grok).** Concretely: `unusedToolCheck` only has to exist, not cover every `visualNeeds` line or filled apply; beat pass/fail in critique is prose (an empty apply would not fail CI); conformance counts block types, not order (steps and fill-in can ship swapped); critique v2 is opt-in so old pages keep their soft pass. Queued follow-up: tighten `unusedToolCheck` so `candidateAnalogies` and a filled apply must be named-or-failed the way spatial `visualNeeds` already is.
+- **Same author, every layer (both).** One agent wrote sheet, representation, draft, and critique for the security series, so the director can catch "forgot the image" but not "this page explains." The fix is the grading connection running with a grader that is not the author.
+- **Drift on the earlier security pages is honest but should shrink (Grok).** Re-planning those pages toward empty drift is queued as its own evaluation; scope gets reported before any rewrite PR.
