@@ -1,0 +1,207 @@
+{
+ "stage": "topic-map",
+ "runVersion": 1,
+ "seriesId": "video-cinematics",
+ "input": "research.json only",
+ "note": "Not an outline. Concepts, what each depends on, and where the subject naturally breaks.",
+ "concepts": [
+  {
+   "id": "container-vs-prose",
+   "tier": "foundation",
+   "dependsOn": [],
+   "boundary": "the-shot",
+   "practiceOpening": "Set a clip's duration, resolution and aspect in the tool, then write the prompt without mentioning them",
+   "visualCandidate": null
+  },
+  {
+   "id": "one-beat-per-clip",
+   "tier": "foundation",
+   "dependsOn": [],
+   "boundary": "the-shot",
+   "practiceOpening": "Cut a story idea down to the one sentence a stranger could repeat",
+   "visualCandidate": null
+  },
+  {
+   "id": "first-frame-anchor",
+   "tier": "foundation",
+   "dependsOn": [],
+   "boundary": "the-shot",
+   "practiceOpening": "Choose or make the still the clip will start from before writing anything",
+   "visualCandidate": "The same beat generated with and without a chosen start frame"
+  },
+  {
+   "id": "shot-sizes",
+   "tier": "foundation",
+   "dependsOn": [],
+   "boundary": "the-shot",
+   "practiceOpening": "Name the framing of a planned shot: wide, medium, or close, and what that choice says",
+   "visualCandidate": "One subject framed three ways, side by side"
+  },
+  {
+   "id": "motivated-camera",
+   "tier": "core",
+   "dependsOn": [
+    "shot-sizes"
+   ],
+   "boundary": "the-shot",
+   "practiceOpening": "Decide static or moving, and if moving, what the move tells the viewer",
+   "visualCandidate": null
+  },
+  {
+   "id": "timed-action-beats",
+   "tier": "core",
+   "dependsOn": [
+    "one-beat-per-clip"
+   ],
+   "boundary": "the-shot",
+   "practiceOpening": "Write one action as beats with timing that fits the duration",
+   "visualCandidate": null
+  },
+  {
+   "id": "tool-capability-map",
+   "tier": "foundation",
+   "dependsOn": [],
+   "boundary": "the-shot",
+   "practiceOpening": "Look up what your generator actually supports today: first frame, keyframes, references, extension",
+   "visualCandidate": "A dated capability table across generators"
+  },
+  {
+   "id": "style-anchoring",
+   "tier": "core",
+   "dependsOn": [],
+   "boundary": "continuity",
+   "practiceOpening": "Name the aesthetic in the first line of every prompt, verbatim",
+   "visualCandidate": null
+  },
+  {
+   "id": "character-reference-habit",
+   "tier": "core",
+   "dependsOn": [
+    "style-anchoring"
+   ],
+   "boundary": "continuity",
+   "practiceOpening": "Build one character reference and reuse it across three generations",
+   "visualCandidate": "The same reference image producing the same face in three clips"
+  },
+  {
+   "id": "seed-limits",
+   "tier": "core",
+   "dependsOn": [
+    "container-vs-prose"
+   ],
+   "boundary": "continuity",
+   "practiceOpening": "Rerun one prompt with and without a fixed seed where supported and compare honestly",
+   "visualCandidate": null
+  },
+  {
+   "id": "lighting-palette-continuity",
+   "tier": "core",
+   "dependsOn": [
+    "style-anchoring"
+   ],
+   "boundary": "continuity",
+   "practiceOpening": "Write the light (time of day, direction, palette) once and paste it into every clip's prompt",
+   "visualCandidate": "Two clips of one room, relit by the model versus held by the prompt"
+  },
+  {
+   "id": "frame-chaining",
+   "tier": "core",
+   "dependsOn": [
+    "first-frame-anchor"
+   ],
+   "boundary": "the-chain",
+   "practiceOpening": "Feed the last frame of clip one as the start frame of clip two",
+   "visualCandidate": "Two clips sharing one frame at the seam, marked"
+  },
+  {
+   "id": "lens-switch-seam",
+   "tier": "core",
+   "dependsOn": [
+    "frame-chaining"
+   ],
+   "boundary": "the-chain",
+   "practiceOpening": "Deliberately chain two dissimilar frames and watch the model cut instead of transition",
+   "visualCandidate": "A failed chain: the lens switch mid-clip"
+  },
+  {
+   "id": "stitch-vs-long",
+   "tier": "core",
+   "dependsOn": [
+    "one-beat-per-clip",
+    "container-vs-prose"
+   ],
+   "boundary": "the-chain",
+   "practiceOpening": "Split one complex action into two planned clips instead of one long ask",
+   "visualCandidate": null
+  },
+  {
+   "id": "cut-on-action",
+   "tier": "core",
+   "dependsOn": [
+    "frame-chaining"
+   ],
+   "boundary": "the-chain",
+   "practiceOpening": "Place the seam mid-gesture so the motion carries the eye across it",
+   "visualCandidate": null
+  },
+  {
+   "id": "axis-180",
+   "tier": "advanced",
+   "dependsOn": [
+    "shot-sizes"
+   ],
+   "boundary": "the-chain",
+   "practiceOpening": "Mark the action line on your own scene and keep every planned shot on one side of it",
+   "visualCandidate": "Overhead diagram of a scene with the axis drawn and legal camera positions marked"
+  },
+  {
+   "id": "establish-before-coverage",
+   "tier": "advanced",
+   "dependsOn": [
+    "axis-180"
+   ],
+   "boundary": "the-chain",
+   "practiceOpening": "Plan wide first, then mediums and close-ups that agree with the established room",
+   "visualCandidate": null
+  },
+  {
+   "id": "shot-list-artifact",
+   "tier": "advanced",
+   "dependsOn": [
+    "one-beat-per-clip",
+    "shot-sizes"
+   ],
+   "boundary": "the-plan",
+   "practiceOpening": "Write a three-shot list (framing, beat, camera, duration, references) before generating anything",
+   "visualCandidate": "The shot list itself as a filled planning table"
+  }
+ ],
+ "boundaries": [
+  {
+   "id": "the-shot",
+   "why": "Everything starts with one honest clip: the container, the single beat, the anchor frame, the framing, the camera. Nothing downstream survives a mushy shot."
+  },
+  {
+   "id": "continuity",
+   "why": "Keeping character, style and light stable across generations is its own discipline with its own tools (references, verbatim prose, honest seeds)."
+  },
+  {
+   "id": "the-chain",
+   "why": "Joining clips: frame chaining, its failure mode, the stitch decision, the axis. Assumes the shot and continuity work."
+  },
+  {
+   "id": "the-plan",
+   "why": "The written shot list that turns a story into a sequence. Last because it uses everything before it."
+  }
+ ],
+ "stats": {
+  "concepts": 18,
+  "longestDependencyChain": 3,
+  "longestChainEndsAt": "establish-before-coverage",
+  "byTier": {
+   "foundation": 6,
+   "core": 9,
+   "advanced": 3
+  }
+ }
+}

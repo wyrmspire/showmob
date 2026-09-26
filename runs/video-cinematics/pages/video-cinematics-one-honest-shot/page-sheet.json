@@ -1,0 +1,75 @@
+{
+ "sheetVersion": 1,
+ "sheetKind": "planned",
+ "pageId": "video-cinematics-one-honest-shot",
+ "seriesId": "video-cinematics",
+ "mode": "tutorial",
+ "useShape": "alongside",
+ "readerMoment": "Has typed one-line prompts into an AI video generator and gotten clips back that drift, wander, or try to do three things at once. Has a story idea and has never planned a shot.",
+ "outcome": "Can produce one coherent 8-10 second clip from their own story idea by giving it one beat, a deliberate start frame, and a static or motivated camera, and can say why the result holds together.",
+ "coreModel": "A clip holds together when it carries exactly one beat, and everything the model needs is either a parameter or a picture, not a wish in prose.",
+ "prerequisites": [],
+ "teachingShape": {
+  "realTask": "Take your own story idea and produce one 8-10 second clip that a stranger could describe in one sentence.",
+  "activate": [
+   "Your last mushy clip: name the two or three things it tried to do; that crowding is the failure this page removes",
+   "Your one-line prompt habit: everything was a wish, nothing was decided"
+  ],
+  "demonstrate": [
+   "One worked shot from a small story idea: 'a woman crosses a kitchen at dawn and opens the window' - planned as container settings first (duration, aspect, resolution in the tool), one beat, a chosen start frame, framing named (medium), camera static, and the action written as timed beats that fit the seconds",
+   "The same idea prompted the one-line way, shown failing: the model improvises the kitchen, the camera wanders, the beat blurs"
+  ],
+  "apply": [
+   "Write your shot plan on the same skeleton: container settings, the one-beat sentence, the start frame description, framing, camera decision, timed action beats",
+   "Choose or make your start frame and generate two or three takes in your generator",
+   "Check what your generator actually supports today (first frame? fixed seed? references?) against its own docs, not memory"
+  ],
+  "integrate": [
+   "Pick the take that holds and say why in one line: one beat, anchored first frame, camera with a reason",
+   "Record the plan, the settings, and the winning take in your own shot log - the page's fields reset when you leave, so the record lives in your notes"
+  ]
+ },
+ "requiredIdeas": [
+  "Container versus prose: duration, resolution, and aspect are parameters set in the tool; the prompt cannot make a clip longer, only better directed.",
+  "One beat per clip: the 8-10 second length is a discipline, not a limit; two beats in one clip is the mush failure.",
+  "The first frame anchors the whole generation: in image-to-video the input image acts as the first frame, so choosing it is directing.",
+  "Framing is a choice with a meaning: wide establishes, medium carries interaction, close carries feeling.",
+  "The camera is static or motivated: every move must tell the viewer something, or it reads as generated.",
+  "Action is written as timed beats ('crosses four steps, pauses, opens the window in the final second'), not adverbs; the beats must fit the duration.",
+  "Takes are cheap: generate two or three and pick, because the same prompt gives different results by design.",
+  "Capability claims expire: what your generator supports (first frame, keyframes, references, seeds) is checked against its current docs, dated."
+ ],
+ "candidateAnalogies": [
+  "Prompting is briefing a cinematographer who has never seen your storyboard: leave it out and they improvise.",
+  "A shot is one sentence of the story, not a paragraph.",
+  "The start frame is the opening note the whole clip harmonizes with."
+ ],
+ "visualNeeds": [
+  "The same beat framed three ways (wide, medium, close) side by side, so the framing choice is seen, not described",
+  "A worked shot plan skeleton filled in for the kitchen example: container, beat, start frame, framing, camera, timed beats",
+  "A spatial seam picture for the failed one-line generation: wandering camera path versus the planned static frame"
+ ],
+ "deliberatelyExcluded": [
+  {
+   "what": "Chaining clips together (end frame to start frame)",
+   "why": "Page 3's job. One honest shot comes before any seam; chaining a mushy shot chains the mush."
+  },
+  {
+   "what": "Character references, cameos, and multi-image consistency",
+   "why": "Page 2's job. Consistency across generations is its own discipline and needs the one-shot craft first."
+  },
+  {
+   "what": "Step-by-step walkthroughs of one generator's interface",
+   "why": "Capabilities and layouts change monthly; the page teaches the decisions and points at the dated docs."
+  },
+  {
+   "what": "Audio, dialogue, and sound design",
+   "why": "Native audio exists on some generators but the shot craft here is visual; sound is a later series."
+  },
+  {
+   "what": "The 180-degree axis and multi-shot coverage",
+   "why": "Meaningless before clips chain; scoped to page 4."
+  }
+ ],
+ "nextPagePressure": "Your one shot holds together. Now the same character, the same light, and the same room have to survive the next generation - and prose alone will not keep them."
+}
