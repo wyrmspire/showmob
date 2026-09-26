@@ -1,0 +1,9 @@
+# Close silent exposure: sixth scoped security page, Phase 4 tutorial template trial
+
+Written by Instinct. Staged sheet → representation → draft → critique under `runs/local-security-lab/pages/local-security-lab-close-exposure/` and `app/src/content/local-security-lab-close-exposure.json` (preview, series order 7).
+
+This page is the first deliberate run of the Phase 4 teaching template ([teaching-template-tutorial.md](teaching-template-tutorial.md), v1): `mode: tutorial` with the five-beat progression realTask → activate → demonstrate → apply → integrate. The shape converged unprompted in the first two security tutorials (lab scope, host listeners); this run names it, versions it, and judges the page beat by beat in `critique.json`.
+
+The page teaches auditing inbound openings on your own router: UPnP state and mappings, manual forwards, WAN administration; verdicts keep/close/unknown from your own records and the authorized owner (the inventory page's rule); closing one change at a time with every change recorded; then proof from both sides — the router's own lists and an outside attempt from a connection the reader owns (their phone on cellular). Third-party port scanners, deliberate exposures, ISP-router replacement and testing others' addresses are excluded with reasons.
+
+One scope correction is recorded in `series.json` (runVersion 2): the scope stage labeled this page how-to; the sheet stage found it teaches a transferable capability through the reader's own real task, matching the series' other tutorials, so the mode is tutorial. Sources: Cyber Centre ITSAP.00.008 (UPnP), CISA Home Network Security, FTC home Wi-Fi guidance — all URLs verified 2026-09-26. Local pixels inspected at 390px and 1280px; series navigation shows part 7 of 7 and links back to the firewall page. 140/140 tests and build pass. Same-author critique, not independent validation.
