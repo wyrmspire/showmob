@@ -1,0 +1,342 @@
+{
+ "stage": "research",
+ "runVersion": 1,
+ "seriesId": "video-cinematics",
+ "input": {
+  "subject": "Direct a short AI-generated story: plan and produce coherent 8-10 second video clips that hold together on their own and chain into a sequence with consistent character, space, and light.",
+  "entryReader": "Has typed a prompt into an AI video generator and gotten a clip back. Has never planned a shot, chained two clips, or kept a character consistent across generations.",
+  "notGiven": "No page count, no outline, and no existing page content are inputs to this run.",
+  "capabilitiesVerified": "Tool capability claims below were checked against the generators' own documentation on 2026-09-26; this area changes monthly and every claim is dated."
+ },
+ "perspectives": [
+  {
+   "id": "cinematographer",
+   "view": "A clip is a shot, and a shot is one idea. Framing, camera motivation, and the axis are decided before anything is generated; the model is the camera, not the director.",
+   "sources": [
+    "sora_cookbook",
+    "runway_gen4_prompting"
+   ]
+  },
+  {
+   "id": "tool-pragmatist",
+   "view": "Capabilities differ per generator and change monthly: who anchors a first frame, who takes start and end keyframes, who extends with full-clip context, who accepts reference images and how many. Check the docs, date the claim.",
+   "sources": [
+    "runway_gen4",
+    "luma_keyframes",
+    "kling_start_end",
+    "veo_docs",
+    "sora_cookbook"
+   ]
+  },
+  {
+   "id": "editor",
+   "view": "Continuity is assembled, not generated: end frames become start frames, short clips stitch better than long ones, and the cut hides the seam when something moves across it.",
+   "sources": [
+    "sora_cookbook",
+    "luma_keyframes",
+    "kling_start_end"
+   ]
+  }
+ ],
+ "concepts": [
+  {
+   "id": "container-vs-prose",
+   "name": "Container versus prose",
+   "summary": "Resolution, duration, and aspect are parameters set in the tool, not wishes in the prompt. Prose controls subject, motion, lighting, and style; it cannot make a clip longer.",
+   "sources": [
+    "sora_cookbook",
+    "runway_gen4"
+   ]
+  },
+  {
+   "id": "one-beat-per-clip",
+   "name": "One beat per clip",
+   "summary": "The 8-10 second length forces a single shot idea. Models follow instructions more reliably in shorter clips; two beats in one clip is how you get mush.",
+   "sources": [
+    "sora_cookbook"
+   ]
+  },
+  {
+   "id": "first-frame-anchor",
+   "name": "The first frame anchors the generation",
+   "summary": "In image-to-video the input image acts as the first frame of the output and establishes the visual starting point of the whole generation.",
+   "sources": [
+    "runway_gen4",
+    "luma_keyframes"
+   ]
+  },
+  {
+   "id": "shot-sizes",
+   "name": "Shot sizes",
+   "summary": "Wide establishes the space, medium carries interaction, close carries feeling. Coverage is chosen from the established space, not generated independently.",
+   "sources": [
+    "sora_cookbook"
+   ]
+  },
+  {
+   "id": "motivated-camera",
+   "name": "Motivated camera",
+   "summary": "A camera move must mean something: a push says pay attention, a pan says look over there. Unmotivated movement reads as generated instantly.",
+   "sources": [
+    "runway_gen4_prompting",
+    "sora_cookbook"
+   ]
+  },
+  {
+   "id": "timed-action-beats",
+   "name": "Timed action beats",
+   "summary": "Action is written as beats with timing ('takes four steps to the window, pauses, pulls the curtain in the final second'), not adverbs. Specific beats make the duration achievable.",
+   "sources": [
+    "sora_cookbook"
+   ]
+  },
+  {
+   "id": "style-anchoring",
+   "name": "Style anchored early",
+   "summary": "The aesthetic ('1970s film', '16mm black-and-white') is named early in the prompt so the model carries it through the whole clip; style drift starts when style is an afterthought.",
+   "sources": [
+    "sora_cookbook"
+   ]
+  },
+  {
+   "id": "character-reference-habit",
+   "name": "Character consistency by reference, not adjectives",
+   "summary": "Identity holds through pictures: character reference uploads (Sora), up to three reference images (Veo 3.1), elements (Kling). Prose descriptions drift; references are reused verbatim.",
+   "sources": [
+    "sora_cookbook",
+    "veo_docs",
+    "veo_ingredients",
+    "kling_start_end"
+   ]
+  },
+  {
+   "id": "seed-limits",
+   "name": "Seeds are a weak consistency tool",
+   "summary": "A fixed seed nudges similar style and motion where supported (Runway offers it, off by default), but a seed names a draw, not a reproducible output; hosted endpoints do not guarantee the same result.",
+   "sources": [
+    "runway_gen4"
+   ]
+  },
+  {
+   "id": "tool-capability-map",
+   "name": "The capability map is dated",
+   "summary": "As of 2026-09-26: Runway Gen-4 makes 5 or 10 second clips from an input image with an optional fixed seed; Luma takes start and end keyframes and extends with an image; Kling takes start and end frames and warns that dissimilar frames cause a lens switch; Veo 3.1 offers extension, first-and-last-frame generation, and up to three reference images; Sora 2 offers character references, up to 20 seconds, and extension using the full clip as context.",
+   "sources": [
+    "runway_gen4",
+    "luma_keyframes",
+    "kling_start_end",
+    "veo_docs",
+    "veo_ingredients",
+    "sora_cookbook"
+   ]
+  },
+  {
+   "id": "frame-chaining",
+   "name": "Frame chaining",
+   "summary": "The end frame of clip N becomes the start frame of clip N+1. This is the backbone of multi-clip continuity and the reason the last frame of every shot matters.",
+   "sources": [
+    "luma_keyframes",
+    "kling_start_end",
+    "veo_docs"
+   ]
+  },
+  {
+   "id": "lens-switch-seam",
+   "name": "The lens-switch seam",
+   "summary": "When start and end frames differ too much, the model cuts to a new lens instead of transitioning (Kling documents this outright). Big changes belong at a planned cut, not inside a chained transition.",
+   "sources": [
+    "kling_start_end"
+   ]
+  },
+  {
+   "id": "axis-180",
+   "name": "The 180-degree axis",
+   "summary": "Screen direction is a promise: keep the camera on one side of the action line between chained clips unless the disorientation is intentional.",
+   "sources": [
+    "sora_cookbook"
+   ]
+  },
+  {
+   "id": "establish-before-coverage",
+   "name": "Establish before coverage",
+   "summary": "The wide shot comes first so the space exists; mediums and close-ups must agree with it, or the viewer rebuilds the room wrong.",
+   "sources": [
+    "sora_cookbook"
+   ]
+  },
+  {
+   "id": "cut-on-action",
+   "name": "Cut on action",
+   "summary": "Motion continuing across a cut hides the seam. The safest moment to join two clips is mid-gesture, not at rest.",
+   "sources": [
+    "sora_cookbook"
+   ]
+  },
+  {
+   "id": "stitch-vs-long",
+   "name": "Stitch short beats over generating long",
+   "summary": "Two planned 4-second clips edited together routinely beat one asked-for 8-second clip when the action is complex; OpenAI's own guide recommends exactly this.",
+   "sources": [
+    "sora_cookbook"
+   ]
+  },
+  {
+   "id": "lighting-palette-continuity",
+   "name": "Lighting and palette continuity",
+   "summary": "Time of day, light direction, and palette are named identically across every clip's prompt and reference, or each generation re-lights the scene.",
+   "sources": [
+    "sora_cookbook"
+   ]
+  },
+  {
+   "id": "shot-list-artifact",
+   "name": "The shot list is a written artifact",
+   "summary": "A sequence is planned as a written shot list (framing, beat, camera, duration, references per shot) before any generation, so continuity is designed rather than hoped for.",
+   "sources": [
+    "sora_cookbook"
+   ]
+  }
+ ],
+ "misconceptions": [
+  {
+   "claim": "A longer, more detailed prompt gives more control.",
+   "correction": "Duration, resolution and aspect are parameters; prose cannot change them, and models follow instructions more reliably in shorter clips.",
+   "concepts": [
+    "container-vs-prose",
+    "one-beat-per-clip"
+   ],
+   "sources": [
+    "sora_cookbook"
+   ]
+  },
+  {
+   "claim": "Locking the seed makes a generation reproducible.",
+   "correction": "Where offered, a fixed seed only nudges similar style and motion; a seed names a draw, not a guarantee, and hosted endpoints do not promise bit-identical reruns.",
+   "concepts": [
+    "seed-limits"
+   ],
+   "sources": [
+    "runway_gen4"
+   ]
+  },
+  {
+   "claim": "Describing the character the same way every time keeps them consistent.",
+   "correction": "Consistent phrasing helps but drifts; identity holds through reference images uploaded once and reused.",
+   "concepts": [
+    "character-reference-habit"
+   ],
+   "sources": [
+    "sora_cookbook",
+    "veo_docs"
+   ]
+  },
+  {
+   "claim": "One long generation is better than stitching short clips.",
+   "correction": "For complex action the opposite holds: stitch planned short clips, ideally cutting on motion.",
+   "concepts": [
+    "stitch-vs-long",
+    "cut-on-action"
+   ],
+   "sources": [
+    "sora_cookbook"
+   ]
+  },
+  {
+   "claim": "Any two frames can be bridged with a start/end-frame tool.",
+   "correction": "Frames that differ too much produce a lens switch, not a transition; big changes belong at a planned cut.",
+   "concepts": [
+    "lens-switch-seam",
+    "frame-chaining"
+   ],
+   "sources": [
+    "kling_start_end"
+   ]
+  }
+ ],
+ "edgeCases": [
+  {
+   "case": "A generator with no start/end-frame support: chaining degrades to extracting the last frame yourself and feeding it as the next input image.",
+   "concepts": [
+    "frame-chaining",
+    "tool-capability-map"
+   ]
+  },
+  {
+   "case": "Vertical versus landscape decided late: some paths (Veo Ingredients) now generate native vertical, so format is a container decision made per clip, not in the edit.",
+   "concepts": [
+    "container-vs-prose",
+    "tool-capability-map"
+   ]
+  },
+  {
+   "case": "A shot whose action cannot fit its duration: the fix is a smaller beat or a cut, not a longer duration request in prose.",
+   "concepts": [
+    "timed-action-beats",
+    "stitch-vs-long"
+   ]
+  },
+  {
+   "case": "Reference images that disagree with each other: Veo takes up to three; conflicting references produce a blend of identities.",
+   "concepts": [
+    "character-reference-habit",
+    "tool-capability-map"
+   ]
+  }
+ ],
+ "realWorldFailures": [
+  {
+   "failure": "The character's face, wardrobe, or age drifts between clip 1 and clip 3 of the same story.",
+   "lesson": "Identity comes from reused reference images, not repeated prose.",
+   "concepts": [
+    "character-reference-habit",
+    "seed-limits"
+   ],
+   "sources": [
+    "sora_cookbook",
+    "veo_docs"
+   ]
+  },
+  {
+   "failure": "A chained transition cuts to a new lens halfway through because the two frames were too different.",
+   "lesson": "Keep chained frames similar; put big changes at a planned cut.",
+   "concepts": [
+    "lens-switch-seam",
+    "frame-chaining"
+   ],
+   "sources": [
+    "kling_start_end"
+   ]
+  },
+  {
+   "failure": "The camera drifts and wanders through every clip, reading as unmistakably AI.",
+   "lesson": "Static or motivated camera only; every move needs a reason.",
+   "concepts": [
+    "motivated-camera"
+   ],
+   "sources": [
+    "sora_cookbook",
+    "runway_gen4_prompting"
+   ]
+  },
+  {
+   "failure": "One 10-second clip asked to carry a walk in, a conversation, and a reveal comes back as mush.",
+   "lesson": "One beat per clip; complex action gets stitched from planned short clips.",
+   "concepts": [
+    "one-beat-per-clip",
+    "stitch-vs-long"
+   ],
+   "sources": [
+    "sora_cookbook"
+   ]
+  }
+ ],
+ "sources": {
+  "runway_gen4": "https://help.runwayml.com/hc/en-us/articles/37327109429011-Creating-with-Gen-4-Video",
+  "runway_gen4_prompting": "https://help.runwayml.com/hc/en-us/articles/39789879462419-Gen-4-Video-Prompting-Guide",
+  "luma_keyframes": "https://lumalabs.ai/learning-hub/how-to-use-keyframes",
+  "kling_start_end": "https://kling.ai/quickstart/ai-video-start-end-frames",
+  "veo_docs": "https://ai.google.dev/gemini-api/docs/veo",
+  "veo_ingredients": "https://blog.google/innovation-and-ai/technology/ai/veo-3-1-ingredients-to-video/",
+  "sora_cookbook": "https://developers.openai.com/cookbook/examples/sora/sora2_prompting_guide"
+ }
+}
