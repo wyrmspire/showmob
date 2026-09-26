@@ -1,0 +1,23 @@
+{
+  "stage":"critique",
+  "pageId":"local-security-lab-firewalls-explained",
+  "judgedAgainst":"page-sheet.json and coreModel, then rendered at 390px and 1280px in local Vite",
+  "questions":{
+    "teachesOrExplains":"One packet trace leads from translation/policy distinction to reply, unsolicited IPv4, explicit forward and IPv6 cases; the check transfers to IPv6.",
+    "coreModel":"The page does not equate absence of NAT with permission or NAT's lack of a mapping with a firewall rule.",
+    "scope":"It asks only for read-only configuration questions. No service exposure, rule edit or neighbor scan."
+  },
+  "findings":[
+    {"id":"f1","layer":"representation","outcome":"keep","finding":"The two-column case table fits phone width without hiding the reachability test.","change":"Keep the two-column form and distinguish the firewall from mapping in each row."},
+    {"id":"f2","layer":"generation","outcome":"keep","finding":"The IPv6 check did not imply automatic reach from a global address.","change":"Preserve router, host, route and listener questions."},
+    {"id":"f3","layer":"generation","outcome":"fixed","finding":"Initial local render skipped the then-unmerged inventory page and showed part 5 of 5.","change":"Rebased after inventory PR #112 merged; confirmed the final navigation displays part 6 of 6 and links to inventory."},
+    {"id":"f4","layer":"representation","outcome":"keep","finding":"The linear diagram represents a packet sequence, not a spatial network boundary; text names the separate router/host decisions.","change":"No new SVG needed."}
+  ],
+  "visualCheck":{
+    "phone":"390px screenshot inspected hero, comparison cards, packet diagram, case table, boundary text, IPv6 exercise, worksheet, sources and closing. No missing table column or overlapping text.",
+    "desktop":"1280px screenshot inspected hero, two-column comparison, packet cases, exercise, sources and closing. No clipping seen.",
+    "limitation":"Local renderer after the #112 merge includes inventory; final series navigation checked at 390px and in rendered DOM. No assistive technology or deployed preview check."
+  },
+  "accepted":["NAT versus firewall as separate operations","stateful reply versus unsolicited new flow","conditional IPv6 exposure","read-only scope"],
+  "caveat":"Same author produced sheet, draft and critique; independent content review still needed."
+}

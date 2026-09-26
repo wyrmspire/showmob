@@ -1,0 +1,153 @@
+{
+  "stage": "draft",
+  "pageId": "local-security-lab-firewalls-explained",
+  "source": "page-sheet.json and representation.json",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Defensive local security · foundations 5",
+      "title": "NAT is not your firewall",
+      "body": "You found a listener on your own machine. Can someone outside connect to it? First separate two router jobs: translation changes where a packet is addressed; a firewall rule decides whether a new flow is allowed through. Neither job alone proves the whole path."
+    },
+    {
+      "id": "two-jobs",
+      "type": "comparison",
+      "heading": "Two jobs at one boundary",
+      "columns": [
+        {
+          "name": "NAT translates",
+          "detail": "On many IPv4 home networks, the router maps one public address and ports to private devices. If an unsolicited packet has no mapping, the router often has nowhere to send it. That behavior can resemble a block, but it is not a stated allow/deny policy."
+        },
+        {
+          "name": "A stateful firewall decides",
+          "detail": "A policy can reject a new inbound flow while allowing return traffic for a connection started inside. It can also allow a named exception. The rule is about permission and connection state, not changing the destination address."
+        }
+      ]
+    },
+    {
+      "id": "trace",
+      "type": "diagram",
+      "heading": "Follow one packet, then ask who admits it",
+      "nodes": [
+        {
+          "title": "Outside packet arrives",
+          "detail": "Is it a reply to a connection you began, or a new inbound flow?"
+        },
+        {
+          "title": "Router policy and mapping",
+          "detail": "Firewall checks state and rules; IPv4 NAT may also need a destination mapping. These are separate questions."
+        },
+        {
+          "title": "Owned host checks",
+          "detail": "A host firewall and a process listening on the right address and port still matter. Passing one boundary does not prove access."
+        }
+      ]
+    },
+    {
+      "id": "paths",
+      "type": "compact-table",
+      "heading": "Four paths, four different questions",
+      "columns": [
+        "Case",
+        "What to ask before calling it reachable"
+      ],
+      "rows": [
+        [
+          "Reply to your outbound connection",
+          "A stateful policy usually permits the matching reply; NAT may use an existing mapping. This does not grant unrelated inbound access."
+        ],
+        [
+          "New inbound IPv4, no forward",
+          "Without a destination mapping, ordinary IPv4 NAT has nowhere to send it. Check router policy too; do not call NAT a firewall."
+        ],
+        [
+          "New inbound IPv4, explicit forward",
+          "A mapping points at a private host. Check router rule, host firewall, active interface and listener. An app may also request a mapping through UPnP."
+        ],
+        [
+          "New inbound IPv6",
+          "A globally routable address may need no NAT. Check router and host IPv6 firewall policies, routing and listener separately."
+        ]
+      ],
+      "caption": "These are models, not tests of your home router. Defaults and terminology vary by device."
+    },
+    {
+      "id": "boundary",
+      "type": "text",
+      "heading": "Where “blocked” can change",
+      "body": "A port forward is a destination mapping, not proof that traffic will pass every rule. UPnP can let a device ask the router to create one; inspect existing mappings and settings before judging the exposure. A listener bound only to 127.0.0.1 or ::1 is not directly facing another device. A wildcard or LAN bind could be reached only when the route and both router and host policies permit it. IPv6 does not require NAT for global addressing, but it does not mean the firewall is off. Your router may not support all these features; look at its actual settings rather than assume a default."
+    },
+    {
+      "id": "check",
+      "type": "exercise",
+      "heading": "What if there is no IPv6 NAT?",
+      "prompt": "A service on your own laptop listens on an IPv6 address. The home router does not translate IPv6. What can you conclude from that alone?",
+      "options": [
+        "Anyone on the internet can connect because NAT is absent",
+        "Nothing about actual reachability yet; inspect router and host firewall rules, routing and the bind address",
+        "The IPv4 port-forward list controls every IPv6 connection"
+      ],
+      "answer": 1,
+      "explanation": "Translation and permission are separate. A globally routable IPv6 address may have a route, but stateful router and host policies can still block new inbound traffic; the listener must also face that interface."
+    },
+    {
+      "id": "questions",
+      "type": "fill-in",
+      "heading": "Name the checks on your own network",
+      "items": [
+        {
+          "label": "Which address family and bind address is the owned service using?",
+          "placeholder": "IPv4 loopback, IPv4 LAN, IPv6, or unknown"
+        },
+        {
+          "label": "Does the router show a forward, UPnP mapping or explicit exception?",
+          "placeholder": "Not checked / none seen / named rule"
+        },
+        {
+          "label": "What do the router and host policies say about a new inbound flow?",
+          "placeholder": "Record separately; do not guess from NAT"
+        },
+        {
+          "label": "What remains unverified?",
+          "placeholder": "Outside test and app ownership belong to the next lesson"
+        }
+      ]
+    },
+    {
+      "id": "safe",
+      "type": "note-callout",
+      "tone": "warning",
+      "title": "Read first, change later",
+      "body": "These fields reset on close. Save questions privately; do not publish real addresses, rules or process lists. This page does not ask you to turn off a firewall, add a forward, probe a neighbor, or expose a service. The next lesson owns controlled changes and testing on an authorized setup."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "Sources for the distinction",
+      "items": [
+        {
+          "label": "RFC 4864: Local Network Protection for IPv6",
+          "detail": "Explains address translation, stateful filtering and protection without NAT.",
+          "url": "https://www.rfc-editor.org/rfc/rfc4864.html"
+        },
+        {
+          "label": "RFC 6092: Recommended Simple Security Capabilities",
+          "detail": "Describes stateful filtering behavior for residential IPv6 gateways.",
+          "url": "https://www.rfc-editor.org/rfc/rfc6092"
+        },
+        {
+          "label": "FTC: How To Secure Your Home Wi-Fi Network",
+          "detail": "Consumer router guidance covering firewall, remote management and UPnP.",
+          "url": "https://consumer.ftc.gov/articles/how-secure-your-home-wi-fi-network"
+        }
+      ]
+    },
+    {
+      "id": "next",
+      "type": "cta-band",
+      "heading": "Next: inspect the actual openings",
+      "body": "The model tells you what to ask. The next page checks forwards, UPnP and rule behavior on an authorized network before making any change."
+    }
+  ]
+}

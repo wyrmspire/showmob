@@ -1,0 +1,18 @@
+{
+  "sheetVersion":1,
+  "sheetKind":"planned",
+  "pageId":"local-security-lab-firewalls-explained",
+  "seriesId":"local-security-lab",
+  "mode":"explanation",
+  "useShape":"returns",
+  "readerMoment":"Has mapped their router and recorded an owned-host listener, but assumes NAT itself is the firewall and all private addresses are safe from outside traffic.",
+  "outcome":"Can explain what an inbound firewall rule does, why NAT is not that rule, and identify how IPv6, a port forward or an existing connection can change the answer.",
+  "coreModel":"Address translation changes a packet's destination, while a stateful firewall policy decides whether a new connection may cross a boundary.",
+  "prerequisites":[{"idea":"Own subnet, router and gateway","taughtBy":"local-security-lab-network-basics"},{"idea":"Local listener and bind scope","taughtBy":"local-security-lab-host-listeners"}],
+  "teachingShape":{"startFromWhatTheySee":"A listener on the owned machine and an incoming packet at the router","buildTheModel":["Separate translation from permission","Trace a reply to an outbound connection","Contrast unsolicited inbound with an explicit exception"],"traceOneExample":"Same local listener under ordinary IPv4 NAT, an IPv4 port forward, and IPv6 with a stateful firewall","check":"Given a new inbound packet and a rule, predict whether it is dropped or passed and what remains unknown","makeItTheirs":"Reader labels their own boundary questions without changing any settings"},
+  "requiredIdeas":["NAT maps addresses/ports; lack of a mapping often blocks unsolicited IPv4 packets, but that is not the same as an explicit firewall policy.","A stateful firewall tracks connection state and may allow replies to outbound connections without allowing unrelated new inbound traffic.","Port forwarding, UPnP-created mappings, and firewall exceptions can allow a path to a listener; an existing listener alone does not prove reachability.","IPv6 may use globally routable addresses without NAT; the router's and host's IPv6 firewall policies still determine permission.","A host firewall, router firewall, address family, and network path are separate checks. Read settings on an authorized network before making a claim."],
+  "candidateAnalogies":["An address label says where a package goes; the guard's policy says whether to admit it. A reply receipt can let a response back without letting strangers walk in."],
+  "visualNeeds":["Side-by-side packet paths with a separate translation label and firewall decision gate"],
+  "deliberatelyExcluded":[{"what":"Changing UPnP, port forwards or firewall rules","why":"The next page owns change control and outside testing."},{"what":"Equating IPv6 with automatic exposure","why":"Reachability still depends on stateful policy, host rules, routing and listeners."},{"what":"Testing a neighbor's network","why":"Only owned or authorized configurations are discussed."}],
+  "nextPagePressure":"Having separated translation from permission, the reader can inspect and safely close exposure in the next page."
+}
