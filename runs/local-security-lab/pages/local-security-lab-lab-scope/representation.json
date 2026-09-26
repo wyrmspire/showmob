@@ -1,110 +1,132 @@
 {
   "stage": "representation",
+  "formatVersion": 2,
   "pageId": "local-security-lab-lab-scope",
   "input": "page-sheet.json only. Chosen before any prose is written.",
+  "coreModelUse": "",
   "sections": [
     {
       "id": "task",
-      "carries": "realTask",
+      "pressure": "frame",
       "block": "hero",
       "why": "The real task has to be the first thing the reader sees: write the scope before touching tools. A hero fits because it is one sentence of purpose, not decoration.",
       "rejected": [
-        "text: buries the task in a paragraph"
-      ],
-      "pressure": "The real task must be the first thing seen: write the scope before touching tools."
+        {
+          "block": "text",
+          "why": "A paragraph buries the one job the reader must do first."
+        }
+      ]
     },
     {
       "id": "already-do",
-      "carries": "activate",
+      "pressure": "decision",
       "block": "comparison",
       "why": "Two analogies from different angles, read side by side. The pressure is contrast: both are 'decide the boundary first'.",
       "rejected": [
-        "text: two analogies in one paragraph blur together"
-      ],
-      "pressure": "Two analogies from different angles need contrast, side by side."
+        {
+          "block": "text",
+          "why": "Two analogies in one paragraph blur together."
+        }
+      ]
     },
     {
       "id": "consent",
-      "carries": "requiredIdeas 1-3",
+      "pressure": "warning",
       "block": "text",
       "why": "An argument with a caveat. Needs sentences, not a list.",
       "rejected": [
-        "note-callout: the idea is the core of the page, not a side warning"
-      ],
-      "pressure": "An argument with a caveat needs sentences, not a list."
+        {
+          "block": "note-callout",
+          "why": "The consent argument is the core of the page, not a side warning."
+        }
+      ]
     },
     {
       "id": "threat-model",
-      "carries": "requiredIdeas 4",
+      "pressure": "lookup",
       "block": "compact-table",
       "why": "Three questions, each with an example answer. Rows compare cleanly.",
       "rejected": [
-        "steps: the questions are not a sequence"
-      ],
-      "pressure": "Three questions, each with an example answer; rows compare cleanly."
+        {
+          "block": "steps",
+          "why": "The three questions are not a sequence."
+        }
+      ]
     },
     {
       "id": "worked-scope",
-      "carries": "demonstrate",
+      "pressure": "lookup",
       "block": "compact-table",
       "why": "A scope is a table in real life: device, owner, in or out, why. Showing it in that form is the demonstration.",
       "rejected": [
-        "checklist: in/out needs a reason column"
-      ],
-      "pressure": "A scope is a table in real life; showing it in that form is the demonstration."
+        {
+          "block": "checklist",
+          "why": "In/out needs a reason column."
+        }
+      ]
     },
     {
       "id": "pick-failure",
-      "carries": "apply 1",
+      "pressure": "decision",
       "block": "choice",
       "why": "The sheet says pick one. Single-select enforces one.",
       "rejected": [
-        "checklist: allows several, which is the habit the page argues against"
-      ],
-      "pressure": "The sheet says pick one; single-select enforces one."
+        {
+          "block": "checklist",
+          "why": "A checklist allows several, which is the habit the page argues against."
+        }
+      ]
     },
     {
       "id": "your-scope",
-      "carries": "apply 2",
+      "pressure": "practice",
       "block": "fill-in",
       "why": "The reader writes their own scope. Labeled blanks match the worked example's parts.",
       "rejected": [
-        "exercise: a scope has no single right answer"
-      ],
-      "pressure": "The reader writes their own scope in the worked example’s parts."
+        {
+          "block": "exercise",
+          "why": "A scope has no single right answer."
+        }
+      ]
     },
     {
       "id": "check",
-      "carries": "apply (transfer)",
+      "pressure": "decision",
       "block": "exercise",
       "why": "One edge case to test the consent rule on a case the page didn't show.",
       "rejected": [
-        "fill-in: a transfer check needs a right answer to check against, not an open blank"
-      ],
-      "pressure": "Transfer: test the consent rule on a case the page didn’t show."
+        {
+          "block": "choice",
+          "why": "The edge case has one verdict with reasoning; an unscored pick skips the why."
+        }
+      ]
     },
     {
       "id": "sources",
-      "carries": "excluded: legal advice",
+      "pressure": "source",
       "block": "resource-list",
       "why": "The page states a legal principle and must point at sources for it.",
       "rejected": [
-        "embed: several sources, not one"
-      ],
-      "pressure": "A stated legal principle must point at its sources."
+        {
+          "block": "text",
+          "why": "A legal principle needs linked primary sources, not a prose mention."
+        }
+      ]
     },
     {
       "id": "next",
-      "carries": "integrate",
+      "pressure": "close",
       "block": "cta-band",
       "why": "Hands the reader to the network map, which the scope needs next.",
       "rejected": [
-        "text link: the integrate step needs a visible next action, not an inline link"
-      ],
-      "pressure": "The scope needs the network map next; hand the reader forward."
+        {
+          "block": "divider",
+          "why": "The scope feeds the network map directly; a bare rule line strands the reader."
+        }
+      ]
     }
   ],
-  "notUsed": [
+  "rejected": [
     {
       "block": "image",
       "why": "visualNeeds is empty. Nothing on this page is spatial."
@@ -118,13 +140,10 @@
       "why": "Nothing here is a flow."
     }
   ],
-  "drift": {
-    "added": [
-      {
-        "id": "worked-decisions",
-        "type": "compact-table",
-        "why": "Added in generation: a second worked example showing in/out decisions with reasons. Consistent with the demonstrate step; kept."
-      }
-    ]
-  }
+  "drift": [
+    {
+      "block": "compact-table",
+      "why": "Generation added a worked-decisions table (which failure to catch first) alongside the two planned tables; not in the plan."
+    }
+  ]
 }

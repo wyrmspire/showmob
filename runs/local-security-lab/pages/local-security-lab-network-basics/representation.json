@@ -1,120 +1,144 @@
 {
   "stage": "representation",
+  "formatVersion": 2,
   "pageId": "local-security-lab-network-basics",
   "input": "page-sheet.json only. Chosen before any prose is written.",
+  "coreModelUse": "",
   "sections": [
     {
       "id": "start",
-      "carries": "orientation",
+      "pressure": "frame",
       "block": "hero",
       "why": "States the page's one claim: your network has an inside, an outside, and one door. Short, sets up the picture.",
       "rejected": [
-        "text: buries the orientation claim in a paragraph"
-      ],
-      "pressure": "The page’s one claim — inside, outside, one door — must land first."
+        {
+          "block": "stat-strip",
+          "why": "A numbers strip performs precision before the reader has the model."
+        }
+      ]
     },
     {
       "id": "find-yours",
-      "carries": "startFromWhatTheySee",
+      "pressure": "practice",
       "block": "code",
       "why": "The reader runs real commands on their own machine. Code is the only honest form for commands.",
       "rejected": [
-        "steps: loses the exact commands"
-      ],
-      "pressure": "The reader runs real commands; only code is honest for commands."
+        {
+          "block": "text",
+          "why": "A paraphrased command is not runnable; the honest form is the command itself."
+        }
+      ]
     },
     {
       "id": "private-ranges",
-      "carries": "requiredIdeas 1",
+      "pressure": "lookup",
       "block": "compact-table",
       "why": "Three reserved ranges with what they look like at home. Lookup-shaped content.",
       "rejected": [
-        "text: ranges in prose are hard to scan"
-      ],
-      "pressure": "Lookup-shaped content: three ranges, what they look like at home."
+        {
+          "block": "text",
+          "why": "Three ranges compare as rows; prose turns them into memorization."
+        }
+      ]
     },
     {
       "id": "map",
-      "carries": "visualNeeds, buildTheModel",
+      "pressure": "spatial",
       "block": "image",
       "why": "The visual need is spatial: devices inside a subnet, a router with two sides, the internet outside. The diagram block is a linear list and cannot show two sides of a boundary, so an authored figure is used.",
       "rejected": [
-        "diagram: linear only"
-      ],
-      "pressure": "Spatial need — devices inside a subnet, a router with two sides. The diagram block is linear-only, so an authored figure."
+        {
+          "block": "diagram",
+          "why": "Devices in a subnet and a router with two sides are a layout, not a sequence."
+        }
+      ]
     },
     {
       "id": "analogy",
-      "carries": "candidateAnalogies, requiredIdeas 2-3",
+      "pressure": "restraint",
       "block": "text",
       "why": "The apartment analogy explains subnet and router jobs in one connected story.",
       "rejected": [
-        "comparison: one analogy carries it; a second would dilute"
-      ],
-      "pressure": "One connected story explains subnet and router jobs together."
+        {
+          "block": "note-callout",
+          "why": "The apartment analogy carries the model; a callout marks it optional."
+        }
+      ]
     },
     {
       "id": "router-jobs",
-      "carries": "requiredIdeas 3",
+      "pressure": "lookup",
       "block": "compact-table",
       "why": "Three jobs, each with what it does and where you see it. Parallel rows.",
       "rejected": [
-        "checklist: nothing to tick"
-      ],
-      "pressure": "Three parallel jobs, each with what it does and where you see it."
+        {
+          "block": "steps",
+          "why": "The three jobs are parallel duties, not an ordered procedure."
+        }
+      ]
     },
     {
       "id": "trace",
-      "carries": "traceOneExample",
+      "pressure": "sequence",
       "block": "diagram",
       "why": "One request out and back is a strict sequence. This is exactly what the linear diagram is for.",
       "rejected": [
-        "steps: the reader isn't doing these; they are watching a packet"
-      ],
-      "pressure": "One request out and back is a strict sequence — exactly what the linear diagram is for."
+        {
+          "block": "image",
+          "why": "One request out and back is strictly linear; a static figure adds nothing."
+        }
+      ]
     },
     {
       "id": "check",
-      "carries": "check",
+      "pressure": "decision",
       "block": "exercise",
       "why": "One right answer: which address is local.",
       "rejected": [
-        "fill-in: an open blank can’t test a which-one question; it needs a right answer"
-      ],
-      "pressure": "One right answer: which address is local."
+        {
+          "block": "fill-in",
+          "why": "Which-address-is-local has one right answer; an open blank cannot check it."
+        }
+      ]
     },
     {
       "id": "yours",
-      "carries": "makeItTheirs",
+      "pressure": "practice",
       "block": "fill-in",
       "why": "The reader writes down their own values, which the rest of the series reuses.",
       "rejected": [
-        "exercise: recording your own values has no single right answer"
-      ],
-      "pressure": "The reader’s own values, reused by the rest of the series."
+        {
+          "block": "exercise",
+          "why": "The reader's own addresses have no key; scoring them is meaningless."
+        }
+      ]
     },
     {
       "id": "sources",
-      "carries": "grounding",
+      "pressure": "source",
       "block": "resource-list",
       "why": "Private ranges and NAT behavior come from standards; link them.",
       "rejected": [
-        "embed: several sources, not one"
-      ],
-      "pressure": "Standards claims need links."
+        {
+          "block": "quote",
+          "why": "A standards quote without the link list cannot be followed up."
+        }
+      ]
     },
     {
       "id": "next",
-      "carries": "nextPagePressure",
+      "pressure": "close",
       "block": "cta-band",
       "why": "Points to listeners on one machine.",
       "rejected": [
-        "text link: the integrate step needs a visible next action, not an inline link"
-      ],
-      "pressure": "Points forward to listeners on one machine."
+        {
+          "block": "divider",
+          "why": "The page owes a pointer to the listeners lesson, not a silent rule line."
+        }
+      ]
     }
   ],
-  "notUsed": [
+  "rejected": [
     {
       "block": "note-callout",
       "why": "No warning on this page earns one."
