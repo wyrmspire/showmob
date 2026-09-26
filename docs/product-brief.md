@@ -48,7 +48,11 @@ AI is good at the telling and bad at keeping the world consistent across a long 
 
 **Two ways in for readers.** Series order to read straight through; hub and tags to wander the world.
 
+**First attempt on record: Tidewars (GN-108).** The grading-night page "A fantasy novel universe: 3 kingdoms, 40 characters, 300 years of events" (`gn-a-fantasy-novel-universe-3-kingdoms-40-characters-300-years-of-events`, Instinct, 2026-09-26) is the sheet stage of a story: the world half rendered as a reference page (cast register, kingdom comparison, 300-year timeline) before any telling exists. It was graded in a page-calibration lane and scored 8/10 with a missing-primitive note asking for more widgets and a fill-in form - which exposed the artifact-kind gap recorded in [grading-night.md](./grading-night.md): a story-world outline is its own kind, not a page.
+
 **Missing piece the story will expose: real references.** Today a scene names a character by typing its slug. With real references, the validator catches broken ones; every page can show what points back (“appears in scenes 1 and 3”). Backlinks turn a pile of pages into an explorable world — the same help the solid-state course needs.
+
+**Decision (2026-09-26):** typed references are parked until a real page earns them - no speculative ref primitive. Story growth is the leading case: the first scene that names a character is the page that earns typed refs, and validation plus backlinks land with it. Until then, slug-typing stands.
 
 ---
 
