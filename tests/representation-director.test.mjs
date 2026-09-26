@@ -57,6 +57,13 @@ for (const draftPath of drafts) {
       assert.ok(PRESSURES.has(s.pressure), `${s.id}: pressure ${s.pressure}`);
       assert.ok(BLOCKS.has(s.block), `${s.id}: block ${s.block}`);
       assert.ok(typeof s.why === 'string' && s.why.length > 0, `${s.id}: why`);
+      // Director question 3: every section names at least one tempting-but-wrong
+      // nearby block. Without this the rejection reasoning decays within pages.
+      assert.ok(Array.isArray(s.rejected) && s.rejected.length > 0, `${s.id}: per-section rejected`);
+      for (const r of s.rejected) {
+        assert.ok(BLOCKS.has(r.block), `${s.id}: rejected block ${r.block}`);
+        assert.ok(typeof r.why === 'string' && r.why.length > 0, `${s.id}: rejected ${r.block}: why`);
+      }
     }
     assert.ok(Array.isArray(rep.rejected), 'rejected list (the reasoning made visible)');
     for (const r of rep.rejected) {
@@ -114,3 +121,107 @@ test('grade records keep the contract, when present', () => {
     assert.ok(typeof g.hypothesis === 'string' && g.hypothesis.length > 0, `${p}: hypothesis`);
   }
 });
+
+// --- Conformance: the shipped page is the representation, or the difference ---
+// is explained (docs/representation-director.md). A shipped block the
+// representation never planned must appear in the representation's top-level
+// `drift` list with a why; drift declared but not shipped also fails.
+// Comparison is by block-type counts (presence), not sequence.
+
+const contentPath = (pageId) => join('app/src/content', `${pageId}.json`);
+const counts = (list) => {
+  const m = new Map();
+  for (const b of list) m.set(b, (m.get(b) ?? 0) + 1);
+  return m;
+};
+
+const stagedPages = find('runs', 'representation.json')
+  .map((p) => ({ repPath: p, dir: join(p, '..') }))
+  .filter(({ repPath }) => read(repPath).formatVersion === 2);
+
+for (const { repPath, dir } of stagedPages) {
+  const rep = read(repPath);
+  const cPath = contentPath(rep.pageId);
+  if (!existsSync(cPath)) continue;
+  test(`shipped blocks match representation or drift: ${rep.pageId}`, () => {
+    const planned = counts(rep.sections.map((s) => s.block));
+    const shipped = counts(read(cPath).blocks.map((b) => b.type));
+    const drift = rep.drift ?? [];
+    for (const d of drift) {
+      assert.ok(BLOCKS.has(d.block), `${dir}: drift block ${d.block}`);
+      assert.ok(typeof d.why === 'string' && d.why.length > 0, `${dir}: drift ${d.block}: why`);
+    }
+    const driftCounts = counts(drift.map((d) => d.block));
+    for (const [block, n] of shipped) {
+      const missing = n - (planned.get(block) ?? 0);
+      if (missing > 0) {
+        assert.equal(
+          driftCounts.get(block) ?? 0, missing,
+          `${dir}: shipped ${missing} unplanned ${block} block(s) without a drift explanation`,
+        );
+      }
+    }
+    for (const [block, n] of planned) {
+      assert.ok(
+        (shipped.get(block) ?? 0) >= n,
+        `${dir}: representation plans ${n} ${block} but the page ships ${shipped.get(block) ?? 0}`,
+      );
+    }
+    for (const [block, n] of driftCounts) {
+      const missing = (shipped.get(block) ?? 0) - (planned.get(block) ?? 0);
+      assert.equal(n, Math.max(missing, 0), `${dir}: drift declares ${n} ${block} but the unexplained difference is ${Math.max(missing, 0)}`);
+    }
+  });
+}
+
+// --- Series-level shape check (docs/representation-director.md) -------------
+// The per-page critique cannot see the template the series falls into. Two
+// rules: no two pages in a series ship the identical block sequence, and when
+// every page opens (or closes) with the same block, each opening (or closing)
+// must be re-earned with a page-specific why - distinct strings, not copied.
+
+const seriesPages = new Map();
+for (const { repPath } of stagedPages) {
+  const rep = read(repPath);
+  const cPath = contentPath(rep.pageId);
+  if (!existsSync(cPath)) continue;
+  const content = read(cPath);
+  const seriesId = content.series?.id;
+  if (!seriesId) continue;
+  if (!seriesPages.has(seriesId)) seriesPages.set(seriesId, []);
+  seriesPages.get(seriesId).push({ rep, content });
+}
+
+for (const [seriesId, pages] of seriesPages) {
+  if (pages.length < 2) continue;
+  test(`series shape comes from pressure, not the previous page: ${seriesId}`, () => {
+    const sequences = pages.map((p) => p.content.blocks.map((b) => b.type).join('>'));
+    assert.equal(
+      new Set(sequences).size, sequences.length,
+      `two pages in ${seriesId} ship the identical block sequence - a copied shape`,
+    );
+    const firsts = new Set(pages.map((p) => p.content.blocks[0].type));
+    if (firsts.size === 1) {
+      const whys = pages.map((p) => p.rep.sections[0].why);
+      assert.equal(
+        new Set(whys).size, whys.length,
+        `every ${seriesId} page opens with ${[...firsts][0]} but two opening whys are identical - the habit block was not re-earned per page`,
+      );
+    }
+    const lasts = new Set(pages.map((p) => p.content.blocks.at(-1).type));
+    if (lasts.size === 1) {
+      const lastBlock = [...lasts][0];
+      const whys = pages.map((p) => {
+        const lastSection = p.rep.sections.at(-1);
+        if (lastSection.block === lastBlock) return lastSection.why;
+        const d = (p.rep.drift ?? []).find((x) => x.block === lastBlock);
+        assert.ok(d, `${p.rep.pageId}: closing ${lastBlock} has no section or drift why`);
+        return d.why;
+      });
+      assert.equal(
+        new Set(whys).size, whys.length,
+        `every ${seriesId} page closes with ${lastBlock} but two closing whys are identical - the habit block was not re-earned per page`,
+      );
+    }
+  });
+}

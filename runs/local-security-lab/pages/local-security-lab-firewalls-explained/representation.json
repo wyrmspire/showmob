@@ -1,1 +1,121 @@
-{"stage":"representation","formatVersion":2,"pageId":"local-security-lab-firewalls-explained","input":"page-sheet.json before prose","coreModelUse":"Keep destination rewriting and allow/deny as separate decisions throughout the trace and check.","sections":[{"id":"start","pressure":"frame","block":"hero","why":"Name the common NAT/firewall misconception."},{"id":"two-jobs","pressure":"decision","block":"comparison","why":"Translation and permission need separate columns, not a single vague shield."},{"id":"paths","pressure":"lookup","block":"compact-table","why":"Compare outbound reply, unsolicited IPv4, forwarded IPv4 and native IPv6 without confusing address family with policy."},{"id":"trace","pressure":"sequence","block":"diagram","why":"Linear flow models a packet through policy and destination, while spatial reach is stated in words."},{"id":"exceptions","pressure":"restraint","block":"text","why":"Explain that both router and host decisions and an actual listener matter."},{"id":"check","pressure":"decision","block":"exercise","why":"Transfer the distinction to IPv6 rather than memorizing NAT defaults."},{"id":"worksheet","pressure":"practice","block":"fill-in","why":"List unknowns in a private read-only configuration check."},{"id":"sources","pressure":"source","block":"resource-list","why":"RFCs and FTC guidance support the policy and IPv6 distinction."}],"rejected":[{"block":"code","why":"Firewall configuration commands are the next page's job; this page explains the model, so commands would teach a change the page deliberately excludes."}]}
+{
+  "stage": "representation",
+  "formatVersion": 2,
+  "pageId": "local-security-lab-firewalls-explained",
+  "input": "page-sheet.json before prose",
+  "coreModelUse": "Keep destination rewriting and allow/deny as separate decisions throughout the trace and check.",
+  "sections": [
+    {
+      "id": "start",
+      "pressure": "frame",
+      "block": "hero",
+      "why": "Name the common NAT/firewall misconception.",
+      "rejected": [
+        {
+          "block": "note-callout",
+          "why": "The NAT/firewall misconception is the page's headline, not a marginal warning."
+        }
+      ]
+    },
+    {
+      "id": "two-jobs",
+      "pressure": "decision",
+      "block": "comparison",
+      "why": "Translation and permission need separate columns, not a single vague shield.",
+      "rejected": [
+        {
+          "block": "text",
+          "why": "Two columns force the translation/permission split; prose merges them back into one vague shield."
+        }
+      ]
+    },
+    {
+      "id": "paths",
+      "pressure": "lookup",
+      "block": "compact-table",
+      "why": "Compare outbound reply, unsolicited IPv4, forwarded IPv4 and native IPv6 without confusing address family with policy.",
+      "rejected": [
+        {
+          "block": "diagram",
+          "why": "The four paths compare as parallel rows; a flow would imply they are stages of one packet."
+        }
+      ]
+    },
+    {
+      "id": "trace",
+      "pressure": "sequence",
+      "block": "diagram",
+      "why": "Linear flow models a packet through policy and destination, while spatial reach is stated in words.",
+      "rejected": [
+        {
+          "block": "steps",
+          "why": "Steps read as instructions to act; the packet walkthrough is observation, not procedure."
+        }
+      ]
+    },
+    {
+      "id": "exceptions",
+      "pressure": "restraint",
+      "block": "text",
+      "why": "Explain that both router and host decisions and an actual listener matter.",
+      "rejected": [
+        {
+          "block": "compact-table",
+          "why": "Router, host and listener interact; rows would fake three orthogonal cases."
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "pressure": "decision",
+      "block": "exercise",
+      "why": "Transfer the distinction to IPv6 rather than memorizing NAT defaults.",
+      "rejected": [
+        {
+          "block": "choice",
+          "why": "One scored verdict with explanation tests the IPv6 transfer; a bare pick does not."
+        }
+      ]
+    },
+    {
+      "id": "worksheet",
+      "pressure": "practice",
+      "block": "fill-in",
+      "why": "List unknowns in a private read-only configuration check.",
+      "rejected": [
+        {
+          "block": "checklist",
+          "why": "The reader writes unknowns in their own words; ticking boxes pre-answers the check."
+        }
+      ]
+    },
+    {
+      "id": "sources",
+      "pressure": "source",
+      "block": "resource-list",
+      "why": "RFCs and FTC guidance support the policy and IPv6 distinction.",
+      "rejected": [
+        {
+          "block": "cta-band",
+          "why": "A band pitches a next step; this slot owes the reader the primary RFCs and FTC guidance."
+        }
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "block": "code",
+      "why": "Firewall configuration commands are the next page's job; this page explains the model, so commands would teach a change the page deliberately excludes."
+    }
+  ],
+  "drift": [
+    {
+      "block": "note-callout",
+      "why": "Generation added an unplanned caution callout between the worksheet and sources; no planned section."
+    },
+    {
+      "block": "cta-band",
+      "why": "Generation appended the series next-page band pointing at the close-exposure audit; unplanned, recorded as drift."
+    }
+  ]
+}

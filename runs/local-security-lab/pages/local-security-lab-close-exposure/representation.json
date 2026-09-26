@@ -1,1 +1,151 @@
-{"stage":"representation","formatVersion":2,"pageId":"local-security-lab-close-exposure","input":"page-sheet.json before prose","coreModelUse":"Every finding gets a name and a reason, and the proof section insists on both sides before calling anything closed.","sections":[{"id":"start","pressure":"frame","block":"hero","why":"Name the real task: audit your own router and close the openings nobody chose."},{"id":"bring","pressure":"practice","block":"checklist","why":"Activate the inventory, baseline and translation-versus-permission model the audit reuses."},{"id":"worked","pressure":"lookup","block":"compact-table","why":"Demonstrate the whole job on one example router: each finding walked to keep, close or unknown."},{"id":"worked-walk","pressure":"restraint","block":"text","why":"Show how each verdict was reached: own records first, then the authorized owner; unfamiliar stays unknown."},{"id":"audit","pressure":"sequence","block":"steps","why":"The apply sequence on the reader's own router, in order, one change at a time."},{"id":"your-audit","pressure":"practice","block":"fill-in","why":"The reader records their own findings and verdicts; empty fields reset and are not evidence."},{"id":"two-sides","pressure":"decision","block":"comparison","why":"Integrate: inside view and outside attempt are separate proofs; one alone does not close the question."},{"id":"check","pressure":"decision","block":"exercise","why":"Check the model: a failed outside attempt with a live LAN listener means the boundary is closed, not the service."},{"id":"safe","pressure":"warning","block":"note-callout","why":"Consent and recovery: own router, owner's okay, and recorded changes can be re-added by name."},{"id":"sources","pressure":"source","block":"resource-list","why":"UPnP and home-router guidance grounds the audit."},{"id":"next","pressure":"close","block":"cta-band","why":"Point at the lab boundary page the closed openings make safe to build."}],"rejected":[{"block":"diagram","why":"The proof is two checks, not a packet path; the comparison carries it."},{"block":"code","why":"Router admin pages differ by vendor; invented commands would teach a UI nobody has."}]}
+{
+  "stage": "representation",
+  "formatVersion": 2,
+  "pageId": "local-security-lab-close-exposure",
+  "input": "page-sheet.json before prose",
+  "coreModelUse": "Every finding gets a name and a reason, and the proof section insists on both sides before calling anything closed.",
+  "sections": [
+    {
+      "id": "start",
+      "pressure": "frame",
+      "block": "hero",
+      "why": "Name the real task: audit your own router and close the openings nobody chose.",
+      "rejected": [
+        {
+          "block": "text",
+          "why": "A paragraph opening buries the one-task framing the audit depends on."
+        }
+      ]
+    },
+    {
+      "id": "bring",
+      "pressure": "practice",
+      "block": "checklist",
+      "why": "Activate the inventory, baseline and translation-versus-permission model the audit reuses.",
+      "rejected": [
+        {
+          "block": "exercise",
+          "why": "Nothing to score yet; a right/wrong check this early punishes inventory recall instead of activating it."
+        }
+      ]
+    },
+    {
+      "id": "worked",
+      "pressure": "lookup",
+      "block": "compact-table",
+      "why": "Demonstrate the whole job on one example router: each finding walked to keep, close or unknown.",
+      "rejected": [
+        {
+          "block": "steps",
+          "why": "The worked example is parallel verdicts on one router, not a procedure to perform in order."
+        }
+      ]
+    },
+    {
+      "id": "worked-walk",
+      "pressure": "restraint",
+      "block": "text",
+      "why": "Show how each verdict was reached: own records first, then the authorized owner; unfamiliar stays unknown.",
+      "rejected": [
+        {
+          "block": "note-callout",
+          "why": "The verdict method is the lesson itself; a side callout demotes it to optional."
+        }
+      ]
+    },
+    {
+      "id": "audit",
+      "pressure": "sequence",
+      "block": "steps",
+      "why": "The apply sequence on the reader's own router, in order, one change at a time.",
+      "rejected": [
+        {
+          "block": "checklist",
+          "why": "One recorded change at a time is ordered; a checklist implies any order."
+        }
+      ]
+    },
+    {
+      "id": "your-audit",
+      "pressure": "practice",
+      "block": "fill-in",
+      "why": "The reader records their own findings and verdicts; empty fields reset and are not evidence.",
+      "rejected": [
+        {
+          "block": "exercise",
+          "why": "The reader's own findings have no single right answer to score."
+        }
+      ]
+    },
+    {
+      "id": "two-sides",
+      "pressure": "decision",
+      "block": "comparison",
+      "why": "Integrate: inside view and outside attempt are separate proofs; one alone does not close the question.",
+      "rejected": [
+        {
+          "block": "text",
+          "why": "Inside proof and outside proof need parallel columns; prose blurs which side failed."
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "pressure": "decision",
+      "block": "exercise",
+      "why": "Check the model: a failed outside attempt with a live LAN listener means the boundary is closed, not the service.",
+      "rejected": [
+        {
+          "block": "choice",
+          "why": "The point is reasoning to one verdict with explanation, not an unscored pick."
+        }
+      ]
+    },
+    {
+      "id": "safe",
+      "pressure": "warning",
+      "block": "note-callout",
+      "why": "Consent and recovery: own router, owner's okay, and recorded changes can be re-added by name.",
+      "rejected": [
+        {
+          "block": "text",
+          "why": "Consent and recovery are bounded cautions beside the task, not a main argument."
+        }
+      ]
+    },
+    {
+      "id": "sources",
+      "pressure": "source",
+      "block": "resource-list",
+      "why": "UPnP and home-router guidance grounds the audit.",
+      "rejected": [
+        {
+          "block": "text",
+          "why": "Links in prose hide the primary UPnP and router guidance the audit leans on."
+        }
+      ]
+    },
+    {
+      "id": "next",
+      "pressure": "close",
+      "block": "cta-band",
+      "why": "Point at the lab boundary page the closed openings make safe to build.",
+      "rejected": [
+        {
+          "block": "divider",
+          "why": "A bare rule line drops the reader with no hand-off to the lab boundary page."
+        }
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "block": "diagram",
+      "why": "The proof is two checks, not a packet path; the comparison carries it."
+    },
+    {
+      "block": "code",
+      "why": "Router admin pages differ by vendor; invented commands would teach a UI nobody has."
+    }
+  ]
+}

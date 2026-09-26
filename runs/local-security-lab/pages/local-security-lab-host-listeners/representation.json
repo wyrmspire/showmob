@@ -1,1 +1,177 @@
-{"stage":"representation","formatVersion":2,"pageId":"local-security-lab-host-listeners","input":"page-sheet.json only; chosen before writing prose or page JSON","coreModelUse":"Sequence every example by bind address before port number: same port, different entrance. Check the reader on possible reach without claiming the firewall is open.","sections":[{"id":"start","pressure":"frame","block":"hero","why":"The reader starts with an owned host and a concrete read-only result, not tool shopping."},{"id":"entrances","pressure":"spatial","block":"image","why":"Loopback, LAN, and wildcard are spatial scopes. An authored figure shows them without claiming the outer network can actually connect."},{"id":"terms","pressure":"restraint","block":"text","why":"Explain the one socket model and TCP/UDP distinction in sentences."},{"id":"sample","pressure":"practice","block":"code","why":"Short, synthetic address:port and process rows without exposing a real host; no long lines on a phone."},{"id":"read-sample","pressure":"lookup","block":"compact-table","why":"Two compact columns match the inventory decision; a third column hid the purpose on a phone."},{"id":"commands","pressure":"practice","block":"code","why":"Copyable local commands for Linux, macOS and Windows in separate blocks so each is readable on a phone; no scan or mutation."},{"id":"safe-read","pressure":"warning","block":"text","why":"A warning needs a causal explanation: bind alone is not access; inspect before changes."},{"id":"check","pressure":"decision","block":"exercise","why":"One scored case with a different port from the demonstration; explanation hidden until requested."},{"id":"your-list","pressure":"practice","block":"fill-in","why":"Reader records their own machine's observations; form is local and temporary, so prompt saving privately."},{"id":"save","pressure":"warning","block":"text","why":"Tell the reader this input does not persist and to keep a private dated record."},{"id":"sources","pressure":"source","block":"resource-list","why":"Primary manuals explain listening sockets and local inspection."},{"id":"next","pressure":"close","block":"cta-band","why":"The one-host result becomes a dated baseline on the following page."}],"rejected":[{"block":"steps","why":"Commands and sample values need exact formatting; this is not a long procedure."},{"block":"checklist","why":"A selection is not a persistent inventory."},{"block":"note-callout","why":"Reach uncertainty belongs in the main teaching, not a sidebar."}]}
+{
+  "stage": "representation",
+  "formatVersion": 2,
+  "pageId": "local-security-lab-host-listeners",
+  "input": "page-sheet.json only; chosen before writing prose or page JSON",
+  "coreModelUse": "Sequence every example by bind address before port number: same port, different entrance. Check the reader on possible reach without claiming the firewall is open.",
+  "sections": [
+    {
+      "id": "start",
+      "pressure": "frame",
+      "block": "hero",
+      "why": "The reader starts with an owned host and a concrete read-only result, not tool shopping.",
+      "rejected": [
+        {
+          "block": "stat-strip",
+          "why": "Numbers first would perform authority; the page opens on one concrete read-only result."
+        }
+      ]
+    },
+    {
+      "id": "entrances",
+      "pressure": "spatial",
+      "block": "image",
+      "why": "Loopback, LAN, and wildcard are spatial scopes. An authored figure shows them without claiming the outer network can actually connect.",
+      "rejected": [
+        {
+          "block": "diagram",
+          "why": "Bind scopes are regions on a layout, not a numbered sequence; the linear diagram cannot draw them."
+        }
+      ]
+    },
+    {
+      "id": "terms",
+      "pressure": "restraint",
+      "block": "text",
+      "why": "Explain the one socket model and TCP/UDP distinction in sentences.",
+      "rejected": [
+        {
+          "block": "compact-table",
+          "why": "The socket model is one connected explanation; rows chop TCP/UDP into trivia."
+        }
+      ]
+    },
+    {
+      "id": "sample",
+      "pressure": "practice",
+      "block": "code",
+      "why": "Short, synthetic address:port and process rows without exposing a real host; no long lines on a phone.",
+      "rejected": [
+        {
+          "block": "compact-table",
+          "why": "The sample must look like exact command output; a table implies it is already parsed."
+        }
+      ]
+    },
+    {
+      "id": "read-sample",
+      "pressure": "lookup",
+      "block": "compact-table",
+      "why": "Two compact columns match the inventory decision; a third column hid the purpose on a phone.",
+      "rejected": [
+        {
+          "block": "code",
+          "why": "At phone width the reading is row comparison, not another command to run."
+        }
+      ]
+    },
+    {
+      "id": "commands",
+      "pressure": "practice",
+      "block": "code",
+      "why": "Copyable local commands for Linux, macOS and Windows in separate blocks so each is readable on a phone; no scan or mutation.",
+      "rejected": [
+        {
+          "block": "steps",
+          "why": "Steps would rank the platforms; each OS command stands alone."
+        }
+      ]
+    },
+    {
+      "id": "safe-read",
+      "pressure": "warning",
+      "block": "text",
+      "why": "A warning needs a causal explanation: bind alone is not access; inspect before changes.",
+      "rejected": [
+        {
+          "block": "note-callout",
+          "why": "The bind-is-not-access argument is causal main text, not a marginal warning."
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "pressure": "decision",
+      "block": "exercise",
+      "why": "One scored case with a different port from the demonstration; explanation hidden until requested.",
+      "rejected": [
+        {
+          "block": "choice",
+          "why": "The case needs one scored verdict; an unscored pick teaches guessing."
+        }
+      ]
+    },
+    {
+      "id": "your-list",
+      "pressure": "practice",
+      "block": "fill-in",
+      "why": "Reader records their own machine's observations; form is local and temporary, so prompt saving privately.",
+      "rejected": [
+        {
+          "block": "exercise",
+          "why": "The reader's own sockets have no answer key to score against."
+        }
+      ]
+    },
+    {
+      "id": "save",
+      "pressure": "warning",
+      "block": "text",
+      "why": "Tell the reader this input does not persist and to keep a private dated record.",
+      "rejected": [
+        {
+          "block": "note-callout",
+          "why": "The reset warning is load-bearing for the series' record-keeping habit; a side callout gets skipped."
+        }
+      ]
+    },
+    {
+      "id": "sources",
+      "pressure": "source",
+      "block": "resource-list",
+      "why": "Primary manuals explain listening sockets and local inspection.",
+      "rejected": [
+        {
+          "block": "embed",
+          "why": "Embedding manuals traps the reader off-page; links keep the lab flow."
+        }
+      ]
+    },
+    {
+      "id": "next",
+      "pressure": "close",
+      "block": "cta-band",
+      "why": "The one-host result becomes a dated baseline on the following page.",
+      "rejected": [
+        {
+          "block": "text",
+          "why": "A closing sentence reads as summary, not as the hand-off to the dated-baseline page."
+        }
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "block": "steps",
+      "why": "Commands and sample values need exact formatting; this is not a long procedure."
+    },
+    {
+      "block": "checklist",
+      "why": "A selection is not a persistent inventory."
+    },
+    {
+      "block": "note-callout",
+      "why": "Reach uncertainty belongs in the main teaching, not a sidebar."
+    }
+  ],
+  "drift": [
+    {
+      "block": "code",
+      "why": "Generation split the platform commands into per-OS code blocks; the representation planned two code sections and the page ships four. Extra block 1 of 2."
+    },
+    {
+      "block": "code",
+      "why": "Generation split the platform commands into per-OS code blocks; the representation planned two code sections and the page ships four. Extra block 2 of 2."
+    }
+  ]
+}
