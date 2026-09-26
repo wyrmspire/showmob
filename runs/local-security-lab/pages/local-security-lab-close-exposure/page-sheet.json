@@ -1,0 +1,30 @@
+{"sheetVersion":1,"sheetKind":"planned","pageId":"local-security-lab-close-exposure","seriesId":"local-security-lab","mode":"tutorial","useShape":"alongside",
+"readerMoment":"Has a listener inventory, a dated device baseline and the translation-versus-permission model, and suspects the router holds openings nobody chose on purpose.",
+"outcome":"Can audit the inbound openings on their own router, close the silent ones with the owner's okay, and prove a closed opening fails from both inside and outside.",
+"coreModel":"Every inbound opening on your router needs a name and a reason, and a closed opening is only closed when it provably fails from both sides.",
+"prerequisites":[
+ {"idea":"Listener inventory and bind scope","taughtBy":"local-security-lab-host-listeners"},
+ {"idea":"Dated device baseline habit","taughtBy":"local-security-lab-network-inventory"},
+ {"idea":"Translation is not permission","taughtBy":"local-security-lab-firewalls-explained"},
+ {"idea":"Router role between inside and outside","taughtBy":"local-security-lab-network-basics"}],
+"teachingShape":{
+ "realTask":"Audit the inbound openings on your own router and close the ones nobody chose",
+ "activate":["Your listener inventory: each LAN-facing listener is something an opening could reach","Your dated baseline: every change today gets recorded there","Translation versus permission: a missing mapping is not a stated rule, so openings are checked by name"],
+ "demonstrate":["One worked example household router: UPnP on with two app-requested mappings, one stale manual forward, remote administration off; each finding walked to keep, close or unknown"],
+ "apply":["Sign in to your own router and list UPnP status, active mappings, manual forwards and WAN administration","Label each entry keep, close or unknown from your own records, asking the authorized owner about anything unfamiliar","Close the silent entries one change at a time and record each change"],
+ "integrate":["Prove a closed entry fails twice: the router no longer lists it, and a connection you own on cellular cannot get through","The closed list and the named keeps join the dated baseline; the boundary is now ready to build on"]},
+"requiredIdeas":[
+ "UPnP lets devices ask the router for mappings without a prompt; enabled UPnP plus an unrecognized mapping is silent exposure.",
+ "Every manual port forward points at one private host and needs an owner and a current reason.",
+ "Remote administration from the WAN side is itself an opening; off is the default to keep.",
+ "Closing is a deliberate change on your own authorized router: read first, change one thing at a time, record each change.",
+ "Proof has two sides: the router no longer lists the opening, and an outside attempt from a connection you own fails. One side alone is not proof.",
+ "An unfamiliar entry stays unknown until your own records or the authorized owner names it; unknown is not closed by guessing."],
+"candidateAnalogies":["Closing openings is like re-keying a house: first list every key you did not cut, then decide which doors actually need them."],
+"visualNeeds":["A worked keep/close/unknown table for the example router","A two-side proof picture: inside view versus outside attempt"],
+"deliberatelyExcluded":[
+ {"what":"Deliberately exposing a service with a new forward or exception","why":"A chosen opening needs the boundary and monitoring pages first."},
+ {"what":"Third-party online port scanners","why":"Your own phone on cellular is an outside attempt you fully own; a scanner service learns your address for no extra proof."},
+ {"what":"Replacing or bridging an ISP-supplied router","why":"A bigger change than this page; record it as unknown and ask the provider or owner."},
+ {"what":"Testing addresses you do not own","why":"Out of scope by consent."}],
+"nextPagePressure":"With silent openings closed and the keeps named, the reader can build the lab boundary and prove the lab cannot reach trusted devices."}

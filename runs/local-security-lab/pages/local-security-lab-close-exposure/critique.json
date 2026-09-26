@@ -1,0 +1,23 @@
+{"stage":"critique","pageId":"local-security-lab-close-exposure",
+"judgedAgainst":"page-sheet.json, docs/teaching-template-tutorial.md v1 (each beat), and coreModel; rendered locally at 390px and 1280px in vite preview",
+"beats":{
+ "realTask":{"pass":true,"note":"Hero names the task: audit your own router and close the openings nobody chose. Startable today with owned equipment."},
+ "activate":{"pass":true,"note":"Checklist recalls only prior-page material (listener inventory, dated baseline, translation vs permission) plus router admin access. No new content smuggled in."},
+ "demonstrate":{"pass":true,"note":"One worked example router walked end to end: four findings, each to keep/close/unknown with the reasoning. Repeatable: a reader could apply the same verdict rules."},
+ "apply":{"pass":true,"note":"Seven ordered steps on the reader's own router plus fill-in fields for their own findings, verdicts and unknowns. The reader's own data has somewhere to go."},
+ "integrate":{"pass":true,"note":"Two-sides proof (router lists + own cellular attempt), changes join the dated baseline, and the next-page pressure is the lab boundary."}},
+"questions":{
+ "teachesOrExplains":"The reader leaves having done an audit, not having read about audits. The exercise transfers the closed-boundary vs live-listener distinction.",
+ "coreModel":"Every finding gets a name and a reason; the proof section refuses to call anything closed from one side.",
+ "scope":"Read first, change one thing at a time, record each change. Own router or explicit owner okay only; third-party scanners and deliberate exposures excluded with reasons."},
+"findings":[
+ {"id":"f1","layer":"scope","outcome":"fixed","finding":"series.json scoped this page how-to; the sheet stage found the outcome is a transferable capability taught through the reader's own audit, matching tutorial pages 1 and 3 in this series.","change":"Mode corrected to tutorial with a recorded correction entry in series.json runVersion 2; this is exactly the trial the Phase 4 template needed."},
+ {"id":"f2","layer":"representation","outcome":"keep","finding":"The worked verdict table fits phone width in two columns; verdict text wraps cleanly at 390px.","change":"Keep the two-column form; the walk text carries the nuance the table cannot."},
+ {"id":"f3","layer":"representation","outcome":"keep","finding":"No diagram or code blocks: router admin UIs differ by vendor, so invented commands would teach a UI nobody has; the two-side proof is two checks, not a packet path.","change":"Comparison block carries the proof."},
+ {"id":"f4","layer":"generation","outcome":"fixed","finding":"Draft exercise risked implying a failed outside attempt proves the service is off.","change":"Correct answer states the boundary is closed while the LAN listener may still serve the house, tying back to translation vs permission."}],
+"visualCheck":{
+ "phone":"390px full-page screenshot inspected hero, checklist, worked table, verdict walk, steps, fill-in, comparison, exercise, warning, sources, next card and 7/7 series navigation. No clipping or overlap.",
+ "desktop":"1280px full-page screenshot inspected the same blocks; table, comparison columns and exercise options all legible.",
+ "limitation":"Local vite preview render, not the deployed Vercel preview. Same-author sheet, draft and critique; independent content review still needed."},
+"accepted":["tutorial mode with all five beats filled","worked example labels unknown honestly","two-side proof requirement","recorded mode correction in series.json"],
+"caveat":"Same author produced sheet, draft and critique; independent content review still needed. The worked example household is invented and labeled as such."}
