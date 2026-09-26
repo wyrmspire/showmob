@@ -38,6 +38,7 @@ type Subject = {
   ab_pair: number | null;
   status: string;
   artifact_slug: string | null;
+  probe: string | null;
 };
 
 type GradeRow = {
@@ -1027,6 +1028,12 @@ export function Grading({
                 )}
                 {(justSaved || gradedIds.has(open.id)) && (
                   <>
+                    {open.probe && (
+                      <aside className="gn-probe" aria-label="Why this page exists">
+                        <h3>Why this page exists</h3>
+                        <p>{open.probe}</p>
+                      </aside>
+                    )}
                     <PlanReveal subjectId={open.id} />
                     {planForSubject(open.id)?.provenance === "first-hand" && (
                       <PlanJudgment
