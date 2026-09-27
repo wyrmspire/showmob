@@ -7,8 +7,8 @@ import { makeHandler } from '../server/authoring/http.ts';
 import { createRpcStore } from '../server/authoring/store.ts';
 
 if (!process.env.TEST_AUTHORING_DATABASE_URL) throw new Error('Set TEST_AUTHORING_DATABASE_URL to a disposable database');
-const env = { ...process.env, PGDATABASE: process.env.TEST_AUTHORING_DATABASE_URL };
-function sql(command) { return execFileSync('psql', ['-X', '-q', '-A', '-t', '-v', 'ON_ERROR_STOP=1'], { env, input: command, encoding: 'utf8', stdio: ['pipe','pipe','pipe'] }).trim(); }
+const databaseUrl = process.env.TEST_AUTHORING_DATABASE_URL;
+function sql(command) { return execFileSync('psql', [databaseUrl, '-X', '-q', '-A', '-t', '-v', 'ON_ERROR_STOP=1'], { env: process.env, input: command, encoding: 'utf8', stdio: ['pipe','pipe','pipe'] }).trim(); }
 const literal = v => v === null ? 'NULL' : typeof v === 'number' ? String(v) : "'" + (typeof v === 'string' ? v : JSON.stringify(v)).replaceAll("'", "''") + "'";
 // Refuse to test in a database with existing Showmob tables.
 assert.equal(sql("select count(*) from pg_tables where schemaname='public' and tablename like 'showmob_%';"),'0','Use an empty disposable database');
