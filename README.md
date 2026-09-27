@@ -105,4 +105,4 @@ That flag also enables the public theme audition swatches (author tools).
 
 ## Agent authoring actions (implementation for review)
 
-Discovery, private working runs, immutable development passes, and artifact validation are described in [authoring actions](docs/authoring-actions.md). OpenAPI schema: `public/authoring-openapi.json`. The API fails closed until separately activated; production pages still come from repository JSON.
+Discovery, private working runs, immutable development passes, and artifact validation are described in [authoring actions](docs/authoring-actions.md). OpenAPI schema: `docs/authoring-openapi.json`. The API fails closed until separately activated; production pages still come from repository JSON.
