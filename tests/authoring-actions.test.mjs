@@ -10,13 +10,14 @@ const readToken = 'read-only-credential-012345678901234';
 let old;
 beforeEach(() => {
   old = process.env.SHOWMOB_AUTHORING_KEYS;
+  process.env.SHOWMOB_AUTHORING_ENABLED = 'true';
   process.env.SHOWMOB_AUTHORING_KEYS = JSON.stringify([
     { id: 'writer', workspace: 'a', token, scopes: ['read', 'write'] },
     { id: 'other', workspace: 'b', token: otherToken, scopes: ['read', 'write'] },
     { id: 'reader', workspace: 'a', token: readToken, scopes: ['read'] },
   ]);
 });
-afterEach(() => { if (old === undefined) delete process.env.SHOWMOB_AUTHORING_KEYS; else process.env.SHOWMOB_AUTHORING_KEYS = old; });
+afterEach(() => { delete process.env.SHOWMOB_AUTHORING_ENABLED; if (old === undefined) delete process.env.SHOWMOB_AUTHORING_KEYS; else process.env.SHOWMOB_AUTHORING_KEYS = old; });
 
 function memoryStore() {
   const runs = new Map(); const records = new Map(); const requests = new Map();
@@ -149,4 +150,14 @@ test('artifact validation, publication boundary, malformed and oversized bodies'
   assert.equal((await call('runs','POST','{')).status,400);
   assert.equal((await call('runs','POST',{huge:'x'.repeat(100001)})).status,413);
   assert.equal((await call('runs','DELETE')).status,405);
+});
+
+test('all authoring routes are dark until explicitly enabled', async () => {
+  const call = client(memoryStore());
+  delete process.env.SHOWMOB_AUTHORING_ENABLED;
+  for (const [route, method] of [['discover', 'GET'], ['runs', 'GET'], ['steps', 'GET'], ['validate', 'POST']]) {
+    const response = await call(route, method, {}, { runId: randomUUID() });
+    assert.equal(response.status, 404);
+    assert.deepEqual(response.data, { error: 'Not found' });
+  }
 });
