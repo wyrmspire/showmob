@@ -24,7 +24,7 @@ All requests use `Authorization: Bearer <agent credential>`. Each credential map
 | GET `/api/authoring/steps?runId=UUID&revision=5` | Retrieve an exact saved output. |
 | POST `/api/authoring/validate` | Validate a full artifact using the existing renderer contract; return structured issues and a canonical JSON hash. |
 
-The action schema is [`docs/authoring-openapi.json`](authoring-openapi.json). It is kept outside the public static directory until activation. Its server URL is the intended production host, not a claim that the endpoints are deployed.
+The action schema is [`docs/docs/authoring-openapi.json`](docs/authoring-openapi.json). It is kept outside the public static directory until activation. Its server URL is the intended production host, not a claim that the endpoints are deployed.
 
 ## Agent instructions
 
