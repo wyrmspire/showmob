@@ -1,6 +1,5 @@
--- Canonical reviewed source for migration 20260927214900_authoring_workspace.
--- Applied to showmob-dev on 2026-09-27; keep this file and the migration in sync.
--- The disposable Postgres integration test loads this source directly.
+-- Supabase migration 20260927214900: private authoring workspace.
+-- Applied to showmob-dev on 2026-09-27 after disposable Postgres verification.
 begin;
 
 create table public.showmob_authoring_runs (

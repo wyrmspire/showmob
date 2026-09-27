@@ -1,6 +1,6 @@
 # Agent authoring actions — first implementation
 
-Status: implementation for review; not activated on the live site. This agent-initiated implementation is a bounded slice of ROADMAP P5.1/P5.3. Chris reviewed it on September 27 and approved merging as a private experiment; live activation is deferred. Production content still comes from repository JSON. The API does not call a model, publish, or automatically learn from grades.
+Status: implementation for review; migration `20260927214900_authoring_workspace` is applied to showmob-dev. This agent-initiated implementation is a bounded slice of ROADMAP P5.1/P5.3. Chris reviewed it on September 27 and approved merging as a private experiment; the HTTP actions remain dark until dedicated credentials and `SHOWMOB_AUTHORING_ENABLED=true` are configured. Production content still comes from repository JSON. The API does not call a model, publish, or automatically learn from grades.
 
 ## What the system does
 
@@ -101,8 +101,8 @@ Official references checked 2026-09-26: [GPT Actions authentication](https://dev
 
 ## Activation and verification
 
-1. Review the PR and run CI, including the isolated Postgres job. No live schema has been changed by this implementation. All authoring routes return 404 unless `SHOWMOB_AUTHORING_ENABLED=true` is set server-side; leave it unset for the private merge. The OpenAPI schema stays in `docs/` rather than the public static directory until activation.
-2. With the Supabase CLI available, run `supabase migration new authoring_workspace`; copy `supabase/authoring-workspace.sql` into that generated migration. Validate/apply through the repository's reviewed migration workflow and reconcile existing migration history first. This environment has no Supabase CLI, so the schema is deliberately delivered as source rather than a fabricated migration-history entry.
+1. Review the PR and run CI, including the isolated Postgres job. All authoring routes return 404 unless `SHOWMOB_AUTHORING_ENABLED=true` is set server-side; leave it unset for the private merge. The OpenAPI schema stays in `docs/` rather than the public static directory until activation.
+2. Migration `20260927214900_authoring_workspace` is applied to showmob-dev and mirrored in `supabase/migrations/20260927214900_authoring_workspace.sql`. The live database had no recorded migration history, so this starts managed history without claiming the four earlier repository migrations were registered.
 3. Configure `SHOWMOB_SUPABASE_URL` and `SHOWMOB_SUPABASE_SERVICE_ROLE_KEY` server-side as for the existing grading API. Add `SHOWMOB_AUTHORING_KEYS` as a JSON array of `{id, workspace, token, scopes}`. Use cryptographically random tokens at least 32 characters long and distinct actor IDs; scopes are `read` and/or `write`. These are separate from the grader passcode. Do not use a `VITE_` prefix.
 4. Set `SHOWMOB_AUTHORING_ENABLED=true` only after the migration and dedicated credentials are ready, then deploy the API. Missing credentials fail closed with 503. No browser UI imports the server modules or the working records.
 5. Prove discovery → start → research → outline → representation → sections → draft → external render review → artifact → retrieve. Repeat a write, try a stale revision and verify a second workspace cannot retrieve the run. Verify `/api/authoring/discover` resolves as JSON rather than the SPA fallback on the actual Vercel deployment.
