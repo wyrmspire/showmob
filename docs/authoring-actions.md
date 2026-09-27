@@ -24,7 +24,7 @@ All requests use `Authorization: Bearer <agent credential>`. Each credential map
 | GET `/api/authoring/steps?runId=UUID&revision=5` | Retrieve an exact saved output. |
 | POST `/api/authoring/validate` | Validate a full artifact using the existing renderer contract; return structured issues and a canonical JSON hash. |
 
-The action schema is [`public/authoring-openapi.json`](../public/authoring-openapi.json). Its server URL is the intended production host, not a claim that the endpoints are deployed.
+The action schema is [`docs/authoring-openapi.json`](authoring-openapi.json). It is kept outside the public static directory until activation. Its server URL is the intended production host, not a claim that the endpoints are deployed.
 
 ## Agent instructions
 
@@ -101,10 +101,10 @@ Official references checked 2026-09-26: [GPT Actions authentication](https://dev
 
 ## Activation and verification
 
-1. Review the PR and run CI, including the isolated Postgres job. No live schema has been changed by this implementation.
+1. Review the PR and run CI, including the isolated Postgres job. No live schema has been changed by this implementation. All authoring routes return 404 unless `SHOWMOB_AUTHORING_ENABLED=true` is set server-side; leave it unset for the private merge. The OpenAPI schema stays in `docs/` rather than the public static directory until activation.
 2. With the Supabase CLI available, run `supabase migration new authoring_workspace`; copy `supabase/authoring-workspace.sql` into that generated migration. Validate/apply through the repository's reviewed migration workflow and reconcile existing migration history first. This environment has no Supabase CLI, so the schema is deliberately delivered as source rather than a fabricated migration-history entry.
 3. Configure `SHOWMOB_SUPABASE_URL` and `SHOWMOB_SUPABASE_SERVICE_ROLE_KEY` server-side as for the existing grading API. Add `SHOWMOB_AUTHORING_KEYS` as a JSON array of `{id, workspace, token, scopes}`. Use cryptographically random tokens at least 32 characters long and distinct actor IDs; scopes are `read` and/or `write`. These are separate from the grader passcode. Do not use a `VITE_` prefix.
-4. Deploy the API. Missing credentials fail closed with 503. No browser UI imports the server modules or the working records.
+4. Set `SHOWMOB_AUTHORING_ENABLED=true` only after the migration and dedicated credentials are ready, then deploy the API. Missing credentials fail closed with 503. No browser UI imports the server modules or the working records.
 5. Prove discovery → start → research → outline → representation → sections → draft → external render review → artifact → retrieve. Repeat a write, try a stale revision and verify a second workspace cannot retrieve the run. Verify `/api/authoring/discover` resolves as JSON rather than the SPA fallback on the actual Vercel deployment.
 6. Configure the private GPT Action/client and perform the same smoke flow. Only then call the actions live.
 
