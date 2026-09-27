@@ -19,6 +19,7 @@ const nativeFetch = globalThis.fetch;
 process.env.SHOWMOB_SUPABASE_URL = 'https://authoring-test.invalid';
 process.env.SHOWMOB_SUPABASE_SERVICE_ROLE_KEY = 'test-service-role';
 const token = 'disposable-database-test-credential-012345';
+process.env.SHOWMOB_AUTHORING_ENABLED = 'true';
 process.env.SHOWMOB_AUTHORING_KEYS = JSON.stringify([{id:'ci-agent',workspace:'ci',token,scopes:['read','write']}]);
 globalThis.fetch = async (url, options) => {
   assert.ok(String(url).startsWith('https://authoring-test.invalid/rest/v1/rpc/showmob_authoring_'));
