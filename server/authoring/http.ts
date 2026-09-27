@@ -48,6 +48,7 @@ export function makeHandler(route: Route, store: Store = createRpcStore()) {
     res.setHeader('cache-control', 'no-store');
     res.setHeader('x-robots-tag', 'noindex, nofollow');
     try {
+      if (process.env.SHOWMOB_AUTHORING_ENABLED !== 'true') throw new ApiError(404, 'Not found');
       const p = authenticate(req);
       const methods = route === 'discover' ? ['GET'] : route === 'validate' ? ['POST'] : ['GET', 'POST'];
       if (!methods.includes(req.method || '')) { res.setHeader('allow', methods.join(', ')); throw new ApiError(405, 'Method not allowed'); }
