@@ -49,3 +49,31 @@ jobs:
       # Fails on broken/shared built-or-assigned subjects; pending and orphans only warn.
       - name: check-gn-slugs against supabase/snapshots/gn-subjects.json
         run: node scripts/check-gn-slugs.mjs --subjects supabase/snapshots/gn-subjects.json
+
+
+  authoring-database:
+    name: authoring API against disposable Postgres
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: authoring_ci_only
+          POSTGRES_DB: authoring_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node scripts/build-authoring-catalog.mjs
+      - run: node --experimental-strip-types scripts/check-authoring-db.mjs
+        env:
+          TEST_AUTHORING_DATABASE_URL: postgresql://postgres:authoring_ci_only@localhost:5432/authoring_test

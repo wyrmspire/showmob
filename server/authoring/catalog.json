@@ -1,0 +1,1433 @@
+{
+  "documents": {
+    "learning": {
+      "path": "LEARNING-ARCHITECTURE.md",
+      "sha256": "b2f15362c58aa9f301ee783c5735368e0cb90fb8914b3eb770f19aa31caa7a2f",
+      "content": "# Learning architecture\n\nStatus: **active** (un-parked 2026-09-25 at Chris's direction). Phases 1–4 trialed; tutorial template v1 at [docs/teaching-template-tutorial.md](docs/teaching-template-tutorial.md). Director/critique layer and grading connection specified at [docs/representation-director.md](docs/representation-director.md) and [docs/grading-connection.md](docs/grading-connection.md), enforced by tests. Written by Instinct from Chris's direction.\n\nThis is the operating doc for how Showmob should generate pages that teach, not just explain. It sits next to [GRADIENT.md](GRADIENT.md): GRADIENT.md is the judgment model for how content is expressed; this doc is the pipeline that decides what a page has to accomplish before anything is expressed. It does not own the near-term product order; [docs/product-brief.md](docs/product-brief.md) still does.\n\n## The problem\n\nSingle-shot generation (prompt -> page JSON) produces pages that read like an explanation of the topic. Explaining is not teaching. A page can be accurate and well written and still leave the reader unable to do anything new.\n\nThe fix is to split generation into separate decisions, each one inspectable.\n\n## Rules\n\n- **The setup sheet controls what a page must accomplish. Gradient controls how it is expressed.**\n- One page, one primary job. Use the four Diataxis modes: tutorial (learn by doing), how-to (do a real task), reference (look it up), explanation (understand why). Add `answer` for one question with one checkable answer and no skill to build; do not use it for a how-to. A series mixes modes on purpose. Do not force all four into one page.\n- Research before outlining. Structure comes from what the topic contains, not from the topic's name.\n- A concept is one thing you could check the reader on. Page count is an output of scope, never an input.\n- Teaching templates are jobs to accomplish, not visual sections. Block recipes stay suggestions, never required slots.\n- Generate in sections, not one call per page.\n- Judge before publishing.\n- Every stage writes a readable file.\n\n## Pipeline\n\n```\nresearch  ->  topic map  ->  scope  ->  series\n                                          |\n                          for each page:  v\npage sheet -> teaching strategy -> representation -> generate sections -> critique -> Showmob JSON\n```\n\n| Stage | Question it answers | Writes |\n| --- | --- | --- |\n| Research | What does this subject contain? Perspectives, concepts, examples, analogies, misconceptions, dependencies, edge cases. | `research.json` |\n| Topic map | How do the ideas relate? Foundations vs advanced, `dependsOn` links, practice openings, visual candidates, natural boundaries. Not an outline. | `topic-map.json` |\n| Scope | How much structure does the map justify? Page count, grouping, order, prerequisites. | `series.json` |\n| Page sheet | What must this page accomplish? (fields below) | `page-sheet.json` |\n| Teaching strategy | What progression fits this page's job? | in `page-sheet.json` |\n| Representation | Which blocks carry each part? Gradient chooses from content pressure. | `representation.json` |\n| Generate sections | Write each section from the sheet, its slice of research, its chosen blocks, and the previous section when needed. | `draft.json` |\n| Critique | Did the draft do the sheet's job? | `critique.json` |\n\n**Representation comes after teaching strategy and before generation.** You cannot write a section without knowing what form it takes. If blocks are picked after (or during) generation, the generator picks them by habit, and every page gets the same hero-paragraph-callout shape.\n\nRun layout:\n\n```\nruns/<series>/research.json\nruns/<series>/topic-map.json\nruns/<series>/series.json\nruns/<series>/pages/<page>/page-sheet.json\nruns/<series>/pages/<page>/representation.json\nruns/<series>/pages/<page>/draft.json\nruns/<series>/pages/<page>/critique.json\n```\n\n## Page setup sheet\n\nThe sheet is the contract. Page JSON is downstream of it. Field names can evolve.\n\n| Field | Meaning |\n| --- | --- |\n| `pageId`, `seriesId` | Identity and place in the series |\n| `mode` | tutorial, how-to, reference, explanation, or answer |\n| `readerMoment` | Where the reader is, mentally, when they arrive |\n| `outcome` | What they can do or understand when they leave |\n| `coreModel` | One checkable sentence for a teaching page; null for an answer |\n| `prerequisites` | What must already be known, with links to the pages that teach it |\n| `teachingShape` | The progression for this page (tutorials: realTask, activate, demonstrate, apply, integrate) |\n| `requiredIdeas` | The ideas this page must land |\n| `candidateAnalogies` | Examples and analogies from research, ideally from different angles |\n| `visualNeeds` | Where a picture would teach better than text |\n| `deliberatelyExcluded` | What this page will not teach, and why |\n| `nextPagePressure` | What this page makes the reader ready for next |\n\n**Not in the sheet:** block types or layout (hero, callout, table, diagram, cards). Those are representation decisions, made in the next stage by Gradient.\n\n## Critique\n\nJudge the draft against its sheet, not against taste. Did it teach or only explain? Is something missing or unneeded? Should it be reordered, split, or merged? Is a prerequisite missing? Does it need another example, practice, or a visual? Did the blocks come from content pressure or from habit?\n\nOutcomes: accept, rewrite, reorder, cut, add example, add practice, split, merge, request visual, request prerequisite, request new primitive.\n\nJudgment runs at two levels: topic level (was the scope right?) and page level (did this page do its job?).\n\n## Tracing failures\n\nBecause each stage leaves a file, a bad page traces back to one layer:\n\n| Symptom | Layer |\n| --- | --- |\n| Shallow | Research |\n| Crammed, or ideas in the wrong order | Scope |\n| Accurate but nobody learns anything | Wrong mode on the sheet |\n| Good sheet, weak prose | Generation |\n| Good content, confusing form | Representation (wrong choice) |\n| The needed form cannot be expressed | Missing primitive |\n\n## Wrong choice vs missing primitive\n\nWhen a page has the wrong form, first ask which of two things happened:\n\n- **Wrong choice:** the right block exists and the generator did not pick it. Fix the representation stage.\n- **Missing primitive:** the form the content needs does not exist in the schema. That is a widget proposal (see [AGENTS.md](AGENTS.md)).\n\nSometimes reading the schema settles it with no pipeline needed. **An annotated figure has already earned its place.** The `diagram` block is a linear list of nodes. It cannot draw a Smith chart, a floor map, a cable-order picture, or a branching cause chain, and real pages have asked for all of these. That is a proven missing primitive under the \"widgets come last\" rule, not a wish.\n\n## Learning loop\n\nGrades do not rewrite templates directly.\n\n```\ngrade -> classify the failure by layer -> hypothesis -> candidate change (new version)\n      -> regenerate representative pages -> compare -> accept or reject\n```\n\n- Every change to a template or default is a new version, tested against known pages before it is kept.\n- **The grade source must be the owner's judgment, or a grader that has been checked against the owner's judgment.** Grades that bunch together, or that always say \"add something,\" cannot tell pages apart. A loop fed by them learns to overbuild.\n\n## Build order\n\n1. **Page setup sheets.** Cheapest step. Write sheets by hand for one good page, one page that explains instead of teaching, and one deep topic. Check that the sheet alone predicts the difference.\n2. **Topic map and scope.** First test is blind: hand it a deep subject (security is a good one) without a page count and see whether it finds the depth on its own. Test depth judgment before generation quality. Guardrail: the blind-scope test reuses the subject's existing research trunk and seriesId. A new seriesId covering the same subject needs Chris's explicit call first — otherwise we fork two canonical sources for one subject.\n3. **Representation plus section generation.** Choose blocks per section from the sheet, then generate section by section.\n4. **One teaching template.** A tutorial progression (real task, activate, demonstrate, apply, integrate). One, not ten.\n5. **Critique layer.** Judge drafts against sheets; write `critique.json`.\n6. **Connect grading.** Grades produce classified hypotheses, never automatic rule changes, and only from a trusted grade source.\n\nThe minimum version is six functions, each writing a file: `research(topic)`, `scope(research)`, `makePageSheet(page)`, `chooseRepresentation(sheet)`, `generate(sheet, representation)`, `critique(draft, sheet)`. The power comes from separating the decisions, not from bigger prompts.\n\n"
+    },
+    "sheet": {
+      "path": "docs/page-setup-sheet.md",
+      "sha256": "f4bd9a2076899432c22ce0c53d5d71a229467101acda59ed1da03628ba69825c",
+      "content": "# Page setup sheet\n\nStatus: **v1 format, Phase 1 of [LEARNING-ARCHITECTURE.md](../LEARNING-ARCHITECTURE.md)**. Hand-written only; nothing generates sheets yet. Written by Instinct.\n\nA setup sheet says what one page must accomplish. It is written before any prose or block choice, and page JSON is downstream of it. It says nothing about blocks, layout, or widgets. Those are representation decisions, made in the next stage by Gradient.\n\nSheets live at `runs/<series>/pages/<page>/page-sheet.json`. Pages with no series use a group name (for example `grading-night`) as the folder and `null` as `seriesId`.\n\nField names are expected to change. The trial that shaped this version is in [page-setup-sheet-trial.md](page-setup-sheet-trial.md).\n\n## Fields\n\n| Field | Type | Meaning |\n| --- | --- | --- |\n| `sheetVersion` | number | Format version. Currently `1`. |\n| `sheetKind` | `planned` or `as-built` | `planned` is written before the page. `as-built` is reconstructed from a shipped page, for testing the format. |\n| `pageId` | string | The page slug. |\n| `seriesId` | string or null | The series the page belongs to. |\n| `mode` | `tutorial`, `how-to`, `reference`, `explanation`, or `answer` | The page's one primary job. `answer` is one question with one checkable answer, not a skill to build; use `how-to` for a task the reader must learn to do. |\n| `useShape` | `once`, `returns`, or `alongside` | How the page gets used: read once, come back to it, or keep it open while doing the work. |\n| `readerMoment` | string | Where the reader is when they arrive: what they know, what they want, what state they are in. |\n| `outcome` | string starting with `Can ` | What the reader can do when they leave. It has to be something you could check. |\n| `coreModel` | string or null | The single idea the reader walks off with. `null` for `answer`; exactly one checkable sentence for each teaching page. |\n| `prerequisites` | list of `{ idea, taughtBy }` | What must already be known. `taughtBy` is the slug of the page that teaches it, or `null` if no page does yet. |\n| `teachingShape` | object or null | The progression. Tutorials use `realTask`, `activate`, `demonstrate`, `apply`, `integrate`. Use `null` when the page has nothing to teach, and say why in `teachingShapeWhy`. |\n| `requiredIdeas` | list of strings | The ideas the page must land. |\n| `candidateAnalogies` | list of strings | Examples and analogies from research, from different angles. Can be empty. |\n| `visualNeeds` | list of strings | Where a picture would teach better than text. Describe the picture's content, not the block. |\n| `deliberatelyExcluded` | list of `{ what, why }` | What the page will not do, with a reason. |\n| `nextPagePressure` | string or null | What the page leaves the reader ready or wanting to do next. |\n\n## Rules for filling it in\n\n- **Give teaching pages one core model.** Test the sentence against a concrete case. This field is the leading hypothesis for where Gradient's sequencing pressure lives; test it during critique. An `answer` page gets `null`, not a lesson wrapped around its result.\n- **Write the outcome as a checkable \"Can ...\" line.** If the honest verb is \"name\", \"know about\", or \"understand\", the page is probably explaining, not teaching. That is fine for an explanation page and a warning for anything else.\n- **Leave empty fields empty.** A blank `realTask` or an empty `apply` is information, not a gap to paper over. It is the most direct sign that a page explains instead of teaches.\n- **Every prerequisite needs a `taughtBy`.** A `null` means the reader must already know it, or the series is missing a page. Several `null`s on the ideas the page depends on means the topic is bigger than the page.\n- **Exclusions need a reason.** \"Not asked\", \"owned by another page\", or \"out of scope by consent\" are all reasons. An exclusion with no reason is a guess.\n- **Stay silent on form.** No block names, no layout, no widget choices. `tests/page-sheets.test.mjs` fails on sheet keys like `blocks`, `layout`, or `widget`.\n\n## Reading a sheet before generation\n\nA sheet is ready when:\n\n1. The outcome is a checkable \"Can ...\" line that fits the mode, and `coreModel` follows the mode rule.\n2. The teaching shape has a real task, or says why it has none.\n3. The prerequisites the page leans on have pages behind them, or the gaps are on purpose.\n4. Every exclusion has a reason.\n\nIf a sheet cannot pass these, fix the sheet or the scope. Do not generate yet.\n\n"
+    },
+    "representation": {
+      "path": "docs/representation-director.md",
+      "sha256": "53bcaad577ba1bf17072b90d4cdd868bd73314f1d2cf212a41ff8f694f136c73",
+      "content": "# The director: representation and critique layer\n\nStatus: **v1, Phases 5 of [LEARNING-ARCHITECTURE.md](../LEARNING-ARCHITECTURE.md)**. Written by Instinct. Spec source: Chris's 2026-09-26 direction (pasted director-step analysis), which he approved building. Enforced by `tests/representation-director.test.mjs`.\n\nGrading night measured the habit: almost every page opened with a hero, and most carried a callout whether it earned one or not. The director step is the fix: before any prose, the loop must look at the whole tray and say, per section, what carries the pressure and what was tempting and wrong.\n\n## Required: representation.json for every generated page\n\nEvery page built through the pipeline has a `runs/<series>/pages/<page>/representation.json`, written after the page sheet and before the draft. Format v2:\n\n```json\n{\n  \"stage\": \"representation\",\n  \"formatVersion\": 2,\n  \"pageId\": \"...\",\n  \"input\": \"page-sheet.json before prose\",\n  \"coreModelUse\": \"how the form carries the coreModel\",\n  \"sections\": [\n    {\n      \"id\": \"...\",\n      \"pressure\": \"sequence\",\n      \"block\": \"diagram\",\n      \"why\": \"the job this block does here\",\n      \"rejected\": [{ \"block\": \"image\", \"why\": \"a straight sequence does not need a figure\" }]\n    }\n  ],\n  \"rejected\": [\n    { \"block\": \"slideshow\", \"why\": \"nothing to pace\" }\n  ],\n  \"drift\": [\n    { \"block\": \"cta-band\", \"why\": \"shipped but never planned - recorded, not hidden\" }\n  ]\n}\n```\n\n- `sections[]` — one entry per draft section. `pressure` is one of the nine below; `block` names the existing renderer block that carries it; `why` says the job, in words a critique can check.\n- `sections[].rejected[]` — required, at least one entry per section: the nearby blocks that were tempting and wrong for this section, each with a reason. This is the reasoning made visible; without it the rejection habit decays within a few pages, which is exactly what happened between lab-scope and network-inventory. \"No warning earned one\" is a valid rejection.\n- `rejected[]` (top level) — the page-level blocks considered and not used anywhere.\n- `drift[]` (top level) — the conformance record; see below.\n- Block names must be real renderer blocks (the test checks against `app/src/schema.ts`).\n\n## The six questions\n\nAsked per section, as files, not vibes:\n\n1. **What pressure is this section under?** One of: `frame`, `sequence`, `lookup`, `spatial`, `decision`, `practice`, `warning`, `source`, `close`, `restraint`. (`frame` extends the original nine: the opening hero's one claim. It exists so the habit block is interrogated like every other - a hero needs its reason, or the page opens without one.)\n2. **Which existing block carries that pressure?** Name it.\n3. **Which nearby blocks are tempting and wrong?** Write them in `rejected`.\n4. **Wrong choice or missing primitive?** If the right block exists and wasn't picked, that is a wrong choice — fix the representation. If the form the content needs is not in the schema, say missing primitive and use the nearest carrier as temporary (a hand-authored SVG in `image` for a spatial figure), saying so in `why`. Do not pretend the near miss did the job.\n5. **Did we use a tool only because the last page used it?** Hero and callout need a reason in `why`, or they stay out.\n6. **Did the draft do the sheet's job?** Answered in critique, against `outcome` and `coreModel`, not against taste.\n\n## Pressure → block table\n\nGuidance, not slots. \"Use nothing\" is always an option: if prose or a neighbor block already carries it, no block earns a slot.\n\n| Pressure | Carries it | Tempting and wrong |\n| --- | --- | --- |\n| `frame` | `hero`, only when the page needs its one claim up top | a hero on every page from habit |\n| `sequence` | `diagram` (linear flows only), `steps`, `timeline` when order in time is the point, `slideshow` when pacing is the point | `hero`, a table of steps |\n| `lookup` | `compact-table`, `stat-strip`, short `text` | a long essay the reader must dig through |\n| `spatial` | `image` (map, plan, layout; hand-authored SVG until the annotated-figure primitive earns its place) | `diagram` — it is a numbered list, it cannot draw two sides of a boundary |\n| `decision` | `choice` (pick one, no score), `exercise` (one checkable answer), `comparison` when two views collide | a scored quiz when the job is picking one |\n| `practice` | `fill-in` (reader writes their own values), `checklist` (self-check), `code` when the honest form is the command | paraphrasing the command in prose |\n| `warning` | `note-callout`, only when a warning is earned | a callout on every page from habit |\n| `source` | `resource-list` | inline link dumps in prose |\n| `close` | `cta-band` pointing at the next page | a closer that restates the hero |\n| `restraint` | use nothing — fewer blocks, or let the previous block carry it | decorating; overbuilding when the point is smallness |\n\nZoom in = fewer blocks, slower widgets (`reveal`, `fill-in`, `image`). Zoom out = `compact-table`, `stat-strip`, short `text`. Describe setting only when setting changes what the reader can do.\n\n## The critique check\n\nCritique v2 adds two required fields to `critique.json` (set `\"critiqueVersion\": 2`):\n\n- `sheetJob`: `{ \"outcome\": \"...\", \"coreModel\": \"...\" }` — question 6 answered against the sheet, not taste.\n- `unusedToolCheck`: for each thing the sheet asked for (`visualNeeds`, a filled `apply`, a named analogy), the block that carries it — or the failure. **If `visualNeeds` is spatial and the draft has no `image`, that is a representation failure, not a writing failure.** The test enforces the visual-needs half of this mechanically: every non-empty `visualNeeds` must be met by a visual carrier (`image`, `diagram`, `slideshow`) in `sections` or an explicit rejection with a reason.\n\nFailures classify by layer (see the architecture's tracing table). A page that ignores a tool the sheet asked for is a representation failure; a form the schema cannot express is a missing primitive — and only a real page that cannot ship without it earns a new widget.\n\n## Conformance: the shipped page is the representation, or the difference is explained\n\nA page can drift from its representation during generation - the security pages did (network-inventory shipped an unplanned identity text, privacy callout, and next band; lab-scope shipped an unplanned worked-decisions table; host-listeners shipped two extra code blocks; firewalls an unplanned callout and band). The old critique marked that representation layer \"keep\" anyway. The conformance test ends that:\n\n- Every block the page ships must be planned in `sections[]`, or declared in top-level `drift[]` with a `why`. Unexplained shipped blocks fail the test; drift declared but not shipped fails too.\n- Drift is a record of a director miss, not an endorsement. New pages target an empty `drift`. When drift accumulates on a page, the fix is to re-plan the representation, not to grow the list.\n- Comparison is by block-type counts (presence), not sequence. Sequence conformance is future work.\n\n## Series-level shape check\n\nA per-page critique cannot see the template a series falls into. The security pages each passed their own critique while every page opened with a hero and closed with resource-list then cta-band - better than hero/paragraph/callout, but still a habit shape. The series check asks the question the page check cannot: did this page's shape come from its pressure, or from the page before it?\n\n- No two pages in a series may ship the identical ordered block sequence.\n- When every page in a series opens with the same block, each opening section's `why` must be distinct - the habit block is re-earned per page or it comes out (director question 5, applied across pages).\n- The same rule for the closing block, with the `why` taken from the closing section or, when the closer is drift, from its drift entry.\n\nBoth checks run in `tests/representation-director.test.mjs` alongside the six-question tests.\n\n"
+    },
+    "tutorial": {
+      "path": "docs/teaching-template-tutorial.md",
+      "sha256": "4eb492c616f181ae2a64e1abd8ea4cd80e797b2216cb2fda99d4cfd98d57606c",
+      "content": "# Tutorial teaching template\n\nStatus: **v1, Phase 4 of [LEARNING-ARCHITECTURE.md](../LEARNING-ARCHITECTURE.md)**. Written by Instinct. Trial page: `local-security-lab-close-exposure`.\n\nOne teaching template, not ten. It applies when a page sheet says `mode: tutorial`. Other modes keep their own shapes; this doc does not touch them.\n\nThe shape converged before it was named: the first two tutorial pages in the security series (`local-security-lab-lab-scope`, `local-security-lab-host-listeners`) both organized their `teachingShape` as the same five beats without being told to. Phase 4 names and versions that shape so it can be judged, not so it can be obeyed. Per the architecture: teaching templates are jobs to accomplish, not visual sections. Block recipes stay suggestions, never required slots.\n\n## The five beats\n\n`tutorial` pages set `teachingShape` to these five fields.\n\n| Beat | Job | Pass check | What it is not |\n| --- | --- | --- | --- |\n| `realTask` | Name a real task on the reader's own equipment or data | The reader could start it today with what they own | A topic statement. \"Learn about firewalls\" fails; \"audit the openings on your own router\" passes |\n| `activate` | Bring back what the reader already has that the task needs | Every item is taught by an earlier page or comes from ordinary experience | New content smuggled in as recall |\n| `demonstrate` | One complete worked example, start to finish, before the reader tries | A reader could repeat the example and reach the same verdicts | Fragments, or a summary of steps with no worked case |\n| `apply` | The reader does the real task on their own case, with the example beside them | The page asks for the reader's own data and gives it somewhere to go | \"Now you try\" with no structure |\n| `integrate` | The result joins what the reader already keeps, and names what it makes possible next | The page says what the reader now has that they did not have before | A summary paragraph |\n\n## Rules\n\n- **Beats are jobs, not block slots.** The representation stage chooses blocks per beat from content pressure. A beat may map to more than one block, or share one.\n- **Empty beats are information.** Per the sheet rules: leave empty fields empty. An empty `apply` is the most direct sign a page explains instead of teaches.\n- **The critique judges each beat.** Did the demonstration actually demonstrate? Could the reader apply without the example beside them? Beat failures trace to the generation layer; a beat that cannot be filled traces to the sheet (wrong mode) or the scope.\n- **Version on change.** Any change to the beat set or their jobs is a new version, tested against known tutorial pages before it is kept (see the learning loop in LEARNING-ARCHITECTURE.md).\n\n## Trial\n\nFirst deliberate run: `runs/local-security-lab/pages/local-security-lab-close-exposure/`. The critique there judges each beat against this table.\n\n"
+    },
+    "widgets": {
+      "path": "docs/widgets.md",
+      "sha256": "1adf941575edad39ecc0d74f43a6c76eea4740a6f25e6cb6a1d015b9063656e2",
+      "content": "# Showmob authoring contract and widget catalog\n\nThis is the authoring reference for `schemaVersion: 1`, checked against `app/src/schema.ts`, `app/src/validation.ts` and `BlockView` in `app/src/components/BlockView.tsx`. It describes current behavior, including limitations. Future widget ideas are not supported types.\n\n## Canonical grammar\n\nAn artifact contains a flat `blocks` array. Every block uses **`{ id, type, ...widgetFields }`**. The earlier brainstorming form `{ widgetId, props }` is not supported. Do not wrap fields in `props`, nest arbitrary widgets, or put React, HTML, CSS or executable expressions in the JSON. Ordinary text is rendered as text; Markdown and mathematical notation are not parsed.\n\nThe complete minimal artifact is:\n\n```json\n{\n  \"schemaVersion\": 1,\n  \"slug\": \"one-idea\",\n  \"title\": \"One useful idea\",\n  \"summary\": \"A concise description for discovery.\",\n  \"contributor\": \"Example author\",\n  \"status\": \"preview\",\n  \"theme\": \"paper\",\n  \"blocks\": [\n    { \"id\": \"start\", \"type\": \"text\", \"heading\": \"Start here\", \"body\": \"Explain the idea.\" }\n  ]\n}\n```\n\n| Field | Contract |\n| --- | --- |\n| `schemaVersion` | Required literal number `1`. |\n| `slug` | Required string: lowercase words/numbers separated by single hyphens. Stable identity in links; unique in the discovered library. `home` and `author` are reserved for app routes and rejected by validation. |\n| `title`, `summary`, `contributor` | Required strings. Use useful, nonempty copy before review or publication. |\n| `status` | Required: `draft`, `preview`, `published`, `archived`. Never promote another author's work without publication authority. |\n| `theme` | Required: `paper`, `signal`, `workshop`, `night`, `field`. No raw styling fields. |\n| `blocks` | Required nonempty array of supported blocks. Block IDs are nonempty strings without ASCII whitespace, unique within the artifact and stable across edits. |\n| `tags` | Optional array of strings. |\n| `updated` | Optional string; editorial convention is `YYYY-MM-DD`. The validator does not enforce a date format. |\n| `series` | Optional object with string `id`, string `title`, finite numeric `order`. Use positive, distinct integer orders within a series as an editorial convention. |\n\nOptional fields may be omitted; `null` is not a substitute. No metadata is inferred on import. Empty descriptive strings are structurally allowed to support in-progress editing. Extra fields are ignored by the renderer and preserved in exports; they do not create capabilities. Stick to the documented contract. Validation checks structure, not factual accuracy, readability, privacy or permissions.\n\n## Views, lifecycle and interaction\n\nBrowse lays out every block vertically and is the only artifact-wide view. A `slideshow` block provides paced presentation inside that page. Keep each unit short and inspect long content at narrow widths.\n\nThe artifact theme is the initial choice. The reader can override it using the theme controls or `style` query parameter. Browse is the default reading experience; presentation is authored as a block, not selected from an artifact-wide toolbar.\n\nDraft and preview artifacts are **visible on the current home screen** with labels. Only archived entries are removed from discovery. Status is not access control; anything committed to this public repository is public. Importing locally does not publish to GitHub. A local draft persists in this browser; exercise answers and checklist selections do not. They reset when their block unmounts or the page closes.\n\n## Authoring and verification\n\n1. Compose JSON using the shapes below and select `preview` for work awaiting review.\n2. Keep source attribution, uncertainty and content boundaries explicit. Use `embed` source cards until citations have a dedicated contract.\n3. Add the JSON under `app/src/content/`. Vite discovers every `.json` file in that directory, validates it at startup/build time, and adds it to Browse automatically. There is no per-file React import or registry.\n4. Run `node --experimental-strip-types --test tests/validation.test.mjs` with Node 22.18+ (or Node 24). This needs no package install. It checks the actual content files, the legacy fixture and every valid JSON example in this catalog.\n5. In the running app, inspect Browse, slideshow controls, all five themes, narrow screens and keyboard interaction. A passing validator does not replace visual review.\n\nThe validator is used for bundled content, pasted/file imports and saved-draft restoration. Invalid imports leave the current draft untouched and report paths such as `$.blocks[2].options[0]`. An unreadable saved draft displays the starter and an alert, retaining the saved value until the author edits, imports or resets. Required fields of the wrong type reject the artifact; no partial import or silent repair occurs.\n\nTo enrich an existing subject, first search `app/src/content/` for its slug, tags and `series.id`. Edit the existing artifact when the idea belongs on the same page; otherwise add another artifact with the same `series.id`, the same `series.title`, and a new `series.order`. The home shelf and previous/next navigation update automatically. Keep new work in `preview` until the contributor and publisher have reviewed it.\n\nStudio’s Add menu covers **13 of 22** types: `text`, `slideshow`, `compact-table`, `diagram`, `note-callout`, `steps`, `checklist`, `timeline`, `comparison`, `resource-list`, `quote`, `divider`, and `cta-band`. It can also edit an existing `hero`. Still missing from Add (use Import / JSON): `hero` (add), `stat-strip`, `code`, `embed`, `image`, `exercise`, `choice`, `fill-in`, `reveal`. **Rich blocks = JSON tab:** unsupported Add types still render in preview when present. Templates may contain richer blocks. This catalog documents all 22 renderer types, not only Studio's Add menu.\n\n## Widget reference\n\nEvery example is a complete valid block. All fields shown are required unless explicitly marked optional below. String-array and object-array distinctions matter. Empty arrays are accepted for display lists and render no entries; prefer a text or callout explaining missing evidence. Exercises must have an option referenced by `answer`.\n\n### `hero`\n\nUse for a page's main orientation. Required strings: `title`, `body`. Optional string: `eyebrow`.\n\n```json\n{ \"id\": \"start\", \"type\": \"hero\", \"eyebrow\": \"Short lesson\", \"title\": \"Follow the signal\", \"body\": \"Learn to separate a command from the load it controls.\" }\n```\n\nBad: `{\"id\":\"start\",\"type\":\"hero\",\"props\":{\"title\":\"Hello\",\"body\":\"World\"}}` is missing the required top-level fields. Browse renders an `h1` and introduction. Prefer one hero per artifact and short titles. Omitting `eyebrow` leaves its container empty; there is no inferred subtitle.\n\n### `text`\n\nUse for one explanation. Required strings: `heading`, `body`.\n\n```json\n{ \"id\": \"meaning\", \"type\": \"text\", \"heading\": \"Name the reference\", \"body\": \"A voltage is measured between two points.\" }\n```\n\nBad: `{\"id\":\"meaning\",\"type\":\"text\",\"heading\":\"Reference\",\"body\":[\"First\",\"Second\"]}` uses an array where a string is required. Both views render `h2` and one paragraph. Do not depend on Markdown, HTML or line breaks creating separate paragraphs. Long prose can overflow a presentation viewport; split ideas into blocks.\n\n### `stat-strip`\n\nUse for a small set of sourced figures. Required `items`: array of objects with string `value` and `label`. Numbers must be formatted as strings.\n\n```json\n{ \"id\": \"figures\", \"type\": \"stat-strip\", \"items\": [{ \"value\": \"12 V\", \"label\": \"Hypothetical supply\" }, { \"value\": \"1 kΩ\", \"label\": \"Hypothetical resistance\" }] }\n```\n\nBad: `{\"id\":\"figures\",\"type\":\"stat-strip\",\"items\":[{\"value\":12,\"label\":\"Volts\"}]}` has a numeric value. Both views show labeled figure cards in a region named “Key figures.” Labels must explain units and scope without relying on color. Empty items show no figures. Keep labels distinct because the renderer uses them as keys.\n\n### `steps`\n\nUse for an ordered sequence. Required string `heading`; `items` is an array of strings.\n\n```json\n{ \"id\": \"sequence\", \"type\": \"steps\", \"heading\": \"Work the question\", \"items\": [\"State the expected result.\", \"Compare it with the observation.\", \"Choose one next check.\"] }\n```\n\nBad: `{\"id\":\"sequence\",\"type\":\"steps\",\"heading\":\"Sequence\",\"items\":[{\"label\":\"First\"}]}` has an object instead of a string. Both views show an ordered list with visual numbering. Write steps that make sense in reading order; they are not expandable or tracked. Empty items leave only the heading. Avoid duplicate text keys.\n\n### `comparison`\n\nUse for alternatives or expected versus observed. Required string `heading`; `columns` contains objects with string `name` and `detail`.\n\n```json\n{ \"id\": \"compare\", \"type\": \"comparison\", \"heading\": \"Separate the roles\", \"columns\": [{ \"name\": \"Control\", \"detail\": \"Requests the change.\" }, { \"name\": \"Power\", \"detail\": \"Supplies the load energy.\" }] }\n```\n\nBad: `{\"id\":\"compare\",\"type\":\"comparison\",\"heading\":\"Roles\",\"columns\":[{\"name\":\"Control\"}]}` omits `detail`. Both views render heading-bearing cards in a responsive grid, not a semantic table. Name each card clearly; keep details comparable and names distinct. Empty columns leave only the heading.\n\n### `quote`\n\nUse for a short attributable quotation. Required strings: `quote`, `attribution`.\n\n```json\n{ \"id\": \"quote\", \"type\": \"quote\", \"quote\": \"Record what you can actually support.\", \"attribution\": \"Example wording written for this catalog\" }\n```\n\nBad: `{\"id\":\"quote\",\"type\":\"quote\",\"quote\":\"Someone said this\",\"attribution\":null}` lacks a string attribution. Both views use `figure`, `blockquote` and `figcaption`, with quotation marks added by the renderer. Do not add another pair of outer quotation marks or invent a source. Empty attribution is structurally valid but editorially incomplete.\n\n### `note-callout`\n\nUse for a limit, useful note or warning. Required strings: `title`, `body`. Optional `tone`: `note`, `positive`, `warning`; defaults to `note`.\n\n```json\n{ \"id\": \"limit\", \"type\": \"note-callout\", \"title\": \"Paper example\", \"body\": \"These values explain a principle, not a hardware specification.\", \"tone\": \"note\" }\n```\n\nBad: `{\"id\":\"limit\",\"type\":\"note-callout\",\"title\":\"Limit\",\"body\":\"Read this\",\"tone\":\"danger\"}` uses an unsupported tone. Both views delegate to the hosted `Callout` component. State the meaning in words, not only the tone color; verify hosted contrast and screen-reader behavior in preview. Missing required strings reject the artifact.\n\n### `cta-band`\n\nUse for a closing action expressed as text. Required strings: `heading`, `body`.\n\n```json\n{ \"id\": \"next\", \"type\": \"cta-band\", \"heading\": \"Explain it once\", \"body\": \"Write the distinction in your own words.\" }\n```\n\nBad: `{\"id\":\"next\",\"type\":\"cta-band\",\"heading\":\"Next\",\"body\":false}` has a boolean body. Both views show an accent band and heading. This is not a button or link; an extra `url` is ignored. Write an action the reader can understand without clicking. Check text contrast across themes in the hosted app.\n\n### `checklist`\n\nUse for a temporary self-check. Required string `heading`; `items` contains objects with required string `label` and optional string `detail`.\n\n```json\n{ \"id\": \"review\", \"type\": \"checklist\", \"heading\": \"Review the explanation\", \"items\": [{ \"label\": \"Name the reference\", \"detail\": \"Say what the voltage is relative to.\" }, { \"label\": \"Name one uncertainty\" }] }\n```\n\nBad: `{\"id\":\"review\",\"type\":\"checklist\",\"heading\":\"Review\",\"items\":[\"Done\"]}` uses a string instead of an object. Both views use toggle buttons with `aria-pressed`; native buttons support keyboard activation. Missing `detail` hides the secondary copy. Empty items produce no buttons. Selections are local to the mounted block, not evidence of completion. Use distinct labels.\n\n### `choice`\n\nUse when the copy says pick one. Required string `heading`; `items` contains objects with required string `label` and optional string `detail`.\n\n```json\n{ \"id\": \"pick\", \"type\": \"choice\", \"heading\": \"Choose a gate-drive voltage (pick one)\", \"items\": [{ \"label\": \"5 V\", \"detail\": \"Standard-level gate drive\" }, { \"label\": \"10 V\", \"detail\": \"Full enhancement for this part\" }] }\n```\n\nBad: `{\"id\":\"pick\",\"type\":\"choice\",\"heading\":\"Pick one\",\"items\":[\"A\",\"B\"]}` uses a string instead of an object. A radio group (`role=\"radiogroup\"` with `role=\"radio\"` buttons and `aria-checked`) where one selection replaces the last; tapping the selected item clears it. Use `checklist` when several selections are valid and `exercise` when one option is scored as correct. Selections are local to the mounted block, not evidence of completion. Use distinct labels.\n\n### `fill-in`\n\nUse for worksheet blanks the reader types into. Required string `heading`; `items` contains objects with required string `label` and optional string `placeholder`.\n\n```json\n{ \"id\": \"blanks\", \"type\": \"fill-in\", \"heading\": \"Decode each part\", \"items\": [{ \"label\": \"1 - Brown Black Red Gold\", \"placeholder\": \"value ± tolerance\" }, { \"label\": \"2 - Red Red Brown Silver\", \"placeholder\": \"value ± tolerance\" }] }\n```\n\nBad: `{\"id\":\"blanks\",\"type\":\"fill-in\",\"heading\":\"Blanks\",\"items\":[\"A\"]}` uses a string instead of an object. Each item is a labeled text input. Entries are local to the mounted block and reset when the page closes; nothing is checked, scored or transmitted. Pair with a `reveal` when answers should stay hidden until asked for. Use distinct labels.\n\n### `reveal`\n\nUse for content that must stay hidden until the reader explicitly asks, such as an answer key. Required strings: `heading`, `body`. Optional string `label` for the show button.\n\n```json\n{ \"id\": \"key\", \"type\": \"reveal\", \"heading\": \"Answer key\", \"label\": \"Show the answers\", \"body\": \"1) 1 kΩ ±5%  2) 220 Ω ±10%.\" }\n```\n\nThe body renders only after the reader presses the button (`aria-expanded` toggles; the button then reads Hide). Do not put answers in plain view elsewhere on the page and claim they are hidden.\n\n### `timeline`\n\nUse for chronology. Required string `heading`; `items` contains objects with string `time`, `title` and `detail`.\n\n```json\n{ \"id\": \"history\", \"type\": \"timeline\", \"heading\": \"Observed sequence\", \"items\": [{ \"time\": \"Before\", \"title\": \"Normal state\", \"detail\": \"The expected condition was present.\" }, { \"time\": \"After\", \"title\": \"Changed state\", \"detail\": \"Record the actual difference.\" }] }\n```\n\nBad: `{\"id\":\"history\",\"type\":\"timeline\",\"heading\":\"Sequence\",\"items\":[{\"time\":1,\"title\":\"First\",\"detail\":\"Observed\"}]}` uses a number for `time`. Both views render the authored order with time labels and headings; they do not sort or parse dates. The renderer uses `time` elements without `dateTime`. Make chronology clear in the text and use distinct time labels. Empty items leave the heading.\n\n### `code`\n\nUse for literal code or data to read. Required strings: `heading`, `code`. Optional string `language` is retained but does not enable syntax highlighting.\n\n```json\n{ \"id\": \"data\", \"type\": \"code\", \"heading\": \"A small value\", \"language\": \"json\", \"code\": \"{\\\"schemaVersion\\\": 1}\" }\n```\n\nBad: `{\"id\":\"data\",\"type\":\"code\",\"heading\":\"Data\",\"code\":{\"answer\":1}}` uses an object instead of a string. Both views render escaped text in `pre`/`code`; nothing executes. Provide a plain-language explanation separately, keep lines short and inspect horizontal scrolling on mobile. Missing language changes nothing; empty code renders an empty code region.\n\n### `embed`\n\nUse as a source/reference card. Required strings: `heading`, `source`, `caption`. Optional string `url`, restricted to an absolute HTTP(S) URL.\n\n```json\n{ \"id\": \"source\", \"type\": \"embed\", \"heading\": \"Manufacturer reference\", \"source\": \"Texas Instruments\", \"caption\": \"Gate-drive background; opens an external source.\", \"url\": \"https://www.ti.com/lit/slua618\" }\n```\n\nBad: `{\"id\":\"source\",\"type\":\"embed\",\"heading\":\"Source\",\"source\":\"Untrusted\",\"caption\":\"Open\",\"url\":\"javascript:alert(1)\"}` is rejected. Both views show a reference card, not an iframe, video player or fetched page. With no URL there is no link. With a URL, “Open source” opens a new tab with `rel=\"noreferrer\"`. Name the source and what it supports in adjacent text; the generic repeated link label is a current accessibility limitation. No loading or remote-error state exists because the app does not fetch the source.\n\n### `image`\n\nUse for an authored visual that materially improves the explanation. Required strings: `src`, `alt`, `caption`. Optional strings: `heading`, `sourceUrl`. `src` accepts a root-relative asset path such as `/images/network.svg` or an absolute HTTP(S) URL. `sourceUrl`, when present, must be absolute HTTP(S).\n\n```json\n{ \"id\": \"topology\", \"type\": \"image\", \"heading\": \"A separated lab\", \"src\": \"/images/defensive-home-lab.svg\", \"alt\": \"A router separates trusted devices, a passive sensor, and an isolated decoy.\", \"caption\": \"A defensive lab topology.\" }\n```\n\nBad: `{\"id\":\"image\",\"type\":\"image\",\"src\":\"javascript:alert(1)\",\"alt\":\"\",\"caption\":\"Unsafe\"}` uses a disallowed source. The renderer uses a responsive `img`, lazy loading, authored alternative text and a visible caption. If the image fails, it replaces the empty frame with an “Image unavailable” warning that retains the caption. Decorative images should use an empty `alt`; informative images need equivalent meaning in `alt` and surrounding content. Prefer repository assets for stable, privacy-preserving media. An approved first-party object-storage URL can use the same `src` field later; external hosts learn the reader's IP and referrer policy may vary, so review them deliberately. This block never accepts uploads or executable markup by itself.\n\n### `resource-list`\n\nUse for a curated set of sources or next-step links. Required string `heading`; `items` contains objects with string `label`, `detail` and absolute HTTP(S) `url`.\n\n```json\n{ \"id\": \"references\", \"type\": \"resource-list\", \"heading\": \"Official references\", \"items\": [{ \"label\": \"NIST publications\", \"detail\": \"Primary cybersecurity guidance.\", \"url\": \"https://csrc.nist.gov/publications\" }] }\n```\n\nBad: `{\"id\":\"references\",\"type\":\"resource-list\",\"heading\":\"Links\",\"items\":[{\"label\":\"Run this\",\"detail\":\"Unsafe scheme\",\"url\":\"data:text/html,test\"}]}` is rejected. Each item is one keyboard-focusable link with a descriptive label and detail; a visual arrow is hidden from assistive technology. Links open in a new tab with `rel=\"noreferrer\"`. Empty items leave only the heading. Prefer primary sources, distinct labels and enough detail to explain why each link belongs.\n\n### `exercise`\n\nUse for a single-choice knowledge check. Required strings: `heading`, `prompt`, `explanation`; `options` is an array of strings. Required `answer` is a zero-based integer indexing an existing option. Prefer at least two distinct choices.\n\n```json\n{ \"id\": \"check\", \"type\": \"exercise\", \"heading\": \"Check the model\", \"prompt\": \"What does a voltage need?\", \"options\": [\"A reference point\", \"A moving part\"], \"answer\": 0, \"explanation\": \"Voltage describes a difference between two points.\" }\n```\n\nBad: `{\"id\":\"check\",\"type\":\"exercise\",\"heading\":\"Check\",\"prompt\":\"Choose\",\"options\":[\"A\",\"B\"],\"answer\":2,\"explanation\":\"Why\"}` points past the options array. Both views show numbered buttons with `aria-pressed` and a feedback callout after selection. The explanation stays hidden until the reader presses \"Show the worked answer\" after any pick; picking a different option hides it again. Options are buttons, not a radio group; selections reset on unmount and no score is exported. Feedback is not explicitly a live region in this renderer. Do not claim assessment persistence or proven screen-reader announcements.\n\n\n### `compact-table`\n\nUse for small comparison or reference grids. Required string `heading`; required `columns` array of strings; required `rows` array of string arrays with exactly one cell per column. Optional string `caption`.\n\n```json\n{ \"id\": \"matrix\", \"type\": \"compact-table\", \"heading\": \"Choose a path\", \"columns\": [\"Need\", \"Start\"], \"rows\": [[\"Read\", \"Open the page\"], [\"Build\", \"Open Studio\"]], \"caption\": \"A compact starting map.\" }\n```\n\nBad: `{\"id\":\"matrix\",\"type\":\"compact-table\",\"heading\":\"Map\",\"columns\":[\"A\",\"B\"],\"rows\":[[\"only one\"]]}` has the wrong number of cells. The renderer uses a semantic table inside a horizontally scrollable container. When a table is wider than its container the wrapper shows a right-edge fade and a \"scrolls sideways\" hint until the reader reaches the end. Keep it compact; use prose for long explanations.\n\n### `diagram`\n\nUse for a short ordered flow. Required string `heading`; required `nodes` array with string `title` and `detail`.\n\n```json\n{ \"id\": \"flow\", \"type\": \"diagram\", \"heading\": \"From signal to action\", \"nodes\": [{ \"title\": \"Observe\", \"detail\": \"Name the input.\" }, { \"title\": \"Decide\", \"detail\": \"Choose the next check.\" }] }\n```\n\nBad: `{\"id\":\"flow\",\"type\":\"diagram\",\"heading\":\"Flow\",\"nodes\":[\"Start\"]}` uses a string instead of a node object. The visual arrows reinforce array order; the semantic ordered list carries the same sequence without relying on the arrows.\n\n### `slideshow`\n\nUse when a page needs a paced presentation sequence. Required string `heading`; required `slides` array with string `title` and `body`.\n\n```json\n{ \"id\": \"tour\", \"type\": \"slideshow\", \"heading\": \"A short tour\", \"slides\": [{ \"title\": \"Browse first\", \"body\": \"Open as a readable page.\" }, { \"title\": \"Present in place\", \"body\": \"Use the block controls.\" }] }\n```\n\nBad: `{\"id\":\"tour\",\"type\":\"slideshow\",\"heading\":\"Tour\",\"slides\":[{\"title\":\"Missing body\"}]}` is incomplete. The block has previous, next, and numbered controls with a position indicator. It does not auto-advance, alter the artifact URL, or turn the whole artifact into a mode.\n\n### `divider`\n\nUse sparingly as a conceptual break. Optional string `label`; no other widget fields are required.\n\n```json\n{ \"id\": \"pause\", \"type\": \"divider\", \"label\": \"Apply the idea\" }\n```\n\nBad: `{\"id\":\"pause\",\"type\":\"divider\",\"label\":42}` has a numeric label. Browse shows a visual break within the page. Omitting the label leaves an unlabeled visual divider. The renderer uses a `div`, not a heading or semantic separator; do not use it as the only structure for essential instructions.\n\n## Links and compatibility\n\nThe current hosted app reads `?artifact=<slug>` to open a discovered page. Every artifact opens in its authored theme; the theme dots are a viewer-only preview that resets to the authored theme on navigation or reload, and no theme is read from the URL. An unknown artifact currently returns home. Keep slugs and block IDs stable; query values should be URL-encoded. There is no declared standalone `/p/<slug>` route or new production domain in this repository.\n\nThis documents the existing routing shape for current links; it does not promise a future route migration policy. A local Studio import is not registered as a shareable artifact. There is no automatic repository-to-hosted-preview deployment configured here.\n\n`legacy-fixture.ts` and the checked-in artifacts remain version 1. Changing required fields or block names later needs an explicit compatibility or migration decision. New renderer capabilities need their own implementation and review; adding a type name to content does not create them.\n\n"
+    },
+    "schema": {
+      "path": "app/src/schema.ts",
+      "sha256": "9c960b57574cd97ba0912cb810ac54a21d49a3dbdcbcb040e828f26b46df29b0",
+      "content": "export type ThemeId = 'paper' | 'signal' | 'workshop' | 'night' | 'field';\nexport type Status = 'draft' | 'preview' | 'published' | 'archived';\nexport type Block =\n  | { id:string; type:'hero'; eyebrow?:string; title:string; body:string }\n  | { id:string; type:'text'; heading:string; body:string }\n  | { id:string; type:'stat-strip'; items:{value:string;label:string}[] }\n  | { id:string; type:'steps'; heading:string; items:string[] }\n  | { id:string; type:'comparison'; heading:string; columns:{name:string;detail:string}[] }\n  | { id:string; type:'quote'; quote:string; attribution:string }\n  | { id:string; type:'note-callout'; title:string; body:string; tone?:'note'|'positive'|'warning' }\n  | { id:string; type:'cta-band'; heading:string; body:string }\n  | { id:string; type:'checklist'; heading:string; items:{label:string;detail?:string}[] }\n  | { id:string; type:'choice'; heading:string; items:{label:string;detail?:string}[] }\n  | { id:string; type:'fill-in'; heading:string; items:{label:string;placeholder?:string}[] }\n  | { id:string; type:'reveal'; heading:string; body:string; label?:string }\n  | { id:string; type:'timeline'; heading:string; items:{time:string;title:string;detail:string}[] }\n  | { id:string; type:'code'; heading:string; language?:string; code:string }\n  | { id:string; type:'embed'; heading:string; source:string; caption:string; url?:string }\n  | { id:string; type:'image'; heading?:string; src:string; alt:string; caption:string; sourceUrl?:string }\n  | { id:string; type:'resource-list'; heading:string; items:{label:string;detail:string;url:string}[] }\n  | { id:string; type:'exercise'; heading:string; prompt:string; options:string[]; answer:number; explanation:string; correctFeedback?:string; wrongFeedback?:string }\n  | { id:string; type:'compact-table'; heading:string; columns:string[]; rows:string[][]; caption?:string }\n  | { id:string; type:'diagram'; heading:string; nodes:{title:string;detail:string}[] }\n  | { id:string; type:'slideshow'; heading:string; slides:{title:string;body:string}[] }\n  | { id:string; type:'divider'; label?:string };\nexport type Artifact={schemaVersion:1;slug:string;title:string;summary:string;contributor:string;status:Status;theme:ThemeId;series?:{id:string;title:string;order:number};tags?:string[];updated?:string;blocks:Block[]};\nexport function defineArtifact(value:Artifact):Artifact{return value}\n\n"
+    }
+  },
+  "artifacts": [
+    {
+      "slug": "allegory-encoding-art",
+      "title": "Art: the craft of the encoding",
+      "summary": "Metaphor domains as artistic medium — aesthetic choices that stay lossy, artful vocabularies, and examples that teach without pointing at real people.",
+      "status": "published",
+      "series": {
+        "id": "allegory-encoding",
+        "title": "Allegory that stays private",
+        "order": 9
+      },
+      "repositoryPath": "app/src/content/allegory-encoding-art.json"
+    },
+    {
+      "slug": "allegory-encoding-eight-rules",
+      "title": "Allegory as lossy encoding",
+      "summary": "Why private allegory exists: teach from a real situation without publishing the people inside it.",
+      "status": "published",
+      "series": {
+        "id": "allegory-encoding",
+        "title": "Allegory that stays private",
+        "order": 1
+      },
+      "repositoryPath": "app/src/content/allegory-encoding-eight-rules.json"
+    },
+    {
+      "slug": "allegory-encoding-execution",
+      "title": "Execution: practicing the eight rules",
+      "summary": "A concrete workflow for drafting, stress-testing, and shipping private allegory — principles turned into steps you can run.",
+      "status": "published",
+      "series": {
+        "id": "allegory-encoding",
+        "title": "Allegory that stays private",
+        "order": 7
+      },
+      "repositoryPath": "app/src/content/allegory-encoding-execution.json"
+    },
+    {
+      "slug": "allegory-encoding-memegory",
+      "title": "Memegory: allegory that travels",
+      "summary": "Allegory built to spread — good when it whispers a checkable proof past the walls of the mind; bad when it steers you to one uncheckable conclusion. Same vehicle, different load.",
+      "status": "published",
+      "series": {
+        "id": "allegory-encoding",
+        "title": "Allegory that stays private",
+        "order": 10
+      },
+      "repositoryPath": "app/src/content/allegory-encoding-memegory.json"
+    },
+    {
+      "slug": "allegory-encoding-rules-action-reader-key",
+      "title": "Rules 7–8: action and the reader as key",
+      "summary": "Gate the page on something a reader can do — and let their own life supply the decryption, not a footnote from you.",
+      "status": "published",
+      "series": {
+        "id": "allegory-encoding",
+        "title": "Allegory that stays private",
+        "order": 5
+      },
+      "repositoryPath": "app/src/content/allegory-encoding-rules-action-reader-key.json"
+    },
+    {
+      "slug": "allegory-encoding-rules-floor-quasi",
+      "title": "Rules 3–4: floor and quasi-identifiers",
+      "summary": "Set a k-anonymity floor so many situations fit, and coarsen the stacks of facts that act like fingerprints.",
+      "status": "published",
+      "series": {
+        "id": "allegory-encoding",
+        "title": "Allegory that stays private",
+        "order": 3
+      },
+      "repositoryPath": "app/src/content/allegory-encoding-rules-floor-quasi.json"
+    },
+    {
+      "slug": "allegory-encoding-rules-mapping-falsifiable",
+      "title": "Rules 5–6: unstable mapping and falsifiability",
+      "summary": "Do not reuse the same costume across tellings, and make claims sharp enough to be wrong — anti-astrology.",
+      "status": "published",
+      "series": {
+        "id": "allegory-encoding",
+        "title": "Allegory that stays private",
+        "order": 4
+      },
+      "repositoryPath": "app/src/content/allegory-encoding-rules-mapping-falsifiable.json"
+    },
+    {
+      "slug": "allegory-encoding-rules-relationships-vocabulary",
+      "title": "Rules 1–2: relationships and lossy vocabulary",
+      "summary": "Map the graph of the trouble, not recoverable people — and choose words that discard identifying detail by construction.",
+      "status": "published",
+      "series": {
+        "id": "allegory-encoding",
+        "title": "Allegory that stays private",
+        "order": 2
+      },
+      "repositoryPath": "app/src/content/allegory-encoding-rules-relationships-vocabulary.json"
+    },
+    {
+      "slug": "allegory-encoding-society",
+      "title": "Society: publishing allegory in public",
+      "summary": "Norms for shared readings, communities, and products — what stays safe, what becomes a cipher, and how groups can use encodings without turning them into dossiers.",
+      "status": "published",
+      "series": {
+        "id": "allegory-encoding",
+        "title": "Allegory that stays private",
+        "order": 8
+      },
+      "repositoryPath": "app/src/content/allegory-encoding-society.json"
+    },
+    {
+      "slug": "allegory-encoding-tests-underside",
+      "title": "Two tests and the underside rule",
+      "summary": "Re-identification and neighbour checks before you publish — and the limit that encoding never launders data you should not have had.",
+      "status": "published",
+      "series": {
+        "id": "allegory-encoding",
+        "title": "Allegory that stays private",
+        "order": 6
+      },
+      "repositoryPath": "app/src/content/allegory-encoding-tests-underside.json"
+    },
+    {
+      "slug": "chainmail-collective-community",
+      "title": "Community: gallery, challenges, clubs",
+      "summary": "Show work, monthly design challenges, how-tos, skill badges, school/club chapters, local meetups.",
+      "status": "published",
+      "series": {
+        "id": "chainmail-collective",
+        "title": "Chainmail Collective",
+        "order": 6
+      },
+      "repositoryPath": "app/src/content/chainmail-collective-community.json"
+    },
+    {
+      "slug": "chainmail-collective-content",
+      "title": "Content pipeline: the loop that sells",
+      "summary": "Design → build → photos/clips → posts/ads → orders — manual first, AI optional, then guided for members.",
+      "status": "published",
+      "series": {
+        "id": "chainmail-collective",
+        "title": "Chainmail Collective",
+        "order": 4
+      },
+      "repositoryPath": "app/src/content/chainmail-collective-content.json"
+    },
+    {
+      "slug": "chainmail-collective-lanes",
+      "title": "Lanes: how people participate",
+      "summary": "Buyer, custom/bulk, builder, paid assembler, designer, affiliate — lanes stack, entry stays low.",
+      "status": "published",
+      "series": {
+        "id": "chainmail-collective",
+        "title": "Chainmail Collective",
+        "order": 3
+      },
+      "repositoryPath": "app/src/content/chainmail-collective-lanes.json"
+    },
+    {
+      "slug": "chainmail-collective-make-ship",
+      "title": "Make & ship: tiers, QC, unboxing",
+      "summary": "Founder builds → home assemblers → bulk/workshop; ring supply, kits packed ahead, filmable packaging.",
+      "status": "published",
+      "series": {
+        "id": "chainmail-collective",
+        "title": "Chainmail Collective",
+        "order": 5
+      },
+      "repositoryPath": "app/src/content/chainmail-collective-make-ship.json"
+    },
+    {
+      "slug": "chainmail-collective-money",
+      "title": "Money: real sales, no pyramid",
+      "summary": "Finished pieces, custom/bulk, kits, pattern royalties, affiliate on real sales — no buy-in, no recruiting pay, no required inventory.",
+      "status": "published",
+      "series": {
+        "id": "chainmail-collective",
+        "title": "Chainmail Collective",
+        "order": 7
+      },
+      "repositoryPath": "app/src/content/chainmail-collective-money.json"
+    },
+    {
+      "slug": "chainmail-collective-products",
+      "title": "Products: rings into things people want",
+      "summary": "Wearables, symbols, everyday items, patches, custom logos, wall art, DIY kits, pattern files, and gift lines — one medium, many SKUs.",
+      "status": "published",
+      "series": {
+        "id": "chainmail-collective",
+        "title": "Chainmail Collective",
+        "order": 2
+      },
+      "repositoryPath": "app/src/content/chainmail-collective-products.json"
+    },
+    {
+      "slug": "chainmail-collective-risks",
+      "title": "Risks: labor, copycats, legal, open questions",
+      "summary": "Price floors, copycats, trademarks, fair pay, QC at scale, registration/tax/disclosure, and ownership/cost questions still open.",
+      "status": "published",
+      "series": {
+        "id": "chainmail-collective",
+        "title": "Chainmail Collective",
+        "order": 9
+      },
+      "repositoryPath": "app/src/content/chainmail-collective-risks.json"
+    },
+    {
+      "slug": "chainmail-collective-rollout",
+      "title": "Rollout: five phases with proof",
+      "summary": "Prove it → shop → open lanes → guided pipelines → scale — each phase has a proof gate.",
+      "status": "published",
+      "series": {
+        "id": "chainmail-collective",
+        "title": "Chainmail Collective",
+        "order": 8
+      },
+      "repositoryPath": "app/src/content/chainmail-collective-rollout.json"
+    },
+    {
+      "slug": "chainmail-collective",
+      "title": "Chainmail Collective",
+      "summary": "Small colored rings linked into shapes that advertise themselves — one medium, endless designs, lanes for every kind of maker.",
+      "status": "published",
+      "series": {
+        "id": "chainmail-collective",
+        "title": "Chainmail Collective",
+        "order": 1
+      },
+      "repositoryPath": "app/src/content/chainmail-collective.json"
+    },
+    {
+      "slug": "tiny-proof",
+      "title": "Build one tiny proof",
+      "summary": "A second-contributor example made only from the shared JSON block contract.",
+      "status": "published",
+      "repositoryPath": "app/src/content/contributor.json"
+    },
+    {
+      "slug": "defensive-local-security-lab",
+      "title": "Build a defensive local-security lab",
+      "summary": "A consent-based home lab for isolating owned devices, inventorying listeners, observing network metadata, and running a contained decoy.",
+      "status": "preview",
+      "series": {
+        "id": "local-security-lab",
+        "title": "Defensive local security",
+        "order": 1
+      },
+      "repositoryPath": "app/src/content/defensive-local-security-lab.json"
+    },
+    {
+      "slug": "field-notes",
+      "title": "Read the machine before touching it",
+      "summary": "A practical first-look sequence for unfamiliar equipment.",
+      "status": "published",
+      "repositoryPath": "app/src/content/field-notes.json"
+    },
+    {
+      "slug": "github-what-just-happened",
+      "title": "GitHub, explained with what happened here this week",
+      "summary": "Branches, pull requests, review, merges, deploys, direct commits, rollback and app authorizations, each shown with a real event from the Showmob repository.",
+      "status": "preview",
+      "series": {
+        "id": "github-in-practice",
+        "title": "GitHub in practice",
+        "order": 1
+      },
+      "repositoryPath": "app/src/content/github-what-just-happened.json"
+    },
+    {
+      "slug": "gn-48-hours-of-one-machine-breakdown-from-first-alarm-to-root-cause",
+      "title": "48 hours of one machine breakdown, from first alarm to root cause",
+      "summary": "A fictional two-day failure on a fictional line: the clock and the cause both matter, and the first suspect is wrong.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-48-hours-of-one-machine-breakdown-from-first-alarm-to-root-cause.json"
+    },
+    {
+      "slug": "gn-a-30-person-backyard-birthday-party-on-a-400-budget",
+      "title": "A 30-person backyard birthday party on a $400 budget",
+      "summary": "A celebratory $400 plan for 30 people: food, drinks, decor, and a contingency that still feels like a party.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-a-30-person-backyard-birthday-party-on-a-400-budget.json"
+    },
+    {
+      "slug": "gn-a-dashboard-for-a-single-houseplant",
+      "title": "A dashboard for a single houseplant",
+      "summary": "Everything there is to know about one pothos, presented at exactly the scale of the information.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-a-dashboard-for-a-single-houseplant.json"
+    },
+    {
+      "slug": "gn-a-day-in-the-life-of-a-torque-wrench-told-by-the-torque-wrench",
+      "title": "A day in the life of a torque wrench, told by the torque wrench",
+      "summary": "A whimsical first-person note from a click-type torque wrench about calibration anxiety, over-torquers, and the one bolt that mattered.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-a-day-in-the-life-of-a-torque-wrench-told-by-the-torque-wrench.json"
+    },
+    {
+      "slug": "gn-a-dungeon-crawl-where-each-room-is-a-basic-electronics-puzzle",
+      "title": "A dungeon crawl where each room is a basic electronics puzzle",
+      "summary": "A playful session: move room to room, solve basic electronics puzzles, earn the next door.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-a-dungeon-crawl-where-each-room-is-a-basic-electronics-puzzle.json"
+    },
+    {
+      "slug": "gn-a-fantasy-novel-universe-3-kingdoms-40-characters-300-years-of-events",
+      "title": "A fantasy novel universe: 3 kingdoms, 40 characters, 300 years of events",
+      "summary": "The invented Tidewars saga: three powers, seven eras, and a forty-person cast register, with central figures called out first.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-a-fantasy-novel-universe-3-kingdoms-40-characters-300-years-of-events.json"
+    },
+    {
+      "slug": "gn-a-fictional-space-colony-s-power-grid-politics-and-supply-chain",
+      "title": "A fictional space colony's power grid, politics, and supply chain",
+      "summary": "Meridian Station runs on 40 megawatts, three factions, and a parts pipeline fourteen months long. A tour of how the electrons, the arguments, and the cargo ships connect.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-a-fictional-space-colony-s-power-grid-politics-and-supply-chain.json"
+    },
+    {
+      "slug": "gn-a-love-letter-to-the-555-timer-ic",
+      "title": "A love letter to the 555 timer IC",
+      "summary": "An affectionate note to the 555: eight pins, a century of hobbyist blinks, still teaching timing.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-a-love-letter-to-the-555-timer-ic.json"
+    },
+    {
+      "slug": "gn-a-morning-routine-with-a-6-15-am-hard-stop",
+      "title": "A morning routine with a 6:15 AM hard stop",
+      "summary": "Sixty minutes, five stations, one door. The hard stop is the whole design.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-a-morning-routine-with-a-6-15-am-hard-stop.json"
+    },
+    {
+      "slug": "gn-a-semiconductor-fab-sand-to-packaged-chip-400-steps-grouped",
+      "title": "A semiconductor fab: sand to packaged chip, 400+ steps grouped",
+      "summary": "Four hundred-plus fab steps collapsed into real process stages — from quartz sand to a packaged, tested chip — with awe kept proportional to the factories that earn it.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-a-semiconductor-fab-sand-to-packaged-chip-400-steps-grouped.json"
+    },
+    {
+      "slug": "gn-a-small-repos-git-history-told-as-a-story-what-each-commit-changed-and-why",
+      "title": "A small repo's git history told as a story: what each commit changed and why",
+      "summary": "Eleven commits from a fictional plant-tracker repo, read as decisions instead of diffs - a history is a story about what the author was worried about.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-a-small-repos-git-history-told-as-a-story-what-each-commit-changed-and-why.json"
+    },
+    {
+      "slug": "gn-a-superheterodyne-receiver-signal-path-stage-by-stage",
+      "title": "A superheterodyne receiver signal path, stage by stage",
+      "summary": "How one 1930s idea still pulls a station out of the air: mix every signal to one fixed frequency, then do all the hard work there.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-a-superheterodyne-receiver-signal-path-stage-by-stage.json"
+    },
+    {
+      "slug": "gn-a-tarot-deck-of-machining-sins-chatter-crashed-tool-forgotten-work-offset",
+      "title": "A tarot deck of machining sins: chatter, crashed tool, forgotten work offset",
+      "summary": "A wry inventory of machining failure modes as tarot cards — what each sin looks like, how it starts, and the one habit that breaks the spell.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-a-tarot-deck-of-machining-sins-chatter-crashed-tool-forgotten-work-offset.json"
+    },
+    {
+      "slug": "gn-a-troubleshooting-decision-tree-for-a-vfd-that-trips-on-overvoltage-during-decel",
+      "title": "A troubleshooting decision tree for a VFD that trips on overvoltage during decel",
+      "summary": "Fast branch structure for a VFD overvoltage trip on deceleration — short headings, not an essay.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-a-troubleshooting-decision-tree-for-a-vfd-that-trips-on-overvoltage-during-decel.json"
+    },
+    {
+      "slug": "gn-a-year-of-a-household-s-electric-bills-and-what-changed",
+      "title": "A year of a household's electric bills and what changed",
+      "summary": "Example monthly kWh and dollar data for one household, with notes on what actually moved the bill.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-a-year-of-a-household-s-electric-bills-and-what-changed.json"
+    },
+    {
+      "slug": "gn-an-entire-automotive-stamping-plant-lines-plcs-networks-maintenance-crews",
+      "title": "An entire automotive stamping plant: lines, PLCs, networks, maintenance crews",
+      "summary": "A hierarchical map of a fictional stamping plant — from the front gate down through lines, controls, networks, and the crews who keep steel moving.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-an-entire-automotive-stamping-plant-lines-plcs-networks-maintenance-crews.json"
+    },
+    {
+      "slug": "gn-an-infographic-of-my-favorite-color",
+      "title": "An infographic of my favorite color",
+      "summary": "The color is blue. There is nothing else to chart.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-an-infographic-of-my-favorite-color.json"
+    },
+    {
+      "slug": "gn-andon-board-for-a-small-assembly-line-stations-alerts-response-times",
+      "title": "Andon board for a small assembly line: stations, alerts, response times",
+      "summary": "One board that turns a call for help into a visible clock: six stations, three alert states, and response times everyone can see.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-andon-board-for-a-small-assembly-line-stations-alerts-response-times.json"
+    },
+    {
+      "slug": "gn-building-a-2-meter-j-pole-antenna-this-weekend",
+      "title": "Building a 2-meter J-pole antenna this weekend",
+      "summary": "Copper pipe, a few fittings, and a Saturday: a classic 2-meter J-pole you can hang and check with an SWR meter.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-building-a-2-meter-j-pole-antenna-this-weekend.json"
+    },
+    {
+      "slug": "gn-changing-a-furnace-filter-finding-the-size-and-which-way-the-arrow-points",
+      "title": "Changing a furnace filter: finding the size and which way the arrow points",
+      "summary": "The size is printed on the old filter. The arrow points at the furnace. Everything else is a five-minute job.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-changing-a-furnace-filter-finding-the-size-and-which-way-the-arrow-points.json"
+    },
+    {
+      "slug": "gn-choose-your-own-adventure-youre-the-plc-and-someone-just-hit-the-e-stop",
+      "title": "Choose your own adventure: you're the PLC and someone just hit the e-stop",
+      "summary": "A playful walk through a serious subject: what actually happens in the half second after an e-stop, from the point of view of the controller who finds out last.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-choose-your-own-adventure-youre-the-plc-and-someone-just-hit-the-e-stop.json"
+    },
+    {
+      "slug": "gn-conflicting-advice-on-whether-it-s-safe-to-discharge-a-capacitor-with-a-screwdriver",
+      "title": "Conflicting advice on whether it's safe to discharge a capacitor with a screwdriver",
+      "summary": "Do not short a capacitor with a screwdriver. Identify the equipment and use its rated discharge and verification procedure.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-conflicting-advice-on-whether-it-s-safe-to-discharge-a-capacitor-with-a-screwdriver.json"
+    },
+    {
+      "slug": "gn-converting-a-one-car-garage-into-a-small-machine-shop-power-layout-budget-a",
+      "title": "Converting a one-car garage into a small machine shop: power, layout, budget",
+      "summary": "A phased schedule for turning a one-car garage into a usable small shop — power and layout follow the calendar, not a floorplan sketch.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-converting-a-one-car-garage-into-a-small-machine-shop-power-layout-budget-a.json"
+    },
+    {
+      "slug": "gn-converting-a-one-car-garage-into-a-small-machine-shop-power-layout-budget-b",
+      "title": "Converting a one-car garage into a small machine shop: power, layout, budget",
+      "summary": "Floorplan-first: where the lathe, mill, welder, and circuits sit in a ~12×20 one-car bay, then the power and budget that make that map real.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-converting-a-one-car-garage-into-a-small-machine-shop-power-layout-budget-b.json"
+    },
+    {
+      "slug": "gn-daily-pre-shift-inspection-checklist-for-a-cnc-lathe",
+      "title": "Daily pre-shift inspection checklist for a CNC lathe",
+      "summary": "A neutral daily checklist template for a CNC lathe — generic example data, ready to print or copy.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-daily-pre-shift-inspection-checklist-for-a-cnc-lathe.json"
+    },
+    {
+      "slug": "gn-early-idea-a-shop-floor-app-for-logging-tool-wear-not-validated-yet",
+      "title": "Early idea: a shop-floor app for logging tool wear, not validated yet",
+      "summary": "A weak, unvalidated idea — intentionally little UI. One question and a short note on what evidence would earn more page.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-early-idea-a-shop-floor-app-for-logging-tool-wear-not-validated-yet.json"
+    },
+    {
+      "slug": "gn-every-screwdriver-type-ranked-by-how-easy-it-is-to-strip",
+      "title": "Every screwdriver type ranked by how easy it is to strip",
+      "summary": "A completely unscientific ranking, from 'designed to strip' to 'you will break before it does.'",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-every-screwdriver-type-ranked-by-how-easy-it-is-to-strip.json"
+    },
+    {
+      "slug": "gn-g-code-fundamentals-reading-a-20-line-facing-program-line-by-line",
+      "title": "G-code fundamentals: reading a 20-line facing program line by line",
+      "summary": "Exactly twenty lines of a simulated facing program, with every line explained and the geometry stated.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-g-code-fundamentals-reading-a-20-line-facing-program-line-by-line.json"
+    },
+    {
+      "slug": "gn-gd-t-for-machinists-the-14-symbols-and-when-each-one-matters",
+      "title": "GD&T for machinists: the 14 symbols and when each one matters",
+      "summary": "An inventory of the fourteen common GD&T geometric characteristic symbols with shop-floor cues for when each one changes how you make or inspect a part.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-gd-t-for-machinists-the-14-symbols-and-when-each-one-matters.json"
+    },
+    {
+      "slug": "gn-grant-proposal-summary-for-a-high-school-ham-radio-club",
+      "title": "Grant proposal summary for a high school ham radio club",
+      "summary": "An earnest one-page grant summary: club purpose, student outcomes, budget ask, and how success will be measured.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-grant-proposal-summary-for-a-high-school-ham-radio-club.json"
+    },
+    {
+      "slug": "gn-grocery-list-for-tacos-for-four",
+      "title": "Grocery list for tacos for four",
+      "summary": "A checked list for four people: tortillas, protein, toppings, and the two things you always forget.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-grocery-list-for-tacos-for-four.json"
+    },
+    {
+      "slug": "gn-half-finished-notes-from-a-vendor-call-about-a-new-servo-drive-gaps-marked",
+      "title": "Half-finished notes from a vendor call about a new servo drive, gaps marked",
+      "summary": "Real notes from a real kind of call: half the answers, twice the confidence. Everything unknown is marked unknown.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-half-finished-notes-from-a-vendor-call-about-a-new-servo-drive-gaps-marked.json"
+    },
+    {
+      "slug": "gn-ham-radio-contest-log-with-running-score-and-band-activity",
+      "title": "Ham radio contest log with running score and band-activity",
+      "summary": "An energetic living contest log: example QSOs, running score, and which bands are hot right now.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-ham-radio-contest-log-with-running-score-and-band-activity.json"
+    },
+    {
+      "slug": "gn-hire-an-apprentice-machinist-or-buy-a-second-cnc-the-case",
+      "title": "Hire an apprentice machinist or buy a second CNC: the case",
+      "summary": "A two-person job shop has one bottleneck and two ways to spend the same money. This page makes the case for the person - and says what would change the answer.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-hire-an-apprentice-machinist-or-buy-a-second-cnc-the-case.json"
+    },
+    {
+      "slug": "gn-holiday-sales-forecast-for-a-small-online-shop-with-only-two-years-of-data",
+      "title": "Holiday sales forecast for a small online shop with only two years of data",
+      "summary": "Two holiday seasons of one fictional shop, and a forecast that is honest enough to be a range instead of a number.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-holiday-sales-forecast-for-a-small-online-shop-with-only-two-years-of-data.json"
+    },
+    {
+      "slug": "gn-how-a-mosfet-switches-gate-charge-rds-on-and-thermal-limits-a",
+      "title": "How a MOSFET switches: gate charge, Rds(on), and thermal limits",
+      "summary": "A linear read-through of MOSFET switching: gate charge moves the device, Rds(on) sets conduction loss, and heat decides whether it survives.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-how-a-mosfet-switches-gate-charge-rds-on-and-thermal-limits-a.json"
+    },
+    {
+      "slug": "gn-how-a-mosfet-switches-gate-charge-rds-on-and-thermal-limits-b",
+      "title": "How a MOSFET switches: gate charge, Rds(on), and thermal limits",
+      "summary": "Explorer-style walkthrough: pick a gate-drive voltage and a load current, then read Qg, Rds(on), conduction loss, and temperature rise from the tables.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-how-a-mosfet-switches-gate-charge-rds-on-and-thermal-limits-b.json"
+    },
+    {
+      "slug": "gn-how-cnc-evolved-from-punched-tape-nc-machines",
+      "title": "How CNC evolved from punched-tape NC machines",
+      "summary": "From holes in paper tape to conversational controls at the spindle: each era of numerical control fixed the era before it.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-how-cnc-evolved-from-punched-tape-nc-machines.json"
+    },
+    {
+      "slug": "gn-how-long-to-boil-an-egg-for-soft-medium-and-hard-a",
+      "title": "How long to boil an egg for soft, medium, and hard",
+      "summary": "One table: minutes at a rolling boil for each doneness, timed from when the water boils.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-how-long-to-boil-an-egg-for-soft-medium-and-hard-a.json"
+    },
+    {
+      "slug": "gn-how-long-to-boil-an-egg-for-soft-medium-and-hard",
+      "title": "How long to boil an egg for soft, medium, and hard",
+      "summary": "A timer that starts when the water boils: six, eight, or eleven minutes to the yolk you want.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-how-long-to-boil-an-egg-for-soft-medium-and-hard.json"
+    },
+    {
+      "slug": "gn-how-to-reset-a-tripped-gfci-outlet",
+      "title": "How to reset a tripped GFCI outlet",
+      "summary": "Unplug the load, press RESET on the outlet with the TEST/RESET buttons, then plug back in. If it will not stay reset, stop and find the fault.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-how-to-reset-a-tripped-gfci-outlet.json"
+    },
+    {
+      "slug": "gn-inbox-triage-14-example-emails-sorted-into-do-delegate-defer-drop",
+      "title": "Inbox triage: 14 example emails sorted into do, delegate, defer, drop",
+      "summary": "Four buckets, fourteen fictional emails, one pass. The rule is that every message gets a verdict, not a reread.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-inbox-triage-14-example-emails-sorted-into-do-delegate-defer-drop.json"
+    },
+    {
+      "slug": "gn-intermittent-fault-a-conveyor-stops-at-random-2-3-times-a-week-cause-unknown",
+      "title": "Intermittent fault: a conveyor stops at random 2-3 times a week, cause unknown",
+      "summary": "A working investigation board for a conveyor that dies a few times a week — known facts separated hard from guesses.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-intermittent-fault-a-conveyor-stops-at-random-2-3-times-a-week-cause-unknown.json"
+    },
+    {
+      "slug": "gn-interview-prep-sheet-star-stories-for-a-maintenance-tech-role-example-candidate",
+      "title": "Interview prep sheet: STAR stories for a maintenance tech role (example candidate)",
+      "summary": "Fictional candidate Maya Ortega's STAR stories for a maintenance tech interview — situations you can adapt, not a biography.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-interview-prep-sheet-star-stories-for-a-maintenance-tech-role-example-candidate.json"
+    },
+    {
+      "slug": "gn-is-a-used-lathe-worth-2-500-photos-show-wear-seller-not-answering",
+      "title": "Is a used lathe worth $2,500? Photos show wear, seller not answering",
+      "summary": "A skeptical walk through a $2,500 used lathe listing when photos show wear and the seller goes quiet.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-is-a-used-lathe-worth-2-500-photos-show-wear-seller-not-answering.json"
+    },
+    {
+      "slug": "gn-learning-morse-code-as-a-mixtape-letters-by-rhythm",
+      "title": "Learning Morse code as a mixtape: letters by rhythm",
+      "summary": "Learn Morse the way you learn songs: by rhythm and sound, in tracks, not by memorizing a chart of dots and dashes.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-learning-morse-code-as-a-mixtape-letters-by-rhythm.json"
+    },
+    {
+      "slug": "gn-live-oee-dashboard-for-a-3-machine-cnc-cell-example-data",
+      "title": "Live OEE dashboard for a 3-machine CNC cell (example data)",
+      "summary": "A fictional 18:00 snapshot with raw counts, reproducible OEE and an honest loss breakdown.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-live-oee-dashboard-for-a-3-machine-cnc-cell-example-data.json"
+    },
+    {
+      "slug": "gn-lockout-tagout-the-full-procedure-and-why-each-step-exists",
+      "title": "Lockout/tagout: the full procedure and why each step exists",
+      "summary": "A training overview of energy control, verification and release; the machine-specific written procedure governs.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-lockout-tagout-the-full-procedure-and-why-each-step-exists.json"
+    },
+    {
+      "slug": "gn-maintenance-shift-handoff-note-what-s-running-what-s-down-what-s-pending",
+      "title": "Maintenance shift handoff note: what's running, what's down, what's pending",
+      "summary": "A focused session handoff: running assets, down assets, and pending work so the next crew does not rediscover the plant from zero.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-maintenance-shift-handoff-note-what-s-running-what-s-down-what-s-pending.json"
+    },
+    {
+      "slug": "gn-migrating-a-plant-line-from-relay-logic-to-a-plc-over-three-weekend-shutdowns",
+      "title": "Migrating a plant line from relay logic to a PLC over three weekend shutdowns",
+      "summary": "Three weekend windows, a hard stop every Sunday at 20:00, and a rollback plan for each phase - the line runs every Monday no matter what.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-migrating-a-plant-line-from-relay-logic-to-a-plc-over-three-weekend-shutdowns.json"
+    },
+    {
+      "slug": "gn-modbus-rtu-framing-and-crc-byte-by-byte",
+      "title": "Modbus RTU framing and CRC, byte by byte",
+      "summary": "One real request frame taken apart byte by byte - address, function, data, and the CRC-16 that guards it - plus the response it earns.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-modbus-rtu-framing-and-crc-byte-by-byte.json"
+    },
+    {
+      "slug": "gn-monthly-household-budget-worksheet-with-example-numbers",
+      "title": "Monthly household budget worksheet with example numbers",
+      "summary": "A plain monthly budget laid out as a worksheet, with a generic example household filling in every line so the shape is obvious.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-monthly-household-budget-worksheet-with-example-numbers.json"
+    },
+    {
+      "slug": "gn-moving-apartments-in-10-days-what-happens-each-day",
+      "title": "Moving apartments in 10 days: what happens each day",
+      "summary": "A day-by-day plan that front-loads the paperwork and leaves only boxes for the final weekend.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-moving-apartments-in-10-days-what-happens-each-day.json"
+    },
+    {
+      "slug": "gn-near-miss-incident-report-form-for-a-small-shop",
+      "title": "Near-miss incident report form for a small shop",
+      "summary": "A one-page form that takes five minutes to fill out and catches the accident that has not happened yet. Template plus a fictional example entry.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-near-miss-incident-report-form-for-a-small-shop.json"
+    },
+    {
+      "slug": "gn-ohm-s-law-practice-problems-with-worked-answers-revealed-on-request",
+      "title": "Ohm's law practice problems with worked answers revealed on request",
+      "summary": "Five problems, one triangle. Try each before opening the worked answer.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-ohm-s-law-practice-problems-with-worked-answers-revealed-on-request.json"
+    },
+    {
+      "slug": "gn-one-page-pitch-why-a-community-makerspace-needs-a-cnc-router",
+      "title": "One-page pitch: why a community makerspace needs a CNC router",
+      "summary": "A persuasive one-pager for a makerspace board: evidence, costs, and member outcomes for adding a CNC router.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-one-page-pitch-why-a-community-makerspace-needs-a-cnc-router.json"
+    },
+    {
+      "slug": "gn-pid-loop-tuning-for-a-temperature-controller-from-p-only-to-full-pid",
+      "title": "PID loop tuning for a temperature controller, from P-only to full PID",
+      "summary": "Tune a temperature loop in three deliberate passes: find the gain that almost works, add integral to kill the offset, add derivative only if the process earns it.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-pid-loop-tuning-for-a-temperature-controller-from-p-only-to-full-pid.json"
+    },
+    {
+      "slug": "gn-pitch-showmob-to-a-skeptical-developer-in-90-seconds",
+      "title": "Pitch Showmob to a skeptical developer in 90 seconds",
+      "summary": "The pitch, the three objections you will actually get, and the one demo that settles it.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-pitch-showmob-to-a-skeptical-developer-in-90-seconds.json"
+    },
+    {
+      "slug": "gn-pitch-to-a-plant-manager-replace-three-aging-relay-panels-with-one-plc",
+      "title": "Pitch to a plant manager: replace three aging relay panels with one PLC",
+      "summary": "A persuasive plant-manager pitch to collapse three aging relay panels into one PLC — with example downtime and cost numbers clearly labeled as examples.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-pitch-to-a-plant-manager-replace-three-aging-relay-panels-with-one-plc.json"
+    },
+    {
+      "slug": "gn-planting-a-4x8-raised-vegetable-bed-for-spring",
+      "title": "Planting a 4x8 raised vegetable bed for spring",
+      "summary": "A calm spring layout for one 4×8 bed: soil, spacing, and what to plant first.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-planting-a-4x8-raised-vegetable-bed-for-spring.json"
+    },
+    {
+      "slug": "gn-portfolio-pitch-three-automation-projects-that-prove-a-tech-can-troubleshoot",
+      "title": "Portfolio pitch: three automation projects that prove a tech can troubleshoot",
+      "summary": "Three fictional automation projects framed as portfolio proof that a tech can troubleshoot under pressure.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-portfolio-pitch-three-automation-projects-that-prove-a-tech-can-troubleshoot.json"
+    },
+    {
+      "slug": "gn-portfolio-project-write-up-template-for-an-automation-build-with-a-sample-entry",
+      "title": "Portfolio project write-up template for an automation build, with a sample entry",
+      "summary": "The six-section shape of a project write-up a hiring manager can skim in ninety seconds, plus one fictional sample entry showing it filled in.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-portfolio-project-write-up-template-for-an-automation-build-with-a-sample-entry.json"
+    },
+    {
+      "slug": "gn-predict-next-year-s-copper-price-to-the-dollar",
+      "title": "Predict next year's copper price to the dollar",
+      "summary": "An intentionally overconfident thin page that 'nails' copper to the dollar — failure bait for graders who should ding fake certainty.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-predict-next-year-s-copper-price-to-the-dollar.json"
+    },
+    {
+      "slug": "gn-preventive-maintenance-schedule-that-updates-as-tasks-close",
+      "title": "Preventive maintenance schedule that updates as tasks close",
+      "summary": "A static PM example distinguishes completion-based intervals from fixed-calendar and usage-based schedules.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-preventive-maintenance-schedule-that-updates-as-tasks-close.json"
+    },
+    {
+      "slug": "gn-quoting-a-machining-job-when-the-material-price-is-unconfirmed",
+      "title": "Quoting a machining job when the material price is unconfirmed",
+      "summary": "The material quote is three days out and the customer wants a number Friday. How to price the work without pretending the unknown is known.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-quoting-a-machining-job-when-the-material-price-is-unconfirmed.json"
+    },
+    {
+      "slug": "gn-radio-from-spark-gap-to-software-defined-radio",
+      "title": "Radio from spark gap to software-defined radio",
+      "summary": "A reflective tour of radio architectures: spark, tubes, superhets, solid-state, and software-defined receivers that move selectivity into code.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-radio-from-spark-gap-to-software-defined-radio.json"
+    },
+    {
+      "slug": "gn-redesigning-a-kitting-cart-to-cut-changeover-time-on-a-cnc-cell",
+      "title": "Redesigning a kitting cart to cut changeover time on a CNC cell",
+      "summary": "The cart is the changeover. Reorganize what rides on it and the spindle stops waiting on the walk.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-redesigning-a-kitting-cart-to-cut-changeover-time-on-a-cnc-cell.json"
+    },
+    {
+      "slug": "gn-refurbishing-a-used-benchtop-oscilloscope-test-repair-calibrate",
+      "title": "Refurbishing a used benchtop oscilloscope: test, repair, calibrate",
+      "summary": "A used scope earns trust in three passes: prove what is wrong, fix what is actually broken, then calibrate against what it claims to measure.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-refurbishing-a-used-benchtop-oscilloscope-test-repair-calibrate.json"
+    },
+    {
+      "slug": "gn-resistor-color-code-practice-worksheet-with-10-blanks",
+      "title": "Resistor color code practice worksheet with 10 blanks",
+      "summary": "A playful ten-problem color-code worksheet with answers you can check — session practice, not a datasheet.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-resistor-color-code-practice-worksheet-with-10-blanks.json"
+    },
+    {
+      "slug": "gn-retrofitting-a-manual-bridgeport-mill-with-a-3-axis-dro-parts-sequence-budget",
+      "title": "Retrofitting a manual Bridgeport mill with a 3-axis DRO: parts, sequence, budget",
+      "summary": "Glass scales on X, Y, and Z turn a dial-counting Bridgeport into a read-the-number machine. Here is the parts list, the install order, and what it costs.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-retrofitting-a-manual-bridgeport-mill-with-a-3-axis-dro-parts-sequence-budget.json"
+    },
+    {
+      "slug": "gn-saturday-errand-route-hardware-store-pharmacy-post-office-gym",
+      "title": "Saturday errand route: hardware store, pharmacy, post office, gym",
+      "summary": "Four stops, one loop. Order them by closing time and bag logistics, not by distance.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-saturday-errand-route-hardware-store-pharmacy-post-office-gym.json"
+    },
+    {
+      "slug": "gn-should-i-bring-an-umbrella-today-with-a-40-chance-of-rain",
+      "title": "Should I bring an umbrella today with a 40% chance of rain",
+      "summary": "Bring it if getting wet would ruin your day; leave it if you do not mind a light soaking.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-should-i-bring-an-umbrella-today-with-a-40-chance-of-rain.json"
+    },
+    {
+      "slug": "gn-should-i-drink-more-water",
+      "title": "Should I drink more water?",
+      "summary": "Usually yes if your urine is dark or you feel thirsty — that is most of the answer.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-should-i-drink-more-water.json"
+    },
+    {
+      "slug": "gn-showmob-artifact-status-board-draft-in-pr-published",
+      "title": "Showmob artifact status board: draft, in PR, published",
+      "summary": "Where every artifact stands in the pipeline, and what moves it to the next column.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-showmob-artifact-status-board-draft-in-pr-published.json"
+    },
+    {
+      "slug": "gn-showmob-roadmap-the-next-three-phases-from-conversation-to-preserved-learning",
+      "title": "Showmob roadmap: the next three phases from conversation to preserved learning",
+      "summary": "Phase 1's first milestone is on the board. What comes next: sizing sections on purpose, users without a login wall, and expansion requests with graded verdicts.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-showmob-roadmap-the-next-three-phases-from-conversation-to-preserved-learning.json"
+    },
+    {
+      "slug": "gn-six-week-plan-to-learn-ladder-logic-well-enough-for-a-controls-tech-interview",
+      "title": "Six-week plan to learn ladder logic well enough for a controls tech interview",
+      "summary": "A six-week path from contacts and coils to a small PLC project you can explain under interview pressure.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-six-week-plan-to-learn-ladder-logic-well-enough-for-a-controls-tech-interview.json"
+    },
+    {
+      "slug": "gn-smith-chart-basics-for-matching-an-antenna-to-50-ohms",
+      "title": "Smith chart basics for matching an antenna to 50 ohms",
+      "summary": "The whole chart in one pass: what it plots, how to put your antenna on it, and how to walk a mismatched load back to the center with two components.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-smith-chart-basics-for-matching-an-antenna-to-50-ohms.json"
+    },
+    {
+      "slug": "gn-spare-parts-inventory-with-reorder-points-for-a-packaging-line",
+      "title": "Spare parts inventory with reorder points for a packaging line",
+      "summary": "A living spare-parts list for a fictional packaging line with on-hand counts, reorder points, and who owns the buy.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-spare-parts-inventory-with-reorder-points-for-a-packaging-line.json"
+    },
+    {
+      "slug": "gn-speeds-and-feeds-for-6061-aluminum-vs-4140-steel-on-a-manual-lathe",
+      "title": "Speeds and feeds for 6061 aluminum vs 4140 steel on a manual lathe",
+      "summary": "Side-by-side starting SFPM, RPM, and feed guidance for 6061 vs 4140 on a manual lathe — then how to adjust by chip and sound.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-speeds-and-feeds-for-6061-aluminum-vs-4140-steel-on-a-manual-lathe.json"
+    },
+    {
+      "slug": "gn-splitting-a-143-dinner-bill-four-ways-with-a-20-tip",
+      "title": "Splitting a $143 dinner bill four ways with a 20% tip",
+      "summary": "One number: $42.90 each. The whole math fits on a napkin.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-splitting-a-143-dinner-bill-four-ways-with-a-20-tip.json"
+    },
+    {
+      "slug": "gn-steps-to-jump-start-a-car-with-cables",
+      "title": "Steps to jump-start a car with cables",
+      "summary": "Check both vehicle manuals, the battery condition and designated jump points before connecting cables.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-steps-to-jump-start-a-car-with-cables.json"
+    },
+    {
+      "slug": "gn-take-a-job-offer-before-the-benefits-details-arrive",
+      "title": "Take a job offer before the benefits details arrive?",
+      "summary": "An uncertain decision page: what you can safely accept now, what to condition, and what to wait for before the benefits packet lands.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-take-a-job-offer-before-the-benefits-details-arrive.json"
+    },
+    {
+      "slug": "gn-the-1911-triangle-shirtwaist-fire-and-how-it-shaped-workplace-safety-law",
+      "title": "The 1911 Triangle Shirtwaist fire and how it shaped workplace safety law",
+      "summary": "One hundred forty-six workers, mostly young immigrant women, died in eighteen minutes in New York City. The laws that followed were written in their names.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-the-1911-triangle-shirtwaist-fire-and-how-it-shaped-workplace-safety-law.json"
+    },
+    {
+      "slug": "gn-the-full-radio-spectrum-from-elf-to-gamma-who-uses-each-band-and-why",
+      "title": "The full radio spectrum from ELF to gamma: who uses each band and why",
+      "summary": "Book-scale tour of the spectrum from ELF through microwave and beyond — who lives in each band and why physics pushed them there.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-the-full-radio-spectrum-from-elf-to-gamma-who-uses-each-band-and-why.json"
+    },
+    {
+      "slug": "gn-the-global-supply-chain-of-one-smartphone",
+      "title": "The global supply chain of one smartphone",
+      "summary": "One phone, forty-plus countries, a million tons of moved material per gram of device. Follow a single fictional handset from ore to pocket, layer by layer.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-the-global-supply-chain-of-one-smartphone.json"
+    },
+    {
+      "slug": "gn-the-history-of-the-transistor-from-1947-to-the-first-microprocessor-a",
+      "title": "The history of the transistor, from 1947 to the first microprocessor",
+      "summary": "A timeline-first walk from the 1947 point-contact transistor to the early microprocessors that put a CPU on one chip.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-the-history-of-the-transistor-from-1947-to-the-first-microprocessor-a.json"
+    },
+    {
+      "slug": "gn-the-history-of-the-transistor-from-1947-to-the-first-microprocessor-b",
+      "title": "The history of the transistor, from 1947 to the first microprocessor",
+      "summary": "A map of people, labs, and inventions from the point-contact transistor to the first microprocessors — geography and relationships, not a pure timeline.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-the-history-of-the-transistor-from-1947-to-the-first-microprocessor-b.json"
+    },
+    {
+      "slug": "gn-the-plc-scan-cycle-and-why-timers-and-one-shots-misbehave",
+      "title": "The PLC scan cycle and why timers and one-shots misbehave",
+      "summary": "Use the cyclic scan as a teaching model, then check the actual controller’s task, I/O and instruction behavior.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-the-plc-scan-cycle-and-why-timers-and-one-shots-misbehave.json"
+    },
+    {
+      "slug": "gn-the-us-electrical-grid-from-power-plant-to-wall-outlet-b",
+      "title": "The US electrical grid from power plant to wall outlet",
+      "summary": "A map-style tour of the US grid: regions and interconnections down to a house panel — geography first, not a single causal essay.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-the-us-electrical-grid-from-power-plant-to-wall-outlet-b.json"
+    },
+    {
+      "slug": "gn-the-us-electrical-grid-from-power-plant-to-wall-outlet",
+      "title": "The US electrical grid from power plant to wall outlet",
+      "summary": "One causal chain, start to finish: how a watt is made, stepped up, moved, stepped down, and delivered - and why every stage looks the way it does.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-the-us-electrical-grid-from-power-plant-to-wall-outlet.json"
+    },
+    {
+      "slug": "gn-the-weather-report-but-for-a-factory-floor-s-mood",
+      "title": "The weather report, but for a factory floor's mood",
+      "summary": "Today's floor forecast: a high-pressure front of overtime moving in from the east, with scattered grumbling clearing by second break.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-the-weather-report-but-for-a-factory-floor-s-mood.json"
+    },
+    {
+      "slug": "gn-tomorrow-three-meetings-a-dentist-appointment-and-a-4-hour-focus-block-a",
+      "title": "Tomorrow: three meetings, a dentist appointment, and a 4-hour focus block",
+      "summary": "A plain agenda for one overloaded tomorrow — meetings, dentist, and a protected focus block listed in order.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-tomorrow-three-meetings-a-dentist-appointment-and-a-4-hour-focus-block-a.json"
+    },
+    {
+      "slug": "gn-tomorrow-three-meetings-a-dentist-appointment-and-a-4-hour-focus-block-b",
+      "title": "Tomorrow: three meetings, a dentist appointment, and a 4-hour focus block",
+      "summary": "Draggable time-block metaphor: rearrange the day's tiles with checklists and a block table until the 4-hour focus lands in one unbroken span.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-tomorrow-three-meetings-a-dentist-appointment-and-a-4-hour-focus-block-b.json"
+    },
+    {
+      "slug": "gn-tool-crib-checkout-log",
+      "title": "Tool crib checkout log",
+      "summary": "A living checkout log template for a shop tool crib — who took what, when it is due, and what came back.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-tool-crib-checkout-log.json"
+    },
+    {
+      "slug": "gn-travel-day-flight-rental-car-hotel-check-in-dinner-reservation",
+      "title": "Travel day: flight, rental car, hotel check-in, dinner reservation",
+      "summary": "One fictional travel day laid out so the connections between legs are visible - the buffers are the plan.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-travel-day-flight-rental-car-hotel-check-in-dinner-reservation.json"
+    },
+    {
+      "slug": "gn-weekly-chore-rotation-for-three-roommates",
+      "title": "Weekly chore rotation for three roommates",
+      "summary": "Three jobs, three people, one Sunday reset — so nobody owns the trash forever.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-weekly-chore-rotation-for-three-roommates.json"
+    },
+    {
+      "slug": "gn-weekly-meal-prep-shopping-list-plus-cook-order",
+      "title": "Weekly meal prep: shopping list plus cook order",
+      "summary": "One calm week of lunches and dinners: shop once, cook in the right order, store what will actually get eaten.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-weekly-meal-prep-shopping-list-plus-cook-order.json"
+    },
+    {
+      "slug": "gn-what-time-to-leave-for-a-2-pm-appointment-25-minutes-away",
+      "title": "What time to leave for a 2 PM appointment 25 minutes away",
+      "summary": "Leave at 1:25 PM.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-what-time-to-leave-for-a-2-pm-appointment-25-minutes-away.json"
+    },
+    {
+      "slug": "gn-what-to-pack-for-a-one-night-work-trip",
+      "title": "What to pack for a one-night work trip",
+      "summary": "Tomorrow's clothes, a charger, and whatever the meeting actually needs — leave the rest at home.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-what-to-pack-for-a-one-night-work-trip.json"
+    },
+    {
+      "slug": "gn-which-of-two-phone-plans-is-cheaper-over-a-year",
+      "title": "Which of two phone plans is cheaper over a year",
+      "summary": "Plan A wins for heavy data users; Plan B wins under about 1.9 GB of overage per month in this example.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/gn-which-of-two-phone-plans-is-cheaper-over-a-year.json"
+    },
+    {
+      "slug": "great-portfolio-machine-automation",
+      "title": "How to make a great portfolio",
+      "summary": "A practical way to show machining, automation and electronics work without pretending to know more than you do.",
+      "status": "published",
+      "repositoryPath": "app/src/content/great-portfolio-machine-automation.json"
+    },
+    {
+      "slug": "local-security-lab-close-exposure",
+      "title": "Close silent exposure and test it from outside",
+      "summary": "Audit the inbound openings on your own router, close the ones nobody chose, and prove a closed opening fails from both sides.",
+      "status": "preview",
+      "series": {
+        "id": "local-security-lab",
+        "title": "Defensive local security",
+        "order": 7
+      },
+      "repositoryPath": "app/src/content/local-security-lab-close-exposure.json"
+    },
+    {
+      "slug": "local-security-lab-firewalls-explained",
+      "title": "What a firewall rule does, and why NAT is not one",
+      "summary": "Separate translation from permission, then reason carefully about IPv4 forwards, IPv6 and stateful firewall rules.",
+      "status": "preview",
+      "series": {
+        "id": "local-security-lab",
+        "title": "Defensive local security",
+        "order": 6
+      },
+      "repositoryPath": "app/src/content/local-security-lab-firewalls-explained.json"
+    },
+    {
+      "slug": "local-security-lab-host-listeners",
+      "title": "Find what is listening on your machine",
+      "summary": "Inspect local TCP listeners and UDP sockets, read their bind addresses, and record what may be reachable without changing a service.",
+      "status": "preview",
+      "series": {
+        "id": "local-security-lab",
+        "title": "Defensive local security",
+        "order": 4
+      },
+      "repositoryPath": "app/src/content/local-security-lab-host-listeners.json"
+    },
+    {
+      "slug": "local-security-lab-lab-scope",
+      "title": "Decide what your lab may watch, and why",
+      "summary": "Before any tool: write down which devices and traffic your home lab may observe, and the one failure you most want to catch.",
+      "status": "preview",
+      "series": {
+        "id": "local-security-lab",
+        "title": "Defensive local security",
+        "order": 2
+      },
+      "repositoryPath": "app/src/content/local-security-lab-lab-scope.json"
+    },
+    {
+      "slug": "local-security-lab-network-basics",
+      "title": "How your home network is wired",
+      "summary": "Find your own addresses, then see the model behind them: private addresses, one subnet, and a router with an inside and an outside.",
+      "status": "preview",
+      "series": {
+        "id": "local-security-lab",
+        "title": "Defensive local security",
+        "order": 3
+      },
+      "repositoryPath": "app/src/content/local-security-lab-network-basics.json"
+    },
+    {
+      "slug": "local-security-lab-network-inventory",
+      "title": "Inventory every device you own and keep a baseline",
+      "summary": "Join router client observations with listener notes from owned hosts, save a dated private baseline, and investigate changes without guessing.",
+      "status": "preview",
+      "series": {
+        "id": "local-security-lab",
+        "title": "Defensive local security",
+        "order": 5
+      },
+      "repositoryPath": "app/src/content/local-security-lab-network-inventory.json"
+    },
+    {
+      "slug": "plan-build-phases",
+      "title": "Build in phases",
+      "summary": "Small phases, honest gates, rollback always available.",
+      "status": "published",
+      "series": {
+        "id": "showmob-plan",
+        "title": "The Showmob plan",
+        "order": 5
+      },
+      "repositoryPath": "app/src/content/plan-build-phases.json"
+    },
+    {
+      "slug": "plan-contract",
+      "title": "One content contract",
+      "summary": "Three layers that never merge, one typed schema, and blocks that reference widgets by id.",
+      "status": "published",
+      "series": {
+        "id": "showmob-plan",
+        "title": "The Showmob plan",
+        "order": 2
+      },
+      "repositoryPath": "app/src/content/plan-contract.json"
+    },
+    {
+      "slug": "plan-data-sufficiency",
+      "title": "From here to data-sufficient",
+      "summary": "The numbered plan from repo JSON and browser-local drafts to a Showmob that remembers: durable revisions, real requests, simulated users, and honest section sizes.",
+      "status": "published",
+      "series": {
+        "id": "showmob-plan",
+        "title": "The Showmob plan",
+        "order": 8
+      },
+      "repositoryPath": "app/src/content/plan-data-sufficiency.json"
+    },
+    {
+      "slug": "plan-decisions",
+      "title": "Decisions so far",
+      "summary": "What the brief proposes and what this prototype currently does, kept separate on purpose.",
+      "status": "published",
+      "series": {
+        "id": "showmob-plan",
+        "title": "The Showmob plan",
+        "order": 6
+      },
+      "repositoryPath": "app/src/content/plan-decisions.json"
+    },
+    {
+      "slug": "plan-modes-themes",
+      "title": "Browse pages, present in blocks",
+      "summary": "Browse is the default reading view. A slideshow is a block inside the same content tree.",
+      "status": "published",
+      "series": {
+        "id": "showmob-plan",
+        "title": "The Showmob plan",
+        "order": 3
+      },
+      "repositoryPath": "app/src/content/plan-modes-themes.json"
+    },
+    {
+      "slug": "plan-open-questions",
+      "title": "Open questions, deferred systems",
+      "summary": "What is still undecided, and what is deliberately waiting for a real need.",
+      "status": "published",
+      "series": {
+        "id": "showmob-plan",
+        "title": "The Showmob plan",
+        "order": 7
+      },
+      "repositoryPath": "app/src/content/plan-open-questions.json"
+    },
+    {
+      "slug": "plan-vision",
+      "title": "Show, don't deck",
+      "summary": "Why Showmob exists: ideas as living pages instead of hand-built slide decks.",
+      "status": "published",
+      "series": {
+        "id": "showmob-plan",
+        "title": "The Showmob plan",
+        "order": 1
+      },
+      "repositoryPath": "app/src/content/plan-vision.json"
+    },
+    {
+      "slug": "plan-widget-bin",
+      "title": "The widget bin",
+      "summary": "A small kit of known-good pieces, so a new page is assembly, not debugging.",
+      "status": "published",
+      "series": {
+        "id": "showmob-plan",
+        "title": "The Showmob plan",
+        "order": 4
+      },
+      "repositoryPath": "app/src/content/plan-widget-bin.json"
+    },
+    {
+      "slug": "showmob-block-gallery",
+      "title": "Block gallery",
+      "summary": "Vocabulary sheet for all 19 Showmob blocks, plus a few starter recipes as grammar suggestions—not required slots.",
+      "status": "published",
+      "repositoryPath": "app/src/content/showmob-block-gallery.json"
+    },
+    {
+      "slug": "showmob-guide",
+      "title": "How Showmob works",
+      "summary": "What this site is, the short path from idea to shared link, and what the same small content language also unlocks.",
+      "status": "published",
+      "repositoryPath": "app/src/content/showmob-guide.json"
+    },
+    {
+      "slug": "showmob-mechanics-build",
+      "title": "What build means, and what Vite does",
+      "summary": "Separate source code, development serving, type checking, production bundling and local preview.",
+      "status": "preview",
+      "series": {
+        "id": "showmob-mechanics",
+        "title": "Showmob mechanics",
+        "order": 4
+      },
+      "repositoryPath": "app/src/content/showmob-mechanics-build.json"
+    },
+    {
+      "slug": "showmob-mechanics-git",
+      "title": "Branches, commits, pull requests and merges",
+      "summary": "Learn why Showmob changes stay reviewable and what a merge actually changes.",
+      "status": "preview",
+      "series": {
+        "id": "showmob-mechanics",
+        "title": "Showmob mechanics",
+        "order": 5
+      },
+      "repositoryPath": "app/src/content/showmob-mechanics-git.json"
+    },
+    {
+      "slug": "showmob-mechanics-json",
+      "title": "JSON artifacts: the workpiece",
+      "summary": "Read a Showmob artifact as a machinist reads a print: envelope, blocks, identity and lifecycle.",
+      "status": "preview",
+      "series": {
+        "id": "showmob-mechanics",
+        "title": "Showmob mechanics",
+        "order": 2
+      },
+      "repositoryPath": "app/src/content/showmob-mechanics-json.json"
+    },
+    {
+      "slug": "showmob-mechanics-map",
+      "title": "Showmob mechanics: from JSON to a live page",
+      "summary": "The short map of how a Showmob page goes from a JSON file to the live site.",
+      "status": "preview",
+      "series": {
+        "id": "showmob-mechanics",
+        "title": "Showmob mechanics",
+        "order": 1
+      },
+      "repositoryPath": "app/src/content/showmob-mechanics-map.json"
+    },
+    {
+      "slug": "showmob-mechanics-persistence",
+      "title": "Persistence: Supabase and the Showmob API",
+      "summary": "How Showmob can move from repository JSON and browser-local drafts to secure revisions, media storage and an API without losing portability.",
+      "status": "preview",
+      "series": {
+        "id": "showmob-mechanics",
+        "title": "Showmob mechanics",
+        "order": 8
+      },
+      "repositoryPath": "app/src/content/showmob-mechanics-persistence.json"
+    },
+    {
+      "slug": "showmob-mechanics-practice",
+      "title": "Run the whole Showmob release loop",
+      "summary": "Use a final knowledge check and release worksheet to rehearse one safe artifact change.",
+      "status": "preview",
+      "series": {
+        "id": "showmob-mechanics",
+        "title": "Showmob mechanics",
+        "order": 7
+      },
+      "repositoryPath": "app/src/content/showmob-mechanics-practice.json"
+    },
+    {
+      "slug": "showmob-mechanics-vercel",
+      "title": "From GitHub to Vercel production",
+      "summary": "Trace branch previews, the main-branch production build, domain assignment and live verification.",
+      "status": "preview",
+      "series": {
+        "id": "showmob-mechanics",
+        "title": "Showmob mechanics",
+        "order": 6
+      },
+      "repositoryPath": "app/src/content/showmob-mechanics-vercel.json"
+    },
+    {
+      "slug": "showmob-mechanics-widgets",
+      "title": "Widgets, themes and the renderer",
+      "summary": "See how a block type becomes visible UI and why themes change tokens instead of content.",
+      "status": "preview",
+      "series": {
+        "id": "showmob-mechanics",
+        "title": "Showmob mechanics",
+        "order": 3
+      },
+      "repositoryPath": "app/src/content/showmob-mechanics-widgets.json"
+    },
+    {
+      "slug": "showmob-novel-path",
+      "title": "Story worlds as data entries",
+      "summary": "A future-growth sketch: character arcs, personalities, open-world hubs, and participatory data entries on linked Showmob pages—using today’s blocks, with honest local-only limits.",
+      "status": "published",
+      "repositoryPath": "app/src/content/showmob-novel-path.json"
+    },
+    {
+      "slug": "slot-build-lesson",
+      "title": "A build or safety lesson goes here",
+      "summary": "Starter slot for an actual build log or a safety lesson from the floor.",
+      "status": "draft",
+      "series": {
+        "id": "field-work",
+        "title": "From the floor",
+        "order": 3
+      },
+      "repositoryPath": "app/src/content/slot-build-lesson.json"
+    },
+    {
+      "slug": "slot-plc-concept",
+      "title": "One PLC concept goes here",
+      "summary": "Starter slot for one automation concept, taught thin and proven with a real exercise.",
+      "status": "draft",
+      "series": {
+        "id": "field-work",
+        "title": "From the floor",
+        "order": 2
+      },
+      "repositoryPath": "app/src/content/slot-plc-concept.json"
+    },
+    {
+      "slug": "slot-troubleshooting",
+      "title": "A troubleshooting story goes here",
+      "summary": "Starter slot for a real fault, a real evidence trail and a proven fix from an actual job.",
+      "status": "draft",
+      "series": {
+        "id": "field-work",
+        "title": "From the floor",
+        "order": 1
+      },
+      "repositoryPath": "app/src/content/slot-troubleshooting.json"
+    },
+    {
+      "slug": "solid-state-diodes",
+      "title": "Diodes: direction, drop and stored energy",
+      "summary": "Read diode polarity and datasheet limits, then place rectification, flyback and light-emitting diodes in their proper roles.",
+      "status": "preview",
+      "series": {
+        "id": "solid-state-circuitry",
+        "title": "Solid-state circuitry",
+        "order": 3
+      },
+      "repositoryPath": "app/src/content/solid-state-diodes.json"
+    },
+    {
+      "slug": "solid-state-foundations",
+      "title": "From machine signals to solid-state switches",
+      "summary": "A ten-section introduction to voltage, junctions, transistors and inductive loads, with a knowledge check and a paper worksheet.",
+      "status": "preview",
+      "series": {
+        "id": "solid-state-circuitry",
+        "title": "Solid-state circuitry",
+        "order": 1
+      },
+      "repositoryPath": "app/src/content/solid-state-foundations.json"
+    },
+    {
+      "slug": "solid-state-mosfets",
+      "title": "MOSFETs: gate drive, resistance and safe operation",
+      "summary": "Read an N-channel power MOSFET as a voltage-driven switch whose gate still demands current while changing state.",
+      "status": "preview",
+      "series": {
+        "id": "solid-state-circuitry",
+        "title": "Solid-state circuitry",
+        "order": 5
+      },
+      "repositoryPath": "app/src/content/solid-state-mosfets.json"
+    },
+    {
+      "slug": "solid-state-power-switching",
+      "title": "Power switching: loads, losses and turn-off energy",
+      "summary": "Put the device into a complete switching path, account for heat and transients, and plan measurements without treating a bench example as machine approval.",
+      "status": "preview",
+      "series": {
+        "id": "solid-state-circuitry",
+        "title": "Solid-state circuitry",
+        "order": 6
+      },
+      "repositoryPath": "app/src/content/solid-state-power-switching.json"
+    },
+    {
+      "slug": "solid-state-quiz",
+      "title": "Solid-state electronics knowledge check",
+      "summary": "Check the distinctions that keep component selection honest: references, bias, drive, ratings, heat and stored energy.",
+      "status": "preview",
+      "series": {
+        "id": "solid-state-circuitry",
+        "title": "Solid-state circuitry",
+        "order": 7
+      },
+      "repositoryPath": "app/src/content/solid-state-quiz.json"
+    },
+    {
+      "slug": "solid-state-resources",
+      "title": "Solid-state electronics resources and shop checklist",
+      "summary": "A manufacturer-led reference shelf, datasheet reading sequence and final worksheet for taking the course into careful component review.",
+      "status": "preview",
+      "series": {
+        "id": "solid-state-circuitry",
+        "title": "Solid-state circuitry",
+        "order": 8
+      },
+      "repositoryPath": "app/src/content/solid-state-resources.json"
+    },
+    {
+      "slug": "solid-state-semiconductor-basics",
+      "title": "Semiconductor basics: carriers, doping and junctions",
+      "summary": "Build a working model of conductors, insulators, doped silicon and the depletion region before selecting any device.",
+      "status": "preview",
+      "series": {
+        "id": "solid-state-circuitry",
+        "title": "Solid-state circuitry",
+        "order": 2
+      },
+      "repositoryPath": "app/src/content/solid-state-semiconductor-basics.json"
+    },
+    {
+      "slug": "solid-state-transistors",
+      "title": "Transistors: using a small drive to control a load",
+      "summary": "Understand BJT terminals, operating regions, base drive and switching loss through practical low-side control examples.",
+      "status": "preview",
+      "series": {
+        "id": "solid-state-circuitry",
+        "title": "Solid-state circuitry",
+        "order": 4
+      },
+      "repositoryPath": "app/src/content/solid-state-transistors.json"
+    },
+    {
+      "slug": "signal-path",
+      "title": "Follow the signal",
+      "summary": "A compact field guide to finding a fault without guessing.",
+      "status": "published",
+      "repositoryPath": "app/src/content/steward.json"
+    }
+  ]
+}
