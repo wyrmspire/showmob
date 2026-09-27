@@ -22,9 +22,9 @@ This root document is the execution checklist and phase-order reference requeste
 
 These are scope labels, not changes to the existing package or “v3/v4” product naming. Core publishing is a valid finish line. Do not silently turn the optional extensions into an obligation to build a general CMS, social network, or autonomous agent platform.
 
-## Authoring actions pilot — 2026-09-26
+## Authoring actions pilot — 2026-09-27
 
-**In progress:** owner-authorized first implementation of discovery, private authoring runs, immutable stage outputs, provenance and validation. This is a bounded slice of P5.1/P5.3, using the existing learning/director pipeline. See [authoring actions](docs/authoring-actions.md) for endpoints, verification and remaining activation gates. It does not mark the broader saved-work extension complete or move production content out of Git.
+**Implementation for review:** agent-initiated first implementation of discovery, private authoring runs, immutable stage outputs, provenance and validation. This is a bounded slice of P5.1/P5.3, using the existing learning/director pipeline. Chris reviewed it on September 27 and approved merging as a private experiment; live activation remains deferred. See [authoring actions](docs/authoring-actions.md) for endpoints, verification and remaining activation gates. It does not mark the broader saved-work extension complete or move production content out of Git.
 
 ## 1. Evidence baseline
 
@@ -221,4 +221,3 @@ Planning references checked on 2026-09-23; recheck current documentation before 
 - [Realtime](https://supabase.com/docs/guides/realtime) — coordination and presence are not a durable session record by themselves.
 
 **Immediate next action: Packet A. Finish and qualify the existing publishing path before expanding the runtime.**
-
