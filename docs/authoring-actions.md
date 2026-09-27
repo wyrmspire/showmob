@@ -1,6 +1,6 @@
 # Agent authoring actions — first implementation
 
-Status: implementation for review; not activated on the live site. This is the first bounded slice of ROADMAP P5.1/P5.3, authorized 2026-09-26. Production content still comes from repository JSON. The API does not call a model, publish, or automatically learn from grades.
+Status: implementation for review; not activated on the live site. This agent-initiated implementation is a bounded slice of ROADMAP P5.1/P5.3. Chris reviewed it on September 27 and approved merging as a private experiment; live activation is deferred. Production content still comes from repository JSON. The API does not call a model, publish, or automatically learn from grades.
 
 ## What the system does
 
