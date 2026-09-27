@@ -22,6 +22,10 @@ This root document is the execution checklist and phase-order reference requeste
 
 These are scope labels, not changes to the existing package or “v3/v4” product naming. Core publishing is a valid finish line. Do not silently turn the optional extensions into an obligation to build a general CMS, social network, or autonomous agent platform.
 
+## Authoring actions pilot — 2026-09-27
+
+**Implementation for review:** agent-initiated first implementation of discovery, private authoring runs, immutable stage outputs, provenance and validation. This is a bounded slice of P5.1/P5.3, using the existing learning/director pipeline. Chris reviewed it on September 27 and approved merging as a private experiment; live activation remains deferred. See [authoring actions](docs/authoring-actions.md) for endpoints, verification and remaining activation gates. It does not mark the broader saved-work extension complete or move production content out of Git.
+
 ## 1. Evidence baseline
 
 Reviewed against GitHub `main` at [`db664923e228b886d4de5236bdc2bf45c7da09a1`](https://github.com/wyrmspire/showmob/commit/db664923e228b886d4de5236bdc2bf45c7da09a1), plus the two supplied code-dump parts. The dump header says it was generated on 2026-09-22; the filenames carry 2026-09-23. Current GitHub code takes precedence for implementation status.

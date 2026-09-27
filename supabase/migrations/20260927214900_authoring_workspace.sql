@@ -1,0 +1,141 @@
+-- Supabase migration 20260927214900: private authoring workspace.
+-- Applied to showmob-dev on 2026-09-27 after disposable Postgres verification.
+begin;
+
+create table public.showmob_authoring_runs (
+  id uuid primary key default gen_random_uuid(),
+  workspace text not null,
+  actor text not null,
+  request_id uuid not null,
+  brief jsonb not null check (jsonb_typeof(brief) = 'object'),
+  protocol jsonb not null check (jsonb_typeof(protocol) = 'object'),
+  protocol_sha256 text not null check (protocol_sha256 ~ '^[0-9a-f]{64}$'),
+  revision integer not null default 0 check (revision between 0 and 100),
+  created_at timestamptz not null default now(),
+  unique (workspace, actor, request_id)
+);
+create index showmob_authoring_runs_workspace_created on public.showmob_authoring_runs(workspace, created_at desc, id);
+create table public.showmob_authoring_steps (
+  run_id uuid not null references public.showmob_authoring_runs(id),
+  revision integer not null check (revision between 1 and 100),
+  request_id uuid not null,
+  actor text not null,
+  stage text not null check (stage in ('research','outline','representation','section','draft','review','artifact')),
+  step_key text not null,
+  body jsonb not null check (jsonb_typeof(body) = 'object' and octet_length(body::text) <= 110000),
+  output_sha256 text not null,
+  created_at timestamptz not null default now(),
+  primary key(run_id, revision),
+  unique(run_id, request_id)
+);
+create index showmob_authoring_steps_key on public.showmob_authoring_steps(run_id, stage, step_key, revision desc);
+alter table public.showmob_authoring_runs enable row level security;
+alter table public.showmob_authoring_steps enable row level security;
+revoke all on public.showmob_authoring_runs, public.showmob_authoring_steps from public, anon, authenticated;
+grant select, insert on public.showmob_authoring_runs, public.showmob_authoring_steps to service_role;
+grant update(revision) on public.showmob_authoring_runs to service_role;
+
+create function public.showmob_authoring_immutable() returns trigger
+language plpgsql security invoker set search_path = '' as $$
+begin
+  raise exception 'Authoring steps are immutable' using errcode = '55000';
+end;
+$$;
+create trigger showmob_authoring_steps_immutable before update or delete on public.showmob_authoring_steps
+for each row execute function public.showmob_authoring_immutable();
+
+create function public.showmob_authoring_start(p_workspace text, p_actor text, p_request uuid, p_brief jsonb, p_protocol jsonb, p_protocol_hash text)
+returns jsonb language plpgsql security invoker set search_path = '' as $$
+declare r public.showmob_authoring_runs%rowtype;
+begin
+  if p_workspace is null or p_actor is null or p_request is null or jsonb_typeof(p_brief) is distinct from 'object' or jsonb_typeof(p_protocol) is distinct from 'object' then
+    raise exception 'Invalid run' using errcode = '22023';
+  end if;
+  insert into public.showmob_authoring_runs(workspace, actor, request_id, brief, protocol, protocol_sha256)
+  values(p_workspace, p_actor, p_request, p_brief, p_protocol, p_protocol_hash)
+  on conflict (workspace, actor, request_id) do nothing;
+  select * into r from public.showmob_authoring_runs where workspace=p_workspace and actor=p_actor and request_id=p_request;
+  if r.brief <> p_brief or r.protocol_sha256 <> p_protocol_hash then
+    raise exception 'Request reused with different input' using errcode='P0409';
+  end if;
+  return to_jsonb(r) - 'protocol' - 'request_id' - 'workspace';
+end;
+$$;
+
+create function public.showmob_authoring_read(p_workspace text, p_run uuid)
+returns jsonb language sql stable security invoker set search_path = '' as $$
+  select to_jsonb(r) - 'request_id' - 'workspace' from public.showmob_authoring_runs r where workspace=p_workspace and id=p_run;
+$$;
+create function public.showmob_authoring_list(p_workspace text, p_query text default '', p_offset integer default 0)
+returns jsonb language sql stable security invoker set search_path = '' as $$
+  select coalesce(jsonb_agg(x.item order by x.created_at desc, x.id), '[]'::jsonb) from (
+    select to_jsonb(r) - 'protocol' - 'request_id' - 'workspace' as item, r.created_at, r.id
+    from public.showmob_authoring_runs r where workspace=p_workspace
+      and (p_query='' or position(lower(p_query) in lower(r.brief->>'subject')) > 0)
+    order by created_at desc, id limit 20 offset greatest(0,least(p_offset,10000))
+  ) x;
+$$;
+create function public.showmob_authoring_steps(p_workspace text, p_run uuid)
+returns jsonb language sql stable security invoker set search_path = '' as $$
+  select coalesce(jsonb_agg(s.body || jsonb_build_object('revision',s.revision,'actor',s.actor,'output_sha256',s.output_sha256,'created_at',s.created_at) order by s.revision), '[]'::jsonb)
+  from public.showmob_authoring_steps s join public.showmob_authoring_runs r on r.id=s.run_id
+  where r.workspace=p_workspace and r.id=p_run;
+$$;
+
+create function public.showmob_authoring_append(p_workspace text, p_actor text, p_run uuid, p_request uuid, p_expected integer, p_step jsonb)
+returns jsonb language plpgsql security invoker set search_path = '' as $$
+declare r public.showmob_authoring_runs%rowtype; s public.showmob_authoring_steps%rowtype; n integer;
+begin
+  select * into r from public.showmob_authoring_runs where id=p_run and workspace=p_workspace for update;
+  if not found then raise exception 'Run not found' using errcode='P0404'; end if;
+  select * into s from public.showmob_authoring_steps where run_id=p_run and request_id=p_request;
+  if found then
+    if s.actor <> p_actor or s.body <> p_step then raise exception 'Request conflict' using errcode='P0409'; end if;
+    return s.body || jsonb_build_object('revision',s.revision,'actor',s.actor,'output_sha256',s.output_sha256,'created_at',s.created_at);
+  end if;
+  if r.revision <> p_expected or r.revision >= 100 then raise exception 'Stale revision or run limit' using errcode='P0409'; end if;
+  if jsonb_typeof(p_step) is distinct from 'object' or jsonb_typeof(p_step->'output') is distinct from 'object'
+     or jsonb_typeof(p_step->'inputs') is distinct from 'array'
+     or (p_step->>'runId') is distinct from p_run::text
+     or (p_step->>'requestId') is distinct from p_request::text
+     or (p_step->>'expectedRevision')::integer is distinct from p_expected
+     or jsonb_array_length(p_step->'inputs') > 30 then
+    raise exception 'Invalid step' using errcode='22023';
+  end if;
+  for n in select value::integer from jsonb_array_elements_text(p_step->'inputs') loop
+    if n < 1 or n > r.revision or not exists(select 1 from public.showmob_authoring_steps where run_id=p_run and revision=n) then
+      raise exception 'Missing dependency' using errcode='P0409';
+    end if;
+  end loop;
+  -- Re-check transitive freshness under the row lock, so concurrency cannot
+  -- invalidate the API's review between reading inputs and saving a new pass.
+  if exists (
+    with recursive deps(revision) as (
+      select value::integer from jsonb_array_elements_text(p_step->'inputs')
+      union
+      select v.value::integer from deps d
+      join public.showmob_authoring_steps t on t.run_id=p_run and t.revision=d.revision
+      cross join lateral jsonb_array_elements_text(t.body->'inputs') v
+    )
+    select 1 from deps d join public.showmob_authoring_steps t on t.run_id=p_run and t.revision=d.revision
+    where (t.stage=p_step->>'stage' and t.step_key=p_step->>'key')
+       or exists(select 1 from public.showmob_authoring_steps newer where newer.run_id=p_run and newer.stage=t.stage and newer.step_key=t.step_key and newer.revision>t.revision)
+  ) then raise exception 'Superseded dependency' using errcode='P0409'; end if;
+  insert into public.showmob_authoring_steps(run_id, revision, request_id, actor, stage, step_key, body, output_sha256)
+  values(p_run, r.revision+1, p_request, p_actor, p_step->>'stage', p_step->>'key', p_step,
+         encode(sha256(convert_to((p_step->'output')::text,'UTF8')),'hex')) returning * into s;
+  update public.showmob_authoring_runs set revision=s.revision where id=p_run;
+  return s.body || jsonb_build_object('revision',s.revision,'actor',s.actor,'output_sha256',s.output_sha256,'created_at',s.created_at);
+end;
+$$;
+
+revoke all on function public.showmob_authoring_immutable() from public, anon, authenticated;
+revoke all on function public.showmob_authoring_start(text,text,uuid,jsonb,jsonb,text) from public, anon, authenticated;
+revoke all on function public.showmob_authoring_read(text,uuid) from public, anon, authenticated;
+revoke all on function public.showmob_authoring_list(text,text,integer) from public, anon, authenticated;
+revoke all on function public.showmob_authoring_steps(text,uuid) from public, anon, authenticated;
+revoke all on function public.showmob_authoring_append(text,text,uuid,uuid,integer,jsonb) from public, anon, authenticated;
+grant execute on function public.showmob_authoring_start(text,text,uuid,jsonb,jsonb,text),
+  public.showmob_authoring_read(text,uuid), public.showmob_authoring_list(text,text,integer),
+  public.showmob_authoring_steps(text,uuid), public.showmob_authoring_append(text,text,uuid,uuid,integer,jsonb) to service_role;
+commit;

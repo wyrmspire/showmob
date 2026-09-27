@@ -8,7 +8,9 @@
     "build": "tsc --noEmit && vite build && node scripts/generate-share-pages.mjs",
     "preview": "vite preview",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
-    "check:persistence": "node --experimental-strip-types scripts/milestone-one-check.mjs"
+    "check:persistence": "node --experimental-strip-types scripts/milestone-one-check.mjs",
+    "pretest": "node scripts/build-authoring-catalog.mjs",
+    "prebuild": "node scripts/build-authoring-catalog.mjs"
   },
   "dependencies": {
     "@types/node": "26.6.2",
