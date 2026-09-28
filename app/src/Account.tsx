@@ -28,7 +28,7 @@ export function Account({ home }: { home: () => void }) {
   }
   return <main className="artifact theme-paper"><header className="toolbar"><button className="plain" onClick={home}>← Ideas</button></header>
     <div className="shell"><section className="block account-panel">
-      <span className="eyebrow">Showmob account</span><h1>Your pages, your data</h1>
+      <span className="eyebrow">Showmob account</span><h1>Your account, your activity</h1>
       {!supabase ? <p>Sign-in is not configured on this deployment yet. The site can still show its public pages.</p>
         : !ready ? <p role="status">Checking your session…</p>
         : session ? <><p>Signed in as <strong>{session.user.email}</strong>{admin ? " · Admin" : ""}.</p>
