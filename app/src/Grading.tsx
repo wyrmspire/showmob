@@ -71,6 +71,17 @@ const kebab = (title: string) =>
 
 const bySlug = new Map(allEntries.map((entry) => [entry.slug, entry]));
 
+// Pin a grade to the exact page version it judged: SHA-256 of the artifact
+// document as rendered (the catalog entry), hex. If the page is edited
+// later, the hash stops matching and the drift is visible.
+async function artifactSha256(artifact: Artifact): Promise<string> {
+  const bytes = new TextEncoder().encode(JSON.stringify(artifact));
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return [...new Uint8Array(digest)]
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
 /**
  * The built page for a subject, once a generator has shipped it to the repo.
  *
@@ -703,6 +714,7 @@ export function Grading({
           scores,
           suggestion: panel.suggestion.trim(),
           behavior,
+          document_sha256: await artifactSha256(openArtifact),
         }),
       });
       if (res.status === 401) {
