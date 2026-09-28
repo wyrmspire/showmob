@@ -35,7 +35,7 @@
     {
       "id": "spec-activity-week-note",
       "type": "text",
-      "heading": "activity-week — a local week log",
+      "heading": "activity-week — an account week log",
       "body": "Recipe: record moderate aerobic minutes and strength days across one reusable undated week. This is not an account, calendar or medical assessment; Reset clears this device's copy."
     },
     {

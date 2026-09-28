@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Callout } from "./file-kit";
 import { type Block } from "../schema";
+import { supabase, useAuth } from "../auth";
+import { emptyWeek, mondayLocal, validWeek, type ActivityDay } from "../activity";
 
 export function BlockView({ block }: { block: Block }) {
   const [checked, setChecked] = useState<number[]>([]);
@@ -519,51 +521,79 @@ function Slideshow({
 }
 
 
-type ActivityDay = { minutes: number; strength: boolean };
-const emptyWeek = (): ActivityDay[] => Array.from({ length: 7 }, () => ({ minutes: 0, strength: false }));
 const dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
 function ActivityWeekBlock({ block }: { block: Extract<Block, { type: "activity-week" }> }) {
-  const storageKey = `showmob:activity-week:v1:${globalThis.location?.pathname ?? "local"}:${block.id}`;
+  const { session, ready } = useAuth();
+  const userId = session?.user.id;
+  const artifactSlug = globalThis.location?.pathname.match(/^\/a\/([a-z0-9-]+)/)?.[1] ?? "local-preview";
+  const weekStart = mondayLocal(new Date());
   const [days, setDays] = useState<ActivityDay[]>(emptyWeek);
   const [loaded, setLoaded] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [notice, setNotice] = useState("");
   useEffect(() => {
-    try {
-      const saved = JSON.parse(localStorage.getItem(storageKey) ?? "null");
-      if (Array.isArray(saved) && saved.length === 7 && saved.every((x) =>
-        x && Number.isInteger(x.minutes) && x.minutes >= 0 && x.minutes <= 1440 && typeof x.strength === "boolean")) {
-        setDays(saved);
-      }
-    } catch { /* Storage can be unavailable or old data malformed. Start fresh. */ }
-    setLoaded(true);
-  }, [storageKey]);
-  useEffect(() => {
-    if (!loaded) return;
-    try { localStorage.setItem(storageKey, JSON.stringify(days)); } catch { /* The tracker still works in this tab. */ }
-  }, [days, loaded, storageKey]);
+    setDays(emptyWeek()); setLoaded(false); setNotice("");
+    if (!supabase || !userId) return;
+    let active = true;
+    supabase.from("showmob_activity_weeks").select("days")
+      .eq("user_id", userId).eq("artifact_slug", artifactSlug).eq("block_id", block.id)
+      .eq("week_start", weekStart).maybeSingle().then(({ data, error }) => {
+        if (!active) return;
+        if (error) setNotice(`Could not load your week: ${error.message}`);
+        else if (data && validWeek(data.days)) setDays(data.days);
+        else if (data) setNotice("Saved week has an unexpected format. No changes have been made.");
+        setLoaded(!error && (!data || validWeek(data.days)));
+      });
+    return () => { active = false; };
+  }, [userId, artifactSlug, block.id, weekStart]);
+  async function save() {
+    if (!supabase || !userId || !loaded || busy || !validWeek(days)) return;
+    setBusy(true); setNotice("");
+    const { error } = await supabase.from("showmob_activity_weeks").upsert({
+      user_id: userId, artifact_slug: artifactSlug, block_id: block.id,
+      week_start: weekStart, days,
+    }, { onConflict: "user_id,artifact_slug,block_id,week_start" });
+    setNotice(error ? `Not saved: ${error.message}` : "Saved to your account.");
+    setBusy(false);
+  }
   const minutes = days.reduce((sum, day) => sum + day.minutes, 0);
   const strength = days.filter((day) => day.strength).length;
-  const update = (i: number, change: Partial<ActivityDay>) => setDays((old) => old.map((day, j) => j === i ? { ...day, ...change } : day));
+  const update = (i: number, change: Partial<ActivityDay>) => {
+    setNotice("Unsaved changes.");
+    setDays((old) => old.map((day, j) => j === i ? { ...day, ...change } : day));
+  };
   return <section className="block activity-week" id={block.id}>
     <h2>{block.heading}</h2><p>{block.description}</p>
-    <div className="activity-summary" role="status" aria-live="polite">
-      <span><strong>{minutes}</strong> moderate minutes logged <small>Adult guideline: 150 per week</small></span>
-      <span><strong>{strength}</strong> strength days logged <small>Adult guideline: 2 per week</small></span>
-    </div>
-    <div className="activity-days">
-      {days.map((day, i) => <div className="activity-day" key={dayNames[i]}>
-        <strong>{dayNames[i]}</strong>
-        <label>Moderate minutes <input type="number" inputMode="numeric" min="0" max="1440" step="1" value={day.minutes || ""} placeholder="0" onChange={(e) => {
-          const value = e.target.value;
-          if (value === "") { update(i, { minutes: 0 }); return; }
-          const number = Number(value);
-          if (Number.isInteger(number) && number >= 0 && number <= 1440) update(i, { minutes: number });
-        }} /></label>
-        <label className="activity-strength"><input type="checkbox" checked={day.strength} onChange={(e) => update(i, { strength: e.target.checked })} /> Strength day</label>
-      </div>)}
-    </div>
-    <p className="session-note">This is an undated, reusable week. It stays only in this browser, not your account. Use Reset for a new week. Log moderate minutes only; the total does not convert vigorous activity or judge workout quality.</p>
-    <button className="activity-reset" onClick={() => { if (window.confirm("Clear this activity week on this device?")) setDays(emptyWeek()); }}>Reset week</button>
+    {!supabase ? <p role="status">Account storage is not configured on this deployment. This log is unavailable.</p>
+    : !ready ? <p role="status">Checking your account…</p>
+    : !userId ? <p role="status">Sign in from the <a href="/account">account page</a> to keep your activity week across devices. No data is stored while signed out.</p>
+    : <>
+      <p className="session-note">Week starting {weekStart}. This log is private to your account. Save changes before leaving. Earlier device-only logs are not copied automatically.</p>
+      {!loaded ? <p role="status">{notice || "Loading your week…"}</p> : <>
+        <div className="activity-summary" role="status" aria-live="polite">
+          <span><strong>{minutes}</strong> moderate minutes logged <small>Adult guideline: 150 per week</small></span>
+          <span><strong>{strength}</strong> strength days logged <small>Adult guideline: 2 per week</small></span>
+        </div>
+        <div className="activity-days">
+          {days.map((day, i) => <div className="activity-day" key={dayNames[i]}>
+            <strong>{dayNames[i]}</strong>
+            <label>Moderate minutes <input type="number" inputMode="numeric" min="0" max="1440" step="1" value={day.minutes || ""} placeholder="0" disabled={busy} onChange={(e) => {
+              const value = e.target.value;
+              if (value === "") { update(i, { minutes: 0 }); return; }
+              const number = Number(value);
+              if (Number.isInteger(number) && number >= 0 && number <= 1440) update(i, { minutes: number });
+            }} /></label>
+            <label className="activity-strength"><input type="checkbox" checked={day.strength} disabled={busy} onChange={(e) => update(i, { strength: e.target.checked })} /> Strength day</label>
+          </div>)}
+        </div>
+        <p className="session-note">Log moderate minutes only. The total does not convert vigorous activity or judge workout quality.</p>
+        <button className="activity-reset" type="button" disabled={busy} onClick={() => {
+          if (window.confirm("Clear this week's activity? Click Save to store the reset.")) { setDays(emptyWeek()); setNotice("Week cleared here. Click Save to update your account."); }
+        }}>Clear week</button>{" "}
+        <button className="file-button" type="button" disabled={busy} onClick={save}>{busy ? "Saving…" : "Save week"}</button>
+      </>}
+      {notice && loaded && <p role="status">{notice}</p>}
+    </>}
   </section>;
 }
 

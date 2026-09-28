@@ -172,6 +172,8 @@ test('/everything is a passcode-gated index route: reserved, noindex, linked fro
   assert.equal(resolveScreen(null, [], undefined, '/everything'), 'everything');
   assert.equal(resolveScreen(null, [], undefined, '/everything/'), 'everything');
   assert.equal(resolveScreen('everything', ['everything']), 'home');
+  assert.equal(resolveScreen(null, [], undefined, '/account'), 'account');
+  assert.equal(resolveScreen('account', ['account']), 'home');
   const view = read('../app/src/Everything.tsx');
   assert.match(view, /setUnlistedRobots\(true\)/);
   assert.match(view, /entry\.status === "published" \|\| entry\.status === "preview"/);
