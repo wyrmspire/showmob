@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "slug": "showmob-block-gallery",
   "title": "Block gallery",
-  "summary": "Vocabulary sheet for all 19 Showmob blocks, plus a few starter recipes as grammar suggestions—not required slots.",
+  "summary": "Vocabulary sheet for all 24 Showmob blocks, plus starter recipes as grammar suggestions.",
   "contributor": "Showmob",
   "status": "published",
   "theme": "workshop",
@@ -31,6 +31,30 @@
       "id": "vocab-divider",
       "type": "divider",
       "label": "Vocabulary — one of each type"
+    },
+    {
+      "id": "spec-activity-week-note",
+      "type": "text",
+      "heading": "activity-week — a local week log",
+      "body": "Recipe: record moderate aerobic minutes and strength days across one reusable undated week. This is not an account, calendar or medical assessment; Reset clears this device's copy."
+    },
+    {
+      "id": "spec-activity-week",
+      "type": "activity-week",
+      "heading": "A practice activity week",
+      "description": "Try the tracker with example numbers, then reset it. Your changes stay in this browser."
+    },
+    {
+      "id": "spec-effort-check-note",
+      "type": "text",
+      "heading": "effort-check — an intensity cue",
+      "body": "Recipe: select a talk-test observation and get an interpretation without scoring a quiz or storing health data."
+    },
+    {
+      "id": "spec-effort-check",
+      "type": "effort-check",
+      "heading": "What can you say while moving?",
+      "description": "Choose the sentence that fits your breathing."
     },
     {
       "id": "spec-hero-note",
