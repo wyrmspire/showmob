@@ -232,6 +232,35 @@ Grades → clusters → the gradient learns what "a Chris page" is.
 
 Reference for a page that earned its density: [`plan-data-sufficiency`](https://showmob.vercel.app/a/plan-data-sufficiency) (22 blocks, ~2,200 words). Density follows signal. It is not a blanket rule that every page gets that long; the grades tell us where it pays.
 
+### Taste principles (recorded from live grading)
+
+Principles Chris states while grading, for the critique layer to enforce:
+
+1. **Padding gets cut.** When the answer is one sentence, the page is one
+   sentence. Extra sections bolted on after a complete answer are padding:
+   a section that would not be missed gets cut. Short is never a defect by
+   itself. (Chris, live grading, 2026-09-26.) This is the "what existed
+   that should not have" signal made concrete, and it reinforces frame
+   pressure: hold the frame of the question, add nothing past the answer.
+
+## Artifact kind before representation
+
+Chris, live grading, 2026-09-26: nothing in the pipeline decides WHAT a
+subject should become - lesson, outline, template, functional document -
+before representation decides HOW to present it. Tidewars (GN-108) is an
+outline / functional document; we have no such category, and grading it as
+a page was a mismatched read. Two rules fall out of that:
+
+1. **The missing decision layer.** Artifact-kind selection belongs
+   upstream of representation: pick the kind first, then let
+   representation decide how to present that kind. An outline wanting
+   typed references is the same conversation as the parked story /
+   typed-refs thread - kind selection and typed refs land together.
+   (Notes only; building the layer is Chris's phase call.)
+2. **Lane scoping.** Only put artifacts in a grading lane whose kind
+   matches what the lane calibrates. A page-calibration lane grades
+   pages; an outline graded there produces noise, not signal.
+
 ## Not yet
 
 - Building the full gradient.

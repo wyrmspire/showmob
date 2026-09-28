@@ -158,6 +158,9 @@ export function cleanSubjects(raw: unknown): Record<string, unknown>[] {
       ab_pair: row.ab_pair,
       status: row.status,
       artifact_slug: row.artifact_slug,
+      // The probe is not generator provenance; the client reveals it only
+      // after a grade is filed, so the blind holds.
+      probe: row.probe,
     };
   });
 }
