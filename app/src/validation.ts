@@ -36,6 +36,8 @@ const blockRules = {
   'compact-table': { strings: ['heading'], optional: ['caption'], list: { key: 'rows' } },
   diagram: { strings: ['heading'], list: { key: 'nodes', strings: ['title', 'detail'] } },
   slideshow: { strings: ['heading'], list: { key: 'slides', strings: ['title', 'body'] } },
+  'activity-week': { strings: ['heading', 'description'] },
+  'effort-check': { strings: ['heading', 'description'] },
   divider: { strings: [], optional: ['label'] },
 } satisfies Record<Block['type'], BlockRule>;
 

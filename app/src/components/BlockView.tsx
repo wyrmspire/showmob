@@ -5,6 +5,8 @@ import { type Block } from "../schema";
 export function BlockView({ block }: { block: Block }) {
   const [checked, setChecked] = useState<number[]>([]);
   const [picked, setPicked] = useState<number | null>(null);
+  if (block.type === "activity-week") return <ActivityWeekBlock block={block} />;
+  if (block.type === "effort-check") return <EffortCheckBlock block={block} />;
   if (block.type === "hero")
     return (
       <section className="hero block" id={block.id}>
@@ -514,4 +516,71 @@ function Slideshow({
       </div>
     </section>
   );
+}
+
+
+type ActivityDay = { minutes: number; strength: boolean };
+const emptyWeek = (): ActivityDay[] => Array.from({ length: 7 }, () => ({ minutes: 0, strength: false }));
+const dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+function ActivityWeekBlock({ block }: { block: Extract<Block, { type: "activity-week" }> }) {
+  const storageKey = `showmob:activity-week:v1:${globalThis.location?.pathname ?? "local"}:${block.id}`;
+  const [days, setDays] = useState<ActivityDay[]>(emptyWeek);
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) ?? "null");
+      if (Array.isArray(saved) && saved.length === 7 && saved.every((x) =>
+        x && Number.isInteger(x.minutes) && x.minutes >= 0 && x.minutes <= 1440 && typeof x.strength === "boolean")) {
+        setDays(saved);
+      }
+    } catch { /* Storage can be unavailable or old data malformed. Start fresh. */ }
+    setLoaded(true);
+  }, [storageKey]);
+  useEffect(() => {
+    if (!loaded) return;
+    try { localStorage.setItem(storageKey, JSON.stringify(days)); } catch { /* The tracker still works in this tab. */ }
+  }, [days, loaded, storageKey]);
+  const minutes = days.reduce((sum, day) => sum + day.minutes, 0);
+  const strength = days.filter((day) => day.strength).length;
+  const update = (i: number, change: Partial<ActivityDay>) => setDays((old) => old.map((day, j) => j === i ? { ...day, ...change } : day));
+  return <section className="block activity-week" id={block.id}>
+    <h2>{block.heading}</h2><p>{block.description}</p>
+    <div className="activity-summary" role="status" aria-live="polite">
+      <span><strong>{minutes}</strong> moderate minutes logged <small>Adult guideline: 150 per week</small></span>
+      <span><strong>{strength}</strong> strength days logged <small>Adult guideline: 2 per week</small></span>
+    </div>
+    <div className="activity-days">
+      {days.map((day, i) => <div className="activity-day" key={dayNames[i]}>
+        <strong>{dayNames[i]}</strong>
+        <label>Moderate minutes <input type="number" inputMode="numeric" min="0" max="1440" step="1" value={day.minutes || ""} placeholder="0" onChange={(e) => {
+          const value = e.target.value;
+          if (value === "") { update(i, { minutes: 0 }); return; }
+          const number = Number(value);
+          if (Number.isInteger(number) && number >= 0 && number <= 1440) update(i, { minutes: number });
+        }} /></label>
+        <label className="activity-strength"><input type="checkbox" checked={day.strength} onChange={(e) => update(i, { strength: e.target.checked })} /> Strength day</label>
+      </div>)}
+    </div>
+    <p className="session-note">This is an undated, reusable week. It stays only in this browser, not your account. Use Reset for a new week. Log moderate minutes only; the total does not convert vigorous activity or judge workout quality.</p>
+    <button className="activity-reset" onClick={() => { if (window.confirm("Clear this activity week on this device?")) setDays(emptyWeek()); }}>Reset week</button>
+  </section>;
+}
+
+function EffortCheckBlock({ block }: { block: Extract<Block, { type: "effort-check" }> }) {
+  const [answer, setAnswer] = useState<"easy" | "moderate" | "vigorous" | null>(null);
+  const options = [
+    { id: "easy", label: "I can sing", response: "This is likely light effort. If you are aiming for moderate activity, you could move a little faster if it feels comfortable." },
+    { id: "moderate", label: "I can talk, but not sing", response: "This is the usual talk-test sign of moderate effort. You can log these minutes in the tracker." },
+    { id: "vigorous", label: "Only a few words before a breath", response: "This is the usual talk-test sign of vigorous effort. This tracker counts moderate minutes only, so do not add these minutes there as if they were moderate." },
+  ] as const;
+  const selected = options.find((option) => option.id === answer);
+  return <section className="block effort-check" id={block.id}>
+    <h2>{block.heading}</h2><p>{block.description}</p>
+    <div className="effort-options" role="radiogroup" aria-label="Talk test result">
+      {options.map((option) => <button key={option.id} type="button" role="radio" aria-checked={answer === option.id} onClick={() => setAnswer(option.id)}>{option.label}</button>)}
+    </div>
+    {selected && <p className="effort-result" role="status" aria-live="polite">{selected.response}</p>}
+    <p className="session-note">A rough intensity cue, not a fitness or medical assessment. This selection resets when you leave the page.</p>
+  </section>;
 }
