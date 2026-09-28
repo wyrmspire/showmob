@@ -57,7 +57,7 @@ The validator is used for bundled content, pasted/file imports and saved-draft r
 
 To enrich an existing subject, first search `app/src/content/` for its slug, tags and `series.id`. Edit the existing artifact when the idea belongs on the same page; otherwise add another artifact with the same `series.id`, the same `series.title`, and a new `series.order`. The home shelf and previous/next navigation update automatically. Keep new work in `preview` until the contributor and publisher have reviewed it.
 
-Studio’s Add menu covers **13 of 22** types: `text`, `slideshow`, `compact-table`, `diagram`, `note-callout`, `steps`, `checklist`, `timeline`, `comparison`, `resource-list`, `quote`, `divider`, and `cta-band`. It can also edit an existing `hero`. Still missing from Add (use Import / JSON): `hero` (add), `stat-strip`, `code`, `embed`, `image`, `exercise`, `choice`, `fill-in`, `reveal`. **Rich blocks = JSON tab:** unsupported Add types still render in preview when present. Templates may contain richer blocks. This catalog documents all 22 renderer types, not only Studio's Add menu.
+Studio’s Add menu covers **13 of 24** types: `text`, `slideshow`, `compact-table`, `diagram`, `note-callout`, `steps`, `checklist`, `timeline`, `comparison`, `resource-list`, `quote`, `divider`, and `cta-band`. It can also edit an existing `hero`. Still missing from Add (use Import / JSON): `hero` (add), `stat-strip`, `code`, `embed`, `image`, `exercise`, `choice`, `fill-in`, `reveal`, `activity-week`, `effort-check`. **Rich blocks = JSON tab:** unsupported Add types still render in preview when present. Templates may contain richer blocks. This catalog documents all 24 renderer types, not only Studio's Add menu.
 
 ## Widget reference
 
@@ -273,6 +273,22 @@ Use when a page needs a paced presentation sequence. Required string `heading`; 
 ```
 
 Bad: `{"id":"tour","type":"slideshow","heading":"Tour","slides":[{"title":"Missing body"}]}` is incomplete. The block has previous, next, and numbered controls with a position indicator. It does not auto-advance, alter the artifact URL, or turn the whole artifact into a mode.
+
+### `activity-week`
+
+Use for a signed-in reader’s dated, per-account log of moderate aerobic minutes and strength days across seven days. Required strings: `heading`, `description`. The reader enters whole minutes (0–1440 per day), toggles strength days, and sees totals alongside the adult guideline. Data loads from and saves explicitly to Supabase in a row owned by the authenticated reader, keyed by page, block and Monday-start week. No account or unconfigured Supabase means no editable log. Reset asks before clearing the on-screen week; Save persists it. A failed Save leaves unsaved edits in the tab. Older device-only logs are not imported. Do not use this as a medical record or plan for a specific person's capacity.
+
+```json
+{ "id": "activity", "type": "activity-week", "heading": "A practice week", "description": "Record moderate minutes and strength days on this device." }
+```
+
+### `effort-check`
+
+Use when a reader needs to interpret their own talk-test observation, not answer a scored question. Required strings: `heading`, `description`. Three labeled radio choices give a rough light/moderate/vigorous cue; the choice resets on page exit. No sensor and no stored health data. Cite the CDC talk test in the artifact.
+
+```json
+{ "id": "effort", "type": "effort-check", "heading": "Check your pace", "description": "What can you say while moving?" }
+```
 
 ### `divider`
 

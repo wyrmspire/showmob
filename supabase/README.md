@@ -11,7 +11,7 @@ This folder is the **database side of the persistence foundation**. It is not a 
 
 | Path | Purpose |
 | --- | --- |
-| [`config.toml`](config.toml) | Supabase CLI local defaults. Public signup disabled. No secrets. |
+| [`config.toml`](config.toml) | Supabase CLI local defaults. Local email signup enabled for the account preview. Hosted Auth settings are separate. No secrets. |
 | [`migrations/`](migrations/) | Ordered SQL. Identity + immutable revisions, then lifecycle/ownership columns. |
 | [`../app/src/persistence/revisions.ts`](../app/src/persistence/revisions.ts) | Typed save/read/export/import boundary. Unused by production rendering. |
 | [`../.env.example`](../.env.example) | Placeholder public URL + anon key only. Copy to gitignored `.env` if needed. |
@@ -84,4 +84,4 @@ That writes `dump-supa00.md` … covering `supabase/`, `app/src/persistence/`, t
 
 ## Not in this foundation
 
-Hosted production reads/writes, public signup, Auth membership policies, a Showmob API, Storage/media, backups/restore drills, switching any page from repository JSON to the database, or hardcoded users/passwords.
+Artifact-content cutover, Storage/media, backups/restore drills, or hardcoded users/passwords. The reader account and activity-log preview are documented in [accounts.md](../docs/accounts.md); they require separate hosted activation.

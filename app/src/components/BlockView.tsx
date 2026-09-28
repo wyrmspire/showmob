@@ -1,10 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Callout } from "./file-kit";
 import { type Block } from "../schema";
+import { supabase, useAuth } from "../auth";
+import { emptyWeek, mondayLocal, validWeek, type ActivityDay } from "../activity";
 
 export function BlockView({ block }: { block: Block }) {
   const [checked, setChecked] = useState<number[]>([]);
   const [picked, setPicked] = useState<number | null>(null);
+  if (block.type === "activity-week") return <ActivityWeekBlock block={block} />;
+  if (block.type === "effort-check") return <EffortCheckBlock block={block} />;
   if (block.type === "hero")
     return (
       <section className="hero block" id={block.id}>
@@ -514,4 +518,99 @@ function Slideshow({
       </div>
     </section>
   );
+}
+
+
+const dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+function ActivityWeekBlock({ block }: { block: Extract<Block, { type: "activity-week" }> }) {
+  const { session, ready } = useAuth();
+  const userId = session?.user.id;
+  const artifactSlug = globalThis.location?.pathname.match(/^\/a\/([a-z0-9-]+)/)?.[1] ?? "local-preview";
+  const weekStart = mondayLocal(new Date());
+  const [days, setDays] = useState<ActivityDay[]>(emptyWeek);
+  const [loaded, setLoaded] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [notice, setNotice] = useState("");
+  useEffect(() => {
+    setDays(emptyWeek()); setLoaded(false); setNotice("");
+    if (!supabase || !userId) return;
+    let active = true;
+    supabase.from("showmob_activity_weeks").select("days")
+      .eq("user_id", userId).eq("artifact_slug", artifactSlug).eq("block_id", block.id)
+      .eq("week_start", weekStart).maybeSingle().then(({ data, error }) => {
+        if (!active) return;
+        if (error) setNotice(`Could not load your week: ${error.message}`);
+        else if (data && validWeek(data.days)) setDays(data.days);
+        else if (data) setNotice("Saved week has an unexpected format. No changes have been made.");
+        setLoaded(!error && (!data || validWeek(data.days)));
+      });
+    return () => { active = false; };
+  }, [userId, artifactSlug, block.id, weekStart]);
+  async function save() {
+    if (!supabase || !userId || !loaded || busy || !validWeek(days)) return;
+    setBusy(true); setNotice("");
+    const { error } = await supabase.from("showmob_activity_weeks").upsert({
+      user_id: userId, artifact_slug: artifactSlug, block_id: block.id,
+      week_start: weekStart, days,
+    }, { onConflict: "user_id,artifact_slug,block_id,week_start" });
+    setNotice(error ? `Not saved: ${error.message}` : "Saved to your account.");
+    setBusy(false);
+  }
+  const minutes = days.reduce((sum, day) => sum + day.minutes, 0);
+  const strength = days.filter((day) => day.strength).length;
+  const update = (i: number, change: Partial<ActivityDay>) => {
+    setNotice("Unsaved changes.");
+    setDays((old) => old.map((day, j) => j === i ? { ...day, ...change } : day));
+  };
+  return <section className="block activity-week" id={block.id}>
+    <h2>{block.heading}</h2><p>{block.description}</p>
+    {!supabase ? <p role="status">Account storage is not configured on this deployment. This log is unavailable.</p>
+    : !ready ? <p role="status">Checking your account…</p>
+    : !userId ? <p role="status">Sign in from the <a href="/account">account page</a> to keep your activity week across devices. No data is stored while signed out.</p>
+    : <>
+      <p className="session-note">Week starting {weekStart}. This log is private to your account. Save changes before leaving. Earlier device-only logs are not copied automatically.</p>
+      {!loaded ? <p role="status">{notice || "Loading your week…"}</p> : <>
+        <div className="activity-summary" role="status" aria-live="polite">
+          <span><strong>{minutes}</strong> moderate minutes logged <small>Adult guideline: 150 per week</small></span>
+          <span><strong>{strength}</strong> strength days logged <small>Adult guideline: 2 per week</small></span>
+        </div>
+        <div className="activity-days">
+          {days.map((day, i) => <div className="activity-day" key={dayNames[i]}>
+            <strong>{dayNames[i]}</strong>
+            <label>Moderate minutes <input type="number" inputMode="numeric" min="0" max="1440" step="1" value={day.minutes || ""} placeholder="0" disabled={busy} onChange={(e) => {
+              const value = e.target.value;
+              if (value === "") { update(i, { minutes: 0 }); return; }
+              const number = Number(value);
+              if (Number.isInteger(number) && number >= 0 && number <= 1440) update(i, { minutes: number });
+            }} /></label>
+            <label className="activity-strength"><input type="checkbox" checked={day.strength} disabled={busy} onChange={(e) => update(i, { strength: e.target.checked })} /> Strength day</label>
+          </div>)}
+        </div>
+        <p className="session-note">Log moderate minutes only. The total does not convert vigorous activity or judge workout quality.</p>
+        <button className="activity-reset" type="button" disabled={busy} onClick={() => {
+          if (window.confirm("Clear this week's activity? Click Save to store the reset.")) { setDays(emptyWeek()); setNotice("Week cleared here. Click Save to update your account."); }
+        }}>Clear week</button>{" "}
+        <button className="file-button" type="button" disabled={busy} onClick={save}>{busy ? "Saving…" : "Save week"}</button>
+      </>}
+      {notice && loaded && <p role="status">{notice}</p>}
+    </>}
+  </section>;
+}
+
+function EffortCheckBlock({ block }: { block: Extract<Block, { type: "effort-check" }> }) {
+  const [answer, setAnswer] = useState<"easy" | "moderate" | "vigorous" | null>(null);
+  const options = [
+    { id: "easy", label: "I can sing", response: "This is likely light effort. If you are aiming for moderate activity, you could move a little faster if it feels comfortable." },
+    { id: "moderate", label: "I can talk, but not sing", response: "This is the usual talk-test sign of moderate effort. You can log these minutes in the tracker." },
+    { id: "vigorous", label: "Only a few words before a breath", response: "This is the usual talk-test sign of vigorous effort. This tracker counts moderate minutes only, so do not add these minutes there as if they were moderate." },
+  ] as const;
+  const selected = options.find((option) => option.id === answer);
+  return <section className="block effort-check" id={block.id}>
+    <h2>{block.heading}</h2><p>{block.description}</p>
+    <div className="effort-options" role="radiogroup" aria-label="Talk test result">
+      {options.map((option) => <button key={option.id} type="button" role="radio" aria-checked={answer === option.id} onClick={() => setAnswer(option.id)}>{option.label}</button>)}
+    </div>
+    {selected && <p className="effort-result" role="status" aria-live="polite">{selected.response}</p>}
+    <p className="session-note">A rough intensity cue, not a fitness or medical assessment. This selection resets when you leave the page.</p>
+  </section>;
 }

@@ -12,7 +12,7 @@ const BLOCKS = new Set([
   'hero', 'text', 'stat-strip', 'steps', 'comparison', 'quote', 'note-callout',
   'cta-band', 'checklist', 'choice', 'fill-in', 'reveal', 'timeline', 'code',
   'embed', 'image', 'resource-list', 'exercise', 'compact-table', 'diagram',
-  'slideshow', 'divider',
+  'slideshow', 'divider', 'activity-week', 'effort-check',
 ]);
 const PRESSURES = new Set([
   'frame', 'sequence', 'lookup', 'spatial', 'decision', 'practice', 'warning',

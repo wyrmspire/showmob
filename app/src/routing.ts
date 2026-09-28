@@ -2,6 +2,7 @@ import { allEntries } from "./catalog";
 import {
   EVERYTHING_PATH,
   GRADING_PATH,
+  ACCOUNT_PATH,
   artifactPath,
   isArtifactSlug,
   isReservedSlug,
@@ -58,7 +59,9 @@ export function writeScreen(screen: string) {
   const search = params.toString();
   // Artifacts use `/a/{slug}`; home and Studio (author) stay on `/`.
   const path =
-    screen === "everything"
+    screen === "account"
+      ? ACCOUNT_PATH
+      : screen === "everything"
       ? EVERYTHING_PATH
       : screen === "grading"
         ? GRADING_PATH

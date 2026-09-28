@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "slug": "getting-in-shape",
+  "title": "Getting in shape: a week you can actually start",
+  "summary": "A beginner-friendly movement module: choose a small start, check effort by talking, do two strength days, and keep a private week log.",
+  "contributor": "Instinct for Showmob",
+  "status": "preview",
+  "theme": "field",
+  "tags": [
+    "fitness",
+    "movement",
+    "beginner",
+    "health"
+  ],
+  "updated": "2026-09-28",
+  "blocks": [
+    {
+      "id": "start",
+      "type": "hero",
+      "eyebrow": "Movement / starter module",
+      "title": "Start smaller than your ambition",
+      "body": "Getting in shape need not be a seven-day challenge. Build a repeatable week from movement you can do, then build on it. This is a general adult starter, not a prescription for your body."
+    },
+    {
+      "id": "north-star",
+      "type": "stat-strip",
+      "items": [
+        {
+          "value": "150 min",
+          "label": "moderate aerobic activity per week: adult guideline, not your first-week quota"
+        },
+        {
+          "value": "2 days",
+          "label": "strength activity each week: adult guideline"
+        }
+      ]
+    },
+    {
+      "id": "first-step",
+      "type": "text",
+      "heading": "Your first week can be less than the guideline",
+      "body": "Pick a walk or other activity you can repeat. Try a short, comfortable bout, rest when you need to, and add time gradually. Some activity is better than none. The 150-minute figure is a general adult target for health, not a pass/fail score for your first week."
+    },
+    {
+      "id": "talk-test",
+      "type": "effort-check",
+      "heading": "Check effort without a watch",
+      "description": "While moving, which sentence fits your breathing? Pick one for a rough read on aerobic intensity."
+    },
+    {
+      "id": "strength-plan",
+      "type": "steps",
+      "heading": "Two strength sessions, kept simple",
+      "items": [
+        "On two nonconsecutive days, choose movements that use your legs, hips, back, abdomen, chest, shoulders and arms. Bodyweight, bands or weights all count when they challenge those muscles.",
+        "Start with movements you can control: for example sit-to-stand from a sturdy chair, a wall push-up, a supported hip hinge and a band row. Adjust the movement to what you can do safely; no equipment or exact load is required here.",
+        "Give your muscles recovery time between sessions. Increase reps or resistance gradually as the movements become easier. Stop if a movement causes pain."
+      ]
+    },
+    {
+      "id": "week",
+      "type": "activity-week",
+      "heading": "Try a week, not a streak",
+      "description": "Log moderate aerobic minutes and mark any day you worked the major muscle groups. Sign in to keep your dated week in your private account across devices. Save when you change it; each new week starts fresh. Rest days count as part of a sustainable plan."
+    },
+    {
+      "id": "reality-check",
+      "type": "note-callout",
+      "title": "Adjust for your health",
+      "tone": "warning",
+      "body": "If you have a chronic health condition, ask a healthcare professional what types and amounts of activity fit you. If you have been inactive, have a disability or have overweight, talk with a doctor before starting vigorous activity. This page does not assess symptoms or replace care."
+    },
+    {
+      "id": "sources",
+      "type": "resource-list",
+      "heading": "The guidance behind this module",
+      "items": [
+        {
+          "label": "CDC: Adult Activity Overview",
+          "detail": "Adult aerobic and muscle-strengthening recommendations, and the benefit of moving more.",
+          "url": "https://www.cdc.gov/physical-activity-basics/guidelines/adults.html"
+        },
+        {
+          "label": "CDC: Adding Physical Activity as an Adult",
+          "detail": "Ways to split activity across the week and when to check with a doctor.",
+          "url": "https://www.cdc.gov/physical-activity-basics/adding-adults/index.html"
+        },
+        {
+          "label": "CDC: How to Measure Intensity",
+          "detail": "Talk-test rule of thumb for moderate and vigorous effort.",
+          "url": "https://www.cdc.gov/physical-activity-basics/measuring/index.html"
+        }
+      ]
+    }
+  ]
+}

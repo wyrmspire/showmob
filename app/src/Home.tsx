@@ -49,6 +49,7 @@ export function Home({
         fact="Idea pages as links"
         intro="Showmob is a small language for idea pages, courses, and worlds—each page is a shareable link. Browse the library, follow a series, or search by tag."
       />
+      <p className="account-home-link"><a href="/account">Sign in / account</a></p>
       <section className="home-lead">
         <div>
           <span className="eyebrow">How this site works</span>

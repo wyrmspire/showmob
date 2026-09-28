@@ -7,9 +7,15 @@ import { Everything } from "./Everything";
 import { Grading } from "./Grading";
 import { screenFromLocation, writeScreen } from "./routing";
 import { isReservedSlug } from "./screen";
+import { Account } from "./Account";
+import { AuthProvider } from "./auth";
 import "./style.css";
 
 export function App() {
+  return <AuthProvider><AppContent /></AuthProvider>;
+}
+
+function AppContent() {
   const [screen, setScreen] = useState(screenFromLocation);
   useEffect(() => {
     const onPopState = () => setScreen(screenFromLocation());
@@ -40,6 +46,9 @@ export function App() {
   }
   if (screen === "everything") {
     return <Everything open={open} home={home} />;
+  }
+  if (screen === "account") {
+    return <Account home={home} />;
   }
   if (screen === "grading") {
     return <Grading home={home} everything={() => go("everything")} />;
