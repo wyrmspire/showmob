@@ -57,7 +57,7 @@ The validator is used for bundled content, pasted/file imports and saved-draft r
 
 To enrich an existing subject, first search `app/src/content/` for its slug, tags and `series.id`. Edit the existing artifact when the idea belongs on the same page; otherwise add another artifact with the same `series.id`, the same `series.title`, and a new `series.order`. The home shelf and previous/next navigation update automatically. Keep new work in `preview` until the contributor and publisher have reviewed it.
 
-Studio’s Add menu covers **13 of 23** types: `text`, `slideshow`, `compact-table`, `diagram`, `note-callout`, `steps`, `checklist`, `timeline`, `comparison`, `resource-list`, `quote`, `divider`, and `cta-band`. It can also edit an existing `hero`. Still missing from Add (use Import / JSON): `hero` (add), `stat-strip`, `code`, `embed`, `image`, `exercise`, `choice`, `fill-in`, `reveal`, `bio-quest`. **Rich blocks = JSON tab:** unsupported Add types still render in preview when present. Templates may contain richer blocks. This catalog documents all 23 renderer types, not only Studio's Add menu.
+Studio’s Add menu covers **13 of 25** types: `text`, `slideshow`, `compact-table`, `diagram`, `note-callout`, `steps`, `checklist`, `timeline`, `comparison`, `resource-list`, `quote`, `divider`, and `cta-band`. It can also edit an existing `hero`. Still missing from Add (use Import / JSON): `hero` (add), `stat-strip`, `code`, `embed`, `image`, `exercise`, `choice`, `fill-in`, `reveal`, `activity-week`, `effort-check`, `bio-quest`. **Rich blocks = JSON tab:** unsupported Add types still render in preview when present. Templates may contain richer blocks. This catalog documents all 25 renderer types, not only Studio's Add menu.
 
 ## Widget reference
 
