@@ -38,6 +38,10 @@ A grade that enters the loop is a file, `runs/<series>/grades/<page-or-batch>.js
 - **The critique layer feeds this, not the reverse.** `docs/representation-director.md` catches mechanical failures (a tool the sheet asked for, unused) before a page ever reaches a grader; grading measures what the mechanical layer cannot — whether the page actually teaches.
 - **Batch runs are graded by someone other than the author.** Same-author critique stays a caveat, not a verdict (Chris's 2026-09-26 plan: the next batch is graded against his taste by someone other than Instinct).
 
+## Outside review, 2026-09-26
+
+GPT's third caution lands here: the machinery cannot prove readers learn - taste grades are one layer up from "did the pipeline follow its rules." The plan that matches Chris's instinct: freeze the machinery, generate a batch under director v2, and measure (his teaches / explains / neither taps, graded by someone other than the author). Grok's ordered list agrees: grades into `runs/local-security-lab/grades/` are the locked door and outrank any new field. The 10 calibration pages were appended to the grading-night set as GN-101..GN-110 on 2026-09-26.
+
 ## What this does not change
 
 No database plumbing here. Grading-center subjects and grades stay as they are; the registry slug root-cause fix waits for Chris's go. This doc defines the record format and the rules so that when grades arrive — owner taste pass first — they land classified instead of loose.
