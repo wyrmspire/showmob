@@ -39,3 +39,14 @@
 .bq-yours {background:var(--accent-soft);border-radius:14px 14px 2px 14px;margin-left:18px;}
 .bq-status {color:var(--accent);font-weight:600;}
 @media(max-width:480px) {.bq-person {grid-template-columns:1fr;gap:12px;padding:20px;}.bq-profiles button {padding:10px 8px;}.bq-top .bq-muted {font-size:12px;}}
+.bq-start-steps {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:0;list-style:none;counter-reset:entry;}
+.bq-start-steps li {counter-increment:entry;border-top:2px solid var(--accent);padding:12px 0;font-size:13px;line-height:1.5;}
+.bq-start-steps li:before {content:counter(entry,decimal-leading-zero);display:block;color:var(--accent);font-weight:700;}
+.bq-giver-rules {padding-top:12px;margin-top:12px!important;border-top:1px solid var(--hairline);}
+.bq-board {margin-top:32px;}
+.bq-board>h3 {font-family:Georgia,serif;font-size:30px;}
+.bq-board article {border:1px dashed var(--muted);border-radius:14px;padding:20px;margin-top:14px;}
+.bq-board h4 {font-size:22px;margin:14px 0;}
+.bq-board p,.bq-board li {line-height:1.6;}
+.bq-board ol {padding-left:24px;}
+@media(max-width:480px) {.bq-profiles {grid-template-columns:1fr;}.bq-profiles button {padding:14px;}.bq-profiles button span {font-size:13px;}}
