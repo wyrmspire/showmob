@@ -18,7 +18,7 @@
       "type": "hero",
       "eyebrow": "Content language",
       "title": "Block gallery",
-      "body": "This page is the vocabulary-and-grammar sheet for Showmob. Layer one shows every block type once. Layer two shows a few starter recipes—named combinations that do a job. Recipes are suggestions under gradient judgment: choose among them and drop empty blocks. They are never required slots to fill."
+      "body": "This page is the vocabulary-and-grammar sheet for Showmob. Layer one shows every block type once. Layer two shows a few starter recipes\u2014named combinations that do a job. Recipes are suggestions under gradient judgment: choose among them and drop empty blocks. They are never required slots to fill."
     },
     {
       "id": "intro-note",
@@ -30,24 +30,24 @@
     {
       "id": "vocab-divider",
       "type": "divider",
-      "label": "Vocabulary — one of each type"
+      "label": "Vocabulary \u2014 one of each type"
     },
     {
       "id": "spec-activity-week-note",
       "type": "text",
-      "heading": "activity-week — a local week log",
-      "body": "Recipe: record moderate aerobic minutes and strength days across one reusable undated week. This is not an account, calendar or medical assessment; Reset clears this device's copy."
+      "heading": "activity-week \u2014 an account week log",
+      "body": "Recipe: record moderate aerobic minutes and strength days across a dated Monday-start week. Sign in to load your private account log; Save keeps changes across devices. Clear week resets the on-screen values, and Save stores that reset. Earlier device-only logs are not imported. This is not a medical assessment."
     },
     {
       "id": "spec-activity-week",
       "type": "activity-week",
       "heading": "A practice activity week",
-      "description": "Try the tracker with example numbers, then reset it. Your changes stay in this browser."
+      "description": "Sign in to log moderate minutes and strength days in your private account for the current week. Save your changes before leaving."
     },
     {
       "id": "spec-effort-check-note",
       "type": "text",
-      "heading": "effort-check — an intensity cue",
+      "heading": "effort-check \u2014 an intensity cue",
       "body": "Recipe: select a talk-test observation and get an interpretation without scoring a quiz or storing health data."
     },
     {
@@ -59,7 +59,7 @@
     {
       "id": "spec-hero-note",
       "type": "text",
-      "heading": "hero — page orientation",
+      "heading": "hero \u2014 page orientation",
       "body": "Recipe: open with one hero. Short title, clear body, optional eyebrow. Prefer a single hero per page."
     },
     {
@@ -72,7 +72,7 @@
     {
       "id": "spec-text-note",
       "type": "note-callout",
-      "title": "text — one explanation",
+      "title": "text \u2014 one explanation",
       "body": "Recipe: one heading, one body. Split long prose into multiple text blocks instead of stuffing paragraphs.",
       "tone": "note"
     },
@@ -80,12 +80,12 @@
       "id": "spec-text",
       "type": "text",
       "heading": "Name the reference",
-      "body": "A text block holds one idea. The renderer treats the body as a single paragraph of ordinary text—no Markdown parsing."
+      "body": "A text block holds one idea. The renderer treats the body as a single paragraph of ordinary text\u2014no Markdown parsing."
     },
     {
       "id": "spec-stat-note",
       "type": "text",
-      "heading": "stat-strip — sourced figures",
+      "heading": "stat-strip \u2014 sourced figures",
       "body": "Recipe: a few labeled values the reader should remember. Format numbers as strings; labels carry units and scope."
     },
     {
@@ -109,7 +109,7 @@
     {
       "id": "spec-steps-note",
       "type": "text",
-      "heading": "steps — ordered sequence",
+      "heading": "steps \u2014 ordered sequence",
       "body": "Recipe: numbered list when order matters. Keep each step one action."
     },
     {
@@ -125,7 +125,7 @@
     {
       "id": "spec-comparison-note",
       "type": "text",
-      "heading": "comparison — alternatives side by side",
+      "heading": "comparison \u2014 alternatives side by side",
       "body": "Recipe: two or more columns with name + detail. Keep details comparable."
     },
     {
@@ -146,7 +146,7 @@
     {
       "id": "spec-quote-note",
       "type": "text",
-      "heading": "quote — attributable line",
+      "heading": "quote \u2014 attributable line",
       "body": "Recipe: short quote plus attribution. Do not invent a source."
     },
     {
@@ -158,7 +158,7 @@
     {
       "id": "spec-note-callout-note",
       "type": "text",
-      "heading": "note-callout — limit, tip, or warning",
+      "heading": "note-callout \u2014 limit, tip, or warning",
       "body": "Recipe: title + body; optional tone note | positive | warning. Say the meaning in words, not only color."
     },
     {
@@ -171,7 +171,7 @@
     {
       "id": "spec-cta-note",
       "type": "text",
-      "heading": "cta-band — closing action as text",
+      "heading": "cta-band \u2014 closing action as text",
       "body": "Recipe: heading + body that name what to do next. Not a button or link."
     },
     {
@@ -183,7 +183,7 @@
     {
       "id": "spec-checklist-note",
       "type": "text",
-      "heading": "checklist — temporary self-check",
+      "heading": "checklist \u2014 temporary self-check",
       "body": "Recipe: labels the reader can toggle locally. Selections are not saved evidence of completion."
     },
     {
@@ -203,7 +203,7 @@
     {
       "id": "spec-timeline-note",
       "type": "text",
-      "heading": "timeline — chronology",
+      "heading": "timeline \u2014 chronology",
       "body": "Recipe: time, title, detail in authored order. The renderer does not sort dates."
     },
     {
@@ -248,7 +248,7 @@
     {
       "id": "spec-fill-in-note",
       "type": "text",
-      "heading": "fill-in — worksheet blanks",
+      "heading": "fill-in \u2014 worksheet blanks",
       "body": "Recipe: labeled blanks the reader types into. Entries are session-local, never checked or transmitted."
     },
     {
@@ -269,7 +269,7 @@
     {
       "id": "spec-reveal-note",
       "type": "text",
-      "heading": "reveal — hidden until asked",
+      "heading": "reveal \u2014 hidden until asked",
       "body": "Recipe: content the reader must explicitly open, like an answer key. The button toggles the panel."
     },
     {
@@ -282,7 +282,7 @@
     {
       "id": "spec-code-note",
       "type": "text",
-      "heading": "code — literal data to read",
+      "heading": "code \u2014 literal data to read",
       "body": "Recipe: heading + code string. Optional language is retained but not highlighted. Nothing executes."
     },
     {
@@ -295,7 +295,7 @@
     {
       "id": "spec-embed-note",
       "type": "text",
-      "heading": "embed — source / reference card",
+      "heading": "embed \u2014 source / reference card",
       "body": "Recipe: heading, source name, caption; optional absolute HTTPS URL. Renders a card, not an iframe."
     },
     {
@@ -309,7 +309,7 @@
     {
       "id": "spec-image-note",
       "type": "text",
-      "heading": "image — authored visual",
+      "heading": "image \u2014 authored visual",
       "body": "Recipe: src (repo path or HTTPS), alt, caption; optional heading. Prefer repository assets."
     },
     {
@@ -323,7 +323,7 @@
     {
       "id": "spec-resource-note",
       "type": "text",
-      "heading": "resource-list — curated next steps",
+      "heading": "resource-list \u2014 curated next steps",
       "body": "Recipe: label, detail, absolute HTTPS url per item."
     },
     {
@@ -338,7 +338,7 @@
         },
         {
           "label": "Product brief",
-          "detail": "Gallery → story → refs build order.",
+          "detail": "Gallery \u2192 story \u2192 refs build order.",
           "url": "https://github.com/wyrmspire/showmob/blob/main/docs/product-brief.md"
         }
       ]
@@ -346,7 +346,7 @@
     {
       "id": "spec-exercise-note",
       "type": "text",
-      "heading": "exercise — check understanding",
+      "heading": "exercise \u2014 check understanding",
       "body": "Recipe: prompt, options, zero-based answer index, explanation. Feedback strings are optional."
     },
     {
@@ -364,7 +364,7 @@
     {
       "id": "spec-table-note",
       "type": "text",
-      "heading": "compact-table — small grid",
+      "heading": "compact-table \u2014 small grid",
       "body": "Recipe: columns + rows of strings; optional caption. Keep cells short."
     },
     {
@@ -390,7 +390,7 @@
     {
       "id": "spec-diagram-note",
       "type": "text",
-      "heading": "diagram — process nodes",
+      "heading": "diagram \u2014 process nodes",
       "body": "Recipe: ordered nodes with title + detail. Good for flows, not free-form graphs."
     },
     {
@@ -415,7 +415,7 @@
     {
       "id": "spec-slideshow-note",
       "type": "text",
-      "heading": "slideshow — paced slides in-page",
+      "heading": "slideshow \u2014 paced slides in-page",
       "body": "Recipe: heading + slides with title and body. Browse remains the whole page; present inside the block."
     },
     {
@@ -436,7 +436,7 @@
     {
       "id": "spec-divider-note",
       "type": "text",
-      "heading": "divider — section break",
+      "heading": "divider \u2014 section break",
       "body": "Recipe: optional label. Use to name major sections without another heading block."
     },
     {
@@ -448,7 +448,7 @@
       "id": "recipes-intro",
       "type": "text",
       "heading": "Starter recipes (suggestions)",
-      "body": "Named combinations that do a job. Re-using block types here is expected. Gradient judgment picks among recipes and drops what the content does not need—never treat these as mandatory section lists."
+      "body": "Named combinations that do a job. Re-using block types here is expected. Gradient judgment picks among recipes and drops what the content does not need\u2014never treat these as mandatory section lists."
     },
     {
       "id": "recipe-explain-divider",
