@@ -291,3 +291,15 @@ The current hosted app reads `?artifact=<slug>` to open a discovered page. Every
 This documents the existing routing shape for current links; it does not promise a future route migration policy. A local Studio import is not registered as a shareable artifact. There is no automatic repository-to-hosted-preview deployment configured here.
 
 `legacy-fixture.ts` and the checked-in artifacts remain version 1. Changing required fields or block names later needs an explicit compatibility or migration decision. New renderer capabilities need their own implementation and review; adding a type name to content does not create them.
+
+## bio-quest (session-only introduction flow)
+
+A real writing-introduction artifact needs a staged gate, receiving-side consent simulation, and a local conversation. `fill-in` and `reveal` cannot express that transition. `bio-quest` is a renderer-owned reusable widget, not a page-specific route. It follows the same JSON + trusted-widget pattern as the proposed fitness module (#125), but branches from main and does not import that PR or accounts (#126).
+
+```json
+{"id":"meet","type":"bio-quest","heading":"Meet through a quest","description":"Fictional demo","profiles":[{"key":"rowan","name":"Rowan, 28","bio":"Bike fixer.","interests":"Bikes / museums","prompt":"Plan a tiny adventure.","hint":"Be specific.","reply":"What is our first stop?"}]}
+```
+
+The content owns fictional profiles, writing prompts, and scripted opening replies. The widget owns quest → introduction review → conversation state. Thirty whitespace-separated words permit an offer; this is openly a participation check, not a sincerity/quality/AI detector. The receiving side can accept or keep the door closed. Messages never leave the widget; React state only, no local storage, network, database, accounts, or analytics. Reload/reset clears all writing. Switching profiles keeps separate answers during this session.
+
+Empty profiles are rejected at validation; the renderer still has a defensive empty state. No loading state is needed (bundled synchronous JSON). Invalid/short input gets inline feedback. Native controls support keyboard input, status feedback uses a live region, stage headings receive focus, and all colors use semantic theme tokens. The gallery includes a specimen. Existing schemaVersion 1 artifacts remain compatible; older renderers cannot render this new type.
