@@ -38,13 +38,13 @@ enabled = false
 [auth]
 enabled = true
 site_url = "http://127.0.0.1:5173"
-additional_redirect_urls = ["http://127.0.0.1:5173"]
+additional_redirect_urls = ["http://127.0.0.1:5173/account", "https://showmob.vercel.app/account"]
 jwt_expiry = 3600
-enable_signup = false
+enable_signup = true
 enable_anonymous_sign_ins = false
 
 [auth.email]
-enable_signup = false
+enable_signup = true
 enable_confirmations = true
 
 [auth.sms]
