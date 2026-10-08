@@ -37,6 +37,8 @@ const blockRules = {
   diagram: { strings: ['heading'], list: { key: 'nodes', strings: ['title', 'detail'] } },
   slideshow: { strings: ['heading'], list: { key: 'slides', strings: ['title', 'body'] } },
   'bio-quest': { strings: ['heading', 'description', 'profileSet'] },
+  'activity-week': { strings: ['heading', 'description'] },
+  'effort-check': { strings: ['heading', 'description'] },
   divider: { strings: [], optional: ['label'] },
 } satisfies Record<Block['type'], BlockRule>;
 

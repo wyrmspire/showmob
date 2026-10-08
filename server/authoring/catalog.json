@@ -294,6 +294,13 @@
       "repositoryPath": "app/src/content/field-notes.json"
     },
     {
+      "slug": "getting-in-shape",
+      "title": "Getting in shape: a week you can actually start",
+      "summary": "A beginner-friendly movement module: choose a small start, check effort by talking, do two strength days, and keep a private week log.",
+      "status": "preview",
+      "repositoryPath": "app/src/content/getting-in-shape.json"
+    },
+    {
       "slug": "github-what-just-happened",
       "title": "GitHub, explained with what happened here this week",
       "summary": "Branches, pull requests, review, merges, deploys, direct commits, rollback and app authorizations, each shown with a real event from the Showmob repository.",

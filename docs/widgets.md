@@ -274,6 +274,22 @@ Use when a page needs a paced presentation sequence. Required string `heading`; 
 
 Bad: `{"id":"tour","type":"slideshow","heading":"Tour","slides":[{"title":"Missing body"}]}` is incomplete. The block has previous, next, and numbered controls with a position indicator. It does not auto-advance, alter the artifact URL, or turn the whole artifact into a mode.
 
+### `activity-week`
+
+Use for an undated, device-local log of moderate aerobic minutes and strength days across seven days. Required strings: `heading`, `description`. The reader enters whole minutes (0–1440 per day), toggles strength days, and sees totals alongside the adult guideline. Data persists in this browser's localStorage under the current page path and block ID; it never reaches the authoring API or account. Reset asks before clearing. Storage failures leave the tracker usable in the tab. Do not use this as a medical record or plan for a specific person's capacity.
+
+```json
+{ "id": "activity", "type": "activity-week", "heading": "A practice week", "description": "Record moderate minutes and strength days on this device." }
+```
+
+### `effort-check`
+
+Use when a reader needs to interpret their own talk-test observation, not answer a scored question. Required strings: `heading`, `description`. Three labeled radio choices give a rough light/moderate/vigorous cue; the choice resets on page exit. No sensor and no stored health data. Cite the CDC talk test in the artifact.
+
+```json
+{ "id": "effort", "type": "effort-check", "heading": "Check your pace", "description": "What can you say while moving?" }
+```
+
 ### `divider`
 
 Use sparingly as a conceptual break. Optional string `label`; no other widget fields are required.

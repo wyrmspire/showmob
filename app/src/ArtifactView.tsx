@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   authorToolsEnabled,
   readerSeriesList,
@@ -47,6 +47,8 @@ export function ArtifactView({
   const activeTheme = authorToolsEnabled ? theme : entry.theme;
   const [zen, setZen] = useState(false);
   const [copied, setCopied] = useState("");
+  const [sectionsOpen, setSectionsOpen] = useState(false);
+  const sectionsRef = useRef<HTMLDetailsElement>(null);
   const series = entry.series
     ? (entry.status === "published" ? seriesList : readerSeriesList).find(
         (g) => g.id === entry.series?.id,
@@ -91,6 +93,31 @@ export function ArtifactView({
     globalThis.window?.addEventListener("keydown", escape);
     return () => globalThis.window?.removeEventListener("keydown", escape);
   }, [zen]);
+  // The Sections panel is a native <details>: it only closes when the
+  // summary is tapped again, so on phones it hung over the article and
+  // even followed the reader into zen mode. Close it like a real
+  // disclosure - on tap outside, on Escape, and when a section is picked.
+  useEffect(() => {
+    if (!sectionsOpen) return;
+    const outside = (event: PointerEvent) => {
+      if (
+        sectionsRef.current &&
+        event.target instanceof Node &&
+        !sectionsRef.current.contains(event.target)
+      ) {
+        setSectionsOpen(false);
+      }
+    };
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSectionsOpen(false);
+    };
+    document.addEventListener("pointerdown", outside);
+    document.addEventListener("keydown", escape);
+    return () => {
+      document.removeEventListener("pointerdown", outside);
+      document.removeEventListener("keydown", escape);
+    };
+  }, [sectionsOpen]);
   const copySection = async (blockId: string) => {
     const url = new URL(artifactHref(entry.slug, blockId), location.href);
     try {
@@ -119,17 +146,33 @@ export function ArtifactView({
               : ""}
           </small>
         </div>
-        <details className="section-menu">
+        <details
+          ref={sectionsRef}
+          className="section-menu"
+          open={sectionsOpen}
+          onToggle={(event) => setSectionsOpen(event.currentTarget.open)}
+        >
           <summary>Sections</summary>
           <nav aria-label="Sections on this page">
             {sections.map((block) => (
-              <a key={block.id} href={artifactHref(entry.slug, block.id)}>
+              <a
+                key={block.id}
+                href={artifactHref(entry.slug, block.id)}
+                onClick={() => setSectionsOpen(false)}
+              >
                 {blockLabel(block)}
               </a>
             ))}
           </nav>
         </details>
-        <button className="zen" aria-pressed={zen} onClick={() => setZen(!zen)}>
+        <button
+          className="zen"
+          aria-pressed={zen}
+          onClick={() => {
+            setSectionsOpen(false);
+            setZen(!zen);
+          }}
+        >
           {zen ? "Show controls" : "Focus"}
         </button>
         {authorToolsEnabled && (
