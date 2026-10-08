@@ -52,3 +52,6 @@ dump*.md
 # local dump / diff dumps for chat
 gitrdif*.md
 .last-dump-commit
+
+# Grade exports (grading-night downloads)
+*.xlsx
