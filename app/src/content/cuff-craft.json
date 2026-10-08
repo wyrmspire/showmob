@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "slug": "cuff-craft",
+  "title": "Cuff Craft",
+  "summary": "A playable bio-quest demo: meet through effort, not a swipe.",
+  "contributor": "Showmob",
+  "status": "preview",
+  "theme": "night",
+  "tags": [
+    "demo",
+    "social",
+    "quests"
+  ],
+  "updated": "2026-10-08",
+  "blocks": [
+    {
+      "id": "cuff-intro",
+      "type": "hero",
+      "eyebrow": "Cuff Craft / playable prototype",
+      "title": "The bio is the quest giver.",
+      "body": "No pickup line. No swipe queue. A little thought opens a different kind of door."
+    },
+    {
+      "id": "meet-through-effort",
+      "type": "bio-quest",
+      "heading": "Do the quest. Earn the conversation.",
+      "description": "Choose a fictional profile. Their bio gives you a writing quest. Your answer becomes the introduction, not a swipe.",
+      "profiles": [
+        {
+          "key": "rowan",
+          "name": "Rowan, 28",
+          "bio": "I fix bikes, collect terrible postcards, and take the long way home. Tell me about something you care enough to notice.",
+          "interests": "Bike rides / tiny museums / bad puns",
+          "prompt": "You have one free afternoon and $20. Plan a small adventure for two strangers. What would we do, and why does it matter to you?",
+          "hint": "A place, one surprising detail, and something about you. No perfect answer required.",
+          "reply": "The tiny-adventure idea got me. What is the first stop you would actually choose?"
+        },
+        {
+          "key": "mila",
+          "name": "Mila, 30",
+          "bio": "Weekend baker. Amateur birdwatcher. I would rather hear about a real mistake than a perfect life.",
+          "interests": "Bread / birds / honest stories",
+          "prompt": "Tell me about a time you were bad at something and kept trying. What changed, and what are you still learning?",
+          "hint": "Pick one real moment. A small story beats a list of achievements.",
+          "reply": "I like that you stayed with it. What would you tell yourself on that first day?"
+        },
+        {
+          "key": "ellis",
+          "name": "Ellis, 27",
+          "bio": "Bookstore regular. Board-game host. I think the best conversations start with a question nobody expected.",
+          "interests": "Books / tabletop games / curious questions",
+          "prompt": "Invent a tiny museum with only three objects from everyday life. What goes in it, and what story do those objects tell?",
+          "hint": "Name the objects, then connect them. Odd is welcome. Thoughtful is the point.",
+          "reply": "I would visit that museum. Which object would you put right by the entrance?"
+        }
+      ]
+    },
+    {
+      "id": "cuff-boundary",
+      "type": "note-callout",
+      "title": "A quest opens a door, not a right to someone.",
+      "body": "In a real product, the other person decides whether to accept your introduction. This demo lets you try both sides. A word count cannot judge sincerity or detect AI-written answers. No message leaves this page, no account is needed, and nothing is saved after you reload.",
+      "tone": "note"
+    },
+    {
+      "id": "cuff-next",
+      "type": "text",
+      "heading": "Writing first. The world later.",
+      "body": "This is the smallest loop: profile, quest, introduction, consent, conversation. Local scavenger hunts and real-world loot could follow. This demo does not promise prizes, real matches, or a live dating service."
+    }
+  ]
+}
