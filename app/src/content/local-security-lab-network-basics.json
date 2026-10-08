@@ -23,7 +23,7 @@
     {
       "id": "start",
       "type": "hero",
-      "eyebrow": "Defensive local security · foundations 2",
+      "eyebrow": "Defensive local security · part 3",
       "title": "Your network has an inside, an outside, and one door",
       "body": "Every device in your home has an address on the inside. The router is the door to the outside. Once you can draw that for your own house, every later step in the lab has a place to go."
     },

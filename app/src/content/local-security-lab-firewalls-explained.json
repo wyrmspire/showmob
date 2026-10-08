@@ -24,7 +24,7 @@
     {
       "id": "start",
       "type": "hero",
-      "eyebrow": "Defensive local security · foundations 5",
+      "eyebrow": "Defensive local security · part 6",
       "title": "NAT is not your firewall",
       "body": "You found a listener on your own machine. Can someone outside connect to it? First separate two router jobs: translation changes where a packet is addressed; a firewall rule decides whether a new flow is allowed through. Neither job alone proves the whole path."
     },
