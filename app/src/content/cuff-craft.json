@@ -24,14 +24,14 @@
       "id": "meet-through-effort",
       "type": "bio-quest",
       "heading": "Do the quest. Earn the conversation.",
-      "description": "The Quest Giver sets the challenge. You are the Seeker: answer with specifics, then let them decide whether to open the conversation.",
+      "description": "The Quest Giver sets the challenge. You are the Seeker: answer with specifics, then let them decide whether to open the conversation. Giver and Seeker are temporary roles, not a hierarchy.",
       "profileSet": "cuff-craft"
     },
     {
       "id": "cuff-boundary",
       "type": "note-callout",
       "title": "A quest opens a door, not a right to someone.",
-      "body": "The Giver decides whether to accept your introduction. This demo lets you try both sides. The local grader checks length, repetition, filler, and details, but cannot judge sincerity or detect AI-written answers. No message leaves this page, no account is needed, and nothing is saved after you reload.",
+      "body": "The Giver decides whether to accept your introduction. This demo lets you try both sides. Revising your introduction is fine; repeatedly approaching someone who declined is not. The revise button replays this fictional demo, not a real request to someone who said no. The local grader checks length, repetition, filler, and details, but cannot judge sincerity or detect AI-written answers. No message leaves this page, no account is needed, and nothing is saved after you reload.",
       "tone": "note"
     },
     {
