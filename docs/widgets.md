@@ -276,10 +276,10 @@ Bad: `{"id":"tour","type":"slideshow","heading":"Tour","slides":[{"title":"Missi
 
 ### `activity-week`
 
-Use for an undated, device-local log of moderate aerobic minutes and strength days across seven days. Required strings: `heading`, `description`. The reader enters whole minutes (0–1440 per day), toggles strength days, and sees totals alongside the adult guideline. Data persists in this browser's localStorage under the current page path and block ID; it never reaches the authoring API or account. Reset asks before clearing. Storage failures leave the tracker usable in the tab. Do not use this as a medical record or plan for a specific person's capacity.
+Use for a signed-in reader’s dated, per-account log of moderate aerobic minutes and strength days across seven days. Required strings: `heading`, `description`. The reader enters whole minutes (0–1440 per day), toggles strength days, and sees totals alongside the adult guideline. Data loads from and saves explicitly to Supabase in a row owned by the authenticated reader, keyed by page, block and Monday-start week. No account or unconfigured Supabase means no editable log. Clear week asks before clearing the on-screen week; Save persists it. A failed Save leaves unsaved edits in the tab. Older device-only logs are not imported. Do not use this as a medical record or plan for a specific person's capacity.
 
 ```json
-{ "id": "activity", "type": "activity-week", "heading": "A practice week", "description": "Record moderate minutes and strength days on this device." }
+{ "id": "activity", "type": "activity-week", "heading": "A practice week", "description": "Sign in to record moderate minutes and strength days for this week; Save keeps your changes." }
 ```
 
 ### `effort-check`
