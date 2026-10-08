@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "slug": "showmob-block-gallery",
   "title": "Block gallery",
-  "summary": "Vocabulary sheet for all 22 Showmob blocks, plus a few starter recipes as grammar suggestions - not required slots.",
+  "summary": "Vocabulary sheet for all 23 Showmob blocks, plus a few starter recipes as grammar suggestions - not required slots.",
   "contributor": "Showmob",
   "status": "published",
   "theme": "workshop",
@@ -69,7 +69,7 @@
       "type": "stat-strip",
       "items": [
         {
-          "value": "22",
+          "value": "23",
           "label": "Block types in schema"
         },
         {
