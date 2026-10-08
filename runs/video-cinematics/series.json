@@ -1,0 +1,123 @@
+{
+ "stage": "scope",
+ "runVersion": 1,
+ "seriesId": "video-cinematics",
+ "input": "research.json and topic-map.json. No page count or outline was given.",
+ "method": [
+  "Start from the topic map's natural boundaries. Each boundary is a candidate page.",
+  "Split a candidate when its concepts need more than one Diataxis job (one page, one job).",
+  "Merge small neighbors that share one job and would not stand alone.",
+  "Order pages so every concept's dependsOn is taught on the same page or an earlier one. The entry reader has only typed casual prompts.",
+  "Anything the subject implies but the series should not do goes in excluded, with a reason."
+ ],
+ "evidence": {
+  "concepts": 18,
+  "naturalBoundaries": 4,
+  "longestDependencyChain": 3,
+  "modesNeeded": [
+   "tutorial",
+   "explanation"
+  ],
+  "boundariesSplitByMode": [
+   "the-chain"
+  ],
+  "boundariesMerged": [
+   [
+    "the-plan",
+    "the-chain (advanced concepts)"
+   ]
+  ]
+ },
+ "verdict": {
+  "shape": "multi-page series",
+  "pages": 4,
+  "why": "The subject splits into one-shot craft, cross-generation continuity, chaining mechanics, and planning grammar, with a dependency chain from shot sizes through the axis to coverage. One page cannot hold all four jobs.",
+  "provisional": "runVersion 1 produces only the first page's sheet, per the run's assignment. Pages 2-4 are scoped so dependencies are checkable, but their sheets wait for trunk review."
+ },
+ "pages": [
+  {
+   "order": 1,
+   "pageId": "video-cinematics-one-honest-shot",
+   "title": "Make one honest 8-10 second shot",
+   "mode": "tutorial",
+   "concepts": [
+    "container-vs-prose",
+    "one-beat-per-clip",
+    "first-frame-anchor",
+    "shot-sizes",
+    "motivated-camera",
+    "timed-action-beats",
+    "tool-capability-map"
+   ],
+   "outcome": "Can produce one coherent 8-10 second clip from their own story idea by giving it one beat, a deliberate start frame, and a static or motivated camera, and can say why the result holds together.",
+   "dependsOnPages": []
+  },
+  {
+   "order": 2,
+   "pageId": "video-cinematics-keep-the-character",
+   "title": "Keep the character, the style, and the light",
+   "mode": "tutorial",
+   "concepts": [
+    "style-anchoring",
+    "character-reference-habit",
+    "seed-limits",
+    "lighting-palette-continuity"
+   ],
+   "outcome": "Can hold one character, one aesthetic, and one lighting recipe stable across three generations using reference images and verbatim prompt lines, with an honest account of what a seed does and does not do.",
+   "dependsOnPages": [
+    "video-cinematics-one-honest-shot"
+   ]
+  },
+  {
+   "order": 3,
+   "pageId": "video-cinematics-chain-the-shots",
+   "title": "Chain two shots without a seam",
+   "mode": "tutorial",
+   "concepts": [
+    "frame-chaining",
+    "lens-switch-seam",
+    "stitch-vs-long",
+    "cut-on-action"
+   ],
+   "outcome": "Can chain two clips through a shared frame, recognize and avoid the lens-switch failure, and place the seam on motion.",
+   "dependsOnPages": [
+    "video-cinematics-one-honest-shot",
+    "video-cinematics-keep-the-character"
+   ]
+  },
+  {
+   "order": 4,
+   "pageId": "video-cinematics-coverage-and-axis",
+   "title": "Plan coverage: the axis, the wide first, the shot list",
+   "mode": "explanation",
+   "concepts": [
+    "axis-180",
+    "establish-before-coverage",
+    "shot-list-artifact"
+   ],
+   "outcome": "Can plan a short sequence as a written shot list that keeps the axis, establishes space before coverage, and assigns each shot its framing, beat, camera, duration, and references.",
+   "dependsOnPages": [
+    "video-cinematics-one-honest-shot",
+    "video-cinematics-chain-the-shots"
+   ]
+  }
+ ],
+ "excluded": [
+  {
+   "what": "Generator-specific UI walkthroughs",
+   "why": "Capabilities change monthly; the series teaches the craft and links the dated docs instead of teaching one tool's buttons."
+  },
+  {
+   "what": "Editing software, color grading, and sound design",
+   "why": "Post-production is its own subject; the series ends at planned, chainable clips."
+  },
+  {
+   "what": "Long-form generation beyond the clip scale",
+   "why": "The craft problem Chris asked about is the 8-10 second clip and its chaining; feature-length workflows inherit this rather than replace it."
+  },
+  {
+   "what": "Live-action cinematography hardware",
+   "why": "The reader's camera is a model; lenses, rigs, and lights do not transfer."
+  }
+ ]
+}

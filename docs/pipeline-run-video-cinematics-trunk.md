@@ -1,0 +1,13 @@
+# Video cinematics: research trunk and first page sheet
+
+Written by Instinct. Staged research → topic map → scope under `runs/video-cinematics/`, with the first page's sheet at `runs/video-cinematics/pages/video-cinematics-one-honest-shot/page-sheet.json`. No representation, draft, or content yet; pages 2-4 are scoped but their sheets wait for trunk review.
+
+This is the groundwork Chris asked for after the 8-10 second clip question (2026-09-26): the rules of cinematics for AI-generated clips, built as a new series trunk with a new seriesId, and the first pipeline run under the phase 4 template and the director v2 rules end-to-end. The first page is `mode: tutorial` with the five-beat teachingShape: the reader produces one coherent 8-10 second clip from their own story idea - one beat, a deliberate start frame, a static or motivated camera - and says why it holds together.
+
+Tool capability claims are dated, not remembered. Verified against the generators' own documentation on 2026-09-26: Runway Gen-4 (5 or 10 second durations, the input image acts as the first frame, optional fixed seed, keyframes via the Animate Frames app), Luma Dream Machine (start and end keyframes from uploaded images, extension by image keyframe), Kling (start and end frames; its own docs warn that dissimilar frames cause a lens switch), Veo 3.1 (video extension, first-and-last-frame generation, up to three reference images, native vertical for Ingredients), Sora 2 per OpenAI's cookbook updated March 2026 (character references, 20 second maximum, extension using the full clip as context, and the recommendation to stitch two planned 4-second clips rather than ask for one complex 8-second one). The research trunk records these as `tool-capability-map` with the verification date, because this area changes monthly.
+
+The scope stage places all 18 mapped concepts exactly once across four provisional pages (one honest shot; keeping character, style and light; chaining shots; coverage, axis and the shot list), every dependency taught on the same page or an earlier one. Multi-clip chaining, character references, the axis, and generator UI walkthroughs are excluded from page 1 with reasons.
+
+The sheet's visualNeeds deliberately include a spatial framing comparison and a seam picture. Those are pressure for the representation stage, not this run: when the representation is written, any need no existing block can carry gets recorded as missing-primitive evidence (the storyboard figure is the leading candidate) rather than a widget built on spec.
+
+165/165 tests and build pass. Same-author scoping, not independent validation.
