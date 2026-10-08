@@ -1,0 +1,28 @@
+[
+  {
+    "id": "pasta",
+    "title": "Pasta Master",
+    "type": "venue",
+    "sponsor": "Little Apron Kitchen (fictional)",
+    "steps": [
+      "Join three group cooking classes.",
+      "Make a dish together.",
+      "Share what you learned."
+    ],
+    "reward": "A Pasta Master badge and a chance to meet people at the class.",
+    "status": "coming_soon"
+  },
+  {
+    "id": "neighborhood",
+    "title": "The neighborhood curiosity hunt",
+    "type": "scavenger",
+    "sponsor": "Corner Shelf Books (fictional)",
+    "steps": [
+      "Find a public mural.",
+      "Visit the fictional shop clue station.",
+      "Compare your discoveries at a group meetup."
+    ],
+    "reward": "A local curiosity badge and a shared story.",
+    "status": "coming_soon"
+  }
+]
