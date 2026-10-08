@@ -22,7 +22,7 @@ export type Block =
   | { id:string; type:'compact-table'; heading:string; columns:string[]; rows:string[][]; caption?:string }
   | { id:string; type:'diagram'; heading:string; nodes:{title:string;detail:string}[] }
   | { id:string; type:'slideshow'; heading:string; slides:{title:string;body:string}[] }
-  | { id:string; type:'bio-quest'; heading:string; description:string; profiles:{key:string;name:string;bio:string;interests:string;prompt:string;hint:string;reply:string}[] }
+  | { id:string; type:'bio-quest'; heading:string; description:string; profileSet:'cuff-craft' }
   | { id:string; type:'divider'; label?:string };
 export type Artifact={schemaVersion:1;slug:string;title:string;summary:string;contributor:string;status:Status;theme:ThemeId;series?:{id:string;title:string;order:number};tags?:string[];updated?:string;blocks:Block[]};
 export function defineArtifact(value:Artifact):Artifact{return value}
