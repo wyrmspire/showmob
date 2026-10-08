@@ -16,8 +16,8 @@ export function BioQuest({ block }: { block: BioQuestBlock }) {
   const [notice, setNotice] = useState('');
   const stageHeading = useRef<HTMLHeadingElement>(null);
   const profile = profileSource.getProfile(selected);
-  const state = progress[selected] ?? freshProgress();
-  const update = (patch: Partial<QuestProgress>) => setProgress(old => ({ ...old, [selected]: { ...(old[selected] ?? freshProgress()), ...patch } }));
+  const state = (Object.hasOwn(progress,selected) ? progress[selected] : undefined) ?? freshProgress();
+  const update = (patch: Partial<QuestProgress>) => setProgress(old => ({ ...old, [selected]: { ...((Object.hasOwn(old,selected) ? old[selected] : undefined) ?? freshProgress()), ...patch } }));
   const changeStage = (stage: QuestProgress['stage']) => {
     update({ stage }); setNotice('');
     requestAnimationFrame(() => stageHeading.current?.focus());
