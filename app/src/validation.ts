@@ -36,6 +36,7 @@ const blockRules = {
   'compact-table': { strings: ['heading'], optional: ['caption'], list: { key: 'rows' } },
   diagram: { strings: ['heading'], list: { key: 'nodes', strings: ['title', 'detail'] } },
   slideshow: { strings: ['heading'], list: { key: 'slides', strings: ['title', 'body'] } },
+  'bio-quest': { strings: ['heading', 'description'], list: { key: 'profiles', strings: ['key', 'name', 'bio', 'interests', 'prompt', 'hint', 'reply'] } },
   divider: { strings: [], optional: ['label'] },
 } satisfies Record<Block['type'], BlockRule>;
 
@@ -131,6 +132,16 @@ export function validateArtifact(value: unknown): ValidationResult {
           else {
             strings(item, fields, itemPath);
             if (optional) strings(item, optional, itemPath, true);
+          }
+        });
+      }
+      if (block.type === 'bio-quest' && Array.isArray(block.profiles)) {
+        if (block.profiles.length === 0) issue(`${path}.profiles`, 'Expected at least one profile.');
+        const keys = new Set<string>();
+        block.profiles.forEach((profile, i) => {
+          if (isRecord(profile) && typeof profile.key === 'string') {
+            if (!/^[a-z0-9-]+$/.test(profile.key) || keys.has(profile.key)) issue(`${path}.profiles[${i}].key`, 'Expected a unique lowercase slug.');
+            keys.add(profile.key);
           }
         });
       }
