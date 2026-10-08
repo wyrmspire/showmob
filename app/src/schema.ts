@@ -22,6 +22,7 @@ export type Block =
   | { id:string; type:'compact-table'; heading:string; columns:string[]; rows:string[][]; caption?:string }
   | { id:string; type:'diagram'; heading:string; nodes:{title:string;detail:string}[] }
   | { id:string; type:'slideshow'; heading:string; slides:{title:string;body:string}[] }
+  | { id:string; type:'bio-quest'; heading:string; description:string; profileSet:'cuff-craft' }
   | { id:string; type:'activity-week'; heading:string; description:string }
   | { id:string; type:'effort-check'; heading:string; description:string }
   | { id:string; type:'divider'; label?:string };

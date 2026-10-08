@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "slug": "showmob-block-gallery",
   "title": "Block gallery",
-  "summary": "Vocabulary sheet for all 24 Showmob blocks, plus starter recipes as grammar suggestions.",
+  "summary": "Vocabulary sheet for all 25 Showmob blocks, plus a few starter recipes as grammar suggestions - not required slots.",
   "contributor": "Showmob",
   "status": "published",
   "theme": "workshop",
@@ -93,7 +93,7 @@
       "type": "stat-strip",
       "items": [
         {
-          "value": "19",
+          "value": "23",
           "label": "Block types in schema"
         },
         {
@@ -609,6 +609,13 @@
       "type": "cta-band",
       "heading": "Carry one sentence forward",
       "body": "If you can state the next check in one sentence, the beat is done."
+    },
+    {
+      "id": "bio-quest-specimen",
+      "type": "bio-quest",
+      "heading": "Bio-quest specimen",
+      "description": "A reusable, session-only introduction flow. Fictional people; no real messages.",
+      "profileSet": "cuff-craft"
     }
   ]
 }

@@ -36,6 +36,7 @@ const blockRules = {
   'compact-table': { strings: ['heading'], optional: ['caption'], list: { key: 'rows' } },
   diagram: { strings: ['heading'], list: { key: 'nodes', strings: ['title', 'detail'] } },
   slideshow: { strings: ['heading'], list: { key: 'slides', strings: ['title', 'body'] } },
+  'bio-quest': { strings: ['heading', 'description', 'profileSet'] },
   'activity-week': { strings: ['heading', 'description'] },
   'effort-check': { strings: ['heading', 'description'] },
   divider: { strings: [], optional: ['label'] },
@@ -136,6 +137,7 @@ export function validateArtifact(value: unknown): ValidationResult {
           }
         });
       }
+      if (block.type === 'bio-quest') oneOf(block.profileSet, ['cuff-craft'], `${path}.profileSet`);
       if (block.type === 'slideshow' && Array.isArray(block.slides) && block.slides.length === 0) issue(`${path}.slides`, 'Expected at least one slide.');
       if (block.type === 'compact-table') {
         if (!Array.isArray(block.columns)) issue(`${path}.columns`, 'Expected an array.');

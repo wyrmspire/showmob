@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+import { BioQuest } from "./BioQuest";
 import { Callout } from "./file-kit";
 import { type Block } from "../schema";
 
 export function BlockView({ block }: { block: Block }) {
   const [checked, setChecked] = useState<number[]>([]);
   const [picked, setPicked] = useState<number | null>(null);
+  if (block.type === "bio-quest") return <BioQuest block={block} />;
   if (block.type === "activity-week") return <ActivityWeekBlock block={block} />;
   if (block.type === "effort-check") return <EffortCheckBlock block={block} />;
   if (block.type === "hero")

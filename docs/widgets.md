@@ -57,7 +57,7 @@ The validator is used for bundled content, pasted/file imports and saved-draft r
 
 To enrich an existing subject, first search `app/src/content/` for its slug, tags and `series.id`. Edit the existing artifact when the idea belongs on the same page; otherwise add another artifact with the same `series.id`, the same `series.title`, and a new `series.order`. The home shelf and previous/next navigation update automatically. Keep new work in `preview` until the contributor and publisher have reviewed it.
 
-Studio’s Add menu covers **13 of 24** types: `text`, `slideshow`, `compact-table`, `diagram`, `note-callout`, `steps`, `checklist`, `timeline`, `comparison`, `resource-list`, `quote`, `divider`, and `cta-band`. It can also edit an existing `hero`. Still missing from Add (use Import / JSON): `hero` (add), `stat-strip`, `code`, `embed`, `image`, `exercise`, `choice`, `fill-in`, `reveal`, `activity-week`, `effort-check`. **Rich blocks = JSON tab:** unsupported Add types still render in preview when present. Templates may contain richer blocks. This catalog documents all 24 renderer types, not only Studio's Add menu.
+Studio’s Add menu covers **13 of 25** types: `text`, `slideshow`, `compact-table`, `diagram`, `note-callout`, `steps`, `checklist`, `timeline`, `comparison`, `resource-list`, `quote`, `divider`, and `cta-band`. It can also edit an existing `hero`. Still missing from Add (use Import / JSON): `hero` (add), `stat-strip`, `code`, `embed`, `image`, `exercise`, `choice`, `fill-in`, `reveal`, `activity-week`, `effort-check`, `bio-quest`. **Rich blocks = JSON tab:** unsupported Add types still render in preview when present. Templates may contain richer blocks. This catalog documents all 25 renderer types, not only Studio's Add menu.
 
 ## Widget reference
 
@@ -307,3 +307,19 @@ The current hosted app reads `?artifact=<slug>` to open a discovered page. Every
 This documents the existing routing shape for current links; it does not promise a future route migration policy. A local Studio import is not registered as a shareable artifact. There is no automatic repository-to-hosted-preview deployment configured here.
 
 `legacy-fixture.ts` and the checked-in artifacts remain version 1. Changing required fields or block names later needs an explicit compatibility or migration decision. New renderer capabilities need their own implementation and review; adding a type name to content does not create them.
+
+## bio-quest (session-only introduction flow)
+
+A real writing-introduction artifact needs a staged gate, receiving-side consent simulation, and local conversation. `fill-in` and `reveal` cannot express that transition. `bio-quest` is a renderer-owned reusable widget, not a page-specific route. It follows the JSON + trusted-widget pattern of proposed fitness module #125, but branches from main without importing that PR or accounts #126.
+
+```json
+{"id":"meet","type":"bio-quest","heading":"Meet through a quest","description":"Fictional demo","profileSet":"cuff-craft"}
+```
+
+The module under `app/src/modules/bio-quest/` owns typed repo JSON: profiles with Giver rules and sample slots, canned replies, a Coming Soon local quest board, and tunable effort rules. `profileSet` currently accepts only `cuff-craft`. State is React memory, cleared on reload/reset, separate for each profile. The widget owns quest → introduction review → conversation. No network calls, database, accounts, storage, or live messages.
+
+The heuristic checks 40 words, filler phrases, prompt overlap, repetitive text, and at least two specificity-signal groups. It cannot prove quality, honesty, or human authorship. All thresholds, vocabularies, and feedback strings live in `effortRules.json`. Failure preserves the answer. Passing prepares the introduction; the Giver can still leave the door closed. Slot counts are fictional static data, never reservations. After acceptance the composer supplies two canned follow-ups. The quest board is non-interactive, with fictional sponsors and no redeemable rewards.
+
+Interfaces: `ProfileSource` (later database profiles), `AnswerGrader` (later reviewed grading), `ConversationSource` (later real messaging), `QuestBoardSource` (later live local quests), and `useCurrentUser()` (guest now, real accounts later). A post-date check-in / community-intelligence seam is future design only, not implemented or collecting data.
+
+Empty content has a defensive fallback; unknown profile sets fail validation. Synchronous bundled mocks need no loading state. The gallery includes a specimen. Native controls, labeled inputs, live status feedback, stage focus, semantic tokens, 48px buttons, and responsive cards support keyboard and narrow screens. Existing schemaVersion 1 artifacts remain compatible; older renderers cannot render this new block type. Fictional adults and wholesome content only.

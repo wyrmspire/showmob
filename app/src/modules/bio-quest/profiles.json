@@ -1,0 +1,80 @@
+[
+  {
+    "id": "rowan",
+    "name": "Rowan",
+    "ageRange": "25-34",
+    "vibe": "Bike fixer. Tiny-adventure planner.",
+    "bio": "I fix bikes, collect terrible postcards, and take the long way home. Tell me about something you care enough to notice.",
+    "tags": [
+      "Bike rides",
+      "tiny museums",
+      "bad puns"
+    ],
+    "avatar": "R",
+    "style": "Creative",
+    "quest": {
+      "prompt": "You have one free afternoon and $20. Plan a small adventure for two strangers. What would we do, and why does it matter to you?",
+      "giverRules": "Specifics, not compliments. Tell me why you chose those places.",
+      "slotsTotal": 5,
+      "slotsTaken": 3,
+      "hint": "A place, one surprising detail, and something about you. No perfect answer required."
+    },
+    "firstReply": "The tiny-adventure idea got me. What is the first stop you would actually choose?",
+    "followUps": [
+      "That is a good detail to start with. What would you try next?",
+      "I would like to hear the rest of that story."
+    ]
+  },
+  {
+    "id": "mila",
+    "name": "Mila",
+    "ageRange": "25-34",
+    "vibe": "Weekend baker. Honest beginner.",
+    "bio": "Weekend baker. Amateur birdwatcher. I would rather hear about a real mistake than a perfect life.",
+    "tags": [
+      "Bread",
+      "birds",
+      "honest stories"
+    ],
+    "avatar": "M",
+    "style": "Chill",
+    "quest": {
+      "prompt": "Tell me about a time you were bad at something and kept trying. What changed, and what are you still learning?",
+      "giverRules": "One real attempt, what went wrong, and what you did next.",
+      "slotsTotal": 5,
+      "slotsTaken": 1,
+      "hint": "Pick one real moment. A small story beats a list of achievements."
+    },
+    "firstReply": "I like that you stayed with it. What would you tell yourself on that first day?",
+    "followUps": [
+      "That is a good detail to start with. What would you try next?",
+      "I would like to hear the rest of that story."
+    ]
+  },
+  {
+    "id": "ellis",
+    "name": "Ellis",
+    "ageRange": "25-34",
+    "vibe": "Bookstore regular. Question collector.",
+    "bio": "Bookstore regular. Board-game host. I think the best conversations start with a question nobody expected.",
+    "tags": [
+      "Books",
+      "tabletop games",
+      "curious questions"
+    ],
+    "avatar": "E",
+    "style": "Creative",
+    "quest": {
+      "prompt": "Invent a tiny museum with only three objects from everyday life. What goes in it, and what story do those objects tell?",
+      "giverRules": "Three everyday objects. Give each a story, not just a name.",
+      "slotsTotal": 5,
+      "slotsTaken": 2,
+      "hint": "Name the objects, then connect them. Odd is welcome. Thoughtful is the point."
+    },
+    "firstReply": "I would visit that museum. Which object would you put right by the entrance?",
+    "followUps": [
+      "That is a good detail to start with. What would you try next?",
+      "I would like to hear the rest of that story."
+    ]
+  }
+]
