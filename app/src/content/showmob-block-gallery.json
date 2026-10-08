@@ -69,7 +69,7 @@
       "type": "stat-strip",
       "items": [
         {
-          "value": "19",
+          "value": "22",
           "label": "Block types in schema"
         },
         {
@@ -591,35 +591,7 @@
       "type": "bio-quest",
       "heading": "Bio-quest specimen",
       "description": "A reusable, session-only introduction flow. Fictional people; no real messages.",
-      "profiles": [
-        {
-          "key": "rowan",
-          "name": "Rowan, 28",
-          "bio": "I fix bikes, collect terrible postcards, and take the long way home. Tell me about something you care enough to notice.",
-          "interests": "Bike rides / tiny museums / bad puns",
-          "prompt": "You have one free afternoon and $20. Plan a small adventure for two strangers. What would we do, and why does it matter to you?",
-          "hint": "A place, one surprising detail, and something about you. No perfect answer required.",
-          "reply": "The tiny-adventure idea got me. What is the first stop you would actually choose?"
-        },
-        {
-          "key": "mila",
-          "name": "Mila, 30",
-          "bio": "Weekend baker. Amateur birdwatcher. I would rather hear about a real mistake than a perfect life.",
-          "interests": "Bread / birds / honest stories",
-          "prompt": "Tell me about a time you were bad at something and kept trying. What changed, and what are you still learning?",
-          "hint": "Pick one real moment. A small story beats a list of achievements.",
-          "reply": "I like that you stayed with it. What would you tell yourself on that first day?"
-        },
-        {
-          "key": "ellis",
-          "name": "Ellis, 27",
-          "bio": "Bookstore regular. Board-game host. I think the best conversations start with a question nobody expected.",
-          "interests": "Books / tabletop games / curious questions",
-          "prompt": "Invent a tiny museum with only three objects from everyday life. What goes in it, and what story do those objects tell?",
-          "hint": "Name the objects, then connect them. Odd is welcome. Thoughtful is the point.",
-          "reply": "I would visit that museum. Which object would you put right by the entrance?"
-        }
-      ]
+      "profileSet": "cuff-craft"
     }
   ]
 }
