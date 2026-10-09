@@ -1,16 +1,16 @@
 # Grading night
 
-Status: **in motion** (2026-09-24). The 100 subjects are chosen and loaded into `showmob_gn_subjects`, the machinery tables exist, and the test center is built (`/grading`). Steward: Chris (intent) / Instinct (doc).
+Status: **in motion**. The 100 subjects are chosen and loaded into `showmob_gn_subjects`, the machinery tables exist, and the test center is built (`/grading`).
 
 ## Why
 
-The gradient ([`GRADIENT.md`](../GRADIENT.md)) needs to know what a good Chris page looks like. Guessing at that is slow. So we brute-force it: put about a hundred real pages in front of Chris, have him grade them like a reader, and let the grades teach the gradient.
+The gradient ([`GRADIENT.md`](../GRADIENT.md)) needs to know what a good page looks like. Guessing at that is slow. So we brute-force it: put about a hundred real pages in front of the owner, have them graded like a reader, and let the grades teach the gradient.
 
 A hundred real judgments beat a hundred guesses. The sink grows as we go: when a new kind of content shows up, the gradient gets a new cluster and puts new feelers out.
 
 ## Step 0: the genre conversation
 
-Before anything generates, Chris and Instinct talk for 20-30 minutes about what the ~100 candidates should be. A candidate is a presentation situation, not a topic (see [Choosing the 100](#choosing-the-100)).
+Before anything generates, there is a 20-30 minute conversation about what the ~100 candidates should be. A candidate is a presentation situation, not a topic (see [Choosing the 100](#choosing-the-100)).
 
 Genres floated so far:
 
@@ -28,7 +28,7 @@ Genres floated so far:
 
 ## Choosing the 100
 
-The selection framework in this section comes from "Grading Night: A Treatise for Choosing The 100," which Chris brought on 2026-09-24. This is the working version; the treatise is the long form.
+The selection framework in this section comes from "Grading Night: A Treatise for Choosing The 100," which the owner supplied. This is the working version; the treatise is the long form.
 
 ### The unit is a presentation situation
 
@@ -88,7 +88,7 @@ The 100 are not the product. They are the microscope.
 
 One grading page. It lists the ~100 candidates as links. Click one, read it, grade it, come back, click the next.
 
-**Built 2026-09-24.** The test center lives at [`/grading`](https://showmob.vercel.app/grading): unlisted (no Home link), `noindex`, grouped by coverage bucket. It renders each built `gn-*` artifact inline (preview pages never publish), tracks time on page, scroll depth, finish and widget touches while Chris reads, and posts the grade to `/api/gn`. Blind pairs can be compared side by side with the sides swapped at random; the pick is recorded as a subject id. Generator names and render axes stay hidden from the panel — Chris grades pages, not provenance.
+**Built 2026-09-24.** The test center lives at [`/grading`](https://showmob.vercel.app/grading): unlisted (no Home link), `noindex`, grouped by coverage bucket. It renders each built `gn-*` artifact inline (preview pages never publish), tracks time on page, scroll depth, finish and widget touches while the grader reads, and posts the grade to `/api/gn`. Blind pairs can be compared side by side with the sides swapped at random; the pick is recorded as a subject id. Generator identity and render axes stay hidden from the panel - the grader grades pages, not provenance.
 
 `/api/gn` is the one Vercel server function that holds the Supabase service-role key. `GET` returns subjects plus existing grades; `POST` validates one grade and calls `showmob_gn_record_grade`. The browser never sees the key and never touches the tables (RLS denies everything else). Environment lives in Vercel project settings as `SHOWMOB_SUPABASE_URL`, `SHOWMOB_SUPABASE_SERVICE_ROLE_KEY` and `SHOWMOB_GRADING_PASSCODE` — never `VITE_*`, never in the repo.
 
@@ -103,76 +103,37 @@ Candidates vary on purpose. The coverage matrix above picks the situations; thes
 - better graphics
 - better widgets
 
-Render the same situation more than one way. That's how the signal separates taste from topic: if Chris likes the denser version of a situation he didn't care about, that says something about density, not the subject.
+Render the same situation more than one way. That's how the signal separates taste from topic: if the grader likes the denser version of a situation he didn't care about, that says something about density, not the subject.
 
-Generation doesn't have to come from one place. Pages get farmed out to different agents with a handoff packet (below); they all write the same JSON contract.
+Generation can come from several sources. All of them write the same JSON contract and share these rules:
 
-## Generator handoff packet
-
-The hundred pages don't all get built by one agent. Four generators split them: **Grok, GPT, Claude, and Instinct**, roughly 25 subjects each. Every agent pulls its batch from the `subjects` table, so no two agents take the same subject on the same axis, and we always know which agent produced which artifact (the table records the assignment; the artifact's `contributor` field names the agent). That provenance matters when grading: it lets us see whether a pattern in the grades is about the page or about the generator.
-
-Each generator gets the same six-part handoff. Fill in the brackets and paste it:
-
-```text
-1. WHY
-This batch is for grading night. Chris is going to read about a hundred
-pages and grade each one (1-10, more/less likely, density, a "what would've
-been better here" note), and we record how he actually reads them. The
-grades teach Showmob's gradient what a good Chris page looks like. Your
-pages are test material, not finished content.
-
-2. BATCH
-You are: [Grok | GPT | Claude | Instinct]. Set "contributor" to that name.
-Subjects: [your ~25 subject IDs/titles, assigned to you in the subjects table]
-Genre: [plans | pitch decks | day organizers | course material | shop notes |
-       guided worksheets | ...]
-(Worksheets: generic example rows only, never personal data.)
-
-3. VARIATION AXIS
-Your axis: [dense | denser | deeper | more technical | more ethereal |
-feedback-ish | better graphics | better widgets]
-Other agents are rendering the same subjects on other axes. Same subject,
-different render is how the grades separate taste from topic, so lean
-into your axis instead of hedging toward the middle.
-
-4. ARTIFACT CONTRACT
-- schemaVersion: 1 JSON, one file per page, under app/src/content/.
-- Block types and fields per app/src/schema.ts and docs/widgets.md.
-- Must pass: node --experimental-strip-types --test tests/validation.test.mjs
-- Density reference: app/src/content/plan-data-sufficiency.json
-  (https://showmob.vercel.app/a/plan-data-sufficiency). Density follows
-  signal; match it where the subject earns it, not by padding.
-
-5. RULES
-- status: "preview" on every page. Always. Never "published".
-- One PR per batch.
-- CI green before you ask for review.
-
-6. DON'TS
-- Don't publish anything.
-- Don't edit existing artifacts.
-- Don't add new block types or widget code without sign-off.
-```
+- `schemaVersion: 1` JSON, one file per page, under `app/src/content/`; block types and fields per `app/src/schema.ts` and `docs/widgets.md`.
+- Must pass `node --experimental-strip-types --test tests/validation.test.mjs`.
+- Density reference: `app/src/content/plan-data-sufficiency.json` (https://showmob.vercel.app/a/plan-data-sufficiency). Density follows signal; match it where the subject earns it, not by padding.
+- `status: "preview"` on every page, never `published`. One PR per batch, CI green before review.
+- Do not publish anything, edit existing artifacts, or add new block types or widget code without sign-off.
+- Worksheets use generic example rows only, never personal data.
+- Pages are test material, not finished content. Subject-to-source assignment is kept in the `subjects` table, not in the repo, so grading stays blind.
 
 ## Grading, per page
 
 Every page gets a grade panel with:
 
 - **Rating:** 1-10.
-- **More likely / less likely:** would he want more pages like this one?
+- **More likely / less likely:** would the grader want more pages like this one?
 - **Density:** too thin / right / too dense.
-- **Widgets:** did he use them, did they work, did they add anything.
+- **Widgets:** did the grader use them, did they work, did they add anything.
 - **"What would've been better here":** free text, on every grade.
 - **Content / representation / interaction:** graded separately (see [What gets graded](#what-gets-graded)), plus "what should have existed that didn't" and "what existed that shouldn't have."
 - **Scan:** did the first glance look dumb, separate from the deep read.
 
 The free-text field matters as much as the numbers. The numbers say how much; the suggestion says why.
 
-Chris plans to spend a couple of hours reading like a reader, not reviewing like an editor. The panel should stay out of the way of that.
+The grader plans to spend a couple of hours reading like a reader, not reviewing like an editor. The panel should stay out of the way of that.
 
 ## Behavior capture
 
-Stated grades are half the picture. The page also records what Chris actually did, the way a user study would:
+Stated grades are half the picture. The page also records what the grader actually did, the way a user study would:
 
 - **Time on page.**
 - **Scroll depth:** how far down he got.
@@ -228,24 +189,24 @@ Email-per-grade was floated and dropped. The table **is** the dataset; an inbox 
 
 ## The loop
 
-Grades → clusters → the gradient learns what "a Chris page" is.
+Grades → clusters → the gradient learns what a good page is.
 
 Reference for a page that earned its density: [`plan-data-sufficiency`](https://showmob.vercel.app/a/plan-data-sufficiency) (22 blocks, ~2,200 words). Density follows signal. It is not a blanket rule that every page gets that long; the grades tell us where it pays.
 
 ### Taste principles (recorded from live grading)
 
-Principles Chris states while grading, for the critique layer to enforce:
+Principles stated while grading, for the critique layer to enforce:
 
 1. **Padding gets cut.** When the answer is one sentence, the page is one
    sentence. Extra sections bolted on after a complete answer are padding:
    a section that would not be missed gets cut. Short is never a defect by
-   itself. (Chris, live grading, 2026-09-26.) This is the "what existed
+   itself. This is the "what existed
    that should not have" signal made concrete, and it reinforces frame
    pressure: hold the frame of the question, add nothing past the answer.
 
 ## Artifact kind before representation
 
-Chris, live grading, 2026-09-26: nothing in the pipeline decides WHAT a
+Observed during live grading: nothing in the pipeline decides WHAT a
 subject should become - lesson, outline, template, functional document -
 before representation decides HOW to present it. Tidewars (GN-108) is an
 outline / functional document; we have no such category, and grading it as
@@ -256,7 +217,7 @@ a page was a mismatched read. Two rules fall out of that:
    representation decide how to present that kind. An outline wanting
    typed references is the same conversation as the parked story /
    typed-refs thread - kind selection and typed refs land together.
-   (Notes only; building the layer is Chris's phase call.)
+   (Notes only; building the layer is a later phase decision.)
 2. **Lane scoping.** Only put artifacts in a grading lane whose kind
    matches what the lane calibrates. A page-calibration lane grades
    pages; an outline graded there produces noise, not signal.
@@ -269,4 +230,4 @@ a page was a mismatched read. Two rules fall out of that:
 
 This doc is direction only. The first real step is the genre conversation.
 
-_Written by Instinct from Chris's direction, 2026-09-23. Selection framework added 2026-09-24 from the treatise Chris brought._
+_Direction doc. Selection framework added 2026-09-24._
