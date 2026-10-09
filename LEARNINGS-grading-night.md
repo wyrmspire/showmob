@@ -1,6 +1,6 @@
 # Learnings: the grading-night build (2026-09-24)
 
-Written by Instinct after shipping the grading-night pipeline: 100 subjects, 4 generators, 100 pages, one test center at `/grading`.
+Written after shipping the grading-night pipeline: 100 subjects, 4 generators, 100 pages, one test center at `/grading`.
 Companion to `DESIGN-NOTES-grading.md` (which reviews the grading surface as built). This note is the other side: what the build itself taught us, and what the API, the tools, and the generators should take from it.
 
 ## 1. Identity rules must be collision-proof before parallel writers start
@@ -13,7 +13,7 @@ The guardrail that exists now is `scripts/check-gn-slugs.mjs` (PR #79): every su
 
 ## 2. The subjects table is the source of truth - every arrival path must write to it
 
-Grok and GPT delivered their 50 pages out of band (straight to the repo, no registration). Pages rendered fine, but the table still said `pending`: 50 rows wrong, 9 orphan pages, and the grading index lying about the state of the set. Reconciliation was manual SQL, twice (9 slug links, then 50 status backfills).
+Two generators delivered 50 pages out of band (straight to the repo, no registration). Pages rendered fine, but the table still said `pending`: 50 rows wrong, 9 orphan pages, and the grading index lying about the state of the set. Reconciliation was manual SQL, twice (9 slug links, then 50 status backfills).
 
 **Take:** a page landing in the repo is not the pipeline knowing about it. Any path that delivers an artifact - API import, generator script, hand-rolled PR - has to update the subjects table in the same move, or reconciliation becomes a standing manual job. The check script is the tripwire; the fix is making arrivals register themselves.
 
@@ -36,11 +36,11 @@ Two opposite failures, same root cause:
 
 **Take:** every surface needs two explicit decisions - how do the right people find it, and what stops the wrong ones. "Nobody knows the URL" is not a discoverability plan and it is definitely not access control.
 
-## 5. The blind has an answer key sitting in root
+## 5. Keep assignment metadata out of the repo
 
-The handoff packets (`handoff-grok.md`, `handoff-gpt.md`, `handoff-claude.md`, `handoff-instinct.md`) list every subject's generator and render axis. That's the coordination data the generators needed, and it's in the public repo. Fine for the build - but it means blind grading depends entirely on the grader not reading root. There is no enforcement, and there can't be in a public repo.
+Which generator built which subject, and on which render axis, lives in the subjects table, not in repo files. A public repo cannot enforce a blind, so anything the grader must not see has to stay out of it.
 
-**Take:** if the blind ever needs to be real (second grader, published results), the assignment metadata has to move out of the repo - the DB already holds it. For now it's a discipline note: don't read the handoffs while grading.
+**Take:** if the blind needs to be real (second grader, published results), keep assignment metadata in the database only.
 
 ## 6. Judgment calls the grading should surface, not paper over
 
