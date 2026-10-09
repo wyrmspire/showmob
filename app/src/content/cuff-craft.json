@@ -106,7 +106,7 @@
       "id": "small-table-private",
       "type": "text",
       "heading": "A separate yes is needed for anything private.",
-      "body": "In the fictional scene, an invitation to talk one-to-one is a new request, not an automatic reward for attending together. The recipient may accept, decline or change their mind. A proposed optional adult-only After Hours mode would require its own explicit permissions; it is not implemented here. Neither dating nor private participation affects someone's place in ordinary group activities."
+      "body": "In the fictional scene, an invitation to talk one-to-one is a new request, not an automatic reward for attending together. The recipient may accept, decline or change their mind. Any future 'deep end' feature would be a separate proposal requiring explicit permissions; it is not implemented here. Neither dating nor private participation affects someone's place in ordinary group activities."
     },
     {
       "id": "small-table-recap",
@@ -119,7 +119,7 @@
       "id": "cuff-next",
       "type": "note-callout",
       "title": "What is real here — and what is proposed?",
-      "body": "Real in this Showmob preview: the fictional three-profile bio-quest, local writing feedback, scripted responses and this authored Small Table walkthrough. Not real: user-to-user messaging, community events, attendee selection, bookings, paid sponsorship, an After Hours service or publication permissions. CUFF is a concept demo, not a functioning social network.",
+      "body": "Real in this Showmob preview: the fictional three-profile bio-quest, local writing feedback, scripted responses and this authored Small Table walkthrough. Not real: user-to-user messaging, community events, attendee selection, bookings, paid sponsorship, a proposed 'deep end' feature or publication permissions. CUFF is a concept demo, not a functioning social network.",
       "tone": "warning"
     }
   ]
