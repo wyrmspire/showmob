@@ -24,7 +24,63 @@
    "result": "WIN",
    "hide_usd": true,
    "target_first_touch": "2026-10-09T10:19:00-05:00",
-   "created": "2026-10-09T21:35:05.202879+00:00"
+   "created": "2026-10-09T21:35:05.202879+00:00",
+   "review": {
+    "title": "after-review",
+    "chart": {
+     "from": "08:45",
+     "to": "12:22"
+    },
+    "after": {
+     "time": "11:51",
+     "price": 7863.25
+    },
+    "sections": [
+     {
+      "h": "WHAT HAPPENED AFTER (as of 12:22 CT bar, ~2h after exit)",
+      "bullets": [
+       "1R (7842.50) reached 09:25, 1.5R 09:51, 2R (7850.75) 09:58, exit 7853.75 at 10:19 = the 15m/overnight-high zone (tool level 7853.50).",
+       "After the exit price pulled back only to 7842.50 (10:34), never back to the 7834.25 entry, then ran to 7863.25 at 11:51 (+9.50 pts above the exit; +29.0 pts / +3.5R from entry). Last bar 12:22 closed 7853.50, back near the exit."
+      ]
+     },
+     {
+      "h": "SHOULD WE HAVE GOTTEN IN?",
+      "text": "Yes, reasonable. Stop 7826.00 sat just under the 08:44 low (7826.50), a real structural stop, and risk was 8.25 pts for a planned 2.36R. The entry bar's own low was 7832.00 (2.25 pts under the fill) and the lowest 1m print after that bar was 7832.25 (09:11), so the stop was never close. Entering before the candle closed gave a better price than waiting for confirmation (the 09:07 bar traded 7834.50 to 7837.50 and kept going), but it carried more risk if the absorption had failed."
+     },
+     {
+      "h": "WHAT COULD WE HAVE DONE BETTER DURING THE TRADE?",
+      "text": "Not much on the exit: 7853.75 was the high of that leg. Possible improvements: move the stop to breakeven after 1R (09:25) \u2014 the lowest print afterward was 7834.75 at ~09:42, only 0.50 above entry, so a breakeven stop would barely have survived; a stop moved under the 09:42 swing low (~7834.75) or under the 15m swing lows (7832.00/7832.75) once past 1R would have cut risk without being taken out. Have the target and a plan for the rest decided before entry."
+     },
+     {
+      "h": "SHOULD WE HAVE SCALED OUT?",
+      "text": "Optional. Taking half at 2R (7850.75, 09:58) and the rest at the level would have lowered the result slightly (about +2.2R blended instead of +2.36R) but locked in a win earlier. The full exit at the level was the better result here, but it is only clearly better in hindsight, and price reversed from the level for ~11 pts into 10:34."
+     },
+     {
+      "h": "SHOULD WE HAVE SCALED IN?",
+      "text": "Possibly once. The pullback around 09:42 (low 7834.75, a retest of the entry zone) offered a lower-risk add with a stop under 7832.00 (~2.75 pts risk). An add on the 09:50 break above the 7844.25 RTH high would have had a bigger stop and less reward. Adding makes the trade bigger when it already worked; only worth it with a pre-set size plan."
+     },
+     {
+      "h": "KEPT RUNNER?",
+      "text": "With hindsight a runner past 7853.75 would have reached 7863.25 (+3.5R), but 7858.25 (previous session high) was the next real level and price closed back at 7853.50, so exiting at the first major level was defensible."
+     },
+     {
+      "h": "OPINIONS",
+      "blocks": [
+       {
+        "label": "Chris's read",
+        "color": "#6fb1ff",
+        "text": "Wanted the sell-off to continue on the UMich sentiment news. When the selling got absorbed, that was the signal to go long. Didn't wait for the candle to close; when UMich wants to move it moves right away. Targeted the next major level (the overnight high)."
+       },
+       {
+        "label": "Grok's opinion",
+        "color": "#5fd0c3",
+        "text": "Good trade process: clear trigger, structural stop, defined target, and the exit matched a real level. The one soft spot is entering before the candle closed; it worked, but it is a lower-confirmation habit, so size it as such and keep the stop honest. Next time, write the size and the scale-out/trail plan down before entry. One trade is not a pattern; the data here is 1m Yahoo bars, so exact fills and the order of prints inside a minute are not known."
+       }
+      ]
+     }
+    ],
+    "footer": "MES Trade Review \u00b7 times CT \u00b7 R and points only \u00b7 hindsight view, 1m bars"
+   }
   }
  ]
 }

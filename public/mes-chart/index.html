@@ -71,7 +71,8 @@ label.file input{display:none}
 #chart.picking{cursor:crosshair}
 #cardModal{position:fixed;inset:0;background:rgba(5,7,12,.82);z-index:70;display:flex;align-items:center;justify-content:center;padding:12px}
 #cardModal[hidden]{display:none}
-#cardModal .box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;max-height:100%;overflow:auto;align-items:center}
+#cardModal .box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;max-height:100%;overflow:hidden;align-items:center}
+#cardScroll{overflow:auto;min-height:0;max-width:100%;border-radius:10px}
 #cardImg{width:min(390px,calc(100vw - 48px));height:auto;border-radius:10px;display:block}
 #cardModal .acts{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 @media (max-width:760px){
@@ -99,6 +100,7 @@ label.file input{display:none}
   <div class="tools">
     <div class="seg" id="fOutcome"><button data-v="all" class="on">All</button><button data-v="win">Wins</button><button data-v="loss">Losses</button></div>
     <div class="seg" id="fSide"><button data-v="all" class="on">Both</button><button data-v="long">Long</button><button data-v="short">Short</button></div>
+    <button id="btnStrat" title="Show the Oct 6 strategy backtest trades from trades.json (hidden by default; the list and header stats then include them)">Strategy trades</button>
     <button id="btnAll" title="Show every trade box on the full chart">Show all boxes</button>
     <button id="btnLv" class="on" title="Significant 15m levels (prior day / prior session / overnight high-low, 15m swings) as of the selected trade's entry">15m levels</button>
     <button id="btnVol" class="on" title="Volume histogram (bottom of the chart)">Vol</button>
@@ -158,7 +160,7 @@ label.file input{display:none}
 </main>
 </div>
 <div id="cardModal" hidden><div class="box">
-  <img id="cardImg" alt="Trade card">
+  <div id="cardScroll"><img id="cardImg" alt="Trade card"></div>
   <div class="acts"><button id="cardDl" class="btn-primary">Download PNG</button><button id="cardShare" hidden>Share…</button><button id="cardClose">Close</button></div>
   <div class="hint">Share sends the PNG via your device's share sheet (AirDrop, Messages…) where the browser supports it.</div>
 </div></div>
@@ -176,7 +178,7 @@ const C = {green:'#26a69a', red:'#ef5350', grey:'#8a8f98', text:'#d1d4dc', blue:
 const $ = s => document.querySelector(s);
 
 // ---------- state ----------
-const S = {showLevels:true, showVol:true, hasVol:false, showSettle:false, settle:null, settleMap:{}, levels:[], b15:[], manualRaw:[], loaded:[], draft:null, editing:null, formOpen:false, clickMode:'entry', bars:[], times:[], trades:[], view:[], sel:-1, showAll:false, fOutcome:'all', fSide:'all',
+const S = {showLevels:true, showVol:true, hasVol:false, showSettle:false, settle:null, settleMap:{}, levels:[], b15:[], manualRaw:[], loaded:[], draft:null, editing:null, formOpen:false, clickMode:'entry', bars:[], times:[], trades:[], view:[], sel:-1, showAll:false, showStrat:false, fOutcome:'all', fSide:'all',
            barsName:'', tradesName:'', barsSrc:'', tradesSrc:'', rawTrades:null, rawTradesName:''};
 
 // ---------- toasts ----------
@@ -256,7 +258,7 @@ function normRow(r0){
   const tgt=isFinite(target)? target: null;
   return {side, et, xt:Math.max(xt,et), entry, stop, target:tgt, exit, contracts, R, pts, usd:pts*POINT_VALUE*contracts,
     planR: tgt!=null? side*(tgt-entry)/risk : null, res: Math.abs(R)<0.05? 'be': (R>0? 'win':'loss'),
-    note: pick(r,['note','notes','comment'])||'', tag: pick(r,['tag','tags','reason','setup'])||'', warning: r.warning||'', assumptions: r.assumptions||'', src: r.source||'', id: r.id||null, noUsd: !!(r.hide_usd||r.hideUsd)};
+    note: pick(r,['note','notes','comment'])||'', tag: pick(r,['tag','tags','reason','setup'])||'', warning: r.warning||'', assumptions: r.assumptions||'', src: r.source||'', id: r.id||null, noUsd: !!(r.hide_usd||r.hideUsd), strat: !!r._strategy, review: (r.review&&typeof r.review==='object')? r.review : null};
 }
 function placeTrade(t){ t.ei=floorIdx(t.et); t.xi=floorIdx(t.xt); t.inRange = S.bars.length>0 && t.ei>=0 && t.et<=S.times[S.times.length-1]+60; return t; }
 function setTrades(parsed, name, src){
@@ -379,7 +381,7 @@ class BoxPrimitive {
         if(yX!=null){ ctx.fillStyle=resColor(t); ctx.beginPath(); ctx.arc(x2, yX, s*0.9, 0, Math.PI*2); ctx.fill(); ctx.strokeStyle='#0e1117'; ctx.lineWidth=1.5;
           const k=s*0.45; ctx.beginPath(); ctx.moveTo(x2-k,yX-k); ctx.lineTo(x2+k,yX+k); ctx.moveTo(x2+k,yX-k); ctx.lineTo(x2-k,yX+k); ctx.stroke(); }
         if(!isSel || (S.showAll && x2-x1<140)){ // compact tag in show-all mode
-          if(yX!=null) pill(ctx, `#${t.n} ${sgn(t.R)}R`, x2+8, yX, 'rgba(21,26,35,.9)', resColor(t), 'left', W, H, tagsPlaced, 1);
+          if(yX!=null) pill(ctx, `#${S.view.indexOf(t)+1||t.n} ${sgn(t.R)}R`, x2+8, yX, 'rgba(21,26,35,.9)', resColor(t), 'left', W, H, tagsPlaced, 1);
           continue;
         }
         // labels for the selected trade
@@ -412,7 +414,7 @@ chart.subscribeCrosshairMove(p=>{
 });
 
 // ---------- UI ----------
-function passes(t){ if(S.fOutcome==='win'&&t.res!=='win') return false; if(S.fOutcome==='loss'&&t.res!=='loss') return false; if(S.fSide==='long'&&t.side<0) return false; if(S.fSide==='short'&&t.side>0) return false; return true; }
+function passes(t){ if(t.strat && !S.showStrat) return false; if(S.fOutcome==='win'&&t.res!=='win') return false; if(S.fOutcome==='loss'&&t.res!=='loss') return false; if(S.fSide==='long'&&t.side<0) return false; if(S.fSide==='short'&&t.side>0) return false; return true; }
 function rebuild(){
   S.view=S.trades.filter(passes);
   // stats
@@ -426,15 +428,15 @@ function rebuild(){
     ['Win rate', n? (100*wins/n).toFixed(0)+'%':'–'],
     ['Total R', n? `<span class="${cls(totR)}">${sgn(totR)}</span>`:'–'],
     ['Avg R', n? `<span class="${cls(totR)}">${sgn(totR/n)}</span>`:'–'],
-    ['Total $', n? (anyNoUsd? '–' : `<span class="${cls(totU)}">${money(totU)}</span>`):'–'],
+    ...(anyNoUsd? [] : [['Total $', n? `<span class="${cls(totU)}">${money(totU)}</span>`:'–']]),
     ['Max DD', n? `<span class="${dd>0?'neg':'be'}">${dd>0?'−':''}${dd.toFixed(2)}R</span>`:'–'],
   ].map(([k,x])=>`<div class="stat"><b>${x}</b><span>${k}</span></div>`).join('');
   // list
   const L=$('#list');
   if(!S.trades.length){ L.innerHTML='<div class="empty">No trades loaded. Use the Trades button or drop a trades CSV/JSON.</div>'; }
   else if(!n){ L.innerHTML='<div class="empty">No trades match the filter.</div>'; }
-  else L.innerHTML = v.map(t=>`<div class="row ${t.res}${t.n===S.sel?' sel':''}" data-n="${t.n}">
-      <span class="n">#${t.n}</span><span><span class="side-${t.side>0?'long':'short'}">${t.side>0?'LONG':'SHORT'}</span> ${fmtCT(t.et)} CT${t.manual?'<span class="tag-manual">manual</span>':''}</span>
+  else L.innerHTML = v.map((t,vi)=>`<div class="row ${t.res}${t.n===S.sel?' sel':''}" data-n="${t.n}">
+      <span class="n">#${vi+1}</span><span><span class="side-${t.side>0?'long':'short'}">${t.side>0?'LONG':'SHORT'}</span> ${fmtCT(t.et)} CT${t.manual?'<span class="tag-manual">manual</span>':''}</span>
       <span class="r ${t.res==='win'?'pos':t.res==='loss'?'neg':'be'}">${sgn(t.R)}R</span>
       <span class="sub">${t.entry.toFixed(2)} → ${t.exit.toFixed(2)} · ${sgn(t.pts)} pts${t.noUsd?'':' · '+money(t.usd)}${t.inRange?'':' · <span style="color:#f5c26b">outside bar data</span>'}${t.warning?' · <span style="color:#f5c26b">⚠</span>':''}</span></div>`).join('');
   // badge
@@ -457,7 +459,7 @@ function renderDetail(){
   if(!t){ d.innerHTML='<span class="hint">Select a trade. Keys: ← / J previous, → / K next</span>'; return; }
   const c=t.res==='win'?'pos':t.res==='loss'?'neg':'be';
   const idx=S.view.indexOf(t);
-  d.innerHTML=`<b>#${t.n}</b><span class="side-${t.side>0?'long':'short'}">${t.side>0?'LONG':'SHORT'} ×${t.contracts}</span>
+  d.innerHTML=`<b>#${idx>=0? idx+1 : t.n}</b><span class="side-${t.side>0?'long':'short'}">${t.side>0?'LONG':'SHORT'} ×${t.contracts}</span>
    <span><span class="k">In</span>${fmtCT(t.et)} @ ${t.entry.toFixed(2)}</span>
    <span><span class="k">Out</span>${fmtCT(t.xt,false)} @ ${t.exit.toFixed(2)}</span>
    <span><span class="k">SL</span>${t.stop.toFixed(2)}</span>${t.target!=null?`<span><span class="k">TP</span>${t.target.toFixed(2)}</span>`:''}
@@ -467,8 +469,9 @@ function renderDetail(){
    ${t.assumptions?`<span class="note"><b>Assumptions:</b> ${esc(t.assumptions)}</span>`:''}
    ${t.warning?`<span class="warn">⚠ ${esc(t.warning)}</span>`:''}
    ${t.inRange?'':'<span class="warn">This trade is outside the loaded bar data.</span>'}
-   <span><button id="dCard" title="Phone-sized shareable image of this trade">Trade card</button>${t.manual?` <button id="dEdit">Edit</button> <button id="dDel" class="btn-danger">Delete</button>`:''}</span>`;
+   <span><button id="dCard" title="Phone-sized shareable image of this trade">Trade card</button>${t.review?` <button id="dReview" title="Phone-sized after-review card (what happened after, what could be better)">Review card</button>`:''}${t.manual?` <button id="dEdit">Edit</button> <button id="dDel" class="btn-danger">Delete</button>`:''}</span>`;
   $('#dCard').onclick=()=>openCard(t);
+  if(t.review) $('#dReview').onclick=()=>openCard(t,'review');
   if(t.manual){ $('#dEdit').onclick=()=>openForm(t.id); $('#dDel').onclick=()=>deleteManual(t.id); }
 }
 function esc(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
@@ -500,6 +503,9 @@ function segs(id,key){ document.querySelectorAll(`#${id} button`).forEach(b=>b.o
 segs('fOutcome','fOutcome'); segs('fSide','fSide');
 $('#btnAll').onclick=()=>{ S.showAll=!S.showAll; $('#btnAll').classList.toggle('on',S.showAll); $('#btnAll').textContent=S.showAll?'Showing all boxes':'Show all boxes';
   if(S.showAll) chart.timeScale().fitContent(); else if(S.sel>0) select(S.sel); prim.update(); };
+$('#btnStrat').onclick=()=>{ S.showStrat=!S.showStrat; $('#btnStrat').classList.toggle('on',S.showStrat); rebuild();
+  const cur=S.trades[S.sel-1];
+  if(!cur || !S.view.includes(cur)){ const f=S.view.find(t=>t.inRange)||S.view[0]; if(f) select(f.n); else { S.sel=-1; refreshLevels(); prim.update(); renderDetail(); } } };
 $('#naiveTz').onchange=()=>toast('Applies to files loaded from now on (reload a file to re-parse).');
 
 // ---------- file loading ----------
@@ -700,9 +706,9 @@ function exportTrades(fmt){
   const list = $('#expScope').value==='manual'? S.trades.filter(t=>t.manual) : S.trades;
   if(!list.length){ toast('Nothing to export'+($('#expScope').value==='manual'?' (no manual trades yet)':'')); return; }
   const rows=list.map(t=>({entry_time:isoCT(t.et), exit_time:isoCT(t.xt), side:t.side>0?'long':'short', entry:t.entry, stop:t.stop, target:t.target, exit:t.exit,
-    contracts:t.contracts, R:+t.R.toFixed(3), pnl_usd:+t.usd.toFixed(2), tag:t.tag||(t.manual?'manual':''), note:t.note||''}));
+    contracts:t.contracts, R:+t.R.toFixed(3), points:+t.pts.toFixed(2), ...(t.noUsd? {} : {pnl_usd:+t.usd.toFixed(2)}), tag:t.tag||(t.manual?'manual':''), note:t.note||''}));
   let text, type, name;
-  if(fmt==='csv'){ const cols=Object.keys(rows[0]); const q=v=>{ v=v==null?'':String(v); return /[",\n]/.test(v)? '"'+v.replace(/"/g,'""')+'"' : v; };
+  if(fmt==='csv'){ const cols=[...new Set(rows.flatMap(r=>Object.keys(r)))]; const q=v=>{ v=v==null?'':String(v); return /[",\n]/.test(v)? '"'+v.replace(/"/g,'""')+'"' : v; };
     text=[cols.join(',')].concat(rows.map(r=>cols.map(c=>q(r[c])).join(','))).join('\n')+'\n'; type='text/csv'; name='trades.csv'; }
   else { text=JSON.stringify({meta:{exported_at:new Date().toISOString(), scope:$('#expScope').value, times:'America/Chicago'}, trades:rows},null,1); type='application/json'; name='trades.json'; }
   const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([text],{type})); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },500);
@@ -796,20 +802,156 @@ function drawCard(t){
   g.fillStyle='#5d6577'; g.font=F(500,10); g.fillText('MES Trade Review · times CT · R excl. commissions', 22, H-22);
   return cv;
 }
+
+// =====================================================================
+// After-review card: tall phone-portrait PNG from trade.review (same canvas renderer / style as the trade card).
+// review = { title, chart:{from:"HH:MM",to:"HH:MM"}, after:{time:"HH:MM",price}, sections:[{h, bullets:[..]|text|blocks:[{label,color,text}]}], footer }
+// R and points only: never prints dollars.
+// =====================================================================
+function drawReview(t){
+  const rv=t.review||{}; const W=390, SC=2, PX=22, CWID=W-2*PX;
+  const F=(w,sz)=>`${w} ${sz}px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif`;
+  const rc=resColor(t), day=ctDate(t.et);
+  const tAt=hhmm=>{ const [h,m]=hhmm.split(':').map(Number); const [y,mo,d]=day.split('-').map(Number); return zonedToUtc(y,mo,d,h,m,0,TZ); };
+  const wrap=(g,str,maxW)=>{ const out=[]; let line=''; for(const w of String(str).split(/\s+/)){ const tst=line?line+' '+w:w; if(line && g.measureText(tst).width>maxW){ out.push(line); line=w; } else line=tst; } if(line) out.push(line); return out; };
+  // ---- fixed top part: header + chart + price grid
+  const CY=150, CH=300, CXL=PX, CWC=W-2*PX-50;           // chart rect (right 50px = price tags)
+  const GY=CY+CH+58;                                      // price grid baseline
+  const TOP_END=GY+34;                                    // text sections start below this
+  // ---- text flow: measure (draw=false) then paint (draw=true)
+  const LH=17;
+  function flow(g, draw){
+    let y=TOP_END+18;
+    for(const sec of (rv.sections||[])){
+      g.textAlign='left'; g.textBaseline='alphabetic';
+      if(draw){ g.strokeStyle='#262d3b'; g.lineWidth=1; g.beginPath(); g.moveTo(PX,y-12.5); g.lineTo(W-PX,y-12.5); g.stroke(); }
+      g.font=F(700,11.5); const hl=wrap(g,sec.h,CWID);
+      for(const l of hl){ if(draw){ g.fillStyle='#8fb4ff'; g.font=F(700,11.5); g.fillText(l,PX,y+3); } y+=15; }
+      y+=8;
+      g.font=F(500,12.5);
+      if(sec.bullets) for(const b of sec.bullets){ g.font=F(500,12.5); const ls=wrap(g,b,CWID-14);
+        ls.forEach((l,k)=>{ if(draw){ g.fillStyle='#c4c9d4'; g.font=F(500,12.5); if(k===0){ g.fillStyle='#6f7a90'; g.fillText('•',PX+2,y); g.fillStyle='#c4c9d4'; } g.fillText(l,PX+14,y); } y+=LH; }); y+=3; }
+      if(sec.text){ g.font=F(500,12.5); for(const l of wrap(g,sec.text,CWID)){ if(draw){ g.fillStyle='#c4c9d4'; g.font=F(500,12.5); g.fillText(l,PX,y); } y+=LH; } }
+      if(sec.blocks) for(const bl of sec.blocks){ const col=bl.color||'#8fb4ff'; const y0=y-12;
+        if(draw){ g.fillStyle=col; g.font=F(700,12.5); g.fillText(bl.label,PX+10,y); } y+=LH+1;
+        g.font=F(500,12.5); for(const l of wrap(g,bl.text,CWID-10)){ if(draw){ g.fillStyle='#c4c9d4'; g.font=F(500,12.5); g.fillText(l,PX+10,y); } y+=LH; }
+        if(draw){ g.fillStyle=col; g.globalAlpha=.8; g.fillRect(PX,y0,2.5,y-y0-LH+5); g.globalAlpha=1; } y+=9; }
+      y+=14;
+    }
+    // footer
+    g.font=F(500,10); const fl=wrap(g,rv.footer||'MES Trade Review · times CT · R and points only',CWID);
+    y+=2; const fy=y;
+    if(draw){ g.fillStyle='#5d6577'; g.font=F(500,10); fl.forEach((l,k)=>g.fillText(l,PX,fy+k*13)); }
+    return fy+fl.length*13+14;
+  }
+  const sc=document.createElement('canvas').getContext('2d');
+  const H=Math.ceil(flow(sc,false));
+  const cv=document.createElement('canvas'); cv.width=W*SC; cv.height=H*SC;
+  const g=cv.getContext('2d'); g.scale(SC,SC);
+  g.fillStyle='#0e1117'; g.fillRect(0,0,W,H);
+  g.fillStyle='#151a23'; rr(g,8,8,W-16,H-16,14); g.fill(); g.strokeStyle='#262d3b'; g.lineWidth=1; g.stroke();
+  // header
+  g.textBaseline='alphabetic'; g.textAlign='left';
+  g.fillStyle='#e8ebf2'; g.font=F(700,17); g.fillText('MES', 22, 38);
+  const sideCol=t.side>0? C.blue : '#ffa36f'; const title=`${t.side>0?'LONG':'SHORT'} · ${rv.title||'after-review'}`;
+  g.fillStyle=sideCol; g.fillText(title, 66, 38);
+  const badge=resText(t); g.font=F(800,14); const bw=g.measureText(badge).width+22;
+  g.fillStyle=rc; rr(g,W-22-bw,20,bw,26,13); g.fill(); g.fillStyle='#fff'; g.textAlign='center'; g.fillText(badge, W-22-bw/2, 38);
+  g.textAlign='left'; g.fillStyle='#8a93a6'; g.font=F(500,12.5);
+  const pp=parts(t.et,TZ); g.fillText(`${pp.weekday} ${MON[+pp.month-1]} ${+pp.day}, ${pp.year}`, 22, 60);
+  g.fillStyle='#d1d4dc'; g.fillText(`entry ${ctTime(t.et)} CT → exit ${ctTime(t.xt)} CT${ctDate(t.xt)!==ctDate(t.et)?' (+1d)':''}`, 22, 78);
+  g.fillStyle=rc; g.font=F(800,34); g.fillText(`${sgn(t.R)}R`, 22, 118);
+  const rw=g.measureText(`${sgn(t.R)}R`).width;
+  g.font=F(600,15); g.fillStyle='#d1d4dc'; g.fillText(`${sgn(t.pts)} pts`, 34+rw, 104);
+  g.fillStyle='#8a93a6'; g.font=F(500,11.5); g.fillText(`risk ${Math.abs(t.entry-t.stop).toFixed(2)} pts = 1R${t.planR!=null?` · planned ${t.planR.toFixed(2)}R`:''}`, 34+rw, 121);
+  // ---- mini chart
+  const fromT=tAt((rv.chart&&rv.chart.from)||ctTime(t.et)), toT=tAt((rv.chart&&rv.chart.to)||ctTime(t.xt));
+  const i0=Math.max(0,floorIdx(fromT)), i1=Math.min(S.bars.length-1,floorIdx(toT));
+  const bars=S.bars.slice(i0,i1+1); const n=bars.length;
+  const aft=rv.after&&rv.after.time? {i:floorIdx(tAt(rv.after.time)), price:+rv.after.price} : null;
+  g.fillStyle='#0e1117'; rr(g,CXL-4,CY-4,CWC+54,CH+26,8); g.fill();
+  let lo=Infinity, hi=-Infinity; for(const b of bars){ lo=Math.min(lo,b.low); hi=Math.max(hi,b.high); }
+  for(const v of [t.entry,t.stop,t.exit,t.target,aft&&aft.price]) if(v!=null){ lo=Math.min(lo,v); hi=Math.max(hi,v); }
+  const pad=(hi-lo)*0.06||1; lo-=pad; hi+=pad;
+  const Y=v=>CY+(hi-v)/(hi-lo)*CH; const step=CWC/n; const X=i=>CXL+(i-i0+0.5)*step;
+  const x1=X(t.ei), x2=Math.max(X(t.xi), x1+4);
+  g.save(); g.beginPath(); g.rect(CXL,CY,CWC,CH); g.clip();
+  // hour grid
+  g.font=F(500,10); for(let k=0;k<n;k++){ const tm=bars[k].time; if(ctTime(tm).endsWith(':00')){ const x=CXL+(k+0.5)*step; g.strokeStyle='rgba(138,147,166,.14)'; g.lineWidth=1; g.beginPath(); g.moveTo(Math.round(x)+0.5,CY); g.lineTo(Math.round(x)+0.5,CY+CH); g.stroke(); } }
+  // position box (zones)
+  if(t.target!=null){ g.fillStyle='rgba(38,166,154,.20)'; g.fillRect(x1,Math.min(Y(t.entry),Y(t.target)),x2-x1,Math.abs(Y(t.target)-Y(t.entry))); }
+  g.fillStyle='rgba(239,83,80,.20)'; g.fillRect(x1,Math.min(Y(t.entry),Y(t.stop)),x2-x1,Math.abs(Y(t.stop)-Y(t.entry)));
+  const rcol=t.res==='win'?'38,166,154':t.res==='loss'?'239,83,80':'138,143,152';
+  g.fillStyle=`rgba(${rcol},.28)`; g.fillRect(x1,Math.min(Y(t.entry),Y(t.exit)),x2-x1,Math.abs(Y(t.exit)-Y(t.entry)));
+  // "after exit" ghost zone (amber, dotted): exit -> the post-exit extreme
+  const AMB='#f5c26b';
+  if(aft && aft.i>t.xi){ const xa=X(aft.i); g.fillStyle='rgba(245,194,107,.08)'; g.fillRect(x2,Math.min(Y(t.exit),Y(aft.price)),xa-x2,Math.abs(Y(aft.price)-Y(t.exit))); }
+  const bwid=Math.max(1.1,Math.min(6,step*0.75));
+  if(S.hasVol){ let vmax=0; for(const b of bars) vmax=Math.max(vmax,b.volume);
+    if(vmax>0) for(let k=0;k<n;k++){ const b=bars[k]; const vh=b.volume/vmax*CH*0.18; g.fillStyle=b.close>=b.open?'rgba(38,166,154,.32)':'rgba(239,83,80,.32)'; g.fillRect(CXL+(k+0.5)*step-bwid/2, CY+CH-vh, bwid, vh); } }
+  for(let k=0;k<n;k++){ const b=bars[k]; const x=CXL+(k+0.5)*step; const up=b.close>=b.open; g.strokeStyle=g.fillStyle=up?C.green:C.red;
+    g.lineWidth=1; g.beginPath(); g.moveTo(x,Y(b.high)); g.lineTo(x,Y(b.low)); g.stroke();
+    const yo=Y(b.open), yc=Y(b.close); g.fillRect(x-bwid/2, Math.min(yo,yc), bwid, Math.max(1,Math.abs(yc-yo))); }
+  g.lineWidth=1;
+  if(t.target!=null){ g.strokeStyle='rgba(38,166,154,.9)'; g.strokeRect(x1,Math.min(Y(t.entry),Y(t.target)),x2-x1,Math.abs(Y(t.target)-Y(t.entry))); }
+  g.strokeStyle='rgba(239,83,80,.9)'; g.strokeRect(x1,Math.min(Y(t.entry),Y(t.stop)),x2-x1,Math.abs(Y(t.stop)-Y(t.entry)));
+  g.strokeStyle='#e8ebf2'; g.lineWidth=1.5; g.beginPath(); g.moveTo(x1,Y(t.entry)); g.lineTo(x2,Y(t.entry)); g.stroke();
+  g.setLineDash([4,3]); g.strokeStyle=rc; g.lineWidth=1.2; g.beginPath(); g.moveTo(x1,Y(t.exit)); g.lineTo(x2,Y(t.exit)); g.stroke(); g.setLineDash([]);
+  // dotted "where price went after the exit" marker
+  if(aft && aft.i>t.xi){ const xa=X(aft.i), ya=Y(aft.price), yx=Y(t.exit);
+    g.setLineDash([2,3]); g.strokeStyle=AMB; g.lineWidth=1.3;
+    g.beginPath(); g.moveTo(x2,yx); g.lineTo(xa,yx); g.moveTo(xa,yx); g.lineTo(xa,ya); g.moveTo(x2,ya); g.lineTo(CXL+CWC,ya); g.moveTo(x2,yx); g.lineTo(x2,ya); g.stroke(); g.setLineDash([]);
+    g.fillStyle=AMB; g.strokeStyle='#0e1117'; g.lineWidth=1.5; g.beginPath(); g.moveTo(xa,ya-6); g.lineTo(xa+6,ya); g.lineTo(xa,ya+6); g.lineTo(xa-6,ya); g.closePath(); g.fill(); g.stroke();
+    g.font=F(600,10); g.textAlign='right'; g.textBaseline='middle'; const lab=`high after exit ${sgn(aft.price-t.exit)} pts`; const lw=g.measureText(lab).width+10;
+    g.fillStyle='rgba(14,17,23,.88)'; rr(g,xa-12-lw,ya+11,lw,15,3); g.fill(); g.fillStyle=AMB; g.fillText(lab,xa-12-3,ya+19); g.textAlign='left'; }
+  // markers
+  const s=6, yE=Y(t.entry); g.fillStyle=sideCol; g.strokeStyle='#0e1117'; g.lineWidth=1; g.beginPath();
+  if(t.side>0){ g.moveTo(x1,yE); g.lineTo(x1-s,yE+s*1.6); g.lineTo(x1+s,yE+s*1.6); } else { g.moveTo(x1,yE); g.lineTo(x1-s,yE-s*1.6); g.lineTo(x1+s,yE-s*1.6); }
+  g.closePath(); g.fill(); g.stroke();
+  g.fillStyle=rc; g.beginPath(); g.arc(x2,Y(t.exit),5.5,0,Math.PI*2); g.fill(); g.strokeStyle='#0e1117'; g.lineWidth=1.5;
+  g.beginPath(); g.moveTo(x2-2.5,Y(t.exit)-2.5); g.lineTo(x2+2.5,Y(t.exit)+2.5); g.moveTo(x2+2.5,Y(t.exit)-2.5); g.lineTo(x2-2.5,Y(t.exit)+2.5); g.stroke();
+  g.fillStyle='#8a93a6'; g.font=F(500,10); g.textAlign='left'; g.textBaseline='alphabetic'; g.fillText(`1m · ${ctTime(bars[0].time)} → ${ctTime(bars[n-1].time)} CT`, CXL+4, CY+12);
+  g.restore();
+  // right-hand price tags
+  const AMBBG='rgba(110,82,24,.95)';
+  const tags=[[aft&&aft.price,'#ffe7b3',AMBBG],[t.target,'#bff3ec','rgba(18,70,64,.95)'],[t.entry,'#e8ebf2','#2a3142'],[t.stop,'#ffd0cf','rgba(90,30,30,.95)'],[t.exit,'#fff',rc]]
+    .filter((x,i)=>x[0]!=null && !(i===1 && Math.abs(x[0]-t.exit)<1e-9) && !(i===4 && Math.abs(x[0]-t.stop)<1e-9))
+    .map(([v,fg,bg])=>({v,fg,bg,y:Y(v)})).sort((a,b)=>a.y-b.y);
+  for(let k=1;k<tags.length;k++) if(tags[k].y-tags[k-1].y<15) tags[k].y=tags[k-1].y+15;
+  g.font=F(600,10); g.textAlign='center'; g.textBaseline='middle';
+  for(const tg of tags){ g.fillStyle=tg.bg; rr(g,CXL+CWC+3,tg.y-7,46,14,3); g.fill(); g.fillStyle=tg.fg; g.fillText(tg.v.toFixed(2), CXL+CWC+26, tg.y+0.5); }
+  // time axis: hour ticks, then entry / exit / after-high labels
+  g.textBaseline='alphabetic'; g.font=F(500,10); g.textAlign='center';
+  for(let k=0;k<n;k++){ const tm=bars[k].time; const lab=ctTime(tm); if(lab.endsWith(':00')){ const x=CXL+(k+0.5)*step; if(x>CXL+14&&x<CXL+CWC-14){ g.fillStyle='#6f7a90'; g.fillText(lab,x,CY+CH+14); } } }
+  const mk=(x,txt,col)=>{ g.fillStyle=col; g.font=F(600,10); const w=g.measureText(txt).width; g.textAlign='center'; g.fillText(txt, Math.max(CXL+w/2, Math.min(x, CXL+CWC-w/2+8)), CY+CH+29); };
+  mk(x1,`in ${ctTime(t.et)}`,sideCol); mk(x2,`out ${ctTime(t.xt)}`,rc); if(aft) mk(X(aft.i),`high ${rv.after.time}`,AMB);
+  g.textAlign='left'; g.fillStyle='#8a93a6'; g.font=F(500,10);
+  g.fillText('dotted = price after exit', CXL, CY+CH+45);
+  // price grid
+  const cells=[['ENTRY',t.entry,'#e8ebf2'],['STOP',t.stop,'#ff8a87'],['EXIT',t.exit,rc],['HIGH AFTER',aft?aft.price:null,AMB]];
+  const cwid=(W-44)/4;
+  cells.forEach(([k,v,col],i)=>{ const x=22+i*cwid; g.textAlign='left'; g.fillStyle='#8a93a6'; g.font=F(600,10); g.fillText(k,x,GY); g.fillStyle=col; g.font=F(700,15); g.fillText(v!=null? v.toFixed(2):'—', x, GY+20); });
+  g.textAlign='left'; flow(g,true);
+  return cv;
+}
 let cardBlob=null, cardName='';
-function openCard(t){
+function openCard(t, kind){
   if(!t||!t.inRange){ toast('Trade is outside the loaded bar data'); return; }
-  const cv=drawCard(t); cardName=`MES_${ctDate(t.et)}_${ctTime(t.et).replace(':','')}_${t.side>0?'long':'short'}_${t.R>=0?'+':''}${t.R.toFixed(2)}R.png`;
-  $('#cardImg').src=cv.toDataURL('image/png');
+  const rv = kind==='review';
+  if(rv && !t.review){ toast('This trade has no review object'); return; }
+  const cv= rv? drawReview(t) : drawCard(t);
+  cardName=`MES_${ctDate(t.et)}_${ctTime(t.et).replace(':','')}_${t.side>0?'long':'short'}_${t.R>=0?'+':''}${t.R.toFixed(2)}R${rv?'_review':''}.png`;
+  $('#cardImg').alt = rv? 'After-review card' : 'Trade card'; $('#cardImg').src=cv.toDataURL('image/png'); $('#cardScroll').scrollTop=0;
   cv.toBlob(b=>{ cardBlob=b; const f=new File([b],cardName,{type:'image/png'});
     $('#cardShare').hidden = !(navigator.canShare && navigator.canShare({files:[f]})); },'image/png');
   $('#cardModal').hidden=false;
 }
 $('#cardDl').onclick=()=>{ if(!cardBlob) return; const a=document.createElement('a'); a.href=URL.createObjectURL(cardBlob); a.download=cardName; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},500); };
-$('#cardShare').onclick=async()=>{ try{ await navigator.share({files:[new File([cardBlob],cardName,{type:'image/png'})], title:'MES trade'}); }catch(e){ if(e.name!=='AbortError') toast('Share failed: '+e.message); } };
+$('#cardShare').onclick=async()=>{ try{ await navigator.share({files:[new File([cardBlob],cardName,{type:'image/png'})], title:cardName.replace(/\.png$/,'')}); }catch(e){ if(e.name!=='AbortError') toast('Share failed: '+e.message); } };
 $('#cardClose').onclick=()=>$('#cardModal').hidden=true;
 $('#cardModal').addEventListener('click',e=>{ if(e.target.id==='cardModal') $('#cardModal').hidden=true; });
 window.__drawCard = t => drawCard(t).toDataURL('image/png'); // used by tests
+window.__drawReview = t => drawReview(t).toDataURL('image/png'); // used by describe_trade.py / tests
 
 // ---------- URL hash / query: preselect or draw a described trade ----------
 //   #trade=2026-10-09_0906_long                       -> select that saved (described) trade
@@ -851,6 +993,8 @@ async function tryFetch(u){ try{ const r=await fetch(u,{cache:'no-store'}); retu
   try{
     if(trades) S.rawTrades=parseTradesText(trades,tn), S.rawTradesName=tn, S.tradesSrc='bundled';
     else if(B&&B.trades){ S.rawTrades={list:Array.isArray(B.trades.data)?B.trades.data:(B.trades.data.trades||[]), meta:B.trades.data.meta||null}; S.rawTradesName=B.trades.name; S.tradesSrc='bundled'; }
+    // trades.json = Oct 6 strategy backtest trades: flagged so the "Strategy trades" toggle can hide them (default hidden)
+    if(S.rawTrades) S.rawTrades={list:S.rawTrades.list.map(x=>Object.assign({},x,{_strategy:true})), meta:S.rawTrades.meta};
     // described trades (describe_trade.py -> manual_trades.json) are merged into the loaded trades
     try{ const dj = described? JSON.parse(described) : (B&&B.described);
       const dl = dj? (Array.isArray(dj)? dj : (dj.trades||[])) : [];
