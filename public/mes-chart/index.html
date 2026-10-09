@@ -21,6 +21,7 @@ h1{font-size:15px;margin:0;font-weight:650;white-space:nowrap}
 .stat{display:flex;flex-direction:column;min-width:52px}
 .stat b{font-size:14px;font-weight:650}
 .stat span{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
+button.na{opacity:.45}
 .pos{color:var(--green)}.neg{color:var(--red)}.be{color:var(--grey)}
 .tools{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-left:auto}
 .seg{display:inline-flex}.seg button{border-radius:0;margin-left:-1px}.seg button:first-child{border-radius:6px 0 0 6px;margin-left:0}.seg button:last-child{border-radius:0 6px 6px 0}
@@ -100,6 +101,8 @@ label.file input{display:none}
     <div class="seg" id="fSide"><button data-v="all" class="on">Both</button><button data-v="long">Long</button><button data-v="short">Short</button></div>
     <button id="btnAll" title="Show every trade box on the full chart">Show all boxes</button>
     <button id="btnLv" class="on" title="Significant 15m levels (prior day / prior session / overnight high-low, 15m swings) as of the selected trade's entry">15m levels</button>
+    <button id="btnVol" class="on" title="Volume histogram (bottom of the chart)">Vol</button>
+    <button id="btnSettle" title="Previous session's settlement price (data/settlements.json) as a dashed line">Settle</button>
   </div>
 </header>
 <main>
@@ -173,7 +176,7 @@ const C = {green:'#26a69a', red:'#ef5350', grey:'#8a8f98', text:'#d1d4dc', blue:
 const $ = s => document.querySelector(s);
 
 // ---------- state ----------
-const S = {showLevels:true, levels:[], b15:[], manualRaw:[], loaded:[], draft:null, editing:null, formOpen:false, clickMode:'entry', bars:[], times:[], trades:[], view:[], sel:-1, showAll:false, fOutcome:'all', fSide:'all',
+const S = {showLevels:true, showVol:true, hasVol:false, showSettle:false, settle:null, settleMap:{}, levels:[], b15:[], manualRaw:[], loaded:[], draft:null, editing:null, formOpen:false, clickMode:'entry', bars:[], times:[], trades:[], view:[], sel:-1, showAll:false, fOutcome:'all', fSide:'all',
            barsName:'', tradesName:'', barsSrc:'', tradesSrc:'', rawTrades:null, rawTradesName:''};
 
 // ---------- toasts ----------
@@ -216,15 +219,16 @@ function pick(o, names){ for(const n of names){ if(o[n]!==undefined && o[n]!==''
 function loadBars(text, name, src){
   const {hdr, rows}=parseCSV(text);
   const tk=['datetime','time','timestamp','date','datetimeutc','ts','date_time'].find(k=>hdr.includes(k));
-  const need=['open','high','low','close'];
+  const need=['open','high','low','close']; const hasVolCol=hdr.includes('volume')||hdr.includes('vol');
   if(!tk || need.some(k=>!hdr.includes(k))) throw new Error('Bars CSV needs a time column (Datetime/time/timestamp) and Open, High, Low, Close. Found: '+hdr.join(', '));
   const bars=[];
-  for(const r of rows){ const t=parseTime(r[tk]); const o=+r.open,h=+r.high,l=+r.low,c=+r.close; if(!isFinite(t)||![o,h,l,c].every(isFinite)) continue; bars.push({time:Math.floor(t),open:o,high:h,low:l,close:c,volume:+(r.volume||r.vol||0)||0}); }
+  for(const r of rows){ const t=parseTime(r[tk]); const o=+r.open,h=+r.high,l=+r.low,c=+r.close; if(!isFinite(t)||![o,h,l,c].every(isFinite)) continue; bars.push({time:Math.floor(t),open:o,high:h,low:l,close:c,volume:Math.max(0,+(r.volume||r.vol||0)||0)}); }
   bars.sort((a,b)=>a.time-b.time);
   const ded=[]; for(const b of bars){ if(ded.length && ded[ded.length-1].time===b.time) ded[ded.length-1]=b; else ded.push(b); }
   if(!ded.length) throw new Error('No valid bars found in '+name);
   S.bars=ded; S.times=ded.map(b=>b.time); S.barsName=name; S.barsSrc=src||'file';
-  series.setData(ded); legendFor(ded[ded.length-1]);
+  S.hasVol = hasVolCol && ded.some(b=>b.volume>0);
+  series.setData(ded); setVolData(); legendFor(ded[ded.length-1]);
   build15m();
   if(S.rawTrades) setTrades(S.rawTrades, S.rawTradesName, S.tradesSrc); else { combine(null); const f=S.view.find(t=>t.inRange); if(f) select(f.n); else chart.timeScale().fitContent(); }
 }
@@ -284,6 +288,16 @@ const chart = LightweightCharts.createChart($('#chart'), {
   localization:{timeFormatter:t=>fmtCT(t)+' CT', priceFormatter:p=>p.toFixed(2)},
   crosshair:{mode:LightweightCharts.CrosshairMode.Normal},
 });
+// Volume histogram: own overlay scale (priceScaleId '') in the bottom 20% of the pane. Added BEFORE the candles so
+// candles, position box and its labels are drawn on top of it.
+const volSeries = chart.addHistogramSeries({priceFormat:{type:'volume'}, priceScaleId:'', lastValueVisible:false, priceLineVisible:false, base:0});
+volSeries.priceScale().applyOptions({scaleMargins:{top:0.8, bottom:0}});
+const VOL_UP='rgba(38,166,154,0.38)', VOL_DN='rgba(239,83,80,0.38)';   // #26a69a / #ef5350, semi-transparent
+function setVolData(){
+  volSeries.setData(S.hasVol? S.bars.map(b=>({time:b.time, value:b.volume, color:b.close>=b.open?VOL_UP:VOL_DN})) : []);
+  volSeries.applyOptions({visible:S.showVol && S.hasVol});
+  const bt=$('#btnVol'); if(bt){ bt.classList.toggle('na',!S.hasVol); bt.title=S.hasVol?'Volume histogram (bottom of the chart)':'No volume column in the loaded bars'; }
+}
 const series = chart.addCandlestickSeries({upColor:C.green, downColor:C.red, borderUpColor:C.green, borderDownColor:C.red, wickUpColor:C.green, wickDownColor:C.red,
   priceFormat:{type:'price', precision:2, minMove:0.25}});
 
@@ -390,7 +404,7 @@ const prim = new BoxPrimitive(); series.attachPrimitive(prim);
 function legendFor(b){
   const lg=$('#legend'); if(!b) return;
   const cl=b.close>=b.open?C.green:C.red;
-  lg.innerHTML=`<span style="color:#8a93a6">${fmtCT(b.time)} CT</span>  O <b>${b.open.toFixed(2)}</b> H <b>${b.high.toFixed(2)}</b> L <b>${b.low.toFixed(2)}</b> C <b style="color:${cl}">${b.close.toFixed(2)}</b> <span style="color:#8a93a6">V ${b.volume}</span>`;
+  lg.innerHTML=`<span style="color:#8a93a6">${fmtCT(b.time)} CT</span>  O <b>${b.open.toFixed(2)}</b> H <b>${b.high.toFixed(2)}</b> L <b>${b.low.toFixed(2)}</b> C <b style="color:${cl}">${b.close.toFixed(2)}</b> ${S.hasVol?`<span style="color:#8a93a6">V ${b.volume.toLocaleString('en-US')}</span>`:''}`;
 }
 chart.subscribeCrosshairMove(p=>{
   const d = p && p.seriesData ? p.seriesData.get(series) : null;
@@ -549,13 +563,19 @@ function levelsAt(ref){
   return M;
 }
 function levelRef(){ if(S.formOpen){ const et=formEntryTime(); if(isFinite(et)) return et; } const t=S.trades[S.sel-1]; if(t&&t.inRange) return t.et; return S.bars.length? S.times[S.times.length-1]+60 : NaN; }
-function refreshLevels(){ const r=levelRef(); S.levelRef=r; S.levels = (S.showLevels&&isFinite(r))? levelsAt(r) : []; }
-const LVC={pd:'#f0a030', ps:'#5aa0ff', on:'#b07cff', sw:'#8a93a6'};
+function settleAt(ref){ // previous trading day's settlement for the session containing ref (data/settlements.json is keyed by trade date)
+  if(!isFinite(ref)) return null; const k=sessKey(ref); const v=S.settleMap&&S.settleMap[k]; return (v!=null&&isFinite(+v))? {price:+v, date:k} : null; }
+function refreshLevels(){ const r=levelRef(); S.levelRef=r; S.levels = (S.showLevels&&isFinite(r))? levelsAt(r) : []; S.settle = S.showSettle? settleAt(r) : null; }
+const LVC={pd:'#f0a030', ps:'#5aa0ff', on:'#b07cff', sw:'#8a93a6', st:'#e6d35a'};
 function drawLevels(ctx,W,H,bg){
-  if(!S.showLevels||!S.levels.length) return;
+  const items=(S.showLevels? S.levels : []).concat(S.settle? [{price:S.settle.price,label:'Settle',kind:'st'}] : []);
+  if(!items.length) return;
   const placed=[];
-  for(const l of S.levels){ const y=series.priceToCoordinate(l.price); if(y==null||y<0||y>H) continue;
-    if(bg){ ctx.strokeStyle=LVC[l.kind]; ctx.globalAlpha=l.kind==='sw'?0.55:0.8; ctx.lineWidth=1; ctx.setLineDash(l.kind==='sw'?[2,3]:[6,4]);
+  for(const l of items){ const y0=series.priceToCoordinate(l.price); if(y0==null) continue;
+    const off=y0<0||y0>H; if(off&&l.kind!=='st') continue;      // the settle line is still labelled at the pane edge when its price is out of view
+    const y=off? (y0<0?10:H-10) : y0;
+    if(off){ pill(ctx, `${y0<0?'▲':'▼'} ${l.label} ${l.price.toFixed(2)}`, W-4, y, 'rgba(14,17,23,.85)', LVC[l.kind], 'right', W, H, placed, y0<0?1:-1); continue; }
+    if(bg){ ctx.strokeStyle=LVC[l.kind]; ctx.globalAlpha=l.kind==='sw'?0.55:0.8; ctx.lineWidth=l.kind==='st'?1.5:1; ctx.setLineDash(l.kind==='sw'?[2,3]:l.kind==='st'?[10,5]:[6,4]);
       ctx.beginPath(); ctx.moveTo(0,Math.round(y)+0.5); ctx.lineTo(W,Math.round(y)+0.5); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha=1; }
     else pill(ctx, `${l.label} ${l.price.toFixed(2)}`, W-4, y, 'rgba(14,17,23,.85)', LVC[l.kind], 'right', W, H, placed, -1);
   }
@@ -671,6 +691,9 @@ $('#mSnap').onclick=()=>{ const e=num('#mEntry'); if(e==null){ toast('Set entry 
 $('#mNext').onclick=()=>{ const e=num('#mEntry'); if(e==null){ toast('Set entry first'); return; } const side=segVal('mSide')==='short'?-1:1;
   const l=nearestLevel(e,side); if(!l){ toast('No 15m level found beyond entry in the trade direction'); return; }
   $('#mTarget').value=l.price.toFixed(2); $('#mExitTime').value=''; $('#mExit').value=''; toast(`Exit level → ${l.label} ${l.price.toFixed(2)}`); computeDraft(); };
+$('#btnVol').onclick=()=>{ S.showVol=!S.showVol; $('#btnVol').classList.toggle('on',S.showVol); setVolData(); };
+$('#btnSettle').onclick=()=>{ S.showSettle=!S.showSettle; $('#btnSettle').classList.toggle('on',S.showSettle);
+  if(S.showSettle && S.bars.length && !settleAt(levelRef())) toast('No settlement price for this session in data/settlements.json'); refreshLevels(); prim.update(); };
 $('#btnLv').onclick=()=>{ S.showLevels=!S.showLevels; $('#btnLv').classList.toggle('on',S.showLevels); refreshLevels(); prim.update(); };
 
 function exportTrades(fmt){
@@ -729,6 +752,8 @@ function drawCard(t){
   const rcol=t.res==='win'?'38,166,154':t.res==='loss'?'239,83,80':'138,143,152';
   g.fillStyle=`rgba(${rcol},.28)`; g.fillRect(x1,Math.min(Y(t.entry),Y(t.exit)),x2-x1,Math.abs(Y(t.exit)-Y(t.entry)));
   const bwid=Math.max(1,Math.min(6,step*0.7));
+  if(S.hasVol){ let vmax=0; for(const b of bars) vmax=Math.max(vmax,b.volume);   // volume bars, bottom 18% of the mini chart, under the candles
+    if(vmax>0) for(let k=0;k<n;k++){ const b=bars[k]; const vh=b.volume/vmax*ch*0.18; g.fillStyle=b.close>=b.open?'rgba(38,166,154,.32)':'rgba(239,83,80,.32)'; g.fillRect(cx+(k+0.5)*step-bwid/2, cy+ch-vh, bwid, vh); } }
   for(let k=0;k<n;k++){ const b=bars[k]; const x=cx+(k+0.5)*step; const up=b.close>=b.open; g.strokeStyle=g.fillStyle=up?C.green:C.red;
     g.lineWidth=1; g.beginPath(); g.moveTo(Math.round(x)+0.5,Y(b.high)); g.lineTo(Math.round(x)+0.5,Y(b.low)); g.stroke();
     const yo=Y(b.open), yc=Y(b.close); g.fillRect(x-bwid/2, Math.min(yo,yc), bwid, Math.max(1,Math.abs(yc-yo))); }
@@ -787,7 +812,7 @@ $('#cardModal').addEventListener('click',e=>{ if(e.target.id==='cardModal') $('#
 window.__drawCard = t => drawCard(t).toDataURL('image/png'); // used by tests
 
 // ---------- URL hash / query: preselect or draw a described trade ----------
-//   #trade=2026-10-09_0910_long                       -> select that saved (described) trade
+//   #trade=2026-10-09_0906_long                       -> select that saved (described) trade
 //   #trade=date:2026-10-09,side:long,in:09:10,out:10:30,target:7854[,stop:7843,exit:7850,qty:1]
 //        -> if no saved trade matches, open the Add-trade form pre-filled (draft box on the chart, not saved);
 //           with no stop given, the stop is snapped to the nearest 15m level (assumed).
@@ -821,6 +846,8 @@ async function tryFetch(u){ try{ const r=await fetch(u,{cache:'no-store'}); retu
   const B=window.TR_BUNDLE;
   let described=null;
   if(location.protocol.startsWith('http')) described=await tryFetch('manual_trades.json');
+  try{ let sj = location.protocol.startsWith('http')? await tryFetch('data/settlements.json') : null;
+    S.settleMap = sj? JSON.parse(sj) : ((B&&B.settlements)||{}); }catch(_){ S.settleMap=(B&&B.settlements)||{}; }
   try{
     if(trades) S.rawTrades=parseTradesText(trades,tn), S.rawTradesName=tn, S.tradesSrc='bundled';
     else if(B&&B.trades){ S.rawTrades={list:Array.isArray(B.trades.data)?B.trades.data:(B.trades.data.trades||[]), meta:B.trades.data.meta||null}; S.rawTradesName=B.trades.name; S.tradesSrc='bundled'; }

@@ -4,8 +4,8 @@
  },
  "trades": [
   {
-   "id": "2026-10-09_0910_long",
-   "entry_time": "2026-10-09T09:10:00-05:00",
+   "id": "2026-10-09_0906_long",
+   "entry_time": "2026-10-09T09:06:00-05:00",
    "exit_time": "2026-10-09T10:19:00-05:00",
    "side": "long",
    "entry": 7834.25,
@@ -15,16 +15,16 @@
    "contracts": 1,
    "tag": "",
    "source": "describe_trade",
-   "note": "Take-profit = 7853.75 (prior high), reached at 10:19 CT. Exit drawn at 10:19 CT; Chris recalled ~10:30. R and $ exclude commissions.; next level 7853.75 touched 10:19; fill 7834.25 not in 09:10 bar (7835.25-7837), traded 09:11",
-   "assumptions": "entry price 7834.25 as given (trader's fill; the 09:10 bar closed 7835.75) - outside that bar, see warning | stop 7826.00 as given | exit price 7853.75 as given at 10:19 CT; 10:19 bar range 7851.50-7853.75 (= that bar's high) | target 7853.75 WAS touched before exit time, first at 10:19 CT (bar H 7853.75 / L 7851.50) (the exit bar itself); exit price is the actual 10:19 close, not the target | window = bars after the 09:10 entry bar through the 10:19 exit bar; bar labels are bar-open times",
-   "warning": "entry fill 7834.25 is NOT inside the 09:10 bar range 7835.25-7837.00 (bar close 7835.75); nearest bar(s) that traded it: 09:11 (L 7832.25 H 7836.25), 09:06 (L 7832.00 H 7835.50)",
+   "note": "Entry moved to 09:06 CT (bar that traded 7834.25 going up); Chris recalled ~09:05. Take-profit 7853.75 reached 10:19 CT. R and $ exclude commissions.; next level 7853.75 touched 10:19; entry = Chris's fill",
+   "assumptions": "entry price 7834.25 as given (trader's fill; the 09:06 bar closed 7835.00) | stop 7826.00 as given | exit price 7853.75 as given at 10:19 CT; 10:19 bar range 7851.50-7853.75 (= that bar's high) | target 7853.75 WAS touched before exit time, first at 10:19 CT (bar H 7853.75 / L 7851.50) (the exit bar itself); exit price is the actual 10:19 close, not the target | window = bars after the 09:06 entry bar through the 10:19 exit bar; bar labels are bar-open times",
+   "warning": "",
    "stop_assumed": false,
    "R": 2.364,
    "points": 19.5,
    "pnl_usd": 97.5,
    "result": "WIN",
    "target_first_touch": "2026-10-09T10:19:00-05:00",
-   "created": "2026-10-09T17:48:16.103183+00:00"
+   "created": "2026-10-09T20:32:02.916866+00:00"
   }
  ]
 }
