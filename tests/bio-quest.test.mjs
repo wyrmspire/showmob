@@ -34,3 +34,27 @@ test('state is independent and uses memory only',()=> {
  const a=freshProgress(),b=freshProgress();a.messages.push({author:'guest',text:'hello'});assert.equal(b.messages.length,0);
  const source=readFileSync(new URL('../app/src/components/BioQuest.tsx',import.meta.url),'utf8');assert.doesNotMatch(source,/localStorage|sessionStorage|fetch\(|supabase|dangerouslySetInnerHTML/);
 });
+
+test('CUFF Small Table preview shows participation, boundaries and sharing without simulated transactions', () => {
+ const ids = artifact.blocks.map(block => block.id);
+ assert.equal(new Set(ids).size, ids.length);
+ for (const id of ['small-table', 'small-table-roles', 'small-table-night', 'small-table-sponsor', 'small-table-private', 'small-table-recap', 'cuff-next']) {
+   assert.ok(ids.includes(id), 'Missing CUFF narrative block: ' + id);
+ }
+ assert.ok(ids.indexOf('meet-through-effort') < ids.indexOf('small-table'));
+ assert.equal(artifact.status, 'preview');
+ const text = JSON.stringify(artifact.blocks);
+ assert.match(text, /no money collected/i);
+ assert.match(text, /declin/i);
+ assert.match(text, /permission/i);
+ assert.match(text, /fictional/i);
+ assert.match(text, /recipe/i);
+});
+test('CUFF introduction copy never implies earned access or false scarcity', () => {
+ const source = readFileSync(new URL('../app/src/components/BioQuest.tsx', import.meta.url), 'utf8');
+ assert.doesNotMatch(source, /Unlock the chat|spots left|Earn the conversation/);
+ assert.match(source, /Simulate recipient accepting/);
+ assert.match(source, /fictional invitation/);
+ const intro = artifact.blocks.find(block => block.id === 'meet-through-effort');
+ assert.match(intro.heading, /Create a better introduction/);
+});
