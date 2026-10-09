@@ -1,0 +1,48 @@
+{
+ "meta": {
+  "source": "REAL: yfinance MES=F bars; trades from backtest engine (not live fills)",
+  "strategy": "v35_bo5_atr1.5_tp2.0R",
+  "strategy_tf": "15m",
+  "range_1m": [
+   "2026-10-01T00:09:00-04:00",
+   "2026-10-09T12:59:00-04:00"
+  ],
+  "trades_in_range": 2
+ },
+ "trades": [
+  {
+   "entry_time": "2026-10-06T10:00:00-04:00",
+   "exit_time": "2026-10-06T10:29:00-04:00",
+   "side": "long",
+   "entry": 7879.0,
+   "stop": 7869.87,
+   "target": 7897.26,
+   "exit": 7869.87,
+   "contracts": 1,
+   "tag": "EXIT_STOP",
+   "note": "v35_bo5_atr1.5_tp2.0R on 15m; engine R incl. commission -1.03, net $-46.89",
+   "engine_R": -1.027,
+   "engine_pnl": -46.89,
+   "exit_bar_15m": "2026-10-06T10:15:00-04:00",
+   "exit_time_refined": true,
+   "warning": ""
+  },
+  {
+   "entry_time": "2026-10-06T10:15:00-04:00",
+   "exit_time": "2026-10-06T10:33:00-04:00",
+   "side": "long",
+   "entry": 7881.5,
+   "stop": 7871.9,
+   "target": 7900.7,
+   "exit": 7871.9,
+   "contracts": 1,
+   "tag": "EXIT_STOP",
+   "note": "v35_bo5_atr1.5_tp2.0R on 15m; engine R incl. commission -1.03, net $-49.25",
+   "engine_R": -1.026,
+   "engine_pnl": -49.25,
+   "exit_bar_15m": "2026-10-06T10:30:00-04:00",
+   "exit_time_refined": true,
+   "warning": "1m bars touch a stop/target level at 09:29 CT, before the engine's exit. The 15m engine skips stop checks on the entry bar."
+  }
+ ]
+}
