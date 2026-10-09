@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "slug": "cuff-craft",
   "title": "Cuff Craft",
-  "summary": "A playable bio-quest demo: meet through effort, not a swipe.",
+  "summary": "Try a fictional introduction, then follow one small community evening built through hosting, helping and mutual choice.",
   "contributor": "Showmob",
   "status": "preview",
   "theme": "night",
@@ -11,34 +11,116 @@
     "social",
     "quests"
   ],
-  "updated": "2026-10-08",
+  "updated": "2026-10-09",
   "blocks": [
     {
       "id": "cuff-intro",
       "type": "hero",
-      "eyebrow": "Cuff Craft / playable prototype",
-      "title": "The bio is the quest giver.",
-      "body": "No pickup line. No swipe queue. A little thought opens a different kind of door."
+      "eyebrow": "Cuff Craft / playable concept preview",
+      "title": "Meet through what you notice, make and make possible.",
+      "body": "A good invitation gives people something to share. Dating can be part of the community, but friendship, making things and showing up matter just as much. Try a fictional introduction, then follow one evening at the Small Table."
     },
     {
       "id": "meet-through-effort",
       "type": "bio-quest",
-      "heading": "Do the quest. Earn the conversation.",
-      "description": "The Quest Giver sets the challenge. You are the Seeker: answer with specifics, then let them decide whether to open the conversation. Giver and Seeker are temporary roles, not a hierarchy.",
+      "heading": "Create a better introduction.",
+      "description": "Choose an invented adult and answer a small creative invitation. You can review your answer; the fictional recipient still decides whether to accept. This is a local simulation, not a way to contact anyone.",
       "profileSet": "cuff-craft"
     },
     {
       "id": "cuff-boundary",
       "type": "note-callout",
-      "title": "A quest opens a door, not a right to someone.",
-      "body": "The Giver decides whether to accept your introduction. This demo lets you try both sides. Revising your introduction is fine; repeatedly approaching someone who declined is not. The revise button replays this fictional demo, not a real request to someone who said no. The local grader checks length, repetition, filler, and details, but cannot judge sincerity or detect AI-written answers. No message leaves this page, no account is needed, and nothing is saved after you reload.",
+      "title": "A response is an offer, not an entitlement.",
+      "body": "Completing a quest never guarantees a reply, date or conversation. This demo lets you simulate acceptance and replay a decline. Retrying a fictional scene is not permission to repeatedly approach a real person who declined. Its local writing check rewards certain details and length; it cannot detect sincerity, truth or AI authorship. Nothing is sent, and answers disappear when the page reloads.",
       "tone": "note"
     },
     {
-      "id": "cuff-next",
+      "id": "cuff-second-way",
+      "type": "divider",
+      "label": "Another way to meet"
+    },
+    {
+      "id": "small-table",
       "type": "text",
-      "heading": "Writing first. The world later.",
-      "body": "This is the smallest loop: profile, quest, introduction, consent, conversation. Local scavenger hunts and real-world loot could follow. This demo does not promise prizes, real matches, or a live dating service."
+      "heading": "The Small Table: six places, one shared meal",
+      "body": "Fictional scenario · no real event or booking. Mara, a neighborhood cook, posts an invitation to fold dumplings at a shared kitchen. Her prompt: “What is one small food memory you would bring to the table?” She answers it herself: “My uncle taught me the crooked fold because it holds more filling.” You can come to meet people, to cook, or simply to help the night run well. You do not have to date anyone or spend money to belong."
+    },
+    {
+      "id": "small-table-roles",
+      "type": "comparison",
+      "heading": "Four ways people make the night possible",
+      "columns": [
+        {
+          "name": "Join",
+          "detail": "Asha answers with her family's ginger-and-lime dipping sauce story. Her short note gives the group something specific to ask about."
+        },
+        {
+          "name": "Help",
+          "detail": "Dev volunteers to set the tables and label ingredients. Practical help matters without becoming a claim on anyone's time."
+        },
+        {
+          "name": "Host",
+          "detail": "Mara chooses participants, communicates access needs and food allergies, and can say no without turning a person into a score."
+        },
+        {
+          "name": "Support",
+          "detail": "Sol offers to cover ingredients for two open seats. Sol cannot select who gets them or receive priority introductions."
+        }
+      ]
+    },
+    {
+      "id": "small-table-night",
+      "type": "timeline",
+      "heading": "What happens in this one fictional evening",
+      "items": [
+        {
+          "time": "Before",
+          "title": "Invitations, not auditions",
+          "detail": "Mara reads responses and confirms six places. A seventh request gets a polite decline; writing more or paying more would not override that decision."
+        },
+        {
+          "time": "6:30",
+          "title": "Make something together",
+          "detail": "Asha brings sauce ideas, Dev sets out the bowls, and everyone compares dumpling-folding mistakes. Two open seats are funded without naming or ranking attendees."
+        },
+        {
+          "time": "8:15",
+          "title": "A private invitation stays optional",
+          "detail": "Asha asks Mara whether she would like to exchange recipes privately. Mara says she would rather keep it to the group tonight. Both remain welcome at the next event."
+        },
+        {
+          "time": "After",
+          "title": "Share the recipe, not the people",
+          "detail": "Participants separately approve a short recipe recap. No chat logs, rejected introductions, attendance details or private preferences are published."
+        }
+      ]
+    },
+    {
+      "id": "small-table-sponsor",
+      "type": "note-callout",
+      "title": "Funding simulation · no money collected",
+      "body": "In this story, support pays for an event's ingredients and two open seats. It does not purchase attention, acceptance, private access or moderation exceptions. There is no real payment, reservation or sponsor account on this page.",
+      "tone": "note"
+    },
+    {
+      "id": "small-table-private",
+      "type": "text",
+      "heading": "A separate yes is needed for anything private.",
+      "body": "In the fictional scene, an invitation to talk one-to-one is a new request, not an automatic reward for attending together. The recipient may accept, decline or change their mind. Any future 'deep end' feature would be a separate proposal requiring explicit permissions; it is not implemented here. Neither dating nor private participation affects someone's place in ordinary group activities."
+    },
+    {
+      "id": "small-table-recap",
+      "type": "reveal",
+      "heading": "What could the group choose to publish?",
+      "label": "Reveal the shared artifact",
+      "body": "A sample recipe card: “Mara's crooked-fold dumplings, with Asha's bright ginger-lime dipping sauce.” The group approves the food description and folding tips only. The names in this story are fictional; an actual shared artifact would need each participant's permission for any identifiable contribution. A recipe is worth keeping even when no romance happens."
+    },
+    {
+      "id": "cuff-next",
+      "type": "note-callout",
+      "title": "What is real here — and what is proposed?",
+      "body": "Real in this Showmob preview: the fictional three-profile bio-quest, local writing feedback, scripted responses and this authored Small Table walkthrough. Not real: user-to-user messaging, community events, attendee selection, bookings, paid sponsorship, a proposed 'deep end' feature or publication permissions. CUFF is a concept demo, not a functioning social network.",
+      "tone": "warning"
     }
   ]
 }
