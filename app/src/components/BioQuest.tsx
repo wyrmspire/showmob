@@ -26,29 +26,29 @@ export function BioQuest({ block }: { block: BioQuestBlock }) {
   return <section className="block bio-quest" id={block.id} aria-label={block.heading}>
     <div className="bq-top"><span className="bq-chip">Cuff Craft</span><span className="bq-muted">Fictional people · session only</span></div>
     <h2>{block.heading}</h2><p className="bq-description">{block.description}</p>
-    <ol className="bq-start-steps" aria-label="How to meet"><li>Pick someone</li><li>Answer their quest</li><li>Unlock the chat</li></ol>
-    {!started && <button type="button" className="bq-primary" onClick={() => {setStarted(true);requestAnimationFrame(() => stageHeading.current?.focus());}}>Start as a Seeker →</button>}
+    <ol className="bq-start-steps" aria-label="How to meet"><li>Pick someone</li><li>Answer their quest</li><li>Let them decide</li></ol>
+    {!started && <button type="button" className="bq-primary" onClick={() => {setStarted(true);requestAnimationFrame(() => stageHeading.current?.focus());}}>Try a fictional introduction →</button>}
     {started && <div>
     <nav className="bq-profiles" aria-label="Choose a fictional profile">
-      {profiles.map(p => <button type="button" key={p.id} aria-pressed={p.id === selected} onClick={() => {setSelected(p.id);setMessage('');setNotice('');}}>{p.name}<span>{p.vibe}</span><span>{p.style} quest · {p.quest.slotsTotal - p.quest.slotsTaken} of {p.quest.slotsTotal} demo spots left</span></button>)}
+      {profiles.map(p => <button type="button" key={p.id} aria-pressed={p.id === selected} onClick={() => {setSelected(p.id);setMessage('');setNotice('');}}>{p.name}<span>{p.vibe}</span><span>{p.style} quest · fictional invitation</span></button>)}
     </nav>
     <article className="bq-person"><div className="bq-avatar" aria-hidden="true">{profile.avatar}</div><div><span className="bq-muted">Fictional Quest Giver</span><h3>{profile.name} <small>{profile.ageRange}</small></h3><p>{profile.bio}</p><small>{profile.tags.join(' / ')}</small><p className="bq-giver-rules"><strong>My rules:</strong> {profile.quest.giverRules}</p><small>Demo slots only. Nothing is reserved or consumed.</small></div></article>
     <ol className="bq-path" aria-label="Introduction progress">{['Quest', 'Introduction', 'Conversation'].map((label,i) => <li key={label} aria-current={i === ['quest','review','conversation'].indexOf(state.stage) ? 'step' : undefined}><span>{i + 1}</span>{label}</li>)}</ol>
     <div className="bq-panel">
-      <h3 ref={stageHeading} tabIndex={-1}>{state.stage === 'quest' ? 'Your first quest' : state.stage === 'review' ? 'Quest complete. The answer is the introduction.' : 'Conversation unlocked.'}</h3>
+      <h3 ref={stageHeading} tabIndex={-1}>{state.stage === 'quest' ? 'Your first quest' : state.stage === 'review' ? 'Review the introduction you would offer.' : 'Fictional introduction accepted.'}</h3>
       {state.stage === 'quest' && <form onSubmit={e => {e.preventDefault();const result=answerGrader.grade(state.answer,profile.quest); if(result.pass) {changeStage('review');setNotice(result.feedback.join(' '));} else setNotice(result.feedback.join(' '));}}>
         <blockquote>{profile.quest.prompt}</blockquote><p className="bq-muted">{profile.quest.hint}</p>
         <label htmlFor={`${block.id}-answer`}>Your answer</label>
         <textarea id={`${block.id}-answer`} value={state.answer} maxLength={rules.maxLength} rows={7} placeholder="Start with a small, specific detail..." aria-describedby={`${block.id}-effort ${block.id}-status`} onChange={e => update({answer:e.target.value})} />
-        <p id={`${block.id}-effort`} className="bq-muted">{wordCount(state.answer)} / {rules.minWords} words to offer an introduction · {state.answer.length} / {rules.maxLength} characters</p>
-        <p className="bq-fine">This local heuristic looks for length and details, not truth or AI authorship. The Giver makes the real call.</p>
-        <button className="bq-primary" type="submit">Offer my introduction →</button>
+        <p id={`${block.id}-effort`} className="bq-muted">{wordCount(state.answer)} / {rules.minWords} words for this demo writing check · {state.answer.length} / {rules.maxLength} characters</p>
+        <p className="bq-fine">This local heuristic looks for length and details, not truth or AI authorship. This check does not decide whether anyone deserves a response.</p>
+        <button className="bq-primary" type="submit">Review my introduction →</button>
       </form>}
       {state.stage === 'review' && <div>
         <p className="bq-muted">Nothing was sent. Try the receiving side of the demo.</p>
         <div className="bq-letter"><span className="bq-chip">Your quest answer</span><p>{state.answer}</p></div>
         <p>{profile.name} can accept the introduction or leave the door closed. Finishing a quest never guarantees a response.</p>
-        <button type="button" className="bq-primary" onClick={() => {update({stage:'conversation',messages:[{author:'guest',text:state.answer},...conversationSource.getThread(selected)]});setNotice('Demo introduction accepted. The conversation is open.');requestAnimationFrame(() => stageHeading.current?.focus());}}>Simulate accepting the introduction →</button>
+        <button type="button" className="bq-primary" onClick={() => {update({stage:'conversation',messages:[{author:'guest',text:state.answer},...conversationSource.getThread(selected)]});setNotice('Demo introduction accepted. The conversation is open.');requestAnimationFrame(() => stageHeading.current?.focus());}}>Simulate recipient accepting →</button>
         <button type="button" className="bq-secondary" onClick={() => {changeStage('quest');setNotice('Door stays closed. You can revise your answer and try the demo again.');}}>Keep the door closed / revise</button>
       </div>}
       {state.stage === 'conversation' && <div>
