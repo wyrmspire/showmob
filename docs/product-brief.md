@@ -1,7 +1,6 @@
 # Working product brief — gallery and story
 
 **Status:** working product brief (locked 2026-09-23; build order reconciled same day).  
-**Steward:** Chris (intent) / Grok (doc).
 
 This is the north star for near-term product direction. It does not replace [ROADMAP.md](../ROADMAP.md) as the phase ledger or [shipped-vs-plan.md](./shipped-vs-plan.md) as the decision record. When those documents conflict with this brief on gallery or story intent, prefer this brief and note the conflict rather than silently rewriting history.
 
