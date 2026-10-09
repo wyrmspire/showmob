@@ -12,7 +12,7 @@
 // Optional: GN_API_URL (default https://showmob.vercel.app/api/gn), --content <dir>.
 // CI runs the offline form against the checked-in slim snapshot, so CI never holds the
 // grader passcode. Refresh the snapshot with scripts/snapshot-gn-subjects.mjs whenever the
-// subjects table changes. tests/gn-handoff-slugs.test.mjs separately covers handoff<->disk.
+// subjects table changes.
 //
 // Fails (exit 1) when a built/assigned/graded subject resolves to no page, or when two
 // subjects share one page and at least one of them is built/assigned/graded.
