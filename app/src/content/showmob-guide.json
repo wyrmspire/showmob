@@ -23,7 +23,7 @@
       "id": "what-why",
       "type": "text",
       "heading": "What this is (and what it is not)",
-      "body": "This is a small Vite + React app. Live site: showmob.vercel.app. Source: github.com/wyrmspire/showmob.\n\nIt exists so Chris can share an idea as a readable page instead of rebuilding a deck every time. Pages are content files. The renderer is shared. Themes are token sets, not one-off CSS.\n\nIt is intentionally thin. It is not Mira, not Edgerite, and not a full CMS. Collaboration, search, analytics, and multi-tenant accounts are out of scope for now. A later thin data layer may store artifacts and publish status without growing into those products."
+      "body": "This is a small Vite + React app. Live site: showmob.vercel.app. Source: github.com/wyrmspire/showmob.\n\nIt exists so an author can share an idea as a readable page instead of rebuilding a deck every time. Pages are content files. The renderer is shared. Themes are token sets, not one-off CSS.\n\nIt is intentionally thin. It is not a full CMS. Collaboration, search, analytics, and multi-tenant accounts are out of scope for now. A later thin data layer may store artifacts and publish status without growing into those products."
     },
     {
       "id": "how-line",
@@ -99,7 +99,7 @@
       "id": "language-for",
       "type": "text",
       "heading": "What these mechanics also allow",
-      "body": "schemaVersion 1 JSON pages, a shared block vocabulary, themes, Browse plus slideshow-as-block, lifecycle status, and series plus hub/tags are a small content language. Beyond one idea \u2192 one link, the same pieces compose into courses, explainers, and story worlds\u2014without becoming Mira or Edgerite."
+      "body": "schemaVersion 1 JSON pages, a shared block vocabulary, themes, Browse plus slideshow-as-block, lifecycle status, and series plus hub/tags are a small content language. Beyond one idea \u2192 one link, the same pieces compose into courses, explainers, and story worlds\u2014without becoming a platform."
     },
     {
       "id": "use-cases",
@@ -177,7 +177,7 @@
         {
           "time": "Later",
           "title": "Gallery, references, thin data",
-          "detail": "A learnable block gallery and named recipes; typed page references with backlinks so broken links fail validation and pages can show \u201cappears in\u2026\u201d; optional store for artifacts and light participatory state. Keep the JSON contract; avoid Mira-scale features."
+          "detail": "A learnable block gallery and named recipes; typed page references with backlinks so broken links fail validation and pages can show \u201cappears in\u2026\u201d; optional store for artifacts and light participatory state. Keep the JSON contract; avoid platform-scale features."
         }
       ]
     },
