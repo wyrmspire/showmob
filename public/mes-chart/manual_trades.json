@@ -15,16 +15,16 @@
    "contracts": 1,
    "tag": "",
    "source": "describe_trade",
-   "note": "UMich sentiment news: sell-off absorbed -> long before candle close. Target: next major level (~overnight high). Entry ~09:06 CT. R/$ excl. commissions.; next level 7853.75 touched 10:19; entry = Chris's fill",
+   "note": "UMich sentiment news: sell-off absorbed -> long before candle close. Target: next major level (~overnight high). Entry ~09:06 CT. R excl. commissions.; next level 7853.75 touched 10:19; entry = Chris's fill",
    "assumptions": "entry price 7834.25 as given (trader's fill; the 09:06 bar closed 7835.00) | stop 7826.00 as given | exit price 7853.75 as given at 10:19 CT; 10:19 bar range 7851.50-7853.75 (= that bar's high) | target 7853.75 WAS touched before exit time, first at 10:19 CT (bar H 7853.75 / L 7851.50) (the exit bar itself); exit price is the actual 10:19 close, not the target | window = bars after the 09:06 entry bar through the 10:19 exit bar; bar labels are bar-open times",
    "warning": "",
    "stop_assumed": false,
    "R": 2.364,
    "points": 19.5,
-   "pnl_usd": 97.5,
    "result": "WIN",
+   "hide_usd": true,
    "target_first_touch": "2026-10-09T10:19:00-05:00",
-   "created": "2026-10-09T20:33:21.817941+00:00"
+   "created": "2026-10-09T21:35:05.202879+00:00"
   }
  ]
 }

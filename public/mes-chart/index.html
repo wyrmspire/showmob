@@ -256,7 +256,7 @@ function normRow(r0){
   const tgt=isFinite(target)? target: null;
   return {side, et, xt:Math.max(xt,et), entry, stop, target:tgt, exit, contracts, R, pts, usd:pts*POINT_VALUE*contracts,
     planR: tgt!=null? side*(tgt-entry)/risk : null, res: Math.abs(R)<0.05? 'be': (R>0? 'win':'loss'),
-    note: pick(r,['note','notes','comment'])||'', tag: pick(r,['tag','tags','reason','setup'])||'', warning: r.warning||'', assumptions: r.assumptions||'', src: r.source||'', id: r.id||null};
+    note: pick(r,['note','notes','comment'])||'', tag: pick(r,['tag','tags','reason','setup'])||'', warning: r.warning||'', assumptions: r.assumptions||'', src: r.source||'', id: r.id||null, noUsd: !!(r.hide_usd||r.hideUsd)};
 }
 function placeTrade(t){ t.ei=floorIdx(t.et); t.xi=floorIdx(t.xt); t.inRange = S.bars.length>0 && t.ei>=0 && t.et<=S.times[S.times.length-1]+60; return t; }
 function setTrades(parsed, name, src){
@@ -391,7 +391,7 @@ class BoxPrimitive {
           pill(ctx, `SL ${t.stop.toFixed(2)}  ${sgn(-Math.abs(t.entry-t.stop))} pts  −1.00R`, x1+4, ly, 'rgba(90,30,30,.92)', '#ffd0cf', 'left', W, H, placed, up?-1:1); }
         pill(ctx, `${t.draft?'DRAFT ':''}${t.side>0?'LONG':'SHORT'} ${t.contracts} @ ${t.entry.toFixed(2)}`, x1-6, yE, 'rgba(40,46,60,.95)', '#e8ebf2', 'right', W, H, placed, 1);
         if(yX!=null){
-          const txt=`${t.draft?'DRAFT ':''}${resText(t)} ${sgn(t.R)}R · ${sgn(t.pts)} pts · ${money(t.usd)} · exit ${t.exit.toFixed(2)}`;
+          const txt=`${t.draft?'DRAFT ':''}${resText(t)} ${sgn(t.R)}R · ${sgn(t.pts)} pts${t.noUsd?'':' · '+money(t.usd)} · exit ${t.exit.toFixed(2)}`;
           pill(ctx, txt, x2+12, yX, resColor(t), '#fff', 'left', W, H, placed, yX>=yE?1:-1);
         }
       }
@@ -418,7 +418,7 @@ function rebuild(){
   // stats
   const v=S.view, n=v.length;
   const wins=v.filter(t=>t.res==='win').length;
-  const totR=v.reduce((a,t)=>a+t.R,0), totU=v.reduce((a,t)=>a+t.usd,0);
+  const totR=v.reduce((a,t)=>a+t.R,0), totU=v.reduce((a,t)=>a+(t.noUsd?0:t.usd),0), anyNoUsd=v.some(t=>t.noUsd);
   let eq=0,pk=0,dd=0; for(const t of v){ eq+=t.R; pk=Math.max(pk,eq); dd=Math.max(dd,pk-eq); }
   const cls=x=>x>0?'pos':x<0?'neg':'be';
   $('#stats').innerHTML = [
@@ -426,7 +426,7 @@ function rebuild(){
     ['Win rate', n? (100*wins/n).toFixed(0)+'%':'–'],
     ['Total R', n? `<span class="${cls(totR)}">${sgn(totR)}</span>`:'–'],
     ['Avg R', n? `<span class="${cls(totR)}">${sgn(totR/n)}</span>`:'–'],
-    ['Total $', n? `<span class="${cls(totU)}">${money(totU)}</span>`:'–'],
+    ['Total $', n? (anyNoUsd? '–' : `<span class="${cls(totU)}">${money(totU)}</span>`):'–'],
     ['Max DD', n? `<span class="${dd>0?'neg':'be'}">${dd>0?'−':''}${dd.toFixed(2)}R</span>`:'–'],
   ].map(([k,x])=>`<div class="stat"><b>${x}</b><span>${k}</span></div>`).join('');
   // list
@@ -436,7 +436,7 @@ function rebuild(){
   else L.innerHTML = v.map(t=>`<div class="row ${t.res}${t.n===S.sel?' sel':''}" data-n="${t.n}">
       <span class="n">#${t.n}</span><span><span class="side-${t.side>0?'long':'short'}">${t.side>0?'LONG':'SHORT'}</span> ${fmtCT(t.et)} CT${t.manual?'<span class="tag-manual">manual</span>':''}</span>
       <span class="r ${t.res==='win'?'pos':t.res==='loss'?'neg':'be'}">${sgn(t.R)}R</span>
-      <span class="sub">${t.entry.toFixed(2)} → ${t.exit.toFixed(2)} · ${sgn(t.pts)} pts · ${money(t.usd)}${t.inRange?'':' · <span style="color:#f5c26b">outside bar data</span>'}${t.warning?' · <span style="color:#f5c26b">⚠</span>':''}</span></div>`).join('');
+      <span class="sub">${t.entry.toFixed(2)} → ${t.exit.toFixed(2)} · ${sgn(t.pts)} pts${t.noUsd?'':' · '+money(t.usd)}${t.inRange?'':' · <span style="color:#f5c26b">outside bar data</span>'}${t.warning?' · <span style="color:#f5c26b">⚠</span>':''}</span></div>`).join('');
   // badge
   const meta=(window.TR_BUNDLE&&window.TR_BUNDLE.meta)||{};
   const isDemo = /demo/i.test(S.barsName+S.tradesName);
@@ -461,7 +461,7 @@ function renderDetail(){
    <span><span class="k">In</span>${fmtCT(t.et)} @ ${t.entry.toFixed(2)}</span>
    <span><span class="k">Out</span>${fmtCT(t.xt,false)} @ ${t.exit.toFixed(2)}</span>
    <span><span class="k">SL</span>${t.stop.toFixed(2)}</span>${t.target!=null?`<span><span class="k">TP</span>${t.target.toFixed(2)}</span>`:''}
-   <b class="${c}">${resText(t)} ${sgn(t.R)}R · ${sgn(t.pts)} pts · ${money(t.usd)}</b>
+   <b class="${c}">${resText(t)} ${sgn(t.R)}R · ${sgn(t.pts)} pts${t.noUsd?'':' · '+money(t.usd)}</b>
    <span class="hint">${idx>=0? (idx+1)+' / '+S.view.length : 'hidden by filter'}</span>
    ${t.tag||t.note?`<span class="note">${esc(t.tag)}${t.tag&&t.note?' — ':''}${esc(t.note)}</span>`:''}
    ${t.assumptions?`<span class="note"><b>Assumptions:</b> ${esc(t.assumptions)}</span>`:''}
@@ -735,7 +735,7 @@ function drawCard(t){
   g.fillStyle=rc; g.font=F(800,34); g.fillText(`${sgn(t.R)}R`, 22, 102);
   const rw=g.measureText(`${sgn(t.R)}R`).width;
   g.font=F(600,15); g.fillStyle='#d1d4dc'; g.fillText(`${sgn(t.pts)} pts`, 34+rw, 88);
-  g.fillStyle=rc; g.fillText(money(t.usd), 34+rw, 106);
+  if(!t.noUsd){ g.fillStyle=rc; g.fillText(money(t.usd), 34+rw, 106); }
   // mini chart
   const cx=22, cy=122, cw=W-44-50, ch=250;
   g.fillStyle='#0e1117'; rr(g,cx-4,cy-4,cw+54,ch+26,8); g.fill();
@@ -787,7 +787,7 @@ function drawCard(t){
     g.fillStyle=col; g.font=F(700,15); g.fillText(v!=null? v.toFixed(2):'—', x, gy+20); });
   g.fillStyle='#8a93a6'; g.font=F(500,11.5);
   const risk=Math.abs(t.entry-t.stop);
-  g.fillText(`Risk ${risk.toFixed(2)} pts ($${(risk*POINT_VALUE*t.contracts).toFixed(2)})${t.planR!=null?` · planned ${t.planR.toFixed(2)}R`:''} · $5/pt × ${t.contracts}`, 22, gy+44);
+  g.fillText(t.noUsd? `Risk ${risk.toFixed(2)} pts${t.planR!=null?` · planned ${t.planR.toFixed(2)}R`:''}` : `Risk ${risk.toFixed(2)} pts ($${(risk*POINT_VALUE*t.contracts).toFixed(2)})${t.planR!=null?` · planned ${t.planR.toFixed(2)}R`:''} · $5/pt × ${t.contracts}`, 22, gy+44);
   // note (wrapped, max 3 lines)
   const note=[t.tag,t.note].filter(Boolean).join(' — ');
   if(note){ g.fillStyle='#c4c9d4'; g.font=F(500,12.5); const words=note.split(/\s+/); let line='', ly=gy+70, lines=0;
