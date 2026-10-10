@@ -102,10 +102,10 @@ Prove the language with real content through the full existing pipeline. Let tha
 
 - Production: https://showmob.vercel.app/
 - Vercel project: `maddyup/showmob`; pushes to `main` publish the production site after the Vercel build passes.
-- When work starts from a chat and ships or changes a page or artifact, post the live page link back into that originating chat after deployment is verified. Chris should never need to type the URL or dig up a bookmark.
+- When work starts from a chat and ships or changes a page or artifact, post the live page link back into that originating chat after deployment is verified. The owner should never need to type the URL or dig up a bookmark.
 - Do not treat a green build as delivery. Open the production URL and verify the changed page or artifact renders before posting its link.
 
 
 ## Authoring actions pilot — 2026-09-27
 
-An agent proposed and built agent-facing discovery and database-backed authoring actions. Chris reviewed the draft on September 27 and approved merging it as a private experiment; live activation is deferred. See [docs/authoring-actions.md](docs/authoring-actions.md) for the contract, status and activation gates. Use the existing learning/director documents as inputs. Intermediate outlines and reviews are working state, not automatically pages; publication remains separate. This explicit pilot advances part of ROADMAP P5 without claiming other phases are complete.
+Agent-facing discovery and database-backed authoring actions exist as a private experiment; live activation is deferred. See [docs/authoring-actions.md](docs/authoring-actions.md) for the contract, status and activation gates. Use the existing learning/director documents as inputs. Intermediate outlines and reviews are working state, not automatically pages; publication remains separate. This explicit pilot advances part of ROADMAP P5 without claiming other phases are complete.
