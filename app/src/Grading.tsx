@@ -7,8 +7,10 @@ import { setUnlistedRobots } from "./share-meta";
 import {
   PasscodeGate,
   clearPasscode,
+  gnAuthHeaders,
   loadPasscode,
   savePasscode,
+  verifyPasscode,
 } from "./gate";
 import type { Artifact } from "./schema";
 
@@ -368,7 +370,7 @@ function PlanJudgment({
     try {
       const res = await fetch("/api/gn", {
         method: "POST",
-        headers: { "content-type": "application/json", "x-grading-passcode": passcode },
+        headers: { "content-type": "application/json", ...(await gnAuthHeaders(passcode)) },
         body: JSON.stringify({
           amend_grade_id: latest.id,
           scores,
@@ -473,6 +475,19 @@ export function Grading({
   }, []);
   const [passcode, setPasscode] = useState<string>(() => loadPasscode());
   const [gateError, setGateError] = useState("");
+  // A signed-in admin account unlocks grading without the passcode; the
+  // grading API re-checks the account server-side on every request.
+  const [adminUnlocked, setAdminUnlocked] = useState(false);
+  const adminTriedRef = useRef(false);
+  const unlocked = Boolean(passcode) || adminUnlocked;
+
+  useEffect(() => {
+    if (passcode || adminUnlocked || adminTriedRef.current) return;
+    adminTriedRef.current = true;
+    verifyPasscode("").then((result) => {
+      if (result === "ok") setAdminUnlocked(true);
+    });
+  }, [passcode, adminUnlocked]);
 
   const unlock = (code: string) => {
     savePasscode(code);
@@ -483,6 +498,7 @@ export function Grading({
 
   const lock = (message: string, keepSubjects = false) => {
     clearPasscode();
+    setAdminUnlocked(false);
     if (!keepSubjects) setSubjects(null);
     setGateError(message);
     setPasscode("");
@@ -498,15 +514,15 @@ export function Grading({
   }, []);
 
   useEffect(() => {
-    if (!passcode) return;
+    if (!passcode && !adminUnlocked) return;
     (async () => {
       try {
         const res = await fetch("/api/gn", {
           cache: "no-store",
-          headers: { "x-grading-passcode": passcode },
+          headers: await gnAuthHeaders(passcode),
         });
         if (res.status === 401) {
-          lock("That passcode didn’t work.");
+          lock(passcode ? "That passcode didn’t work." : "That sign-in wasn’t accepted as admin.");
           return;
         }
         if (!res.ok) throw new Error(`grading API answered ${res.status}`);
@@ -518,7 +534,7 @@ export function Grading({
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [passcode]);
+  }, [passcode, adminUnlocked]);
 
   const open = subjects?.find((s) => s.id === openId);
   const openArtifact = open ? artifactForSubject(open) : undefined;
@@ -609,7 +625,7 @@ export function Grading({
 
   // Deep-link /grading#GN-042 and browser back/forward between subjects.
   useEffect(() => {
-    if (!subjects || !passcode) return;
+    if (!subjects || !unlocked) return;
 
     const openFromHash = () => {
       const raw = decodeURIComponent(window.location.hash.replace(/^#/, ""));
@@ -634,7 +650,7 @@ export function Grading({
     openFromHash();
     window.addEventListener("hashchange", openFromHash);
     return () => window.removeEventListener("hashchange", openFromHash);
-  }, [subjects, passcode]);
+  }, [subjects, passcode, adminUnlocked]);
 
   const openSubject = (id: string) => {
     openIdRef.current = id;
@@ -708,7 +724,7 @@ export function Grading({
     try {
       const res = await fetch("/api/gn", {
         method: "POST",
-        headers: { "content-type": "application/json", "x-grading-passcode": passcode },
+        headers: { "content-type": "application/json", ...(await gnAuthHeaders(passcode)) },
         body: JSON.stringify({
           subject_id: open.id,
           artifact_slug: openArtifact.slug,
@@ -770,7 +786,7 @@ export function Grading({
         </div>
       </header>
 
-      {open && !passcode && (
+      {open && !unlocked && (
         <div className="shell">
           <section className="block">
             <PasscodeGate onSubmit={unlock} error={gateError} />
@@ -798,8 +814,8 @@ export function Grading({
                 not be configured yet.
               </p>
             )}
-            {!passcode && <PasscodeGate onSubmit={unlock} error={gateError} />}
-            {passcode && !subjects && !loadError && <p>Loading subjects…</p>}
+            {!unlocked && <PasscodeGate onSubmit={unlock} error={gateError} />}
+            {unlocked && !subjects && !loadError && <p>Loading subjects…</p>}
           </section>
           {subjects &&
             Object.entries(BUCKETS).map(([bucket, label]) => {

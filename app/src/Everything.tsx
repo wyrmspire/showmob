@@ -49,6 +49,17 @@ export function Everything({
   });
   const [verified, setVerified] = useState(false);
   const [gateError, setGateError] = useState("");
+  const [adminTried, setAdminTried] = useState(false);
+
+  // No saved passcode: a signed-in admin account opens this too. The
+  // grading API re-checks the account server-side on every request.
+  useEffect(() => {
+    if (passcode || verified || adminTried) return;
+    setAdminTried(true);
+    verifyPasscode("").then((result) => {
+      if (result === "ok") setVerified(true);
+    });
+  }, [passcode, verified, adminTried]);
 
   useEffect(() => {
     if (!passcode || verified) return;
@@ -91,7 +102,8 @@ export function Everything({
             <h1>Everything</h1>
             <p>
               The full index — every published page plus unlisted previews —
-              asks for the same grader passcode as the grading test center.
+              asks for the same grader passcode as the grading test center,
+              unless you're signed in as the site admin.
             </p>
             <PasscodeGate onSubmit={unlock} error={gateError} />
           </section>

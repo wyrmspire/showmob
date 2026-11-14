@@ -34,7 +34,8 @@ export function Account({ home }: { home: () => void }) {
         : session ? <><p>Signed in as <strong>{session.user.email}</strong>{admin ? " · Admin" : ""}.</p>
           <p>Your activity log belongs to this account. Admin access is provisioned by the site owner, never from this page.</p>
           <button className="file-button" onClick={async () => { setBusy(true); const { error } = await supabase!.auth.signOut(); setNotice(error?.message ?? "Signed out."); setBusy(false); }} disabled={busy}>Sign out</button></>
-        : <><p>Sign in with an email link. New accounts can be created here; no password is needed. Opening the link signs you into this browser.</p>
+        : <><p>Sign in with an email link. Use the same email every time — that email <em>is</em> your account, so the link signs you back in; it never creates a second one. No password is needed or asked for. Opening the link signs you into whichever browser opens it.</p>
+          <p>Signed in as admin here, grading and the Everything index open for you too — no passcode needed.</p>
           <form onSubmit={sendLink}><label htmlFor="account-email">Email address</label><input id="account-email" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
             <button className="file-button" type="submit" disabled={busy}>{busy ? "Sending…" : "Email me a sign-in link"}</button></form></>}
       {notice && <p role="status">{notice}</p>}

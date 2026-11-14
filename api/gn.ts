@@ -11,7 +11,13 @@
 //   SHOWMOB_GRADING_PASSCODE           shared grader passcode; every GET and POST
 //                                      must send it as the x-grading-passcode
 //                                      header. Unset means the API refuses all
-//                                      requests (fails closed).
+//                                      passcode requests (fails closed).
+//
+// The one alternative to the passcode: a signed-in admin account. A request
+// carrying that account's Supabase access token as a Bearer token is let in
+// only after this function verifies the token with Supabase Auth and finds
+// is_admin on the account's profile — so the site owner signs in once with
+// their email link and never needs the shared passcode.
 
 import { createHash, timingSafeEqual } from "node:crypto";
 
@@ -53,6 +59,39 @@ function authorized(req: RequestLike): boolean {
   const given = Array.isArray(raw) ? raw[0] : raw;
   if (typeof given !== "string" || !given) return false;
   return timingSafeEqual(digest(given), digest(expected));
+}
+
+/**
+ * Admin-account check: verify the Bearer token with Supabase Auth, then
+ * read the account's profile with the service-role key and require
+ * is_admin. Any failure — no token, bad token, no profile, not an admin,
+ * Supabase unreachable — refuses access.
+ */
+async function authorizedAdmin(req: RequestLike): Promise<boolean> {
+  try {
+    const raw = req.headers?.["authorization"];
+    const given = Array.isArray(raw) ? raw[0] : raw;
+    if (typeof given !== "string" || !given.startsWith("Bearer ")) return false;
+    const token = given.slice("Bearer ".length).trim();
+    if (!token) return false;
+    const base = env("SHOWMOB_SUPABASE_URL").replace(/\/$/, "");
+    const key = env("SHOWMOB_SUPABASE_SERVICE_ROLE_KEY");
+    const userRes = await fetch(`${base}/auth/v1/user`, {
+      headers: { apikey: key, authorization: `Bearer ${token}` },
+    });
+    if (!userRes.ok) return false;
+    const user = (await userRes.json()) as { id?: unknown };
+    if (typeof user.id !== "string" || !user.id) return false;
+    const profileRes = await fetch(
+      `${base}/rest/v1/showmob_profiles?select=is_admin&id=eq.${encodeURIComponent(user.id)}`,
+      { headers: { apikey: key, authorization: `Bearer ${key}` } },
+    );
+    if (!profileRes.ok) return false;
+    const rows = (await profileRes.json()) as { is_admin?: unknown }[];
+    return rows[0]?.is_admin === true;
+  } catch {
+    return false;
+  }
 }
 
 async function rpc(fn: string, params: Record<string, unknown>): Promise<unknown> {
@@ -198,7 +237,7 @@ function cleanBehavior(raw: unknown): Record<string, unknown> {
 export default async function handler(req: RequestLike, res: ResponseLike) {
   res.setHeader("cache-control", "no-store");
   res.setHeader("x-robots-tag", "noindex, nofollow");
-  if (!authorized(req)) {
+  if (!authorized(req) && !(await authorizedAdmin(req))) {
     return res.status(401).json({ error: "passcode required" });
   }
   try {
