@@ -113,7 +113,7 @@
   },
   {
    "what": "Long-form generation beyond the clip scale",
-   "why": "The craft problem Chris asked about is the 8-10 second clip and its chaining; feature-length workflows inherit this rather than replace it."
+   "why": "The craft problem is the 8-10 second clip and its chaining; feature-length workflows inherit this rather than replace it."
   },
   {
    "what": "Live-action cinematography hardware",

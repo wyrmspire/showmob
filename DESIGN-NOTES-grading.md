@@ -15,7 +15,7 @@ Reviewed 2026-09-24 (code + live root; live list requires grader passcode).
 | Shell chrome | Hardcoded in `Grading.tsx` | toolbar, bucket headings, passcode gate, grade panel fields, compare UI |
 | Passcode | Env `SHOWMOB_GRADING_PASSCODE` (Vercel); browser sends `x-grading-passcode` | Unlock; stored in `localStorage` key `showmob-grading-passcode` |
 
-**Content does not live in the DB.** The DB is machinery; the pages Chris grades are still JSON files. That matches `docs/grading-night.md`.
+**Content does not live in the DB.** The DB is machinery; the pages the grader grades are still JSON files. That matches `docs/grading-night.md`.
 
 ## What the root renders (unlocked)
 
@@ -49,12 +49,12 @@ JSON-driven: artifact blocks only (no ArtifactView toolbar — grading uses a th
 ## Inconsistencies / gaps
 
 1. **Two catalogs:** subjects table can drift from repo JSON (slug kebab mismatches, A/B `-a`/`-b` suffixes, pending rows). List shows “not built” but there is no admin surface in-app to fix `artifact_slug`.
-2. **Axes invisible while grading:** matrix fields exist in DB for training but never appear beside the page. Good for blind taste; weak if Chris needs the target density on-screen without a separate sheet.
+2. **Axes invisible while grading:** matrix fields exist in DB for training but never appear beside the page. Good for blind taste; weak if the grader needs the target density on-screen without a separate sheet.
 3. **Bucket labels duplicated:** `BUCKETS` const vs whatever was seeded — rename in one place only and the UI lies.
 4. **Center theme vs page theme:** root is always paper; opened pages switch to the artifact theme. Fine, but the list never previews theme.
 5. **Generator hidden even after grade:** provenance for later analysis is only in DB/API, not in the UI after submit.
 6. **Direct `/a/gn-…` bypasses the center:** preview URLs work without passcode; `/grading` does not. Same JSON, different chrome and no grade panel on `/a/`.
-7. **No JSON control of the grade panel:** panel schema is React-only. Changing what Chris grades means code change, not content JSON (correct for machinery).
+7. **No JSON control of the grade panel:** panel schema is React-only. Changing what the grader grades means code change, not content JSON (correct for machinery).
 
 ## More design control needed?
 

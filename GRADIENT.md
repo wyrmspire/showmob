@@ -1,12 +1,12 @@
 # Gradient judgment
 
-Status: **committed build direction** (2026-09-23). Not fully shipped yet — we are building toward it. Steward: Chris (intent) / Grok (doc).
+Status: **committed build direction**. Not fully shipped yet.
 
 ## Decision
 
 We are building the **gradient** model. One rule: follow the strongest signal in the content. Complexity moves from pre-planned paths to real-time reading.
 
-**Locked in conversation 2026-09-23** (Chris directed this lock on a voice call). Status line “committed build direction” reflects that lock—not a shipped feature set.
+The status line “committed build direction” reflects a design decision, not a shipped feature set.
 
 **Build sequence lives in [`docs/product-brief.md`](docs/product-brief.md)** (on `main`): gallery with full block coverage → one real story/course → real page references. This file is the judgment model; it does not own the near-term order of work. Gallery is the first real feature build; #37–40 were direction docs, not features.
 
@@ -42,7 +42,7 @@ Scoring and ranking content is common (search, feeds, recommendations). The unus
 ## Implementation sketch
 
 - **Feature, not rebuild.** Build on existing sections, space, layout, and tools (`schemaVersion: 1` JSON, shared widgets, Browse + slideshow-as-block, lifecycle, hub/tags).
-- **Same contract.** Judgment output remains portable content the renderer already knows. Keep Showmob thin versus Mira/Edgerite.
+- **Same contract.** Judgment output remains portable content the renderer already knows. Keep Showmob thin.
 - **No premature schema markers.** Do not propose importance markers or other schema expansion until a real page demands them. The story/gallery is the test: does the agent pick blocks from content pressure, or fill a pattern?
 - **Lightweight weighing (later).** When content pressure appears, give the agent small, explicit ways to mark importance and surface load-bearing metrics using ordinary blocks (classifications, comparisons, stats, callouts) rather than a new scoring service.
 

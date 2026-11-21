@@ -1,7 +1,7 @@
 -- Grading night: the machinery tables (see docs/grading-night.md).
 --
 -- showmob_gn_subjects holds the ~100 presentation situations generators pull from.
--- showmob_gn_grades holds one row per grade Chris gives a page.
+-- showmob_gn_grades holds one row per grade the owner gives a page.
 -- Content stays in repo JSON; these tables are plumbing only.
 -- Same posture as the revision tables: RLS on with zero policies, nothing granted
 -- to anon/authenticated, and service_role-only functions as the access path.

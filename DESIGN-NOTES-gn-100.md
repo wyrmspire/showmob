@@ -1,6 +1,6 @@
 # Design notes: GN-100 (houseplant dashboard)
 
-Page Chris grades: https://showmob.vercel.app/a/gn-a-dashboard-for-a-single-houseplant  
+Page graded: https://showmob.vercel.app/a/gn-a-dashboard-for-a-single-houseplant  
 Artifact JSON: `app/src/content/gn-a-dashboard-for-a-single-houseplant.json`  
 Subject: GN-100 — Beautiful failures — failure bait (dashboard for nothing).  
 Contributor: Instinct. Status: `preview`. Theme: `field`.
@@ -47,7 +47,7 @@ Grading center (`/grading`) is a separate shell: subject list + matrix fields co
 3. **Empty hero eyebrow node:** missing optional field still leaves an empty `.eyebrow` div in the DOM.
 4. **Checklist session note:** hardcoded copy can fight a “living” lifetime axis on other pages; here it accidentally reinforces ephemeral/session behavior for a whimsical “dashboard.”
 5. **DB ↔ JSON coupling:** subjects resolve by `artifact_slug` or `gn-` + kebab(title). A/B rows need the `-a`/`-b` slug in the DB or matching fails. GN-100 has no pair; slug match is clean.
-6. **Density / matrix not on page:** density, interaction, shape, register, lifetime live only in the subjects table (and handoff). The graded URL does not surface the target axes — intentional for blind taste, but graders must remember the matrix from the sheet.
+6. **Density / matrix not on page:** density, interaction, shape, register, lifetime live only in the subjects table . The graded URL does not surface the target axes — intentional for blind taste, but graders must remember the matrix from the sheet.
 
 ## Should more sections be added via JSON?
 

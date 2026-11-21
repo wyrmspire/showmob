@@ -1,6 +1,6 @@
 # Agent authoring actions — first implementation
 
-Status: implementation for review; migration `20260927214900_authoring_workspace` is applied to showmob-dev. This agent-initiated implementation is a bounded slice of ROADMAP P5.1/P5.3. Chris reviewed it on September 27 and approved merging as a private experiment; the HTTP actions remain dark until dedicated credentials and `SHOWMOB_AUTHORING_ENABLED=true` are configured. Production content still comes from repository JSON. The API does not call a model, publish, or automatically learn from grades.
+Status: implementation for review; migration `20260927214900_authoring_workspace` is applied to showmob-dev. This implementation is a bounded slice of ROADMAP P5.1/P5.3, shipped as a private experiment; the HTTP actions remain dark until dedicated credentials and `SHOWMOB_AUTHORING_ENABLED=true` are configured. Production content still comes from repository JSON. The API does not call a model, publish, or automatically learn from grades.
 
 ## What the system does
 

@@ -36,7 +36,7 @@ select version, name from supabase_migrations.schema_migrations order by version
 ## How an agent uses it
 
 1. Read [`supabase/README.md`](../supabase/README.md) for the schema, tests, and the optional live check.
-2. Sign in to the Supabase dashboard with GitHub (Chris's account), open org `Showmob`, project `showmob-dev`.
+2. Ask the owner for dashboard access, then open org `Showmob`, project `showmob-dev`.
 3. Use the dashboard SQL editor for reads and one-off SQL. That's the easy path.
 4. For CLI or `psql` work you need the database password. Ask the owner for it. It never goes in the repo, in `.env.example`, or in any `VITE_*` variable.
 

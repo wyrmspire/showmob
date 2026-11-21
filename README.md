@@ -13,14 +13,13 @@ Showmob is a **small idea-page site**, not a platform rebuild.
 4. **Publish** — status is `draft` → `preview` → `published`. Production lists **published** only; files are never deleted to hide them.
 5. **Ship** — merge to `main`; Vercel deploys static assets.
 
-**Why it exists in the sprint:** one shareable URL for an idea, instead of another one-off deck. Keep it thin versus Mira/Edgerite. Details and open issues: [`docs/shipped-vs-plan.md`](docs/shipped-vs-plan.md). Human-facing orientation lives on the published guide page (`showmob-guide`).
+Showmob gives an idea one shareable URL instead of another one-off deck, and stays deliberately thin. Details and open issues: [`docs/shipped-vs-plan.md`](docs/shipped-vs-plan.md). Human-facing orientation lives on the published guide page (`showmob-guide`).
 
 
 ## Repository layout
 
 - `app/src/` - the current Showmob v3 hosted-app source
 - `app/src/content/` - schema-versioned JSON artifacts, including the seven-part public product brief
-- `docs/archive/idea-site-template-plan.md` - the archived pre-Showmob planning artifact; do not build against it
 
 ## Development
 

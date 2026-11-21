@@ -1,6 +1,6 @@
 # Shipped product vs earlier plan (reconcile without loss)
 
-Status: decision record. Steward: Grok. Date: 2026-09-22.
+Status: decision record. Date: 2026-09-22.
 
 This document locks what the **running app** does today, and preserves earlier Present/Read language as **superseded intent**, not deleted history. Do not erase draft/preview artifacts, series content, or the slideshow block while closing gaps.
 
@@ -62,7 +62,7 @@ Do these without deleting content or collapsing lifecycle states.
 ### Explicit non-goals for this pass
 
 - Do not delete draft/preview/archived JSON to clean the hub.
-- Do not revive a global Present mode unless Chris reopens it; if reopened, treat as a new shell with a decision note.
+- Do not revive a global Present mode unless the owner reopens it; if reopened, treat as a new shell with a decision note.
 - Do not add a database requirement to fix publication filtering.
 
 ## Acceptance
