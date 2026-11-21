@@ -4,12 +4,12 @@ This file records infrastructure blockers that an authorized coding agent cannot
 
 ## HA-001 — Restore `showmob-dev`
 
-**Status:** Blocked — owner billing/project-cap decision required  
+**Status:** Completed — project restored and verified  
 **Recorded:** 2026-11-20  
 **Supabase project:** `showmob-dev` (`vsasmtsifuylhfrrsrso`)  
-**Resume phase:** Backend activation Phase 1
+**Completed phase:** Backend activation Phase 1
 
-### Verified blocker
+### Original blocker
 
 An authorized `restore_project` request reached Supabase and failed with:
 
@@ -17,27 +17,19 @@ An authorized `restore_project` request reached Supabase and failed with:
 
 The connected project inventory shows `mogmine` (`kyolbemnjzubluyuctuq`) active and `showmob-dev` inactive. The limit response refers to two active free projects across organizations where the owner is an administrator or owner, so this repository does not identify another project that is safe to pause.
 
-### Smallest safe owner action
+### Resolution
 
-Choose exactly one in the Supabase dashboard:
+With the owner's approval, the unused `mogmine` project was paused without deletion. The existing `showmob-dev` project was then restored and reached `ACTIVE_HEALTHY`. No replacement project was created.
 
-1. Upgrade the applicable Supabase organization/plan so another project may be active; or
-2. Identify a different active project that is safe to pause, then pause that project.
+### Verification completed
 
-Do **not** pause or delete `mogmine` merely to clear this ticket unless the owner separately decides that its active database can be unavailable. Do not create a replacement ShowMob project.
-
-After capacity is available, restore the existing project from:
-
-https://supabase.com/dashboard/project/vsasmtsifuylhfrrsrso
-
-### Agent verification after the owner action
-
-1. Query project status until `vsasmtsifuylhfrrsrso` is `ACTIVE_HEALTHY`.
-2. List remote migration history.
-3. Run read-only catalog queries for `showmob_%` tables, functions, constraints, triggers, grants, and RLS policies.
-4. Compare live history and objects with every repository migration, including `20260928131000_account_activity.sql`.
-5. Preserve historical rows; do not run `supabase db reset` or an unreviewed bulk push.
-6. Continue Vercel credential smoke tests and authoring API activation only after database health and schema are verified.
+- Project status reached `ACTIVE_HEALTHY`.
+- Historical counts were preserved: 54 artifact revisions, 110 grading subjects, and 121 grade rows.
+- All `showmob_%` tables have RLS enabled. Authoring RPCs remain service-role-only.
+- The seven previously recorded migrations match the repository.
+- The account/activity tables, policies, grants, functions, and triggers matched `20260928131000_account_activity.sql`; its missing migration-history row was reconciled without rerunning the SQL.
+- Production `/api/authoring/discover` returns 401 for missing and invalid bearer tokens, confirming the route is active and fails closed.
+- Disposable run `e4000eb5-07d6-4496-a7f7-65341987ddad` proved saved steps, recovery, workspace isolation, stale-revision rejection, and idempotent retry.
 
 ### Evidence already collected
 
@@ -46,4 +38,5 @@ https://supabase.com/dashboard/project/vsasmtsifuylhfrrsrso
 - Vercel project `maddyup/showmob` exists and its latest production deployment was `READY`.
 - Required Vercel variable names exist. Public URL is `https://vsasmtsifuylhfrrsrso.supabase.co`; protected values were not decrypted or exposed.
 - Production homepage returned HTTP 200.
-- The authoring route could not be conclusively smoke-tested through the Vercel authenticated-fetch helper; re-test with a normal HTTP client after Supabase is healthy.
+- The production authoring route was tested from a temporary Vercel sandbox: missing and wrong bearer credentials both returned JSON 401 responses.
+- The configured valid token remains secret and was not exposed or rotated; authenticated HTTP discovery still requires a client that already possesses that credential.
