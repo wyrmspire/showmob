@@ -109,3 +109,19 @@ Prove the language with real content through the full existing pipeline. Let tha
 ## Authoring actions pilot — 2026-09-27
 
 An agent proposed and built agent-facing discovery and database-backed authoring actions. Chris reviewed the draft on September 27 and approved merging it as a private experiment; live activation is deferred. See [docs/authoring-actions.md](docs/authoring-actions.md) for the contract, status and activation gates. Use the existing learning/director documents as inputs. Intermediate outlines and reviews are working state, not automatically pages; publication remains separate. This explicit pilot advances part of ROADMAP P5 without claiming other phases are complete.
+
+## Infrastructure and authoring operations
+
+Treat developer infrastructure, private agent authoring, and browser-reader identity as separate identities.
+
+- Use authorized GitHub, Supabase, and Vercel integrations for infrastructure work. Do not require a ShowMob reader login for repository, deployment, database, or private authoring operations.
+- Use the existing `/api/authoring/*` implementation and `docs/authoring-actions.md`; do not invent a second authoring API.
+- Keep `SHOWMOB_SUPABASE_SERVICE_ROLE_KEY` and `SHOWMOB_AUTHORING_KEYS` server-only. Never place them in `VITE_*`, source files, docs, logs, artifacts, or client responses.
+- A dedicated authoring bearer token identifies an actor, workspace, and scopes. It is not a Supabase service-role credential and not a browser-user session.
+- Before database work, confirm the exact Supabase project reference and health. Inspect live schema and migration history before applying anything. Never use `db reset` on the hosted project and never reapply reconciled migrations blindly.
+- Before changing Vercel variables, inventory existing names, targets, and safe smoke-test results. Do not rotate credentials merely because protected values cannot be displayed. Redeploy after a required variable change.
+- Test authoring activation in this order: route status without a token; wrong-token rejection; authenticated discovery; saved run; immutable steps; stale-write rejection; workspace isolation; recovery from a new client.
+- Structural validation is not visual review. Final artifact records require inspection of the exact rendered draft and saved evidence as enforced by the protocol.
+- Preserve PRs and unrelated branches. Use a focused branch and PR for operational changes.
+- Record unavoidable owner work in `docs/HUMAN_ACTIONS.md` with status, exact blocker, smallest safe action, verification command/query, and resumption point. Never put credentials in that file.
+- After an owner action is completed, verify the external state rather than accepting the action as proof of success, then update or close its ticket.
